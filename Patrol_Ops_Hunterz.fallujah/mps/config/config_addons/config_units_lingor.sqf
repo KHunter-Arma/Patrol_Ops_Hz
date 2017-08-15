@@ -1,0 +1,62 @@
+mps_config_units = mps_config_units + [
+	["LIN_army","aa","LIN_Soldier_AA"],
+	["LIN_army","at","LIN_Soldier_HAT"],
+	["LIN_army","at","LIN_Soldier_AT"],
+	["LIN_army","mg","LIN_Soldier_AR"],
+	["LIN_army","na","LIN_Soldier_Medic"],
+	["LIN_army","cr","LIN_Soldier_Crew"],
+	["LIN_army","na","LIN_SoldierS_Engineer"],
+	["LIN_army","tl","LIN_Soldier_TL"],
+	["LIN_army","so","LIN_Soldier_GL"],
+	["LIN_army","mg","LIN_Soldier_MG"],
+	["LIN_army","tl","LIN_Soldier_Officer"],
+	["LIN_army","pi","LIN_Soldier_Pilot"],
+	["LIN_army","na","LIN_Rifleman"],
+	["LIN_army","tl","LIN_ElPresidente"],
+	["LIN_army","at","LIN_Soldier_LAT"],
+	["LIN_army","so","LIN_army_SoldierS"],
+	["LIN_army","sn","LIN_SoldierS_Sniper"],
+	["LIN_army","so","LIN_Soldier_Medic"],
+
+	["ibr_venator_faction","so","ibr_venator_leader"]
+	["ibr_venator_faction","so","ibr_venator_m16"]
+	["ibr_venator_faction","so","ibr_venator_m4a1"]
+	["ibr_venator_faction","mg","ibr_venator_mg"]
+	["ibr_venator_faction","so","ibr_venator_shotgun"]
+	["ibr_venator_faction","sn","ibr_venator_marksman"]
+	["ibr_venator_faction","so","ibr_venator_m79"]
+	["ibr_venator_faction","na","ibr_venator_medic"]
+	["ibr_venator_faction","so","ibr_venator_escort"]
+	["ibr_venator_faction","so","ibr_venator_escort2"]
+	["ibr_venator_faction","so","ibr_venator_assaulter"]
+	["ibr_venator_faction","so","ibr_venator_assaulter2"]
+	["ibr_venator_faction","so","ibr_venator_assaulter3"]
+
+	[ibr_arl_faction,"aa","ibr_arl_aa"],
+	[ibr_arl_faction,"at","ibr_arl_at"],
+	[ibr_arl_faction,"mg","ibr_arl_ar"],
+	[ibr_arl_faction,"mg","ibr_arl_mg"],
+	[ibr_arl_faction,"tl","ibr_arl_officer"],
+	[ibr_arl_faction,"na","ibr_arl_sap"],
+	[ibr_arl_faction,"mg","ibr_arl_mg"],
+	[ibr_arl_faction,"sn","ibr_arl_sniper"],
+	[ibr_arl_faction,"so","ibr_arl_medic"],
+	[ibr_arl_faction,"cr","ibr_arl_crew"],
+	[ibr_arl_faction,"pi","ibr_arl_pilot"],
+	[ibr_arl_faction,"na","ibr_rif"],
+	[ibr_arl_faction,"na","ibr_rif2"],
+	
+	["ibr_drg_faction","so","ibr_drg_man1"],
+	["ibr_drg_faction","so","ibr_drg_man2"],
+	["ibr_drg_faction","so","ibr_drg_man3"],
+	["ibr_drg_faction","so","ibr_drg_man4"],
+	["ibr_drg_faction","so","ibr_drg_man5"],
+	["ibr_drg_faction","so","ibr_drg_man6"],
+	["ibr_drg_faction","so","ibr_drg_man7"],
+	["ibr_drg_faction","at","ibr_drg_at"],
+	["ibr_drg_faction","tl","ibr_drg_lord"],
+	["ibr_drg_faction","pi","ibr_drg_pilot"],
+	["ibr_drg_faction","tl","ibr_drg_eric"],
+	["ibr_drg_faction","tl","ibr_tucano_lin"]
+
+];

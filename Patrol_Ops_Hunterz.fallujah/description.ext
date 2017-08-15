@@ -1,0 +1,89 @@
+#include "mps\dialog\mps_dialog.hpp"
+#include "HZ\dialogs\defines.hpp"
+#include "HZ\dialogs\veh\dialog.hpp"
+#include "HZ\dialogs\fort\dialog.hpp"
+#include "HZ\dialogs\admin\dialog.hpp"
+
+loadScreen = "mps\media\po2.paa";
+
+onLoadIntroTime = 1;
+
+class Header {
+	gameType=Coop;
+	minPlayers=0;
+	maxPlayers=32;
+};
+
+Respawn		= 3;
+RespawnDelay	= 240;
+respawnDialog	= 0;
+showGPS		= 1;
+showCompass	= 1;
+showWatch	= 1;
+aiKills		= 0;
+DisabledAI	= 1;
+debriefing	= 1;
+briefing	= 0;
+disableChannels[]={0,5,2,3};
+enableItemsDropping = 0;
+
+#include "R3F_ARTY_AND_LOG\desc_include.h"
+#include "mps\vdg\vdg.cpp"
+
+class RscTitles {
+	#include "R3F_ARTY_AND_LOG\desc_rsct_include.h"
+	#include "mps\dialog\mps_titles.sqf"
+};
+
+class Params {
+	#include "mps\dialog\mps_params.sqf"
+};
+
+class CfgSounds {
+	#include "mps\dialog\mps_sounds.sqf"
+};
+
+class CfgDebriefing
+{  
+	class End1
+	{
+		title = "Mission Completed";
+		subtitle = "";
+		description = "Wow you actually survived through all of that? Well done!";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0.0,0.3,0.6,1};
+	};
+	
+		class loser
+	{
+		title = "Disallowed Addon";
+		subtitle = "";
+		description = "You were removed from the game because you are running a mod which is not allowed on this server.";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0.6,0.1,0.2,1};
+	};
+	
+			
+		class End2
+	{
+		title = "Kicked";
+		subtitle = "";
+		description = "You were kicked from the server by an admin.";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0.6,0.1,0.2,1};
+	};
+	
+		class End3
+	{
+		title = "Banned";
+		subtitle = "";
+		description = "You were banned from this server by an admin.";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0.6,0.1,0.2,1};
+	};
+};
+

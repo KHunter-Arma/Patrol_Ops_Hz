@@ -1,0 +1,629 @@
+private ["_objectsarr","_uid","_tentpos","_tentposx","_tentposy","_tentposz"];
+
+#include "vdg\VDG_init.sqf"
+// Client Initialise
+
+if(isDedicated) exitWith {};
+/* =============================================================================================
+
+                        
+
+                        "AmbientCombatManager" createUnit [[0,0,0], grpNull, "ACM = this;"];
+                        ACM synchronizeObjectsAdd [player];
+                       
+*/ //=============================================================================================
+
+if !(hz_debug) then {
+deleteMarkerlocal "jungle_1";
+deleteMarkerlocal "jungle_2";
+
+//also delete UPS markers on client...
+deleteMarkerlocal "patrol_opfor_s";
+deleteMarkerlocal "patrol_blufor_s";
+deleteMarkerlocal "patrol_blufor_n";
+deleteMarkerlocal "patrol_opfor_n";
+
+
+};
+
+/*
+
+// work out what class the player has joined as
+	_class = "soldier";
+	_sniper = [player,"sniper"] call mps_class_check;	if(_sniper) then {_class = "sniper";};
+	_mg = [player,"mg"] call mps_class_check;		if(_mg) then {_class = "mg";};
+	_at = [player,"at"] call mps_class_check;		if(_at) then {_class = "at";};
+	_engineer = [player,"engineer"] call mps_class_check;	if(_engineer) then {_class = "engineer";};
+	_crewman = [player,"crewman"] call mps_class_check;	if(_crewman) then {_class = "crewman";};
+	_pilot = [player,"pilot"] call mps_class_check;		if(_pilot) then {_class = "pilot";};
+
+	mps_player_class = _class;
+
+*/
+
+
+
+/*
+
+
+// Error messages when a player tries to enter something the should not
+	mps_driver_error_pilot = {
+		_vehicleType = typeof (_this select 0);
+		_title = "Advanced Vehicles";
+		_content = format[localize "STR_Client_Limit_Pilots", getText (configFile >> "CfgVehicles" >> _vehicleType >> "displayName") ];
+		_step = "Pilot Required";
+		[_title,_content,_step] spawn mps_adv_hint;
+	};
+	mps_driver_error_crewman = {
+		_vehicleType = typeof (_this select 0);
+		_title = "Advanced Vehicles";
+		_content = format[localize "STR_Client_Limit_Crew", getText (configFile >> "CfgVehicles" >> _vehicleType >> "displayName") ];
+		_step = "Crewman Required";
+		[_title,_content,_step] spawn mps_adv_hint;
+	};
+	mps_driver_error_rank = {
+		_vehicleType = typeof (_this select 0);
+		_rank = _this select 1;
+		_title = "Advanced Vehicles";
+		_content = format[localize "STR_Client_Limit_rank", getText (configFile >> "CfgVehicles" >> _vehicleType >> "displayName"),_rank];
+		_step = "Rank Required";
+		[_title,_content,_step] spawn mps_adv_hint;
+	};
+	mps_error_locked = {
+		_vehicleType = typeof (_this select 0);
+		_rank = _this select 1;
+		_title = "Admin Restrictions";
+		_content = format["The Administrator has locked this %1.<br/>If you wish to use this %1, the admin may unlock it for you.", getText (configFile >> "CfgVehicles" >> _vehicleType >> "displayName")];
+		_step = "Admin Locked";
+		[_title,_content,_step] spawn mps_adv_hint;
+		(_this select 0) call mps_lock_vehicle;
+	};
+
+*/
+
+// Detect ACRE
+	[] call compile preprocessFileLineNumbers (mps_path+"func\mps_func_detect_acre.sqf");
+        
+// ACE additions
+
+/*
+	if(mps_ace_enabled) then {
+		[player, _pilot] call ace_fnc_setCrewProtection;
+	};
+*/
+// Begin actions for vehicle Drivers
+// Written by BON_IF
+// Adapted by EightySix
+//	[] execFSM (mps_path+"fsm\mps_client_driver.fsm");
+
+// Enable Restriction of 3rd Person
+// Written by Xeno
+// Adapted by EightySix
+//	[] execFSM (mps_path+"fsm\mps_client_3rdperson.fsm");
+        
+// Begin Client Cursor Monitoring for actions on objects
+	[] execVM (mps_path+"func\mps_func_client_cursortarget.sqf");
+
+// Remove all gear from a joining player and equip defaults
+//	[] execVM (mps_path+"config\config_defaultgear.sqf");
+
+
+waitUntil {!(isNull player)};
+
+sleep 1;
+
+_uid = getplayeruid player;
+if(_uid in BanList) then {
+
+    hintc "You are banned from this server";
+    endmission "End3";
+
+};
+
+// Publicvariabled from server init. Used to sync destroyed objects/buildings from nuke for JIP
+if (count narray2 > 0) then {{_x setdamage 1;} foreach narray2;};
+
+// Setup Respawn Variables
+	mps_body = player;
+	mps_death_effect = [] spawn {};
+	mps_current_pos = getPosATL AIS_body;
+        
+        // Setup Client Event Handlers
+        ehready = false;
+	[] execVM (mps_path+"func\mps_func_client_eventhandlers.sqf");
+        waituntil {ehready};
+        
+       
+        
+//let server know client init successful (at least critical part is finished)
+Hz_SvSec_WaitingForClear set [count Hz_SvSec_WaitingForClear,_uid];
+publicvariable "Hz_SvSec_WaitingForClear";
+
+
+
+// Call the Injury System. This is disabled in the event ACE_Wounds is enabled
+// Written by BON_IF
+// Adapted by EightySix
+
+//	player spawn mps_injury_sys_init;
+
+// Setup JIP MHQ and enable mhq status updates
+
+/*/
+	[] spawn {
+		{	_mhq = !isNil {_x getVariable "mhq_side"};
+			if(_mhq) then {
+				if(_x getVariable "mhq_status") then { [_x,true] call mps_mhq_update };
+			};
+		} forEach (nearestObjects [ [0,0], ["All"], 40000 ] );	
+
+		"mhq_update" addPublicVariableEventHandler { (_this select 1) call mps_mhq_update; };
+	};
+*/
+
+
+ /* =============================================================================================
+                       waitUntil {!isNil {ACM getVariable "initDone"}};
+                       _fsm = ACM execFSM "ca\modules\ambient_combat\data\fsms\ambientcombat.fsm";
+                       waitUntil {ACM getVariable "initDone"};
+                       waitUntil {!(isnil "BIS_fnc_init")};
+                       
+                        [1, ACM] call BIS_ACM_setIntensityFunc;                 //Sets the intensity of the ACM, in other words, determines how active it will be. Starts at 0 ends at 1.0, its been known to fail using 0.7 and 0.8
+			[ACM, 500, 1500] call BIS_ACM_setSpawnDistanceFunc;      // This is the radius on where the units will spawn around the unit the module is sync'd to.
+                        [["BIS_TK","BIS_US"], ACM] call BIS_ACM_setFactionsFunc;
+			[0.2, 0.2, ACM] call BIS_ACM_setSkillFunc;                // This determines what the skill rating for the spawned units will be
+			[0.6, 1, ACM] call BIS_ACM_setAmmoFunc;               // This sets their amount of ammo they spawn with
+			["ground_patrol", 1, ACM] call BIS_ACM_setTypeChanceFunc; //Chance of patrol type of appearing. 0.0 to 1.0
+			["air_patrol", 0.1, ACM] call BIS_ACM_setTypeChanceFunc;    // Same thing for air patrols
+ 		 	[ACM, ["TK_InfantrySquad","TK_InfantrySection","US_MQ9Flight","US_CH47FFlight","US_RifleSquad","US_DeltaForceTeam","US_AH64DFlight","US_UH60MFlight","US_MechanizedInfantrySquadICVM2","TK_MotorizedInfanterySquad","TK_InfantrySectionMG","TK_SniperTeam","TK_SpecialPurposeSquad","TK_MechanizedReconSection","TK_T55Platoon","TK_T72Platoon","TK_MechanizedInfantrySquadBMP2","TK_MechanizedInfantrySquadBTR60"]] call BIS_ACM_addGroupClassesFunc;   // This determines which exact units will spawn from the group **Citation needed**
+        
+
+*/ // =============================================================================================
+
+// Initialise the Ranking System for players
+	//player spawn mps_rank_init;
+//	player spawn mps_rank_proxy;
+	//player spawn mps_rank_hud;
+
+// Initialise the Player HUDs
+	
+      /*  
+        [] spawn mps_func_hud_aimpoint;
+	[] spawn mps_func_hud_teamlist;
+	[] spawn {
+		mps_player_list = []; sleep 10;
+		while {true} do {
+			{
+				if( ((side _x) == (playerSide)) && (_x IN (playableUnits+switchableunits)) && !(_x in mps_player_list) && _x != player ) then {
+					mps_player_list = mps_player_list + [_x];
+					// _x spawn mps_func_hud_3d;
+				};
+			} foreach allUnits;
+			{ if !(_x IN (playableUnits+switchableunits)) then { mps_player_list = mps_player_list - [_x]; }; } forEach mps_player_list;
+			sleep 20;
+		};
+	};
+
+	[] spawn { waitUntil {time > 2}; (findDisplay 46) displayAddEventHandler ["KeyDown","_this call mps_func_keyspressed"]; };
+        
+        */
+        
+
+       
+  /*   
+     
+        // Disable squad leader icon while in vehicle by temporarily removing player from group -- Hunter'z
+       [] spawn {
+           
+               while {true} do {
+           if (vehicle player == player) then {
+
+            _playergrp = group player;
+
+            };
+
+            if ((vehicle player != player) && (lifeState leader group player != "DEAD")) then {
+
+                    if (player == leader group player) exitwith {};
+                    [player] joinSilent grpNull;
+                        };
+
+            if ((vehicle player == player) && (group player != _playergrp)) then {
+            [player] joinSilent _playergrp;
+
+            };
+        
+            sleep 1;
+        
+        };
+        
+        };
+        
+*/
+
+// Setup JIP deployed ammoboxes
+	/*
+        
+        player spawn {
+
+		private["_data","_position","_nearestboxes"];
+
+		waitUntil {!isNil "mps_ammobox_list"};
+
+		{
+			_data = _x;
+			if( (_data select 0) == side player) then{
+				_position = (_data select 1);
+				_nearestboxes = nearestObjects [_position,[mission_mobile_ammo],5];
+				if(count _nearestboxes == 0) then {
+					[_position] call mps_ammobox;
+				};
+			};
+
+		}forEach mps_ammobox_list;
+	};
+      */  
+        
+      []spawn {
+        
+        sleep 60;
+        hint parseText format
+["
+	<t align='center' size='1.5' shadow='1' color='#ffffff' shadowColor='#000000'>
+	PATROL OPS</t><t align='center' size='1.5' shadow='1' color='#ff0000' shadowColor='#000000'> HUNTER'Z
+        </t><br /><br /><t align='left' shadow='1' color='#ffffff' shadowColor='#000000'>This is a heavily modified Patrol Ops mission. All mission related spawns will occur at the marker in base. Respawn time is 3.5 minutes. For more information, check the mission notes.
+"];
+
+
+
+/*
+        sleep 20;
+        hintsilent parseText format
+["
+	<t align='center' size='1.5' shadow='1' color='#ffffff' shadowColor='#000000'>
+	PATROL OPS 2 HUNTER'Z
+	</t><br /><br /><t align='center' shadow='1' color='#ffffff' shadowColor='#000000'>Hunter'z Realism Rating:<br /><br /></t><t align='center' shadow='1' color='#ff0000' shadowColor='#000000'>2: Realistic</t><br /><br /><t align='left' shadow='1' color='#ffffff' shadowColor='#000000'>All mission related spawns will occur near the Repair and Resupply area next to the taxiway.
+        <br /><br />Respawn time is 2 minutes. You can deploy your own rallypoint to spawn on it.
+        <br /><br />Undestroyed vehicles will NOT respawn if you abandon them. It's a good idea to place markers where you leave vehicles to find them later.
+        <br /><br />Only you can see your map markers, unless you use the vehicle channel. To share map information with other players outside of vehicles, use ACE map tools and copy eachother's maps.
+        <br /><br />Vehicle respawn time is 24 hours.
+        <br /><br /></t>
+        <t align='left' shadow='1' color='#ffffff' shadowColor='#000000'>Hunter'z Realism Scale:<br /><br />1: Casual<br /><br />2: Realistic<br /><br />3: War is a bitch</t>
+"];
+        
+     */   
+        
+        };
+        
+        
+//{_x enablesimulation false;} foreach alldead; 
+        
+if (!hz_debug && ((side player) != civilian)) then {
+[player] joinsilent (creategroup (SIDE_A select 0));
+};
+
+[] execVM "notes.sqf";
+
+// Hunter'z: option to change viewdistance in vehicle
+waituntil {VDG_initDone};
+VDG_showAction = false;
+if(isnil "limitviewdistance") then {limitviewdistance = false;};
+
+[]spawn {
+while {true} do {
+                sleep 5;
+                if ((vehicle player) != player) then {
+                   
+                   if(!limitviewdistance) then {VDG_showAction = true;};
+                   _veh = vehicle player;
+                   _action = _veh call VDG_addAction;
+                   waituntil {sleep 5;(vehicle player) == player};
+                   _veh removeaction _action;
+                   
+                   } else {
+                    VDG_showAction = false;
+                    };
+                };
+};
+
+
+//C130 lights
+mp_c130_main = 0;
+[]execvm "logistics\mplights.sqf";
+
+
+//Non-medic initialisations
+
+/*
+[]spawn {
+
+    waituntil {sleep 1; !isnil "Hz_roles_initdone"};
+    waituntil {sleep 1; Hz_roles_initdone};
+    
+    if (!MED_A || !((typeof player == "US_Soldier_Medic_EP1") || (typeof player == "BAF_Soldier_Medic_MTP") || (typeof player == "Mercenary_Default28") || (typeof player == "Soldier_Medic_PMC") || (typeof player == "BAF_Soldier_Medic_W") || (typeof player == "BAF_Soldier_Medic_DDPM"))) then {
+
+    // Player is not a certified medic. Event handler must be triggered to check if CMS should be enabled.
+
+   // player setvariable["cms_medicClass",false];
+   // player setvariable ["cms_enable",false,true];
+
+    //cms_enableCombatMedicalSystem = false;
+    //mediconline = false;
+    //CMSEH = player AddMPEventHandler ["MPHit", { []execvm "cmseh.sqf"}];
+    //CMSEH = player AddEventHandler ["HandleDamage", { []execvm "cmseh.sqf"}];
+
+    cmscheckformedics = true;
+    publicvariable "cmscheckformedics";
+
+    };
+
+};
+*/
+
+/*
+// Wounding system. Resolve conflict with ACE wounds
+sleep 60;
+
+{
+                if (isPlayer _x) then
+                {
+                        _allPlayers = _allPlayers + [_x];
+                };
+        } forEach playableUnits;
+     
+     
+     {
+      _uid = getPlayerUID _x;
+      _uids = _uids + [_uid];
+      
+      if (_uid == "76561198080472574") then {med1 = _x;};
+       if (_uid == "76561198012587329") then {med2 = _x;};      
+                 }foreach _allplayers;
+                 
+    if !( ("76561198080472574" in _uids && (med1 == s21 || med1 == s12 || med1 == s3)) || ("76561198012587329" in _uids && (med2 == s21 || med2 == s12 || med2 == s3)) ) then{
+        
+            _deadplayers = [];
+            
+            {
+                if (isPlayer _x) then
+                {
+                        _deadplayers = _deadplayers + [_x];
+                };
+        } forEach Alldead;
+        
+        _deaduids = [];
+        
+        {_deaduids = _deaduids + [getPlayerUID _x];}foreach _deadplayers;
+                
+            if !( ("76561198080472574" in _deaduids && (med1 == s21 || med1 == s12 || med1 == s3)) || ("76561198012587329" in _deaduids && (med2 == s21 || med2 == s12 || med2 == s3)) ) then {
+            
+            mediconline = false;
+            cms_enableCombatMedicalSystem = false;
+            ace_sys_wounds_enabled = true;
+           // player setvariable ["ace_w_eh",1];
+           // player setvariable ["ace_w_allow_dam",1];
+            
+            if (!isnil "ACEWEH") then {player removempeventhandler ["MPHit", ACEWEH];};
+            
+            CMSEH = player AddMPEventHandler ["MPHit", {_unit = player; if(alive _unit) then {_unit setvariable ["cms_bloodVolume",100];
+            _unit setvariable ["cms_bloodPressure",[80,120]];
+            _unit setvariable ["cms_bloodLoss",0];
+            _unit setvariable ["cms_heartRate",80];
+            _unit setvariable ["cms_plasmaIV", 0];
+            _unit setvariable ["cms_bloodIV", 0];
+            _unit setvariable ["cms_salineIV", 0];
+            _unit setvariable ["cms_painStatus", 0];
+            _unit setvariable ["cms_statusBodyParts", [0,0,0,0],true];
+            _unit setvariable ["cms_tourniquet", [0,0,0,0]];
+            _unit setvariable ["cms_openWounds", [[0,0,0],[0,0,0],[0,0,0],[0,0,0]]];
+            _unit setvariable ["cms_bandagedWounds", [[0,0,0],[0,0,0],[0,0,0],[0,0,0]]];
+            _unit setvariable ["cms_airwayStatus", true];
+            _unit setvariable ["cms_bones", [[0,0],[0,0],[0,0],[0,0,0,0]]];
+            _unit setvariable ["cms_cardiacArrest", false,true];
+            _unit setvariable ["cms_isUnconscious", false,true];
+            _unit setvariable ["cms_beingDragged", false,true];
+            _unit setvariable ["cms_isDragging", false,true];
+            _unit setvariable ["cms_draggingUnit", ObjNull,true];
+            _unit setvariable ["cms_dragging", false,true];
+            _unit setvariable ["cms_draggedBy", ObjNull,true];
+            _unit setvariable ["cms_triageCard", [],true];
+            _unit setvariable ["cms_triageLevel", "NONE", true];
+            _unit setvariable ["cms_nameUnit", (name _unit), true];
+            _unit setvariable ["cms_isDead", false,true];
+            _unit setvariable ["cms_medicationMorphineUsed", 0];
+            _unit setvariable ["cms_medicationEpinephrineUsed", 0];
+            _unit setvariable ["cms_medicationAtropineUsed", 0];};}];
+            
+            }else {
+                mediconline = true;
+                ace_sys_wounds_enabled = false;
+                 player setvariable ["ace_w_eh",0];
+                 player setvariable ["ace_w_allow_dam",0];
+                sleep 10;
+                
+                if (!isnil "CMSEH") then {player removempeventhandler ["MPHit", CMSEH];};
+                //ACEWEH = player AddMPEventHandler ["MPHit", {[player,0,false,0] call ace_w_setunitdam;}];
+                
+                cms_enableCombatMedicalSystem = true;
+                };
+
+} else {
+    
+mediconline = true;
+ace_sys_wounds_enabled = false;
+// player setvariable ["ace_w_allow_dam",0];
+// player setvariable ["ace_w_eh",0];
+ 
+//ACEWEH = player AddMPEventHandler ["MPHit", {[player,0,false,0] call ace_w_setunitdam;}];
+ 
+sleep 10;
+if (!isnil "CMSEH") then {player removempeventhandler ["MPHit", CMSEH];};
+cms_enableCombatMedicalSystem = true;
+
+};
+
+*/
+
+
+if(!hz_debug) then {
+
+// player check
+[] spawn {
+
+if ([] call Hz_func_isSupervisor) exitwith{};
+        
+_uid = getPlayerUID player;
+
+ sleep 30;
+ while {true} do {
+     
+        _allPlayers = [];
+        _uids = [];
+
+        {
+                if (isPlayer _x) then
+                {
+                        _allPlayers = _allPlayers + [_x];
+                };
+        } forEach playableUnits;
+     
+     
+     {
+      _uid = getPlayerUID _x;
+      _uids = _uids + [_uid];   
+             
+                 }foreach _allplayers;
+                 
+                 
+    _condition = {if (_x in _uids) exitwith {false}; true}foreach Hz_wep_restriction_supervisors;
+                 
+    if (_condition) then {
+        
+            _deadplayers = [];
+            
+            {
+                if (isPlayer _x) then
+                {
+                        _deadplayers = _deadplayers + [_x];
+                };
+        } forEach Alldead;
+        
+        _deaduids = [];
+        
+        {_deaduids = _deaduids + [getPlayerUID _x];}foreach _deadplayers;
+        
+        _condition = {if(_x in _deaduids) exitwith {false}; true}foreach Hz_wep_restriction_supervisors;
+                
+            if (_condition) then {
+                
+    hint parseText format ["<t size='1.5' shadow='1' color='#ff0000' shadowColor='#000000'>WARNING! You are not allowed to play on this server without being supervised by a trained B.A.D. PMC member! You will now be returned to the lobby.</t>"];
+    sleep 15;
+    endMission "LOSER"; 
+    
+    }; };
+     
+     sleep 300;
+    };
+
+};
+
+};
+
+
+[] spawn {
+                
+               sleep 30;
+               [cim_action_getDown1] call CBA_fnc_removePlayerAction;
+               [cim_action_getDownAll] call CBA_fnc_removePlayerAction;
+               [cim_action_getAway1] call CBA_fnc_removePlayerAction;
+               [cim_action_getAwayAll] call CBA_fnc_removePlayerAction;
+               [cim_action_getInside1] call CBA_fnc_removePlayerAction;
+               [cim_action_getInsideAll] call CBA_fnc_removePlayerAction;
+               [cim_action_StopCar] call CBA_fnc_removePlayerAction;
+               [cim_action_Search] call CBA_fnc_removePlayerAction;
+               [cim_action_Disarm] call CBA_fnc_removePlayerAction;
+               [cim_action_getDownAll] call CBA_fnc_removePlayerAction;
+               [cim_action_Pacify] call CBA_fnc_removePlayerAction;
+               [cim_action_Arrest] call CBA_fnc_removePlayerAction;
+               [cim_action_release] call CBA_fnc_removePlayerAction;
+               [cim_action_uncuff] call CBA_fnc_removePlayerAction;
+               sleep 3;
+                cim_action_getDown1 = [['<t color="#FF0000">'+"Verbal Command: Get down!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getDown_Client.sqf"), [player,false,cursorTarget], 10, false, true, CIM_Module getVariable "nielsen_cim_key_getDown","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (cursorTarget isKindof ""MAN"") AND (cursorTarget distance player > 2)"]] call CBA_fnc_addPlayerAction;
+                cim_action_getDownAll = [['<t color="#FF0000">'+"Verbal Command: Get down!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getDown_Client.sqf"), [player,true], 10, false, true, CIM_Module getVariable "nielsen_cim_key_getDown","cim_key_pressed AND !((cursorTarget isKindof ""MAN"") AND (side cursorTarget == CIVILIAN))"]] call CBA_fnc_addPlayerAction;
+
+                cim_action_getAway1 = [['<t color="#FF0000">'+"Verbal Command: Clear area!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getAway_Client.sqf"), [player,false,cursorTarget], 9, false, true, CIM_Module getVariable "nielsen_cim_key_getAway","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (cursorTarget isKindof ""MAN"") AND (cursorTarget distance player > 2)"]] call CBA_fnc_addPlayerAction;
+                cim_action_getAwayAll = [['<t color="#FF0000">'+"Verbal Command: Clear area!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getAway_Client.sqf"), [player,true], 9, false, true, CIM_Module getVariable "nielsen_cim_key_getAway","cim_key_pressed AND !((cursorTarget isKindof ""MAN"") AND (side cursorTarget == CIVILIAN))"]] call CBA_fnc_addPlayerAction;
+
+                cim_action_getInside1 = [['<t color="#FF0000">'+"Verbal Command: Get inside!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getInside_Client.sqf"), [player,false,cursorTarget], 8, false, true, CIM_Module getVariable "nielsen_cim_key_getInside","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (cursorTarget isKindof ""MAN"") AND (cursorTarget distance player > 2)"]] call CBA_fnc_addPlayerAction;
+                cim_action_getInsideAll = [['<t color="#FF0000">'+"Verbal Command: Get inside!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getInside_Client.sqf"), [player,true], 8, false, true, CIM_Module getVariable "nielsen_cim_key_getInside","cim_key_pressed AND !((cursorTarget isKindof ""MAN"") AND (side cursorTarget == CIVILIAN))"]] call CBA_fnc_addPlayerAction;
+
+                cim_action_StopCar = [['<t color="#FF0000">'+"Verbal Command: Get out of the car!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_stopCar_Client.sqf"), [player], 7, false, true, CIM_Module getVariable "nielsen_cim_key_stopCar","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (cursorTarget isKindof ""CAR"") AND (cursorTarget distance player <= 75);"]] call CBA_fnc_addPlayerAction;
+
+                cim_action_Search = [['<t color="#FF0000">'+"Search individual!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_search_Client.sqf"), [player], 10, false, true, CIM_Module getVariable "nielsen_cim_key_Search","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (alive cursorTarget) AND (cursorTarget distance player <= 2) AND (cursorTarget isKindof ""MAN"") AND !(cursorTarget in CIM_List_Searched)"]] call CBA_fnc_addPlayerAction;
+                cim_action_Disarm = [['<t color="#FF0000">'+"Remove Belongings!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_disarm_Client.sqf"), [player], 10, false, true, CIM_Module getVariable "nielsen_cim_key_Search","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (alive cursorTarget) AND (cursorTarget distance player <= 2) AND (cursorTarget isKindof ""MAN"") AND (cursorTarget in CIM_List_Searched)"]] call CBA_fnc_addPlayerAction;
+
+                cim_action_Pacify = [['<t color="#FF0000">'+"Key-cuff individual!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_Pacify_Client.sqf"), [player], 9, false, true, CIM_Module getVariable "nielsen_cim_key_Pacify","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (alive cursorTarget) AND (cursorTarget distance player <= 2) AND (cursorTarget isKindof ""MAN"") AND !(cursorTarget in CIM_List_Keycuff)"]] call CBA_fnc_addPlayerAction;
+                
+                cim_action_Arrest = [['<t color="#FF0000">'+"Detain individual!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_arrest_Client.sqf"), [player], 8, false, true, CIM_Module getVariable "nielsen_cim_key_Arrest","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (alive cursorTarget) AND (cursorTarget distance player <= 2) AND (group cursorTarget != group _target) AND (cursorTarget isKindof ""MAN"")"]] call CBA_fnc_addPlayerAction;
+
+                cim_action_release = [['<t color="#FF0000">'+"Release individual!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_release_Client.sqf"), [player], 8, false, true, CIM_Module getVariable "nielsen_cim_key_release","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (alive cursorTarget) AND (cursorTarget distance player <= 2) AND (group cursorTarget == group _target) AND (cursorTarget isKindof ""MAN"")"]] call CBA_fnc_addPlayerAction;
+
+                cim_action_uncuff = [['<t color="#FF0000">'+"Uncuff individual!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_uncuff_Client.sqf"), [player], 9, false, true, CIM_Module getVariable "nielsen_cim_key_release","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (alive cursorTarget) AND (cursorTarget distance player <= 2) AND (cursorTarget in CIM_List_KeyCuff) AND (cursorTarget isKindof ""MAN"")"]] call CBA_fnc_addPlayerAction;
+
+              //  hint "Civilian Module reinitialised!";
+              
+	};
+   
+ waituntil {introseqdone};
+ 
+[] spawn {
+
+    sleep 5;
+                        
+    player setvariable ["ace_w_allow_dam",0];
+    player removealleventhandlers "HandleDamage";
+    player setvariable ["cms_enable",true,true];
+                        
+}; 
+ 
+setterraingrid 50;
+setviewdistance 1600;
+
+_uid = getplayeruid player;
+_tentpos = getMarkerPos _uid;
+_tentposx = _tentpos select 0;
+_tentposy = _tentpos select 1;
+_tentposz = _tentpos select 2;
+
+mps_rallypoint_tent = objnull;
+
+if(!((_tentposx == 0) && (_tentposy == 0) && (_tentposz == 0))) then {
+    
+            _objectsarr = nearestobjects [_tentpos,["ACamp_EP1"],50];
+            
+            {if(_x getvariable "owneruid" == _uid) then {mps_rallypoint_tent = _x;};} foreach _objectsarr;
+            
+            //Tent destroyed
+            if(!alive mps_rallypoint_tent) exitwith {deletemarker _uid;};
+            
+            hint "Would you like to deploy at your tent?";
+            sleep 2;
+            RALLY_STATUS = true;
+            mps_respawned_player = false;
+            createDialog "mps_respawn_dialog";
+            waituntil {
+                sleep 60;  
+            !alive mps_rallypoint_tent
+            };
+
+		deleteVehicle mps_rallypoint_tent;
+		deleteMarker _uid;
+
+		mps_rallypoint_tent = nil;
+
+		//hint "Rallypoint Removed";
+
+		RALLY_STATUS = false;
+                        
+};
+               

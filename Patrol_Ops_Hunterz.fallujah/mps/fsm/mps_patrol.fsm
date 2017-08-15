@@ -1,0 +1,732 @@
+/*%FSM<COMPILE "C:\Games\Steam\steamapps\common\arma 2\tools\FSM Editor Personal Edition\scriptedFSM.cfg, advanced_patrol">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"start",0,250,-124.188171,-214.382950,-81.679817,-184.449814,0.000000,"start"};
+item1[] = {"init",2,4346,-166.651398,-102.417480,-128.825302,-77.166618,0.000000,"init"};
+item2[] = {"bad__args",4,218,-224.989075,-219.005737,-158.400330,-178.370316,99.000000,"bad" \n "#args"};
+item3[] = {"exit",1,250,-283.720215,-183.436172,-251.245270,-154.840775,0.000000,"exit"};
+item4[] = {"bad_args",4,218,-217.878662,-161.618378,-163.387009,-118.902184,0.000000,"bad" \n "args"};
+item5[] = {"_",8,218,-129.548065,-154.073212,-79.608734,-127.745422,0.000000,""};
+item6[] = {"patrol",4,218,-199.740311,113.412323,-114.111847,161.663757,0.000000,"patrol"};
+item7[] = {"hide",4,218,476.272003,199.381683,566.272034,249.381622,0.000000,"hide"};
+item8[] = {"standby",4,218,-863.882507,194.225769,-773.882385,244.225739,0.000000,"standby"};
+item9[] = {"generate_waypoin",2,250,-202.471329,235.238281,-112.471298,285.238312,0.000000,"generate" \n "waypoints"};
+item10[] = {"search_houses",4,218,-201.712845,345.488098,-111.712830,395.488159,99.000000,"search" \n "houses"};
+item11[] = {"add_building_pos",2,250,-74.005463,148.641479,15.994370,198.641602,0.000000,"add building" \n "positions"};
+item12[] = {"assign_waypoints",2,250,-2.013130,371.359100,87.986771,421.359253,0.000000,"assign" \n "waypoints"};
+item13[] = {"not_in_combat_2",4,218,-73.779526,236.670959,16.220337,286.670959,0.000000,"not in" \n "combat"};
+item14[] = {"in_combat",4,218,-200.288010,666.636108,-110.287987,716.636108,0.000000,"in" \n "combat"};
+item15[] = {"in_combat_mode",2,250,-194.551987,793.765259,-104.551666,843.765503,0.000000,"in combat" \n "mode"};
+item16[] = {"occupy_buildings",2,250,472.568329,360.681396,562.568298,410.681519,0.000000,"occupy" \n "buildings"};
+item17[] = {"not_in_combat",4,218,468.288361,516.517883,558.288147,566.517883,0.000000,"not in" \n "combat"};
+item18[] = {"not_enough_build",4,218,333.362579,365.482727,423.362518,415.482727,0.000000,"not enough" \n "buildings"};
+item19[] = {"restart_as_patro",2,250,-184.857864,457.748962,-132.221176,492.659912,0.000000,"restart" \n "as patrol"};
+item20[] = {"sit_down",2,250,-851.557922,442.619995,-787.363220,478.958221,0.000000,"sit" \n "down"};
+item21[] = {"no_chill__places",4,218,-716.871582,373.865662,-626.871582,423.865692,0.000000,"no chill-" \n "places"};
+item22[] = {"not_in_combat_1",4,218,-998.221558,428.527832,-908.221619,478.527679,0.000000,"not in" \n "combat"};
+item23[] = {"find__go_to_chil",2,250,-854.292908,277.757782,-781.389221,319.779480,0.000000,"find, go to" \n "chillplaces"};
+item24[] = {"arrived_at_chill",4,218,-863.641907,355.131195,-773.641907,405.131195,0.000000,"arrived" \n "at chillplace"};
+item25[] = {"not_server",4,218,-130.589417,-293.415344,-60.971046,-254.646027,101.000000,"not" \n "server"};
+item26[] = {"exit_1",1,250,-207.956390,-289.255859,-172.446014,-264.628906,0.000000,"exit"};
+item27[] = {"all_units_dead",4,218,-198.061050,1020.847412,-108.060997,1070.847412,0.000000,"all units" \n "dead"};
+item28[] = {"exit_2",1,250,-175.947006,1134.576660,-127.015953,1171.940430,0.000000,"exit"};
+link0[] = {0,2};
+link1[] = {0,5};
+link2[] = {0,25};
+link3[] = {1,4};
+link4[] = {1,6};
+link5[] = {1,7};
+link6[] = {1,8};
+link7[] = {2,3};
+link8[] = {4,3};
+link9[] = {5,1};
+link10[] = {6,9};
+link11[] = {7,16};
+link12[] = {8,23};
+link13[] = {9,10};
+link14[] = {9,13};
+link15[] = {10,11};
+link16[] = {11,13};
+link17[] = {12,14};
+link18[] = {12,27};
+link19[] = {13,12};
+link20[] = {14,15};
+link21[] = {15,13};
+link22[] = {15,17};
+link23[] = {15,22};
+link24[] = {15,27};
+link25[] = {16,14};
+link26[] = {16,18};
+link27[] = {16,27};
+link28[] = {17,16};
+link29[] = {18,19};
+link30[] = {19,6};
+link31[] = {20,14};
+link32[] = {20,27};
+link33[] = {21,19};
+link34[] = {22,23};
+link35[] = {23,21};
+link36[] = {23,24};
+link37[] = {23,27};
+link38[] = {24,20};
+link39[] = {25,26};
+link40[] = {27,28};
+globals[] = {0.000000,0,0,0,0,640,480,1,14,6316128,1,-524.607361,709.540833,855.487793,-261.661682,893,881,1};
+window[] = {2,-1,-1,-1,-1,962,225,1485,225,3,911};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "advanced_patrol";
+  class States
+  {
+    /*%FSM<STATE "start">*/
+    class start
+    {
+      name = "start";
+      init = /*%FSM<STATEINIT""">*/"" \n
+       "" \n
+       "_behaviors = [""patrol"",""standby"",""hide""];" \n
+       "" \n
+       "_searchhouses = true;" \n
+       "" \n
+       "_maxdist = 250;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "not_server">*/
+        class not_server
+        {
+          priority = 101.000000;
+          to="exit_1";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"not isServer"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "bad__args">*/
+        class bad__args
+        {
+          priority = 99.000000;
+          to="exit";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"count _this < 3"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="init";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "init">*/
+    class init
+    {
+      name = "init";
+      init = /*%FSM<STATEINIT""">*/"private [""_group"",""_orientation"",""_behavior""];" \n
+       "" \n
+       "switch (typeName (_this select 0)) do {" \n
+       "" \n
+       "    case ""GROUP"" : {" \n
+       "        _group = _this select 0;" \n
+       "    };" \n
+       "" \n
+       "    case ""OBJECT"" : {" \n
+       "       if(not isNull driver (_this select 0)) then {" \n
+       "           _group = group driver (_this select 0);" \n
+       "        };" \n
+       "    };" \n
+       "" \n
+       "};" \n
+       "" \n
+       "switch (typeName (_this select 1)) do {" \n
+       "" \n
+       "    case ""STRING"" : {" \n
+       "       if(count (getMarkerPos (_this select 1) - [0]) > 0) then {" \n
+       "           _orientation = getMarkerPos (_this select 1);" \n
+       "       };" \n
+       "    };" \n
+       "" \n
+       "    case ""LOCATION"" : {" \n
+       "        _orientation = position (_this select 1);" \n
+       "    };" \n
+       "" \n
+       "    case ""OBJECT"" : {" \n
+       "        _orientation = position (_this select 1);" \n
+       "    };" \n
+       "" \n
+       "	case ""ARRAY"" : {" \n
+       "		if(count (_this select 1) == 3) then {_orientation = _this select 1};" \n
+       "		if(count (_this select 1) == 2) then {_orientation = [(_this select 1) select 0,(_this select 1) select 1,0]};" \n
+       "	};" \n
+       "" \n
+       "};" \n
+       "" \n
+       "if((_this select 2) in _behaviors) then {" \n
+       "    _behavior = _this select 2;" \n
+       "};" \n
+       "" \n
+       "if(count _this > 3) then {" \n
+       "	if(typeName (_this select 3) == ""SCALAR"") then {_maxdist = 0 max (_this select 3)};" \n
+       "};" \n
+       "" \n
+       "" \n
+       "if(mps_debug) then {" \n
+       "	diag_log format[""Bon AI_Mov initialized:  _group: %1   _orientation: %2   _behavior: %3"",_group,_orientation,_behavior];" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "patrol">*/
+        class patrol
+        {
+          priority = 0.000000;
+          to="generate_waypoin";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_behavior == ""patrol"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "hide">*/
+        class hide
+        {
+          priority = 0.000000;
+          to="occupy_buildings";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_behavior == ""hide"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "standby">*/
+        class standby
+        {
+          priority = 0.000000;
+          to="find__go_to_chil";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_behavior == ""standby"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "bad_args">*/
+        class bad_args
+        {
+          priority = 0.000000;
+          to="exit";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"isNil ""_group""  ||" \n
+           "isNil ""_orientation""  ||" \n
+           "isNil ""_behavior"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "exit">*/
+    class exit
+    {
+      name = "exit";
+      init = /*%FSM<STATEINIT""">*/"hint ""Bon AI_Mov Failure: insufficient arguments"";" \n
+       "diag_log ""Bon AI_Mov FAILURE: insufficient arguments"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "generate_waypoin">*/
+    class generate_waypoin
+    {
+      name = "generate_waypoin";
+      init = /*%FSM<STATEINIT""">*/"_waypoints = [];" \n
+       "" \n
+       "" \n
+       "_ang = random 360;" \n
+       "_radius = 25 + random (_maxdist-25);" \n
+       "_wpcount = round (_radius / 15) max 5;" \n
+       "_inc = 360/_wpcount; " \n
+       "" \n
+       "_counterclockwise = if(random 1 < 0.5) then{1} else {-1};" \n
+       "" \n
+       "for ""_i"" from 0 to _wpcount do {" \n
+       "" \n
+       "	_ang = _inc * _i * _counterclockwise;" \n
+       "" \n
+       "	_a = (_orientation select 0)+(sin(_ang)*_radius);" \n
+       "	_b = (_orientation select 1)+(cos(_ang)*_radius);" \n
+       "" \n
+       "	if(not surfaceIsWater [_a,_b]) then{" \n
+       "		_waypoints = _waypoints + [[_a,_b,	0]];" \n
+       "	};" \n
+       "" \n
+       "};" \n
+       "" \n
+       "if(mps_debug) then{" \n
+       "	diag_log format[""Bon AI_Mov: %1 patrol waypoints for group %2 around %3 generated."",count _waypoints,_group,_orientation];" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "search_houses">*/
+        class search_houses
+        {
+          priority = 99.000000;
+          to="add_building_pos";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_searchhouses"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "not_in_combat">*/
+        class not_in_combat
+        {
+          priority = 0.000000;
+          to="assign_waypoints";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"behaviour leader _group != ""COMBAT"" && _behavior == ""patrol"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "add_building_pos">*/
+    class add_building_pos
+    {
+      name = "add_building_pos";
+      init = /*%FSM<STATEINIT""">*/"_buildingwaypointcount = 0;" \n
+       "" \n
+       "for ""_i"" from 0 to (count _waypoints - 1) do {" \n
+       "" \n
+       "	_nearhouses = nearestObjects [_waypoints select _i,[""House""],10];" \n
+       "" \n
+       "	if(count _nearhouses > 0 && random 1 < 0.7501) then {" \n
+       "" \n
+       "		private [""_buildingpos"",""_house""];" \n
+       "		{" \n
+       "			_house = _x;" \n
+       "			_buildingpos = 0;" \n
+       "			while{count ((_house buildingpos _buildingpos) - [0]) > 0} do {_buildingpos = _buildingpos + 1};" \n
+       "			_buildingpos = _buildingpos - 1;" \n
+       "			if(_buildingpos > 1) exitWith{};" \n
+       "		} foreach _nearhouses;" \n
+       "" \n
+       "		if(_buildingpos > 1) then {" \n
+       "			_newwaypointpos = _house buildingpos (round random _buildingpos max 2);" \n
+       "			_waypoints set [_i,_newwaypointpos];" \n
+       "			_buildingwaypointcount = _buildingwaypointcount + 1;" \n
+       "		};" \n
+       "" \n
+       "	};" \n
+       "" \n
+       "};" \n
+       "" \n
+       "if(mps_debug) then{" \n
+       "	diag_log format[""Bon_AI_Mov: patrol route for group %1 around %2 contains %3 building sweeps."",_group,_orientation,_buildingwaypointcount];" \n
+       "};" \n
+       "_buildingwaypointcount = nil;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "not_in_combat">*/
+        class not_in_combat
+        {
+          priority = 0.000000;
+          to="assign_waypoints";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"behaviour leader _group != ""COMBAT"" && _behavior == ""patrol"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "assign_waypoints">*/
+    class assign_waypoints
+    {
+      name = "assign_waypoints";
+      init = /*%FSM<STATEINIT""">*/"{deleteWaypoint _x} foreach waypoints _group;" \n
+       "" \n
+       "_wp = """";" \n
+       "_index = 0;" \n
+       "{" \n
+       "	_wp = _group addWaypoint [_x,0];" \n
+       "	_wp setWaypointBehaviour ""SAFE"";" \n
+       "	_wp setWaypointFormation ""COLUMN"";" \n
+       "	_wp setWaypointSpeed ""NORMAL"";" \n
+       "" \n
+       "	if(mps_debug) then {" \n
+       "		_marker = createMarkerlocal [format[""bon_ap%1"",_x],_x];" \n
+       "		_marker setMarkerTypelocal ""dot"";" \n
+       "		_marker setMarkersizelocal [0.5,0.5];" \n
+       "		_marker setMarkerTextlocal str _index;" \n
+       "		_index = _index + 1;" \n
+       "	};" \n
+       "" \n
+       "} foreach _waypoints;" \n
+       "" \n
+       "if(typeName _wp == ""ARRAY"") then {_wp setWaypointType ""CYCLE""};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "all_units_dead">*/
+        class all_units_dead
+        {
+          priority = 0.000000;
+          to="exit_2";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"{alive _x} count units _group == 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "in_combat">*/
+        class in_combat
+        {
+          priority = 0.000000;
+          to="in_combat_mode";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"behaviour leader _group == ""COMBAT"";"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "in_combat_mode">*/
+    class in_combat_mode
+    {
+      name = "in_combat_mode";
+      init = /*%FSM<STATEINIT""">*/"{" \n
+       "	_x stop false;" \n
+       "	_x setUnitPos ""AUTO"";" \n
+       "} foreach units _group;" \n
+       "" \n
+       "_group setFormation ""LINE"";" \n
+       "" \n
+       "{" \n
+       "" \n
+       "	if(side _x == side leader _group && not isPlayer leader _x) then {" \n
+       "		group _x setBehaviour ""COMBAT"";" \n
+       "	};" \n
+       "" \n
+       "} foreach nearestObjects [_orientation,[""Man"",""LandVehicle"",""Air""],_maxdist] ;" \n
+       "" \n
+       "" \n
+       "if(mps_debug) then{" \n
+       "	diag_log format[""Bon_AI_Mov: group %1 entered COMBAT Mode at time %2."",_group,time];" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "not_in_combat">*/
+        class not_in_combat
+        {
+          priority = 0.000000;
+          to="occupy_buildings";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"behaviour leader _group != ""COMBAT"" && _behavior == ""hide"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "not_in_combat_1">*/
+        class not_in_combat_1
+        {
+          priority = 0.000000;
+          to="find__go_to_chil";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"behaviour leader _group != ""COMBAT"" && _behavior == ""standby"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "all_units_dead">*/
+        class all_units_dead
+        {
+          priority = 0.000000;
+          to="exit_2";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"{alive _x} count units _group == 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "not_in_combat_2">*/
+        class not_in_combat_2
+        {
+          priority = 0.000000;
+          to="assign_waypoints";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"behaviour leader _group != ""COMBAT"" && _behavior == ""patrol"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "occupy_buildings">*/
+    class occupy_buildings
+    {
+      name = "occupy_buildings";
+      init = /*%FSM<STATEINIT""">*/"_nearhouses = nearestObjects [_orientation,[""House""],_maxdist];" \n
+       "" \n
+       "" \n
+       "_house = ObjNull;" \n
+       "" \n
+       "_fortpositions = [];" \n
+       "while{count _nearhouses > 0 && count _fortpositions < count units _group} do {" \n
+       "	_buildingpos = 0;" \n
+       "" \n
+       "	_house = _nearhouses select (floor random count _nearhouses);" \n
+       "	_nearhouses = _nearhouses - [_house];" \n
+       "" \n
+       "	while{count ((_house buildingpos _buildingpos) - [0]) > 0} do {_buildingpos = _buildingpos + 1};" \n
+       "	_buildingpos = _buildingpos - 1;" \n
+       "" \n
+       "	for ""_i"" from 2 to _buildingpos do {" \n
+       "		_fortpositions = _fortpositions + [_house buildingpos _i];" \n
+       "	};" \n
+       "};" \n
+       "" \n
+       "_notenoughbuildings = false;" \n
+       "if(count _fortpositions < count units _group) then {" \n
+       "	_notenoughbuildings = true;" \n
+       "	diag_log format[""Bon_AI_Mov: no buildings to hide for group %1. Sending to patrol."",_group];" \n
+       "} else {" \n
+       "	for ""_i"" from 0 to (count units _group - 1) do {" \n
+       "		_unit = units _group select _i;" \n
+       "		_fortpos = _fortpositions select _i;" \n
+       "" \n
+       "		if(mps_debug) then {" \n
+       "			_marker = createMarkerlocal [str random 999999,_fortpos];" \n
+       "			_marker setMarkerTypelocal ""dot"";" \n
+       "			_marker setMarkerSizelocal [0.5,0.5];" \n
+       "			_marker setMarkerColorlocal ""ColorOrange"";" \n
+       "			_marker setMarkerTextlocal ""hide"";" \n
+       "		};" \n
+       "" \n
+       "		[_unit,_fortpos] spawn {" \n
+       "			(_this select 0) doMove (_this select 1);" \n
+       "" \n
+       "			WaitUntil{currentCommand (_this select 0) != ""MOVE""};" \n
+       "			(_this select 0) setUnitPos ""Middle"";" \n
+       "			(_this select 0) stop true;" \n
+       "		};" \n
+       "	};" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "not_enough_build">*/
+        class not_enough_build
+        {
+          priority = 0.000000;
+          to="restart_as_patro";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_notenoughbuildings"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "all_units_dead">*/
+        class all_units_dead
+        {
+          priority = 0.000000;
+          to="exit_2";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"{alive _x} count units _group == 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "in_combat">*/
+        class in_combat
+        {
+          priority = 0.000000;
+          to="in_combat_mode";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"behaviour leader _group == ""COMBAT"";"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "restart_as_patro">*/
+    class restart_as_patro
+    {
+      name = "restart_as_patro";
+      init = /*%FSM<STATEINIT""">*/"_behavior = ""patrol"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "patrol">*/
+        class patrol
+        {
+          priority = 0.000000;
+          to="generate_waypoin";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_behavior == ""patrol"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "sit_down">*/
+    class sit_down
+    {
+      name = "sit_down";
+      init = /*%FSM<STATEINIT""">*/"{" \n
+       "	if(_x isKindOf ""Man"" && vehicle _x == _x) then {" \n
+       "		if(leader _x != _x) then {" \n
+       "			_x setpos [((getpos leader _x) select 0) + 5 - random 10, ((getpos leader _x) select 1) + 5 - random 10,0];" \n
+       "			_x doWatch position leader _x;" \n
+       "		};" \n
+       "		_x playMove ""amovpercmstpslowwrfldnon_amovpsitmstpsraswrfldnon"";" \n
+       "		_x setDir random 360;" \n
+       "	};" \n
+       "	_x stop true;" \n
+       "} foreach units _group;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "all_units_dead">*/
+        class all_units_dead
+        {
+          priority = 0.000000;
+          to="exit_2";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"{alive _x} count units _group == 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "in_combat">*/
+        class in_combat
+        {
+          priority = 0.000000;
+          to="in_combat_mode";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"behaviour leader _group == ""COMBAT"";"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "find__go_to_chil">*/
+    class find__go_to_chil
+    {
+      name = "find__go_to_chil";
+      init = /*%FSM<STATEINIT""">*/"private [""_wp""];" \n
+       "" \n
+       "_isFlatEmpty = [];" \n
+       "_count = 0;" \n
+       "While{count _isFlatEmpty == 0 && _count < 10000} do {" \n
+       "" \n
+       "	_randomplace = [(_orientation select 0) + _maxdist - random (2*_maxdist),(_orientation select 1) + _maxdist - random (2*_maxdist),0];" \n
+       "" \n
+       "	_isFlatEmpty = _randomplace isflatempty [" \n
+       "			5,		//--- Minimal distance from another object" \n
+       "			0,		//--- If 0, just check position. If >0, select new one" \n
+       "			0.4,	//--- Max gradient" \n
+       "			10,		//--- Gradient area" \n
+       "			0,		//--- 0 for restricted water, 2 for required water," \n
+       "			false,	//--- True if some water can be in 25m radius" \n
+       "			ObjNull	//--- Ignored object" \n
+       "	];" \n
+       "	if(count _isFlatEmpty > 0) then {" \n
+       "		if(count (_isFlatEmpty nearRoads 10) > 0) then {_isFlatEmpty = []};" \n
+       "	};" \n
+       "" \n
+       "	_count = _count + 1;" \n
+       "};" \n
+       "" \n
+       "_nochillplaces = false;" \n
+       "if(_count == 10000) then {" \n
+       "	_nochillplaces = true;" \n
+       "	diag_log format[""Bon_AI_Mov: no places appropriate to standby for group %1. Sending to patrol."",_group];" \n
+       "} else {" \n
+       "" \n
+       "	if(mps_debug) then {" \n
+       "		_marker = createMarkerlocal [str random 999999,_isFlatEmpty];" \n
+       "		_marker setMarkerTypelocal ""dot"";" \n
+       "		_marker setMarkerSizelocal [0.5,0.5];" \n
+       "		_marker setMarkerColorlocal ""ColorBlue"";" \n
+       "		_marker setMarkerTextlocal ""standby"";" \n
+       "	};" \n
+       "" \n
+       "	{deleteWaypoint _x} foreach waypoints _group;" \n
+       "	_wp = _group addWaypoint [_isFlatEmpty,0];" \n
+       "	_wp setWaypointFormation ""DIAMOND"";" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "arrived_at_chill">*/
+        class arrived_at_chill
+        {
+          priority = 0.000000;
+          to="sit_down";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"currentWaypoint _group != _wp select 1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "all_units_dead">*/
+        class all_units_dead
+        {
+          priority = 0.000000;
+          to="exit_2";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"{alive _x} count units _group == 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "no_chill__places">*/
+        class no_chill__places
+        {
+          priority = 0.000000;
+          to="restart_as_patro";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_nochillplaces"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "exit_1">*/
+    class exit_1
+    {
+      name = "exit_1";
+      init = /*%FSM<STATEINIT""">*/"diag_log ""Bon AI_Mov ABORT: The patrol system must run on serverside only"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "exit_2">*/
+    class exit_2
+    {
+      name = "exit_2";
+      init = /*%FSM<STATEINIT""">*/"diag_log format[""Bon_AI_Mov: all units of group %1 are dead."",_group];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="start";
+  finalStates[] =
+  {
+    "exit",
+    "exit_1",
+    "exit_2",
+  };
+};
+/*%FSM</COMPILE>*/

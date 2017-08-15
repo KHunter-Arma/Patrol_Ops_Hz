@@ -1,0 +1,53 @@
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+These are personal notes of the developer of this mission, K.Hunter. As part of the Arma Public License (https://www.bistudio.com/community/licenses) you are not allowed to redistribute a modified version of this mission without permission from the developer. This includes the port of this mission to Arma 3.
+
+////////////////////////////////////////////////////////////////////////////////////
+
+
+
+Main systems that will affect porting:
+
+- Units/Weapons/Vehicles/Objects classnames
+- Deprecated scripting commands (e.g. setVehicleInit and processInitCommands) or BIS functions
+- Mission modules (remove A2 modules, add A3 modules that might also deprecate other systems)
+- Save/Load system should work (TBC)
+- New gear system and weapon attachments in A3 will require full re-write of Weapons Store code.
+
+Core components of the mission that should be tested:
+
+- UPS and ambient patrols
+- Taskmaster including task scrips.
+- Air radar script
+- AI behaviour scripts (excluding 3rd party mods) such as garrison and flare scripts.
+- Hunter'z scripts (artillery, tank fire HE, Grenade launchers, CAS, reinforcements, etc.)
+- Realism settings (shift+click removal, mods that remove group icons and text chat, etc.)
+- AI mods
+- Weather system. How does it work in A3?
+- Reserved slots/roles should still work if classnames are updated.
+- New civilian interaction system may be needed. Better scripts/mods are available in A3.
+- Different vehicles/weapons means tweaks on weapons systems have to be re-done
+
+
+Lower priority systems
+
+- Effects/actions/animations
+- Nuke script?
+- Better logistics script might be available for A3
+- Change all references to ACE/CMS/CBA or other A2 exclusive mods to A3 counterparts.
+- Base defences (might not need such complex scripts if map is not Fallujah or base is moved away from AO)
+- View distance selection?
+- Replace Flexi-menu functions
+
+Systems that may be deprecated/replaced by ACE3/ACRE2 or other A3 content:
+
+- Realistic death code (POps black screen, ACRE volume set to 0 at death, etc.)
+- CMS and anything else related to medical systems and getting shot.
+- LEA Hz.
+- Mirrors Mod
+- SMK animations
+
+
+More info: https://forums.bistudio.com/topic/189982-porting-mission-from-arma-2/?p=3020238

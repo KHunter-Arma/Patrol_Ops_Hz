@@ -1,0 +1,549 @@
+/*%FSM<COMPILE "C:\Games\Steam\steamapps\common\arma 2\Tools\FSM Editor Personal Edition\scriptedFSM.cfg, ais">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"start",0,250,-609.394836,-334.812927,-555.514771,-300.866486,0.000000,"start"};
+item1[] = {"_",8,218,-389.901001,-332.848480,-342.710327,-302.246521,0.000000,""};
+item2[] = {"healthy",2,250,-121.197121,-346.219635,-23.077042,-290.459534,0.000000,"healthy"};
+item3[] = {"fall_in_agony",4,218,-118.128418,-208.878052,-28.128265,-158.878052,0.000000,"fall in agony"};
+item4[] = {"agony",2,250,-123.965309,-24.655529,-22.604576,41.624901,0.000000,"agony"};
+item5[] = {"dead",4,218,101.743843,-175.030121,206.412582,-110.048569,100.000000,"dead"};
+item6[] = {"healed",4,218,-262.661499,-95.969437,-210.161057,-64.718903,0.000000,"healed"};
+item7[] = {"die___clean_up",2,250,122.001694,-247.638123,188.334717,-215.044495,0.000000,"die &" \n "clean up"};
+item8[] = {"is_playable",4,218,118.492813,-343.494995,190.724411,-293.914337,0.000000,"is" \n "playable"};
+item9[] = {"anim_left_in_err",4,218,-285.540833,-25.035400,-187.608337,42.272038,0.000000,"anim" \n "left" \n "in error"};
+item10[] = {"un_anim",2,250,-390.007019,-162.277451,-341.908752,-138.116821,0.000000,"un-anim"};
+item11[] = {"dragged",4,218,60.306198,153.701035,113.991310,188.337036,0.000000,"dragged"};
+item12[] = {"drag_anim",2,250,4.858387,220.769318,70.415916,248.421844,0.000000,"drag anim"};
+item13[] = {"released",4,4314,-34.406578,155.562027,24.865532,180.421005,0.000000,"released"};
+item14[] = {"first_aid",4,218,-276.926025,148.085205,-223.240860,182.721298,0.000000,"first aid"};
+item15[] = {"fa_finish",4,218,-181.055389,154.788269,-121.783318,179.647293,0.000000,"fa finish"};
+item16[] = {"first_aid__anim",2,250,-229.994186,241.969513,-183.292465,275.907227,0.000000,"first aid" \n " anim"};
+item17[] = {"",7,210,-210.896317,327.294342,-202.896301,335.294342,0.000000,""};
+item18[] = {"",7,210,33.031792,326.461151,41.031792,334.461151,0.000000,""};
+item19[] = {"",7,210,298.303589,327.157135,306.303619,335.157135,0.000000,""};
+item20[] = {"",7,210,298.978455,-146.591995,306.978424,-138.591980,0.000000,""};
+item21[] = {"",7,210,-77.429451,163.647308,-69.429451,171.647308,0.000000,""};
+item22[] = {"anim_left_in_err",4,218,-383.593964,225.039948,-285.661163,292.347504,0.000000,"anim" \n "left" \n "in error"};
+item23[] = {"unit_in_vehicle",4,218,47.180607,-34.166283,119.653847,7.070496,90.000000,"unit in" \n "vehicle"};
+item24[] = {"eject",2,250,135.946075,-0.611609,170.893402,22.618364,0.000000,"eject"};
+item25[] = {"ejected",4,218,55.855968,21.762249,113.196968,48.434372,0.000000,"ejected"};
+item26[] = {"wait_for_respawn",2,250,129.987915,-460.258636,180.752777,-424.525726,0.000000,"wait for" \n "respawn"};
+item27[] = {"alive_again",4,218,-114.678238,-469.424042,-45.365829,-417.283844,0.000000,"alive" \n "again"};
+item28[] = {"not_is_playable",4,218,237.442368,-256.145935,327.442383,-206.145935,0.000000,"not is" \n "playable"};
+item29[] = {"exit",1,250,403.828094,-248.545135,448.886108,-213.525848,0.000000,"exit"};
+item30[] = {"set_Entity",2,250,-396.612244,-455.838379,-334.022461,-432.487274,0.000000,"set Entity"};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {2,5};
+link4[] = {3,4};
+link5[] = {4,5};
+link6[] = {4,6};
+link7[] = {4,9};
+link8[] = {4,11};
+link9[] = {4,14};
+link10[] = {4,23};
+link11[] = {5,7};
+link12[] = {6,10};
+link13[] = {7,8};
+link14[] = {7,28};
+link15[] = {8,26};
+link16[] = {9,4};
+link17[] = {10,1};
+link18[] = {11,12};
+link19[] = {12,13};
+link20[] = {12,18};
+link21[] = {13,21};
+link22[] = {14,16};
+link23[] = {15,21};
+link24[] = {16,15};
+link25[] = {16,17};
+link26[] = {16,22};
+link27[] = {17,18};
+link28[] = {18,19};
+link29[] = {19,20};
+link30[] = {20,5};
+link31[] = {21,4};
+link32[] = {22,16};
+link33[] = {23,24};
+link34[] = {24,5};
+link35[] = {24,25};
+link36[] = {25,4};
+link37[] = {26,27};
+link38[] = {27,30};
+link39[] = {28,29};
+link40[] = {30,1};
+globals[] = {0.000000,0,0,0,0,640,480,1,33,6316128,1,-543.316406,377.618469,397.733521,-552.317627,854,881,1};
+window[] = {2,-1,-1,-1,-1,787,50,1309,50,3,872};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "ais";
+  class States
+  {
+    /*%FSM<STATE "start">*/
+    class start
+    {
+      name = "start";
+      init = /*%FSM<STATEINIT""">*/"_unit = _this select 0;" \n
+       "_side = side _unit;" \n
+       "" \n
+       "_isplayable =" \n
+       "	if(isMultiplayer) then{" \n
+       "		if(_unit in playableUnits) then{true} else{false};" \n
+       "	} else {" \n
+       "		if(_unit in allUnits) then{true} else {false};" \n
+       "	};" \n
+       "" \n
+       "" \n
+       "_unit setVariable [""dragger"",ObjNull,true];" \n
+       "_unit setVariable [""healer"",ObjNull,true];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="healthy";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "healthy">*/
+    class healthy
+    {
+      name = "healthy";
+      init = /*%FSM<STATEINIT""">*/"_unit setVariable [""ais_side"",_side,true];" \n
+       "_unit setVariable [""ais_unit_died"",false,false];" \n
+       "" \n
+       "_unit setVariable [""ais_agony"",false,false];" \n
+       "_unit setCaptive false;" \n
+       "" \n
+       "_unit setVariable [""ais_headhit"",0,false];" \n
+       "_unit setVariable [""ais_bodyhit"",0,false];" \n
+       "_unit setVariable [""ais_overall"",0,false];" \n
+       "" \n
+       "ais_unit_died = false;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "dead">*/
+        class dead
+        {
+          priority = 100.000000;
+          to="die___clean_up";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_unit getVariable ""ais_unit_died"" || not alive _unit"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "fall_in_agony">*/
+        class fall_in_agony
+        {
+          priority = 0.000000;
+          to="agony";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_unit getVariable ""ais_agony"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "agony">*/
+    class agony
+    {
+      name = "agony";
+      init = /*%FSM<STATEINIT""">*/"detach _unit;" \n
+       "if(not isNil ""dropaction"") then{" \n
+       "	_unit removeAction dropaction;" \n
+       "	dropaction = nil;" \n
+       "};" \n
+       "" \n
+       "_unit setVariable [""dragger"",ObjNull,true];" \n
+       "_unit setVariable [""healer"",ObjNull,true];" \n
+       "" \n
+       "if(vehicle _unit == _unit) then{" \n
+       "	_unit playMove ""AinjPpneMstpSnonWrflDnon"";" \n
+       "};" \n
+       "" \n
+       "if(lifestate _unit != ""UNCONSCIOUS"" ) then{" \n
+       "	_unit setUnconscious true;" \n
+       "	_unit execFSM (mps_path+""fsm\mps_ais_bloodloss.fsm"");" \n
+       "	ais_in_agony = [_unit,true];" \n
+       "	publicVariable ""ais_in_agony"";" \n
+       "	[side _unit,""HQ""] sideChat format[""%1 is down and needs help"",name _unit];" \n
+       "	_unit setCaptive true;" \n
+       "" \n
+       "	if({isPlayer _x} count (units group _unit) < 2) then {" \n
+       "//		[_unit] execVM (mps_path+""action\mps_ais_aihealer.sqf"");" \n
+       "	};" \n
+       "" \n
+       "	if(playerSide == _side) then{" \n
+       "		[_unit] execFSM (mps_path+""fsm\mps_ais_marker.fsm"");" \n
+       "" \n
+       "		if(/*isServer && */_unit != player) then {" \n
+       "			_fa_action = _unit addAction [format[""<t color='#F00000'>First Aid to %1</t>"",name _unit],(mps_path+""action\mps_ais_firstaid.sqf""),_unit,10,false,true,""""," \n
+       "					""{not isNull (_target getVariable _x)} count ['healer','dragger'] == 0 && alive _target && vehicle _target == _target" \n
+       "			""];" \n
+       "			_drag_action = _unit addAction [format[""<t color='#FFFFFF'>Drag %1</t>"",name _unit],(mps_path+""action\mps_ais_drag.sqf""),_unit,10,false,true,""""," \n
+       "					""{not isNull (_target getVariable _x)} count ['healer','dragger'] == 0 && alive _target && vehicle _target == _target" \n
+       "			""];" \n
+       "			_unit setVariable [""fa_action"",_fa_action,false];" \n
+       "			_unit setVariable [""drag_action"",_drag_action,false];" \n
+       "		};" \n
+       "	};" \n
+       "};" \n
+       "" \n
+       "if(surfaceIsWater [getPos _unit select 0, getPos _unit select 1]) then{" \n
+       "	_unit setDamage 1;" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "dead">*/
+        class dead
+        {
+          priority = 100.000000;
+          to="die___clean_up";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_unit getVariable ""ais_unit_died"" || not alive _unit"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "unit_in_vehicle">*/
+        class unit_in_vehicle
+        {
+          priority = 90.000000;
+          to="eject";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"vehicle _unit != _unit"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "dragged">*/
+        class dragged
+        {
+          priority = 0.000000;
+          to="drag_anim";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"not isNull (_unit getVariable ""dragger"") && alive (_unit getVariable ""dragger"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "first_aid">*/
+        class first_aid
+        {
+          priority = 0.000000;
+          to="first_aid__anim";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"not isNull (_unit getVariable ""healer"") && alive (_unit getVariable ""healer"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "anim_left_in_err">*/
+        class anim_left_in_err
+        {
+          priority = 0.000000;
+          to="agony";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"lifestate _unit == ""UNCONSCIOUS"" 									&&" \n
+           "animationState _unit != ""ainjppnemstpsnonwrfldnon""				&&" \n
+           "animationState _unit != ""ainjppnemstpsnonwrfldnon_rolltoback""	&&" \n
+           "animationState _unit != ""ainjppnemstpsnonwrfldnon_rolltofront""	&&" \n
+           "animationState _unit != ""amovppnemstpsraswrfldnon_injured""		&&" \n
+           "animationState _unit != ""amovppnemsprslowwrfldf_injured""	"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "healed">*/
+        class healed
+        {
+          priority = 0.000000;
+          to="un_anim";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"not (_unit getVariable ""ais_agony"") || damage _unit == 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "die___clean_up">*/
+    class die___clean_up
+    {
+      name = "die___clean_up";
+      init = /*%FSM<STATEINIT""">*/"if(alive _unit) then{_unit setDamage 1};" \n
+       "" \n
+       "_unit setVariable [""dragger"",ObjNull,true];" \n
+       "_unit setVariable [""healer"",ObjNull,true];" \n
+       "" \n
+       "ais_in_agony = [_unit,false];" \n
+       "publicVariable ""ais_in_agony"";" \n
+       "" \n
+       "if(not isPlayer _unit) then{" \n
+       "	_unit removeAction (_unit getVariable ""fa_action"");" \n
+       "	_unit removeAction (_unit getVariable ""drag_action"");" \n
+       "	_unit setVariable [""fa_action"",nil,false];" \n
+       "	_unit setVariable [""drag_action"",nil,false];" \n
+       "};" \n
+       "" \n
+       "detach _unit;" \n
+       "_unit setUnconscious false;" \n
+       "_unit setCaptive false;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "not_is_playable">*/
+        class not_is_playable
+        {
+          priority = 0.000000;
+          to="exit";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"not _isplayable"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "is_playable">*/
+        class is_playable
+        {
+          priority = 0.000000;
+          to="wait_for_respawn";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_isplayable"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "un_anim">*/
+    class un_anim
+    {
+      name = "un_anim";
+      init = /*%FSM<STATEINIT""">*/"_unit playMove ""AmovPpneMstpSrasWrflDnon"";" \n
+       "_unit setUnconscious false;" \n
+       "" \n
+       "ais_in_agony = [_unit,false];" \n
+       "publicVariable ""ais_in_agony"";" \n
+       "" \n
+       "if(not isPlayer _unit) then{" \n
+       "	_unit removeAction (_unit getVariable ""fa_action"");" \n
+       "	_unit removeAction (_unit getVariable ""drag_action"");" \n
+       "	_unit setVariable [""fa_action"",nil,false];" \n
+       "	_unit setVariable [""drag_action"",nil,false];" \n
+       "};" \n
+       "" \n
+       "detach _unit;" \n
+       "_unit setCaptive false;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="healthy";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "drag_anim">*/
+    class drag_anim
+    {
+      name = "drag_anim";
+      init = /*%FSM<STATEINIT""">*/"_unit switchmove ""ainjppnemstpsnonwrfldb_still"";" \n
+       "_unit setDir 180;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "dead">*/
+        class dead
+        {
+          priority = 100.000000;
+          to="die___clean_up";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_unit getVariable ""ais_unit_died"" || not alive _unit"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "released">*/
+        class released
+        {
+          priority = 0.000000;
+          to="agony";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_dragger = _unit getVariable ""dragger"";" \n
+           "" \n
+           "isNull _dragger" \n
+           "" \n
+           "||" \n
+           "" \n
+           "not alive _dragger" \n
+           "" \n
+           "||" \n
+           "" \n
+           "lifestate _dragger == ""UNCONSCIOUS"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "first_aid__anim">*/
+    class first_aid__anim
+    {
+      name = "first_aid__anim";
+      init = /*%FSM<STATEINIT""">*/"_unit playMove ""AinjPpneMstpSnonWrflDnon_rolltoback"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "dead">*/
+        class dead
+        {
+          priority = 100.000000;
+          to="die___clean_up";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_unit getVariable ""ais_unit_died"" || not alive _unit"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "anim_left_in_err">*/
+        class anim_left_in_err
+        {
+          priority = 0.000000;
+          to="first_aid__anim";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"animationState _unit != ""ainjppnemstpsnonwrfldnon""				&&" \n
+           "animationState _unit != ""ainjppnemstpsnonwrfldnon_rolltoback"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "fa_finish">*/
+        class fa_finish
+        {
+          priority = 0.000000;
+          to="agony";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_healer = _unit getVariable ""healer"";" \n
+           "" \n
+           "isNull _healer" \n
+           "" \n
+           "||" \n
+           "" \n
+           "not alive _healer" \n
+           "" \n
+           "||" \n
+           "" \n
+           "lifestate _healer == ""UNCONSCIOUS"" "/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "eject">*/
+    class eject
+    {
+      name = "eject";
+      init = /*%FSM<STATEINIT""">*/"_unit action [""eject"", vehicle _unit];" \n
+       "//_unit setDamage ((damage _unit) max (0.5 + random 0.4));" \n
+       "_time = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "dead">*/
+        class dead
+        {
+          priority = 100.000000;
+          to="die___clean_up";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_unit getVariable ""ais_unit_died"" || not alive _unit"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "ejected">*/
+        class ejected
+        {
+          priority = 0.000000;
+          to="agony";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"vehicle _unit == _unit && time > _time + 2"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "wait_for_respawn">*/
+    class wait_for_respawn
+    {
+      name = "wait_for_respawn";
+      init = /*%FSM<STATEINIT""">*/"_name_unit = name _unit;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "alive_again">*/
+        class alive_again
+        {
+          priority = 0.000000;
+          to="set_Entity";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"{_name_unit == name _x && alive _x} count playableUnits > 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "exit">*/
+    class exit
+    {
+      name = "exit";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "set_Entity">*/
+    class set_Entity
+    {
+      name = "set_Entity";
+      init = /*%FSM<STATEINIT""">*/"{" \n
+       "	if(name _x == _name_unit) exitWith{_unit = _x};" \n
+       "} foreach playableUnits;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="healthy";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="start";
+  finalStates[] =
+  {
+    "exit",
+  };
+};
+/*%FSM</COMPILE>*/

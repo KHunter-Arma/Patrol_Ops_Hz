@@ -1,0 +1,26 @@
+How to install VDG:
+
+1. 	Copy vdg folder into your mission folder.
+
+
+
+2.	In init.sqf add this:
+		#include "vdg\VDG_init.sqf"
+	or this:
+		[] execVM "vdg\VDG_init.sqf"
+ 
+
+
+3.	In description.ext add this line:
+		#include "vdg\vdg.cpp"
+
+
+
+Notes:
+No features and functions will be available before the variable VDG_initDone is true.
+
+The VDG is not automatically added to vehicles. To be able to change viewdistance from within a vehicle use:
+vehicle call VDG_addAction;
+
+The option to open the dialog can be enabled/disabled at anytime using:
+VDG_showAction = true/false;

@@ -1,0 +1,45 @@
+_HALOunit = _this select 0
+_waypointreached = 0
+_chuteopeningaltitude = 150 + (random 100);
+_speed = 70
+
+
+_HALOunit switchMove "HaloFreeFall_non"
+_HALOunit allowdammage false;
+
+#loop
+~0.001
+
+;// Conditions to continue the loop
+? (alive _HALOunit) && (vehicle _HALOunit == _HALOunit) && (position _HALOunit select 2 > _chuteopeningaltitude) : goto "loop"
+
+;// Run Parachute AI script
+[_HALOunit] exec "ca\air2\halo\data\Scripts\HALO_Parachute.sqs"
+
+exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
