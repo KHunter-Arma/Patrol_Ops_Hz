@@ -8,13 +8,14 @@ if (isnil "Hz_weather_original_AI_skill_spotTime") then {Hz_weather_original_AI_
 //below 0.05 has no effect in render distance
 if (weather_fog > 0.05) then {
     
+    //formula not designed to work above 0.7 fog because render distance drops below minimum hard limit of 200
+    if (weather_fog <= 0.7) then {
+    
   //  Hz_AI_skill_spotTime = Hz_weather_original_AI_skill_spotTime/2;    
 
-		_dist = 2.539e9 - 4.263e9*(cos(weather_fog*0.3623)) - 1.452e8*(sin(weather_fog*0.3623)) + 
-					 2.492e9*(cos(2*weather_fog*0.3623)) + 1.703e8*(sin(2*weather_fog*0.3623)) - 9.71e8*(cos(3*weather_fog*0.3623)) - 1e8*(sin(3*weather_fog*0.3623)) + 
-					 2.277e8*(cos(4*weather_fog*0.3623)) + 3.15e7*(sin(4*weather_fog*0.3623)) - 2.442e7*(cos(5*weather_fog*0.3623)) - 4.261e6*(sin(5*weather_fog*0.3623));
-
-		if (_dist < Hz_weather_original_max_server_VD) then {
+		_dist = (1765564809185467*cos deg ((8*pi*weather_fog)/7))/33554432 - (576350079198247*cos deg ((4*pi*weather_fog)/7))/524288 + (1889183716827921*cos deg ((12*pi*weather_fog)/7))/8388608 - (2789724412483215*cos deg ((16*pi*weather_fog)/7))/33554432 + (123546630309875*cos deg ((20*pi*weather_fog)/7))/16777216 - (8689947551699389*sin deg ((4*pi*weather_fog)/7))/8388608 + (931086277017623*sin deg ((8*pi*weather_fog)/7))/1048576 - (2256461218808255*sin deg ((12*pi*weather_fog)/7))/8388608 + (2623381394293107*sin deg ((16*pi*weather_fog)/7))/268435456 + (2946375736382771*sin deg ((20*pi*weather_fog)/7))/536870912 + 3763453892296507/4194304;
+		
+    if (_dist < Hz_weather_original_max_server_VD) then {
     
         Hz_max_desired_server_VD = _dist;
      
@@ -35,6 +36,13 @@ if (weather_fog > 0.05) then {
         Hz_AI_skill_spotTime = Hz_weather_original_AI_skill_spotTime;
     };
 
+} else {
+
+Hz_max_desired_server_VD = 100;
+
+};    
+    
+    
 } else {
 
     Hz_max_desired_server_VD = Hz_weather_original_max_server_VD;

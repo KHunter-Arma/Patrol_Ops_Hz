@@ -75,7 +75,7 @@ Hz_weather_avg_overcast = 0.2;
 Hz_weather_avg_fog = 0.1;
 Hz_weather_avg_wind = 0.15;
 Hz_weather_avg_rain = 0.1;
-Hz_weather_change_chance = 0.25;
+Hz_weather_change_chance = 0.2;
 
 ////////////////////////////////////////////////
 //            Hunter'z Immersion
