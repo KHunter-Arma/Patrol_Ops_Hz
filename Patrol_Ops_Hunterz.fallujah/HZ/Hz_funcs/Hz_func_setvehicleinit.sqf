@@ -10,11 +10,11 @@ _vehicle setVariable ["ACE_Slingload_Rule",["ACE_Stretcher","M1135_ATGMV_EP1","M
 if (_vehicle iskindof "pook_HEMTT_US") then {
 _initstatement = "this addaction ['<t color=''#E5E500''>'+'Cargo Load/Unload','logistics\HEMTT_load.sqf',[],-1,false,true,'','vehicle player == player && alive _target']; this setvariable ['Cargo',objNull,true];";
 };
-
+/*
 if (_vehicle iskindof "MIS_Goldhofer1") then {
 _initstatement = "this addEventHandler [""getin"",{[_this select 0] execVM ""AttachToTractor\AttachToTractor.sqf"";}];";
 };
-
+*/
 if (_vehicle iskindof "pook_H13_amphib") then {
 _initstatement = "this addEventHandler [""getin"",{[_this select 0] execVM ""logistics\H47_MP_float_correction.sqf"";}];";
 [_vehicle] execVM "logistics\H47_MP_float_correction.sqf"; 

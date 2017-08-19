@@ -23,7 +23,6 @@ _doexit = 1;
 if(_vectype == "MIS_Goldhofer1") then { _doexit = 0; };
 if(_doexit == 1) exitWith {};
 Tractorcargo = 0;
-hint format ["Welcome to %1. Position in front of a plane or heli and head the %1 nose to the plane or heli nose within 5 degrees, to get the towing option.", typeOf _Tractor];
 while{ (alive _Tractor) && ((driver _Tractor) == player) } do 
 {
 	if (Tractorcargo == 0) then 
@@ -77,7 +76,7 @@ while{ (alive _Tractor) && ((driver _Tractor) == player) } do
 				{
 					_actionadded = 1;
 					_cargo = _nObject;
-					actioncargo = _Tractor addAction [format ["Tow %1", typeOf _cargo], "AttachToTractor\AttachToTractor_start.sqf", _cargo, -10, false,true,"","(vehicle _this) != _this"];
+					actioncargo = _Tractor addAction [format ["Tow %1", typeOf _cargo], "AttachToTractor\AttachToTractor_start.sqf", _cargo, -10, false,true,"","((vehicle _this) != _this) && ((_this distance _target) < 7)"];
 				};
 			};
 		};
@@ -89,6 +88,5 @@ while{ (alive _Tractor) && ((driver _Tractor) == player) } do
 	};
 	sleep 0.1;
 };
-_Tractor removeAction actioncargo;
-_Tractor removeAction actiondrop;
-exit;
+//_Tractor removeAction actioncargo;
+//_Tractor removeAction actiondrop;

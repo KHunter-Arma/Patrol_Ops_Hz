@@ -29,9 +29,58 @@ else
 		{
 			if (_objet distance _remorqueur <= 30) then
 			{
-                            
-                             if(_remorqueur iskindof "MTVR" && (!(_objet iskindof "ACE_ARTY_M119")))   exitwith  {hint "Only tugs can tow aircraft!";};
-                                    
+			
+			if (_objet iskindof "Air") then {
+			
+														
+                            // On mémorise sur le réseau que le véhicule remorque quelque chose
+				_remorqueur setVariable ["R3F_LOG_remorque", _objet, true];
+				// On mémorise aussi sur le réseau que le canon est attaché en remorque
+				_objet setVariable ["R3F_LOG_est_transporte_par", _remorqueur, true];
+				
+				// On place le joueur sur le côté du véhicule, ce qui permet d'éviter les blessure et rend l'animation plus réaliste
+				player attachTo [_remorqueur, [
+					(boundingBox _remorqueur select 1 select 0),
+					-(boundingBox _remorqueur select 0 select 1) + 1,
+					(boundingBox _remorqueur select 0 select 2) - (boundingBox player select 0 select 2)
+				]];
+				
+				player setDir 270;
+				player setPos (getPos player);
+				
+				player playMove "AinvPknlMstpSlayWrflDnon_medic";
+				sleep 2;
+				
+				// Attacher à l'arrière du véhicule au ras du sol
+				_objet attachTo [_remorqueur, [
+					0,
+					-((boundingBox _remorqueur select 0 select 1) + (boundingBox _objet select 0 select 1)) + 5,
+					(boundingBox _remorqueur select 0 select 2) - (boundingBox _objet select 0 select 2)
+				]];
+                                                   
+                        
+				R3F_LOG_objet_selectionne = objNull;
+				
+				detach player;
+					
+					// On est obligé de demander au serveur de tourner l'objet pour nous
+					R3F_ARTY_AND_LOG_PUBVAR_setDir = [_objet, (getDir _objet) + 180];
+					if (isServer) then
+					{
+						["R3F_ARTY_AND_LOG_PUBVAR_setDir", R3F_ARTY_AND_LOG_PUBVAR_setDir] spawn R3F_ARTY_AND_LOG_FNCT_PUBVAR_setDir;
+					}
+					else
+					{
+						publicVariable "R3F_ARTY_AND_LOG_PUBVAR_setDir";
+					};
+				
+				
+				sleep 5;
+			
+			
+			} else {      
+
+														
                             // On mémorise sur le réseau que le véhicule remorque quelque chose
 				_remorqueur setVariable ["R3F_LOG_remorque", _objet, true];
 				// On mémorise aussi sur le réseau que le canon est attaché en remorque
@@ -189,6 +238,9 @@ else
 				};
 				
 				sleep 5;
+				
+				};
+				
 			}
 			else
 			{

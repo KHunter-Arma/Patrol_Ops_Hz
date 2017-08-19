@@ -43,7 +43,7 @@ while {true} do
 				
 				#ifdef R3F_LOG_enable
 				// Si l'objet est un objet déplaçable/héliportable/remorquable/transportable
-				if ({_objet isKindOf _x} count _liste_objets_depl_heli_remorq_transp > 0) then
+				if (({_objet isKindOf _x} count _liste_objets_depl_heli_remorq_transp > 0) || (_objet iskindof "Air")) then
 				{
 					[_objet] spawn R3F_LOG_FNCT_objet_init;
 				};
@@ -55,7 +55,7 @@ while {true} do
 				};
 				
 				// Si l'objet est un véhicule remorqueur
-				if ({_objet isKindOf _x} count R3F_LOG_CFG_remorqueurs > 0) then
+				if ({_objet isKindOf _x} count (R3F_LOG_CFG_remorqueurs + R3F_LOG_CFG_remorqueurs_air) > 0) then
 				{
 					[_objet] spawn R3F_LOG_FNCT_remorqueur_init;
 				};

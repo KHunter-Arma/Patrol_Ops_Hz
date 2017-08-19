@@ -63,7 +63,7 @@ if ({_objet isKindOf _x} count R3F_LOG_CFG_objets_deplacables > 0) then
 	_objet addAction [("<t color=""#E01B1B"">" + STR_UNLOCK_OBJECT + "</t>"), "R3F_ARTY_AND_LOG\R3F_LOG\objet_deplacable\objectLockStateMachine.sqf", _doUnlock, -5, false, true, "", "R3F_LOG_objet_addAction == _target && R3F_LOG_action_deplacer_objet_valide && !Object_canLock"];
 };
 
-if ({_objet isKindOf _x} count R3F_LOG_CFG_objets_remorquables > 0) then
+if (({_objet isKindOf _x} count R3F_LOG_CFG_objets_remorquables > 0) || (_objet isKindOf "Air")) then
 {
 	if ({_objet isKindOf _x} count R3F_LOG_CFG_objets_deplacables > 0) then
 	{

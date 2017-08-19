@@ -39,7 +39,7 @@ while {true} do
 			};
 			
 			// Si l'objet est un objet remorquable
-			if ({_objet_pointe isKindOf _x} count R3F_LOG_CFG_objets_remorquables > 0) then
+			if (({_objet_pointe isKindOf _x} count R3F_LOG_CFG_objets_remorquables > 0) || (_objet_pointe iskindof "Air")) then
 			{
 				// Et qu'il est déplaçable
 				if ({_objet_pointe isKindOf _x} count R3F_LOG_CFG_objets_deplacables > 0) then
@@ -47,7 +47,7 @@ while {true} do
 					// Condition action remorquer_deplace
 					R3F_LOG_action_remorquer_deplace_valide = (vehicle player == player && (alive R3F_LOG_joueur_deplace_objet) &&
 						(count crew _objet_pointe == 0) && (R3F_LOG_joueur_deplace_objet == _objet_pointe) &&
-						({_x != _objet_pointe && alive _x && isNull (_x getVariable "R3F_LOG_remorque") && ([0,0,0] distance velocity _x < 6) && (getPos _x select 2 < 2) && !(_x getVariable "R3F_LOG_disabled")} count (nearestObjects [_objet_pointe, R3F_LOG_CFG_remorqueurs, 18])) > 0 &&
+						({_x != _objet_pointe && alive _x && isNull (_x getVariable "R3F_LOG_remorque") && ([0,0,0] distance velocity _x < 6) && (getPos _x select 2 < 2) && !(_x getVariable "R3F_LOG_disabled")} count (nearestObjects [_objet_pointe, R3F_LOG_CFG_remorqueurs + R3F_LOG_CFG_remorqueurs_air, 18])) > 0 &&
 						!(_objet_pointe getVariable "R3F_LOG_disabled"));
 				};
 				
@@ -83,12 +83,12 @@ while {true} do
 			};
 			
 			// Si l'objet est un véhicule remorqueur
-			if ({_objet_pointe isKindOf _x} count R3F_LOG_CFG_remorqueurs > 0) then
+			if (({_objet_pointe isKindOf _x} count R3F_LOG_CFG_remorqueurs > 0) || ({_objet_pointe isKindOf _x} count R3F_LOG_CFG_remorqueurs_air > 0)) then
 			{
 				// Condition action remorquer_deplace
 				R3F_LOG_action_remorquer_deplace_valide = (vehicle player == player && (alive _objet_pointe) && (!isNull R3F_LOG_joueur_deplace_objet) &&
 					(alive R3F_LOG_joueur_deplace_objet) && !(R3F_LOG_joueur_deplace_objet getVariable "R3F_LOG_disabled") &&
-					({R3F_LOG_joueur_deplace_objet isKindOf _x} count R3F_LOG_CFG_objets_remorquables > 0) &&
+					(({R3F_LOG_joueur_deplace_objet isKindOf _x} count R3F_LOG_CFG_objets_remorquables > 0) || (R3F_LOG_joueur_deplace_objet isKindOf "Air")) &&
 					isNull (_objet_pointe getVariable "R3F_LOG_remorque") && ([0,0,0] distance velocity _objet_pointe < 6) &&
 					(getPos _objet_pointe select 2 < 2) && !(_objet_pointe getVariable "R3F_LOG_disabled"));
 				
@@ -96,7 +96,7 @@ while {true} do
 				R3F_LOG_action_remorquer_selection_valide = (vehicle player == player && (alive _objet_pointe) && (isNull R3F_LOG_joueur_deplace_objet) &&
 					(!isNull R3F_LOG_objet_selectionne) && (R3F_LOG_objet_selectionne != _objet_pointe) &&
 					!(R3F_LOG_objet_selectionne getVariable "R3F_LOG_disabled") &&
-					({R3F_LOG_objet_selectionne isKindOf _x} count R3F_LOG_CFG_objets_remorquables > 0) &&
+					(({R3F_LOG_objet_selectionne isKindOf _x} count R3F_LOG_CFG_objets_remorquables > 0) || (R3F_LOG_objet_selectionne isKindOf "Air")) &&
 					isNull (_objet_pointe getVariable "R3F_LOG_remorque") && ([0,0,0] distance velocity _objet_pointe < 6) &&
 					(getPos _objet_pointe select 2 < 2) && !(_objet_pointe getVariable "R3F_LOG_disabled"));
 			};

@@ -24,7 +24,7 @@ else
 	_remorqueur = _objet getVariable "R3F_LOG_est_transporte_par";
 	
 	// Ne pas permettre de décrocher un objet s'il est porté héliporté
-	if ({_remorqueur isKindOf _x} count R3F_LOG_CFG_remorqueurs > 0) then
+	if ({_remorqueur isKindOf _x} count (R3F_LOG_CFG_remorqueurs + R3F_LOG_CFG_remorqueurs_air) > 0) then
 	{
 		// On mémorise sur le réseau que le véhicule remorque quelque chose
 		_remorqueur setVariable ["R3F_LOG_remorque", objNull, true];

@@ -55,7 +55,19 @@ R3F_LOG_CFG_remorqueurs =
 	"LandRover_Base"
 ];
 */
-R3F_LOG_CFG_remorqueurs = ["TowingTractor","MTVR_DES_EP1"];
+
+R3F_LOG_CFG_remorqueurs = [
+  "ACE_Truck5tMG_Base",
+	"Tractor",
+	"Kamaz_Base",
+	"MTVR",
+	"Ural_Base",
+	"V3S_Base",
+  "pook_HEMTT_US",
+  "pook_HEMTT_gun_US"];
+
+R3F_LOG_CFG_remorqueurs_air = ["TowingTractor","MIS_Goldhofer1"];
+
 /**
  * List of class names of towables objects.
  * Liste des noms de classes des objets remorquables.
@@ -71,7 +83,7 @@ R3F_LOG_CFG_objets_remorquables =
 
 */
 
-R3F_LOG_CFG_objets_remorquables = ["ACE_A10_CBU87","C130J_US_EP1","F35B","3lb_f22","AV8B2","MV22","f15c_blue_mesh","JS_FA18E","Mi17_Civilian","ACE_ARTY_M119","GNT_C185","An2_Base_EP1"];
+R3F_LOG_CFG_objets_remorquables = ["ACE_ARTY_M119"]; 
 
 /****** LIFT WITH VEHICLE / HELIPORTER AVEC VEHICULE ******/
 
@@ -933,6 +945,7 @@ if (isClass (configFile >> "CfgVehicles" >> "ACE_Required_Logic")) then
 	R3F_LOG_CFG_remorqueurs = R3F_LOG_CFG_remorqueurs +
 	[
 		"ACE_Truck5tMG_Base"
+
 	];
 
 	R3F_LOG_CFG_objets_remorquables = R3F_LOG_CFG_objets_remorquables +
