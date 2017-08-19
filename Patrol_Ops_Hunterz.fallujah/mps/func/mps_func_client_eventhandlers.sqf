@@ -268,8 +268,6 @@ if(mps_ambient_insurgents) then {
 
 "mp_c130_main"          addPublicVariableEventHandler {[]execvm "logistics\mplights.sqf"; };
 "weather"               addPublicVariableEventHandler {[]execvm "logistics\weathersync.sqf"; };
-"mediconline"           addPublicVariableEventHandler {[]execvm "cmsON.sqf"; };
-"cmscheckformedics"	addPublicVariableEventHandler {[]execvm "cmscheckmedic.sqf"; };
 "baboom"                addPublicVariableEventHandler {[]execvm "lk\nuke\nuke.sqf"; };
 "disablesimdead"        addPublicVariableEventHandler {{_x enablesimulation false;} foreach alldead; };
 

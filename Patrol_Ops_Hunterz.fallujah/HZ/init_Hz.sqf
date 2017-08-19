@@ -257,8 +257,6 @@ if (isServer) then {
     Hz_func_fill_up_vehicle = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_fill_up_vehicle.sqf";
     Hz_func_create_roadside_IED = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_create_roadside_IED.sqf";
     Hz_func_isUrbanArea = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_isUrbanArea.sqf";
-    Hz_func_ASR_check_AI_backup = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_ASR_check_AI_backup.sqf";    
-    Hz_func_AI_UPS_to_Support = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_AI_UPS_to_Support.sqf";
     Hz_func_setRealTime = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_setRealTime.sqf";
     Hz_weather_func_dynamicWeather = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_weather_func_dynamicWeather.sqf";
     Hz_func_spawnOpforArtilleryBase = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_spawnOpforArtilleryBase.sqf";    

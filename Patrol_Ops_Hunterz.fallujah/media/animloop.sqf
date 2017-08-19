@@ -42,8 +42,8 @@ while{alive _unit}do{
     
         for "_x" from 1 to 5 do {
             
-	_unit playMove _anim;
-	waitUntil{animationState _unit != _anim};
+	_unit playMoveNow _anim;
+	waitUntil{sleep 2; animationState _unit != _anim};
         _unit setunitPos "UP";
         sleep 7;
         };

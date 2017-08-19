@@ -41,31 +41,11 @@ nearestobjects [[3699.2,4940.73,0.00143862],[],15]
 
 ]};
 
-
-//for spawning patrols closer to town. checks for nearby players
-AI_respawn_safe_east = true;
-AI_respawn_safe_west = false;
-
 // Determine if Server is running ACE & ACRE
 	[] execVM (mps_path+"func\mps_func_detect_ace.sqf");
 
 // AMMOBOX
 //	mps_ammobox_list = []; publicVariable "mps_ammobox_list";
-
-/*
-// Ambient Civillians
-	if(AMBCIVILLIAN > 0 && count ALICE_MODULE > 0) then {
-		MISSION_GroupLogic = createGroup sideLogic;
-		ALICE = MISSION_GroupLogic createUnit [(ALICE_MODULE) select 0,[0,0,0],[],0,"NONE"];
-		ALICE setVariable ["spawnDistance",500];
-		ALICE setVariable ["ALICE_civilianinit",[{
-			_this addEventHandler ["Killed",{
-				_killer = _this select 1;
-				if(side _killer == (SIDE_A select 0) ) then{ mission_commandchat = format["%1 killed a civilian!",name _killer]; publicVariable "mission_commandchat"; player commandchat mission_commandchat;};
-			}];
-		}]];
-	};
-*/
 
 //	[] spawn compile preprocessFileLineNumbers (mps_path+"func\mps_func_ieds.sqf");
 
@@ -112,8 +92,6 @@ AI_respawn_safe_west = false;
     Hz_save_arty_spawn_timer = 0;
     Hz_save_arty_pos = [0,0,0];
     Hz_save_jointOps_vehicles = [];
-   
-   AIsoldierFlare_units = [];
    
    //  if (mps_ambient_insurgents) then{  [] spawn RANDOM_PATROLS; };
    

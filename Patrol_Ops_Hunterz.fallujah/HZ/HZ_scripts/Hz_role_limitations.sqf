@@ -94,31 +94,6 @@ if (MED_A) then {
     
     //also make sure medics are able to interact with AI using ACE wounds
     player setvariable ["ace_w_ismedic",true];
-        
-    
- /*    
-    sleep 10;
-                
-    if ((typeof player == "US_Soldier_Medic_EP1") || (typeof player == "BAF_Soldier_Medic_MTP") || (typeof player == "Mercenary_Default28") || (typeof player == "Soldier_Medic_PMC") || (typeof player == "BAF_Soldier_Medic_W") || (typeof player == "BAF_Soldier_Medic_DDPM")) then {
-
-       //player setvariable ["ace_w_ismedic",false];
-
-       // ace_sys_wounds_enabled = false;
-       
-      
-       
-        player setvariable ["ace_w_allow_dam",0];
-        player removealleventhandlers "HandleDamage";    
-        player setvariable ["cms_enable",true,true];
-
-
-
-       // cms_enableCombatMedicalSystem = true;
-        mediconline = true;
-        publicvariable "mediconline";
-
-};
-*/
    
 };
 

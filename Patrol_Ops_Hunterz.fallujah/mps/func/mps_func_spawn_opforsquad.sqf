@@ -1,6 +1,6 @@
 // Written by BON_IF
 // Adpated by EightySix
-//
+// Modified by K.Hunter
 //	requires Position
 //	[_position,"INF",5,50] spawn CREATE_OPFOR_SQUAD;
 //
@@ -11,7 +11,7 @@ if(count _this < 1) exitWith{};
 
 _nocleanup = false;
 if(count _this > 5) then{
-if((_this select 5) == "nocleanup") then {_nocleanup = true;};   
+  if((_this select 5) == "nocleanup") then {_nocleanup = true;};   
 };
 
 _side = (SIDE_B select 0);
@@ -19,7 +19,7 @@ _pos = (_this select 0) call mps_get_position;
 
 _type = "INF";
 if(count _this > 1) then{
-	_type = _this select 1;        
+  _type = _this select 1;        
 };
 
 _strength = 2 + (round random 3);
@@ -37,36 +37,34 @@ _y = _pos select 1;
 
 _Grp = createGroup _side;
 
-sleep 1;
-
 //temporary -- to make sure mod doesn't take over prematurely
 _Grp setvariable ["Hz_attacking",true];
 
 _spawnpos = [0,0];
 _count=0;
 While{(surfaceIsWater _spawnpos || count (_spawnpos - [0]) == 0) && _count < 100} do {
-	_spawnpos = [_x + _radius - random (_radius*2), _y + _radius - random (_radius*2)];
-	_count = _count + 1;
+  _spawnpos = [_x + _radius - random (_radius*2), _y + _radius - random (_radius*2)];
+  _count = _count + 1;
 };
 if(_count == 100) exitWith{_Grp};
 _spawnpos set [2,0];
 
 switch _type do{
-	case "INF": {_allunits = mps_opfor_inf};
-	case "INS": {_allunits = mps_opfor_ins};
-	case "TARGET" : {_allunits = mps_opfor_leader};
-	default {_allunits = mps_opfor_inf};
+case "INF": {_allunits = mps_opfor_inf};
+case "INS": {_allunits = mps_opfor_ins};
+case "TARGET" : {_allunits = mps_opfor_leader};
+  default {_allunits = mps_opfor_inf};
 };
 
 _max = (count _allunits) - 1;
 _skill = 1 + log(mps_mission_factor/4);
 
 for "_j" from 1 to _strength do {
-    
-        _unit = _Grp createUnit [_allunits select (round random _max),_spawnpos,[],20,"NONE"];
-	//_unit setSkill _skill;
-        _unit call Hz_func_AI_SetSkill;
-        
+  
+  _unit = _Grp createUnit [_allunits select (round random _max),_spawnpos,[],20,"NONE"];
+  //_unit setSkill _skill;
+  _unit call Hz_func_AI_SetSkill;
+  
 };
 
 _upsmarker = Format ["upstaskmarker_%1", markerindex];
@@ -83,84 +81,54 @@ if(!_nocleanup) then {patrol_task_units = patrol_task_units + (units _Grp); patr
 
 if(_patrol) then {
 
-    if(_movetype == "standby") then {
-       
-           
- // [_Grp,_spawnpos,_movetype] spawn mps_patrol_init;
- 
-/*
+  if(_movetype == "standby") then {
+    
+    
+    // [_Grp,_spawnpos,_movetype] spawn mps_patrol_init;
+
+    /*
 
 DEFENSIVE BEHAVIOUR HANDLED BY MOD
 
 
 */
- 
- _Grp setvariable ["Hz_attacking",false];
- 
-        } else {
-            
-              if(_movetype == "patrol") then {
-                  
-                       _Grp setvariable ["Hz_attacking",false];
-                       _Grp setvariable ["Hz_patrolling",true];
 
-                          [_Grp,_upsmarker,"SHOWMARKER"] execVM "ups_Hz.sqf";
-              
-              }else {
-                  
-                    _Grp setvariable ["Hz_attacking",false];
-                     _Grp setvariable ["Hz_defending",true];
-
-   
-                  
-              //_movetype == "hide"
-              
-              //[unit,radius,stationary?,([occupy percentage,maximum],warping?,minimum height)] execVM "Garrison_script.sqf"
-              if((_this select 0) call Hz_func_isurbanarea) then {
-                  
-                    [leader _Grp,400,true,[100,2],true,2] execVM "Garrison_script.sqf";
-              
-                } else {
-                    
-                  {deletevehicle _x;}foreach units _Grp;
-                     
-                 };
-              
-              };
-    };
-} else {
-    
     _Grp setvariable ["Hz_attacking",false];
-     
-            
-};
 
-
-
-/*
-// Cleanup
-[_Grp,_upsmarker] spawn {
+  } else {
     
-	_units = units (_this select 0);
-	_posgrp = position (leader (_this select 0));
-	_hidetime = 100;
-        _marker = _this select 1;
+    if(_movetype == "patrol") then {
+      
+      _Grp setvariable ["Hz_attacking",false];
+      _Grp setvariable ["Hz_patrolling",true];
 
-	While{ ( {if(!isnull _x) then {alive _x} else {false}} count _units ) > 0 } do { sleep 10; };
-	while{ { alive _x && side _x == (SIDE_A select 0) } count nearestObjects[_posgrp,["CAManBase","LandVehicle"],800] > 0 } do { sleep 10; };
-        sleep 1800;
-
-	{
-		hidebody _x;
-		sleep 3;
-		deleteVehicle _x;
-	} foreach _units;
-
-	sleep 5;
-
-	deleteGroup (_this select 0);
-        deletemarkerlocal _marker;
+      [_Grp,_upsmarker,"SHOWMARKER"] spawn Hz_AI_UPS_Hz;
+      
+    }else {
+      
+      _Grp setvariable ["Hz_attacking",false];
+      _Grp setvariable ["Hz_defending",true];
+      
+      //_movetype == "hide"
+      
+      //[unit,radius,stationary?,([occupy percentage,maximum],warping?,minimum height)] execVM "Garrison_script.sqf"
+      if((_this select 0) call Hz_func_isurbanarea) then {
+        
+        [leader _Grp,400,true,[100,2],true,2] execVM "Garrison_script.sqf";
+        
+      } else {
+        
+        {deletevehicle _x;}foreach units _Grp;
+        
+      };
+      
+    };
+  };
+  
+} else {
+  
+  _Grp setvariable ["Hz_attacking",false];
+  
 };
-*/
 
 _Grp
