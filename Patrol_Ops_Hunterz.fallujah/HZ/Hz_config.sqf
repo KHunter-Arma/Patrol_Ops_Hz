@@ -19,7 +19,9 @@ if(isServer) then {
 		
     ];
     
-    Hz_wep_restriction_supervisors = ["76561198002110130","76561198017258138","76561197992821044","76561197991833712","76561197988793826","76561198142692277"];
+    Hz_wep_restriction_supervisors = ["76561198002110130","76561198017258138","76561197992821044",
+    "76561197991833712","76561197988793826","76561198142692277","76561198012587329","76561198002906820",
+    "76561198027293421","76561198117073327","76561198048254349","76561198056800694"];
     
     Hz_wep_restrictions_jointOp = [];
     
@@ -29,7 +31,7 @@ if(isServer) then {
     Hz_Officers = ["76561198002110130","76561198017258138","76561198142692277"];
     
     //for recruits that have completed weapons training
-    Hz_temp_non_supervisor_PMC_permissions = ["76561198012587329","76561198002906820","76561198027293421","76561198117073327","76561198048254349","76561198056800694"];
+    Hz_temp_non_supervisor_PMC_permissions = [];
     
     publicvariable "Hz_wep_restriction_supervisors";
     publicvariable "Hz_wep_restriction_whitelist";
