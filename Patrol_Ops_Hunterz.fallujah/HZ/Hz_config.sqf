@@ -1,7 +1,7 @@
 
 
 ////////////////////////////////////////////////
-//           Hunter'z Weapon Store
+//           Hunter'z Restrictions
 ////////////////////////////////////////////////
 
 //Enter names of the weapons store objects (could be a building, a laptop, a car, some dude, whatever...) inside this array
@@ -14,7 +14,8 @@ if(isServer) then {
     "76561198035571753","76561198086631026","76561198080472574","76561197998271838","76561198129876850",    
     
     // Non-members
-    "76561197983958892" //Diamond
+    "76561197983958892", //Diamond
+    "76561198086630094" //Drunken
 		
     ];
     
@@ -48,6 +49,9 @@ Hz_restricted_vehs = ["TTK_M113A_US","TTK_M163A1_US","TTK_M163_MACHBET_US","LAV_
 "ACE_STRYKER_RV_SLAT_D","M1129_MC_EP1","M1135_ATGMV_EP1","M1A1_US_DES_EP1","ACE_M1A1HA_TUSK_DESERT","ACE_M1A1HA_TUSK_CSAMM_DESERT","M1A2_US_TUSK_MG_EP1","M2A2_EP1","M2A3_EP1","M6_EP1","MLRS_DES_EP1","AN2_2_TK_CIV_EP1",
 "MI17_CIVILIAN","USEC_BELL206_1","USEC_BELL206_3","GNT_C185E","GNT_C185F","GNT_C185U","GNT_C185","GNT_C185R","GNT_C185C","POOK_H13_AMPHIB_UNO","POOK_H13_AMPHIB_PMC","POOK_H13_AMPHIB_CIV","METIS_TK_EP1"
 ];
+
+//3 supervisors per public player -- 0 to disable limit
+Hz_publicPlayerRatioLimit = 3;
 
 ////////////////////////////////////////////////
 //            ACE Wounds Settings (for AI)

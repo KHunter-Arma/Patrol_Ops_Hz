@@ -430,6 +430,31 @@ if(!hz_debug) then {
 
 waituntil {introseqdone};
 
+//public player ratio limitation
+if ((toupper Hz_playertype) != "SUPERVISOR") then {
+
+  if ((Hz_publicPlayerRatioLimit > 0) && 
+      ((toupper Hz_playertype) != "JOINTOP") &&
+      (!((getPlayerUID player) in Hz_temp_non_supervisor_PMC_permissions))) then {
+
+    _countSupervisors = ({(getplayeruid _x) in Hz_wep_restriction_supervisors} count playableunits) + 
+    ({(getplayeruid _x) in Hz_wep_restriction_supervisors} count alldead);    
+
+    _countNonSupervisors = ({!((getplayeruid _x) in Hz_wep_restriction_supervisors)} count playableunits) + 
+    ({if(isplayer _x) then {!((getplayeruid _x) in Hz_wep_restriction_supervisors)} else {false}} count alldead);  
+
+    
+    if ((_countSupervisors/_countNonSupervisors) < Hz_publicPlayerRatioLimit) then {
+    
+      hintc "WARNING\nThe maximum number of public players currently allowable on the server has been reached. You will now be returned to the lobby.";
+      endMission "LOSER"; 
+    
+    };
+    
+  };
+
+};
+
 // remove ACEW from players and initialise CMS
 [] spawn {
 
