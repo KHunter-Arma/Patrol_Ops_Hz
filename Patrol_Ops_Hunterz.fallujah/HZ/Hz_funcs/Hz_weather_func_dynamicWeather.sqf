@@ -27,7 +27,9 @@ if(!Hz_overrideweather) then {
         if ((random 1) < 0.5) then {_sign1 = -1;};       
         _sign2 = 1;
         if ((random 1) < 0.5) then {_sign2 = -1;}; 
-        weather_wind = [(14*(weather_wind select 0)*_sign1*(random 1)),(14*(weather_wind select 1)*_sign2*(random 1)),true];               
+		_windx = (weather_wind select 0) + (_sign1*(0.2 + (random 0.5))*14);
+		_windy = (weather_wind select 1) + (_sign2*(0.2 + (random 0.5))*14);
+        weather_wind = [_windx,_windy,true];               
         
       } else {
         
