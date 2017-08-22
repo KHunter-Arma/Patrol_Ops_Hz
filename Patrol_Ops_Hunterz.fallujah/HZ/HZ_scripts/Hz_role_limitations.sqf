@@ -13,18 +13,19 @@ Hz_client_allowed_weps = Hz_client_allowed_weps + [
 if (AT_A) then {
 
 Hz_client_allowed_weps = Hz_client_allowed_weps + [
-"MAAWS","SMAW","M47LAUNCHER_EP1","RPG18","ACE_JAVELIN_CLU","BAF_NLAW_LAUNCHER"
+"MAAWS","SMAW","M47LAUNCHER_EP1","ACE_JAVELIN_CLU","ACE_RPG22","ACE_RPG27",
+"RPG7V","ACE_RPG7V_PGO7","ACE_JAVELIN_DIRECT","ACE_M47_DAYSIGHT","METISLAUNCHER","JAVELIN"
 ];
+
+Hz_restricted_vehs = Hz_restricted_vehs - ["METIS_TK_EP1"];
 
 };
 
 if (AT) then {
 
 Hz_client_allowed_weps = Hz_client_allowed_weps + [
-"RPG7V","METISLAUNCHER","JAVELIN","ACE_RMG","ACE_RPG22","ACE_RPG27","ACE_RPG29","ACE_RPG7V_PGO7","ACE_RPOM","ACE_RSHG1","ACE_JAVELIN_DIRECT","ACE_M47_DAYSIGHT"
+"ACE_RMG","ACE_RPG29","ACE_RPOM","ACE_RSHG1","BAF_NLAW_LAUNCHER"
 ];
-
-Hz_restricted_vehs = Hz_restricted_vehs - ["METIS_TK_EP1"];
 
 };
 

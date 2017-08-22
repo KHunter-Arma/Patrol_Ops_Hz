@@ -75,7 +75,7 @@ case "76561198002110130" : {
 
 AT = true;
 GR = true;
-AA_A = true;
+AA = true;
 H_P = true;
 P_P = true;
 MED_A = true;
@@ -88,27 +88,11 @@ MED_A  = true;
 
 };
 
-//Kostas
-case "76561198056074177" : {
-
-};
-
-//Karl
-case "76561198006958791" : {
-
-};
-
 //Mitchell
 case "76561198017258138" : {
 GR = true;
 DM = true;
 MG = true;
-};
-
-//Jack
-case "76561198002906820" : {
-AT_A = true;
-
 };
 
 //Alex
@@ -134,6 +118,10 @@ MED_A = true;
 
 };
 
+//Jey
+case "76561198048254349" : {
+AT_A = true;
+};
 
 //Werben
 case "76561198027293421" : {
