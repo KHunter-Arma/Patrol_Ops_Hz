@@ -36,7 +36,7 @@ waituntil {!isnil {player getvariable "Hz_ready_for_sleep"}};
 waituntil {!(player getvariable "Hz_ready_for_sleep")};
 
 //Tent destroyed/doesn't exist?
-if(isnil "mps_rallypoint_tent" || (!alive mps_rallypoint_tent)) exitwith {hint "You don't have a tent!";};
+if(!alive mps_rallypoint_tent) exitwith {hint "You don't have a tent!";};
 if((player distance mps_rallypoint_tent) > 15) exitwith {hint "You are too far away from your tent!";};
 
 player setvariable ["Hz_ready_for_sleep",true,true];

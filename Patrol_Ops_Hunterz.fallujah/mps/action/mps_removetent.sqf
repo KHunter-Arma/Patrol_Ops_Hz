@@ -12,11 +12,4 @@ if(!mps_debug) then {
         rallytents = rallytents - [_tent];
         publicvariable "rallytents";        				
 				
-				if ((_this select 0) == mps_rallypoint_tent) then {
-				
-        RALLY_STATUS = false;
-				deletemarker _uid;
-				
-				};
-				
 				deletevehicle (_this select 0);

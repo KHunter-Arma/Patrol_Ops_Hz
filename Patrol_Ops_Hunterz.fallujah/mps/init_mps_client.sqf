@@ -499,8 +499,6 @@ if(!((_tentposx == 0) && (_tentposy == 0) && (_tentposz == 0))) then {
   deleteVehicle mps_rallypoint_tent;
   deleteMarker _uid;
 
-  mps_rallypoint_tent = nil;
-
   //hint "Rallypoint Removed";
 
   RALLY_STATUS = false;
