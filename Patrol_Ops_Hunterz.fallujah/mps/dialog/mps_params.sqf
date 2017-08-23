@@ -124,9 +124,9 @@
         
         class option21 {
         title="Auto Save Frequency";
-        values[]={0,21600,43200,86400};
-        default=43200;
-        texts[]={"Disabled","6 hours","12 hours","24 hours"};
+        values[]={0,10800,21600,43200,86400};
+        default=10800;
+        texts[]={"Disabled","3 hours","6 hours","12 hours","24 hours"};
 	};
 
 //};
