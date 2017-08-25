@@ -1,3 +1,5 @@
+#define MAX_WIND_SPEED 14
+
 private ["_sign","_sign1","_sign2","_rand","_windx","_windy"];
 
 if(!Hz_overrideweather) then {  
@@ -27,8 +29,8 @@ if(!Hz_overrideweather) then {
         if ((random 1) < 0.5) then {_sign1 = -1;};       
         _sign2 = 1;
         if ((random 1) < 0.5) then {_sign2 = -1;}; 
-		_windx = (weather_wind select 0) + (_sign1*(0.2 + (random 0.5))*14);
-		_windy = (weather_wind select 1) + (_sign2*(0.2 + (random 0.5))*14);
+		_windx = (weather_wind select 0) + (_sign1*(0.2 + (random 0.5))*MAX_WIND_SPEED);
+		_windy = (weather_wind select 1) + (_sign2*(0.2 + (random 0.5))*MAX_WIND_SPEED);
         weather_wind = [_windx,_windy,true];               
         
       } else {
@@ -51,7 +53,7 @@ if(!Hz_overrideweather) then {
         if ((random 1) < 0.5) then {_sign1 = -1;};       
         _sign2 = 1;
         if ((random 1) < 0.5) then {_sign2 = -1;}; 
-        weather_wind = [(14*Hz_weather_avg_wind*_sign1*(1 - (random 0.1))),(14*Hz_weather_avg_wind*_sign2*(1 - (random 0.1))),true]; 
+        weather_wind = [(MAX_WIND_SPEED*Hz_weather_avg_wind*_sign1*(1 - (random 0.1))),(MAX_WIND_SPEED*Hz_weather_avg_wind*_sign2*(1 - (random 0.1))),true]; 
         
       };
 
@@ -74,7 +76,7 @@ if(!Hz_overrideweather) then {
       if ((random 1) < 0.5) then {_sign1 = -1;};       
       _sign2 = 1;
       if ((random 1) < 0.5) then {_sign2 = -1;}; 
-      weather_wind = [(14*(weather_wind select 0)*_sign1*(1 - (random 0.1))),(14*(weather_wind select 1)*_sign2*(1 - (random 0.1))),true]; 
+      weather_wind = [((weather_wind select 0)*_sign1*(1 - (random 0.1))),((weather_wind select 1)*_sign2*(1 - (random 0.1))),true]; 
       
     };
     
@@ -85,17 +87,17 @@ if(!Hz_overrideweather) then {
     
     if(_rand < 0.2) then {weather = weather + random 0.1; weather_fog = 0;}else {if(_rand < 0.8)then{weather = weather + 0.7 + random 0.3; weather_fog = 0.2;}else{weather = 1; weather_fog = 0.5;};};
     weather_rain = rain;
-    weather_wind = [-14,-14,true];
+    weather_wind = [-MAX_WIND_SPEED,-MAX_WIND_SPEED,true];
     
   };
   
   _windx = weather_wind select 0;
   _windy = weather_wind select 1;
   
-  if(_windx > 14) then {_windx = 14;};
-  if(_windy > 14) then {_windy = 14;};
-  if(_windx < -14) then {_windx = -14;};
-  if(_windy < -14) then {_windy = -14;};
+  if(_windx > MAX_WIND_SPEED) then {_windx = MAX_WIND_SPEED;};
+  if(_windy > MAX_WIND_SPEED) then {_windy = MAX_WIND_SPEED;};
+  if(_windx < -MAX_WIND_SPEED) then {_windx = -MAX_WIND_SPEED;};
+  if(_windy < -MAX_WIND_SPEED) then {_windy = -MAX_WIND_SPEED;};
   
   weather_wind = [_windx, _windy, true]; 
   
