@@ -17,7 +17,7 @@ Hz_client_allowed_weps = Hz_client_allowed_weps + [
 "RPG7V","ACE_RPG7V_PGO7","ACE_JAVELIN_DIRECT","ACE_M47_DAYSIGHT","METISLAUNCHER","JAVELIN"
 ];
 
-Hz_restricted_vehs = Hz_restricted_vehs - ["METIS_TK_EP1"];
+Hz_restricted_vehs = Hz_restricted_vehs - ["METIS_TK_EP1","ACE_M47_STATIC"];
 
 };
 

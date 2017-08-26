@@ -169,7 +169,7 @@ if((getplayeruid player) in Hz_temp_non_supervisor_PMC_permissions) then {
 } else {
 
     //sloppy but should do for now...    
-    if (_playertype == "PUBLIC" || _playertype == "CLAN") then {
+    if (_playertype == "PUBLIC" || _playertype == "WHITELIST") then {
 
         AT = false;
         GR = false;

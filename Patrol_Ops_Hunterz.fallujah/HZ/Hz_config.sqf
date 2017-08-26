@@ -49,7 +49,8 @@ if(isServer) then {
 
 Hz_restricted_vehs = ["TTK_M113A_US","TTK_M163A1_US","TTK_M163_MACHBET_US","LAV_25_OIF","BAF_FV510_D","ACE_STRYKER_ICV_M2_D","ACE_STRYKER_ICV_M2_SLAT_D","ACE_STRYKER_ICV_MK19_D","ACE_STRYKER_ICV_MK19_SLAT_D","ACE_STRYKER_RV_D",
 "ACE_STRYKER_RV_SLAT_D","M1129_MC_EP1","M1135_ATGMV_EP1","M1A1_US_DES_EP1","ACE_M1A1HA_TUSK_DESERT","ACE_M1A1HA_TUSK_CSAMM_DESERT","M1A2_US_TUSK_MG_EP1","M2A2_EP1","M2A3_EP1","M6_EP1","MLRS_DES_EP1","AN2_2_TK_CIV_EP1",
-"MI17_CIVILIAN","USEC_BELL206_1","USEC_BELL206_3","GNT_C185E","GNT_C185F","GNT_C185U","GNT_C185","GNT_C185R","GNT_C185C","POOK_H13_AMPHIB_UNO","POOK_H13_AMPHIB_PMC","POOK_H13_AMPHIB_CIV","METIS_TK_EP1"
+"MI17_CIVILIAN","USEC_BELL206_1","USEC_BELL206_3","GNT_C185E","GNT_C185F","GNT_C185U","GNT_C185","GNT_C185R","GNT_C185C","POOK_H13_AMPHIB_UNO","POOK_H13_AMPHIB_PMC","POOK_H13_AMPHIB_CIV","METIS_TK_EP1","ACE_120TAMPELLA",
+"ACE_ARTY_M119","ACE_2B14_82MM","ACE_M47_STATIC","ACE_M224_1","ACE_M252"
 ];
 
 //3 supervisors per public player -- 0 to disable limit
@@ -77,11 +78,11 @@ Hz_publicPlayerRatioLimit = 3;
 ////////////////////////////////////////////////
 
 Hz_weather_Snow = false; //overrides all settings below if enabled
-Hz_weather_avg_overcast = 0.2;
-Hz_weather_avg_fog = 0.1;
-Hz_weather_avg_wind = 0.15;
-Hz_weather_avg_rain = 0.1;
-Hz_weather_change_chance = 0.2;
+Hz_weather_avg_overcast = 0;
+Hz_weather_avg_fog = 0;
+Hz_weather_avg_wind = 0.1;
+Hz_weather_avg_rain = 0;
+Hz_weather_change_chance = 0.25;
 
 ////////////////////////////////////////////////
 //            Hunter'z Immersion
