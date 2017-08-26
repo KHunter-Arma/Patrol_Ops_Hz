@@ -335,6 +335,15 @@ publicvariable "hz_trigger_save";
 
 	_save = format ["Hz_save_destroyedMapBuildingIDs = %1;",Hz_save_destroyedMapBuildingIDs];
 	conFile(_save);
+	
+	_save = format ["weather_fog = %1;",weather_fog];
+	conFile(_save);
+	_save = format ["weather_wind = %1;",weather_wind];
+	conFile(_save);
+	_save = format ["weather_rain = %1;",weather_rain];
+	conFile(_save);
+	_save = format ["weather = %1;",weather];
+	conFile(_save);
 
 	_save = "loaddone = true;";
 	conFile(_save);

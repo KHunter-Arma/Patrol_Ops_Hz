@@ -1,13 +1,3 @@
-weather_fog = Hz_weather_avg_fog;
-weather_rain = Hz_weather_avg_rain;
-weather = Hz_weather_avg_overcast;
-_sign1 = 1;
-if ((random 1) < 0.5) then {_sign1 = -1;};       
-_sign2 = 1;
-if ((random 1) < 0.5) then {_sign2 = -1;}; 
-weather_wind = [(14*Hz_weather_avg_wind*_sign1*(1 - (random 0.1))),(14*Hz_weather_avg_wind*_sign2*(1 - (random 0.1))),true]; 
-call Hz_weather_func_dynamicWeather;
-
 //Server DVD
 [] spawn {
   

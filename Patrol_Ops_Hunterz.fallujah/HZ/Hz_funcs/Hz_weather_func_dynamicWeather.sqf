@@ -15,22 +15,22 @@ if(!Hz_overrideweather) then {
         
         _sign = 1;
         if ((random 1) < 0.5) then {_sign = -1;};                   
-        weather = weather + ((0.2 + (random 0.5))*_sign); 
+        weather = weather + ((0.2 + (random 0.8))*_sign); 
 
         _sign = 1;
         if ((random 1) < 0.5) then {_sign = -1;};                   
-        weather_rain = weather_rain + ((0.2 + (random 0.5))*_sign); 
+        weather_rain = weather_rain + ((0.2 + (random 0.8))*_sign); 
 
         _sign = 1;
         if ((random 1) < 0.5) then {_sign = -1;};                   
-        weather_fog = weather_fog + ((0.2 + (random 0.5))*_sign); 
+        weather_fog = weather_fog + ((0.2 + (random 0.8))*_sign); 
         
         _sign1 = 1;
         if ((random 1) < 0.5) then {_sign1 = -1;};       
         _sign2 = 1;
         if ((random 1) < 0.5) then {_sign2 = -1;}; 
-		_windx = (weather_wind select 0) + (_sign1*(0.2 + (random 0.5))*MAX_WIND_SPEED);
-		_windy = (weather_wind select 1) + (_sign2*(0.2 + (random 0.5))*MAX_WIND_SPEED);
+		_windx = (weather_wind select 0) + (_sign1*(0.2 + (random 0.8))*MAX_WIND_SPEED);
+		_windy = (weather_wind select 1) + (_sign2*(0.2 + (random 0.8))*MAX_WIND_SPEED);
         weather_wind = [_windx,_windy,true];               
         
       } else {
