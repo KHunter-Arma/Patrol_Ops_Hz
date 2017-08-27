@@ -463,7 +463,7 @@ class Mission
 					side="WEST";
 					vehicle="US_Soldier_SniperH_EP1";
 					skill=1;
-					init="this setpos [7848.96,2112.49,21]; dostop this; if(isServer) then {this addeventhandler [""killed"", {if(isplayer (_this select 1)) then {[_this select 1] joinsilent creategroup east;};}];}; this forceSpeed 0; this setvariable [""Hz_standGuard"",true]; this addEventHandler [""fired"",{(_this select 0) setvehicleammo 1;}];";
+					init="this setpos [7848.96,2112.49,21]; dostop this; if(isServer) then {this addeventhandler [""killed"", {if(isplayer (_this select 1)) then {[_this select 1] joinsilent creategroup east;};}];}; this forceSpeed 0; this setvariable [""Hz_noMove"",true]; (group this) setvariable [""Hz_defending"",true]; this addEventHandler [""fired"",{(_this select 0) setvehicleammo 1;}];";
 				};
 				class Item3
 				{
@@ -602,7 +602,7 @@ class Mission
 					side="WEST";
 					vehicle="US_Soldier_Officer_EP1";
 					skill=0.2;
-					init="this setVariable [""Hz_standGuard"",true]; this forceSpeed 0; this setUnitPos ""up"";";
+					init="this setvariable [""Hz_noMove"",true]; (group this) setvariable [""Hz_defending"",true]; this forceSpeed 0; this setUnitPos ""up"";";
 				};
 			};
 		};
@@ -4427,7 +4427,7 @@ class Mission
 					rank="LIEUTENANT";
 					skill=0.2;
 					text="Hz_wep_store";
-					init="this setposatl [8225.77,2162.44,0.270132]; this setdir 172; removeallweapons this;  this disableai ""move""; this setunitpos ""up""; if(isServer) then {this addeventhandler [""killed"", {if(isplayer (_this select 1)) then {[_this select 1] joinsilent creategroup east;};}];}; this forceSpeed 0;  this setvariable [""Hz_standguard"",true]; this setvariable [""pos"",getposatl this]; this setname ""John"";";
+					init="this setposatl [8225.77,2162.44,0.270132]; this setdir 172; removeallweapons this;  this disableai ""move""; this setunitpos ""up""; if(isServer) then {this addeventhandler [""killed"", {if(isplayer (_this select 1)) then {[_this select 1] joinsilent creategroup east;};}];}; this forceSpeed 0;  this setvariable [""Hz_noMove"",true]; (group this) setvariable [""Hz_defending"",true]; this setvariable [""pos"",getposatl this]; this setname ""John"";";
 				};
 				class Item1
 				{
@@ -4439,7 +4439,7 @@ class Mission
 					vehicle="Soldier_Bodyguard_AA12_PMC";
 					rank="LIEUTENANT";
 					skill=0.2;
-					init="this setposatl [8222.77,2160.44,0.270132]; this setdir 172; dostop this; this setunitpos ""up"";if(isServer) then {this addeventhandler [""killed"", {if(isplayer (_this select 1)) then {[_this select 1] joinsilent creategroup east; Hz_wep_store addmagazine [""15Rnd_9x19_M9"",8]; Hz_wep_store addweapon ""M9"";};}];}; this forceSpeed 0;  this setvariable [""Hz_standguard"",true];";
+					init="this setposatl [8222.77,2160.44,0.270132]; this setdir 172; dostop this; this setunitpos ""up"";if(isServer) then {this addeventhandler [""killed"", {if(isplayer (_this select 1)) then {[_this select 1] joinsilent creategroup east; Hz_wep_store addmagazine [""15Rnd_9x19_M9"",8]; Hz_wep_store addweapon ""M9"";};}];}; this forceSpeed 0;  this setvariable [""Hz_noMove"",true]; (group this) setvariable [""Hz_defending"",true];";
 				};
 				class Item2
 				{
@@ -4451,7 +4451,7 @@ class Mission
 					vehicle="Soldier_M4A3_PMC";
 					rank="LIEUTENANT";
 					skill=0.2;
-					init="dostop this; this setunitpos ""up""; if(isServer) then {this addeventhandler [""killed"", {if(isplayer (_this select 1)) then {[_this select 1] joinsilent creategroup east;};}];}; this forceSpeed 0; this setvariable [""Hz_standguard"",true];";
+					init="dostop this; this setunitpos ""up""; if(isServer) then {this addeventhandler [""killed"", {if(isplayer (_this select 1)) then {[_this select 1] joinsilent creategroup east;};}];}; this forceSpeed 0; this setvariable [""Hz_noMove"",true]; (group this) setvariable [""Hz_defending"",true];";
 				};
 			};
 		};
@@ -5615,7 +5615,7 @@ class Mission
 					vehicle="US_Soldier_Crew_EP1";
 					skill=1;
 					text="samdude";
-					init="this assignAsGunner SAM; this moveingunner SAM; this forceSpeed 0; this setVariable [""Hz_standGuard"",true];";
+					init="this assignAsGunner SAM; this moveingunner SAM; this forceSpeed 0; this setvariable [""Hz_noMove"",true]; (group this) setvariable [""Hz_defending"",true];";
 				};
 			};
 		};

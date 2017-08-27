@@ -33,7 +33,7 @@ if (isNil("_warping")) then {
 };
 
 
-_group setvariable ["defending",_stationary];
+_group setvariable ["Hz_defending",_stationary];
 _side = side _unit;
 /*
   nul = [_group] spawn
@@ -255,7 +255,7 @@ if ((count _objectslist) >= 1) then {
           _x setPos (_localbuilding buildingPos _buildpos);                           
           sleep 0.05;
           _x forcespeed 0;
-          _x setvariable ["Hz_standGuard",true];
+          _x setvariable ["Hz_noMove",true];
           
         } else {
           sleep 0.1;
@@ -432,7 +432,7 @@ if ((count _objectslist) >= 1) then {
               _x setPos (_localbuilding buildingPos _buildpos);
               sleep 0.05;
               _x forcespeed 0;
-              _x setvariable ["Hz_standGuard",true];
+              _x setvariable ["Hz_noMove",true];
               dostop _x;
             } else {
               sleep 0.1;
@@ -683,7 +683,7 @@ if((count (units _remainders)) > 0) then {
             dostop _x;
             _x setposatl [_posx, _posy, _posz];
             _x forcespeed 0;
-            _x setvariable ["Hz_standGuard",true];
+            _x setvariable ["Hz_noMove",true];
             
           }foreach units _remainders;        
           
