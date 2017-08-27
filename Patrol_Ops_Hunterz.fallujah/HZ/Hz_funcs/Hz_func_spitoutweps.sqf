@@ -29,9 +29,14 @@ if((vehicle player) != player) then {
 
 };
 
-{
-     _wepholder addweaponcargoglobal [_x, 1];
+{    
      
-    if(_x in weapons player) then { player removeweapon _x;} else { [player, "WEP", _x, 1] call ACE_fnc_RemoveGear;};   
+    if(_x in weapons player) then {
+
+		_wepholder addweaponcargoglobal [_x, 1];
+		
+		player removeweapon _x;		
+		
+		};   
      
-            }foreach _spitweps;
+}foreach _spitweps;

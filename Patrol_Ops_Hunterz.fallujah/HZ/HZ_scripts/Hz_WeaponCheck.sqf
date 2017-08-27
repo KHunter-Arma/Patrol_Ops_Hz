@@ -251,7 +251,7 @@ while {true} do {
   
         // hint format ["%1",diag_tickTime - _start];
    
-        if((vehicle player)!= player) then {[] spawn Hz_func_check_vehicle;};  
+        if((vehicle player)!= player) then {call Hz_func_check_vehicle;};  
    
     };         
                 
