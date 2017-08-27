@@ -17,6 +17,7 @@ mps_opfor_ins = [];
 mps_opfor_ins_car = [];
 mps_opfor_ins_truck = [];
 mps_opfor_leader = [];
+mps_opfor_commander = [];
 mps_opfor_armor = [];
 mps_opfor_apc = [];
 mps_opfor_aa = [];
@@ -68,6 +69,7 @@ mps_recruit_unittypes = [];
                 };         
                 
 		if( (_x select 1) == "tl") then { mps_opfor_leader = mps_opfor_leader + [(_x select 2)]; };
+    if( (_x select 1) == "co") then { mps_opfor_commander = mps_opfor_commander + [(_x select 2)]; };
 	};
 	if( (_x select 0) == (SIDE_C select 1) && (_x select 1) in ["aa","at","mg","sn","tl","na"] ) then {
             

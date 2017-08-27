@@ -98,7 +98,16 @@ _man = _this select 0; _man allowdamage false; _man setvariable ["ace_w_allow_da
         
         _staticguns = _minStaticWeapon max (round (random _maxStaticWeapon));
 	if(_staticguns > 0) then {for "_i" from 1 to _staticguns do { [_position] call CREATE_OPFOR_STATIC; };};
-        if ((random 1) < _TowerChance) then {[_position] spawn CREATE_OPFOR_TOWER;};
+        if ((random 1) < _TowerChance) then {
+        
+        _tower = objNull;
+        
+        {if((typeOf _x) == "Land_Vysilac_FM") then {_tower = _x;}; }forEach _newcomp;
+        
+        [_position,_tower] spawn CREATE_OPFOR_TOWER;        
+        
+        };
+        
         if ((random 1) < _SniperChance) then {[_position] spawn CREATE_OPFOR_SNIPERS;};
         
         _b = (_minPatrollingSquadCount max (round (random _maxPatrollingSquadCount)));
