@@ -73,7 +73,7 @@ _group setvariable ["Hz_defending",true];
                 _sniper setskill 1;
 		_sniperlist set [count _sniperlist, _sniper];
                 _sniper forcespeed 0;
-                _sniper setvariable ["Hz_disableFSM",true];
+                _sniper setvariable ["Hz_noMove",true];
                 dostop _sniper;
         
 } foreach _highbuildings;
