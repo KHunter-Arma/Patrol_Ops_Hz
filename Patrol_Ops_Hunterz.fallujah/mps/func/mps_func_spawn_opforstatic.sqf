@@ -41,28 +41,29 @@ if(not surfaceIsWater [_mgpos select 0, _mgpos select 1]) then{
 
 		} else {
 
-			_mg = (["DSHKM_TK_INS_EP1","DSHKM_TK_INS_EP1","DSHKM_TK_INS_EP1""SPG9_TK_INS_EP1","ZU23_TK_INS_EP1","ZU23_TK_INS_EP1","DSHKM_TK_INS_EP1","SPG9_TK_INS_EP1""SPG9_TK_INS_EP1","ZU23_TK_INS_EP1","Igla_AA_pod_TK_EP1"] call mps_getRandomElement) createVehicle _mgpos;
+			_mg = (["DSHKM_TK_INS_EP1","DSHKM_TK_INS_EP1","DSHKM_TK_INS_EP1","SPG9_TK_INS_EP1","ZU23_TK_INS_EP1","ZU23_TK_INS_EP1","DSHKM_TK_INS_EP1","SPG9_TK_INS_EP1","SPG9_TK_INS_EP1","ZU23_TK_INS_EP1","Igla_AA_pod_TK_EP1"] call mps_getRandomElement) createVehicle _mgpos;
 
 		};
 		
 		_mg setdir _dir;
-
-	} else {
-	
-		_compName = ["ags_emp_open","dshkm_emp_open","kord_emp_open","metis_emp_open","spg9_emp_open","zu23_emp_open"] call BIS_fnc_selectRandom;
-	
-		_comp = [_mgpos, _dir,(call compile preprocessfilelinenumbers (format ["Compositions\Opfor\Statics\%1.sqf",_compName]))] call BIS_fnc_ObjectsMapper;
-		
-		{ if (_x iskindof "StaticWeapon") then {_mg = _x;};} forEach _comp;
-	
-	};	
-							
-	//_grp = [_mgpos,"INF",1,50] call CREATE_OPFOR_SQUAD;
+    
+      //_grp = [_mgpos,"INF",1,50] call CREATE_OPFOR_SQUAD;
         _grp = createGroup east;
         if(!_INS) then {staticClass createUnit [_mgpos, _grp ];} else {"TK_INS_Soldier_EP1" createUnit [_mgpos, _grp ];};
 				leader _grp moveInGunner _mg;
         _gunner = gunner _mg;
-        _gunner call Hz_func_AI_SetSkill;  
+        
+	} else {
+	
+		_compName = mps_opfor_staticWeaponComps call BIS_fnc_selectRandom;
+	
+		_comp = [_mgpos, _dir,(call compile preprocessfilelinenumbers (format ["Compositions\Opfor\Statics\%1.sqf",_compName]))] call BIS_fnc_ObjectsMapper;
+		
+		[_comp, _INS] call Hz_func_initOpforComposition;
+	
+	};	
+							
+	
         
         /*
         

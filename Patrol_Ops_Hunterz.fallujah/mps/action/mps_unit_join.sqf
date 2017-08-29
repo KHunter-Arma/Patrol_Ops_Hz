@@ -8,4 +8,6 @@ _capturee enableAI "ANIM";
 
 [_capturee] joinSilent _capturer;
 
+_capturee setCaptive false;
+
 if(true) exitWith{};

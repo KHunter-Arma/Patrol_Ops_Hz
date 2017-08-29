@@ -15,9 +15,6 @@ for "_i" from 1 to _count do {
 _type = _passengertypes call BIS_fnc_selectRandom;
 _unit = _group createUnit [_type, [-1000,-1000,0],[],50,"FORM"];
 
-//set skill
-_unit call Hz_func_AI_SetSkill;
-
 _unit assignascargo _veh;
 _unit moveincargo _veh;
 

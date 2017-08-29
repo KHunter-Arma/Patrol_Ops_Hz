@@ -146,7 +146,7 @@ switch (_type) do {
 if(_support) then {
     
     _Vehsupport = [];
-    if(!_INS) then {_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] call Hz_func_AI_veh_support;} else {_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] call Hz_func_AI_veh_support;};
+    if(!_INS) then {_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] call Hz_func_opforVehicleSupport;} else {_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] call Hz_func_opforVehicleSupport;};
     _vehicletypes = _Vehsupport select 0;
     _otherReward = _Vehsupport select 1;
     

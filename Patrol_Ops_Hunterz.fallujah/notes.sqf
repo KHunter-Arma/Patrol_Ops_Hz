@@ -160,6 +160,3 @@ Missions are random and dynamic, with enemy force strength scaled to match the n
 <br/>
 A focus on co-operative team based gameplay is the principle of Patrol Ops and of Hunter'z modifications. On behalf of the Online Combat Battalion www.ocb.net.au, I hope you enjoy Patrol Ops 2<br/>By EightySix
 ",toUpper worldname] ]];
-
-if(true) exitWith{};
-

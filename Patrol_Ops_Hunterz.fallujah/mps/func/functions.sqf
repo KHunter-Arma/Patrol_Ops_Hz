@@ -90,7 +90,6 @@ createRoofGun = {
 	_gun setDir _dir;
 	_grp = ["static","Grp",str _gCount,"east"] call getGroup; 
 	_ai  = _grp createUnit [staticClass, [0,0,0], [], 0, "NONE"];
-        _ai call Hz_func_AI_SetSkill;
 	_ai assignAsGunner _gun;
         _ai moveInGunner _gun;
         

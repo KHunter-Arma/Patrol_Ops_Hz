@@ -344,6 +344,11 @@ publicvariable "hz_trigger_save";
 	conFile(_save);
 	_save = format ["weather = %1;",weather];
 	conFile(_save);
+  
+  _save = format ["nukeweather = %1;",nukeweather];
+	conFile(_save);
+  _save = format ["nukeweatherCounter = %1;",nukeweatherCounter];
+	conFile(_save);
 
 	_save = "loaddone = true;";
 	conFile(_save);

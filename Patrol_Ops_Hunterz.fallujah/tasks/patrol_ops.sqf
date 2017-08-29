@@ -30,7 +30,7 @@ _list = switch (mps_mission_type) do {
 		"cap_person","cap_town","cap_vehicle","rtf_camp","rtf_depot",
 		"rtf_escort","rtf_facility","rtf_minefield",
                 "rtf_supplies","rtf_tower","sad_camp","sad_depot",
-               // "sad_scud",
+               "sad_scud",
                 "sad_tower","sad_column","sad_convoy",
 		"sar_drone","sar_pow",
 		"def_camp","def_town",

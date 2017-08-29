@@ -82,7 +82,7 @@ Hz_sleep_mutex = false;
 
     waituntil {sleep 0.1; !isnil "ace_sys_destruction_fnc_heavysniper"};
     sleep 0.1;
-    ace_sys_destruction_fnc_heavysniper = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_emptyscript.sqf";
+    ace_sys_destruction_fnc_heavysniper = {};
 
   };
 
@@ -90,7 +90,7 @@ Hz_sleep_mutex = false;
 
     waituntil {sleep 0.1; !isnil "ace_sys_repair_fnc_fill_transportMagazines"};
     sleep 0.1;
-    ace_sys_repair_fnc_fill_transportMagazines = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_emptyscript.sqf";
+    ace_sys_repair_fnc_fill_transportMagazines = {};
 
   };
   
@@ -251,6 +251,35 @@ if(!isDedicated)  then {
 
 // Server init
 if (isServer) then {
+
+  nukeweatherCounter = 0;
+  nukeWeatherCountdown_Mutex = false;
+  nukeWeatherCountdown = {
+  
+    //already running but called again -- so extend duration
+   if (nukeWeatherCountdown_Mutex) exitWith {nukeweatherCounter = nukeweatherCounter + Hz_falloutDuration};
+   nukeWeatherCountdown_Mutex = true;
+   if (nukeweatherCounter == 0) then {nukeweatherCounter = Hz_falloutDuration;};
+   
+   while {true} do {
+   
+   sleep 60;
+   
+   nukeweatherCounter = nukeweatherCounter - 60;
+   
+   if (nukeweatherCounter < 0) exitWith {
+   
+   nukeweatherCounter = 0;    
+   nukeweather = false; 
+   nukeWeatherCountdown_Mutex = false;
+   waitUntil {sleep 60; ((count playableUnits) + ({isplayer _x} count alldead)) < 1 };
+   publicvariable "nukeweather";
+   
+   };
+   
+   };   
+  
+  };
   
   call compile preprocessfilelinenumbers "hunterz_civ_init.sqf";   
   call compile preprocessfilelinenumbers "HZ\Hz_sys_save\Hz_save_init.sqf";
@@ -262,15 +291,14 @@ if (isServer) then {
   Hz_task_reinforcements = compile preprocessfilelinenumbers "HZ\Hz_scripts\Hz_task_reinforcements.sqf";
   Hz_func_bombingrun = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_bombingrun.sqf";
   Hz_func_callinBomber = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_callinBomber.sqf";
-  Hz_func_AI_SetSkill = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_AI_SetSkill.sqf";
-  Hz_func_AI_veh_support = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_AI_veh_support.sqf";
+  Hz_func_opforVehicleSupport = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_opforVehicleSupport.sqf";
   Hz_func_fill_up_vehicle = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_fill_up_vehicle.sqf";
   Hz_func_create_roadside_IED = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_create_roadside_IED.sqf";
   Hz_func_isUrbanArea = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_isUrbanArea.sqf";
   Hz_func_setRealTime = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_setRealTime.sqf";
   Hz_weather_func_dynamicWeather = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_weather_func_dynamicWeather.sqf";
   Hz_func_spawnOpforArtilleryBase = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_spawnOpforArtilleryBase.sqf";    
-  Hz_func_initComposition = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_initComposition.sqf";    
+  Hz_func_initOpforComposition = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_initOpforComposition.sqf";    
   
   if(!isMultiplayer) then {{if(!isplayer _x) then {deletevehicle _x};}foreach switchableunits;};
 

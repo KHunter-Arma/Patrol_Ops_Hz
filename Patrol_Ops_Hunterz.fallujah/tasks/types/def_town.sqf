@@ -81,7 +81,7 @@ _wait = _wait + random 300;
                 
 		_grp = [ _tempos,"INF",random 24,100 ] call CREATE_OPFOR_SQUAD;
                     
-                    _Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] call Hz_func_AI_veh_support;
+                    _Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] call Hz_func_opforVehicleSupport;
                     _vehicletypes = _Vehsupport select 0;
                     _otherReward = _otherReward + (_Vehsupport select 1);
                         

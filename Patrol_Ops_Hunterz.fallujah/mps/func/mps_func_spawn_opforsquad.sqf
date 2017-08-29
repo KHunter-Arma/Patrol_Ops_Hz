@@ -62,8 +62,6 @@ _skill = 1 + log(mps_mission_factor/4);
 for "_j" from 1 to _strength do {
   
   _unit = _Grp createUnit [_allunits select (round random _max),_spawnpos,[],20,"NONE"];
-  //_unit setSkill _skill;
-  _unit call Hz_func_AI_SetSkill;
   
 };
 

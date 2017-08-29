@@ -1,9 +1,10 @@
+if(isServer) then {
+
 //Sync weather effects with JIP and modify weather coefficients
 nukeweather = true;
 publicvariable "nukeweather";
 
-
-if(isServer) then {
+[] spawn nukeWeatherCountdown;
     
         _randommarker = ["nukepos1","nukepos2","nukepos3","nukepos4","nukepos5","nukepos6"] call BIS_fnc_selectRandom;
         nuke_event = nuke_event + [_randommarker];

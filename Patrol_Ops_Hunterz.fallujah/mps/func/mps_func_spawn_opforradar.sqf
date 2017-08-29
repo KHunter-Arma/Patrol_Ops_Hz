@@ -82,7 +82,7 @@ while {true} do {
 				
 				Hz_save_radar_pos = _radarlocation;
 				
-				Hz_radarObjects = _newComp call Hz_func_initComposition;		
+				Hz_radarObjects = [_newComp] call Hz_func_initOpforComposition;		
 				
 			};
 

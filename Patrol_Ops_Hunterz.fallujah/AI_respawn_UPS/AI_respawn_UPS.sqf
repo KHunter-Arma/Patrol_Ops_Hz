@@ -85,8 +85,6 @@ for [{ _loop = 0 },{ _loop < count  _unitsGroup},{ _loop = _loop + 1}] do
 	{_guy addMagazine _x} forEach (_AI_magArray select _loop);
 	{_guy addWeapon _x}   forEach (_AI_wepArray select _loop);
 	_guy selectWeapon (primaryWeapon _guy);
-              
-_guy call Hz_func_AI_SetSkill;
 	sleep 0.01;
 };
 

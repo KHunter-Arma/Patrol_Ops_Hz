@@ -69,7 +69,7 @@ _rewardmultiplier = 2;
 
 		_grppat = [ _position,"INF",(5 + random 10),300,"patrol" ] call CREATE_OPFOR_SQUAD;
                     
-                    _Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] call Hz_func_AI_veh_support;
+                    _Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] call Hz_func_opforVehicleSupport;
                     _vehicletypes = _Vehsupport select 0;
                     _otherReward = _otherReward + (_Vehsupport select 1);
                         
@@ -104,7 +104,7 @@ _rewardmultiplier = 2;
 
 		_grpdef = [ _position,"INF",(5 + random 10),_DefenseRadius,"standby" ] call CREATE_OPFOR_SQUAD;
                     
-                    _Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] call Hz_func_AI_veh_support;
+                    _Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] call Hz_func_opforVehicleSupport;
                     _vehicletypes = _Vehsupport select 0;
                     _otherReward = _otherReward + (_Vehsupport select 1);
                         

@@ -5,8 +5,8 @@ diag_log [diag_frameno, diag_ticktime, time, "#PO2 TASK: Search and Destroy Scud
 /*-------------------- TASK PARAMS ---------------------------------*/
 _reinforcementsMinimumSpawnRange = 5000;
 
-_minDefendingSquadCount = 3;
-_maxDefendingSquadCount = 6;
+_minDefendingSquadCount = 2;
+_maxDefendingSquadCount = 5;
 _DefenseRadius = 200;
 
 _minGarrisonedSquadCount = 0;
@@ -75,7 +75,7 @@ _rewardmultiplier = 10;
                 
 		_grppat = [ _position,"INF",(5 + random 10),300,"patrol" ] call CREATE_OPFOR_SQUAD;
                     
-                    _Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] call Hz_func_AI_veh_support;
+                    _Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] call Hz_func_opforVehicleSupport;
                     _vehicletypes = _Vehsupport select 0;
                     _otherReward = _otherReward + (_Vehsupport select 1);
                         
@@ -110,7 +110,7 @@ _rewardmultiplier = 10;
                 
 		_grpdef = [ _position,"INF",(5 + random 10),_DefenseRadius,"standby" ] call CREATE_OPFOR_SQUAD;
                     
-                    _Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] call Hz_func_AI_veh_support;
+                    _Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] call Hz_func_opforVehicleSupport;
                     _vehicletypes = _Vehsupport select 0;
                     _otherReward = _otherReward + (_Vehsupport select 1);
                         
@@ -237,7 +237,7 @@ waituntil {(count playableunits) > 0};
     if (mps_mission_deathcount > 0) then {
     
     
-    if((random 1) < 0.5) then {[_position] call Hz_func_bombingrun;} else {[_position] call Hz_func_callinBomber;};
+    if((random 1) < 0.5) then {[_position,SIDE_B select 0, "ACE_L39_TK_FAB250","GLT_FAB250_Launcher"] call Hz_func_bombingrun;} else {[_position,SIDE_B select 0,"RKTTU22M3E",["GLT_FAB500_Launcher","GLT_FAB250_Launcher"]] call Hz_func_callinBomber;};
 
     sleep 85;
     

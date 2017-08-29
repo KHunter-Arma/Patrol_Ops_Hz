@@ -4,8 +4,9 @@ private ["_targetpos","_jettype","_group","_jet1","_jet2","_jet3"];
 //if(!alive heli_radar) exitwith {};
 
 _targetpos = _this select 0;
-_jettype = "ACE_L39_TK_FAB250";
-_group = creategroup east;
+_jettype = _this select 2;
+_group = creategroup (_this select 1);
+_bombType = _this select 3;
 
 /*_jet1 = ([[(position heli_radar select 0)+20000,(position heli_radar select 1)+22000,800], 225, _jettype, _group] call BIS_fnc_spawnVehicle) select 0;
 _jet2 = ([[(position heli_radar select 0)+20100,(position heli_radar select 1)+22100,800], 225, _jettype, _group] call BIS_fnc_spawnVehicle) select 0;
@@ -17,12 +18,13 @@ _jet3 = ([[-19900,21900,800], 225, _jettype, _group] call BIS_fnc_spawnVehicle) 
 
 {(driver _x) disableai "autotarget"; (driver _x) disableai "target"; _x flyinheight 250;}foreach [_jet1,_jet2,_jet3];
 
-[_jet1, _targetpos] spawn {
+[_jet1, _targetpos, _bombType] spawn {
 
 
 private ["_jet","_pos","_lead","_group","_pilots"];
 _jet = _this select 0;
 _pos = _this select 1;
+_bombType = _this select 2;
 _lead = driver _jet;
 _group = group _lead;
 _pilots = units _group;
@@ -37,13 +39,13 @@ _group setformation "LINE";
 waituntil {uisleep 0.1; ((_jet distance _pos) < 1450) || (((getposatl _jet) select 2) < 20)};
 
 
-{_x fireAtTarget [objnull, "GLT_FAB250_Launcher"];} foreach _pilots;  //lulz Xfire....
+{_x fireAtTarget [objnull, _bombType];} foreach _pilots;  //lulz Xfire....
 uisleep 0.6;
-{_x fireAtTarget [objnull, "GLT_FAB250_Launcher"];} foreach _pilots; 
+{_x fireAtTarget [objnull, _bombType];} foreach _pilots; 
 uisleep 0.6;
-{_x fireAtTarget [objnull, "GLT_FAB250_Launcher"];} foreach _pilots; 
+{_x fireAtTarget [objnull, _bombType];} foreach _pilots; 
 uisleep 0.6;    
-{_x fireAtTarget [objnull, "GLT_FAB250_Launcher"];} foreach _pilots; 
+{_x fireAtTarget [objnull, _bombType];} foreach _pilots; 
 
 
 

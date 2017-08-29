@@ -83,10 +83,18 @@ if(!Hz_overrideweather) then {
     
   } else {
     
-    _rand = weather + random 1;    
+    _sign = 1;
+      if ((random 1) < 0.5) then {_sign = -1;};                  
+      weather = weather + ((random 1)*_sign);
+
+      weather_rain = 1;
+      
+      _sign = 1;
+      if ((random 1) < 0.5) then {_sign = -1;};                  
+      weather_fog = weather_fog + ((random 0.5)*_sign);
+      
+      if(weather_fog < 0.2) then {weather_fog = 0.2};
     
-    if(_rand < 0.2) then {weather = weather + random 0.1; weather_fog = 0;}else {if(_rand < 0.8)then{weather = weather + 0.7 + random 0.3; weather_fog = 0.2;}else{weather = 1; weather_fog = 0.5;};};
-    weather_rain = rain;
     weather_wind = [-MAX_WIND_SPEED,-MAX_WIND_SPEED,true];
     
   };

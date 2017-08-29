@@ -108,7 +108,6 @@ _group = createGroup _side;
 
   {
         _dude = _group createUnit [_x,_respawnzone, [], 100, "FORM"];
-        _dude call Hz_func_AI_SetSkill;
         } foreach _escort;
  
 _group setvariable ["Hz_Patrolling",true]; 
@@ -168,8 +167,6 @@ _unitsGroup = units _group;
 for [{ _loop = 0 },{ _loop < count  _unitsGroup},{ _loop = _loop + 1}] do
 {	
 	_guy = _unitsGroup select _loop;
-        
-        _guy call Hz_func_AI_SetSkill;
         
         switch (true) do {
         

@@ -6,6 +6,7 @@ private ["_objectsarr","_uid","_tentpos","_tentposx","_tentposy","_tentposz"];
 if(isDedicated) exitWith {};
 
 if !(hz_debug) then {
+
   deleteMarkerlocal "jungle_1";
   deleteMarkerlocal "jungle_2";
 
@@ -74,7 +75,7 @@ if !(hz_debug) then {
 */
 
 // Detect ACRE
-[] call compile preprocessFileLineNumbers (mps_path+"func\mps_func_detect_acre.sqf");
+//[] call compile preprocessFileLineNumbers (mps_path+"func\mps_func_detect_acre.sqf");
 
 // ACE additions
 
@@ -121,9 +122,7 @@ mps_death_effect = [] spawn {};
 mps_current_pos = getPosATL AIS_body;
 
 // Setup Client Event Handlers
-ehready = false;
-[] execVM (mps_path+"func\mps_func_client_eventhandlers.sqf");
-waituntil {ehready};
+call compile preprocessFileLineNumbers (mps_path+"func\mps_func_client_eventhandlers.sqf");
 
 //let server know client init successful (at least critical part is finished)
 Hz_SvSec_WaitingForClear set [count Hz_SvSec_WaitingForClear,_uid];
@@ -148,25 +147,6 @@ publicvariable "Hz_SvSec_WaitingForClear";
     "mhq_update" addPublicVariableEventHandler { (_this select 1) call mps_mhq_update; };
   };
 */
-
-
-/* =============================================================================================
-                      waitUntil {!isNil {ACM getVariable "initDone"}};
-                      _fsm = ACM execFSM "ca\modules\ambient_combat\data\fsms\ambientcombat.fsm";
-                      waitUntil {ACM getVariable "initDone"};
-                      waitUntil {!(isnil "BIS_fnc_init")};
-                      
-                        [1, ACM] call BIS_ACM_setIntensityFunc;                 //Sets the intensity of the ACM, in other words, determines how active it will be. Starts at 0 ends at 1.0, its been known to fail using 0.7 and 0.8
-      [ACM, 500, 1500] call BIS_ACM_setSpawnDistanceFunc;      // This is the radius on where the units will spawn around the unit the module is sync'd to.
-                        [["BIS_TK","BIS_US"], ACM] call BIS_ACM_setFactionsFunc;
-      [0.2, 0.2, ACM] call BIS_ACM_setSkillFunc;                // This determines what the skill rating for the spawned units will be
-      [0.6, 1, ACM] call BIS_ACM_setAmmoFunc;               // This sets their amount of ammo they spawn with
-      ["ground_patrol", 1, ACM] call BIS_ACM_setTypeChanceFunc; //Chance of patrol type of appearing. 0.0 to 1.0
-      ["air_patrol", 0.1, ACM] call BIS_ACM_setTypeChanceFunc;    // Same thing for air patrols
-        [ACM, ["TK_InfantrySquad","TK_InfantrySection","US_MQ9Flight","US_CH47FFlight","US_RifleSquad","US_DeltaForceTeam","US_AH64DFlight","US_UH60MFlight","US_MechanizedInfantrySquadICVM2","TK_MotorizedInfanterySquad","TK_InfantrySectionMG","TK_SniperTeam","TK_SpecialPurposeSquad","TK_MechanizedReconSection","TK_T55Platoon","TK_T72Platoon","TK_MechanizedInfantrySquadBMP2","TK_MechanizedInfantrySquadBTR60"]] call BIS_ACM_addGroupClassesFunc;   // This determines which exact units will spawn from the group **Citation needed**
-        
-
-*/ // =============================================================================================
 
 // Initialise the Ranking System for players
 //player spawn mps_rank_init;
@@ -195,39 +175,6 @@ publicvariable "Hz_SvSec_WaitingForClear";
   [] spawn { waitUntil {time > 2}; (findDisplay 46) displayAddEventHandler ["KeyDown","_this call mps_func_keyspressed"]; };
         
         */
-
-
-
-/*   
-    
-        // Disable squad leader icon while in vehicle by temporarily removing player from group -- Hunter'z
-      [] spawn {
-          
-              while {true} do {
-          if (vehicle player == player) then {
-
-            _playergrp = group player;
-
-            };
-
-            if ((vehicle player != player) && (lifeState leader group player != "DEAD")) then {
-
-                    if (player == leader group player) exitwith {};
-                    [player] joinSilent grpNull;
-                        };
-
-            if ((vehicle player == player) && (group player != _playergrp)) then {
-            [player] joinSilent _playergrp;
-
-            };
-        
-            sleep 1;
-        
-        };
-        
-        };
-        
-*/
 
 // Setup JIP deployed ammoboxes
 /*
@@ -261,36 +208,14 @@ publicvariable "Hz_SvSec_WaitingForClear";
   PATROL OPS</t><t align='center' size='1.5' shadow='1' color='#ff0000' shadowColor='#000000'> HUNTER'Z
         </t><br /><br /><t align='left' shadow='1' color='#ffffff' shadowColor='#000000'>This is a heavily modified Patrol Ops mission. All mission related spawns will occur at the marker in base. Respawn time is 3.5 minutes. For more information, check the mission notes.
 "];
-
-
-
-  /*
-        sleep 20;
-        hintsilent parseText format
-["
-  <t align='center' size='1.5' shadow='1' color='#ffffff' shadowColor='#000000'>
-  PATROL OPS 2 HUNTER'Z
-  </t><br /><br /><t align='center' shadow='1' color='#ffffff' shadowColor='#000000'>Hunter'z Realism Rating:<br /><br /></t><t align='center' shadow='1' color='#ff0000' shadowColor='#000000'>2: Realistic</t><br /><br /><t align='left' shadow='1' color='#ffffff' shadowColor='#000000'>All mission related spawns will occur near the Repair and Resupply area next to the taxiway.
-        <br /><br />Respawn time is 2 minutes. You can deploy your own rallypoint to spawn on it.
-        <br /><br />Undestroyed vehicles will NOT respawn if you abandon them. It's a good idea to place markers where you leave vehicles to find them later.
-        <br /><br />Only you can see your map markers, unless you use the vehicle channel. To share map information with other players outside of vehicles, use ACE map tools and copy eachother's maps.
-        <br /><br />Vehicle respawn time is 24 hours.
-        <br /><br /></t>
-        <t align='left' shadow='1' color='#ffffff' shadowColor='#000000'>Hunter'z Realism Scale:<br /><br />1: Casual<br /><br />2: Realistic<br /><br />3: War is a bitch</t>
-"];
-        
-    */   
   
 };
-
-
-//{_x enablesimulation false;} foreach alldead; 
 
 if (!hz_debug && ((side player) != civilian)) then {
   [player] joinsilent (creategroup (SIDE_A select 0));
 };
 
-[] execVM "notes.sqf";
+call compile preprocessFileLineNumbers "notes.sqf";
 
 // Hunter'z: option to change viewdistance in vehicle
 waituntil {VDG_initDone};
@@ -324,7 +249,7 @@ if(!hz_debug) then {
   // player check
   [] spawn {
 
-    if ([] call Hz_func_isSupervisor) exitwith{};
+    if (call Hz_func_isSupervisor) exitwith{};
     
     _uid = getPlayerUID player;
 
@@ -445,10 +370,10 @@ if ((toupper Hz_playertype) != "SUPERVISOR") then {
 
     
     if ((_countSupervisors/_countNonSupervisors) < Hz_publicPlayerRatioLimit) then {
-    
+      
       hintc "WARNING\nThe maximum number of public players currently allowable on the server has been reached. You will now be returned to the lobby.";
       endMission "LOSER"; 
-    
+      
     };
     
   };
@@ -498,8 +423,6 @@ if(!((_tentposx == 0) && (_tentposy == 0) && (_tentposz == 0))) then {
 
   deleteVehicle mps_rallypoint_tent;
   deleteMarker _uid;
-
-  //hint "Rallypoint Removed";
 
   RALLY_STATUS = false;
   

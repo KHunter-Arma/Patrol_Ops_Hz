@@ -447,6 +447,8 @@ if(isServer) then {
     
 		//apply persistent weather
 		
+    if (nukeweather) then {[] spawn nukeWeatherCountdown;};
+    publicVariable "nukeweather";
 		call Hz_weather_func_dynamicWeather;
 
     ///////////////////////////////////////////////////////////////////////////////////////////

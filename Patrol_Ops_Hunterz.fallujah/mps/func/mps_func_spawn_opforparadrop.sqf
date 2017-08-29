@@ -46,9 +46,6 @@ if(count (units _helogrp) == 0) then {
         _type = mps_opfor_inf call BIS_fnc_selectRandom;
         _unit = _helogrp createUnit [_type, [-1000,-1000,0],[],50,"FORM"];
 
-        //set skill
-        _unit call Hz_func_AI_SetSkill;
-
         _unit assignascargo _drophelo;
         _unit moveincargo _drophelo;
 

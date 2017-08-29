@@ -66,21 +66,9 @@ while {true} do {
 			
 		};
 
-		{//man vehicles & static guns
-
-			if ((!(_x in arty_guns)) && (_x iskindof "LandVehicle") && ((_x emptyPositions "gunner") > 0)) then {
-
-				_dude = (creategroup (SIDE_B select 0)) createUnit ["TK_Soldier_EP1", _artylocation, [], 50, "NONE"];
-				_dude assignasgunner _x;
-				_dude moveingunner _x;
-				_dude call Hz_func_AI_SetSkill;  
-				_x setvehiclelock "locked";
-
-			} else {
+		{
 				
-				if(_x iskindof "sa_m109a6_M795_pallet") then {clearweaponcargoglobal _x; clearmagazinecargoglobal _x;};
-				
-			};
+      if(_x iskindof "sa_m109a6_M795_pallet") then {clearweaponcargoglobal _x; clearmagazinecargoglobal _x;};		
 
 		}foreach _newComp;
 
@@ -97,7 +85,6 @@ while {true} do {
 				for "_i" from 1 to 3 do {
 					_dude = _grp createUnit ["TK_Soldier_EP1", _artylocation, [], 50, "NONE"];
 					if(_i == 1) then {_dude assignasgunner _x; _dude moveingunner _x;} else {_dude assignascargo _x; _dude moveincargo _x;};
-					_dude call Hz_func_AI_SetSkill;  
 				};
 				
 				[_x] spawn Hz_AI_artillery;
@@ -118,7 +105,6 @@ while {true} do {
 				for "_i" from 1 to 2 do {
 					_dude = _grp createUnit ["TK_Soldier_EP1", _artylocation, [], 50, "NONE"];
 					if(_i == 1) then {_dude assignasgunner _x; _dude moveingunner _x;} else {_dude assignascargo _x; _dude moveincargo _x;};
-					_dude call Hz_func_AI_SetSkill;  
 				};	
 				
 				[_x] spawn Hz_AI_rocketArtillery;
@@ -128,6 +114,8 @@ while {true} do {
 			} foreach arty_guns;	
 
 		};
+    
+    [_newComp] call Hz_func_initOpforComposition;
 
 		if(mps_debug) then {
 			_marker = createMarkerLocal ["masarkerh",_artylocation];

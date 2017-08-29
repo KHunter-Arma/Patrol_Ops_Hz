@@ -9,8 +9,8 @@ if(isServer) then {
 
         waituntil {_date = call compile ("real_date" callextension "GMT"); (_date select 4) != _minute};
         
-        //GMT-5
-        _hour = (_date select 3) - 5;
+        //GMT offset
+        _hour = (_date select 3) + Hz_GMTOffset;
         if(_hour < 0) then {_hour = 24 + _hour;};
         setdate [_setDate select 0, _setDate select 1, _setDate select 2, _hour, _date select 4];
         
