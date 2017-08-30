@@ -1,5 +1,5 @@
 
-private ["_targetpos","_jettype","_group","_jet1","_jet2","_jet3"];
+private ["_targetpos","_jettype","_group","_jet1","_jet2","_jet3","_bombType"];
 //if(isnull heli_radar) exitwith {};
 //if(!alive heli_radar) exitwith {};
 
@@ -21,7 +21,7 @@ _jet3 = ([[-19900,21900,800], 225, _jettype, _group] call BIS_fnc_spawnVehicle) 
 [_jet1, _targetpos, _bombType] spawn {
 
 
-private ["_jet","_pos","_lead","_group","_pilots"];
+private ["_jet","_pos","_lead","_group","_pilots","_bombType","_exitpos"];
 _jet = _this select 0;
 _pos = _this select 1;
 _bombType = _this select 2;

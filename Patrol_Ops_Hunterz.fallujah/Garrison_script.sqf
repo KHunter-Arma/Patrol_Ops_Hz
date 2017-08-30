@@ -703,11 +703,7 @@ if((count (units _remainders)) > 0) then {
       
       //not yet implemented
       {deletevehicle _x} foreach units _remainders;
-      
-      
-      
-      
-      
+            
     };
     
 

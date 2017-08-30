@@ -1,4 +1,4 @@
-private ["_menuDef", "_target", "_params", "_menuName", "_menuRsc", "_menus"];
+private ["_menuDef","_target","_params","_menuName","_menuRsc","_menus","_visible"];
 
 // _this==[_target, _menuNameOrParams]
 _target = _this select 0;

@@ -1,4 +1,4 @@
-  private "_return";
+  private ["_return","_ins","_side","_isTank","_unitType","_dude","_objects"];
   
   _objects = _this select 0;
   _ins = false;

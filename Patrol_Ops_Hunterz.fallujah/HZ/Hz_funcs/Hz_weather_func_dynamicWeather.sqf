@@ -1,6 +1,6 @@
 #define MAX_WIND_SPEED 14
 
-private ["_sign","_sign1","_sign2","_rand","_windx","_windy"];
+private ["_sign","_sign1","_sign2","_windx","_windy"];
 
 if(!Hz_overrideweather) then {  
   

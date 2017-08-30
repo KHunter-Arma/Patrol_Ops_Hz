@@ -3,7 +3,9 @@ if(isServer) then {
 
     [] spawn {
 
-        _setDate = date;    
+private ["_date","_hour","_setDate","_minute","_resetSecs"];
+        
+_setDate = date;    
         _date = call compile ("real_date" callextension "GMT");
         _minute = _date select 4;
 

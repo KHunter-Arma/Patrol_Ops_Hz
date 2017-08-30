@@ -1,4 +1,4 @@
-private ["_spitweps","_wepholder"];
+private ["_spitweps","_wepholder","_crate"];
 
 _spitweps = _this;
 

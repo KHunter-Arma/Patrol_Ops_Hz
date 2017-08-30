@@ -1,7 +1,6 @@
+
+private ["_newComp","_location","_artylocation","_dude","_grp","_marker","_defendersGrp","_car_type","_vehgrp","_aliveGuns","_cond","_rocketArty","_composition","_carspawnpos"];
 if(!isServer) exitWith{};
-
-private ["_newComp", "_location", "_artylocation", "_newcomp", "_veh", "_dude", "_grp", "_i", "_marker", "_defendersGrp","_car_type", "_vehgrp", "_staticgrp", "_Defendercount", "_aliveGuns", "_cond", "_position", "_vehs"];
-
 
 //init delay
 //sleep 60;
@@ -185,7 +184,9 @@ while {true} do {
 
 		[_artylocation] spawn {
 
-			_position = _this select 0;
+private ["_position"];
+            
+_position = _this select 0;
 
 			while{ {isPlayer _x} count nearestObjects[_position,["CAManBase"],5000] > 0} do { sleep 60 };
 			{deletevehicle _x}forEach Hz_artyBaseObjects;
