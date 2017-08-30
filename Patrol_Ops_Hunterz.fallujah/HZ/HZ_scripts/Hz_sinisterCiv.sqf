@@ -1,3 +1,5 @@
+#define MINIMUM_KNOW 1
+
 private ["_civ","_side","_targetSide","_grp"];
 
 _civ = _this select 0;
@@ -16,7 +18,7 @@ while {alive _civ} do {
     
     sleep 30;
     
-    (({((side _x) == _targetSide) && ((vehicle _x) == _x)} count (nearestobjects [_civ, ["CAManBase"], 50])) > 1)
+    (({((side _x) == _targetSide) && ((vehicle _x) == _x) && ((_civ knowsAbout _x) >= MINIMUM_KNOW)} count (nearestobjects [_civ, ["CAManBase"], 50])) > 1)
     || !alive _civ
 
   };
