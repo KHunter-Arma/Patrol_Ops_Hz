@@ -20,7 +20,6 @@ _ParatrooperChance = 0.65;
 //Useful for justifying task-specific difficulties.
 _rewardmultiplier = 0.75;
 
-
 /*--------------------CREATE LOCATION---------------------------------*/
 
 _location = [["towns"]] call mps_getNewLocation;
@@ -82,7 +81,7 @@ While{ _intelpercent < 3 && alive _crashchopper && hz_reward > 0 && (((count pla
 
   sleep 10;
 
-  if( _intelpercent > 0.1 && !_fired1 ) then {    
+  if( _intelpercent > 0 && !_fired1 ) then {    
     
     if(_squadCountperWave > 0) then {
 
@@ -113,7 +112,20 @@ While{ _intelpercent < 3 && alive _crashchopper && hz_reward > 0 && (((count pla
 
         _troops = _troops + (units _grp);
         sleep 1;
-        (_grp addWaypoint [_position,20]) setWaypointType "SAD";
+        
+        if(!isnil "Hz_AI_moveAndCapture") then {
+			
+			_spawnedVehs = [_grp, _position,true,100] call Hz_AI_moveAndCapture;  
+
+			patrol_task_vehs = patrol_task_vehs + _spawnedVehs;					 
+			
+      } else {
+			
+			_wp = _grp addWaypoint [_position,10];
+			_wp setWaypointType "SAD";
+			
+      };
+      
         sleep 1;
       };
     };
@@ -152,7 +164,18 @@ While{ _intelpercent < 3 && alive _crashchopper && hz_reward > 0 && (((count pla
 
         _troops = _troops + (units _grp);
         sleep 1;
-        (_grp addWaypoint [_position,20]) setWaypointType "SAD";
+        if(!isnil "Hz_AI_moveAndCapture") then {
+			
+			_spawnedVehs = [_grp, _position,true,100] call Hz_AI_moveAndCapture;  
+
+			patrol_task_vehs = patrol_task_vehs + _spawnedVehs;					 
+			
+      } else {
+			
+			_wp = _grp addWaypoint [_position,10];
+			_wp setWaypointType "SAD";
+			
+      };
         sleep 1;
       };
     };
@@ -161,7 +184,7 @@ While{ _intelpercent < 3 && alive _crashchopper && hz_reward > 0 && (((count pla
     _fired2 = true;
   };
 
-  if( _intelpercent > 1.5 && !_fired4 ) then {
+  if( _intelpercent > 0.75 && !_fired4 ) then {
     
     _count = _squadCountperWave + _extra;
     
@@ -194,7 +217,18 @@ While{ _intelpercent < 3 && alive _crashchopper && hz_reward > 0 && (((count pla
 
         _troops = _troops + (units _grp);
         sleep 1;
-        (_grp addWaypoint [_position,20]) setWaypointType "SAD";
+        if(!isnil "Hz_AI_moveAndCapture") then {
+			
+			_spawnedVehs = [_grp, _position,true,100] call Hz_AI_moveAndCapture;  
+
+			patrol_task_vehs = patrol_task_vehs + _spawnedVehs;					 
+			
+      } else {
+			
+			_wp = _grp addWaypoint [_position,10];
+			_wp setWaypointType "SAD";
+			
+      };
         sleep 1;
       };
     };
@@ -202,9 +236,11 @@ While{ _intelpercent < 3 && alive _crashchopper && hz_reward > 0 && (((count pla
     _fired4 = true;
   };
   
-  if( _intelpercent > 2 && !_fired5 ) then {
+  if( _intelpercent > 1.5 && !_fired5 ) then {
     
     if ((random 1) < _ParatrooperChance) then {
+    
+      _rewardmultiplier = _rewardmultiplier*1.25;
       
       for "_i" from 1 to 2 do {
         
