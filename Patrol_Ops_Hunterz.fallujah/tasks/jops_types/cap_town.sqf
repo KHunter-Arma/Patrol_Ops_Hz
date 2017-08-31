@@ -5,18 +5,18 @@ diag_log [diag_frameno, diag_ticktime, time, "#PO2 TASK: Capture Town Initialise
 /*-------------------- TASK PARAMS ---------------------------------*/
 _reinforcementsMinimumSpawnRange = 5000;
 
-_minDefendingSquadCount = 20;
-_maxDefendingSquadCount = 50;
+_minDefendingSquadCount = 7;
+_maxDefendingSquadCount = 12;
 _DefenseRadius = 3000;
 
-_minGarrisonedSquadCount = 5;
+_minGarrisonedSquadCount = 3;
 _maxGarrisonedSquadCount = 10;
 
-_minPatrollingSquadCount = 20;
-_maxPatrollingSquadCount = 50;
+_minPatrollingSquadCount = 3;
+_maxPatrollingSquadCount = 7;
 
-_minStaticWeapon = 4;
-_maxStaticWeapon = 10;
+_minStaticWeapon = 0;
+_maxStaticWeapon = 3;
 
 //Chance of a squad having the following vehicle support (can't have more than 1 vehicle per squad)
 _CASchance = 0.3;
@@ -26,7 +26,7 @@ _AAchance = 0.4;
 _CarChance = 0.8;
 
 //Others
-_SniperChance = 0.7;
+_SniperChance = 1;
 _TowerChance = 1;
 
 //Useful for justifying task-specific difficulties.

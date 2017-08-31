@@ -68,7 +68,6 @@ publicvariable "visual_settings_maxallowed_viewdist";
 
 [-1, {
 		hint "Maximum view distance will be limited for the duration of this task!";
-		VDG_showAction = false;
 		if(viewdistance > 5000) then {setviewdistance 5000;};
 }] call CBA_fnc_globalExecute;
 

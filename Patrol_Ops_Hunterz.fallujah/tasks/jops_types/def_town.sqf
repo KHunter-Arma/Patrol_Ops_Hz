@@ -5,8 +5,8 @@ diag_log [diag_frameno, diag_ticktime, time, "#PO2 TASK: Defend Town Initialise"
 /*-------------------- TASK PARAMS ---------------------------------*/
 _EnemySpawnMinimumRange = 10000;
 _taskRadius = 800;
-_minSquadCount = 15;
-_maxSquadCount = 30;
+_minSquadCount = 12;
+_maxSquadCount = 20;
 
 //Chance of a squad having the following vehicle support (can't have more than 1 vehicle per squad)
 _CASchance = 0.3;

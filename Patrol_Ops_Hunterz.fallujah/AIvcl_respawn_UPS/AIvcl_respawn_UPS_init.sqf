@@ -3,7 +3,7 @@
 #define HZ_DEBUG(X) if(hz_debug_patrols) then {hint X;}
 
 if (!isServer) exitWith {};
-private ["_unit", "_lives", "_delay", "_respawn_point", "_marker", "_group", "_crew", "_side", "_isair", "_istank", "_AI_unitArray", "_escort", "_leader"];
+private ["_unit", "_lives", "_delay", "_respawn_point", "_marker", "_group", "_crew", "_side", "_isair","_AI_unitArray", "_escort", "_leader"];
 
 
 sleep 10;
@@ -17,12 +17,10 @@ _crew 			= crew _unit;
 _group 			= group _unit;
 _side 			= side _unit; 
 _isair = false;
-_istank = false;
 
 _group setvariable ["Hz_Patrolling",true];
 
 if(_this select 5) then {_isair = true;};
-if((_unit iskindof "T72_Base") || (_unit iskindof "2S6M_Tunguska") || (_unit iskindof "M1A1") || (_unit iskindof "T55_Base") || (tolower (typeof _unit) == "rhs_t80b_taki") || (_unit iskindof "T34") || (_unit iskindof "T90") || (_unit iskindof "ZSU_Base")) then {_istank = true;};
 
 sleep 2;
 sleep (random 5);

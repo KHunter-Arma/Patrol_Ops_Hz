@@ -31,7 +31,7 @@ _respawnzone = [(((markerPos _respawn_point) select 0) + (random 100)),(((marker
 
 if(_vehicle iskindof "Air") then {_isair = true;};
 
-if ((_vehicle iskindof "T72_Base") || (_vehicle iskindof "2S6M_Tunguska") || (_vehicle iskindof "M1A1") || (_vehicle iskindof "T55_Base") || (tolower (typeof _vehicle) == "rhs_t80b_taki") || (_vehicle iskindof "T34") || (_vehicle iskindof "T90") || (_vehicle iskindof "ZSU_Base")) then {
+if ((count _escort) > 0) then {
 
     _vehistank = true;
 };
@@ -76,8 +76,6 @@ if (alive _vehicle) then {
       };
 
 };
-
-
 
 
 deleteGroup _group;

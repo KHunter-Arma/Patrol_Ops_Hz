@@ -81,8 +81,8 @@ player addEventHandler ["Killed",{
     acre_sys_core_globalVolume = 1;
     0 fadesound 1;
     
-    player addaction ["<t color=""#ffc600"">Build Rallypoint</t>",(mps_path+"action\mps_buildtent.sqf"),[],0,true,true,"",mps_rally_condition];
-    player addAction [localize "STR_Client_HUD_menu",(mps_path+"action\mps_hud_switch.sqf"),[],-1,false,false,"",""];
+    mps_rallypoint = player addaction ["<t color=""#ffc600"">Build Rallypoint</t>",(mps_path+"action\mps_buildtent.sqf"),[],0,true,true,"",mps_rally_condition];
+    mps_client_hud_act = player addAction [localize "STR_Client_HUD_menu",(mps_path+"action\mps_hud_switch.sqf"),[],-1,false,false,"",""];
     cim_action_getDown1 = [['<t color="#FF0000">'+"Verbal Command: Get down!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getDown_Client.sqf"), [player,false,cursorTarget], 10, false, true, CIM_Module getVariable "nielsen_cim_key_getDown","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (cursorTarget isKindof ""MAN"") AND (cursorTarget distance player > 2)"]] call CBA_fnc_addPlayerAction;
     cim_action_getDownAll = [['<t color="#FF0000">'+"Verbal Command: Get down!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getDown_Client.sqf"), [player,true], 10, false, true, CIM_Module getVariable "nielsen_cim_key_getDown","cim_key_pressed AND !((cursorTarget isKindof ""MAN"") AND (side cursorTarget == CIVILIAN))"]] call CBA_fnc_addPlayerAction;
 
@@ -115,9 +115,11 @@ player addEventHandler ["Killed",{
   
   []spawn{
     
+    if (!(player getVariable ["JointOps",false])) then {
+    
     sleep (random 3);
     
-    if(Hz_patrol_task_in_progress)  then { 
+    if(Hz_patrol_task_in_progress)  then {
       
       mps_mission_deathcount = mps_mission_deathcount - 1; 
       publicVariable "mps_mission_deathcount";
@@ -130,6 +132,8 @@ player addEventHandler ["Killed",{
       hz_funds = hz_funds - 50000;
       publicVariable "hz_funds";
 
+    };
+    
     };
     
     sleep 7;

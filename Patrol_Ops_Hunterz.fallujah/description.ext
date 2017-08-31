@@ -28,7 +28,6 @@ disableChannels[]={0,5,2,3};
 enableItemsDropping = 0;
 
 #include "R3F_ARTY_AND_LOG\desc_include.h"
-#include "mps\vdg\vdg.cpp"
 
 class RscTitles {
 	#include "R3F_ARTY_AND_LOG\desc_rsct_include.h"

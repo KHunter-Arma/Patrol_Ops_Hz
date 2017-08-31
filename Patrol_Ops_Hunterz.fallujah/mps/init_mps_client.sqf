@@ -1,6 +1,5 @@
 private ["_objectsarr","_uid","_tentpos","_tentposx","_tentposy","_tentposz"];
 
-#include "vdg\VDG_init.sqf"
 // Client Initialise
 
 if(isDedicated) exitWith {};
@@ -217,24 +216,18 @@ if (!hz_debug && ((side player) != civilian)) then {
 
 call compile preprocessFileLineNumbers "notes.sqf";
 
-// Hunter'z: option to change viewdistance in vehicle
-waituntil {VDG_initDone};
-VDG_showAction = false;
+//option to change viewdistance in vehicle
 if(isnil "limitviewdistance") then {limitviewdistance = false;};
-
 []spawn {
   while {true} do {
     sleep 5;
     if ((vehicle player) != player) then {
       
-      if(!limitviewdistance) then {VDG_showAction = true;};
       _veh = vehicle player;
-      _action = _veh call VDG_addAction;
+      mps_clientVehicle_hud_act = _veh addAction [localize "STR_Client_HUD_menu",(mps_path+"action\mps_hud_switch.sqf"),[],-1,false,false,"",""];
       waituntil {sleep 5;(vehicle player) == player};
-      _veh removeaction _action;
+      _veh removeaction mps_clientVehicle_hud_act;
       
-    } else {
-      VDG_showAction = false;
     };
   };
 };
