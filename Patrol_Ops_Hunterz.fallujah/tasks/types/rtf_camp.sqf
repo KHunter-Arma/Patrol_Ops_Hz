@@ -23,7 +23,7 @@ _CASchance = 0;
 _TankChance = 0;
 _IFVchance = 0;
 _AAchance = 0;
-_CarChance = 0.4;
+_CarChance = 0.7;
 
 //Others
 _SniperChance = 0.1;

@@ -167,7 +167,7 @@ waituntil {(count playableunits) > 0};
 
 	[format["TASK%1",_taskid],
 		format["Urgent! Destroy: %2 spotted near %1", text _location,_vehtype],
-		format["We have just learned that a rogue enemy general has ordered a couple of %2 near %1 to hit %3! You must find them and take them out before they wipe out the whole town!",text _location,_vehtype,worldname],  
+		format["We have just learned that a rogue enemy general has ordered a couple of SCUD launchers near %1 to hit %3! You must find them and take them out before they wipe out the whole town!",text _location,_vehtype,worldname],  
 		true,
 		[format["MARK%1",_taskid],(_markerpos),"hd_objective","ColorRed"," Last Known"],
 		"created",

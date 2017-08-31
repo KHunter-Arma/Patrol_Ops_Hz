@@ -91,7 +91,18 @@ _playersArrivedTime = time;
 		
 		_troops = _troops + (units _grp);
 		sleep 1;
-		(_grp addWaypoint [_position,20]) setWaypointType "SAD";
+		if(!isnil "Hz_AI_moveAndCapture") then {
+          
+          _spawnedVehs = [_grp, _position,true,300] call Hz_AI_moveAndCapture;  
+
+          patrol_task_vehs = patrol_task_vehs + _spawnedVehs;					 
+          
+        } else {
+          
+          _wp = _grp addWaypoint [_position,20];
+          _wp setWaypointType "SAD";
+          
+        };
 		sleep 1;
 	};
       };
