@@ -30,7 +30,7 @@ _SniperChance = 0.3;
 _TowerChance = 0.4;
 
 //Useful for justifying task-specific difficulties.
-_rewardmultiplier = 2;
+_rewardmultiplier = 1;
 /*--------------------CREATE LOCATION---------------------------------*/
 
 	_location = [["towns","StrongpointArea"]] call mps_getNewLocation;

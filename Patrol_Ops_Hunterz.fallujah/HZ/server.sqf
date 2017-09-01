@@ -68,17 +68,7 @@ while {true} do
   };
   
   //reset position of dudes with no weapons at base (they tend to drift over time for some reason)
-  {_x setposatl (_x getvariable "pos");}foreach position_correction;
-  
-  //reset flag so garrison script can keep working
-  {_x setvariable ["occupied",false];} foreach Hz_resetBuildingVars;
-  
-  _gunsarr = gunsarr;
-  {if ((!alive gunner _x) || (count crew _x == 0)) then {_gunsarr = _gunsarr - [_x]; deletevehicle _x; gCount = gCount - 1; }; sleep 0.1;}foreach gunsarr;
-  gunsarr = _gunsarr;
-  //for remote debugging
-  publicvariable "gCount"; 
-  
+  {_x setposatl (_x getvariable "pos");}foreach position_correction;  
   
   // SAM setVehicleAmmo 1;
   
@@ -119,7 +109,6 @@ while {true} do
       
     }foreach AllDead;      
     
-    
     _timescaler3 = 0;
 
     call Hz_weather_func_dynamicWeather;
@@ -131,8 +120,6 @@ while {true} do
   if(_timescaler2 > 90) then {
     
     _timescaler2 = 0; 
-    
-    if(!staticactive)then {call spawnAIGuns;}; 
     
   };
 

@@ -2,6 +2,8 @@
 //           Hunter'z Core Settings
 ////////////////////////////////////////////////
 
+Hz_devs = ["76561198002110130"];
+
 Hz_GMTOffset = -3;
 
 //min 3 supervisors per public player -- 0 to disable limit

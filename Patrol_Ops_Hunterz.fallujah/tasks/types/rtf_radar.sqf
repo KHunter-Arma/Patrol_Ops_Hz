@@ -2,6 +2,14 @@
 private ["_location","_markerpos","_position","_taskid","_camptype","_newComp","_lobjects","_troops","_b","_car_type","_vehgrp","_reinforcementsMinimumSpawnRange","_r","_tempos","_grppat","_grpdef","_Vehsupport","_vehicletypes","_otherReward","_grpgar","_deathPenalty","_minDefendingSquadCount","_maxDefendingSquadCount","_DefenseRadius","_minGarrisonedSquadCount","_maxGarrisonedSquadCount","_minPatrollingSquadCount","_maxPatrollingSquadCount","_minStaticWeapon","_maxStaticWeapon","_CASchance","_TankChance","_IFVchance","_AAchance","_CarChance","_SniperChance","_TowerChance","_rewardmultiplier","_radartower","_staticguns","_c","_d"];
 diag_log [diag_frameno, diag_ticktime, time, "#PO2 TASK: Destroy Radar Initialise"];
 
+/*
+
+OUT OF ROTATION
+
+
+*/
+
+
 /*-------------------- TASK PARAMS ---------------------------------*/
 _reinforcementsMinimumSpawnRange = 5000;
 

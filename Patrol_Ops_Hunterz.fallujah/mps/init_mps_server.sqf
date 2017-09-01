@@ -9,24 +9,32 @@ if(!isServer) exitWith {};
 //jungle1 setname "Jungle_1";
 
 //initialise some server-side vars
-markerindex = 0;
-gunsarr = [];
 narray1 = [];
-narray2 = [];
-narray3 = [];
-narray4 = [];
-narray5 = [];
 Hz_resetBuildingVars = [];
-Hz_save_prev_tasks_list = [];
-Hz_save_destroyedMapBuildingIDs = [];
-staticactive = false;
-
+Hz_save_lock = false;
 Hz_patrol_task_in_progress = false;
 publicvariable "Hz_patrol_task_in_progress";
 
+//initialise persistent variables
+narray2 = [];
+Hz_save_prev_tasks_list = [];
+Hz_save_destroyedMapBuildingIDs = [];
+Hz_save_radar_spawn_timer = 0;   
+Hz_save_radar_pos = [0,0,0];
+Hz_save_arty_spawn_timer = 0;
+Hz_save_arty_pos = [0,0,0];
+Hz_save_jointOps_vehicles = [];
+medbox_array = [medbox1,medbox2,medbox3,medbox4];
+emptybox_array = [emptybox1,emptybox2,emptybox3,emptybox4,emptybox5,emptybox6,emptybox7,emptybox8];
+publicvariable "medbox_array";
+publicvariable "emptybox_array";
+rallytents = [];
+BanList = [];
+publicvariable "BanList";
+publicvariable "rallytents";
+
 //to be used for syncing nuke destruction for JIP
 publicvariable "narray2";
-
 
 //Get rid of nasty trees in Fallujah in the middle of road (only ones that I know of...)
 if((tolower worldName) == "fallujah") then {
@@ -82,21 +90,11 @@ publicVariable "mps_logistics_referencepoint";
 	};
 
 */
-//
-//     [] spawn CONFIG_ACM;
-gunspawnindex = 0;
-gunspawntimeroff = true;
-call spawnAIGuns;
-Hz_save_radar_spawn_timer = 0;   
-Hz_save_radar_pos = [0,0,0];
-Hz_save_arty_spawn_timer = 0;
-Hz_save_arty_pos = [0,0,0];
-Hz_save_jointOps_vehicles = [];
 
 //  if (mps_ambient_insurgents) then{  [] spawn RANDOM_PATROLS; };
 
 //Server-side persistency loop
-[] execVM "logistics\cleanup.sqf";
+[] execVM "HZ\server.sqf";
 
 
 // Make sure town doesn't "regenerate" for JIP after nuke event. Also sync markers for JIP (thanks for fixing that btw BIS...)
@@ -176,35 +174,18 @@ Onplayerdisconnected {
 	
 };       
 
-
 //for remote debugging
 UPS_respawn_calls = 0;
 UPS_vcl_respawn_calls = 0;
 publicvariable "UPS_respawn_calls";
 publicvariable "UPS_vcl_respawn_calls";
 
-
 //Initial VD for server
 setviewdistance 2000;
 
-//For saving
-medbox_array = [medbox1,medbox2,medbox3,medbox4];
-emptybox_array = [emptybox1,emptybox2,emptybox3,emptybox4,emptybox5,emptybox6,emptybox7,emptybox8];
-publicvariable "medbox_array";
-publicvariable "emptybox_array";
-rallytents = [];
-BanList = [];
-publicvariable "BanList";
-publicvariable "rallytents";
-
-//for cleanup
+//for cleanup of bicycles
 tempbikes = [];
 publicvariable "tempbikes";
-
-//sync nuke destruction (buildings destroyed don't sync well in Fallujah -- must also be done client side at JIP to assure full sync across all clients)
-publicvariable "narray2";
-
-Hz_save_lock = false;
 
 //weather init
 weather_fog = Hz_weather_avg_fog;
@@ -261,7 +242,5 @@ if((paramsArray select 20) > 0) then {
 		};                
 		
 	};
-	
-	
 	
 };

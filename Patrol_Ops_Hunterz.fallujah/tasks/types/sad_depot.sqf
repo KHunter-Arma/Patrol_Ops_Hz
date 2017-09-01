@@ -30,7 +30,7 @@ _SniperChance = 0;
 _TowerChance = 0.2;
 
 //Useful for justifying task-specific difficulties.
-_rewardmultiplier = 1;
+_rewardmultiplier = 1.25;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 

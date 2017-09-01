@@ -128,6 +128,11 @@ for "_i" from 1 to mps_mission_counter do {
       Hz_patrol_task_in_progress = true;
       publicvariable "Hz_patrol_task_in_progress";
       waitUntil{sleep 10; scriptdone _script};
+      
+      //reset flag so garrison script can keep working
+      {_x setvariable ["occupied",false];} foreach Hz_resetBuildingVars;
+      Hz_resetBuildingVars = [];      
+      
       mps_mission_status = 0;
       Hz_patrol_task_in_progress = false;
       publicvariable "Hz_patrol_task_in_progress";

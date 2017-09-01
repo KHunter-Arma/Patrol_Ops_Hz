@@ -22,7 +22,7 @@ _maxMineCount = 12;
 _SniperChance = 0.1;
 
 //Useful for justifying task-specific difficulties.
-_rewardmultiplier = 1.5;
+_rewardmultiplier = 0.5;
 /*--------------------CREATE LOCATION---------------------------------*/
 
 	_location = [["towns"]] call mps_getNewLocation;

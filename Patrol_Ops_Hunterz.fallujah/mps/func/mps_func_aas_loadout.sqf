@@ -44,7 +44,7 @@ if (!alive _vehicle || !alive player) exitWith {player playMoveNow "AmovPercMstp
         
      */   
         
-        // Hunter'z: Below code was already commented out...
+        // Hunter: Below code was already commented out...
 
 if (!alive _vehicle || !alive player) exitWith {player playMoveNow "AmovPercMstpSlowWrflDnon";};
 

@@ -5,7 +5,7 @@ diag_log [diag_frameno, diag_ticktime, time, "#PO2 TASK: Search and Destroy Conv
 /*-------------------- TASK PARAMS ---------------------------------*/
 
 //Useful for justifying task-specific difficulties.
-_rewardmultiplier = 3;
+_rewardmultiplier = 1.75;
 /*--------------------CREATE LOCATION---------------------------------*/
 
 _enemySpawnRange = floor (_enemySpawnRange / (sqrt 2));

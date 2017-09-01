@@ -108,8 +108,8 @@ if(isServer) then {
             _pos = markerpos _x;
             _array1 = nearestobjects [_pos,[],300];
             _array2 = nearestobjects [_pos,[],500];
-            _array1 = _array1 - [nukepos,wreck1,wreck2,wreck3,wreck4,wreck5,wreck6,wreck7];
-            _array2 = _array2 - [nukepos,wreck1,wreck2,wreck3,wreck4,wreck5,wreck6,wreck7];
+            _array1 = _array1 - Hz_nuke_damageExceptions;
+            _array2 = _array2 - Hz_nuke_damageExceptions;
             
             //JIP
             narray2 = narray2 + _array2;
@@ -350,30 +350,7 @@ if(isServer) then {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     sandbags setposatl sandbagspos;
-
-    if((count gunsarr) > 0) then {
-
-        _gunsarr = gunsarr;
-        {if ((!alive gunner _x) || (count crew _x == 0)) then {_gunsarr = _gunsarr - [_x]; deletevehicle _x; gCount = gCount - 1; }; sleep 0.1;}foreach gunsarr;
-        _count = gCount - newgCount;
-
-        if(_count > 0) then {
     
-            for "_i" from 1 to _count do {
-    
-                _gun = _gunsarr call BIS_fnc_selectRandom;
-                _gunsarr = _gunsarr - [_gun];
-                deletevehicle (gunner _gun);
-                deletevehicle _gun;
-
-            };
-    
-            gunsarr = _gunsarr;
-            gCount = count gunsarr;
-            publicvariable "gCount";
-
-        };
-    };
     publicvariable "BanList";
     
     ///////////////////////////////////////////////////////////////////////////////////////////

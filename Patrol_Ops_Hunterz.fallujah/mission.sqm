@@ -13310,7 +13310,7 @@ class Mission
 			interruptable=1;
 			age="UNKNOWN";
 			text="Developer Tools: Diagnostics";
-			expActiv="null = [] spawn {if((getPlayerUID player == ""76561198002110130"") || !isMultiplayer) then {        [0, {                               serverfps = diag_fps;                 publicvariable ""serverfps"";   serverviewdist = viewdistance;      publicvariable ""serverviewdist"";                           }] call CBA_fnc_globalExecute; sleep 2; civcount = {(_x iskindof ""Civilian"") && (!isplayer _x)} count allunits; allunitscount = count allunits; hintsilent format[""nGroups: %1\nnSG: %2\nUPS respawns: %3\nUPS Vehicle respawns: %4\nnUnits: %5\n nCivilians: %6\nnDead: %7\nServer FPS: %8\nServer VD: %9\nServer Uptime: %10 hours"", count allGroups,gCount,UPS_respawn_calls,UPS_vcl_respawn_calls, allunitscount, civcount, count alldead,serverfps,serverviewdist,round (serverTime/3600)];};};";
+			expActiv="null = [] spawn {if(((getPlayerUID player) in Hz_devs) || !isMultiplayer) then {        [0, {                               serverfps = diag_fps;                 publicvariable ""serverfps"";   serverviewdist = viewdistance;      publicvariable ""serverviewdist"";                           }] call CBA_fnc_globalExecute; sleep 2; civcount = {(_x iskindof ""Civilian"") && (!isplayer _x)} count allunits; allunitscount = count allunits; hintsilent format[""nGroups: %1\nUPS respawns: %2\nUPS Vehicle respawns: %3\nnUnits: %4\n nCivilians: %5\nnDead: %6\nServer FPS: %7\nServer VD: %8\nServer Uptime: %9 hours"", count allGroups,UPS_respawn_calls,UPS_vcl_respawn_calls, allunitscount, civcount, count alldead,serverfps,serverviewdist,round (serverTime/3600)];};};";
 			class Effects
 			{
 			};
@@ -13782,7 +13782,7 @@ class Mission
 			age="UNKNOWN";
 			text="Developer Tools: Execute";
 			name="hz_trigger_extern";
-			expActiv="if((getPlayerUID player == ""76561198002110130"") || !isMultiplayer) then {nul = [] execvm ""\ACE_EXEC\input.sqf"";};";
+			expActiv="if(((getPlayerUID player) in Hz_devs) || !isMultiplayer) then {nul = [] execvm ""\ACE_EXEC\input.sqf"";};";
 			class Effects
 			{
 			};

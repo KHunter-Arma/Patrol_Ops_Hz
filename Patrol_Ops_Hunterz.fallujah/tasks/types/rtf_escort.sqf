@@ -15,7 +15,7 @@ _AAchance = 0.3;
 _CarChance = 1;
 
 //Useful for justifying task-specific difficulties.
-_rewardmultiplier = 3;
+_rewardmultiplier = 1;
 /*--------------------CREATE LOCATION---------------------------------*/
 
 	_location = [["towns","hills","StrongpointArea"]] call mps_getNewLocation;

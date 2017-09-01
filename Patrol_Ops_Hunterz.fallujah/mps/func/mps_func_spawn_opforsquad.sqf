@@ -65,8 +65,7 @@ for "_j" from 1 to _strength do {
   
 };
 
-_upsmarker = Format ["upstaskmarker_%1", markerindex];
-markerindex = markerindex + 1;
+_upsmarker = Format ["taskUPSMarker_%1", (round (random 1000000)) + (round (random 120))];
 
 createMarkerLocal [_upsmarker, _spawnpos];
 _upsmarker setMarkerShapeLocal "RECTANGLE";
