@@ -1,5 +1,3 @@
-#include "func\functions.sqf"
-
 if(!isServer) exitWith {};
 
 //jungle1 = createLocation ["VegetationPalm", markerpos "jungle_1", (markersize "jungle_1") select 0, (markersize "jungle_1") select 1];
