@@ -1,9 +1,13 @@
 //warning! do not change the order of these or the delays
 0 setovercast weather;
 
-if (!isDedicated) then {0 setfog weather_fog;} else {
+if (!isDedicated) then {
 
-if (Hz_max_desired_server_VD >= 200) then {0 setfog 0;} else {0 setfog 0.5;};
+  0 setfog weather_fog;
+
+} else {
+
+  if (Hz_max_desired_server_VD >= 200) then {0 setfog 0;} else {0 setfog 0.25;};
 
 };
 

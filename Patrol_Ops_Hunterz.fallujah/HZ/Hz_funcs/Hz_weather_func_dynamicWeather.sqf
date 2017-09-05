@@ -3,6 +3,9 @@
 private ["_sign","_sign1","_sign2","_windx","_windy"];
 
 if(!Hz_overrideweather) then {  
+
+  weather_change = true;
+  publicvariable "weather_change";
   
   if (!nukeweather) then {
     
@@ -110,22 +113,20 @@ if(!Hz_overrideweather) then {
   weather_wind = [_windx, _windy, true]; 
   
   if (weather_fog > 1) then {weather_fog = 1;};
+  if (weather_fog < 0) then {weather_fog = 0;};
   if (weather_rain > 1) then {weather_rain = 1;};
+  if (weather_rain < 0) then {weather_rain = 0;};
   if (weather > 1) then {weather = 1;};
-
-  weather_change = true;
-  publicvariable "weather_change";
+  if (weather < 0) then {weather = 0;};
+  
   sleep 10;
   publicvariable "weather_fog";
   publicvariable "weather_wind";
   publicvariable "weather_rain";
   sleep 5;
   publicvariable "weather";
-  300 setovercast weather;
-  setwind weather_wind;
-  ACE_wind = [weather_wind select 0,weather_wind select 1, 0];
-  300 setrain weather_rain;
-  300 setfog weather_fog;
+  
+  [] execvm "logistics\weathersync.sqf";
   
   [] spawn {
     
