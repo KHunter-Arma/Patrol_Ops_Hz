@@ -64,7 +64,7 @@ _highbuildings = [];
 
 _group = createGroup (SIDE_B select 0);
 sleep 0.1;
-_group setvariable ["Hz_defending",true];
+_group setvariable ["Hz_supporting",true];
 
 {
                 
