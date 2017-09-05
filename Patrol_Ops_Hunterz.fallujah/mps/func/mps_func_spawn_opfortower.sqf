@@ -1,11 +1,12 @@
 // Written by EightySix
 // Inspired by Xeno
 
-private ["_position","_tower","_type","_grp"];
+private ["_position","_tower","_grp","_rtoPlaceholder","_rtoPos","_newComp","_rtoGroup","_rto"];
 
 _position = [(_this select 0),150,1,2] call mps_getFlatArea;
 
 _tower = objNull;
+_rto = objNull;
 if(count _this > 1) then {_tower = _this select 1;};
 
 if (isNull _tower) then {
