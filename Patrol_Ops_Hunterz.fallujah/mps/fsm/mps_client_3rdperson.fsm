@@ -1,0 +1,328 @@
+/*%FSM<COMPILE "C:\Program Files (x86)\Bohemia Interactive\Tools\FSM Editor Personal Edition\scriptedFSM.cfg, 3rdperson">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Start",0,250,25.000000,350.000000,125.000000,400.000000,0.000000,"Start"};
+item1[] = {"_",8,218,25.000000,425.000000,125.000000,475.000000,0.000000,""};
+item2[] = {"Loop",2,250,25.000000,550.000000,125.000000,600.000000,0.000000,"Loop"};
+item3[] = {"cameraView_in__n",4,218,25.000000,650.000000,125.000000,700.000000,0.000000,"cameraView" \n "in" \n "_nogo"};
+item4[] = {"__alive_player",4,218,150.000000,650.000000,250.000000,700.000000,2.000000,"!alive" \n "player"};
+item5[] = {"Dummy",2,250,275.000000,650.000000,375.000000,700.000000,0.000000,"Dummy"};
+item6[] = {"alive_player",4,218,275.000000,550.000000,375.000000,600.000000,0.000000,"alive player"};
+item7[] = {"Set_NVGs",2,250,25.000000,750.000000,125.000000,800.000000,0.000000,"Set NVGs"};
+item8[] = {"player____vec_pl_1",4,218,-100.000000,750.000000,0.000000,800.000000,0.000000,"player ==" \n "vec player"};
+item9[] = {"Switch_Player",2,250,-425.000000,750.000000,-325.000000,800.000000,0.000000,"Switch" \n "Player"};
+item10[] = {"",7,210,-454.000000,871.000000,-446.000000,879.000000,0.000000,""};
+item11[] = {"player____vec_pl",4,218,-100.000000,650.000000,0.000000,700.000000,0.000000,"player !=" \n "vec player"};
+item12[] = {"driver_and_type",4,4314,-100.000000,850.000000,0.000000,900.000000,0.000000,"driver and" \n "type check"};
+item13[] = {"Switch_Vehicle",2,250,-425.000000,850.000000,-325.000000,900.000000,0.000000,"Switch" \n "Vehicle"};
+item14[] = {"NVGs_",4,218,-225.000000,550.000000,-125.000000,600.000000,1.000000,"NVGs?"};
+item15[] = {"NVG_Off_in_3rd_person",2,250,-350.000000,550.000000,-250.000000,600.000000,0.000000,"NVG Off" \n "in 3rd person" \n "view"};
+item16[] = {"Delay",4,218,-350.000000,475.000000,-250.000000,525.000000,0.000000,"Delay"};
+item17[] = {"Give_back",2,250,-225.000000,475.000000,-125.000000,525.000000,0.000000,"Give back"};
+item18[] = {"Dummy_1",2,250,-100.000000,550.000000,0.000000,600.000000,0.000000,"Dummy"};
+item19[] = {"",7,210,-454.000031,446.000000,-446.000000,454.000000,0.000000,""};
+item20[] = {"",7,210,-379.000000,446.000000,-371.000000,454.000000,0.000000,""};
+item21[] = {"",7,210,-179.000000,446.000000,-171.000015,454.000000,0.000000,""};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {2,4};
+link4[] = {3,7};
+link5[] = {4,5};
+link6[] = {5,6};
+link7[] = {6,2};
+link8[] = {7,4};
+link9[] = {7,8};
+link10[] = {7,11};
+link11[] = {7,12};
+link12[] = {8,9};
+link13[] = {9,20};
+link14[] = {10,19};
+link15[] = {11,18};
+link16[] = {12,13};
+link17[] = {13,10};
+link18[] = {14,15};
+link19[] = {15,16};
+link20[] = {16,17};
+link21[] = {17,21};
+link22[] = {18,1};
+link23[] = {18,14};
+link24[] = {19,20};
+link25[] = {20,21};
+link26[] = {21,1};
+globals[] = {25.000000,1,0,0,0,640,480,1,42,6316128,1,-495.400299,422.617584,1008.996826,275.140472,1312,911,1};
+window[] = {2,-1,-1,-1,-1,843,125,1085,125,3,1330};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "3rdperson";
+  class States
+  {
+    /*%FSM<STATE "Start">*/
+    class Start
+    {
+      name = "Start";
+      init = /*%FSM<STATEINIT""">*/"private [""_view"", ""_nogo"",""_nvg"",""_delay""];" \n
+       "_view = ""INTERNAL"";" \n
+       "_nogo = [""EXTERNAL"",""GROUP""];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="Loop";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Loop">*/
+    class Loop
+    {
+      name = "Loop";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "__alive_player">*/
+        class __alive_player
+        {
+          priority = 2.000000;
+          to="Dummy";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!alive player"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "cameraView_in__n">*/
+        class cameraView_in__n
+        {
+          priority = 0.000000;
+          to="Set_NVGs";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"cameraView in _nogo" \n
+           "&&" \n
+           "mps_restrict_camera > 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Dummy">*/
+    class Dummy
+    {
+      name = "Dummy";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "alive_player">*/
+        class alive_player
+        {
+          priority = 0.000000;
+          to="Loop";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"alive player"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Set_NVGs">*/
+    class Set_NVGs
+    {
+      name = "Set_NVGs";
+      init = /*%FSM<STATEINIT""">*/"_nvg = currentVisionMode player;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "__alive_player">*/
+        class __alive_player
+        {
+          priority = 2.000000;
+          to="Dummy";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!alive player"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "player____vec_pl">*/
+        class player____vec_pl
+        {
+          priority = 0.000000;
+          to="Dummy_1";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"vehicle player != player"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "driver_and_type">*/
+        class driver_and_type
+        {
+          priority = 0.000000;
+          to="Switch_Vehicle";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(" \n
+           "vehicle player isKindOf ""Air""" \n
+           "||" \n
+           "vehicle player isKindOf ""Tank""" \n
+           "||" \n
+           "vehicle player isKindOf ""Car""" \n
+           ")" \n
+           "&&" \n
+           "player != driver vehicle player" \n
+           "&&" \n
+           "mps_restrict_camera > 0" \n
+           "||" \n
+           "mps_restrict_camera > 1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "player____vec_pl_1">*/
+        class player____vec_pl_1
+        {
+          priority = 0.000000;
+          to="Switch_Player";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"vehicle player == player" \n
+           "&&" \n
+           "mps_restrict_camera > 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Switch_Player">*/
+    class Switch_Player
+    {
+      name = "Switch_Player";
+      init = /*%FSM<STATEINIT""">*/"player switchCamera _view;" \n
+       "player globalChat (""3rd person view available only to vehicle drivers!"");"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="Loop";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Switch_Vehicle">*/
+    class Switch_Vehicle
+    {
+      name = "Switch_Vehicle";
+      init = /*%FSM<STATEINIT""">*/"vehicle player switchCamera ""INTERNAL"";" \n
+       "player globalChat (""3rd person view available only to vehicle drivers!"");"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="Loop";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "NVG_Off_in_3rd_person">*/
+    class NVG_Off_in_3rd_person
+    {
+      name = "NVG_Off_in_3rd_person";
+      init = /*%FSM<STATEINIT""">*/"//player removeWeapon ""NVGoggles"";" \n
+       "//player globalChat (""NVG not available in 3rd person mode!"");" \n
+       "//_delay = time + 0.1;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Delay">*/
+        class Delay
+        {
+          priority = 0.000000;
+          to="Give_back";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"time > _delay"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Give_back">*/
+    class Give_back
+    {
+      name = "Give_back";
+      init = /*%FSM<STATEINIT""">*/"//player addWeapon ""NVGoggles"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="Loop";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Dummy_1">*/
+    class Dummy_1
+    {
+      name = "Dummy_1";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "NVGs_">*/
+        class NVGs_
+        {
+          priority = 1.000000;
+          to="NVG_Off_in_3rd_person";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_nvg == 1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="Loop";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="Start";
+  finalStates[] =
+  {
+  };
+};
+/*%FSM</COMPILE>*/
