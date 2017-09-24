@@ -1,6 +1,13 @@
+Receiving_finish = false;
+if (!isDedicated) then {
+
+	onPreloadFinished { Receiving_finish = true; onPreloadFinished {}; };
+
+};
+
 if (is3DEN) then {
 
-waitUntil {!is3DEN};
+	waitUntil {sleep 1; !is3DEN};
 
 };
 
@@ -52,9 +59,6 @@ sleep 5;
 diag_log format ["###### %1 ######", missionName];
 diag_log [diag_frameno, diag_ticktime, time, "Executing init.sqf"];
 
-Receiving_finish = false;
-
-
 // For SP/Mission Testing
 	if(isNil "paramsArray") then { paramsArray = [-1,3,999,4,0,4,1,1,1,9,0,0,0,1,0,1,0,1,5,0,0]; };
 
@@ -64,9 +68,9 @@ Receiving_finish = false;
 [] execVM "mps\init_mps.sqf";       
 
 if(!isDedicated) then {
-	onPreloadFinished { Receiving_finish = true; onPreloadFinished {}; };
 	WaitUntil{ !(isNull player) && !isNil "mps_init" && Receiving_finish };
 }else{
+	Receiving_finish = true;
 	WaitUntil{!isNil "mps_init"};
 };
 

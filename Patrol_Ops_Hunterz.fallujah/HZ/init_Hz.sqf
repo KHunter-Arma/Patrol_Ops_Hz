@@ -146,7 +146,6 @@ if (isServer) then {
   Hz_func_create_roadside_IED = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_create_roadside_IED.sqf";
   Hz_func_isUrbanArea = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_isUrbanArea.sqf";
   Hz_func_setRealTime = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_setRealTime.sqf";
-  Hz_weather_func_dynamicWeather = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_weather_func_dynamicWeather.sqf";
   Hz_func_spawnOpforArtilleryBase = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_spawnOpforArtilleryBase.sqf";    
   Hz_func_initOpforComposition = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_initOpforComposition.sqf";    
   

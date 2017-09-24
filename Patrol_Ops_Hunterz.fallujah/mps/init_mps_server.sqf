@@ -90,83 +90,7 @@ publicVariable "mps_logistics_referencepoint";
 //Server-side persistency loop
 [] execVM "HZ\server.sqf";
 
-
-// Make sure town doesn't "regenerate" for JIP after nuke event. Also sync markers for JIP (thanks for fixing that btw BIS...)
-syncJIPmarkers = [];
 nuke_event = [];
-
-//init security vars
-Hz_SvSec_WaitingForClear = [];
-publicvariable "Hz_SvSec_WaitingForClear";
-Hz_SvSec_ClearUIDs = [];
-Hz_SvSec_InitWaitTime = 120;
-
-
-Onplayerconnected {
-	//sync markers (mainly used for syncing player respawn on tent positions which work using invisible player placed markers)
-	{_x setMarkerPos (getMarkerPos _x);}foreach syncJIPmarkers;
-	
-	
-	//Experimental: Detect client init failure and kick
-	[_uid] spawn {
-
-		sleep Hz_SvSec_InitWaitTime;
-		
-		_uid = _this select 0;
-		if (_uid in Hz_SvSec_WaitingForClear) then {
-			
-			Hz_SvSec_ClearUIDs set [count Hz_SvSec_ClearUIDs,_uid];
-			Hz_SvSec_WaitingForClear = Hz_SvSec_WaitingForClear - [_uid];
-			publicvariable "Hz_SvSec_WaitingForClear";
-			
-		} else {
-			
-			if(_uid in Hz_SvSec_ClearUIDs) exitwith {};
-			
-			[-1, {
-
-				_this spawn {
-
-					//isnull player should timeout after so much time anyway. prevent seagull/spectate bug this way
-					
-					if (isnull player) then {
-						
-						hintc "Warning! Initialization failed! Please rejoin.";
-						endmission "End2";    
-						
-					} else {
-						
-						_uid = _this select 0;
-
-						if((getplayeruid player) == _uid) then {
-
-							hintc "Warning! Initialization failed! Please rejoin.";
-							endmission "End2";
-
-						};
-						
-					};  
-					
-
-				};        
-
-
-			},_this] call CBA_fnc_globalExecute;        
-			
-			
-		};
-
-	};      
-	
-};
-
-
-
-Onplayerdisconnected {
-	
-	Hz_SvSec_ClearUIDs = Hz_SvSec_ClearUIDs - [_uid];     
-	
-};       
 
 //for remote debugging
 UPS_respawn_calls = 0;
@@ -181,20 +105,6 @@ setviewdistance 2000;
 tempbikes = [];
 publicvariable "tempbikes";
 
-//weather init
-weather_fog = Hz_weather_avg_fog;
-weather_rain = Hz_weather_avg_rain;
-weather = Hz_weather_avg_overcast;
-_sign1 = 1;
-if ((random 1) < 0.5) then {_sign1 = -1;};       
-_sign2 = 1;
-if ((random 1) < 0.5) then {_sign2 = -1;}; 
-weather_wind = [(14*Hz_weather_avg_wind*_sign1*(1 - (random 0.1))),(14*Hz_weather_avg_wind*_sign2*(1 - (random 0.1))),true]; 
-
-
-call Hz_weather_func_dynamicWeather;
-
 if(mps_ambient_airpatrols) then {[] spawn CREATE_OPFOR_AIRPATROLS;};    
 	
-
 [] spawn Hz_func_spawnOpforArtilleryBase;  
