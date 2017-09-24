@@ -16,5 +16,6 @@ if (!isDedicated) then {
 };
 
 0 setrain weather_rain;
+uisleep 0.1;
 setwind weather_wind;
-ACE_wind = [weather_wind select 0,weather_wind select 1, 0];
+forceweatherchange;

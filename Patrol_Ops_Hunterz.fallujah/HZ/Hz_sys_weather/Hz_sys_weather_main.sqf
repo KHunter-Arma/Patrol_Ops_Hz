@@ -6,25 +6,28 @@ waituntil {sleep 1; !isnil "weather_rain"};
 if(weather_change) then {
     
     waituntil {sleep 1; !isnull player};
-    sleep 30;
+    uisleep 30;
 
     150 setovercast weather;
     
     [] spawn {
         
-     sleep 160;
+    uisleep 160;
+    forceWeatherChange;
      
     30 setrain weather_rain;
-    sleep 40;    
+    uisleep 40;
+    forceWeatherChange;
     150 setfog weather_fog;
+    uisleep 160;
+    forceWeatherChange;
     
     };
     
     setwind weather_wind;
-    ACE_wind = [weather_wind select 0,weather_wind select 1, 0];
     
-    sleep 350;
-    
+    uisleep 350;
+    forceWeatherChange;
     
 };
 
@@ -35,7 +38,7 @@ while {!Hz_overrideweather} do {
     //uisleep 1;
     if(weather_change) then {
         
-        waituntil {sleep 5; !weather_change};
+      waituntil {sleep 5; !weather_change};
     
     };
     

@@ -35,52 +35,28 @@ if(!isDedicated)  then {
     
     waituntil {sleep 0.1; !isnull player};
     
-    if(Hz_check_ACRE_working && !hz_debug) then {
-      []spawn {
-        waituntil {sleep 0.1; !isnil "acre_sys_io_fnc_startServer"};
-        sleep 0.10;
-        acre_sys_io_fnc_startServer = compile preprocessfilelinenumbers "HZ\Hz_funcs\ACRE\acre_sys_io_fnc_startServer.sqf";
-        Hz_func_acre_OK = compile preprocessfilelinenumbers "HZ\Hz_funcs\ACRE\Hz_func_acre_OK.sqf";
-        Hz_func_check_ACRE = compile preprocessfilelinenumbers "HZ\Hz_funcs\ACRE\Hz_func_check_acre.sqf";
-        [] call Hz_func_check_ACRE;
-      };};
-
-    if (Hz_disallow_sthud && isClass(configFile >> "CfgPatches" >> "ST_STHud")) then {
-      [] spawn {
-        waituntil {sleep 0.1; !isnil "introseqdone"};     
-        waituntil {sleep 0.1; introseqdone}; 
-        hint parseText format ["<t size='1.5' shadow='1' color='#ff0000' shadowColor='#000000'>WARNING! Disallowed addon detected: @sthud. Remove this addon to play on this server.</t>"];
-        sleep 9;
-        hintc "You were removed from the game for running a disallowed addon: @st_hud";
-        endMission "LOSER"; 
-      };
-    };  
+    sleep 1;
     
-    sleep 8;
-    
-    if (Hz_enable_weps_restriction) then {
-            
-      if(((getplayeruid player) in Hz_wep_restrictions_jointOp) && (player iskindof "USMC_Soldier_Base")) exitwith {
-        
-        Hz_playertype = "jointOp";
-        if(isMultiplayer && Hz_slotrestrictions) then{[] execvm "Hz\Hz_scripts\Hz_restrict_slots.sqf";}; 
-        
-      };
-      
-      /* sleep 0.1;
-    ace_sys_repair_fnc_menuDef_support = compile preprocessfilelinenumbers "HZ\Hz_funcs\ACE\sys_repair\ace_sys_repair_fnc_menuDef_support.sqf"; */  
+    if (Hz_pops_enableRestrictions) then {
       
       _uid = getPlayerUID player;
       
-      if(_uid in Hz_wep_restriction_supervisors) then {
+      if ((_uid in Hz_pops_jointOpList) && (player iskindof Hz_JointOp_UnitBaseType)) exitwith {
+        
+        Hz_playertype = "jointOp";
+        if(isMultiplayer && Hz_pops_enableSlotRestrictions) then{[] execvm "Hz\Hz_scripts\Hz_restrict_slots.sqf";}; 
+        
+      };      
+      
+      if(_uid in Hz_pops_restrictions_supervisorList) then {
         
         Hz_playertype = "supervisor";
         
       } else {
-              
-        if(_uid in Hz_wep_restriction_whitelist) then {
+        
+        if(_uid in Hz_pops_restrictions_publicNoRatioLimit) then {
           
-          Hz_playertype = "whitelist";
+          Hz_playertype = "publicNoLimit";
           
         } else {
           
@@ -94,7 +70,7 @@ if(!isDedicated)  then {
       
     };
     
-    if(isMultiplayer && Hz_slotrestrictions) then{[] execvm "Hz\Hz_scripts\Hz_restrict_slots.sqf";}; 
+    if(isMultiplayer && Hz_pops_enableSlotRestrictions) then{[] execvm "Hz\Hz_scripts\Hz_restrict_slots.sqf";}; 
     
   };
 
@@ -106,30 +82,30 @@ if (isServer) then {
   nukeweatherCounter = 0;
   nukeWeatherCountdown_Mutex = false;
   nukeWeatherCountdown = {
-  
-    //already running but called again -- so extend duration
-   if (nukeWeatherCountdown_Mutex) exitWith {nukeweatherCounter = nukeweatherCounter + Hz_falloutDuration};
-   nukeWeatherCountdown_Mutex = true;
-   if (nukeweatherCounter == 0) then {nukeweatherCounter = Hz_falloutDuration;};
-   
-   while {true} do {
-   
-   sleep 60;
-   
-   nukeweatherCounter = nukeweatherCounter - 60;
-   
-   if (nukeweatherCounter < 0) exitWith {
-   
-   nukeweatherCounter = 0;    
-   nukeweather = false; 
-   nukeWeatherCountdown_Mutex = false;
-   waitUntil {sleep 60; ((count playableUnits) + ({isplayer _x} count alldead)) < 1 };
-   publicvariable "nukeweather";
-   
-   };
-   
-   };   
-  
+    
+    //in case already running but called again by another nuke -- so extend duration
+    if (nukeWeatherCountdown_Mutex) exitWith {nukeweatherCounter = nukeweatherCounter + Hz_falloutDuration};
+    nukeWeatherCountdown_Mutex = true;
+    if (nukeweatherCounter == 0) then {nukeweatherCounter = Hz_falloutDuration;};
+    
+    while {true} do {
+      
+      sleep 60;
+      
+      nukeweatherCounter = nukeweatherCounter - 60;
+      
+      if (nukeweatherCounter < 0) exitWith {
+        
+        nukeweatherCounter = 0;    
+        nukeweather = false; 
+        nukeWeatherCountdown_Mutex = false;
+        waitUntil {sleep 60; ((count playableUnits) + ({isplayer _x} count alldead)) < 1 };
+        publicvariable "nukeweather";
+        
+      };
+      
+    };   
+    
   };
   
   call compile preprocessfilelinenumbers "hunterz_civ_init.sqf";   

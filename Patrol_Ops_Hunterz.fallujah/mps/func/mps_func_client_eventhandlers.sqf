@@ -255,5 +255,4 @@ if(mps_ambient_insurgents) then {
 
 "mps_change_time" addPublicVariableEventHandler {  (_this select 1) spawn mps_timechange; };
 
-"weather"               addPublicVariableEventHandler {[]execvm "logistics\weathersync.sqf"; };
 "baboom"                addPublicVariableEventHandler {[]execvm "lk\nuke\nuke.sqf"; };

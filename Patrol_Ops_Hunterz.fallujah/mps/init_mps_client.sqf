@@ -259,7 +259,7 @@ if(!hz_debug) then {
       }foreach _allplayers;
       
       
-      _condition = {if (_x in _uids) exitwith {false}; true}foreach Hz_wep_restriction_supervisors;
+      _condition = {if (_x in _uids) exitwith {false}; true}foreach Hz_pops_restrictions_supervisorList;
       
       if (_condition) then {
         
@@ -276,7 +276,7 @@ if(!hz_debug) then {
         
         {_deaduids = _deaduids + [getPlayerUID _x];}foreach _deadplayers;
         
-        _condition = {if(_x in _deaduids) exitwith {false}; true}foreach Hz_wep_restriction_supervisors;
+        _condition = {if(_x in _deaduids) exitwith {false}; true}foreach Hz_pops_restrictions_supervisorList;
         
         if (_condition) then {
           
@@ -301,13 +301,13 @@ if ((toupper Hz_playertype) != "SUPERVISOR") then {
 
   if ((Hz_publicPlayerRatioLimit > 0) && 
       ((toupper Hz_playertype) != "JOINTOP") &&
-      (!((getPlayerUID player) in Hz_temp_non_supervisor_PMC_permissions))) then {
+      ((toupper Hz_playertype) != "PUBLICNOLIMIT")) then {
 
-    _countSupervisors = ({(getplayeruid _x) in Hz_wep_restriction_supervisors} count playableunits) + 
-    ({(getplayeruid _x) in Hz_wep_restriction_supervisors} count alldead);    
+    _countSupervisors = ({(getplayeruid _x) in Hz_pops_restrictions_supervisorList} count playableunits) + 
+    ({(getplayeruid _x) in Hz_pops_restrictions_supervisorList} count alldead);    
 
-    _countNonSupervisors = ({!((getplayeruid _x) in Hz_wep_restriction_supervisors)} count playableunits) + 
-    ({if(isplayer _x) then {!((getplayeruid _x) in Hz_wep_restriction_supervisors)} else {false}} count alldead);  
+    _countNonSupervisors = ({!((getplayeruid _x) in Hz_pops_restrictions_supervisorList)} count playableunits) + 
+    ({if(isplayer _x) then {!((getplayeruid _x) in Hz_pops_restrictions_supervisorList)} else {false}} count alldead);  
 
     
     if ((_countSupervisors/_countNonSupervisors) < Hz_publicPlayerRatioLimit) then {
