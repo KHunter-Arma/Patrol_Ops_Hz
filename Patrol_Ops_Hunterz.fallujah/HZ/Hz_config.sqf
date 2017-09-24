@@ -30,6 +30,8 @@ Hz_min_desired_server_VD =  3500;
 //        Patrol Ops Hunter'z Settings
 ////////////////////////////////////////////////
 
+Hz_fort_fortificationList = ["WarfareBDepot"];
+
 //task rewards
 Hz_penalty_multiplier_per_death = 50000;
 Hz_econ_perSquadReward = 15000;

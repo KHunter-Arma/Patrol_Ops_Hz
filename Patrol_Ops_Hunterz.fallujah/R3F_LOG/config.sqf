@@ -91,7 +91,7 @@ R3F_LOG_CFG_lock_objects_mode = "side";
  * Mettre à -1 pour qu'on ne puisse pas déverrouiller les objets.
  * Voir aussi la variable de configiration R3F_LOG_CFG_lock_objects_mode.
  */
-R3F_LOG_CFG_unlock_objects_timer = 30;
+R3F_LOG_CFG_unlock_objects_timer = 2;
 
 /**
  * ALLOW NO GRAVITY OVER GROUND

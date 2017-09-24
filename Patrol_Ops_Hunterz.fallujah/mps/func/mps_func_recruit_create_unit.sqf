@@ -57,8 +57,8 @@ if (_unittype == "BAF_Soldier_Medic_DDPM") then {sleep 5;_unit removeweapon "ACE
 [_unit] execVM (mps_path+"func\mps_func_recruit_unit_init.sqf");
 
 hint parseText format["Your <t size='1.0' font='Zeppelin33' color='#008aff'>%1</t> %2 has arrived.\n(Cost: $5000)",_typename,name _unit];
-Hz_funds = Hz_funds - 5000;
-publicvariable "Hz_funds";
+Hz_econ_funds = Hz_econ_funds - 5000;
+publicvariable "Hz_econ_funds";
 mps_recruit_queue = mps_recruit_queue - [_queuepos];
 
 [] call _update_queue;

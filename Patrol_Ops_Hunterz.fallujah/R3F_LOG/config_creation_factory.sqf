@@ -38,7 +38,7 @@
  * Mettre à -1 pour désactiver la possibilité de redonner les objets à l'usine de création.
  * Note : le montant du remboursement prend aussi en compte l'état (dommage) de l'objet.
  */
-R3F_LOG_CFG_CF_sell_back_bargain_rate = 0.75;
+R3F_LOG_CFG_CF_sell_back_bargain_rate = -1;
 
 /**
  * LIGHT WHITE LIST

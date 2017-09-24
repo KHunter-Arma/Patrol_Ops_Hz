@@ -105,6 +105,6 @@ setviewdistance 2000;
 tempbikes = [];
 publicvariable "tempbikes";
 
-if(mps_ambient_airpatrols) then {[] spawn CREATE_OPFOR_AIRPATROLS;};    
+//if(mps_ambient_airpatrols) then {[] spawn CREATE_OPFOR_AIRPATROLS;};    
 	
-[] spawn Hz_func_spawnOpforArtilleryBase;  
+//[] spawn Hz_func_spawnOpforArtilleryBase;  

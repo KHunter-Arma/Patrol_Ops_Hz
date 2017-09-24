@@ -314,8 +314,8 @@ _wait = true;
             } else {
           
             mps_mission_deathcount = mps_mission_deathcount - 1; 
-            Hz_funds = Hz_funds - 100000;
-            publicvariable "Hz_funds";
+            Hz_econ_funds = Hz_econ_funds - 100000;
+            publicvariable "Hz_econ_funds";
             publicVariable "mps_mission_deathcount";
             [-1, {
             
@@ -428,10 +428,10 @@ _wait = true;
           
           if (isplayer (_this select 1)) then {
             mps_mission_deathcount = mps_mission_deathcount - 1; 
-            Hz_funds = Hz_funds - 50000;
-            publicvariable "Hz_funds";
+            Hz_econ_funds = Hz_econ_funds - 50000;
+            publicvariable "Hz_econ_funds";
             publicVariable "mps_mission_deathcount";
-            [-1, {hint format["Civilian casualties are unacceptable. You lost 1 respawn and $50000\nAcceptable Mission Casualties Left: %1\nFunds available: $%2", mps_mission_deathcount,Hz_funds];}] call CBA_fnc_globalExecute;
+            [-1, {hint format["Civilian casualties are unacceptable. You lost 1 respawn and $50000\nAcceptable Mission Casualties Left: %1\nFunds available: $%2", mps_mission_deathcount,Hz_econ_funds];}] call CBA_fnc_globalExecute;
             civ_killed_count = civ_killed_count + 1;	
           };  
         } ];

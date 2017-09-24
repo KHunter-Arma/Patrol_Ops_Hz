@@ -129,8 +129,8 @@ player addEventHandler ["Killed",{
       
     } else {
       
-      hz_funds = hz_funds - 50000;
-      publicVariable "hz_funds";
+      Hz_econ_funds = Hz_econ_funds - 50000;
+      publicVariable "Hz_econ_funds";
 
     };
     
