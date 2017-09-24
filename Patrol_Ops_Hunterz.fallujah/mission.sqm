@@ -8,7 +8,7 @@ class EditorData
 	toggles=522;
 	class ItemIDProvider
 	{
-		nextID=1101;
+		nextID=1102;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={8250.209,37.201561,2176.3972};
-		dir[]={-0.073058844,-0.42680261,-0.9014346};
-		up[]={-0.03447739,0.90434432,-0.42540479};
-		aside[]={-0.99677306,4.5780325e-008,0.080786251};
+		pos[]={8257.5361,48.700348,1997.3735};
+		dir[]={0.53974652,-0.83608985,0.099292852};
+		up[]={0.82233655,0.54850948,0.15127653};
+		aside[]={0.18094537,6.4849155e-007,-0.98360926};
 	};
 };
 binarizationWanted=0;
@@ -104,7 +104,8 @@ addons[]=
 	"ace_realisticnames",
 	"A3_Ui_F_Orange",
 	"A3_Structures_F_Civ_Accessories",
-	"CUP_Editor_Plants_Config"
+	"CUP_Editor_Plants_Config",
+	"A3_Structures_F_Civ_Camping"
 };
 class AddonsMetaData
 {
@@ -754,14 +755,14 @@ class Mission
 		year=2018;
 		month=6;
 		day=29;
-		hour=1;
+		hour=12;
 		minute=0;
 		startFogDecay=0.014;
 		forecastFogDecay=0.014;
 	};
 	class Entities
 	{
-		items=520;
+		items=521;
 		class Item0
 		{
 			dataType="Object";
@@ -976,7 +977,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={8176.3018,7.0014391,1582.9376};
+						position[]={8176.6709,7.0014391,1582.3143};
 						angles[]={0,2.5999472,0};
 					};
 					side="West";
@@ -1517,16 +1518,18 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8045.6924,7.990685,1691.88};
-				angles[]={0,2.7693965,0};
+				position[]={8045.6919,7.9910035,1691.88};
+				angles[]={0,2.7694013,0};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
+				init="call{this setObjectTexture [0,""media\flag3.jpg""];}";
 			};
 			id=108;
 			type="Laptop_EP1";
+			atlOffset=0.00031852722;
 		};
 		class Item23
 		{
@@ -1608,14 +1611,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={8046.0332,7.0014391,1690.1581};
+						position[]={8046.2271,7.0014391,1690.1917};
 						angles[]={0,5.5929422,0};
 					};
 					side="West";
 					flags=7;
 					class Attributes
 					{
-						init="call{removeAllWeapons this;}";
+						init="call{removeAllWeapons this; [this,""Acts_A_M05_briefing""] execvm ""media\animloop.sqf""; removeGoggles this;}";
 						stance="Up";
 					};
 					id=121;
@@ -1688,13 +1691,13 @@ class Mission
 					class PositionInfo
 					{
 						position[]={8044.8569,7.0014391,1692.188};
-						angles[]={0,2.5300992,0};
+						angles[]={0,2.7033687,0};
 					};
 					side="West";
 					flags=5;
 					class Attributes
 					{
-						init="call{removeAllWeapons this; {this unassignItem _x} foreach assignedItems this;}";
+						init="call{removeAllWeapons this; {this unassignItem _x} foreach assignedItems this; [this,""acts_a_m01_briefing""] execvm ""media\animloop.sqf"";}";
 						stance="Up";
 					};
 					id=122;
@@ -1766,14 +1769,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={8044.3911,7.0014391,1690.7025};
-						angles[]={0,1.0507331,0};
+						position[]={8044.3911,7.0014391,1690.702};
+						angles[]={0,1.0507406,0};
 					};
 					side="West";
 					flags=5;
 					class Attributes
 					{
-						init="call{{_x forceSpeed 0} foreach units group this;}";
+						init="call{{_x forceSpeed 0} foreach units group this; this disableai ""TARGET""; " \n "this disableai ""AUTOTARGET""; " \n "this disableai ""MOVE""; " \n "this disableai ""FSM""; " \n "this setunitPos ""UP""; " \n "(group this) setbehaviour ""SAFE"";}";
 						stance="Up";
 					};
 					id=123;
@@ -1933,13 +1936,14 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8321.335,9.5428829,2033.3453};
-				angles[]={0,4.685925,0};
+				position[]={8321.335,9.5428829,2033.345};
+				angles[]={0,4.6859298,0};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
+				init="call{this addaction [""<t color='#00ffff'>Hunter'z Fortification Store</t>"",""HZ\dialogs\fort\HZ_fort_open.sqf""];}";
 			};
 			id=136;
 			type="Land_Misc_Cargo2D";
@@ -1950,13 +1954,14 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8324.5791,9.5428829,2027.3088};
-				angles[]={0,3.6250784,0};
+				position[]={8324.5791,9.5428829,2027.309};
+				angles[]={0,3.6250837,0};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
+				init="call{this addaction [""<t color='#00ffff'>Hunter'z Fortification Store</t>"",""HZ\dialogs\fort\HZ_fort_open.sqf""];}";
 			};
 			id=137;
 			type="Land_Misc_Cargo2D";
@@ -2136,7 +2141,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8175.0908,7.8533602,1582.9012};
+				position[]={8158.1099,7.8533611,1563.1122};
 			};
 			side="Empty";
 			flags=4;
@@ -2145,6 +2150,7 @@ class Mission
 			};
 			id=155;
 			type="Misc_cargo_cont_net2";
+			atlOffset=9.5367432e-007;
 		};
 		class Item45
 		{
@@ -15034,14 +15040,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={8509.5938,7.0014391,1516.1101};
-						angles[]={0,5.474051,0};
+						position[]={8511.333,7.0014391,1521.8705};
+						angles[]={0,6.0104322,0};
 					};
 					side="West";
 					flags=7;
 					class Attributes
 					{
-						init="call{this forcespeed 0;}";
+						init="call{this forcespeed 0; this switchMove ""InBaseMoves_assemblingVehicleErc""; this disableai ""anim"";}";
 						ignoreByDynSimulGrid=1;
 						stance="Up";
 					};
@@ -15114,16 +15120,16 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={8514.8438,7.0014391,1517.54};
-						angles[]={0,5.0597792,0};
+						position[]={8513.7598,7.0014391,1516.6011};
+						angles[]={0,0.033737212,0};
 					};
 					side="West";
 					flags=5;
 					class Attributes
 					{
-						init="call{this forcespeed 0;}";
+						init="call{this forcespeed 0; this switchMove ""InBaseMoves_repairVehicleKnl""; this disableai ""anim"";}";
 						ignoreByDynSimulGrid=1;
-						stance="Middle";
+						stance="Up";
 					};
 					id=1024;
 					type="B_Survivor_F";
@@ -15194,14 +15200,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={8503.6406,7.0014391,1507.635};
+						position[]={8503.9756,7.0014391,1508.332};
 						angles[]={0,4.2338548,0};
 					};
 					side="West";
 					flags=5;
 					class Attributes
 					{
-						init="call{this forceSpeed 0;}";
+						init="call{this forceSpeed 0; this attachto [base_chair,[0,-0.2,-0.425]]; this setdir 170; this switchMove ""InBaseMoves_SittingRifle2""; this disableai ""anim""; }";
 						stance="Up";
 					};
 					id=1027;
@@ -16244,7 +16250,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={8193.9082,7.0014391,2041.6387};
+						position[]={8511.959,7.0014391,1511.099};
+						angles[]={0,0.46747285,0};
 					};
 					side="West";
 					flags=7;
@@ -16299,6 +16306,23 @@ class Mission
 				};
 				nAttributes=1;
 			};
+		};
+		class Item520
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={8504.2891,7.5064859,1508.574};
+				angles[]={0,0.9642421,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				name="base_chair";
+			};
+			id=1101;
+			type="Land_CampingChair_V2_F";
 		};
 	};
 };

@@ -123,10 +123,6 @@ mps_death_effect = [] spawn {};
 // Setup Client Event Handlers
 call compile preprocessFileLineNumbers (mps_path+"func\mps_func_client_eventhandlers.sqf");
 
-//let server know client init successful (at least critical part is finished)
-Hz_SvSec_WaitingForClear set [count Hz_SvSec_WaitingForClear,_uid];
-publicvariable "Hz_SvSec_WaitingForClear";
-
 // Call the Injury System. This is disabled in the event ACE_Wounds is enabled
 // Written by BON_IF
 // Adapted by EightySix
