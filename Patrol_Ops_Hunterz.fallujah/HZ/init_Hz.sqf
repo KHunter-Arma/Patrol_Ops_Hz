@@ -23,6 +23,7 @@ call compile preprocessfilelinenumbers "HZ\dialogs\admin\HZ_admin_init.sqf";
 Hz_initdone = true;
 
 //Other initialisations
+Hz_fnc_vehicleInit = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_vehicleInit.sqf";
 Hz_func_isSupervisor = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_isSupervisor.sqf";
 Hz_func_check_vehicle = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_check_vehicle.sqf";
 Hz_func_find_nearest_ammo_crate = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_find_nearest_ammo_crate.sqf";

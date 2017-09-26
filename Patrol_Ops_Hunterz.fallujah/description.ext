@@ -15,7 +15,7 @@ class Header {
 };
 
 Respawn		= 3;
-RespawnDelay	= 240;
+RespawnDelay	= 360;
 respawnDialog	= 0;
 showGPS		= 1;
 showCompass	= 1;
@@ -26,6 +26,25 @@ debriefing	= 1;
 briefing	= 0;
 disableChannels[]={0,5,2,3};
 enableItemsDropping = 0;
+
+class cfgFunctions
+{
+  class Hz {
+      
+      class Hz_pops {
+				
+				class setVehicleInit {
+					
+					file = "Hz\Hz_funcs\Hz_fnc_setVehicleInit.sqf";		
+          preInit = 1;          
+					
+				};           
+        
+      };
+    
+  };
+  
+};
 
 class RscTitles {
 	#include "mps\dialog\mps_titles.sqf"
