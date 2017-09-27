@@ -11,7 +11,7 @@ nul = [thistrigger, position thistrigger, 500, h_civarray_0, h_civsafe_0] execvm
 //If trigger will stay switched on for an extended period of time, might need an external script to monitor if all civs are still alive and update civtotal.
 
 #define SAFE_DISTANCE_FOR_SPAWN 100
-#define CIV_KILLED_COUNT_BEFORE_RAGE 500 //deprecated for now so keep it too high
+#define CIV_KILLED_COUNT_BEFORE_RAGE 5000 //deprecated for now so keep it too high
 
 //#define playableunits switchableunits
 
@@ -190,15 +190,15 @@ _wait = true;
         
         if ((random 1) > 0.5) then {
           // hint "spawned makarov";          
-          _civ addMagazine "8Rnd_9x18_Makarov";
-          _civ addMagazine "8Rnd_9x18_Makarov";
-          _civ addMagazine "8Rnd_9x18_Makarov";
-          _civ addMagazine "8Rnd_9x18_Makarov";
-          _civ addMagazine "8Rnd_9x18_Makarov";
-          _civ addMagazine "8Rnd_9x18_Makarov";
-          _civ addMagazine "8Rnd_9x18_Makarov";
-          _civ addMagazine "8Rnd_9x18_Makarov";
-          _civ addWeapon "Makarov";
+          _civ addMagazine "CUP_8Rnd_9x18_Makarov_M";
+          _civ addMagazine "CUP_8Rnd_9x18_Makarov_M";
+          _civ addMagazine "CUP_8Rnd_9x18_Makarov_M";
+          _civ addMagazine "CUP_8Rnd_9x18_Makarov_M";
+          _civ addMagazine "CUP_8Rnd_9x18_Makarov_M";
+          _civ addMagazine "CUP_8Rnd_9x18_Makarov_M";
+          _civ addMagazine "CUP_8Rnd_9x18_Makarov_M";
+          _civ addMagazine "CUP_8Rnd_9x18_Makarov_M";
+          _civ addWeapon "CUP_hgun_Makarov";
           //_civ selectweapon "Makarov";
           //_civ action ["loadmagazine",_civ, _civ, 0, 1 ,currentweapon _civ,currentweapon _civ];
           
@@ -223,15 +223,15 @@ _wait = true;
           
           // hint "spawned revolver";
           if ((random 1) < 0.95) then  {
-            _civ addMagazine "6Rnd_45ACP";
-            _civ addMagazine "6Rnd_45ACP";
-            _civ addMagazine "6Rnd_45ACP";
-            _civ addMagazine "6Rnd_45ACP";
-            _civ addMagazine "6Rnd_45ACP";
-            _civ addMagazine "6Rnd_45ACP";
-            _civ addMagazine "6Rnd_45ACP";
-            _civ addMagazine "6Rnd_45ACP";
-            _civ addWeapon "revolver_EP1";
+            _civ addMagazine "CUP_6Rnd_45ACP_M";
+            _civ addMagazine "CUP_6Rnd_45ACP_M";
+            _civ addMagazine "CUP_6Rnd_45ACP_M";
+            _civ addMagazine "CUP_6Rnd_45ACP_M";
+            _civ addMagazine "CUP_6Rnd_45ACP_M";
+            _civ addMagazine "CUP_6Rnd_45ACP_M";
+            _civ addMagazine "CUP_6Rnd_45ACP_M";
+            _civ addMagazine "CUP_6Rnd_45ACP_M";
+            _civ addWeapon "CUP_hgun_TaurusTracker455";
             //_civ selectweapon "revolver_EP1";
             //_civ action ["loadmagazine",_civ, _civ, 0, 1 ,currentweapon _civ,currentweapon _civ];
             
@@ -248,13 +248,13 @@ _wait = true;
                                         */
             //  hint "spawned IED";
             _civ setskill 1;
-            _civ addMagazine "BAF_ied_v1";
-            [_civ,[SIDE_A select 0],"ARTY_R_227mm_HE"] execVM "suicideBomber.sqf";
+            _civ addMagazine "IEDUrbanBig_Remote_Mag";
+            [_civ,[SIDE_A select 0],"CUP_Sh_122_HE"] execVM "suicideBomber.sqf";
             //http://www.armaholic.com/page.php?id=20562
             
             _civ setunitpos "UP";
             
-            if (random 1 > 0.5) then {_civ addweapon "ACE_Coyote_Pack";};
+            if (random 1 > 0.5) then {_civ addweapon "B_OutdoorPack_tan";};
 
           }; };			  
       } else {
@@ -269,7 +269,7 @@ _wait = true;
         removeAllWeapons _civ;
         removeAllItems _civ;       
         
-        if ((random 1) > 0.96) then {_civ addweapon "ACE_Coyote_Pack";};          
+        if ((random 1) > 0.96) then {_civ addweapon "B_OutdoorPack_tan";};          
         //  [_this] joinSilent civs;  
         group _civ setBehaviour "SAFE";      
         _civ addEventHandler ["killed", {// waituntil {!isnil mps_mission_deathcount; sleep 2;};

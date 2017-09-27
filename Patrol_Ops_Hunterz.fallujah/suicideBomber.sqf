@@ -52,11 +52,17 @@ while {alive _bomber && _runCode == 1} do
         _bomber = _this select 0; 
         _explosiveClass = _this select 1;
         dostop _bomber;
-        [objNull,_bomber,rSAY,"shout"] call RE;
-        [objNull,_bomber,rPLAYMOVE,"AmovPercMstpSsurWnonDnon"] call RE;
+				
+        //[objNull,_bomber,rSAY,"shout"] call RE;
+				[_bomber,"shout"] remoteExecCall ["say3D",0,false];
+				
+        //[objNull,_bomber,rPLAYMOVE,"AmovPercMstpSsurWnonDnon"] call RE;
+				
+				_bomber playMoveNow "AmovPercMstpSsurWnonDnon";
+				
         _bomber disableAI "move";
         uisleep 0.5;
-        [objNull,_bomber,rSWITCHMOVE,"AmovPercMstpSsurWnonDnon"] call RE;
+        [_bomber,"AmovPercMstpSsurWnonDnon"] remoteExecCall ["switchMove",0,false];
         _bomber disableAI "anim";
         [_bomber] joinsilent (creategroup (SIDE_B select 0));
         uisleep 1;

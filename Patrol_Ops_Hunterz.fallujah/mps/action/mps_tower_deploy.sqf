@@ -12,7 +12,7 @@ if (mps_lock_action) then {
 	_dir = direction _object;
 
 	hint "Deploying Tower";
-	player playMove "ActsPercSnonWnonDnon_carFixing2";
+	player playMove "AinvPknlMstpSlayWrflDnon_medic";
 	sleep 5;
 	if (!alive _object || !alive player) exitWith {player playMoveNow "AmovPercMstpSlowWrflDnon"; mps_lock_action = false; };
 	sleep 5;
@@ -24,10 +24,11 @@ if (mps_lock_action) then {
 	detach _object;
 	deleteVehicle _object;
 	sleep 1;
-	_tower = "Land_Vysilac_FM" createVehicle [_position select 0, _position select 1, 0];
+	_tower = "Land_TTowerBig_1_F" createVehicle [_position select 0, _position select 1, 0];
 
-	[nil, _tower, "per", rADDACTION, "Pack Tower", (mps_path+"action\mps_tower_pack.sqf"), [], 1, true, true, "", ""] call RE;
-
+	//[nil, _tower, "per", rADDACTION, "Pack Tower", (mps_path+"action\mps_tower_pack.sqf"), [], 1, true, true, "", ""] call RE;
+	[_tower,["Pack Tower",(mps_path+"action\mps_tower_pack.sqf"),[], 1, true, true, "", ""]] remoteExecCall ["addAction", 0, true];
+	
 	player addRating 50;
 
 	mps_lock_action = false;

@@ -30,7 +30,8 @@ Hz_min_desired_server_VD =  3500;
 //        Patrol Ops Hunter'z Settings
 ////////////////////////////////////////////////
 
-Hz_fort_fortificationList = ["WarfareBDepot"];
+// Items added here won't be buyable unless price is defined in the price code
+Hz_fort_fortificationList = ["WarfareBDepot","CUP_FlagCarrierIONblack_PMC"];
 
 //task rewards
 Hz_penalty_multiplier_per_death = 50000;
@@ -60,7 +61,7 @@ Hz_pops_enableRestrictions = true;
 
 Hz_pops_enableSlotRestrictions = true;
 
-Hz_JointOp_UnitBaseType = "USMC_Soldier_Base";
+Hz_JointOp_UnitBaseType = "rhsusf_infantry_army_base";
 
 //min 3 supervisors per public player -- 0 to disable limit
 Hz_publicPlayerRatioLimit = 3;

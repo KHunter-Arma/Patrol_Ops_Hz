@@ -19,7 +19,7 @@ if (mps_lock_action) then {
 	_types = [];
 	{if ( !((typeof _x) in _types) ) then {_types = _types + [typeof _x];};} foreach _nearobj;
 	
-	if (   (!("WarfareBDepot" in _types)) || ( (!("FlagCarrierIONwhite_PMC" in _types)) && (!("FlagCarrierUSA_EP1" in _types)) && (!("FlagCarrierNATO_EP1" in _types)) && (!("FlagCarrierBAF" in _types)) ) ) exitwith { 
+	if (   (!("WarfareBDepot" in _types)) || ( (!("CUP_FlagCarrierIONblack_PMC" in _types)) && (!("FlagCarrierUSA_EP1" in _types)) && (!("FlagCarrierNATO_EP1" in _types)) && (!("FlagCarrierBAF" in _types)) ) ) exitwith { 
 		
 		hint "You can only deploy a rallypoint in a FOB. Read the mission notes to learn how to build a FOB correctly in Hunter'z Patrol Ops.";
 	};
@@ -38,7 +38,7 @@ if (mps_lock_action) then {
 			if!(alive player) exitwith {mps_lock_action = false}; 
 		};
 
-		mps_rallypoint_tent = "ACamp_EP1" createvehicle _position;
+		mps_rallypoint_tent = "Land_TentDome_F" createvehicle _position;
 		mps_rallypoint_tent setposatl _position;
 		mps_rallypoint_tent setVariable ["owner", name player, true];
 		mps_rallypoint_tent setVariable ["owneruid", getplayeruid player, true];

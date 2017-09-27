@@ -1,5 +1,7 @@
 private ["_obj","_exit"];
 
+if (hz_fort_cost == -1) exitWith {hint "Item is not in stock!"};
+
 if(!hz_debug) then {
 
 	//Player check
@@ -13,6 +15,7 @@ if(!hz_debug) then {
 			publicvariable "Hz_econ_funds";
 			
 			_obj = hz_fort_selected createVehicle (markerpos "hz_buyfortification");
+			[_obj] call Hz_fnc_vehicleInit;
 
 			if(hz_fort_selected iskindof "ReammoBox") then {
 				
