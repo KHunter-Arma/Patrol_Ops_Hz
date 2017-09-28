@@ -21,7 +21,7 @@ Hz_save_radar_spawn_timer = 0;
 Hz_save_radar_pos = [0,0,0];
 Hz_save_arty_spawn_timer = 0;
 Hz_save_arty_pos = [0,0,0];
-Hz_save_jointOps_vehicles = [];
+Hz_save_arty_rocketArty = false;
 rallytents = [];
 BanList = [];
 publicvariable "BanList";

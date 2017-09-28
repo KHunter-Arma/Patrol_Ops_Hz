@@ -38,11 +38,13 @@ if (mps_lock_action) then {
 			if!(alive player) exitwith {mps_lock_action = false}; 
 		};
 
-		mps_rallypoint_tent = "Land_TentDome_F" createvehicle _position;
+		mps_rallypoint_tent = Hz_pops_rallyTentType createvehicle _position;
 		mps_rallypoint_tent setposatl _position;
 		mps_rallypoint_tent setVariable ["owner", name player, true];
 		mps_rallypoint_tent setVariable ["owneruid", getplayeruid player, true];
 		mps_rallypoint_tent setDir (_mydir - 90);
+    
+    mps_rallypoint_tent call Hz_pers_API_addObject;
 		
 		_text = format["_obj addAction [""<t color='#ffc600'>Remove tent of %1</t>"", ""mps\action\mps_removetent.sqf"",[],-99,false,true,"""",""call Hz_func_isSupervisor""];", name player];
 		[mps_rallypoint_tent,_text] remoteexeccall ["Hz_fnc_setVehicleInit",0,true];

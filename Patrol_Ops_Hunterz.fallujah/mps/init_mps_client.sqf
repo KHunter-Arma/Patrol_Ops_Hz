@@ -6,14 +6,8 @@ if(isDedicated) exitWith {};
 
 if !(hz_debug) then {
 
-  deleteMarkerlocal "jungle_1";
-  deleteMarkerlocal "jungle_2";
-
-  //also delete UPS markers on client...
-  deleteMarkerlocal "patrol_opfor_s";
-  deleteMarkerlocal "patrol_blufor_s";
-  deleteMarkerlocal "patrol_blufor_n";
-  deleteMarkerlocal "patrol_opfor_n";
+  //delete UPS markers on client...
+  deleteMarkerlocal "UPS";
 
 
 };
@@ -201,7 +195,7 @@ call compile preprocessFileLineNumbers (mps_path+"func\mps_func_client_eventhand
   ["
   <t align='center' size='1.5' shadow='1' color='#ffffff' shadowColor='#000000'>
   PATROL OPS</t><t align='center' size='1.5' shadow='1' color='#ff0000' shadowColor='#000000'> HUNTER'Z
-        </t><br /><br /><t align='left' shadow='1' color='#ffffff' shadowColor='#000000'>This is a heavily modified Patrol Ops mission. All mission related spawns will occur at the marker in base. Respawn time is 3.5 minutes. For more information, check the mission notes.
+        </t><br /><br /><t align='left' shadow='1' color='#ffffff' shadowColor='#000000'>This server runs a heavily modified, persistent Patrol Ops mission. Respawn time is several minutes. For more information, ask a member of staff.
 "];
   
 };
@@ -210,7 +204,10 @@ if (!hz_debug && ((side player) != civilian)) then {
   [player] joinsilent (creategroup (SIDE_A select 0));
 };
 
-call compile preprocessFileLineNumbers "notes.sqf";
+//call compile preprocessFileLineNumbers "notes.sqf";
+
+/*
+//looks like not needed in Arma 3
 
 //option to change viewdistance in vehicle
 if(isnil "limitviewdistance") then {limitviewdistance = false;};
@@ -227,7 +224,9 @@ if(isnil "limitviewdistance") then {limitviewdistance = false;};
     };
   };
 };
+*/
 
+waituntil {introseqdone};
 
 if(!hz_debug) then {
 
@@ -238,7 +237,6 @@ if(!hz_debug) then {
     
     _uid = getPlayerUID player;
 
-    sleep 30;
     while {true} do {
       
       _allPlayers = [];
@@ -293,7 +291,7 @@ if(!hz_debug) then {
 
 };
 
-waituntil {introseqdone};
+sleep 20;
 
 //public player ratio limitation
 waituntil {sleep 0.1; !isnil "Hz_playertype"};
@@ -321,19 +319,10 @@ if ((toupper Hz_playertype) != "SUPERVISOR") then {
 
 };
 
-// remove ACEW from players and initialise CMS
-[] spawn {
-
-  sleep 5;
-  
-  player setvariable ["ace_w_allow_dam",0];
-  player removealleventhandlers "HandleDamage";
-  player setvariable ["cms_enable",true,true];
-  
-}; 
-
 setterraingrid 50;
 setviewdistance 1600;
+
+Hz_pers_clientReadyForLoad = true;
 
 _uid = getplayeruid player;
 _tentpos = getMarkerPos _uid;
@@ -345,18 +334,23 @@ mps_rallypoint_tent = objnull;
 
 if(!((_tentposx == 0) && (_tentposy == 0) && (_tentposz == 0))) then {
   
-  _objectsarr = nearestobjects [_tentpos,["ACamp_EP1"],50];
+  _objectsarr = nearestobjects [_tentpos,[Hz_pops_rallyTentType],100];
   
   {if(_x getvariable "owneruid" == _uid) then {mps_rallypoint_tent = _x;};} foreach _objectsarr;
   
   //Tent destroyed
   if(!alive mps_rallypoint_tent) exitwith {deletemarker _uid;};
   
+  RALLY_STATUS = true;
+  
+  //Replaced with extended persistency
+  /*
   hint "Would you like to deploy at your tent?";
   sleep 2;
-  RALLY_STATUS = true;
   mps_respawned_player = false;
   createDialog "mps_respawn_dialog";
+  */
+  
   waituntil {
     sleep 60;  
     !alive mps_rallypoint_tent

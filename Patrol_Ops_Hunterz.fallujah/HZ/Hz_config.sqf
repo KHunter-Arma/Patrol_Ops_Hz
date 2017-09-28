@@ -30,6 +30,8 @@ Hz_min_desired_server_VD =  3500;
 //        Patrol Ops Hunter'z Settings
 ////////////////////////////////////////////////
 
+Hz_pops_rallyTentType = "Land_TentDome_F";
+
 // Items added here won't be buyable unless price is defined in the price code
 Hz_fort_fortificationList = ["WarfareBDepot","CUP_FlagCarrierIONblack_PMC"];
 
