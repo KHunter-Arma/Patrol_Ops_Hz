@@ -68,7 +68,7 @@ if (alive _vehicle) then {
        //   sleep 30;
       //    _vehicle setdamage 0.8;
           
-         waituntil {sleep 30; ({ isplayer _x} count nearestObjects[getpos _this,["CAManBase"],100]) == 0}; 
+         waituntil {sleep 30; ({ isplayer _x} count nearestObjects[getpos _this,["CAManBase"],300]) == 0}; 
           
       //_vehicle setdamage 1;
       deletevehicle _this;
@@ -114,8 +114,9 @@ _vcl_new = _type createVehicle _respawnzone;
 _vcl_new setDir _dir;
 _vcl_new setvehiclelock "LOCKED";
 
-sleep 1;
+sleep 0.01;
 
+/*
 {
         _guy = _group createUnit [_x,_respawnzone, [], 100, "FORM"];
 
@@ -124,61 +125,64 @@ sleep 1;
         case ((_vcl_new emptyPositions "Driver") > 0) : { _guy assignasDriver _vcl_new; [_guy] orderGetIn true; _guy moveinDriver _vcl_new;};
         case ((_vcl_new emptyPositions "Gunner") > 0) : {_guy assignasGunner _vcl_new; [_guy] orderGetIn true; _guy moveinGunner _vcl_new;};	
         case ((_vcl_new emptyPositions "Commander") > 0) : {_guy assignasCommander _vcl_new; [_guy] orderGetIn true; _guy moveinCommander _vcl_new;};
-        default {_guy moveInTurret [_vcl_new,[0,1]];};
+        default {_guy moveIncargo _vcl_new; _guy assignasCargo _vcl_new; [_guy] orderGetIn true; _guy moveinCargo _vcl_new;};
         
         };
         sleep 0.01;
-  } forEach _AI_unitArray; 
+} forEach _AI_unitArray; 
+*/
+
+createVehicleCrew _vcl_new;
+_group addVehicle _vcl_new;
 
 
 } else {
     
 _group = createGroup _side;
 
-
 _vcl_new = _type createVehicle _respawnzone;
 _vcl_new setDir _dir;
-_vcl_new setvehiclelock "LOCKED";
+_vcl_new setvehiclelock "LOCKEDPLAYER";
 
-if(_type == "CH_47F_EP1") then {
-
-_vcl_new setvariable ["Turret0",true];
-_vcl_new setvariable ["Turret1",true];
-
-};
-
-if(_type == "UH60M_EP1") then {
-
-_vcl_new setvariable ["Turret1",true];
-
-};
-
-sleep 1;
+if (_type == "LOP_IA_M113_W") then {[_vcl_new, ["Desert",1],[]] call BIS_fnc_initVehicle;};
 
 {//_x createUnit [_respawnzone, _group];
 _group createUnit [_x,_respawnzone, [], 100, "FORM"];
-sleep 0.1;
+sleep 0.01;
 } forEach _AI_unitArray;
 
 _unitsGroup = units _group;
+_turrets = allTurrets _vcl_new;
+_turCount = count _turrets;
 
 for [{ _loop = 0 },{ _loop < count  _unitsGroup},{ _loop = _loop + 1}] do
 {	
 	_guy = _unitsGroup select _loop;
-        
+	
         switch (true) do {
         
         case ((_vcl_new emptyPositions "Driver") > 0) : { _guy assignasDriver _vcl_new; [_guy] orderGetIn true; _guy moveinDriver _vcl_new;};
-        case ((_vcl_new emptyPositions "Gunner") > 0) : {_guy assignasGunner _vcl_new; [_guy] orderGetIn true; _guy moveinGunner _vcl_new;};	
-        case ((_vcl_new emptyPositions "Commander") > 0) : {_guy assignasCommander _vcl_new; [_guy] orderGetIn true; _guy moveinCommander _vcl_new;};
-        case (_vcl_new getvariable ["Turret0",false]) : {[_guy] orderGetIn true; _guy moveinturret [_vcl_new,[0]]; _vcl_new setvariable ["Turret0",false];};
-        case (_vcl_new getvariable ["Turret1",false]) : {[_guy] orderGetIn true; _guy moveinturret [_vcl_new,[1]]; _vcl_new setvariable ["Turret1",false];};
-        case (_vcl_new getvariable ["Turret2",false]) : {[_guy] orderGetIn true; _guy moveinturret [_vcl_new,[2]]; _vcl_new setvariable ["Turret2",false];};
-        default {_guy assignascargo _vcl_new; [_guy] orderGetIn true; _guy moveincargo _vcl_new;};
+        case (_turCount > 0) : {
+				
+				_guy assignasTurret [_vcl_new,_turrets select 0];
+				[_guy] orderGetIn true;
+				_guy moveinTurret [_vcl_new,_turrets select 0];
+				_turrets = _turrets - [_turrets select 0];
+				_turCount = _turCount - 1;
+				
+				};	
+				
+        default {
+				
+				_guy assignascargo _vcl_new;
+				[_guy] orderGetIn true;
+				_guy moveincargo _vcl_new;
+				
+				};
         
         };
         
-	sleep 0.1;
+	sleep 0.01;
 };
 
 };

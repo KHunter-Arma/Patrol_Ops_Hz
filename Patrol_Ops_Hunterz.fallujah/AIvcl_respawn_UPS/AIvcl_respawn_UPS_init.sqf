@@ -5,9 +5,6 @@
 if (!isServer) exitWith {};
 private ["_unit", "_lives", "_delay", "_respawn_point", "_marker", "_group", "_crew", "_side", "_isair","_AI_unitArray", "_escort", "_leader"];
 
-
-sleep 10;
-
 _unit 			= _this select 0;
 _lives			= _this select 1;
 _delay 			= _this select 2;
@@ -23,7 +20,7 @@ _group setvariable ["Hz_Patrolling",true];
 if(_this select 5) then {_isair = true;};
 
 sleep 2;
-sleep (random 5);
+sleep (random 3);
 
 // AI unit array is guys that are in the vehicle at the beginning of the mission (10 second delay on top is to wait for moveincargo commands to work)
 //for APCs this will be all the group members if all are in the vehicle.
