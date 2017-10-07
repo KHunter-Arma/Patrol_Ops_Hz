@@ -1,66 +1,55 @@
-/*Put trigger for each location in editor. Condition: blufor unit present must be in playableunits.
-Execute script upon both activation and deactivation.
-Copy into "OnAct" and OnDea":
-nul = [thistrigger, position thistrigger, 500, h_civarray_0, h_civsafe_0] execvm "hunterz_civ_main.sqf";
+/*
+!!!!Execute upon both activation and deactivation!!!!
 */
-
-// !!!!!!!!!!!!!!!!!!!!!!!!IMPORTANT NOTE!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-// Trigger radius parameter must be the same as the trigger size itself as set in the map! Otherwise civilians won't spawn!
 
 //If trigger will stay switched on for an extended period of time, might need an external script to monitor if all civs are still alive and update civtotal.
 
-#define SAFE_DISTANCE_FOR_SPAWN 100
+#define SAFE_DISTANCE_FOR_SPAWN 300
 #define CIV_KILLED_COUNT_BEFORE_RAGE 5000 //deprecated for now so keep it too high
 
 //#define playableunits switchableunits
 
-private ["_ForceSpawnAtHouses","_numinput","_safeactivation","_exit","_civarray","_num","_count","_newcivarray","_roadarr","_client","_civtype","_group","_civ","_road","_spawnpos","_buildings","_wait","_group1","_group2","_group3","_civgroups","_killcivs","_trigger","_pos","_radius","_ownerIDs"];
+if (civ_debug) exitWith {_this spawn Hz_spawncivs;};
+
+private ["_ForceSpawnAtHouses","_numinput","_mutex","_exit","_civarray","_num","_count","_newcivarray","_roadarr","_client","_civtype","_group","_civ","_road","_spawnpos","_buildings","_wait","_group1","_group2","_group3","_civgroups","_killcivs","_trigger","_pos","_radius","_ownerIDs"];
 
 if (civ_debug) then {hint "inside main script";};
 
 _trigger = _this select 0;
-_pos = _this select 1;
-_radius = _this select 2;
-_civarray = _this select 3;
-_safeactivation = _this select 4;
+_pos = getpos _trigger;
+_radius = (triggerArea _trigger) select 0;
+_civarray = _trigger getVariable ["civarray",[]];
+_mutex = _trigger getVariable ["mutex",true];
 _ForceSpawnAtHouses = false;
 _numinput = 0;
 
 //optional, if true then use house positions to spawn civs instead of roads
-if((count _this) > 5) then {_ForceSpawnAtHouses = _this select 5;};
+if((count _this) > 1) then {_ForceSpawnAtHouses = _this select 1;};
 
 //optional, for manual control of number of civs to spawn in area, rather than auto calculation.
-if((count _this) > 6) then {_numinput = _this select 6;};
+if((count _this) > 2) then {_numinput = _this select 2;};
 
 
 //if (civ_debug) then {sleep 4; [-1, {hint format ["%1",_this];}] call CBA_fnc_globalExecute; sleep 10;};
 
 if (!isServer) exitwith {};
-if((isnil "Hz_civ_initdone") || (!Hz_civ_initdone)) exitwith {};
-if(!isnil "_safeactivation") then {_safeactivation = true;};
-if(!_safeactivation) exitwith {};
+if(!Hz_civ_initdone) exitwith {};
+if(!_mutex) exitwith {};
 
 _exit = false;
 if(!isnil "Hz_civ_global_safe") then {
   if(!Hz_civ_global_safe) exitwith {_exit = true;};
-  Hz_civ_global_safe = false;};
+  Hz_civ_global_safe = false;
+};
 if(_exit) exitwith{};
 
-if (isnil "_civarray") then {
-  _civarray = [];};
-
-//update safeactivation
-_safeactivation = false;
-[_trigger,_civarray,_safeactivation] call HZ_updatecivs;
+_trigger setVariable ["mutex",false];
 
 if (civ_debug) then {hint format ["%1",_pos];sleep 10;};
 
 //SPAWN FUNC
 _ownerIDs = [];
 if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner _x];}foreach playableunits;};
-
-if(({(_pos distance _x) < _radius}count playableunits) > 0) then {
 
   //Determine number of civs to spawn for this location
   _buildings = nearestObjects [_pos, ["House"], 500];
@@ -91,17 +80,6 @@ if(({(_pos distance _x) < _radius}count playableunits) > 0) then {
 
   if (_num == 0) exitwith {};
 
-  //Check total number of civs
-  /*
-//needs more testing
-
-if ((civtotal + _num) > maxcivcount) then {
-_num = maxcivcount - civtotal;
-_wait = true;
-};
-
-*/
-
   if ((civtotal + _num) > maxcivcount) then {_num = maxcivcount - civtotal;};
 
 
@@ -119,7 +97,15 @@ _wait = true;
   if(_ForceSpawnAtHouses)then {
     _roadarr = nearestobjects [_pos,["House"],_radius];  
   }else {
-    _roadarr = _pos nearroads _radius;    
+    _roadarr = _pos nearroads _radius;   
+
+		if ((count _roadarr) < 100) then {
+		
+			_ForceSpawnAtHouses = true;
+			_roadarr = nearestobjects [_pos,["House"],_radius];  
+		
+		};
+		
   };
   
   //filter
@@ -156,9 +142,32 @@ _wait = true;
     //Choose random road. Try and make them spawn on the side rather than in the middle
     _road = _roadarr call BIS_fnc_selectRandom;
     //_spawnpos = [((getpos _road) select 0) - 8,((getpos _road) select 1) - 8,((getpos _road) select 2)];
+		
+		if (!_ForceSpawnAtHouses) then {_roadarr = _roadarr - [_road];};
+		
+		_spawnpos = [];
+		
+		if (!_ForceSpawnAtHouses) then {
+		
     _spawnpos = (boundingbox _road) select 0;
     _spawnpos = _road modeltoworld _spawnpos;
     _spawnpos = [(_spawnpos select 0),(_spawnpos select 1),0];
+		
+		} else {
+		
+			_bPos = _road buildingPos -1;
+		
+			if ((count _bPos) > 0) then {
+			
+			_spawnpos = _bPos call bis_fnc_selectrandom;
+			
+			} else {
+			
+			_spawnpos = [[(getpos _road) select 0,(getpos _road) select 1, 0],50,1,0] call mps_getFlatArea;
+			
+			};
+		
+		};
 
     //Choose _civ behaviour (normal or hostile) based on probability. If hostile is chosen use hoscivarray
 
@@ -167,7 +176,7 @@ _wait = true;
     
     if (civ_killed_count < CIV_KILLED_COUNT_BEFORE_RAGE) then { //check if civilians are pissed off at you
       
-      if ((random 1) > 0.85) then {
+      if ((random 1) < hz_civ_hostileChance) then {
         
         _civtype = hoscivtypes call BIS_fnc_selectRandom;
         _group = _civgroups call BIS_fnc_selectRandom;
@@ -185,6 +194,8 @@ _wait = true;
         _civ allowFleeing 0.5;
         removeAllWeapons _civ;
         removeAllItems _civ;
+				
+				_civ setposatl _spawnpos;
         
         if(Hz_civ_enable_client_processing) then {_client = _ownerIDs call BIS_fnc_selectRandom; _civ setowner _client;};
         
@@ -268,6 +279,8 @@ _wait = true;
         _civ allowFleeing 1;
         removeAllWeapons _civ;
         removeAllItems _civ;       
+				
+				_civ setposatl _spawnpos;
         
         if ((random 1) > 0.96) then {_civ addweapon "B_OutdoorPack_tan";};          
         //  [_this] joinSilent civs;  
@@ -362,6 +375,8 @@ _wait = true;
         _civ setskill ["spotTime",0.5];
         removeAllWeapons _civ;
         removeAllItems _civ;
+				
+				_civ setposatl _spawnpos;
         
         if(Hz_civ_enable_client_processing) then {_client = _ownerIDs call BIS_fnc_selectRandom; _civ setowner _client;};
         
@@ -420,6 +435,8 @@ _wait = true;
         _civ allowFleeing 1;
         removeAllWeapons _civ;
         removeAllItems _civ;
+				
+				_civ setposatl _spawnpos;
         
         //[_civ] joinSilent civs;              
         group _civ setBehaviour "SAFE";                
@@ -428,10 +445,10 @@ _wait = true;
           
           if (isplayer (_this select 1)) then {
             mps_mission_deathcount = mps_mission_deathcount - 1; 
-            Hz_econ_funds = Hz_econ_funds - 50000;
+            Hz_econ_funds = Hz_econ_funds - 100000;
             publicvariable "Hz_econ_funds";
             publicVariable "mps_mission_deathcount";
-            [-1, {hint format["Civilian casualties are unacceptable. You lost 1 respawn and $50000\nAcceptable Mission Casualties Left: %1\nFunds available: $%2", mps_mission_deathcount,Hz_econ_funds];}] call CBA_fnc_globalExecute;
+            [-1, {hint "Civilian casualties are unacceptable. We lost $100000 as compensation, and we'll lose even more if this ends up in the news...";}] call CBA_fnc_globalExecute;
             civ_killed_count = civ_killed_count + 1;	
           };  
         } ];
@@ -447,103 +464,13 @@ _wait = true;
 
     if (civ_debug) then {[-1, {hint format["%1",_civarray];}] call CBA_fnc_globalExecute;};
 
-    if(_ForceSpawnAtHouses)then {
-
-      //in case of silly buildings
-      _civ setposatl _spawnpos;
-
-      if ((group _civ) != _group) then { 
-        
-        [_group,_pos,_radius] spawn {
-
-          private ["_group","_pos","_radius","_lead"];
-          
-          _group = _this select 0;
-          _pos = _this select 1;
-          _radius = _this select 2;
-          
-          sleep (random 4);    
-          
-          _lead = leader _group;
-          _lead setpos _pos;
-          sleep 0.1;
-          [_lead,_radius,true,[100,25],true] execVM "Garrison_script.sqf";
-        }; 
-        
-      };
-    };
 
   };
-
-  if(_ForceSpawnAtHouses)then {
-
-    {  
-      if((count (units _x)) > 0) then {   
-        
-        [_x,_pos,_radius] spawn {    
-
-          private ["_group","_pos","_radius","_lead"];
-          _group = _this select 0;
-          _pos = _this select 1;
-          _radius = _this select 2;
-
-          sleep (random 2);     
-          
-          _lead = leader _group;
-          _lead setpos _pos;   
-          sleep 0.1;
-          [_lead,_radius,true,[100,25],true] execVM "Garrison_script.sqf";
-        };
-      };
-
-    }foreach _civgroups;
-
-  };
-
-
-
-  /*
-//Try to spawn rest of civs later if desired number is not reached
-if(_wait) then {
-
-waituntil {sleep 60; civtotal < maxcivcount };
-
-//update safeactivation
-_safeactivation = true;
-[_trigger,_civarray,_safeactivation] call HZ_updatecivs;
-sleep 10;
-
-null = []spawn {[_trigger,_pos,_radius,_civarray,_safeactivation] call HZ_spawncivs;};
-};*/
-
-
-  //DESPAWN FUNC
-} else {
-
-  if (civ_debug) then {[-1, {hint "inside despawn script";}] call CBA_fnc_globalExecute; sleep 10;};
-  //Subtract civarray from total
-  _count = count _civarray;
-  civtotal = civtotal - _count;
-
-  //Clean civarray; delete all civilians that are alive. Leave the already dead for added ambiance. 
-
-  _killcivs = [];
-  {if(alive _x) then {_killcivs set [count _killcivs,_x];};}foreach _civarray;
-
-  //{_x setdamage 1;}foreach _killcivs;
-  {deletevehicle _x; deletegroup (group _x);} foreach _killcivs;
-
-  _civarray = [];
-
-};
-
-//use the name of the trigger to update the appropriate variable. Another script needs to be called with name of trigger since triggers don't accept returned variables
-
-_safeactivation = true;
 
 if (civ_debug) then {sleep 4; [-1, {hint format ["Script done. returned civarray: %1",_civarray];}] call CBA_fnc_globalExecute; sleep 5;};
 
-[_trigger,_civarray,_safeactivation] call HZ_updatecivs;
+_trigger setVariable ["civarray",_civarray];
+_trigger setVariable ["mutex",true];
 
 publicvariable "civtotal";
 

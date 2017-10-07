@@ -25,7 +25,9 @@ case (_this iskindof "CUP_SUV_Unarmed_Base") : {50000};  // Ref: Chevrolet Tahoe
 case (_this iskindof "SUV_01_base_F") : {77500};  // Ref: BMW X6
 case (_this iskindof "Offroad_02_base_F") : {32000};  // Ref: Jeep Wrangler
 case (_this iskindof "CUP_Ikarus_Base") : {7000};
+case (_this iskindof "CUP_C_Golf4_Civ_sport_Base") : {37500};
 case (_this iskindof "CUP_C_Golf4_Base") : {25000};
+case (_this iskindof "Hatchback_01_sport_base_F") : {38700};
 case (_this iskindof "Hatchback_01_base_F") : {26790}; //Ref: Infinity Q30
 case (_this iskindof "Quadbike_01_base_F") : {7000}; // Ref: Polaris Sportsman 570
 case (_this iskindof "CUP_C_OCTAVIA_CIV") : {30000};

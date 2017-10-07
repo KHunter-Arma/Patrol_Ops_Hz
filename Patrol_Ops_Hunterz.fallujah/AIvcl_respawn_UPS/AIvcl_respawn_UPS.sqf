@@ -27,7 +27,9 @@ _vehicle setvehiclelock "LOCKED";
 _vehistank = false;
 _isair = false;
 
-_respawnzone = [(((markerPos _respawn_point) select 0) + (random 100)),(((markerPos _respawn_point) select 1) + (random 100)),0];
+_signx = if ((random 1) < 0.5) then {-1} else {1};
+_signy = if ((random 1) < 0.5) then {-1} else {1};
+_respawnzone = [(((markerPos _respawn_point) select 0) + (random 715)*_signx),(((markerPos _respawn_point) select 1) + (random 715)*_signy),0];
 
 if(_vehicle iskindof "Air") then {_isair = true;};
 
@@ -93,7 +95,7 @@ sleep _wait;
 */
 
 _wait = 6;
-if(_side == west) then {_wait = 9;};
+//if(_side == west) then {_wait = 9;};
 
 waituntil {sleep _wait; (((count allunits) < Hz_max_ambient_units) && (!missionload) && (({isplayer _x} count nearestObjects[_respawnzone,["CAManBase"],5000] < 1) || hz_debug)) };
 
@@ -106,7 +108,9 @@ _group = createGroup _side;
 
   {
         _dude = _group createUnit [_x,_respawnzone, [], 100, "FORM"];
-        } foreach _escort;
+				[_dude] allowGetIn false;
+				
+  } foreach _escort;
  
 _group setvariable ["Hz_Patrolling",true]; 
  
@@ -133,6 +137,9 @@ sleep 0.01;
 */
 
 createVehicleCrew _vcl_new;
+sleep 0.1;
+(crew _vcl_new) joinSilent _group;
+sleep 0.1;
 _group addVehicle _vcl_new;
 
 

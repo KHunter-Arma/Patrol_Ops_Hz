@@ -36,7 +36,6 @@ if(!isDedicated)  then {
   [] spawn {   
     
     waituntil {sleep 0.1; !isnull player};
-    
     sleep 1;
     
     if (Hz_pops_enableRestrictions) then {
@@ -73,6 +72,8 @@ if(!isDedicated)  then {
     };
     
     if(isMultiplayer && Hz_pops_enableSlotRestrictions) then{[] execvm "Hz\Hz_scripts\Hz_restrict_slots.sqf";}; 
+		
+		call compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_setupAceInteractionMenuEntries.sqf";
     
   };
 
@@ -110,10 +111,9 @@ if (isServer) then {
     
   };
   
+	Hz_civ_initdone = false;
   call compile preprocessfilelinenumbers "hunterz_civ_init.sqf";   
   
-  HZ_spawncivs                    = compile preprocessFileLineNumbers "hunterz_civ_main.sqf";
-  HZ_updatecivs                   = compile preprocessFileLineNumbers "hunterz_civ_update.sqf";
   Hz_func_findSpawnPos            = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_func_findSpawnPos.sqf";
   Hz_task_reinforcements = compile preprocessfilelinenumbers "HZ\Hz_scripts\Hz_task_reinforcements.sqf";
   Hz_sinisterCiv = compile preprocessfilelinenumbers "HZ\Hz_scripts\Hz_sinisterCiv.sqf";

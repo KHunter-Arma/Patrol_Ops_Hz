@@ -41,4 +41,4 @@ CREATING ADDITIONAL CONFIGS
 
 /-------------------------------------------------------------*/
 
-#include "config_addons\config_vehicles_oa.sqf"
+#include "config_addons\config_vehicles_a3.sqf"

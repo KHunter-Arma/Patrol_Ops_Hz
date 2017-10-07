@@ -30,7 +30,7 @@ mps_co	= true; 	// Set false to turn off the use of advanced code of ArmA 2 Comb
 // Faction list can be found in the configuration files to choose from which ones to use.
 
 SIDE_A = [west,"BIS_US"];		// Player Side
-SIDE_B = [east,"BIS_TK"];	// Enemy Side
+SIDE_B = [east,"TKA"];	// Enemy Side
 SIDE_C = [east,"BIS_TK_INS"];	// Insurgent Side
 
 // Set total number of expected players
@@ -217,7 +217,7 @@ mps_path = "mps\";
         WaitUntil{ Receiving_finish };
         
         //global empty fuel stations
-        { _x setFuelCargo 0; } forEach (nearestObjects [markerpos "ao_centre", ["Land_Ind_FuelStation_Feed_EP1","Land_A_FuelStation_Feed"], 15000]);
+        { _x setFuelCargo 0; [_x,0] call ace_refuel_fnc_setFuel;} forEach (nearestObjects [markerpos "ao_centre", ["Land_Ind_FuelStation_Feed_EP1","Land_A_FuelStation_Feed"], 15000]);
         
   [] execVM (mps_path+"init_mps_client.sqf");
 

@@ -16,6 +16,7 @@ mps_opfor_inf = [];
 mps_opfor_riflemen = [];
 mps_opfor_ins_riflemen = [];
 mps_opfor_crewmen = [];
+mps_opfor_sniper = [];
 mps_opfor_ins = [];
 mps_opfor_ins_car = [];
 mps_opfor_ins_ncov = [];
@@ -30,9 +31,14 @@ mps_opfor_atkh = [];
 mps_opfor_atkp = [];
 mps_opfor_lbomber = [];
 mps_opfor_hbomber = [];
+mps_opfor_airsup = [];
+mps_opfor_static = [];
+mps_opfor_ins_static = [];
+mps_opfor_tankdestroyer = [];
 mps_opfor_ncov = [];
 mps_opfor_ncoh = [];
 mps_opfor_truck = [];
+mps_opfor_cargoplane = [];
 mps_ammo_loadable_veh = [];
 mps_repair_vehicles = [];
 mps_liftchoppers = [];
@@ -58,7 +64,7 @@ mps_recruit_unittypes = [];
 */
 
   if( (_x select 0) == (SIDE_A select 1) ) then {
-    mps_recruit_unittypes = mps_recruit_unittypes + [(_x select 2)];
+    //mps_recruit_unittypes = mps_recruit_unittypes + [(_x select 2)];
     if( (_x select 1) == "tl") then { mps_blufor_leader = mps_blufor_leader + [(_x select 2)]; };
   };
   if((_x select 0) == (SIDE_B select 1)) then {
@@ -81,6 +87,8 @@ mps_recruit_unittypes = [];
     if( (_x select 1) == "co") then { mps_opfor_commander = mps_opfor_commander + [(_x select 2)]; };
     if( (_x select 1) == "rf") then { mps_opfor_riflemen = mps_opfor_riflemen + [(_x select 2)]; };
     if( (_x select 1) == "cr") then { mps_opfor_crewmen = mps_opfor_crewmen + [(_x select 2)]; };
+		if( (_x select 1) == "sn") then { mps_opfor_sniper = mps_opfor_sniper + [(_x select 2)]; };
+		
   };
   if((_x select 0) == (SIDE_C select 1)) then {
     
@@ -145,10 +153,13 @@ mps_opfor_ins = +_temp2;
     case "attakp": { mps_opfor_atkp = mps_opfor_atkp + [(_x select 2)]};
 		case "Lbomber": { mps_opfor_lbomber = mps_opfor_lbomber + [(_x select 2)]; mps_opfor_atkp = mps_opfor_atkp + [(_x select 2)]};
     case "Hbomber": { mps_opfor_hbomber = mps_opfor_hbomber + [(_x select 2)]};
+		case "airsup": { mps_opfor_airsup = mps_opfor_airsup + [(_x select 2)]};
+		case "tdest": { mps_opfor_tankdestroyer = mps_opfor_tankdestroyer + [(_x select 2)]};		
 		case "cargoc": { mps_opfor_ncov = mps_opfor_ncov + [(_x select 2)]};
     case "cargoh": { mps_opfor_ncoh = mps_opfor_ncoh + [(_x select 2)]};
     case "truck": { mps_opfor_truck = mps_opfor_truck + [(_x select 2)]};
-      //	case "cargop": {  };
+		case "static": { mps_opfor_static = mps_opfor_static + [(_x select 2)]};
+    case "cargop": { mps_opfor_cargoplane = mps_opfor_cargoplane + [(_x select 2)] };
       default    {  };
     };
   };
@@ -158,23 +169,34 @@ mps_opfor_ins = +_temp2;
     case "attakc": { mps_opfor_ins_car = mps_opfor_ins_car + [(_x select 2)]};
     case "cargoc": { mps_opfor_ins_ncov = mps_opfor_ins_ncov + [(_x select 2)]};
     case "truck": { mps_opfor_ins_truck = mps_opfor_ins_truck + [(_x select 2)]};
+		case "static": { mps_opfor_ins_static = mps_opfor_ins_static + [(_x select 2)]};
       default {  };
     };
   };
+	
+	/*
+	
+  if( (_x select 3) > 0) then { mps_ammo_loadable_veh = mps_ammo_loadable_veh + [(_x select 2)]};
+  if( (_x select 4) > 0) then { mps_repair_vehicles = mps_repair_vehicles + [(_x select 2)]};
+	
 
-  //if( (_x select 3) > 0) then { mps_ammo_loadable_veh = mps_ammo_loadable_veh + [(_x select 2)]};
-  //if( (_x select 4) > 0) then { mps_repair_vehicles = mps_repair_vehicles + [(_x select 2)]};
-
-  if( (_x select 5) > 0 && (_x select 2) isKindof "AIR") then {
-    //	mps_liftchoppers = mps_liftchoppers + [(_x select 2)]
+  if ( (_x select 5) > 0 && (_x select 2) isKindof "AIR") then {
+    	mps_liftchoppers = mps_liftchoppers + [(_x select 2)]
   }else{
-    //	if( (_x select 5) > 0) then { mps_liftable = mps_liftable + [(_x select 2)]};
+    	if( (_x select 5) > 0) then { mps_liftable = mps_liftable + [(_x select 2)]};
   };
-  //if( (_x select 6) > 0) then { mps_transports = mps_transports + [(_x select 2)]};
-  //if( (_x select 7) > 20) then { mps_transportable_containers = mps_transportable_containers + [[(_x select 2),(_x select 7)]]};
-  //if( (_x select 7) > 0 && (_x select 7) <= 20 && (_x select 1) == "item") then { mps_loadable_objects = mps_loadable_objects + [[(_x select 2),(_x select 7)]]};
+	
+
+
+  if( (_x select 6) > 0) then { mps_transports = mps_transports + [(_x select 2)]};
+  if( (_x select 7) > 20) then { mps_transportable_containers = mps_transportable_containers + [[(_x select 2),(_x select 7)]]};
+  if( (_x select 7) > 0 && (_x select 7) <= 20 && (_x select 1) == "item") then { mps_loadable_objects = mps_loadable_objects + [[(_x select 2),(_x select 7)]]};
+
+	*/	
+	
 } forEach mps_config_vehicles;
 
+/*
 publicVariable "mps_class_commander";
 publicVariable "mps_class_tl";
 publicVariable "mps_class_mg";
@@ -184,21 +206,6 @@ publicVariable "mps_class_crew";
 publicVariable "mps_class_pilot";
 publicVariable "mps_class_eng";
 publicVariable "mps_class_sniper";
-publicVariable "mps_opfor_inf";
-publicVariable "mps_opfor_ins";
-publicVariable "mps_opfor_ins_car";
-publicVariable "mps_opfor_ins_ncov";
-publicVariable "mps_opfor_ins_truck";
-publicVariable "mps_opfor_leader";
-publicVariable "mps_opfor_armor";
-publicVariable "mps_opfor_apc";
-publicVariable "mps_opfor_aa";
-publicVariable "mps_opfor_car";
-publicVariable "mps_opfor_truck";
-publicVariable "mps_opfor_atkh";
-publicVariable "mps_opfor_atkp";
-publicVariable "mps_opfor_ncov";
-publicVariable "mps_opfor_ncoh";
 publicVariable "mps_ammo_loadable_veh";
 publicVariable "mps_repair_vehicles";
 publicVariable "mps_liftchoppers";
@@ -206,7 +213,7 @@ publicVariable "mps_liftable";
 publicVariable "mps_transports";
 publicVariable "mps_transportable_containers";
 publicVariable "mps_loadable_objects";
-
+*/
 
 //BAF Desert
 //mps_recruit_unittypes = mps_recruit_unittypes + ["Soldier_Bodyguard_M4_PMC","Soldier_Bodyguard_AA12_PMC","Soldier_Sniper_KSVK_PMC","Soldier_Medic_PMC","Soldier_MG_PKM_PMC","Soldier_AT_PMC","Soldier_Engineer_PMC","Soldier_GL_M16A2_PMC","Soldier_M4A3_PMC","Soldier_AA_PMC","BAF_crewman_DDPM","BAF_Soldier_FAC_DDPM","BAF_Soldier_AA_DDPM","BAF_Soldier_EN_DDPM","BAF_Soldier_GL_DDPM","BAF_Pilot_DDPM","BAF_Soldier_Medic_DDPM","BAF_Soldier_DDPM","BAF_Soldier_L_DDPM","BAF_Soldier_Marksman_DDPM","BAF_Soldier_AR_DDPM","BAF_Soldier_MG_DDPM","BAF_Soldier_HAT_DDPM","BAF_Soldier_AT_DDPM","BAF_Soldier_N_DDPM"];    

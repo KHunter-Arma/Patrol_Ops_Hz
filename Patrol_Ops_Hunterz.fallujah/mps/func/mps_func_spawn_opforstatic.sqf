@@ -36,11 +36,11 @@ if(not surfaceIsWater [_mgpos select 0, _mgpos select 1]) then{
     
     if(!_INS)then {
       
-      _mg = (["DSHKM_TK_INS_EP1","DSHKM_TK_INS_EP1","DSHKM_TK_INS_EP1","KORD_high_UN_EP1","KORD_high_UN_EP1","SPG9_TK_INS_EP1","ZU23_TK_INS_EP1","ZU23_TK_INS_EP1","AGS_TK_INS_EP1","DSHKM_TK_INS_EP1","SPG9_TK_INS_EP1","AGS_TK_INS_EP1","KORD_high_UN_EP1","SPG9_TK_INS_EP1","ZU23_TK_INS_EP1","AGS_TK_INS_EP1","KORD_high_UN_EP1","Igla_AA_pod_TK_EP1","Metis_TK_EP1"] call mps_getRandomElement) createVehicle _mgpos;       
+      _mg = (mps_opfor_static call mps_getRandomElement) createVehicle _mgpos;       
 
     } else {
 
-      _mg = (["DSHKM_TK_INS_EP1","DSHKM_TK_INS_EP1","DSHKM_TK_INS_EP1","SPG9_TK_INS_EP1","ZU23_TK_INS_EP1","ZU23_TK_INS_EP1","DSHKM_TK_INS_EP1","SPG9_TK_INS_EP1","SPG9_TK_INS_EP1","ZU23_TK_INS_EP1","Igla_AA_pod_TK_EP1"] call mps_getRandomElement) createVehicle _mgpos;
+      _mg = (mps_opfor_ins_static call mps_getRandomElement) createVehicle _mgpos;
 
     };
     

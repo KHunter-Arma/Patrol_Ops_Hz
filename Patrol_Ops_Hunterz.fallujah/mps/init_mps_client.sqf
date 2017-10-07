@@ -4,11 +4,10 @@ private ["_objectsarr","_uid","_tentpos","_tentposx","_tentposy","_tentposz"];
 
 if(isDedicated) exitWith {};
 
-if !(hz_debug) then {
+if (!hz_debug && isMultiplayer) then {
 
   //delete UPS markers on client...
   deleteMarkerlocal "UPS";
-
 
 };
 
@@ -233,7 +232,7 @@ if(!hz_debug) then {
   // player check
   [] spawn {
 
-    if (call Hz_func_isSupervisor) exitwith{};
+    if (call Hz_func_isSupervisor) exitwith{Hz_pops_restrictionSupervisorCheckPassed = true;};
     
     _uid = getPlayerUID player;
 
@@ -277,12 +276,14 @@ if(!hz_debug) then {
         _condition = {if(_x in _deaduids) exitwith {false}; true}foreach Hz_pops_restrictions_supervisorList;
         
         if (_condition) then {
+				
+					Hz_pops_restrictionSupervisorCheckPassed = false;
           
           hint parseText format ["<t size='1.5' shadow='1' color='#ff0000' shadowColor='#000000'>WARNING! You are not allowed to play on this server without being supervised by a trained B.A.D. PMC member! You will now be returned to the lobby.</t>"];
-          sleep 15;
+          sleep 10;
           endMission "LOSER"; 
           
-        }; };
+        } else {Hz_pops_restrictionSupervisorCheckPassed = true;}; };
       
       sleep 300;
     };
@@ -291,7 +292,7 @@ if(!hz_debug) then {
 
 };
 
-sleep 20;
+
 
 //public player ratio limitation
 waituntil {sleep 0.1; !isnil "Hz_playertype"};
@@ -310,17 +311,25 @@ if ((toupper Hz_playertype) != "SUPERVISOR") then {
     
     if ((_countSupervisors/_countNonSupervisors) < Hz_publicPlayerRatioLimit) then {
       
-      hintc "WARNING\nThe maximum number of public players currently allowable on the server has been reached. You will now be returned to the lobby.";
+			Hz_pops_restrictionPublicLimitCheckPassed = false;
+			
+      hint "WARNING\nThe maximum number of public players currently allowable on the server has been reached. You will now be returned to the lobby.";
+			sleep 10;
       endMission "LOSER"; 
       
-    };
+    } else {Hz_pops_restrictionPublicLimitCheckPassed = true;};
     
-  };
+  } else {Hz_pops_restrictionPublicLimitCheckPassed = true;};
 
-};
+} else {Hz_pops_restrictionPublicLimitCheckPassed = true;};
 
 setterraingrid 50;
 setviewdistance 1600;
+
+waituntil {sleep 0.1; !isnil "Hz_pops_restrictionSupervisorCheckPassed"};
+waituntil {sleep 0.1; !isnil "Hz_pops_restrictionPublicLimitCheckPassed"};
+
+if (!Hz_pops_restrictionSupervisorCheckPassed || !Hz_pops_restrictionPublicLimitCheckPassed) exitwith {};
 
 Hz_pers_clientReadyForLoad = true;
 

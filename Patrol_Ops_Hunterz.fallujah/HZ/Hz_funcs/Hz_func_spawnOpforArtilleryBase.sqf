@@ -58,10 +58,10 @@ while {true} do {
 
 		if(Hz_max_ambient_units > 0) then {
 			
-			Hz_max_ambient_units = Hz_max_ambient_units + 20;
-			Hz_max_units_before_task = Hz_max_units_before_task + 20;
-			Hz_max_allunits = Hz_max_allunits + 20;
-			Hz_max_deadunits = Hz_max_deadunits - 20;
+			Hz_max_ambient_units = Hz_max_ambient_units + 35;
+			Hz_max_units_before_task = Hz_max_units_before_task + 35;
+			Hz_max_allunits = Hz_max_allunits + 35;
+			Hz_max_deadunits = Hz_max_deadunits - 35;
 			
 		};
 
@@ -82,7 +82,7 @@ while {true} do {
 				_grp = creategroup (SIDE_B select 0);
 
 				for "_i" from 1 to 3 do {
-					_dude = _grp createUnit ["TK_Soldier_EP1", _artylocation, [], 50, "NONE"];
+					_dude = _grp createUnit [(mps_opfor_riflemen call bis_fnc_selectRandom), _artylocation, [], 50, "NONE"];
 					if(_i == 1) then {_dude assignasgunner _x; _dude moveingunner _x;} else {_dude assignascargo _x; _dude moveincargo _x;};
 				};
 				
@@ -102,7 +102,7 @@ while {true} do {
 				_grp = creategroup (SIDE_B select 0);
 
 				for "_i" from 1 to 2 do {
-					_dude = _grp createUnit ["TK_Soldier_EP1", _artylocation, [], 50, "NONE"];
+					_dude = _grp createUnit [(mps_opfor_riflemen call bis_fnc_selectRandom), _artylocation, [], 50, "NONE"];
 					if(_i == 1) then {_dude assignasgunner _x; _dude moveingunner _x;} else {_dude assignascargo _x; _dude moveincargo _x;};
 				};	
 				
@@ -185,10 +185,10 @@ while {true} do {
 
 		if(Hz_max_ambient_units > 0) then {
 			
-			Hz_max_ambient_units = Hz_max_ambient_units - 20;
-			Hz_max_units_before_task = Hz_max_units_before_task - 20;
-			Hz_max_allunits = Hz_max_allunits - 20;
-			Hz_max_deadunits = Hz_max_deadunits + 20;
+			Hz_max_ambient_units = Hz_max_ambient_units - 35;
+			Hz_max_units_before_task = Hz_max_units_before_task - 35;
+			Hz_max_allunits = Hz_max_allunits - 35;
+			Hz_max_deadunits = Hz_max_deadunits + 35;
 			
 		};
 

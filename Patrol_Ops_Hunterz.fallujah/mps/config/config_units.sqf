@@ -22,4 +22,4 @@ CREATING ADDITIONAL CONFIGS
 
 /-------------------------------------------------------------*/
 
-#include "config_addons\config_units_oa.sqf"
+#include "config_addons\config_units_a3.sqf"

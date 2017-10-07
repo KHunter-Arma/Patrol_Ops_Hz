@@ -21,7 +21,7 @@ if (mps_lock_action) then {
 	
 	if (   (!("WarfareBDepot" in _types)) || ( (!("CUP_FlagCarrierIONblack_PMC" in _types)) && (!("FlagCarrierUSA_EP1" in _types)) && (!("FlagCarrierNATO_EP1" in _types)) && (!("FlagCarrierBAF" in _types)) ) ) exitwith { 
 		
-		hint "You can only deploy a rallypoint in a FOB. Read the mission notes to learn how to build a FOB correctly in Hunter'z Patrol Ops.";
+		hint "You can only build your tent in a FOB.";
 	};
 
 	mps_lock_action = true;

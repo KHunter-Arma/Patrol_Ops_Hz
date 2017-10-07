@@ -67,7 +67,7 @@ _group setvariable ["Hz_noBehaviour",true];
 
 {
   
-  _sniper = _group createUnit ["TK_Soldier_SniperH_EP1",_position,[],0,"NONE"];
+  _sniper = _group createUnit [(mps_opfor_sniper call bis_fnc_selectRandom),_position,[],0,"NONE"];
   sleep 0.1;
   _sniper setskill 1;
   _sniperlist set [count _sniperlist, _sniper];
