@@ -1,9 +1,9 @@
 // Written by EightySix & Hunter
 
 //mps_self_heal_condition = "damage player > 0.2 && damage player < 0.9";
-mps_rally_condition = "player distance ( getMarkerPos format[""respawn_%1"",(SIDE_A select 0)] ) > 2000 && !RALLY_STATUS && ((position player) select 2) < 2";
+mps_rally_condition = "player distance ( getMarkerPos format[""respawn_%1"",(SIDE_A select 0)] ) > 2000 && !RALLY_STATUS && (((position player) select 2) < 2) && ((vehicle player) == player)";
 
-mps_rallypoint = player addaction ["<t color=""#ffc600"">Build Tent</t>",(mps_path+"action\mps_buildtent.sqf"),[],0,true,true,"",mps_rally_condition];
+mps_rallypoint = player addaction ["<t color=""#ffc600"">Build Tent</t>",(mps_path+"action\mps_buildtent.sqf"),[],0,false,false,"",mps_rally_condition];
 mps_client_hud_act = player addAction [localize "STR_Client_HUD_menu",(mps_path+"action\mps_hud_switch.sqf"),[],-1,false,false,"",""];
 //actionreset = 0;
 Killed_EH_block = false;
@@ -50,7 +50,7 @@ player addEventHandler ["Killed",{
     player removeaction mps_client_hud_act;     
     
     sleep 2;
-    WaitUntil{sleep 0.1; openMap false; 0 fadeSound 0; acre_sys_core_globalVolume = 0; alive player };
+    WaitUntil{openMap false; 0 fadeSound 0; acre_sys_core_globalVolume = 0; alive player };
     
     Killed_EH_block = false;
     
@@ -81,7 +81,7 @@ player addEventHandler ["Killed",{
     acre_sys_core_globalVolume = 1;
     0 fadesound 1;
     
-    mps_rallypoint = player addaction ["<t color=""#ffc600"">Build Rallypoint</t>",(mps_path+"action\mps_buildtent.sqf"),[],0,true,true,"",mps_rally_condition];
+    mps_rallypoint = player addaction ["<t color=""#ffc600"">Build Rallypoint</t>",(mps_path+"action\mps_buildtent.sqf"),[],0,false,false,"",mps_rally_condition];
     mps_client_hud_act = player addAction [localize "STR_Client_HUD_menu",(mps_path+"action\mps_hud_switch.sqf"),[],-1,false,false,"",""];
     cim_action_getDown1 = [['<t color="#FF0000">'+"Verbal Command: Get down!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getDown_Client.sqf"), [player,false,cursorTarget], 10, false, true, CIM_Module getVariable "nielsen_cim_key_getDown","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (cursorTarget isKindof ""MAN"") AND (cursorTarget distance player > 2)"]] call CBA_fnc_addPlayerAction;
     cim_action_getDownAll = [['<t color="#FF0000">'+"Verbal Command: Get down!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getDown_Client.sqf"), [player,true], 10, false, true, CIM_Module getVariable "nielsen_cim_key_getDown","cim_key_pressed AND !((cursorTarget isKindof ""MAN"") AND (side cursorTarget == CIVILIAN))"]] call CBA_fnc_addPlayerAction;
@@ -158,59 +158,209 @@ player addEventHandler ["Killed",{
 
 }];
 
+//used in respawn EH - normally defined only on server
+Hz_pers_fnc_convert1DArrayTo2D = {
+
+	_return = [[],[]];
+	_typeArray = _return select 0;
+	_countArray = _return select 1;
+
+	{
+		_index = _typeArray find _x;
+
+		if (_index == -1) then {
+			
+			_typeArray pushBack _x;
+			_countArray pushBack 1;
+			
+		} else {
+			
+			_countArray set [_index, (_countArray select _index) + 1]; 
+			
+		};
+
+	} foreach _this;
+
+	_return
+
+};
 
 player addeventhandler ["Respawn", {
-  
-  _unit = _this select 0;
-  _corpse = _this select 1;
 
-  [_unit,_corpse] spawn {           
+  _this spawn {           
     
     _unit = _this select 0;
     _corpse = _this select 1;
+				
+		_vestType = vest _corpse;
+		_uniformType = uniform _corpse;
+		_backpackType = backpack _corpse;
+		_headgear = headgear _corpse;
+		_goggles = goggles _corpse;
+		_assignedItems = assignedItems _corpse;
+		
+		_backpackMags = [];
 
-    _unit setvariable ["known_by_CAS",false,true];
+		if(!isnull (backpackContainer _corpse)) then {
+			_backpackMags = magazinesAmmoCargo backpackContainer _corpse;
+		};
 
-    removeallweapons _unit;
-    removeallitems _unit;
+		_vestMags = [];
+		
+		if(!isnull (vestContainer _corpse)) then {
+			_vestMags = magazinesAmmoCargo vestContainer _corpse;
+		};
 
-    [_unit, "ALL"] call ACE_fnc_RemoveGear;
-    [_unit,1,1,1,true] call ACE_fnc_PackIFAK;
-    [_corpse,0,0,0,true] call ACE_fnc_PackIFAK;
+		_uniformMags = [];
+		
+		if(!isnull (uniformContainer _corpse)) then {
+			_uniformMags = magazinesAmmoCargo uniformContainer _corpse;
+		};
 
+		_temp = [];
+		{
 
-    _weponback = [_corpse] call ACE_fnc_WeaponOnBackName;
-    [_corpse, ""] call ACE_fnc_AddWeaponOnBack;
+			if (!("CA_Magazine" in ([(configfile >> "cfgmagazines" >> _x), true] call bis_fnc_returnParents))) then {
 
-    [_unit, _weponback] call ACE_fnc_AddWeaponOnBack;
+				_temp pushback _x;
 
-    {_unit addweapon _x;} foreach weapons _corpse;
-    removeallitems _corpse;
-    {_unit addmagazine _x;} foreach magazines _corpse;
-    removeallweapons _corpse;
+			};
 
-    _MagazinesList = [_corpse] call ACE_fnc_RuckMagazinesList;
-    {
-      _success = [_unit, _x select 0, _x select 1] call ACE_fnc_PackMagazine; 
-    } forEach _MagazinesList;
+		} foreach uniformItems _corpse;
 
-    _WeaponsList = [_corpse] call ACE_fnc_RuckWeaponsList;
-    {
-      _success = [_unit, _x select 0, _x select 1] call ACE_fnc_PackWeapon;
-    } forEach _WeaponsList;
+		_uniformItems = _temp call Hz_pers_fnc_convert1DArrayTo2D;
 
-    [_corpse, "ALL"] call ACE_fnc_RemoveGear;
+		_temp = [];
+		{
+
+			if (!("CA_Magazine" in ([(configfile >> "cfgmagazines" >> _x), true] call bis_fnc_returnParents))) then {
+
+				_temp pushback _x;
+
+			};
+
+		} foreach vestItems _corpse;
+
+		_vestItems = _temp call Hz_pers_fnc_convert1DArrayTo2D;
+
+		_temp = [];
+		{
+
+			if (!("CA_Magazine" in ([(configfile >> "cfgmagazines" >> _x), true] call bis_fnc_returnParents))) then {
+
+				_temp pushback _x;
+
+			};
+
+		} foreach backpackItems _corpse;
+
+		_backpackItems = _temp call Hz_pers_fnc_convert1DArrayTo2D;
+
+		_weaponsItems = weaponsItems _corpse;
+		
+		removeAllWeapons _corpse;
+		removeAllItems _corpse;
+		removeAllAssignedItems _corpse;
+		removeUniform _corpse;
+		removeVest _corpse;
+		removeBackpack _corpse;
+		removeHeadgear _corpse;
+		removeGoggles _corpse;
+		
+		uisleep 3;
+
+    removeAllWeapons _corpse;
+		removeAllItems _corpse;
+		removeAllAssignedItems _corpse;
+		removeUniform _corpse;
+		removeVest _corpse;
+		removeBackpack _corpse;
+		removeHeadgear _corpse;
+		removeGoggles _corpse;
+		
+		uisleep 1;
+		
+		_unit addvest _vestType;
+		_unit addUniform _uniformType;
+		_unit addbackpack _backpackType;
+		_unit addHeadgear _headGear;
+		_unit addGoggles _goggles;
+		
+		uisleep 1;
+		
+		{
+			_magArray = _x select 4;
+			if ((count _magArray) > 0) then {
+				_unit addMagazine [(_magArray select 0),(_magArray select 1)];
+			};
+			
+			//Grenade launcher?
+			if ((typename (_x select 5)) == "ARRAY") then {
+				
+				_magArray = _x select 5;
+				if ((count _magArray) > 0) then {
+					_unit addMagazine [(_magArray select 0),(_magArray select 1)];
+				};
+
+			};
+
+			_unit addWeapon (_x select 0);
+
+		}foreach _weaponsItems;
+		
+		_weapon = primaryweapon _unit;
+		_unit selectweapon _weapon;
+		reload _unit;
+		_unit setWeaponReloadingTime [_unit, currentMuzzle _unit, 0];
+
+		_muzzles = getarray (configfile >> "cfgWeapons" >> _weapon >> "muzzles");
+		if ((count _muzzles) > 1) then {
+
+			_unit selectweapon (_muzzles select 1);
+			reload _unit;
+			_unit setWeaponReloadingTime [_unit, currentMuzzle _unit, 0];
+
+		};
+
+		_weapon = handgunWeapon _unit;
+		_unit selectweapon _weapon;
+		reload _unit;
+		_unit setWeaponReloadingTime [_unit, currentMuzzle _unit, 0];
+		
+		_container = vestContainer _unit;
+		{
+			_container addMagazineAmmoCargo [_x select 0, 1, _x select 1];
+		}foreach _vestMags;
+
+		{
+			_container addItemCargoGlobal [_x,(_vestItems select 1) select _foreachIndex];
+		} foreach (_vestItems select 0);
+
+		_container = backpackContainer _unit;
+		{
+			_container addMagazineAmmoCargo [_x select 0, 1, _x select 1];
+		}foreach _backpackMags;
+
+		{
+			_container addItemCargoGlobal [_x,(_backpackItems select 1) select _foreachIndex];
+		} foreach (_backpackItems select 0);
+
+		_container = uniformContainer _unit;
+		{
+			_container addMagazineAmmoCargo [_x select 0, 1, _x select 1];
+		}foreach _uniformMags;
+
+		{
+			_container addItemCargoGlobal [_x,(_uniformItems select 1) select _foreachIndex];
+		} foreach (_uniformItems select 0);
+		
+		{
+			_unit linkItem _x;
+		}foreach _assignedItems;
+		
     _corpse setvariable ["NoDelete",false,true];
 
-    //trying to solve that dreadful bug.... 
-    sleep 3;
-    //if((toupper _weponback) == (toupper (secondaryweapon player))) then {player removeweapon _weponback;};
-    //if((toupper _weponback) == (toupper (primaryweapon player))) then {player removeweapon _weponback;};
-    if(_weponback in (weapons player)) then {player removeweapon _weponback;};
-    [_corpse,0,0,0,true] call ACE_fnc_PackIFAK;
-
   };
-
 
 }];
 

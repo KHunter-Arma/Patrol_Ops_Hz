@@ -16,7 +16,7 @@ quake = {
 };
 
 
-wind = {
+windef = {
 	while {windv} do {
 	setwind [0.201112,0.204166,true];
 		_ran = ceil random 2;

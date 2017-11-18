@@ -95,8 +95,8 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
   //Find near roads
   _roadarr = [];
   if(_ForceSpawnAtHouses)then {
-    _roadarr = nearestobjects [_pos,["House"],_radius];  
-  }else {
+    _roadarr = nearestobjects [_pos,["House"],_radius];  		
+  } else {
     _roadarr = _pos nearroads _radius;   
 
 		if ((count _roadarr) < 100) then {
@@ -133,21 +133,56 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
     if (_remove) then {_roadarr = _roadarr - [_x];};
     
   } foreach _temp;  
-  
-  // if (count _roadarr < (_radius / 100))
+	
+	_bPosArr = [];
+	
+	if (_ForceSpawnAtHouses) then {
+	
+		//get a list of spawn positions from "houses" with at least 3 bpos		
+		{
+		
+			_bPos = _x buildingPos -1;
 
+			if ((count _bPos) > 2) then {
+			
+				_bPosArr = _bPosArr + _bPos;
+			
+			};
+			
+		} foreach _roadarr;
+		
+		//check if we have enough bPoses
+		_bposCount = count _bposArr;
+		if (_bposCount < _num) then {
+		
+			_bposCount = _num - _bposCount;
+			
+			for "_x" from 1 to _bposCount do {
+			
+			//add some filler spawn positions
+			_house = _roadarr call BIS_fnc_selectRandom;
+			_fillerPos = [[(getpos _house) select 0,(getpos _house) select 1, 0],50,1,0] call mps_getFlatArea;
+			
+			_bposArr pushback _fillerPos;
+			
+			};
+		
+		};
+	
+	};
+	
+	
   //SPAWN LOOP
   for "_x" from 1 to _num do {
-
-    //Choose random road. Try and make them spawn on the side rather than in the middle
-    _road = _roadarr call BIS_fnc_selectRandom;
-    //_spawnpos = [((getpos _road) select 0) - 8,((getpos _road) select 1) - 8,((getpos _road) select 2)];
-		
-		if (!_ForceSpawnAtHouses) then {_roadarr = _roadarr - [_road];};
 		
 		_spawnpos = [];
 		
 		if (!_ForceSpawnAtHouses) then {
+		
+		//Choose random road. Try and make them spawn on the side rather than in the middle
+    _road = _roadarr call BIS_fnc_selectRandom;
+		
+		_roadarr = _roadarr - [_road];
 		
     _spawnpos = (boundingbox _road) select 0;
     _spawnpos = _road modeltoworld _spawnpos;
@@ -155,18 +190,9 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
 		
 		} else {
 		
-			_bPos = _road buildingPos -1;
-		
-			if ((count _bPos) > 0) then {
-			
-			_spawnpos = _bPos call bis_fnc_selectrandom;
-			
-			} else {
-			
-			_spawnpos = [[(getpos _road) select 0,(getpos _road) select 1, 0],50,1,0] call mps_getFlatArea;
-			
-			};
-		
+			_spawnpos = _bposArr call BIS_fnc_selectRandom;
+			_bposArr = _bposArr - [_spawnpos];
+
 		};
 
     //Choose _civ behaviour (normal or hostile) based on probability. If hostile is chosen use hoscivarray
@@ -260,12 +286,12 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
             //  hint "spawned IED";
             _civ setskill 1;
             _civ addMagazine "IEDUrbanBig_Remote_Mag";
-            [_civ,[SIDE_A select 0],"CUP_Sh_122_HE"] execVM "suicideBomber.sqf";
+            [_civ,[SIDE_A select 0],"IEDUrbanBig_Remote_Ammo"] execVM "suicideBomber.sqf";
             //http://www.armaholic.com/page.php?id=20562
             
             _civ setunitpos "UP";
             
-            if (random 1 > 0.5) then {_civ addweapon "B_OutdoorPack_tan";};
+            if (random 1 > 0.5) then {_civ addBackpack "B_OutdoorPack_tan";};
 
           }; };			  
       } else {
@@ -282,7 +308,7 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
 				
 				_civ setposatl _spawnpos;
         
-        if ((random 1) > 0.96) then {_civ addweapon "B_OutdoorPack_tan";};          
+        if ((random 1) > 0.96) then {_civ addBackpack "B_OutdoorPack_tan";};          
         //  [_this] joinSilent civs;  
         group _civ setBehaviour "SAFE";      
         _civ addEventHandler ["killed", {// waituntil {!isnil mps_mission_deathcount; sleep 2;};

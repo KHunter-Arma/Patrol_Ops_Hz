@@ -65,6 +65,18 @@ mps_config_vehicles = mps_config_vehicles + [
 	["TKA","static", "LOP_NAPA_Static_M2"],
 	["TKA","static", "LOP_NAPA_Static_M2_MiniTripod"],
 	["TKA","static", "LOP_TKA_Static_AT4"],
-	["TKA","cargop", "CUP_B_C47_USA"]
+	["TKA","cargop", "CUP_B_C47_USA"],
+	
+	["INS","attakc","CUP_I_Datsun_PK_TK"],
+	["INS","attakc","CUP_I_Datsun_PK_TK_Random"],
+	["INS","attakc","LOP_AM_Offroad_M2"],
+	["INS","attakc","LOP_AM_Landrover_SPG9"],
+	["INS","attakc","LOP_AM_Landrover_M2"],
+	["INS","cargoc","CUP_I_Datsun_4seat_TK"],
+	["INS","truck","CUP_I_V3S_Open_TKG"],
+	["INS","truck","CUP_I_V3S_Covered_TKG"],
+	["INS","apc","CUP_I_BTR40_MG_TKG"],
+	["INS","mobiaa","CUP_I_Ural_ZU23_TK_Gue"],
+	["INS","tank","CUP_I_T34_TK_GUE"]	
         
 ];

@@ -2,7 +2,7 @@
 // Derived from BON_IF
 
 
-private ["_side","_pos","_radius","_mg","_grp","_gunner","_ang","_a","_b","_mgpos"];
+private ["_originalPos", "_side", "_INS", "_ang", "_radius", "_a", "_b", "_mgpos", "_mg", "_grp", "_dir", "_gunner", "_compName", "_comp","_pos", "_posgrp", "_hidetime"];
 if(!isServer) exitWith {};
 if(count _this < 1) exitWith{};
 

@@ -27,7 +27,12 @@ if((count _this) > 4) then {
 
 if((count _this) > 9) then {
   
-  _INS = true;
+	if ((_this select 9) == "INS") then {
+	
+		_INS = true;
+	
+	};	
+  
 };
 
 

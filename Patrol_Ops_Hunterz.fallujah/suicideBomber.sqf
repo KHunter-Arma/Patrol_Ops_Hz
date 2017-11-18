@@ -71,7 +71,8 @@ while {alive _bomber && _runCode == 1} do
         if (alive _bomber) then 
         
         {  _exppos = getPos _bomber;
-          _explosiveClass createVehicle _exppos;
+          _bomb = _explosiveClass createVehicle _exppos;
+					_bomb setDamage 1;
           sleep 0.5;
           deletevehicle _bomber;
           

@@ -1,7 +1,5 @@
 #include "\x\Hz\Hz_mod_persistency\parsing_descriptors.txt"
 
-if (!isServer) exitWith {};
-
 ["Hz_econ_funds",SINGLE_VARIABLE] call Hz_pers_API_addMissionVariable;
 ["civ_killed_count",SINGLE_VARIABLE] call Hz_pers_API_addMissionVariable;
 ["nuke_event",ONE_D_ARRAY] call Hz_pers_API_addMissionVariable;

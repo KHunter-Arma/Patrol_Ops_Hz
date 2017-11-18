@@ -5,6 +5,8 @@
 private ["_unit","_lives","_delay","_respawn_point","_marker","_group","_unitsGroup","_side","_AI_unitArray","_AI_magArray","_AI_wepArray"];
 if (!isServer) exitWith {};
 
+waitUntil {sleep 1; !isnil "UPS_respawn_initDone"};
+
 _unit 			= _this select 0;
 _lives			= _this select 1;
 _delay 			= _this select 2;
@@ -16,6 +18,17 @@ _side 			= side _unit;
 
 
 _group setvariable ["Hz_Patrolling",true];
+
+if (!isMultiplayer && !hz_debug_patrols) exitWith {
+
+	{
+
+		deletevehicle (vehicle _x);
+		deletevehicle _x;
+
+	} foreach units _unit;
+
+};
 
 sleep 2;
 sleep (random 5);
@@ -31,9 +44,6 @@ _AI_wepArray   = [];
  
  }foreach _unitsGroup;
 
-[_unit, _lives, _delay, _respawn_point, _marker, _group, _side, _AI_unitArray,_AI_magArray, _AI_wepArray,time] execVM "AI_respawn_UPS\AI_respawn_UPS.sqf";
 [_unit,_marker] execVM "AI_respawn_UPS\UPS_init.sqf";
-     
 
-
-if (true)exitWith {};
+[_unit, _lives, _delay, _respawn_point, _marker, _group, _side, _AI_unitArray,_AI_magArray, _AI_wepArray,time] call AI_respawn_UPS;

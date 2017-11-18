@@ -8,22 +8,28 @@ waituntil {!isnil "bis_fnc_init"};
 if( count mps_opfor_ncoh == 0 ) exitWith{};
 
 _helogrp = _this select 0;
-//_spawnpos = (_this select 1) call mps_get_position; sleep 1;
-_spawnpos = [-5000,10000,0];
+_spawnpos = _this select 1;
 
 _dest = (_this select 2) call mps_get_position;
 _paradrop = false;
+_groupType = mps_opfor_inf;
 if(count _this > 3) then { _paradrop = _this select 3};
+if(count _this > 4) then { _groupType = _this select 4};
 
 _flyin = 200;
-_droptype = (mps_opfor_ncoh) call mps_getRandomElement;
-_invisibleTarget = "HeliHEmpty" createVehiclelocal _dest;
-
+_droptype = mps_opfor_ncoh call mps_getRandomElement;
 
 if(_droptype isKindof "Plane") then { _paradrop = true };
 
-_dest = [_dest, 0, 200, 10, 0, .5, 0] call BIS_fnc_findSafePos; 
-_string = format _dest; if (!isNil "_string") then { _invisibleTarget setPos _dest; };
+_invisibleTarget = objnull;
+
+if (!_paradrop) then {
+
+	_dest = [_dest, 0, 200, 10, 0, .5, 0] call BIS_fnc_findSafePos; 
+	_invisibleTarget = "HeliHEmpty" createVehiclelocal _dest;
+	_string = format _dest; if (!isNil "_string") then { _invisibleTarget setPos _dest; };
+
+};
 
 _helo = [ [_spawnpos select 0, _spawnpos select 1, _flyin], random 360, _droptype, (SIDE_B select 0)] call BIS_fnc_spawnVehicle;
 
@@ -31,15 +37,18 @@ _drophelo = _helo select 0;
 _drophelogrp = _helo select 2;
 _drophelogrp setvariable ["Hz_supporting",true];
 _drophelogrp setvariable ["Hz_noBehaviour",true];
+_drophelogrp setvariable ["Hz_careless",true];
 
 sleep 1;
 
-_drophelogrp setBehaviour "COMBAT";
+_drophelogrp setBehaviour "CARELESS";
 _drophelogrp setCombatMode "YELLOW";
 
 _drophelo setvehiclelock "locked";
 
 if(count (units _helogrp) == 0) then {
+
+	_helogrp setvariable ["Hz_attacking",true];
   
   //_helogrp = [_spawnpos,"INF",(8 + random 5),10] call CREATE_OPFOR_SQUAD; 
 
@@ -47,31 +56,23 @@ if(count (units _helogrp) == 0) then {
 
   for "_i" from 1 to _count do {
     
-    _type = mps_opfor_inf call BIS_fnc_selectRandom;
+    _type = _groupType call BIS_fnc_selectRandom;
     _unit = _helogrp createUnit [_type, [-1000,-1000,0],[],50,"NONE"];
 
     _unit assignascargo _drophelo;
     _unit moveincargo _drophelo;
 
   };
-
+	/*
   (units _helogrp) allowgetin true;
   (units _helogrp) orderGetIn true;
-
+*/
 };
 
-
-
-_drophelo setDammage 0;
-_drophelo setFuel 1;
 _helopilot = driver _drophelo;
 _helopilot setSkill 1;
 _helopilot disableAI "TARGET";
 _helopilot disableAI "AUTOTARGET";
-
-{_x assignAsCargo _drophelo; _x moveInCargo _drophelo} forEach (Units _helogrp);
-
-{ if(vehicle _x == _x) then { _x setDamage 1; }; }forEach (units _helogrp);
 
 if (!isEngineOn _drophelo && alive _helopilot) then {
   if (!canMove _drophelo) then {
@@ -97,13 +98,14 @@ _drophelo doMove _dest;
 
   waitUntil { _drophelo distance _dest <= 650 || !canMove _drophelo || !alive _helopilot };
 
-  _newgrp = creategroup (SIDE_B select 0);
-  sleep 0.1;
-  _newgrp setvariable ["Hz_attacking",true];
+  _newgrp = _helogrp;
   _dudes = units _helogrp;
 
   if(_paradrop || !(toupper (behaviour _helopilot) IN ["CARELESS","SAFE","AWARE"]) ) then {
     
+		/*
+		 // ARMA 3 PORT
+		
     {	if( (assignedVehicleRole _x) select 0 == "Cargo")then {
         unassignVehicle _x;			
         _x action ["EJECT", vehicle _x];
@@ -115,7 +117,23 @@ _drophelo doMove _dest;
         
       };
       
-    } forEach _dudes;
+    } forEach _dudes;		
+	*/
+			
+		[_drophelo,100,_dudes] spawn paraEject;
+		
+		/*
+		_dudes allowGetIn false;
+		_dudes joinsilent _newgrp;
+		
+	*/
+	
+		{
+		
+			waituntil {uisleep 1; ((!alive _x) || (captive _x) || ((vehicle _x) != _drophelo))};
+			
+		} foreach _dudes;
+		
   }else{
     waitUntil{unitReady _drophelo || (((getposatl _drophelo) select 2) < 20) || !alive _helopilot};
 

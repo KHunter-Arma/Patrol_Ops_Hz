@@ -5,7 +5,7 @@
 //	[_position,"INF",5,50] spawn CREATE_OPFOR_SQUAD;
 //
 
-private ["_side","_strength","_unit","_allunits","_pos","_radius","_count","_spawnpos","_type","_patrol","_movetype","_x","_y","_Grp","_max","_skill","_upsmarker","_markerrange"];
+private ["_position", "_side", "_type","_x", "_strength", "_radius", "_patrol", "_movetype", "_y", "_Grp", "_spawnpos", "_count", "_allunits", "_max", "_skill", "_unit", "_upsmarker", "_markerrange","_pos"];
 
 if(count _this < 1) exitWith{};
 
@@ -19,7 +19,7 @@ if(count _this > 1) then{
 };
 
 _strength = 2 + (round random 3);
-if(count _this > 2) then{ _strength = _this select 2; };
+if(count _this > 2) then{ _strength = round (_this select 2); };
 
 _radius = 20;
 if(count _this > 3) then{ _radius = _this select 3; };
@@ -57,7 +57,7 @@ _skill = 1 + log(mps_mission_factor/4);
 
 for "_j" from 1 to _strength do {
   
-  _unit = _Grp createUnit [_allunits select (round random _max),_spawnpos,[],20,"NONE"];
+  _unit = _Grp createUnit [_allunits select (round random _max),_spawnpos,[],_radius,"NONE"];
   
 };
 
@@ -102,7 +102,7 @@ DEFENSIVE BEHAVIOUR HANDLED BY MOD
       //[unit,radius,stationary?,([occupy percentage,maximum],warping?,minimum height)] execVM "Garrison_script.sqf"
       if((_this select 0) call Hz_func_isurbanarea) then {
         
-        [leader _Grp,400,true,[100,2],true,2] execVM "Garrison_script.sqf";
+        [_Grp,400,true,[100,2],true,2] execVM "Garrison_script.sqf";
         
       } else {
         

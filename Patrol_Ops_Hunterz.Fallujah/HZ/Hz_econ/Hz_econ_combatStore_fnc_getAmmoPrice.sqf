@@ -4,40 +4,9 @@ _ammo = toupper _this;
 
 _return = switch (_ammo) do {
     		
-//disposeable anti-tank
-//AT-4s
-case "RHS_AMMO_M136_ROCKET": {0};
-case "RHS_AMMO_M136_HEDP_ROCKET": {0};
-case "RHS_AMMO_M136_HP_ROCKET": {0};
-
-//M72
-case "RHS_AMMO_M72A7_ROCKET": {0};
-
-//RSHG2
-case "RHS_RSHG2_ROCKET": {0};
-
-//RPG26
-case "RHS_RPG26_ROCKET": {0};
-
 //anti-tank 
 //SMAW
-case "RHS_AMMO_SMAW_HEAA": {235};
-case "RHS_AMMO_SMAW_HEDP": {185};
 case "RHS_AMMO_SMAW_SR": {7};
-
-//RPG7
-case "RHS_RPG7V2_PG7V": {90};
-case "RHS_RPG7V2_PG7VL": {140};
-case "RHS_RPG7V2_PG7VR": {250};
-case "RHS_RPG7V2_OG7V": {40};
-case "RHS_RPG7V2_TBG7V": {320}; 
-case "RHS_RPG7V2_TYPE63_AIRBURST": {92};
-
-//anti-air
-//igla
-case "RHS_AMMO_9K38": {139500};
-//stinger
-case "RHSAMMO_FIM92_MISSILE": {183300};
 
 //46x30 
 case "RHS_AMMO_46X30_FMJ": {0.5};

@@ -134,9 +134,7 @@ if(!Hz_overrideweather) then {
   sleep 5;
   publicvariable "weather";
   
-  [] execvm "logistics\weathersync.sqf";
-  
-  [] spawn {
+	[] spawn {
     
     sleep 150;
     call Hz_weather_fnc_AI_VD_fog_adjuster;
@@ -146,5 +144,7 @@ if(!Hz_overrideweather) then {
     publicvariable "weather_change";
     
   };
+	
+  call Hz_weather_syncClient;
   
 }; 

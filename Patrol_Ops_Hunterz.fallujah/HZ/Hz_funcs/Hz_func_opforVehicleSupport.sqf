@@ -7,7 +7,15 @@ _AAchance = _this select 3;
 _CarChance = _this select 4;                
 _INS = false;
 
-if((count _this) > 5) then {_INS = true;};
+if((count _this) > 5) then {
+
+	if ((_this select 5) == "INS") then {
+	
+		_INS = true;
+	
+	};	
+
+};
      
      
 _vehicletype = [];

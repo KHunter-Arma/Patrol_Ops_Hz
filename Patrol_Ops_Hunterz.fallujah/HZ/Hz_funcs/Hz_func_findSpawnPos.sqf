@@ -1,8 +1,17 @@
-private ["_marker1","_marker2","_taskpos","_minDistance","_blacklistpos","_spawnpos","_pos","_unitarray","_playerpos"];
+private ["_marker1","_maxDistance","_marker2","_taskpos","_minDistance","_blacklistpos","_spawnpos","_pos","_unitarray","_playerpos"];
 
 
 _taskpos = _this select 0;
 _minDistance = _this select 1;
+
+_maxDistance = _minDistance*2;
+
+if ((count _this) > 2) then {
+
+	_maxDistance = _this select 2;
+
+};
+
 _blacklistpos = [[markerpos "blacklist1",markerpos "blacklist2"]];
 _unitarray = [];
 _pos = [0,0,10000];
@@ -37,10 +46,10 @@ while {(format ["%1",_spawnpos]) == "[0,0,0]"} do {
     };
         }foreach _unitarray;
         
-_spawnpos = [_taskpos, _minDistance, _minDistance*2, 3, 0, 1, 0,_blacklistpos,[[(markerpos "patrol_respawn_n") select 0, (markerpos "patrol_respawn_n") select 1,0],[0,0,0]]] call BIS_fnc_findSafePos;
+_spawnpos = [_taskpos, _minDistance, _maxDistance, 3, 0, 1, 0,_blacklistpos,[[(markerpos "patrol_respawn_n") select 0, (markerpos "patrol_respawn_n") select 1,0],[0,0,0]]] call BIS_fnc_findSafePos;
 
 _tries = _tries + 1;
-if(_tries > 50) exitwith {};
+if(_tries > 100) exitwith {};
 
 };
 

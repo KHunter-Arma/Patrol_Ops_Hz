@@ -5,6 +5,8 @@
 if (!isServer) exitWith {};
 private ["_unit", "_lives", "_delay", "_respawn_point", "_marker", "_group", "_crew", "_side", "_isair","_AI_unitArray", "_escort", "_leader"];
 
+waitUntil {sleep 1; !isnil "UPS_respawn_initDone"};
+
 _unit 			= _this select 0;
 _lives			= _this select 1;
 _delay 			= _this select 2;
@@ -18,6 +20,17 @@ _isair = false;
 _group setvariable ["Hz_Patrolling",true];
 
 if(_this select 5) then {_isair = true;};
+
+if (!isMultiplayer && !hz_debug_patrols) exitWith {
+
+	{
+
+		deletevehicle (vehicle _x);
+		deletevehicle _x;
+
+	} foreach units _unit;
+
+};
 
 sleep 2;
 sleep (random 3);
@@ -35,11 +48,8 @@ _escort = [];
 
 {if((vehicle _x) == _x) then {_escort set [count _escort,typeof _x];};}foreach units _group;
 
-[_unit, _lives, _delay, _respawn_point, _marker, _crew, _side, _AI_unitArray,_escort,time] execVM "AIvcl_respawn_UPS\AIvcl_respawn_UPS.sqf";
 _leader = leader _group;
 
-sleep (random 30);
 [_leader,_marker,_isair] execVM "AIvcl_respawn_UPS\UPSvcl_init.sqf";
 
-if (true)exitWith {};
-
+[_unit, _lives, _delay, _respawn_point, _marker, _crew, _side, _AI_unitArray,_escort,time] call AIvcl_respawn_UPS;

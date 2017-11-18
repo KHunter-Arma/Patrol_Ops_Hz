@@ -8,9 +8,9 @@ maxcivcount = 60;
 civ_killed_count = 0;
 hz_civ_hostileChance = 0.1;
 
-allcivtypes = ["C_journalist_F","C_Journalist_01_War_F","C_man_p_beggar_F","LOP_Tak_Civ_Random"];
+allcivtypes = ["C_journalist_F","C_Journalist_01_War_F","C_man_p_beggar_F","LOP_Tak_Civ_Random","LOP_Tak_Civ_Random","LOP_Tak_Civ_Random","LOP_Tak_Civ_Random","C_man_p_beggar_F","LOP_Tak_Civ_Random","LOP_Tak_Civ_Random","LOP_Tak_Civ_Random","LOP_Tak_Civ_Random"];
 
-hoscivtypes = ["C_man_p_beggar_F","LOP_Tak_Civ_Random"];
+hoscivtypes = ["C_man_p_beggar_F","LOP_Tak_Civ_Random","LOP_Tak_Civ_Random","LOP_Tak_Civ_Random","LOP_Tak_Civ_Random"];
 
 if (civ_debug) then {[-1, {hint"Hunter'z Civilian Script initialised!";}] call CBA_fnc_globalExecute;};
 

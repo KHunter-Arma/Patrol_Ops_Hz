@@ -6,8 +6,6 @@ _unit 	= _this select 0;
 _marker	= _this select 1;
 
 _unit setSpeedMode "NORMAL";
-[group _unit,_marker,"CYCLE:",5,"SHOWMARKER"] spawn Hz_AI_UPS_Hz;
 
-//hint "UPS initialised!";
-
-if (true) exitWith {};
+//this is execvm'd so we just call from this thread
+[group _unit,_marker,"CYCLE:",5,"SHOWMARKER"] call Hz_AI_UPS_Hz;

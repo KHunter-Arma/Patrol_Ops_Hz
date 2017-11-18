@@ -12,35 +12,13 @@ if(count mps_loc_hills > 0) then {
 };
 */
 
-_list = switch (mps_mission_type) do {
-  // Capture
-case 0: {["cap_person","cap_town","cap_vehicle"]};
-  // Town Capture
-case 1: {["cap_town"]};
-  // RTF Tasks
-case 2: {["rtf_cache","rtf_camp","rtf_depot","rtf_escort","rtf_facility","rtf_minefield","rtf_radar","rtf_supplies","rtf_tower"]};
-  // Search and Rescue
-case 3: {["sad_cache","sad_camp","sar_drone","sar_pow","def_camp","def_town"]};
-  // Mix Easy
-case 4: {["cap_person","cap_town","cap_vehicle","rtf_cache","rtf_camp","rtf_depot","rtf_escort","rtf_facility","rtf_radar","sar_pow","sad_convoy","def_camp","def_town"]};
-  // Mix Hard
-case 5: {["cap_town","rtf_minefield","sad_cache","sad_camp","sad_depot","sad_scud","sad_tower","sar_drone","sad_convoy","sad_column","def_camp","def_town"]};
-
-  default {[
-    "cap_person","cap_town","cap_vehicle","rtf_camp","rtf_depot",
-    "rtf_escort","rtf_facility","rtf_minefield",
-    "rtf_supplies","rtf_tower","sad_camp","sad_depot",
-    "sad_scud",
-    "sad_tower","sad_column","sad_convoy",
-    "sar_drone","sar_pow",
-    "def_camp","def_town",
-    "sar_pow2"
-    
-    
-    ]};// tasks removed from rotation: rtf_cache, sad_cache, rtf_radar
-};
-
-if(hz_debug) then {_list = ["def_town"];};
+_list = [
+  //  "def_base",
+	//	"def_castle",
+		"esc_speaker"		
+    ];
+		
+if(hz_debug) then {_list = ["esc_speaker"];};
 
 //init
 taskrequested = false;
@@ -121,12 +99,11 @@ for "_i" from 1 to mps_mission_counter do {
       };   
       Hz_save_prev_tasks_list = _prev;
       
-      _script = [] execVM format["tasks\types\%1.sqf",_next];
-      
-      mps_mission_status = 1;
+			mps_mission_status = 1;
       Hz_patrol_task_in_progress = true;
       publicvariable "Hz_patrol_task_in_progress";
-      waitUntil{sleep 10; scriptdone _script};
+			
+      call compile preprocessFileLineNumbers format["tasks\types\%1.sqf",_next];      
       
       //reset flag so garrison script can keep working
       {_x setvariable ["occupied",false];} foreach Hz_resetBuildingVars;

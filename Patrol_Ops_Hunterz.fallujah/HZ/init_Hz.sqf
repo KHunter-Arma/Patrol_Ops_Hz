@@ -26,7 +26,6 @@ Hz_initdone = true;
 Hz_fnc_vehicleInit = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_vehicleInit.sqf";
 Hz_pops_fnc_storeBoughtVehicleInit = compile preprocessfilelinenumbers "Hz_pops_fnc_storeBoughtVehicleInit.sqf";
 Hz_func_isSupervisor = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_isSupervisor.sqf";
-Hz_func_check_vehicle = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_check_vehicle.sqf";
 Hz_func_find_nearest_ammo_crate = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_find_nearest_ammo_crate.sqf";
 Hz_sleep_mutex = false;
 
@@ -45,6 +44,8 @@ if(!isDedicated)  then {
       if ((_uid in Hz_pops_jointOpList) && (player iskindof Hz_JointOp_UnitBaseType)) exitwith {
         
         Hz_playertype = "jointOp";
+				Hz_econ_combatStore_storeClosed = true;
+				Hz_econ_vehicleStore_storeClosed = true;
         if(isMultiplayer && Hz_pops_enableSlotRestrictions) then{[] execvm "Hz\Hz_scripts\Hz_restrict_slots.sqf";}; 
         
       };      
@@ -58,10 +59,12 @@ if(!isDedicated)  then {
         if(_uid in Hz_pops_restrictions_publicNoRatioLimit) then {
           
           Hz_playertype = "publicNoLimit";
+					Hz_econ_vehicleStore_storeClosed = true;
           
         } else {
           
           Hz_playertype = "public";
+					Hz_econ_vehicleStore_storeClosed = true;
           
         };
         
@@ -114,6 +117,9 @@ if (isServer) then {
 	Hz_civ_initdone = false;
   call compile preprocessfilelinenumbers "hunterz_civ_init.sqf";   
   
+	Hz_fnc_calculateTaskReward = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_calculateTaskReward.sqf";
+	Hz_fnc_taskReward = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_taskReward.sqf";
+	Hz_fnc_taskSuccessCheckGenericConditions = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_taskSuccessCheckGenericConditions.sqf";
   Hz_func_findSpawnPos            = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_func_findSpawnPos.sqf";
   Hz_task_reinforcements = compile preprocessfilelinenumbers "HZ\Hz_scripts\Hz_task_reinforcements.sqf";
   Hz_sinisterCiv = compile preprocessfilelinenumbers "HZ\Hz_scripts\Hz_sinisterCiv.sqf";
@@ -124,11 +130,9 @@ if (isServer) then {
   Hz_func_create_roadside_IED = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_create_roadside_IED.sqf";
   Hz_func_isUrbanArea = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_isUrbanArea.sqf";
   Hz_func_setRealTime = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_setRealTime.sqf";
-  Hz_func_spawnOpforArtilleryBase = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_spawnOpforArtilleryBase.sqf";    
+  //Hz_func_spawnOpforArtilleryBase = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_spawnOpforArtilleryBase.sqf";    
   Hz_func_initOpforComposition = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_initOpforComposition.sqf";    
   
   if(!isMultiplayer) then {{if(!isplayer _x) then {deletevehicle _x};}foreach switchableunits;};
 
 };
-
-[]spawn compile preprocessfilelinenumbers "HZ\Hz_funcs\ACE\sys_repair\Hz_initLogistics.sqf";  

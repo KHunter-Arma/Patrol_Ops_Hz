@@ -1,8 +1,3 @@
-if (isnil "JOINTOP_MEDICS") then {JOINTOP_MEDICS = [];};
-if (isnil "JOINTOP_ARMORED") then {JOINTOP_ARMORED = [];};
-if (isnil "JOINTOP_PILOT") then {JOINTOP_PILOT = [];};
-if (isnil "JOINTOP_ARTY") then {JOINTOP_ARTY = [];};
-
 waituntil {introseqdone};
     
 if(player iskindof Hz_JointOp_UnitBaseType) then {
@@ -23,10 +18,6 @@ if(player iskindof Hz_JointOp_UnitBaseType) then {
     hint parseText format ["<t size='1.5' shadow='1' color='#00E500' shadowColor='#000000'>Authorization successful. Welcome %1.\nNotice: You have 5 minutes until you gather at least 8 of your unit members into this slot before you are kicked.</t>", name player];
     
     player setvariable ["JointOps",true,true];
-    
-    if((getplayeruid player) in JOINTOP_MEDICS) then {player setvariable["cms_medicClass",true];};    
-    
-    [] spawn compile preprocessfilelinenumbers "HZ\Hz_scripts\Hz_jointOpRestrictVehicles.sqf";
     
     [] spawn {
       

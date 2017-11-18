@@ -1,7 +1,7 @@
 // Written by BON_IF
 // Adpated by EightySix
 
-private ["_Grp","_type","_side","_vec","_unit","_pos","_radius","_count","_spawnpos"]; 
+private ["_type", "_side", "_radius", "_flying", "_Grp", "_y", "_spawnpos", "_count", "_vec", "_units","_pos","_crewtype", "_max", "_unit", "_airspawnpos", "_grp", "_veh", "_vehpos"];
 
 _type = _this select 0;
 _side = _this select 1;
@@ -35,9 +35,21 @@ _vec setvehiclelock "LOCKED";
 _crewtype = getArray (configFile >> "CfgVehicles" >> _type >> "typicalCargo");
 _max = (count _crewtype)-1;
 
-if(count(_crewtype - ["Soldier"] - ["SoldiereCrew"])==0) then{
-	if(_side==EAST) then{_crewtype = mps_opfor_crewmen}
-	else {_crewtype = [""]};
+if(count(_crewtype - ["Soldier"] - ["SoldiereCrew"])==0) then {
+
+	if(_side == (SIDE_B select 0)) then {
+
+		_crewtype = mps_opfor_crewmen;
+		
+	} else {
+		
+		if (_side == (SIDE_C select 0)) then {
+		
+			_crewtype = mps_opfor_ins_riflemen;
+		
+		};
+	};
+	
 };
 
 if((_vec emptyPositions "commander") > 0) then {

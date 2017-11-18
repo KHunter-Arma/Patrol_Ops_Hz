@@ -94,12 +94,10 @@ sleep _wait;
 
 */
 
-_wait = 6;
+_wait = 20;
 //if(_side == west) then {_wait = 9;};
 
-waituntil {sleep _wait; (((count allunits) < Hz_max_ambient_units) && (!missionload) && (({isplayer _x} count nearestObjects[_respawnzone,["CAManBase"],5000] < 1) || hz_debug)) };
-
-if(_isair) then {sleep (random 120);};
+waituntil {sleep (3 + (random _wait)); (((count allunits) < Hz_max_ambient_units) && (!missionload) && (({isplayer _x} count nearestObjects[_respawnzone,["CAManBase"],5000] < 1) || hz_debug)) };
 
 _vcl_new = objNull;
 
@@ -155,7 +153,6 @@ if (_type == "LOP_IA_M113_W") then {[_vcl_new, ["Desert",1],[]] call BIS_fnc_ini
 
 {//_x createUnit [_respawnzone, _group];
 _group createUnit [_x,_respawnzone, [], 100, "FORM"];
-sleep 0.01;
 } forEach _AI_unitArray;
 
 _unitsGroup = units _group;
@@ -200,10 +197,9 @@ _group setFormation "STAG COLUMN";
 _group setSpeedMode "NORMAL";
 _group setCombatMode "SAFE";
 
-[_vcl_new, _lives, _delay, _respawn_point, _marker, _crew, _side, _AI_unitArray,_escort,time] execVM "AIvcl_respawn_UPS\AIvcl_respawn_UPS.sqf";
 [_leader, _marker,_isair] execVM "AIvcl_respawn_UPS\UPSvcl_init.sqf";
 
 UPS_vcl_respawn_calls = UPS_vcl_respawn_calls + 1;
 publicvariable "UPS_vcl_respawn_calls";
 
-if (true) exitWith {};
+[_vcl_new, _lives, _delay, _respawn_point, _marker, _crew, _side, _AI_unitArray,_escort,time] call AIvcl_respawn_UPS;

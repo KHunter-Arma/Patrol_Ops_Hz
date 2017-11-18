@@ -59,10 +59,10 @@ sleep _wait;
 */
 
 
-_wait = 6;
-if(_side == west) then {_wait = 6;};
+_wait = 20;
+//if(_side == west) then {_wait = 6;};
 
-waituntil {sleep _wait; (((count allunits) < Hz_max_ambient_units) && (!missionload) && (({isplayer _x} count nearestObjects[(getMarkerPos _respawn_point),["CAManBase"],1000] < 1) || hz_debug))};
+waituntil {sleep (3 + (random _wait)); (((count allunits) < Hz_max_ambient_units) && (!missionload) && (({isplayer _x} count nearestObjects[(getMarkerPos _respawn_point),["CAManBase"],1000] < 1) || hz_debug))};
 
 _group = createGroup _side; 
 
@@ -89,13 +89,13 @@ for [{ _loop = 0 },{ _loop < count  _unitsGroup},{ _loop = _loop + 1}] do
 };
 
 _leader = leader _group;
-[_leader, _lives, _delay, _respawn_point, _marker, _group, _side, _AI_unitArray,_AI_magArray, _AI_wepArray,time] execVM "AI_respawn_UPS\AI_respawn_UPS.sqf"; 	
-[_leader, _marker] execVM "AI_respawn_UPS\UPS_init.sqf";
 
 UPS_respawn_calls = UPS_respawn_calls + 1;
 publicvariable "UPS_respawn_calls";
 
-if (true) exitWith {};
+[_leader, _marker] execVM "AI_respawn_UPS\UPS_init.sqf";
+
+[_leader, _lives, _delay, _respawn_point, _marker, _group, _side, _AI_unitArray,_AI_magArray, _AI_wepArray,time] call AI_respawn_UPS; 
 
  
 

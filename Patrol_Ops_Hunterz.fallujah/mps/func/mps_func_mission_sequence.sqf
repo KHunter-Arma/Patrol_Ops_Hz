@@ -11,9 +11,7 @@ _this spawn {
 	for "_i" from 0 to _count do { 
 		_mission = _this select _i;
 		mps_mission_status = 1;
-		sleep 1;
-		_task = [] execVM format["tasks\%1.sqf",_mission];
-		waitUntil{sleep 30; scriptDone _task};
+		call compile preprocessFileLineNumbers format["tasks\%1.sqf",_mission];
 		mps_mission_status = 0;
 	};
 

@@ -1,4 +1,4 @@
-	private ["_return","_ins","_side","_isTank","_unitType","_dude","_objects"];
+private ["_objects", "_ins", "_side", "_mannedVehicles", "_sentryType", "_return", "_grp", "_isTank", "_unitType", "_dude", "_unit","_pos"];
 	
 	_objects = _this select 0;
 	_ins = false;

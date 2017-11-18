@@ -3,10 +3,9 @@ if(isnil "Hz_overrideweather") then {Hz_overrideweather = false;};
 if(isnil "weather_change") then {weather_change = false;};
 Hz_sys_weather_fnc_weatherSync = compile preprocessfilelinenumbers "Hz\Hz_sys_weather\Hz_sys_weather_fnc_weatherSync.sqf";
 Hz_weather_fnc_AI_VD_fog_adjuster = compile preprocessfilelinenumbers "Hz\Hz_sys_weather\Hz_weather_fnc_AI_VD_fog_adjuster.sqf";
+Hz_weather_syncClient = compile preprocessfilelinenumbers "Hz\Hz_sys_weather\Hz_weather_syncClient.sqf";
 
 if (!isDedicated) then {
-
-  Hz_weather_syncClient = compile preprocessfilelinenumbers "Hz\Hz_sys_weather\Hz_weather_syncClient.sqf";
 
   "weather" addPublicVariableEventHandler {call Hz_weather_syncClient;};
 

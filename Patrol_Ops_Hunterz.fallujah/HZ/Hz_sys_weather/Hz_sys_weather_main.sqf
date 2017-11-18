@@ -32,10 +32,10 @@ if(weather_change) then {
 };
 
 //precise weather sync (now handled locally except for weather change)
-//high fog values can cause very sudden changes, so the loop must run very fast
+//high fog values can cause very sudden changes, so the loop must run very fast (Arma 2)
 while {!Hz_overrideweather} do {
 
-    //uisleep 1;
+    sleep 1;
     if(weather_change) then {
         
       waituntil {sleep 5; !weather_change};

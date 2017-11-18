@@ -16,9 +16,9 @@ publicvariable "nukeweather";
 [] execvm "lk\nuke\damage.sqf";
 if(isServer) exitwith {};
 
-nul = [] execVM "lk\nuke\nenvi.sqf";
+_nukedist = player distance nukepos;
 
-if (player distance nukepos < 4000) then {
+if (_nukedist > (viewDistance/3)) then {setViewDistance (_nukedist*3);};
 
 	setaperture 2;
 
@@ -33,10 +33,9 @@ if (player distance nukepos < 4000) then {
 
 	"dynamicBlur" ppEffectAdjust [1];
 	"dynamicBlur" ppEffectCommit 4;
-};
+
 //nul = [nukepos] execvm "lk\nuke\damage.sqf";
 
-uisleep 3;
 //*******************************************************************
 //*******************************************************************
 
@@ -93,23 +92,26 @@ _light setLightBrightness 1000000.0;
 //*******************************************************************
 //*******************************************************************
 
-uisleep 1.5*2;
+0 setfog 0;
+0 setrain 0;
+
+uisleep 3;
 
 _Wave setDropInterval 0.001;
 deletevehicle _top;
 deletevehicle _top2;
 
+uisleep 2;
 
-uisleep 3;
+if (_nukedist < 600) then {player say "nuke2s"} else {player say "nuke1s"};
+
+uisleep 1;
 
 player spawn envi;
 
 
 player spawn quake;
 
-
-if (player distance nukepos < 1000) then {player say "nuke2s"};
-if (player distance nukepos > 1000) then {player say "nuke1s"};
 
 uisleep 1;
 setaperture -1;
@@ -167,7 +169,7 @@ _Wave setParticleCircle [50, [-40, -40, 2.5]];
 
 ashhandle = player spawn ash;
 windv=true;
-player spawn wind;
+player spawn windef;
 30 setovercast 0.2;
 
 

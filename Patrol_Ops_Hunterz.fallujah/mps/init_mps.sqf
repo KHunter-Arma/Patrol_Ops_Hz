@@ -29,9 +29,9 @@ mps_co	= true; 	// Set false to turn off the use of advanced code of ArmA 2 Comb
 // NOTE: make sure side = faction type, e.g. [east,"BIS_US"] will result in US troops killing each other.
 // Faction list can be found in the configuration files to choose from which ones to use.
 
-SIDE_A = [west,"BIS_US"];		// Player Side
+SIDE_A = [west,"IA"];		// Player Side
 SIDE_B = [east,"TKA"];	// Enemy Side
-SIDE_C = [east,"BIS_TK_INS"];	// Insurgent Side
+SIDE_C = [east,"INS"];	// Insurgent Side
 
 // Set total number of expected players
 mps_ref_playercount = 5;	// Max number of players
@@ -179,6 +179,7 @@ mps_path = "mps\";
   CREATE_OPFOR_STATICVEHICLE		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_spawn_opforstaticVehicle.sqf");
   CREATE_OPFOR_SNIPERS		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_spawn_opforsnipers.sqf");
   CREATE_OPFOR_PARADROP		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_spawn_opforparadrop.sqf");
+	call compile preprocessFileLineNumbers "paradrop\init.sqf";
   CREATE_OPFOR_TOWER		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_spawn_opfortower.sqf");
   CREATE_OPFOR_PATROLS		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_spawn_opforpatrols.sqf");
   CREATE_OPFOR_AIRPATROLS		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_spawn_opforradar.sqf");

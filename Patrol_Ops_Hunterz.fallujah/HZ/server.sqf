@@ -66,6 +66,8 @@ while {true} do
     }foreach AllDead;
 
   };
+	
+	{deletegroup _x;}foreach allgroups;
   
   //50 minute loop
   if(_timescaler1 > 12) then {
@@ -74,8 +76,7 @@ while {true} do
     _temp = +tempbikes;
     {if(!isnull _x) then {if((count (crew _x)) < 1) then {_temp = _temp - [_x]; deletevehicle _x; };};}foreach tempbikes;
     tempbikes = +_temp;
-    publicvariable "tempbikes";
-    {deletegroup _x;}foreach allgroups;
+    publicvariable "tempbikes";    
     
   };
   
@@ -87,19 +88,9 @@ while {true} do
     {
       if ((_x iskindof "LandVehicle") || (_x iskindof "Air") || (_x iskindof "Boat")) then {if(!(_x getvariable ["NoDelete",false])) then {
           
-          // does not work reliably										
-          _flameEffects = _x getvariable ["ace_burnObj",[]];
-          {deletevehicle _x} foreach _flameEffects;
-          //alternative -- does not get rid of sound!!!!!!!!!!
-          {
-            deletevehicle _x;
-          }foreach nearestobjects [_x,["ace_flameout_1"],30];
-          //*sigh* delete sound source....
-          {
-            deletevehicle _x;
-          }foreach nearestobjects [_x,[],2];
-          deleteVehicle _x;	
-        };};
+          deleteVehicle _x;				
+				
+				};
       
     }foreach AllDead;      
     

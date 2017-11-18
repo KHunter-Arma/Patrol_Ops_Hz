@@ -20,7 +20,7 @@ R3F_LOG_CFG_can_be_lifted = R3F_LOG_CFG_can_be_lifted +
 	"cargonet_01_base_f",
 	"slingload_01_base_f"
 ];
-
+/*
 R3F_LOG_CFG_can_transport_cargo = R3F_LOG_CFG_can_transport_cargo +
 [
 	["cargo10_base_f", 40],
@@ -37,7 +37,7 @@ R3F_LOG_CFG_can_transport_cargo = R3F_LOG_CFG_can_transport_cargo +
 	["o_heli_transport_04_f", 5],
 	["o_heli_transport_04_fuel_f", 5]
 ];
-
+*/
 R3F_LOG_CFG_can_be_transported_cargo = R3F_LOG_CFG_can_be_transported_cargo +
 [
 	["gastank_base_f", 2],

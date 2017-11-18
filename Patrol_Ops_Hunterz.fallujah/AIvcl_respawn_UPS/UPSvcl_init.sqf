@@ -10,7 +10,12 @@ _group = group _unit;
 _vehicle = vehicle (leader _group);
 
 
-if(!_isair) then {[_group,_marker,"SHOWMARKER"] spawn Hz_AI_UPS_Hz;} else {
+if(!_isair) then {
+
+//this is execvm'd so we just call from this thread
+[_group,_marker,"SHOWMARKER"] call Hz_AI_UPS_Hz;
+
+} else {
 
   _group setvariable ["Hz_supporting",true];   
   _group setvariable ["Hz_noBehaviour",true]; 
@@ -145,7 +150,8 @@ sleep 5;
       _group setbehaviour "AWARE";
       _group setcombatmode "RED";
       
-      [_group,_marker,"SHOWMARKER"] spawn Hz_AI_UPS_Hz;
+			//this is execvm'd so we just call from this thread
+      [_group,_marker,"SHOWMARKER"] call Hz_AI_UPS_Hz;
       
     };
 
@@ -194,6 +200,3 @@ sleep 5;
   };
 
 };
-
-
-if (true) exitWith {};

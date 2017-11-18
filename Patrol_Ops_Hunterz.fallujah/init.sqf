@@ -1,3 +1,5 @@
+call compile preprocessFileLineNumbers "initUPSRespawn.sqf";
+call compile preprocessfilelinenumbers "lk\nuke\nenvi.sqf";
 Receiving_finish = false;
 if (!isDedicated) then {
 
@@ -11,7 +13,12 @@ if (is3DEN) then {
 
 };
 
-Hz_pops_fnc_handleFirstTimeLaunch = compile preprocessFileLineNumbers "Hz_pops_fnc_handleFirstTimeLaunch.sqf";
+if (isServer) then {
+
+	Hz_pops_fnc_handleFirstTimeLaunch = compile preprocessFileLineNumbers "Hz_pops_fnc_handleFirstTimeLaunch.sqf";
+	Hz_pops_fnc_setupRestrictions = compile preprocessFileLineNumbers "\Hz_cfg\Hz_econ\setup.sqf";
+
+};
 
 introseqdone = false; 
 #include "HZ\init_Hz.sqf" 
@@ -110,7 +117,7 @@ if(!isServer && nukeweather) then {
 player spawn envi;
 ashhandle = player spawn ash;
 windv=true;
-player spawn wind;
+player spawn windef;
  
 };
 // This is the intro Sequence. Edit this line to have your own text fill the screen on intro.
