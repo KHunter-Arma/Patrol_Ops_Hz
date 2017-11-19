@@ -268,11 +268,15 @@ case  "TRAININGMINE_MAG": {-1};
 case  "APERSMINE_RANGE_MAG": {-1};  //vs50
 case  "ACE_FLARETRIPMINE_MAG": {-1};
 
+case "LASERBATTERIES": {120};
+
 //cigs
 case "MURSHUN_CIGS_CIGPACK": {6};
 case "IMMERSION_POPS_POPPACK": {1};
 case "MURSHUN_CIGS_LIGHTER": {30};
 case "MURSHUN_CIGS_MATCHES": {1};
+
+
 
 default {-1};
 
