@@ -1,8 +1,5 @@
 private ["_return","_weapon"];
 
-_M203 = 1080;
-_M320 = 3500;
-
 _weapon = toupper _this;
 
 _return = switch (_weapon) do {

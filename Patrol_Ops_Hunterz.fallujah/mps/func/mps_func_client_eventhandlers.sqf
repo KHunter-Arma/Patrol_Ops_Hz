@@ -256,8 +256,10 @@ player addeventhandler ["Respawn", {
 
 		_backpackItems = _temp call Hz_pers_fnc_convert1DArrayTo2D;
 
-		_weaponsItems = weaponsItems _corpse;
-		
+		_weaponHolder = (nearestObjects [_corpse, ["WeaponHolderSimulated"],5]) select 0;
+		_weaponsItems = weaponsitemscargo _weaponHolder;
+
+		deletevehicle _weaponHolder;
 		removeAllWeapons _corpse;
 		removeAllItems _corpse;
 		removeAllAssignedItems _corpse;
@@ -289,9 +291,12 @@ player addeventhandler ["Respawn", {
 		uisleep 1;
 		
 		{
+			_unit addWeapon (_x select 0);
+			
+			//add magazine
 			_magArray = _x select 4;
 			if ((count _magArray) > 0) then {
-				_unit addMagazine [(_magArray select 0),(_magArray select 1)];
+				_unit addWeaponItem [(_x select 0), [(_magArray select 0), (_magArray select 1)]];
 			};
 			
 			//Grenade launcher?
@@ -299,33 +304,17 @@ player addeventhandler ["Respawn", {
 				
 				_magArray = _x select 5;
 				if ((count _magArray) > 0) then {
-					_unit addMagazine [(_magArray select 0),(_magArray select 1)];
+					_unit addWeaponItem [(_x select 0), [(_magArray select 0), (_magArray select 1)]];
 				};
 
 			};
+			
+			//attachments
+			_unit addWeaponItem [_x select 0, _x select 1];
+			_unit addWeaponItem [_x select 0, _x select 2];
+			_unit addWeaponItem [_x select 0, _x select 3];
 
-			_unit addWeapon (_x select 0);
-
-		}foreach _weaponsItems;
-		
-		_weapon = primaryweapon _unit;
-		_unit selectweapon _weapon;
-		reload _unit;
-		_unit setWeaponReloadingTime [_unit, currentMuzzle _unit, 0];
-
-		_muzzles = getarray (configfile >> "cfgWeapons" >> _weapon >> "muzzles");
-		if ((count _muzzles) > 1) then {
-
-			_unit selectweapon (_muzzles select 1);
-			reload _unit;
-			_unit setWeaponReloadingTime [_unit, currentMuzzle _unit, 0];
-
-		};
-
-		_weapon = handgunWeapon _unit;
-		_unit selectweapon _weapon;
-		reload _unit;
-		_unit setWeaponReloadingTime [_unit, currentMuzzle _unit, 0];
+		} foreach _weaponsItems;
 		
 		_container = vestContainer _unit;
 		{

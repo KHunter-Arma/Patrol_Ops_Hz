@@ -23,13 +23,13 @@ mps_respawn_process = [] spawn {
         //delay increased because black screen wasn't working when CMS active
 	sleep 2;
 
-	ppEffectDestroy AIS_effect_video_blur;
+	if (!isnil "AIS_effect_video_blur") then {ppEffectDestroy AIS_effect_video_blur};
 	AIS_effect_video_blur = ppEffectCreate ["DynamicBlur", 472];
 	AIS_effect_video_blur ppEffectEnable true;
 	AIS_effect_video_blur ppEffectAdjust [0.3+random 0.3];
 	AIS_effect_video_blur ppEffectCommit 2;
 
-	ppEffectDestroy AIS_effect_video_colour;
+	if (!isnil "AIS_effect_video_colour") then {ppEffectDestroy AIS_effect_video_colour};
 	AIS_effect_video_colour = ppEffectCreate ["ColorCorrections", 1587];
 	AIS_effect_video_colour ppEffectEnable true;
 	AIS_effect_video_colour ppEffectAdjust [0.25, 1, 0, [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
@@ -80,10 +80,10 @@ mps_respawn_process = [] spawn {
 
 	ppEffectDestroy AIS_effect_video_blur;
 	ppEffectDestroy AIS_effect_video_colour;
-
+/*
 	if(AIS_lives == 0) then { [] spawn mps_player_dead; };
 	if(AIS_lives > 0) then { AIS_lives = AIS_lives - 1; };
-
+*/
 	sleep 0.2;
 
 	121 cuttext [localize "STR_AIS_new_message", "PLAIN"]; sleep 3;

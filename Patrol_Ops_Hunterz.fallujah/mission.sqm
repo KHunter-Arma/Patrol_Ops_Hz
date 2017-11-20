@@ -8,7 +8,7 @@ class EditorData
 	toggles=1034;
 	class ItemIDProvider
 	{
-		nextID=3548;
+		nextID=3567;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={8518.5977,16.14547,1512.6477};
-		dir[]={-0.50635219,-0.49384651,0.70691097};
-		up[]={-0.28757402,0.8695491,0.40147921};
-		aside[]={0.81296295,-6.5565109e-007,0.5823155};
+		pos[]={5367.1909,47.383236,7259.8955};
+		dir[]={0.6923427,-0.64721751,-0.31922072};
+		up[]={0.58778113,0.76226574,-0.27100849};
+		aside[]={-0.41873339,-4.7165668e-007,-0.90817714};
 	};
 };
 binarizationWanted=0;
@@ -1008,7 +1008,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=675;
+		items=692;
 		class Item0
 		{
 			dataType="Object";
@@ -41183,6 +41183,235 @@ class Mission
 			};
 			id=3429;
 			type="nielsen_cim";
+		};
+		class Item675
+		{
+			dataType="Trigger";
+			position[]={5211.9053,7,7147.9961};
+			class Attributes
+			{
+				condition="call{true}";
+				onActivation="call{{if (typeof _x == """") then {_x setDammage 1}}foreach nearestobjects [thisTrigger,[],(triggerArea thisTrigger) select 0];}";
+				isServerOnly=1;
+			};
+			id=3550;
+			type="EmptyDetectorAreaR50";
+		};
+		class Item676
+		{
+			dataType="Trigger";
+			position[]={5012.4146,7.1815186,7131.0903};
+			class Attributes
+			{
+				condition="call{true}";
+				onActivation="call{{if (typeof _x == """") then {_x setDammage 1}}foreach nearestobjects [thisTrigger,[],(triggerArea thisTrigger) select 0];}";
+				isServerOnly=1;
+			};
+			id=3551;
+			type="EmptyDetectorAreaR50";
+			atlOffset=-0.077109337;
+		};
+		class Item677
+		{
+			dataType="Trigger";
+			position[]={4818.5732,7.392395,7060.2334};
+			class Attributes
+			{
+				condition="call{true}";
+				onActivation="call{{if (typeof _x == """") then {_x setDammage 1}}foreach nearestobjects [thisTrigger,[],(triggerArea thisTrigger) select 0];}";
+				isServerOnly=1;
+			};
+			id=3552;
+			type="EmptyDetectorAreaR50";
+			atlOffset=0.024966717;
+		};
+		class Item678
+		{
+			dataType="Trigger";
+			position[]={4614.0615,7.0172472,7020.5635};
+			class Attributes
+			{
+				condition="call{true}";
+				onActivation="call{{if (typeof _x == """") then {_x setDammage 1}}foreach nearestobjects [thisTrigger,[],(triggerArea thisTrigger) select 0];}";
+				isServerOnly=1;
+			};
+			id=3553;
+			type="EmptyDetectorAreaR50";
+		};
+		class Item679
+		{
+			dataType="Trigger";
+			position[]={4406.8906,6.9899902,6995.7109};
+			angle=-0.099061497;
+			class Attributes
+			{
+				condition="call{true}";
+				onActivation="call{{if (typeof _x == """") then {_x setDammage 1}}foreach nearestobjects [thisTrigger,[],(triggerArea thisTrigger) select 0];}";
+				isServerOnly=1;
+			};
+			id=3554;
+			type="EmptyDetectorAreaR50";
+			atlOffset=-1.8596649e-005;
+		};
+		class Item680
+		{
+			dataType="Trigger";
+			position[]={4191.8984,6.9899902,6968.0054};
+			class Attributes
+			{
+				condition="call{true}";
+				onActivation="call{{if (typeof _x == """") then {_x setDammage 1}}foreach nearestobjects [thisTrigger,[],(triggerArea thisTrigger) select 0];}";
+				isServerOnly=1;
+			};
+			id=3555;
+			type="EmptyDetectorAreaR50";
+			atlOffset=-1.8596649e-005;
+		};
+		class Item681
+		{
+			dataType="Trigger";
+			position[]={3959.8396,6.9899902,6938.459};
+			class Attributes
+			{
+				condition="call{true}";
+				onActivation="call{{if (typeof _x == """") then {_x setDammage 1}}foreach nearestobjects [thisTrigger,[],(triggerArea thisTrigger) select 0];}";
+				isServerOnly=1;
+			};
+			id=3556;
+			type="EmptyDetectorAreaR50";
+			atlOffset=-1.8596649e-005;
+		};
+		class Item682
+		{
+			dataType="Trigger";
+			position[]={3656.9924,6.9900208,6915.9634};
+			class Attributes
+			{
+				condition="call{true}";
+				onActivation="call{{if (typeof _x == """") then {_x setDammage 1}}foreach nearestobjects [thisTrigger,[],(triggerArea thisTrigger) select 0];}";
+				isServerOnly=1;
+			};
+			id=3557;
+			type="EmptyDetectorAreaR50";
+			atlOffset=1.1920929e-005;
+		};
+		class Item683
+		{
+			dataType="Trigger";
+			position[]={2574.3652,7,9588.1064};
+			class Attributes
+			{
+				condition="call{true}";
+				onActivation="call{{if (typeof _x == """") then {_x setDammage 1}}foreach nearestobjects [thisTrigger,[],(triggerArea thisTrigger) select 0];}";
+				isServerOnly=1;
+			};
+			id=3558;
+			type="EmptyDetectorAreaR50";
+		};
+		class Item684
+		{
+			dataType="Trigger";
+			position[]={2178.8425,7.0000153,9601.749};
+			class Attributes
+			{
+				condition="call{true}";
+				onActivation="call{{if (typeof _x == """") then {_x setDammage 1}}foreach nearestobjects [thisTrigger,[],(triggerArea thisTrigger) select 0];}";
+				isServerOnly=1;
+			};
+			id=3559;
+			type="EmptyDetectorAreaR50";
+			atlOffset=1.5258789e-005;
+		};
+		class Item685
+		{
+			dataType="Trigger";
+			position[]={2950.4805,7,9579.8643};
+			class Attributes
+			{
+				condition="call{true}";
+				onActivation="call{{if (typeof _x == """") then {_x setDammage 1}}foreach nearestobjects [thisTrigger,[],(triggerArea thisTrigger) select 0];}";
+				isServerOnly=1;
+			};
+			id=3560;
+			type="EmptyDetectorAreaR50";
+		};
+		class Item686
+		{
+			dataType="Trigger";
+			position[]={3181.0342,7,9206.3896};
+			class Attributes
+			{
+				condition="call{true}";
+				onActivation="call{{if (typeof _x == """") then {_x setDammage 1}}foreach nearestobjects [thisTrigger,[],(triggerArea thisTrigger) select 0];}";
+				isServerOnly=1;
+			};
+			id=3561;
+			type="EmptyDetectorAreaR50";
+		};
+		class Item687
+		{
+			dataType="Trigger";
+			position[]={3171.105,7,8757.3691};
+			class Attributes
+			{
+				condition="call{true}";
+				onActivation="call{{if (typeof _x == """") then {_x setDammage 1}}foreach nearestobjects [thisTrigger,[],(triggerArea thisTrigger) select 0];}";
+				isServerOnly=1;
+			};
+			id=3562;
+			type="EmptyDetectorAreaR50";
+		};
+		class Item688
+		{
+			dataType="Trigger";
+			position[]={2767.4143,7,8541.8848};
+			class Attributes
+			{
+				condition="call{true}";
+				onActivation="call{{if (typeof _x == """") then {_x setDammage 1}}foreach nearestobjects [thisTrigger,[],(triggerArea thisTrigger) select 0];}";
+				isServerOnly=1;
+			};
+			id=3563;
+			type="EmptyDetectorAreaR50";
+		};
+		class Item689
+		{
+			dataType="Trigger";
+			position[]={2233.647,7,8561.917};
+			class Attributes
+			{
+				condition="call{true}";
+				onActivation="call{{if (typeof _x == """") then {_x setDammage 1}}foreach nearestobjects [thisTrigger,[],(triggerArea thisTrigger) select 0];}";
+				isServerOnly=1;
+			};
+			id=3564;
+			type="EmptyDetectorAreaR50";
+		};
+		class Item690
+		{
+			dataType="Trigger";
+			position[]={1885.8966,7,8895.9756};
+			class Attributes
+			{
+				condition="call{true}";
+				onActivation="call{{if (typeof _x == """") then {_x setDammage 1}}foreach nearestobjects [thisTrigger,[],(triggerArea thisTrigger) select 0];}";
+				isServerOnly=1;
+			};
+			id=3565;
+			type="EmptyDetectorAreaR50";
+		};
+		class Item691
+		{
+			dataType="Trigger";
+			position[]={1873.4296,7,9354.7852};
+			class Attributes
+			{
+				condition="call{true}";
+				onActivation="call{{if (typeof _x == """") then {_x setDammage 1}}foreach nearestobjects [thisTrigger,[],(triggerArea thisTrigger) select 0];}";
+				isServerOnly=1;
+			};
+			id=3566;
+			type="EmptyDetectorAreaR50";
 		};
 	};
 };

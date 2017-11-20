@@ -121,7 +121,7 @@ player spawn windef;
  
 };
 // This is the intro Sequence. Edit this line to have your own text fill the screen on intro.
-if(!mps_debug && !hz_debug) then {["Online Combat Battalion and Hunter Present...",format["Patrol Ops Hunter'z\n%1",toupper(worldname)],"Mission framework by\n[OCB]EightySix","-Hunter'z-\nby K.Hunter of Bad Company"] spawn mps_intro; } else {introseqdone = true;};
+if(!mps_debug && !hz_debug) then {["Bad Company Presents...",format["Patrol Ops Hunter'z\n%1",toupper(worldname)],"Mission by\nK.Hunter","Patrol Ops Framework\nby EightySix"] spawn mps_intro; } else {introseqdone = true;};
 
 
 // This line prepares the outro. To call the outro, declare "mps_mission_finished = true" in a trigger or line of code to trigger the outro sequence.
