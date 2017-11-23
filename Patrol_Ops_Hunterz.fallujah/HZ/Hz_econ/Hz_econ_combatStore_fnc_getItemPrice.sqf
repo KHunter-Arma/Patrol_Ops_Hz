@@ -524,10 +524,10 @@ case "TRYK_TAC_SET_TAN": {-1};
 case "TRYK_TAC_SET_WH": {-1};
 
 //NVGs (DO NOT ADD TYRKS ITEMS)
-case "RHS_1PN138": {-1};
+case "RHS_1PN138": {1500};
 case "RHSUSF_ANPVS_14": {3595};
-case "RHSUSF_ANPVS_15": {-1};
-case "RHSWSF_RHINO" : {-1};
+case "RHSUSF_ANPVS_15": {12352};
+case "RHSUSF_RHINO" : {178};
 
 //BINOCULARS
 case "BINOCULAR": {250};
