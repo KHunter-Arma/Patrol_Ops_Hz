@@ -130,10 +130,10 @@ case "RHSUSF_5RND_300WINMAG_XM2010": {90};
 case "RHS_5RND_338LAPUA_T5000": {150};
 
 //9x19
-case "RHS_MAG_9X19MM_7N21_20": {-1};
-case "RHS_MAG_9X19MM_7N31_20": {-1};
-case "RHS_MAG_9X19MM_7N21_44": {-1};
-case "RHS_MAG_9X19MM_7N31_44": {-1};
+case "RHS_MAG_9X19MM_7N21_20": {20};
+case "RHS_MAG_9X19MM_7N31_20": {20};
+case "RHS_MAG_9X19MM_7N21_44": {30};
+case "RHS_MAG_9X19MM_7N31_44": {30};
 
 //9x39
 case "RHS_20RND_9X39MM_SP5": {12};
@@ -203,8 +203,8 @@ case  "ACE_CHEMLIGHT_ORANGE": {1};
 case  "CHEMLIGHT_RED": {1};
 case  "ACE_CHEMLIGHT_WHITE": {1};
 case  "CHEMLIGHT_YELLOW": {1};
-case  "RHS_MAG_FAKEL": {-1};
-case  "RHS_MAG_FAKELS": {-1};
+case  "RHS_MAG_FAKEL": {40};
+case  "RHS_MAG_FAKELS": {45};
 case  "I_IR_GRENADE": {200};
 case  "O_IR_GRENADE": {200};
 case  "B_IR_GRENADE": {200};
@@ -229,19 +229,19 @@ case  "RHS_MAG_M7A3_CS": {213};
 case  "SMOKESHELL": {52};
 case  "RHS_MAG_MK84": {175};
 case  "ACE_M84": {175};
-case  "RHS_MAG_MK3A2": {-1};
-case  "RHS_MAG_NSPD": {-1};
-case  "RHS_MAG_NSPN_GREEN": {-1};
-case  "RHS_MAG_NSPN_RED": {-1};
-case  "RHS_MAG_NSPN_YELLOW": {-1};
-case  "RHS_MAG_PLAMYAM": {-1};
-case  "RHS_MAG_RDG2_BLACK": {-1};
-case  "RHS_MAG_RDG2_WHITE": {-1};
-case  "RHS_MAG_RGD5": {-1};
-case  "RHS_MAG_RGN": {-1};
+case  "RHS_MAG_MK3A2": {50};
+case  "RHS_MAG_NSPD": {20};
+case  "RHS_MAG_NSPN_GREEN": {21};
+case  "RHS_MAG_NSPN_RED": {21};
+case  "RHS_MAG_NSPN_YELLOW": {21};
+case  "RHS_MAG_PLAMYAM": {21};
+case  "RHS_MAG_RDG2_BLACK": {20};
+case  "RHS_MAG_RDG2_WHITE": {20};
+case  "RHS_MAG_RGD5": {38};
+case  "RHS_MAG_RGN": {30};
 case  "MINIGRENADE": {34};
-case  "RHS_MAG_RGO": {-1};
-case  "RHS_MAG_ZARYA2": {-1};
+case  "RHS_MAG_RGO": {32};
+case  "RHS_MAG_ZARYA2": {22};
 
 //Explosives
 case  "APERSMINEDISPENSER_MAG": {-1};
@@ -250,7 +250,7 @@ case  "IEDURBANBIG_REMOTE_MAG": {-1};
 case  "RHSUSF_M112_MAG": {110};
 case  "DEMOCHARGE_REMOTE_MAG": {220};
 case  "RHSUSF_M112X4_MAG": {440};
-case  "RHSUSF_MINE_M14_MAG": {-1};
+case  "RHSUSF_MINE_M14_MAG": {58};
 case  "ATMINE_RANGE_MAG": {60};
 case  "SATCHELCHARGE_REMOTE_MAG": {200}; //m183
 case  "CLAYMOREDIRECTIONALMINE_REMOTE_MAG": {119};
@@ -268,11 +268,15 @@ case  "TRAININGMINE_MAG": {-1};
 case  "APERSMINE_RANGE_MAG": {-1};  //vs50
 case  "ACE_FLARETRIPMINE_MAG": {-1};
 
+case "LASERBATTERIES": {120};
+
 //cigs
 case "MURSHUN_CIGS_CIGPACK": {6};
 case "IMMERSION_POPS_POPPACK": {1};
 case "MURSHUN_CIGS_LIGHTER": {30};
 case "MURSHUN_CIGS_MATCHES": {1};
+
+
 
 default {-1};
 

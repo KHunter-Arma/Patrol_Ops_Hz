@@ -524,10 +524,10 @@ case "TRYK_TAC_SET_TAN": {-1};
 case "TRYK_TAC_SET_WH": {-1};
 
 //NVGs (DO NOT ADD TYRKS ITEMS)
-case "RHS_1PN138": {-1};
+case "RHS_1PN138": {1500};
 case "RHSUSF_ANPVS_14": {3595};
-case "RHSUSF_ANPVS_15": {-1};
-case "RHSWSF_RHINO" : {-1};
+case "RHSUSF_ANPVS_15": {12352};
+case "RHSUSF_RHINO" : {178};
 
 //BINOCULARS
 case "BINOCULAR": {250};
@@ -541,12 +541,12 @@ case "RHS_TR8_PERISCOPE_PIP": {174};
 case "ACE_VECTORDAY": {30000};
 case "ACE_VECTOR": {52923};
 case "ACE_YARDAGE450": {150};
-case "LASERDESIGNATOR": {-1};
-case "LASERDESIGNATOR_03": {-1};
-case "LASERDESIGNATOR_01_KHK_F": {-1};
+case "LASERDESIGNATOR": {12000};
+case "LASERDESIGNATOR_03": {12000};
+case "LASERDESIGNATOR_01_KHK_F": {12000};
 
 //MAPS
-case "ITEMMAP": {-1};
+case "ITEMMAP": {2000};
 
 //TERMINALS
 case "ITEMGPS": {1500};
@@ -563,17 +563,17 @@ case "ACE_ALTIMETER": {170};
 
 //Invent items
 case  "ACE_RANGETABLE_82MM": {5};
-case  "ACE_ADENOSINE": {-1};
+case  "ACE_ADENOSINE": {59};
 case  "ACE_ATRAGMX": {-1};
-case  "ACE_ATROPINE": {1};
+case  "ACE_ATROPINE": {25};
 case  "ACE_BANANA": {0.59};
-case  "ACE_FIELDDRESSING": {8};
-case  "ACE_ELASTICBANDAGE": {11};
-case  "ACE_QUIKCLOT": {30};
+case  "ACE_FIELDDRESSING": {2};
+case  "ACE_ELASTICBANDAGE": {7};
+case  "ACE_QUIKCLOT": {20};
 case  "ACE_SPRAYPAINTBLACK": {4};
-case  "ACE_BLOODIV": {-1};
-case  "ACE_BLOODIV_250": {-1};
-case  "ACE_BLOODIV_500": {-1};
+case  "ACE_BLOODIV": {420};
+case  "ACE_BLOODIV_250": {105};
+case  "ACE_BLOODIV_500": {210};
 case  "ACE_SPRAYPAINTBLUE": {4};
 case  "ACE_BODYBAG": {40};
 case  "ACE_CABLETIE": {0.10};
@@ -584,7 +584,7 @@ case  "ACE_DEADMANSWITCH": {5};
 case  "ACE_DEFUSALKIT": {100};
 case  "ACE_EARPLUGS": {15};
 case  "ACE_ENTRENCHINGTOOL": {38.25};
-case  "ACE_EPINEPHRINE": {69};
+case  "ACE_EPINEPHRINE": {55};
 case  "ACE_FLASHLIGHT_MX991": {20};
 case  "ACE_SPRAYPAINTGREEN": {4};
 case  "ACE_HUNTIR_MONITOR": {3600};
@@ -597,17 +597,17 @@ case  "ACE_FLASHLIGHT_XL50": {45};
 case  "ACE_MAPTOOLS": {45};
 case  "ACE_MICRODAGR": {2200};
 case  "MINEDETECTOR": {10000};
-case  "ACE_MORPHINE": {1};
-case  "ACE_PACKINGBANDAGE": {20};
-case  "ACE_PERSONALAIDKIT": {-1};
-case  "ACE_PLASMAIV": {100};
-case  "ACE_PLASMAIV_250": {25};
-case  "ACE_PLASMAIV_500": {50};
+case  "ACE_MORPHINE": {25};
+case  "ACE_PACKINGBANDAGE": {10};
+case  "ACE_PERSONALAIDKIT": {25};
+case  "ACE_PLASMAIV": {120};
+case  "ACE_PLASMAIV_250": {30};
+case  "ACE_PLASMAIV_500": {60};
 case  "ACE_RANGECARD": {5};
 case  "ACE_SPRAYPAINTRED": {4};
 case  "ACE_SALINEIV": {8};
-case  "ACE_SALINEIV_250": {8};
-case  "ACE_SALINEIV_500": {8};
+case  "ACE_SALINEIV_250": {4.5};
+case  "ACE_SALINEIV_500": {6};
 case  "ACRE_PRC117F_ID_1": {3706.55};
 case  "ACRE_PRC148_ID_1": {7500};
 case  "ACRE_PRC152_ID_1": {7000};
@@ -616,13 +616,15 @@ case  "ACRE_PRC77_ID_1": {325};
 case  "ACE_SANDBAG_EMPTY": {-1};
 case  "ACE_SPOTTINGSCOPE": {503.79};
 case  "ACE_TRIPOD": {782};
-case  "ACE_SURGICALKIT": {-1};
+case  "ACE_SURGICALKIT": {25};
 case  "TOOLKIT": {100};
 case  "ACE_TOURNIQUET": {30};
 case  "ACE_UAVBATTERY": {400};
 case  "ACE_WIRECUTTER": {272.41};
 case  "ACRE_SEM52SL_ID_1": {1500};
 case  "ACRE_SEM70_ID_1": {5000};
+
+
 
 //cigs
 case "EWK_CIGAR1": {14};
