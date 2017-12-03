@@ -1,0 +1,66 @@
+LANGUAGE,English,German
+STR_DESC_OPT0, Mission: Operation Time,"		Mission: Spielzeit"
+STR_DESC_OPT1, Mission: Operation Type,"		Mission: Spielart"
+STR_DESC_OPT2, Mission: Number of Operations,"	Mission: Anzahl Operationen"
+STR_DESC_OPT3, Mission: Enemy Difficulty,"	Mission: Feindliche Schwierigkeiten"
+STR_DESC_OPT4, Mission: Halo Limitation,"	Mission: Halo Einschrankung"
+STR_DESC_OPT5, Mission: Casualty Limitation,"	Mission: Unfall Einschrankung"
+STR_DESC_OPT6, Mission: Player Airdrop Ability,"	Mission: Absprung mit Fallschirm"
+STR_DESC_OPT7, Mission: Lift Chopper,"		Mission: Abschleppen mit Heli"
+STR_DESC_OPT8, Mission: Recruitable AI,"		Mission: KI Rekrutieren moeglich"
+STR_DESC_OPT9, Player: Injury Tolerance,"	Spieler: Schadenstoleranz"
+STR_DESC_OPT10,Player: Restrict 3rd Person,"	Spieler: 3. Person Ansicht"
+STR_DESC_OPT11,Player: Limitation of Class,"	Spieler: Klassenbegrenzung"
+STR_DESC_OPT12,Player: ACE Wounds,"		Spieler: ACE Wounds"
+STR_DESC_OPT13,Player: Ranking System,"		Spieler: Rangsystem aktivieren"
+STR_DESC_OPT14,Player: Gear by Rank,"		Spieler: Ausruestung nach Rang"
+STR_DESC_OPT15,Ambient: Roadside IED Potential,"	Umgebung: moegliche IEDs"
+STR_DESC_OPT16,Ambient: Civilians,"		Umgebung: Zivilisten"
+STR_DESC_OPT17,Ambient: Random Patrols,"		Umgebung: Aufstaendische"
+STR_DESC_OPT18,Ambient: Air Patrols,"		Umgebung: Luftpatrollien"
+STR_DESC_OPT19,Player: Max recruitable AI per player,"		something: something dark side"
+STR_DESC_OPT19,Player: Vehicle respawn (except bikes and ATVs),"		something: something dark side"
+STR_MISSION_NAME,Patrol Ops 2,Patrol Ops 2
+STR_MISSION_LOAD,Loading Mission,Loading Mission
+STR_MISSION_Welcome,Welcome %1,Willkommen %1
+STR_MISSION_Out_Win,Mission Successful. Well Done,Aufgabe Erfolgreiche. gut gemacht
+STR_MISSION_Out_lose,Mission Failed.. This Time..,nicht Aufgabe... dieses Mal
+STR_MISSION_thanks,Thanks for playing,Danke fur dieses Spiel
+STR_MISSION_veh_notice,"To fully repair and rearm vehicles, move near a vehicle service point and select the repair option","Um vollstandig zu reparieren und aufzurasten Fahrzeugen, in der Nahe ein Fahrzeug Service-Point zu bewegen, und wahlen Sie die Option Reparieren"
+STR_Client_BKPK_Select,Select a Backpack from the list,Wahlen Sie einen Rucksack aus der Liste
+STR_Client_BKPK_click,Click Image to Equip,Klicken Sie auf das Bild um Equip
+STR_Client_Repair_menu,Field Repair %1,Field Repair %1
+STR_Client_Unflip_menu,Unflip %1,Unflip %1
+STR_Client_HUD_menu,Settings,Einstellungen
+STR_Client_HUD_view,Player Settings,Spieler Einstellungen
+STR_Client_HUD_grass,Grass Detail,Grass Schicht
+STR_Client_HUD_toggle,Toggle Hud,Toggle Hud
+STR_Client_HUD_teamlist,Show Teams,Show Teams
+STR_Client_RANK_UP,You have been promoted to %1,Sie haben zum %1 befordert worden
+STR_Client_RANK_Down,You have been demoted to %1,Sie haben zum %1 degradiert worden
+STR_Client_Limit_Pilots,You must be a pilot to be able to fly a %1,"Sie mussen ein Pilot in der Lage sein, eine %1 fliegen"
+STR_Client_Limit_Crew,You must be a crewman to be able to drive a %1,"Sie mussen ein Besatzungsmitglied in der Lage sein, eine %1 Laufwerk"
+STR_Client_Limit_rank,You must have be a %2 to use this %1,You must be a %2 to use this %1
+STR_Client_Proxy_Alert,ALERT! You are too close to enemy base without clearance,Achtung! Sie sind zu nah an feindliche Basis zu schliessen spielfrei
+STR_Client_ammobox_load,Loading Ammobox...,Loading Munitionskiste...
+STR_Client_ammobox_cancel,Loading of Ammobox Cancelled,Verladen von Munitionskiste gestoppt
+STR_Client_ammobox_done,Ammobox Loaded,Munitionskiste geladen
+STR_Client_ammobox_void,An Ammobox is already loaded,Munitionskiste bereits geladen
+STR_Client_ammobox_none,No Ammobox has been loaded,Keine Munitionskiste geladen wurde
+STR_Client_ammobox_fast,Vehicle is moving too fast to deploy ammobox,Fahrzeug in Bewegung zu schnell um Munitionskiste einsetzen
+STR_Client_airstrike_menu,Call in Airstrike,Anruf Luftangriff
+STR_Client_airstrike_send,Request for airstrike on target acknowledged,Anfrage fur Luftangriff auf Ziel anerkannt
+STR_Client_airstrike_lock,Bomber is inbound and has confirmed TARGET LOCK,Flugzeug inbound und hat bestätigt Zielerfassung
+STR_Client_airstrike_away,Bomber reports Bomb away!,Flugzeug Berichte Bombe entfernt
+STR_Client_airstrike_lost,Bomber has NEGATIVE on TARGET LOCK. In hold pattern for 2 minutes,Flugzeug hat negative auf ein Ziel zu erwerben. In einer Warteschleife fur 2 Minuten
+STR_Client_airstrike_bmsg,%1 has called in a CAS Airstrike,%1 hat in einer engen airsupport Luftangriff genannte
+STR_Client_airstrike_busy,Airsupport already on mission,Unterstutzung aus der Luft bereits auf Mission
+STR_Client_airstrike_find,Laser designator is not on. Call aborted,Laser-Kennung ist nicht eingeschaltet. Rufen abgebrochen
+STR_AIS_button_MHQ_text,Redeploy at MHQ,Erneutes bei MHQ
+STR_AIS_button_Base_text,Redeploy at Base,Erneutes bei Base
+STR_AIS_button_RALLY_text,Redeploy at FOB,Erneutes bei FOB
+STR_AIS_dead_message,Your Soldier has been Killed,Ihre Soldaten getotet worden
+STR_AIS_new_message,Your Soldier has re-entered the battle,Ihre Soldaten hat der Kampf wieder aufgenommen
+STR_AIS_base_message,Your Soldier has arrived at base,Ihre Soldat hat an der Basis angekommen
+STR_AIS_mhq_message,Your Soldier has arrived at the MHQ,Ihre Soldat hat am MHQ angekommen
+STR_AIS_out_message,Your Soldier has been killed permanently,Ihre Soldat wurde permanent getotet

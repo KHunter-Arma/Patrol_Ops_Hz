@@ -1,0 +1,182 @@
+/*%FSM<COMPILE "C:\Games\Steam\steamapps\common\arma 2\Tools\FSM Editor Personal Edition\scriptedFSM.cfg, bloodloss">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"start",0,250,-373.662689,-270.615845,-333.829987,-243.358398,0.000000,"start"};
+item1[] = {"_",8,218,-51.170582,-269.230865,-14.013382,-247.324463,0.000000,""};
+item2[] = {"fade_out",2,250,-56.521717,-186.956528,-5.986601,-146.321106,0.000000,"fade" \n "out"};
+item3[] = {"sleep",4,218,-64.407600,-100.484978,1.512154,-59.180626,0.000000,"sleep"};
+item4[] = {"healed___died",4,218,116.722412,-113.377907,206.722412,-63.377907,50.000000,"healed /" \n "died"};
+item5[] = {"bleed_of_death",4,218,-259.866211,-120.066917,-155.819397,-75.418060,99.000000,"bleed of death"};
+item6[] = {"death",1,250,-234.448166,16.387945,-181.906342,46.989937,0.000000,"death"};
+item7[] = {"end",1,250,144.816040,86.512665,179.297653,116.445808,0.000000,"end"};
+item8[] = {"is_AI",4,4314,-382.201263,-207.757919,-324.170807,-176.201874,100.000000,"is AI"};
+item9[] = {"exit",1,250,-368.675690,-145.048447,-334.007568,-120.870018,0.000000,"exit"};
+link0[] = {0,1};
+link1[] = {0,8};
+link2[] = {1,2};
+link3[] = {2,3};
+link4[] = {2,4};
+link5[] = {2,5};
+link6[] = {3,2};
+link7[] = {4,7};
+link8[] = {5,6};
+link9[] = {8,9};
+globals[] = {0.000000,0,0,0,0,640,480,1,16,6316128,1,-436.303558,230.138504,201.227631,-388.508820,542,591,1};
+window[] = {0,-1,-1,-1,-1,761,25,1285,25,1,560};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "bloodloss";
+  class States
+  {
+    /*%FSM<STATE "start">*/
+    class start
+    {
+      name = "start";
+      init = /*%FSM<STATEINIT""">*/"_unit = _this;" \n
+       "_is_ai = not isPlayer _unit;" \n
+       "" \n
+       "_rambovalue = mps_ais_factor;" \n
+       "_randomfactor = 50 + random 50;" \n
+       "" \n
+       "_times_blinking = 15;" \n
+       "_fadetime = _times_blinking/100;" \n
+       "_fadecounter = 0;" \n
+       "" \n
+       "_time_of_agony = time;" \n
+       "" \n
+       "" \n
+       "_ppEff = ppEffectCreate [[""radialblur"", 170], [""colorcorrections"", 1580]];" \n
+       "{_x ppEffectEnable true} forEach _ppEff;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "is_AI">*/
+        class is_AI
+        {
+          priority = 100.000000;
+          to="exit";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_is_ai"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="fade_out";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "fade_out">*/
+    class fade_out
+    {
+      name = "fade_out";
+      init = /*%FSM<STATEINIT""">*/"_average_damage = (" \n
+       "	(_unit getVariable ""ais_headhit"") +" \n
+       "	(_unit getVariable ""ais_bodyhit"") +" \n
+       "	(_unit getVariable ""ais_overall"")" \n
+       ")/3;" \n
+       "if(isNil ""_average_damage"") then{_average_damage = 0.5};" \n
+       "" \n
+       "" \n
+       "_blinkduration = 0.5 + random 0.5;" \n
+       "_timeleft = (_rambovalue - _average_damage) * _randomfactor  -  (time - _time_of_agony) - _blinkduration;" \n
+       "_timeleft_normalized = 1 - (time - _time_of_agony)/((_rambovalue - _average_damage) * _randomfactor);" \n
+       "" \n
+       "" \n
+       "(_ppEff select 0) ppEffectAdjust [random 0.025, random 0.025, 0.0, 0.0]; " \n
+       "(_ppEff select 0) ppEffectCommit 0.5; " \n
+       "(_ppEff select 1) ppEffectAdjust [_timeleft_normalized, 1.0, 0.0, random 0.75, 0.0, 0.0, random 0.75, 0.0, 0.0, 1.0, 1.0, 0.199, 0.587, 0.114, 1.0]; " \n
+       "(_ppEff select 1) ppEffectCommit 0.5;" \n
+       "" \n
+       "_timenow = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "bleed_of_death">*/
+        class bleed_of_death
+        {
+          priority = 99.000000;
+          to="death";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_timeleft <= 0"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "healed___died">*/
+        class healed___died
+        {
+          priority = 50.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"not (_unit getVariable ""ais_agony"") || not alive _unit"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "sleep">*/
+        class sleep
+        {
+          priority = 0.000000;
+          to="fade_out";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"time - _timenow > _blinkduration"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "death">*/
+    class death
+    {
+      name = "death";
+      init = /*%FSM<STATEINIT""">*/"if(alive _unit) then{_unit setDamage 1};" \n
+       "" \n
+       "{_x ppEffectEnable false} forEach _ppEff;" \n
+       "ppEffectDestroy _ppEff;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "end">*/
+    class end
+    {
+      name = "end";
+      init = /*%FSM<STATEINIT""">*/"{_x ppEffectEnable false} forEach _ppEff;" \n
+       "ppEffectDestroy _ppEff;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "exit">*/
+    class exit
+    {
+      name = "exit";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="start";
+  finalStates[] =
+  {
+    "death",
+    "end",
+    "exit",
+  };
+};
+/*%FSM</COMPILE>*/
