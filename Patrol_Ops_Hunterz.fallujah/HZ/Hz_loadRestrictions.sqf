@@ -1,1 +1,0 @@
-#include "\Hz_cfg\Hz_econ\setup.sqf"
