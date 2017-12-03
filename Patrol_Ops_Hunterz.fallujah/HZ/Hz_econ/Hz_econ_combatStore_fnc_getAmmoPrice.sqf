@@ -3,8 +3,8 @@ private ["_return","_ammo"];
 _ammo = toupper _this;
 
 _return = switch (_ammo) do {
-    		
-//anti-tank 
+ 
+//AT 
 //SMAW
 case "RHS_AMMO_SMAW_SR": {7};
 
