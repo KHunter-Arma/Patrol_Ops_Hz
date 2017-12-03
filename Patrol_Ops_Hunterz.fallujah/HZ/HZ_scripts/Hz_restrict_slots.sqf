@@ -1,5 +1,8 @@
 waituntil {introseqdone};
     
+if((getplayeruid player) in Hz_Officers) then {player setvariable ["TL",true,true];};
+if(((getplayeruid player) in Hz_pops_restrictions_supervisorList) || ((getplayeruid player) in Hz_pops_restrictions_publicNoRatioLimit)) then {player setvariable ["PMC",true,true];};
+		
 if(player iskindof Hz_JointOp_UnitBaseType) then {
   
   if ((tolower Hz_playertype) != "jointop") then {

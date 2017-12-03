@@ -130,7 +130,7 @@ for "_i" from 1 to _count do {
     };
   case "APC"  : {
       
-      _vehtype = mps_opfor_apc call BIS_fnc_selectRandom;
+      _vehtype = mps_opfor_apc call mps_getrandomelement;
       _vehgrp = creategroup east;
       _veh = ([_randspawnpos, random 360, _vehtype, _vehgrp] call BIS_fnc_spawnVehicle) select 0;
       _veh setvehiclelock "LOCKED";

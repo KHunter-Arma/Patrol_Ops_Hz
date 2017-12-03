@@ -70,7 +70,7 @@ if(!isDedicated)  then {
         
       };
       
-      if(hz_debug) then {Hz_playertype = "supervisor";};
+      if(hz_debug) then {Hz_playertype = "supervisor"; Hz_econ_vehicleStore_storeClosed = false;};
       
     };
     

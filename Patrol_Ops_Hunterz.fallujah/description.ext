@@ -36,7 +36,6 @@ class cfgFunctions
 				class setVehicleInit {
 					
 					file = "Hz\Hz_funcs\Hz_fnc_setVehicleInit.sqf";		
-          preInit = 1;          
 					
 				};           
         

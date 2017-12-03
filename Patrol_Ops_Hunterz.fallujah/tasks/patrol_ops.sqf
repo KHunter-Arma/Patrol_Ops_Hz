@@ -15,10 +15,11 @@ if(count mps_loc_hills > 0) then {
 _list = [
   //  "def_base",
 	//	"def_castle",
-		"esc_speaker"		
+	//	"esc_speaker",
+		"esc_supplies"
     ];
 		
-if(hz_debug) then {_list = ["esc_speaker"];};
+if(hz_debug) then {_list = ["esc_supplies"];};
 
 //init
 taskrequested = false;
@@ -66,9 +67,9 @@ for "_i" from 1 to mps_mission_counter do {
       
       waituntil {sleep 5; 
         (
-        ((count playableunits) > 3) && 
-        (({_x getvariable ["TL",false]} count playableunits) > 0) &&
-        (({_x getvariable ["PMC",false]} count playableunits) > 2)
+        ((count playableunits) >= Hz_pops_minPlayerCountForTask) && 
+        (({_x getvariable ["TL",false]} count playableunits) >= Hz_pops_minOfficerCountForTask) &&
+        (({_x getvariable ["PMC",false]} count playableunits) >= Hz_pops_minUnitMemberCountForTask)
         )};
       
     };
@@ -84,9 +85,9 @@ for "_i" from 1 to mps_mission_counter do {
     
     //check to see conditions are still true after last wait
     if (
-        (((count playableunits) > 3) && 
-          (({_x getvariable ["TL",false]} count playableunits) > 0) &&
-          (({_x getvariable ["PMC",false]} count playableunits) > 2)) 
+        (((count playableunits) >= Hz_pops_minPlayerCountForTask) && 
+        (({_x getvariable ["TL",false]} count playableunits) >= Hz_pops_minOfficerCountForTask) &&
+        (({_x getvariable ["PMC",false]} count playableunits) >= Hz_pops_minUnitMemberCountForTask)) 
         || hz_debug
         ) 
     

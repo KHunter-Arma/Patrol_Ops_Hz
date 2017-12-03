@@ -6,6 +6,14 @@ private ["_buildingheight","_sniper","_building","_highbuildings","_buildingxbou
 if(!isServer) exitWith{};
 
 _position = _this select 0;
+_radius = 350;
+_maxHeight = 15;
+_debug = false;
+
+if ((count _this) > 1) then {_radius = _this select 1;};
+if ((count _this) > 2) then {_maxHeight = _this select 2;};
+
+
 _sniperlist = [];
 
 /*
@@ -50,13 +58,13 @@ _locationheight = (getposASL _helih) select 2;
 deleteVehicle _helih;*/
 
 
-_buildings = nearestObjects [_position, ["Building"], 700];
+_buildings = nearestObjects [_position, ["Building"], _radius];
 _highbuildings = [];
 
 {
-  _buildingheight = ((boundingbox _x select 1) select 2);
+  _buildingheight = ((boundingboxreal _x select 1) select 2)*2;
   
-  if(_buildingheight > 15) then {_highbuildings set [count _highbuildings, _x];};
+  if(_buildingheight > _maxHeight) then {_highbuildings set [count _highbuildings, _x];};
   // if (count _highbuildings > 10) exitwith{};
 }foreach _buildings;
 
@@ -67,7 +75,7 @@ _group setvariable ["Hz_noBehaviour",true];
 
 {
   
-  _sniper = _group createUnit [(mps_opfor_sniper call bis_fnc_selectRandom),_position,[],0,"NONE"];
+  _sniper = _group createUnit [(mps_opfor_sniper call mps_getrandomelement),_position,[],0,"NONE"];
   sleep 0.1;
   _sniper setskill 1;
   _sniperlist set [count _sniperlist, _sniper];
@@ -87,14 +95,54 @@ _group setCombatMode "YELLOW";
 }, _group] call CBA_fnc_globalExecute;
 
 {
-  _building = (_highbuildings call BIS_fnc_selectRandom); // Select a random building from the array
+  _building = (_highbuildings call mps_getrandomelement); // Select a random building from the array
   _highbuildings = (_highbuildings - [_building]); // Delete the building from the array, so it wont get used again
-  _buildingheight = ((boundingbox _building select 1) select 2);
-  //_x disableai "move";
-  _buildingxbound = ((boundingbox _building select 1) select 0);
-  _buildingybound = ((boundingbox _building select 1) select 1);
-  _x setPosATL [(getPosATL _building select 0) + (_buildingxbound / 2), (getPosATL _building select 1) + (_buildingybound / 2), _buildingheight + 50]; // Set the unit pos to 50 Above Terrain level, he will fall down onto the building
-  _x spawn {_this setVariable ["ace_w_eh",0]; _this allowdamage false; sleep 15; _this allowdamage true; _this setVariable ["ace_w_eh",1];_this setUnitPos "MIDDLE";}; // Prevent falling damage
+	
+	_bpos = [_building] call BIS_fnc_buildingPositions;
+	_noHPosFound = false;
+	
+	if ((count _bpos) > 0) then {
+		
+		_hPos = [0,0,0];
+		_maxH = 0;
+	
+		{
+		
+			if ((_x select 2) >= _maxH) then {
+			
+				_hPos = _x;
+				_maxH = _x select 2;
+			
+			};
+		
+		} foreach _bpos;	
+		
+		if (_maxH >= _maxHeight) then {
+		
+			_x setposatl _hPos;
+		
+		} else {
+		
+			_noHPosFound = true; 
+		
+		};
+	
+	}; 	
+	
+	if (_noHPosFound) then {
+	
+		_buildingheight = ((boundingboxreal _building select 1) select 2)*2;
+		_buildingxbound = ((boundingboxreal _building select 1) select 0);
+		_buildingybound = ((boundingboxreal _building select 1) select 1);
+		
+		_signx = if ((random 1) < 0.5) then {1} else {-1};
+		_signy = if ((random 1) < 0.5) then {1} else {-1};
+		
+		_x setPosATL [(getPosATL _building select 0) + ((_buildingxbound / 2)*_signx), (getPosATL _building select 1) + ((_buildingybound / 2)*_signy), _buildingheight + 50];
+		_x spawn {_this setVariable ["ace_medical_allowDamage",false]; _this allowdamage false; sleep 15; _this allowdamage true; _this setVariable ["ace_medical_allowDamage",true];_this setUnitPos "MIDDLE";}; // Prevent falling damage
+		
+	};	
+	
 } forEach _sniperlist;
 
 
@@ -103,14 +151,24 @@ _group setCombatMode "YELLOW";
 _units = units _group;
 sleep 16;
 
-{if((getposatl _x select 2) < 10) then {
-    
-    /*_marker = createMarker [format ["%1",random 1], position _x];
+{
+
+if((getposatl _x select 2) < 10) then {
+
+if (_debug) then {
+
+_marker = createMarker [format ["%1",random 1], position _x];
 _marker setMarkerColor "ColorRed";
-_marker setMarkerType "Vehicle";
-_marker setMarkerText "Fail";    */    
+_marker setMarkerType "hd_dot";
+_marker setMarkerText "Fail";     
+
+};
+   
     deletevehicle _x; 
-  };}foreach _units;
+		
+};
+	
+}foreach _units;
 
 sleep 1;
 _units = units _group;
@@ -120,9 +178,12 @@ _units = units _group;
   
 }, _units] call CBA_fnc_globalExecute;
 
-/*
+
+
+
 
 //DEBUG
+if (_debug) then {
 [_group] spawn {
 
 sleep 10;
@@ -138,34 +199,6 @@ for "_i" from 0 to _index do {
 
 };
 
-*/
-
-
-/*
-[_group] spawn {
-    
-  _units = units (_this select 0);
-  _posgrp = position (leader (_this select 0));
-  _hidetime = 100;
-        _counter = 0;
-
-  While{ ( {alive _x} count _units ) > 0 } do { 
-            sleep 10; 
-            _counter = _counter + 1; 
-            if(_counter > 17280) exitwith {}; // if unit is glitched inside building make sure he gets deleted after about 48 hours
-            };
-      
-        {
-    if (alive _x) then {_x setdamage 1;};
-    sleep 3;
-    deleteVehicle _x;
-  } foreach _units;
-
-  sleep 5;
-
-  deleteGroup (_this select 0);
 };
-
-*/
 
 _group

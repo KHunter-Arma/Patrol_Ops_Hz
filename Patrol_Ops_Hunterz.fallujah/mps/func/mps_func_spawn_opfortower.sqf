@@ -26,7 +26,7 @@ if (isNull _tower) then {
   };
 
   _rtoGroup = creategroup (SIDE_B select 0);
-  _rto = _rtoGroup createunit [(mps_opfor_commander call bis_fnc_selectrandom), _position,[], 25, "NONE"];
+  _rto = _rtoGroup createunit [(mps_opfor_commander call mps_getrandomelement), _position,[], 25, "NONE"];
   _rto setposatl _rtoPos;
   dostop _rto;
 

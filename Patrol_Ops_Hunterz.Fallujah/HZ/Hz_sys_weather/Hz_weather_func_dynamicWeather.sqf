@@ -1,5 +1,3 @@
-#define MAX_WIND_SPEED 14
-
 private ["_sign","_sign1","_sign2","_windx","_windy"];
 
 if(!Hz_overrideweather) then {  
@@ -32,8 +30,8 @@ if(!Hz_overrideweather) then {
         if ((random 1) < 0.5) then {_sign1 = -1;};       
         _sign2 = 1;
         if ((random 1) < 0.5) then {_sign2 = -1;}; 
-		_windx = (weather_wind select 0) + (_sign1*(0.2 + (random 0.8))*MAX_WIND_SPEED);
-		_windy = (weather_wind select 1) + (_sign2*(0.2 + (random 0.8))*MAX_WIND_SPEED);
+		_windx = (weather_wind select 0) + (_sign1*(0.2 + (random 0.8))*Hz_weather_max_windSpeed);
+		_windy = (weather_wind select 1) + (_sign2*(0.2 + (random 0.8))*Hz_weather_max_windSpeed);
         weather_wind = [_windx,_windy,true];               
         
       } else {
@@ -56,7 +54,7 @@ if(!Hz_overrideweather) then {
         if ((random 1) < 0.5) then {_sign1 = -1;};       
         _sign2 = 1;
         if ((random 1) < 0.5) then {_sign2 = -1;}; 
-        weather_wind = [(MAX_WIND_SPEED*Hz_weather_avg_wind*_sign1*(1 - (random 0.1))),(MAX_WIND_SPEED*Hz_weather_avg_wind*_sign2*(1 - (random 0.1))),true]; 
+        weather_wind = [(Hz_weather_max_windSpeed*Hz_weather_avg_wind*_sign1*(1 - (random 0.1))),(Hz_weather_max_windSpeed*Hz_weather_avg_wind*_sign2*(1 - (random 0.1))),true]; 
         
       };
 
@@ -98,20 +96,29 @@ if(!Hz_overrideweather) then {
       
       if(weather_fog < 0.2) then {weather_fog = 0.2};
     
-    weather_wind = [-MAX_WIND_SPEED,-MAX_WIND_SPEED,true];
+    weather_wind = [-Hz_weather_max_windSpeed,-Hz_weather_max_windSpeed,true];
     
   };
   
   _windx = weather_wind select 0;
   _windy = weather_wind select 1;
   
-  if(_windx > MAX_WIND_SPEED) then {_windx = MAX_WIND_SPEED;};
-  if(_windy > MAX_WIND_SPEED) then {_windy = MAX_WIND_SPEED;};
-  if(_windx < -MAX_WIND_SPEED) then {_windx = -MAX_WIND_SPEED;};
-  if(_windy < -MAX_WIND_SPEED) then {_windy = -MAX_WIND_SPEED;};
+  if(_windx > Hz_weather_max_windSpeed) then {_windx = Hz_weather_max_windSpeed;};
+  if(_windy > Hz_weather_max_windSpeed) then {_windy = Hz_weather_max_windSpeed;};
+  if(_windx < -Hz_weather_max_windSpeed) then {_windx = -Hz_weather_max_windSpeed;};
+  if(_windy < -Hz_weather_max_windSpeed) then {_windy = -Hz_weather_max_windSpeed;};
   
   weather_wind = [_windx, _windy, true]; 
-  
+	
+	//fit into limits
+	if (weather_fog > Hz_weather_max_fog) then {weather_fog = Hz_weather_max_fog;};
+  if (weather_fog < Hz_weather_min_fog) then {weather_fog = Hz_weather_min_fog;};
+  if (weather_rain > Hz_weather_max_rain) then {weather_rain = Hz_weather_max_rain;};
+  if (weather_rain < Hz_weather_min_rain) then {weather_rain = Hz_weather_min_rain;};
+  if (weather > Hz_weather_max_overcast) then {weather = Hz_weather_max_overcast;};
+  if (weather < Hz_weather_min_overcast) then {weather = Hz_weather_min_overcast;};
+	
+	//sanity checks
   if (weather_fog > 1) then {weather_fog = 1;};
   if (weather_fog < 0) then {weather_fog = 0;};
   if (weather_rain > 1) then {weather_rain = 1;};

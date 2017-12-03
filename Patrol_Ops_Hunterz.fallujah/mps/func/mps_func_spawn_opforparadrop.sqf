@@ -56,7 +56,7 @@ if(count (units _helogrp) == 0) then {
 
   for "_i" from 1 to _count do {
     
-    _type = _groupType call BIS_fnc_selectRandom;
+    _type = _groupType call mps_getrandomelement;
     _unit = _helogrp createUnit [_type, [-1000,-1000,0],[],50,"NONE"];
 
     _unit assignascargo _drophelo;

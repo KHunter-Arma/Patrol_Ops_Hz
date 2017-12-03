@@ -32,7 +32,7 @@ _dir = ([_mgpos,_originalPos] call BIS_fnc_DirTo) + 180;
 
 if(not surfaceIsWater [_mgpos select 0, _mgpos select 1]) then{
 				
-		_compName = mps_opfor_staticVehicleComps call BIS_fnc_selectRandom;
+		_compName = mps_opfor_staticVehicleComps call mps_getrandomelement;
 	
 		_comp = [_mgpos, _dir,(call compile preprocessfilelinenumbers (format ["Compositions\Opfor\Vehicles\%1.sqf",_compName]))] call BIS_fnc_ObjectsMapper;
 									

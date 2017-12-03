@@ -32,7 +32,7 @@ R3F_LOG_CFG_can_be_transported_cargo = R3F_LOG_CFG_can_be_transported_cargo +
 	["land_pallets_stack_f", 4],
 	["land_chairplastic_f", 1],
 	["land_chairwood_f", 1],
-	["items_base_f", 1],
+	["items_base_f", 10],
 	["land_canisterfuel_f", 2],
 	["land_metalbarrel_f", 5],
 	["land_portable_generator_f", 6],

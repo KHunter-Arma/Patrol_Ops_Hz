@@ -160,7 +160,7 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
 			for "_x" from 1 to _bposCount do {
 			
 			//add some filler spawn positions
-			_house = _roadarr call BIS_fnc_selectRandom;
+			_house = _roadarr call mps_getrandomelement;
 			_fillerPos = [[(getpos _house) select 0,(getpos _house) select 1, 0],50,1,0] call mps_getFlatArea;
 			
 			_bposArr pushback _fillerPos;
@@ -180,7 +180,7 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
 		if (!_ForceSpawnAtHouses) then {
 		
 		//Choose random road. Try and make them spawn on the side rather than in the middle
-    _road = _roadarr call BIS_fnc_selectRandom;
+    _road = _roadarr call mps_getrandomelement;
 		
 		_roadarr = _roadarr - [_road];
 		
@@ -190,7 +190,7 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
 		
 		} else {
 		
-			_spawnpos = _bposArr call BIS_fnc_selectRandom;
+			_spawnpos = _bposArr call mps_getrandomelement;
 			_bposArr = _bposArr - [_spawnpos];
 
 		};
@@ -204,8 +204,8 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
       
       if ((random 1) < hz_civ_hostileChance) then {
         
-        _civtype = hoscivtypes call BIS_fnc_selectRandom;
-        _group = _civgroups call BIS_fnc_selectRandom;
+        _civtype = hoscivtypes call mps_getrandomelement;
+        _group = _civgroups call mps_getrandomelement;
         _civ = _group createUnit [ _civtype, _spawnpos, [], 2, "NONE" ];
         
         _civarray set [count _civarray,_civ];  
@@ -223,7 +223,7 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
 				
 				_civ setposatl _spawnpos;
         
-        if(Hz_civ_enable_client_processing) then {_client = _ownerIDs call BIS_fnc_selectRandom; _civ setowner _client;};
+        if(Hz_civ_enable_client_processing) then {_client = _ownerIDs call mps_getrandomelement; _civ setowner _client;};
         
         if ((random 1) > 0.5) then {
           // hint "spawned makarov";          
@@ -254,7 +254,7 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
           //"bin": use binoculars
           //http://www.armaholic.com/page.php?id=12180
           
-          //                 if(Hz_civ_enable_client_processing) then {_client = _ownerIDs call BIS_fnc_selectRandom; _civ setowner _client;};
+          //                 if(Hz_civ_enable_client_processing) then {_client = _ownerIDs call mps_getrandomelement; _civ setowner _client;};
           
         } else {
           
@@ -274,7 +274,7 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
             
             [_civ,SIDE_B select 0, SIDE_A select 0] spawn Hz_sinisterCiv;           
             
-            //        if(Hz_civ_enable_client_processing) then {_client = _ownerIDs call BIS_fnc_selectRandom; _civ setowner _client;};
+            //        if(Hz_civ_enable_client_processing) then {_client = _ownerIDs call mps_getrandomelement; _civ setowner _client;};
             
           } else {
 
@@ -296,8 +296,8 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
           }; };			  
       } else {
         
-        _civtype = allcivtypes call BIS_fnc_selectRandom;
-        _group = _civgroups call BIS_fnc_selectRandom;
+        _civtype = allcivtypes call mps_getrandomelement;
+        _group = _civgroups call mps_getrandomelement;
         _civ = _group createUnit [ _civtype, _spawnpos, [], 2, "NONE" ];
         _civarray set [count _civarray,_civ];  
         
@@ -324,7 +324,7 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
           if (_civ == _killer) then {
           
           //civ might be sent away so keep radius large
-          _nearCars = nearestobjects [_civ,["LandVehicle"],100];
+          _nearCars = nearestobjects [_civ,["LandVehicle"],30];
           
           {
           
@@ -379,7 +379,7 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
           
         }];
         
-        if(Hz_civ_enable_client_processing) then {_client = _ownerIDs call BIS_fnc_selectRandom; _civ setowner _client;};
+        if(Hz_civ_enable_client_processing) then {_client = _ownerIDs call mps_getrandomelement; _civ setowner _client;};
         
       };
       
@@ -388,8 +388,8 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
       
       if ((random 1) > 0.2) then {
         
-        _civtype = hoscivtypes call BIS_fnc_selectRandom;
-        _group = _civgroups call BIS_fnc_selectRandom;
+        _civtype = hoscivtypes call mps_getrandomelement;
+        _group = _civgroups call mps_getrandomelement;
         _civ = _group createUnit [ _civtype, _spawnpos, [], 2, "NONE" ];
         _civarray set [count _civarray,_civ];  
         
@@ -404,7 +404,7 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
 				
 				_civ setposatl _spawnpos;
         
-        if(Hz_civ_enable_client_processing) then {_client = _ownerIDs call BIS_fnc_selectRandom; _civ setowner _client;};
+        if(Hz_civ_enable_client_processing) then {_client = _ownerIDs call mps_getrandomelement; _civ setowner _client;};
         
         if ((random 1) < 0.7) then {
           
@@ -420,7 +420,7 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
           (group _civ) setBehaviour "SAFE";
           _civ setunitpos "UP";
           
-          //    if(Hz_civ_enable_client_processing) then {_client = _ownerIDs call BIS_fnc_selectRandom; _civ setowner _client;};
+          //    if(Hz_civ_enable_client_processing) then {_client = _ownerIDs call mps_getrandomelement; _civ setowner _client;};
           
         } else   {
           [_civ] joinSilent (createGroup EAST);
@@ -434,7 +434,7 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
             (group _civ) setBehaviour "SAFE";
             _civ setunitpos "UP";
             
-            //      if(Hz_civ_enable_client_processing) then {_client = _ownerIDs call BIS_fnc_selectRandom; _civ setowner _client;};
+            //      if(Hz_civ_enable_client_processing) then {_client = _ownerIDs call mps_getrandomelement; _civ setowner _client;};
             
           } else {
 
@@ -452,8 +452,8 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
         };
       } else {
         
-        _civtype = allcivtypes call BIS_fnc_selectRandom;
-        _group = _civgroups call BIS_fnc_selectRandom;
+        _civtype = allcivtypes call mps_getrandomelement;
+        _group = _civgroups call mps_getrandomelement;
         _civ = _group createUnit [ _civtype, _spawnpos, [], 2, "NONE" ];       
         _civarray set [count _civarray,_civ];  
         
@@ -479,7 +479,7 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
           };  
         } ];
         
-        if(Hz_civ_enable_client_processing) then {_client = _ownerIDs call BIS_fnc_selectRandom; _civ setowner _client;};
+        if(Hz_civ_enable_client_processing) then {_client = _ownerIDs call mps_getrandomelement; _civ setowner _client;};
         
       };
     };

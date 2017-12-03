@@ -55,6 +55,25 @@ mps_config_units = mps_config_units + [
 ["INS","mg","CUP_I_TK_GUE_Soldier_AR",10],
 ["INS","aa","CUP_I_TK_GUE_Soldier_AA",1], //Stinger
 ["INS","rf","CUP_I_TK_GUE_Soldier_M16A2",2],
-["INS","gl","CUP_I_TK_GUE_Soldier_GL",1] //M16
+["INS","gl","CUP_I_TK_GUE_Soldier_GL",1], //M16
+
+["IA","tl","LOP_IA_Infantry_SL",5],
+["IA","cr","LOP_IA_Infantry_Crewman",0],
+["IA","med","LOP_IA_Infantry_Corpsman",12],
+["IA","gl","LOP_IA_Infantry_GL",6],
+["IA","at","LOP_IA_Infantry_AT",5],
+["IA","at","LOP_IA_Infantry_Rifleman_2",12],
+["IA","rf","LOP_IA_Infantry_AT_Asst",25],
+["IA","rf","LOP_IA_Infantry_MG_Asst",25],
+["IA","rf","LOP_IA_Infantry_Rifleman",25],
+["IA","rf","LOP_IA_Infantry_Rifleman_4",50],
+["IA","rf","LOP_IA_Infantry_Rifleman_3",25],
+["IA","mg","LOP_IA_Infantry_MG",6],
+["IA","dmr","LOP_IA_Infantry_Marksman",6],
+["IA","so","PO_IA_Infantry_SF_Operator",0],
+["IA","so","PO_IA_Infantry_SF_GL",0],
+["IA","so","PO_IA_Infantry_SF_TL",0],
+["IA","so","PO_IA_Infantry_SF_Corpsman",0],
+["IA","sn","PO_IA_Infantry_SF_Marksman",0]
 
 ];

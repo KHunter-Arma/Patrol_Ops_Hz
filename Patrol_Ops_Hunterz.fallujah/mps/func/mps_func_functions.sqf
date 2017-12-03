@@ -11,7 +11,6 @@ mps_class_crew = [];
 mps_class_pilot = [];
 mps_class_eng = [];
 mps_class_sniper = [];
-mps_blufor_leader = [];
 mps_opfor_inf = [];
 mps_opfor_riflemen = [];
 mps_opfor_ins_riflemen = [];
@@ -48,6 +47,29 @@ mps_transportable_containers = [];
 mps_loadable_objects = [];
 mps_recruit_unittypes = [];
 
+mps_blufor_leader = [];
+mps_blufor_commander = [];
+mps_blufor_inf = [];
+mps_blufor_riflemen = [];
+mps_blufor_crewmen = [];
+mps_blufor_sniper = [];
+mps_blufor_armor = [];
+mps_blufor_apc = [];
+mps_blufor_aa = [];
+mps_blufor_car = [];
+mps_blufor_atkh = [];
+mps_blufor_atkp = [];
+mps_blufor_lbomber = [];
+mps_blufor_hbomber = [];
+mps_blufor_airsup = [];
+mps_blufor_static = [];
+mps_blufor_tankdestroyer = [];
+mps_blufor_ncov = [];
+mps_blufor_ncoh = [];
+mps_blufor_truck = [];
+mps_blufor_cargoplane = [];
+
+
 {
 
 /*
@@ -64,9 +86,31 @@ mps_recruit_unittypes = [];
 */
 
   if( (_x select 0) == (SIDE_A select 1) ) then {
+	
     //mps_recruit_unittypes = mps_recruit_unittypes + [(_x select 2)];
+		
+		//Hunter'z weighted distribution
+    _count = _x select 3;
+    _type = _x select 2;
+    
+    if(_count > 0) then {
+      
+      for "_i" from 1 to _count do {
+        
+        mps_blufor_inf set [count mps_blufor_inf,_type];
+        
+      };
+      
+    };         
+    
     if( (_x select 1) == "tl") then { mps_blufor_leader = mps_blufor_leader + [(_x select 2)]; };
+    if( (_x select 1) == "co") then { mps_blufor_commander = mps_blufor_commander + [(_x select 2)]; };
+    if( (_x select 1) == "rf") then { mps_blufor_riflemen = mps_blufor_riflemen + [(_x select 2)]; };
+    if( (_x select 1) == "cr") then { mps_blufor_crewmen = mps_blufor_crewmen + [(_x select 2)]; };
+		if( (_x select 1) == "sn") then { mps_blufor_sniper = mps_blufor_sniper + [(_x select 2)]; };	
+		
   };
+	
   if((_x select 0) == (SIDE_B select 1)) then {
     
     //Hunter'z weighted distribution
@@ -90,6 +134,7 @@ mps_recruit_unittypes = [];
 		if( (_x select 1) == "sn") then { mps_opfor_sniper = mps_opfor_sniper + [(_x select 2)]; };
 		
   };
+	
   if((_x select 0) == (SIDE_C select 1)) then {
     
     //Hunter'z weighted distribution
@@ -109,6 +154,7 @@ mps_recruit_unittypes = [];
     if( (_x select 1) == "rf") then { mps_opfor_ins_riflemen = mps_opfor_ins_riflemen + [(_x select 2)]; };
     
   };
+	
 } forEach mps_config_units;
 
 _temp = +mps_opfor_inf;
@@ -116,7 +162,7 @@ _temp2 = [];
 
 {
   if ((count mps_opfor_inf) == 0) exitwith {};
-  _val =  mps_opfor_inf call BIS_fnc_selectRandom;
+  _val =  mps_opfor_inf call mps_getrandomelement;
   _temp2 set [count _temp2,_val];
   mps_opfor_inf = mps_opfor_inf - [_val];
   
@@ -130,7 +176,7 @@ _temp2 = [];
 
 {
   if ((count mps_opfor_ins) == 0) exitwith {};
-  _val =  mps_opfor_ins call BIS_fnc_selectRandom;
+  _val =  mps_opfor_ins call mps_getrandomelement;
   _temp2 set [count _temp2,_val];
   mps_opfor_ins = mps_opfor_ins - [_val];   
   
@@ -142,6 +188,27 @@ mps_opfor_ins = +_temp2;
 {
   _faction = (_x select 0);
   _class = (_x select 1);
+	
+	if( (_x select 0) == (SIDE_A select 1) ) then {
+    switch ((_x select 1)) do {
+    case "tank": { mps_blufor_armor  = mps_blufor_armor  + [(_x select 2)]};
+    case "apc": { mps_blufor_apc = mps_blufor_apc + [(_x select 2)]};
+    case "mobiaa": { mps_blufor_aa = mps_blufor_aa + [(_x select 2)]};
+    case "attakc": { mps_blufor_car = mps_blufor_car + [(_x select 2)]};
+    case "attakh": { mps_blufor_atkh = mps_blufor_atkh + [(_x select 2)]};
+    case "attakp": { mps_blufor_atkp = mps_blufor_atkp + [(_x select 2)]};
+		case "Lbomber": { mps_blufor_lbomber = mps_blufor_lbomber + [(_x select 2)]; mps_blufor_atkp = mps_blufor_atkp + [(_x select 2)]};
+    case "Hbomber": { mps_blufor_hbomber = mps_blufor_hbomber + [(_x select 2)]};
+		case "airsup": { mps_blufor_airsup = mps_blufor_airsup + [(_x select 2)]};
+		case "tdest": { mps_blufor_tankdestroyer = mps_blufor_tankdestroyer + [(_x select 2)]};		
+		case "cargoc": { mps_blufor_ncov = mps_blufor_ncov + [(_x select 2)]};
+    case "cargoh": { mps_blufor_ncoh = mps_blufor_ncoh + [(_x select 2)]};
+    case "truck": { mps_blufor_truck = mps_blufor_truck + [(_x select 2)]};
+		case "static": { mps_blufor_static = mps_blufor_static + [(_x select 2)]};
+    case "cargop": { mps_blufor_cargoplane = mps_blufor_cargoplane + [(_x select 2)] };
+      default    {  };
+    };
+  };
 
   if( (_x select 0) == (SIDE_B select 1) ) then {
     switch ((_x select 1)) do {

@@ -98,7 +98,9 @@ mps_path = "mps\";
   if(isNil "mps_teamkillers") then { mps_teamkillers = []; };
   if(isNil "mps_rank_gear") then { mps_rank_gear = false; };
   if(isNil "RALLY_STATUS") then { RALLY_STATUS = false; };
-
+	
+	mps_getRandomElement		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_getrandomarrayelement.sqf");
+	
 // Load the Configruation Variables
   [] call compile preprocessFileLineNumbers (mps_path+"config\config_ammobox.sqf");
   [] call compile preprocessFileLineNumbers (mps_path+"config\config_units.sqf");
@@ -113,7 +115,6 @@ mps_path = "mps\";
   mps_get_position		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_get_position.sqf");
   mps_getnearbylocation		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_nearbylocation.sqf");
   mps_getEnterableHouses 		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_getenterablehouses.sqf");
-  mps_getRandomElement		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_getrandomarrayelement.sqf");
   mps_getArrayPermutation		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_getarraypermutation.sqf");
   mps_getFlatArea 		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_getflatarea.sqf");
   mps_getnearestroad		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_getnearestroad.sqf");

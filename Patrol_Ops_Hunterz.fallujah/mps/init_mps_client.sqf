@@ -225,50 +225,6 @@ if(isnil "limitviewdistance") then {limitviewdistance = false;};
 };
 */
 
-[] spawn {
-  
-  sleep 30;
-  [cim_action_getDown1] call CBA_fnc_removePlayerAction;
-  [cim_action_getDownAll] call CBA_fnc_removePlayerAction;
-  [cim_action_getAway1] call CBA_fnc_removePlayerAction;
-  [cim_action_getAwayAll] call CBA_fnc_removePlayerAction;
-  [cim_action_getInside1] call CBA_fnc_removePlayerAction;
-  [cim_action_getInsideAll] call CBA_fnc_removePlayerAction;
-  [cim_action_StopCar] call CBA_fnc_removePlayerAction;
-  [cim_action_Search] call CBA_fnc_removePlayerAction;
-  [cim_action_Disarm] call CBA_fnc_removePlayerAction;
-  [cim_action_getDownAll] call CBA_fnc_removePlayerAction;
-  [cim_action_Pacify] call CBA_fnc_removePlayerAction;
-  [cim_action_Arrest] call CBA_fnc_removePlayerAction;
-  [cim_action_release] call CBA_fnc_removePlayerAction;
-  [cim_action_uncuff] call CBA_fnc_removePlayerAction;
-  sleep 3;
-  cim_action_getDown1 = [['<t color="#FF0000">'+"Verbal Command: Get down!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getDown_Client.sqf"), [player,false,cursorTarget], 10, false, true, CIM_Module getVariable "nielsen_cim_key_getDown","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (cursorTarget isKindof ""MAN"") AND (cursorTarget distance player > 2)"]] call CBA_fnc_addPlayerAction;
-  cim_action_getDownAll = [['<t color="#FF0000">'+"Verbal Command: Get down!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getDown_Client.sqf"), [player,true], 10, false, true, CIM_Module getVariable "nielsen_cim_key_getDown","cim_key_pressed AND !((cursorTarget isKindof ""MAN"") AND (side cursorTarget == CIVILIAN))"]] call CBA_fnc_addPlayerAction;
-
-  cim_action_getAway1 = [['<t color="#FF0000">'+"Verbal Command: Clear area!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getAway_Client.sqf"), [player,false,cursorTarget], 9, false, true, CIM_Module getVariable "nielsen_cim_key_getAway","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (cursorTarget isKindof ""MAN"") AND (cursorTarget distance player > 2)"]] call CBA_fnc_addPlayerAction;
-  cim_action_getAwayAll = [['<t color="#FF0000">'+"Verbal Command: Clear area!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getAway_Client.sqf"), [player,true], 9, false, true, CIM_Module getVariable "nielsen_cim_key_getAway","cim_key_pressed AND !((cursorTarget isKindof ""MAN"") AND (side cursorTarget == CIVILIAN))"]] call CBA_fnc_addPlayerAction;
-
-  cim_action_getInside1 = [['<t color="#FF0000">'+"Verbal Command: Get inside!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getInside_Client.sqf"), [player,false,cursorTarget], 8, false, true, CIM_Module getVariable "nielsen_cim_key_getInside","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (cursorTarget isKindof ""MAN"") AND (cursorTarget distance player > 2)"]] call CBA_fnc_addPlayerAction;
-  cim_action_getInsideAll = [['<t color="#FF0000">'+"Verbal Command: Get inside!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getInside_Client.sqf"), [player,true], 8, false, true, CIM_Module getVariable "nielsen_cim_key_getInside","cim_key_pressed AND !((cursorTarget isKindof ""MAN"") AND (side cursorTarget == CIVILIAN))"]] call CBA_fnc_addPlayerAction;
-
-  cim_action_StopCar = [['<t color="#FF0000">'+"Verbal Command: Get out of the car!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_stopCar_Client.sqf"), [player], 7, false, true, CIM_Module getVariable "nielsen_cim_key_stopCar","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (cursorTarget isKindof ""CAR"") AND (cursorTarget distance player <= 75);"]] call CBA_fnc_addPlayerAction;
-
-  cim_action_Search = [['<t color="#FF0000">'+"Search individual!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_search_Client.sqf"), [player], 10, false, true, CIM_Module getVariable "nielsen_cim_key_Search","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (alive cursorTarget) AND (cursorTarget distance player <= 2) AND (cursorTarget isKindof ""MAN"") AND !(cursorTarget in CIM_List_Searched)"]] call CBA_fnc_addPlayerAction;
-  cim_action_Disarm = [['<t color="#FF0000">'+"Remove Belongings!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_disarm_Client.sqf"), [player], 10, false, true, CIM_Module getVariable "nielsen_cim_key_Search","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (alive cursorTarget) AND (cursorTarget distance player <= 2) AND (cursorTarget isKindof ""MAN"") AND (cursorTarget in CIM_List_Searched)"]] call CBA_fnc_addPlayerAction;
-
-  cim_action_Pacify = [['<t color="#FF0000">'+"Key-cuff individual!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_Pacify_Client.sqf"), [player], 9, false, true, CIM_Module getVariable "nielsen_cim_key_Pacify","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (alive cursorTarget) AND (cursorTarget distance player <= 2) AND (cursorTarget isKindof ""MAN"") AND !(cursorTarget in CIM_List_Keycuff)"]] call CBA_fnc_addPlayerAction;
-  
-  cim_action_Arrest = [['<t color="#FF0000">'+"Detain individual!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_arrest_Client.sqf"), [player], 8, false, true, CIM_Module getVariable "nielsen_cim_key_Arrest","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (alive cursorTarget) AND (cursorTarget distance player <= 2) AND (group cursorTarget != group _target) AND (cursorTarget isKindof ""MAN"")"]] call CBA_fnc_addPlayerAction;
-
-  cim_action_release = [['<t color="#FF0000">'+"Release individual!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_release_Client.sqf"), [player], 8, false, true, CIM_Module getVariable "nielsen_cim_key_release","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (alive cursorTarget) AND (cursorTarget distance player <= 2) AND (group cursorTarget == group _target) AND (cursorTarget isKindof ""MAN"")"]] call CBA_fnc_addPlayerAction;
-
-  cim_action_uncuff = [['<t color="#FF0000">'+"Uncuff individual!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_uncuff_Client.sqf"), [player], 9, false, true, CIM_Module getVariable "nielsen_cim_key_release","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (alive cursorTarget) AND (cursorTarget distance player <= 2) AND (cursorTarget in CIM_List_KeyCuff) AND (cursorTarget isKindof ""MAN"")"]] call CBA_fnc_addPlayerAction;
-
-  //  hint "Civilian Module reinitialised!";
-  
-};
-
 waituntil {introseqdone};
 
 removeallweapons player;

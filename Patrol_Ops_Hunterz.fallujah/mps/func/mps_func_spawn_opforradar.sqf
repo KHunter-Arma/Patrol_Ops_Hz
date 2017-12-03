@@ -151,7 +151,7 @@ while {true} do {
 				_jet2 = nil;
 
 				_groupgrp2 = createGroup east;
-				_jettype = mps_opfor_airsup call bis_fnc_selectRandom;
+				_jettype = mps_opfor_airsup call mps_getrandomelement;
 
 				_jet1 = ([[(position heli_radar select 0)+10000,(position heli_radar select 1)+12000,4000], 180, _jettype, _groupgrp2] call BIS_fnc_spawnVehicle) select 0;
 				_jet2 = ([[(position heli_radar select 0)+10100,(position heli_radar select 1)+12100,4000], 180, _jettype, _groupgrp2] call BIS_fnc_spawnVehicle) select 0;

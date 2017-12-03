@@ -12,7 +12,7 @@ if(_count < 1) exitwith {};
 
 for "_i" from 1 to _count do {
     
-_type = _passengertypes call BIS_fnc_selectRandom;
+_type = _passengertypes call mps_getrandomelement;
 _unit = _group createUnit [_type, [-1000,-1000,0],[],50,"FORM"];
 
 _unit assignascargo _veh;

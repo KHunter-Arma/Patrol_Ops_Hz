@@ -6,7 +6,7 @@ publicvariable "nukeweather";
 
 [] spawn nukeWeatherCountdown;
     
-        _randommarker = ["nukepos1","nukepos2","nukepos3","nukepos4","nukepos5","nukepos6"] call BIS_fnc_selectRandom;
+        _randommarker = ["nukepos1","nukepos2","nukepos3","nukepos4","nukepos5","nukepos6"] call mps_getrandomelement;
         nuke_event = nuke_event + [_randommarker];
             _pos = markerpos _randommarker;
             nukepos setpos _pos;

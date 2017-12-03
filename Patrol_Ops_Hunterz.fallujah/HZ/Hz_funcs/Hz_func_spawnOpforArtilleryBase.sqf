@@ -82,7 +82,7 @@ while {true} do {
 				_grp = creategroup (SIDE_B select 0);
 
 				for "_i" from 1 to 3 do {
-					_dude = _grp createUnit [(mps_opfor_riflemen call bis_fnc_selectRandom), _artylocation, [], 50, "NONE"];
+					_dude = _grp createUnit [(mps_opfor_riflemen call mps_getrandomelement), _artylocation, [], 50, "NONE"];
 					if(_i == 1) then {_dude assignasgunner _x; _dude moveingunner _x;} else {_dude assignascargo _x; _dude moveincargo _x;};
 				};
 				
@@ -102,7 +102,7 @@ while {true} do {
 				_grp = creategroup (SIDE_B select 0);
 
 				for "_i" from 1 to 2 do {
-					_dude = _grp createUnit [(mps_opfor_riflemen call bis_fnc_selectRandom), _artylocation, [], 50, "NONE"];
+					_dude = _grp createUnit [(mps_opfor_riflemen call mps_getrandomelement), _artylocation, [], 50, "NONE"];
 					if(_i == 1) then {_dude assignasgunner _x; _dude moveingunner _x;} else {_dude assignascargo _x; _dude moveincargo _x;};
 				};	
 				

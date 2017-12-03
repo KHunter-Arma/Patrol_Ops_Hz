@@ -17,6 +17,7 @@ if (isServer) then {
 
 	Hz_pops_fnc_handleFirstTimeLaunch = compile preprocessFileLineNumbers "Hz_pops_fnc_handleFirstTimeLaunch.sqf";
 	Hz_pops_fnc_setupRestrictions = compile preprocessFileLineNumbers "\Hz_cfg\Hz_econ\setup.sqf";
+	Hz_pops_fnc_persistencyPostLoadCustomFunction = compile preprocessFileLineNumbers "Hz_pops_fnc_persistencyPostLoadCustomFunction.sqf";
 
 };
 

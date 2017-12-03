@@ -28,6 +28,7 @@ _CarChance = 0.3;
 _rewardMultiplier = 1;
 
 /*--------------------CREATE LOCATION---------------------------------*/
+Hz_pops_task_auxFailCondition = false;
 
 if (_EnemySpawnMinimumRange < 2000) then {_EnemySpawnMinimumRange = 2000;};
 
@@ -90,7 +91,7 @@ _crowd = [];
 
 for "_i" from 1 to (40 + (round random 35)) do {
 
-	_type = hoscivtypes call bis_fnc_selectrandom;
+	_type = hoscivtypes call mps_getrandomelement;
 	
 	_civ = _crowdGrp createUnit [ _type, _crowdPos, [], 10, "CAN_COLLIDE"];
 	_crowd pushBack _civ;
@@ -116,7 +117,7 @@ for "_i" from 1 to (40 + (round random 35)) do {
 			if (_civ == _killer) then {
 				
 				//civ might be sent away so keep radius large
-				_nearCars = nearestobjects [_civ,["LandVehicle"],100];
+				_nearCars = nearestobjects [_civ,["LandVehicle"],30];
 				
 				{
 					
@@ -194,6 +195,7 @@ _grp = createGroup (SIDE_A select 0);
 _type = ["LOP_CHR_Civ_Functionary_01","LOP_CHR_Civ_Functionary_02","LOP_Tak_Civ_Man_10","LOP_Tak_Civ_Man_02","LOP_Tak_Civ_Man_09","LOP_Tak_Civ_Man_11","LOP_Tak_Civ_Man_12"] call mps_getRandomElement;
 _vip = _grp createUnit [ _type, ( getMarkerPos format["return_point_%1",(SIDE_A select 0)] ), [], 10, "NONE"];
 _vip setRank "PRIVATE";
+dostop _vip;
 
 //body-guards
 _guards = [];
@@ -214,12 +216,43 @@ for "_i" from 1 to 4 do {
 	_dude setRank "PRIVATE";		
 	_guards pushBack _dude;
 	
+	dostop _dude;
+	
 	_dude addweapon "CUP_arifle_AKS";
-	_dude addvest "V_Chestrig_rgr";
+	_dude addvest "V_TacChestrig_oli_F";
 	_dude addMagazine "CUP_30Rnd_762x39_AK47_M";
 	_dude addMagazine "CUP_30Rnd_762x39_AK47_M";
 	_dude addMagazine "CUP_30Rnd_762x39_AK47_M";
 	_dude addMagazine "CUP_30Rnd_762x39_AK47_M";
+	
+	_dude addEventHandler ["Killed",{
+	
+		_dude = _this select 0;
+		_killer = _this select 1;
+		
+		_condition = false;
+		
+		if (isplayer _killer) then {_condition = true;} else {
+			
+			//hit and run detection
+			if (_dude == _killer) then {
+				
+				//civ might be sent away so keep radius large
+				_nearCars = nearestobjects [_dude,["LandVehicle"],30];
+				
+				{
+					
+					if (((speed _x) > 10) && (isplayer (driver _x))) exitwith {_condition = true;};
+					
+				} foreach _nearCars;
+				
+			};
+			
+		};	
+		
+		if (_condition) then {Hz_pops_task_auxFailCondition = true;};
+	
+	}];
 	
 };
 
@@ -280,6 +313,7 @@ waituntil {
 
 	(((group _vip) != _grp)
 	|| !(alive _vip)
+	|| Hz_pops_task_auxFailCondition
 	)
 	
 };
@@ -304,6 +338,7 @@ waituntil {
 	((_vip distance _position) < 50)
 	|| !(alive _vip)
 	|| (({(_vip distance _x) < 300} count playableUnits) < 1)
+	|| Hz_pops_task_auxFailCondition
 	)
 	
 };
@@ -330,9 +365,11 @@ case (_rand < 0.1) : {
 				sleep 10;
 				if (!alive _vip) exitwith {_abort = true;};
 				
-				((_vip getvariable "preaching") && ((random 1) < 0.1) && ((_vip getvariable "preachTime") > _goTime))
+				((_vip getvariable "preaching") && ((random 1) < 0.1) && ((_vip getvariable "preachTime") > _goTime)) || Hz_pops_task_auxFailCondition
 				
 			};
+			
+			if (Hz_pops_task_auxFailCondition) exitWith {};
 			
 			if (_abort) exitwith {};		
 			
@@ -347,7 +384,7 @@ case (_rand < 0.1) : {
 				
 			} foreach _temp;
 			
-			_bomber = _crowd call bis_fnc_selectrandom; 
+			_bomber = _crowd call mps_getrandomelement; 
 			_bomber removeeventhandler ["Killed",_bomber getvariable "EH"];
 			_bomber setskill 1;
 			_bomber addMagazine "IEDUrbanBig_Remote_Mag";
@@ -412,9 +449,11 @@ case (_rand < 0.8) : {
 				sleep 10;
 				if (!alive _vip) exitwith {_abort = true;};
 				
-				(_vip getvariable "preaching")
+				(_vip getvariable "preaching") || Hz_pops_task_auxFailCondition
 				
-			};					
+			};		
+
+			if (Hz_pops_task_auxFailCondition) exitWith {};
 
 			_spawnpos = [_position,_EnemySpawnMinimumRange] call Hz_func_findspawnpos;
 
@@ -486,17 +525,18 @@ case (_rand < 0.8) : {
 				sleep 10;
 				if (!alive _vip) exitwith {_abort = true;};
 				
-				((_vip getvariable "preaching") && ((random 1) < 0.1) && ((_vip getvariable "preachTime") > _goTime))
+				((_vip getvariable "preaching") && ((random 1) < 0.1) && ((_vip getvariable "preachTime") > _goTime)) || Hz_pops_task_auxFailCondition
 				
 			};				
+			
+			if (Hz_pops_task_auxFailCondition) exitWith {};
 			
 			for "_i" from 1 to _b do {					
 				
 				_spawnpos = [((markerpos "patrol_respawn_opfor") select 0) + 500 + random 500,((markerpos "patrol_respawn_opfor") select 1) + 500 + random 500,800];
 				
 				_paratroopers = [createGroup (SIDE_B select 0),_spawnpos,_position,true,["CUP_O_TK_SpecOps_MG","CUP_O_TK_SpecOps","CUP_O_TK_SpecOps_TL","CUP_O_TK_SpecOps","CUP_O_TK_SpecOps_TL"]] call CREATE_OPFOR_PARADROP;
-				patrol_task_units = patrol_task_units + _paratroopers;
-				
+				patrol_task_units = patrol_task_units + _paratroopers;				
 				
 			};
 			
@@ -539,7 +579,7 @@ while {
 				
 			} foreach _temp;
 			
-			_dude = _crowd call bis_fnc_selectrandom;
+			_dude = _crowd call mps_getrandomelement;
 			_dude removeeventhandler ["Killed",_dude getvariable "EH"];
 			_dude setskill 0.4;
 			_dude setskill ["spotDistance",1];
@@ -603,12 +643,6 @@ while {
 	
 };
 
-if (hz_reward > 0) then {
-
-	hz_reward = ceil hz_reward;
-
-};
-
 switch (true) do {
 
 case (_preachCounter >= _preachMax) : {
@@ -618,12 +652,27 @@ case (_preachCounter >= _preachMax) : {
 		waituntil { 
 
 			sleep 5;
+			[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
 
 			(
-			(((_vip distance _returnPoint) < 15) && (!captive _vip))
+			!(call Hz_fnc_taskSuccessCheckGenericConditions)
+			&& (((_vip distance _returnPoint) < 15) && (!captive _vip))
 			|| !(alive _vip)
 			|| (({(_vip distance _x) < 300} count playableUnits) < 1)
+			|| Hz_pops_task_auxFailCondition
 			)
+		};
+		
+		if (!(call Hz_fnc_taskSuccessCheckGenericConditions)) then {
+		
+			"We've taken too many casualties for this mission. We're aborting. RTB immediately!" remoteExecCall ["hint",0,false];		
+		
+		};
+		
+		if (Hz_pops_task_auxFailCondition) then {
+		
+			"You killed one of the VIP's guards!" remoteExecCall ["hint",0,false];
+		
 		};
 
 	};
@@ -636,7 +685,7 @@ case (({(_vip distance _x) < 300} count playableUnits) < 1) : {
 	
 case (hz_reward <= 0) : {
 		
-		"We've taken too many casualties for a mission like this. We're aborting. RTB immediately!" remoteExecCall ["hint",0,false];
+		"We've taken too many casualties for this mission. We're aborting. RTB immediately!" remoteExecCall ["hint",0,false];
 		
 	};
 	
@@ -645,6 +694,12 @@ case (!alive _vip) : {
 		"The VIP is KIA, abort mission!" remoteExecCall ["hint",0,false];
 		
 	};
+	
+case (Hz_pops_task_auxFailCondition) : {
+
+		"You killed one of the VIP's guards!" remoteExecCall ["hint",0,false];
+
+};
 	
 	default {
 		
@@ -656,9 +711,15 @@ case (!alive _vip) : {
 
 };
 
+if (hz_reward > 0) then {
+
+	hz_reward = ceil hz_reward;
+
+};
+
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/  
 
-if((call Hz_fnc_taskSuccessCheckGenericConditions) && (alive _vip) && (({(_vip distance _x) < 300} count playableUnits) > 0)) then {
+if((call Hz_fnc_taskSuccessCheckGenericConditions) && (alive _vip) && (({(_vip distance _x) < 300} count playableUnits) > 0) && !Hz_pops_task_auxFailCondition) then {
 	[format["TASK%1",_taskid],"succeeded"] call mps_tasks_upd;             
 	
 	call Hz_fnc_taskReward;
