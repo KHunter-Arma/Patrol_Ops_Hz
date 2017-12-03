@@ -122,6 +122,9 @@ case "RHSUSF_ACC_ROTX_MP7_AOR1": {-1};
 case "RHSUSF_ACC_ROTEX_MP7": {-1};
 case "RHSUSF_ACC_ROTEX_MP7_DESERT": {-1};
 case "RHSUSF_ACC_ROTEX_MP7_WINTER": {-1};
+case "RH_HBSD": {1200};
+case "RH_DELFT": {219};
+
 				
 default {-1};
 

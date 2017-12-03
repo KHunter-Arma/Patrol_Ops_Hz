@@ -35,6 +35,10 @@ case "RHS_AMMO_556X45_M855A1_BALL": {0.48};
 case "RHS_AMMO_556X45_MK262_BALL": {2.5};
 case "RHS_AMMO_556X45_MK318_BALL": {1};
 
+case "RH_556X45_B_M855A1": {3};
+case "RH_556X45_B_MK262": {2.5};
+case "RH_556X45_B_MK318": {0.85};
+
 //762x39
 case "RHS_B_762X39_BALL": {0.5};
 case "RHS_B_762X39_TRACER": {0.75};
@@ -51,6 +55,10 @@ case "RHS_AMMO_762X51_M80A1EPR_BALL": {1.25};
 case "RHS_AMMO_762X51_M61_AP": {4.5};
 case "RHS_AMMO_762X51_M80_BALL": {1.75};
 
+case "RH_762X51_B_M80A1": {1.25};
+case "RH_762x51_B_Mk316LR": {0.8};
+case "RH_762x51_B_LFMJSB": {-1};
+
 //762x54
 case "RHS_B_762X54_BALL": {1.25};
 case "RHS_B_762X54_BALL_TRACER_GREEN": {1.25};
@@ -58,6 +66,11 @@ case "RHS_B_762X54_7N13_BALL": {1.5};
 case "RHS_B_762X54_7N26_BALL": {2};
 case "RHS_B_762X54_7BZ3_BALL": {1.5};
 case "RHS_B_762X54_7N1_BALL": {0.68};
+
+//.300 blk
+case "RH_762X35_B_FMJ": {1};
+case "RH_762X35_B_MATCH": {1};
+case "RH_762X35_B_MSB": {1};
 
 //.300WM
 case "RHSUSF_B_300WINMAG": {1};
@@ -68,6 +81,10 @@ case "B_338_BALL": {6};
 //9x19
 case "RHS_B_9X19_7N21": {0.25};
 case "RHS_B_9X19_7N31": {0.25};
+
+case "RH_9X19_B_M822": {-1};
+case "RH_9X19_B_HP": {0.45};
+case "RH_9X19_B_HPSB": {-1};
 
 ////9x39
 case "RHS_B_9X39_SP5": {3};
