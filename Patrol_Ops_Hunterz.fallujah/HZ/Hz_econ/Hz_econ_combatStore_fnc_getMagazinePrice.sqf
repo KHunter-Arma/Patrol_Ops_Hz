@@ -128,7 +128,7 @@ case "RH_20RND_762X51_AR10": {22};
 
 case "RH_20Rnd_762x51_M80A1": {79};
 case "RH_20Rnd_762x51_Mk316LR": {79};
-case "RH_20Rnd_762x51_LFMJSB": {79};
+case "RH_20Rnd_762x51_LFMJSB": {-1};
 
 //762x54
 case "RHS_100RND_762X54MMR": {40};
