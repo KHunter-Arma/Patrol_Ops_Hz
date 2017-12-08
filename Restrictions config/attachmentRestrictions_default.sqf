@@ -1,7 +1,6 @@
 Hz_econ_cfg_attachmentRestrictions_default =
 [
 
-"RHS_ACC_1P29",
 "RHS_ACC_1P78",
 "RHSUSF_ACC_ANPAS13GV1",
 "RHSUSF_ACC_ACOG2_USMC",
