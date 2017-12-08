@@ -1,8 +1,5 @@
 private ["_return","_weapon"];
 
-_M203 = 1080;
-_M320 = 3500;
-
 _weapon = toupper _this;
 
 _return = switch (_weapon) do {
@@ -88,6 +85,10 @@ case "RHS_WEAP_IGLA": {5000};
 //stinger
 case "RHS_WEAP_FIM92": {3800};
 
+//40mm launchers
+case "RHS_WEAP_M32": {19500};
+case "RHS_WEAP_M320": {3500};
+
 //RH-M4
 case "RH_M4": {700};                  
 case "RH_M4_M203": {1780};             
@@ -116,8 +117,8 @@ case "RH_M4M_B": {1423};
 case "RH_M4_MOE": {900};
 case "RH_M4_MOE_G": {900};
 case "RH_M4_MOE_B": {900};
-case "RH_M4A6": {1210};
-case "RH_M16A6": {1200};
+case "RH_M4A6": {-1};
+case "RH_M16A6": {-1};
 case "RH_HB": {2000};
 case "RH_HB_B": {2000};
 case "RH_HK416": {3100};
@@ -143,9 +144,9 @@ case "RH_M4A1_RIS_M203_WDL": {1830};
 case "RH_M4_RIS_M_TG": {1423};
 case "RH_M4_RIS_M_DES": {1423};	          
 case "RH_M4_RIS_M_WDL": {1423};	
-case "RH_M4A6_TG": {1210};
-case "RH_M4A6_DES": {1210};	
-case "RH_M4A6_WDL": {1210};	
+case "RH_M4A6_TG": {-1};
+case "RH_M4A6_DES": {-1};	
+case "RH_M4A6_WDL": {-1};	
 case "RH_M16A4_TG": {740};	
 case "RH_M16A4_DES": {740};	
 case "RH_M16A4_WDL": {740};
@@ -167,9 +168,9 @@ case "RH_HK416C_WDL": {1895};
 case "RH_M27IAR_TG": {2070};
 case "RH_M27IAR_DES": {2070};
 case "RH_M27IAR_WDL": {2070};
-case "RH_M16A6_TG": {1200};
-case "RH_M16A6_DES": {1200};	
-case "RH_M16A6_WDL": {1200};	
+case "RH_M16A6_TG": {-1};
+case "RH_M16A6_DES": {-1};	
+case "RH_M16A6_WDL": {-1};	
 case "RH_MK12MOD1_TG": {3200};	
 case "RH_MK12MOD1_DES": {3200};	
 case "RH_MK12MOD1_WDL": {3200};	
