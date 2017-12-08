@@ -35,7 +35,7 @@ if(weather_change) then {
 //high fog values can cause very sudden changes, so the loop must run very fast (Arma 2)
 while {!Hz_overrideweather} do {
 
-    sleep 1;
+    sleep 0.01;
     if(weather_change) then {
         
       waituntil {sleep 5; !weather_change};

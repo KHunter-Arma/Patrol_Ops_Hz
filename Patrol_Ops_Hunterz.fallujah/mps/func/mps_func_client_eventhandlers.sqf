@@ -18,6 +18,8 @@ if( if( !isNil "ace_wounds_enabled" ) then { false } else { true } ) then {
 
 //player addEventHandler ["Killed",{player spawn mps_respawn_gear}];
 
+gogglesAtDeath = "";
+
 player addEventHandler ["Killed",{
   
   if(Killed_EH_block) exitwith {};
@@ -38,6 +40,8 @@ player addEventHandler ["Killed",{
     sleep 2;
 		
 		player action ["nvGogglesOff", player];
+		
+		gogglesAtDeath = goggles player;
 		
     WaitUntil{openMap false; 0 fadeSound 0; acre_sys_core_globalVolume = 0; alive player };
     
@@ -79,7 +83,7 @@ player addEventHandler ["Killed",{
       
     } else {
       
-      Hz_econ_funds = Hz_econ_funds - 50000;
+      Hz_econ_funds = Hz_econ_funds - Hz_econ_penaltyPerPlayerdeath;
       publicVariable "Hz_econ_funds";
 
     };
@@ -205,7 +209,7 @@ player addeventhandler ["Respawn", {
 		
 		if ((vehicle _corpse) == _corpse) then {
 		
-			_weaponHolders = nearestObjects [_corpse, ["WeaponHolderSimulated"],2];
+			_weaponHolders = nearestObjects [_corpse, ["WeaponHolderSimulated"],3];
 			
 			{
 				
@@ -241,26 +245,35 @@ player addeventhandler ["Respawn", {
 		removeHeadgear _corpse;
 		removeGoggles _corpse;
 		
-		uisleep 3;
-
-    removeAllWeapons _corpse;
-		removeAllItems _corpse;
-		removeAllAssignedItems _corpse;
-		removeUniform _corpse;
-		removeVest _corpse;
-		removeBackpack _corpse;
-		removeHeadgear _corpse;
-		removeGoggles _corpse;
+		sleep 3;
 		
-		uisleep 1;
+    removeAllWeapons _unit;
+		removeAllItems _unit;
+		removeAllAssignedItems _unit;
+		removeUniform _unit;
+		removeVest _unit;
+		removeBackpack _unit;
+		removeHeadgear _unit;	
+		removeGoggles _unit;
+		
+		sleep 1;
 		
 		_unit addvest _vestType;
+		clearMagazineCargoGlobal (vestContainer _unit);
+		clearWeaponCargoGlobal (vestContainer _unit);
+		clearItemCargoGlobal (vestContainer _unit);
 		_unit addUniform _uniformType;
+		clearItemCargoGlobal (uniformContainer _unit);
+		clearMagazineCargoGlobal (uniformContainer _unit);
+		clearWeaponCargoGlobal (uniformContainer _unit);
 		_unit addbackpack _backpackType;
+		clearItemCargoGlobal (backpackContainer _unit);
+		clearMagazineCargoGlobal (backpackContainer _unit);
+		clearWeaponCargoGlobal (backpackContainer _unit);
 		_unit addHeadgear _headGear;
-		_unit addGoggles _goggles;
+	  _unit addGoggles gogglesAtDeath;
 		
-		uisleep 1;
+		sleep 1;
 		
 		{
 			_unit addWeapon (_x select 0);

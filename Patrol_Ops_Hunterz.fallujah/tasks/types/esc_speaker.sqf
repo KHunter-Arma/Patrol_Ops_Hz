@@ -324,10 +324,11 @@ hz_reward = 1;
 
 _preachCounter = 0;
 _preachMax = _speechTimeMinutes * 60;
-_spawnedSquads = 0;
 
 _otherReward = _otherReward + _downPayment;
 _speechRewardPerSecond = _speechCompletePayment / _preachMax;
+
+_spawnedSquads = (_minSquadCount max (round (random _maxSquadCount)));
 
 waituntil { 
 
@@ -353,6 +354,9 @@ switch (true) do {
 case (_rand < 0.1) : {
 
 		[_vip,_crowd,_goTime] spawn {
+		
+			_otherReward = _otherReward + 100000;
+			_spawnedSquads = 0;
 			
 			_vip = _this select 0;
 			_crowd = _this select 1;
@@ -427,7 +431,6 @@ case (_rand < 0.1) : {
 case (_rand < 0.8) : {
 
 		// insurgent attack
-		_b = (_minSquadCount max (round (random _maxSquadCount)));
 		
 		[_vip,_goTime,_b,_position,_EnemySpawnMinimumRange,_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] spawn {
 			
@@ -499,8 +502,6 @@ case (_rand < 0.8) : {
 				};
 			};
 			
-			Hz_econ_aux_rewards = Hz_econ_aux_rewards + (Hz_econ_perSquadReward*_b);
-			
 		};		
 
 	};
@@ -508,8 +509,6 @@ case (_rand < 0.8) : {
 	default {
 
 		// taki spec ops paradropped
-		
-		_b = (_minSquadCount max (round (random _maxSquadCount)));
 		
 		[_vip,_goTime,_b,_position] spawn {
 			
@@ -539,8 +538,6 @@ case (_rand < 0.8) : {
 				patrol_task_units = patrol_task_units + _paratroopers;				
 				
 			};
-			
-			Hz_econ_aux_rewards = Hz_econ_aux_rewards + (Hz_econ_perSquadReward*_b);
 
 		};
 

@@ -30,6 +30,8 @@ while {true} do
 	_timescaler3 = _timescaler3 + 1;
 	
 	//track unconscious units and kill them if they're lying at the same place for more than 10 minutes
+// using setcaptive isn't reliable as it might return non-unconscious actual captives -- better to remove this cleanup 
+/*	
 	{
 		if((local _x) && (_x call Hz_func_AI_isUncon) && (alive _x)) then {
 			
@@ -56,7 +58,7 @@ while {true} do
 		};
 		
 	}foreach allunits;
-	
+*/	
 	if((count alldead) > Hz_max_deadunits) then {
 
 		//dead body cleanup    

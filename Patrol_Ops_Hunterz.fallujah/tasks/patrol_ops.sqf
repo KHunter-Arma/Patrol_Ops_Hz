@@ -16,10 +16,11 @@ _list = [
   //  "def_base",
 	//	"def_castle",
 	//	"esc_speaker",
-		"esc_supplies"
+		//"esc_supplies",
+		"sar_pow"
     ];
 		
-if(hz_debug) then {_list = ["esc_supplies"];};
+if(hz_debug) then {_list = ["sar_pow"];};
 
 //init
 taskrequested = false;

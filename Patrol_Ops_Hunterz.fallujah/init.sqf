@@ -177,3 +177,7 @@ _ret = ["ACRE_PRC117F", [20000, 20000] ] call acre_api_fnc_setDefaultPowers;
 */
 
 		execVM "R3F_LOG\init.sqf";      
+		
+		//ACRE settings
+		[true] call acre_api_fnc_setRevealToAI;
+		[0.4] call acre_api_fnc_setLossModelScale; //buggy

@@ -28,6 +28,9 @@ _patrol = false;
 _movetype = "patrol";
 if(count _this > 4) then{ _patrol = true; _movetype = switch (_this select 4) do { case "standby" : {"standby"}; case "hide" : {"hide"}; default {"patrol"}; }; };
 
+_garrisonRadius = 400;
+if(count _this > 5) then{ _garrisonRadius = _this select 5; };
+
 _x = _pos select 0;
 _y = _pos select 1;
 
@@ -92,7 +95,7 @@ DEFENSIVE BEHAVIOUR HANDLED BY MOD
       
       [_Grp,_upsmarker,"SHOWMARKER"] spawn Hz_AI_UPS_Hz;
       
-    }else {
+    } else {
       
       _Grp setvariable ["Hz_attacking",false];
       _Grp setvariable ["Hz_defending",true];
@@ -100,15 +103,9 @@ DEFENSIVE BEHAVIOUR HANDLED BY MOD
       //_movetype == "hide"
       
       //[unit,radius,stationary?,([occupy percentage,maximum],warping?,minimum height)] execVM "Garrison_script.sqf"
-      if((_this select 0) call Hz_func_isurbanarea) then {
         
-        [_Grp,400,true,[100,2],true,2] execVM "Garrison_script.sqf";
+      [_Grp,_garrisonRadius,true,[100,2],true,2] execVM "Garrison_script.sqf";
         
-      } else {
-        
-        {deletevehicle _x;}foreach units _Grp;
-        
-      };
       
     };
   };

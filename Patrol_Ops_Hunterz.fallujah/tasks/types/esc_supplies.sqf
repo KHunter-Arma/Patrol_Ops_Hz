@@ -240,12 +240,42 @@ _position
 
 /*----------------------------------------WAIT---------------------------------*/
 
+waitUntil {
+
+	sleep 5;
+	(
+	((count (units _workergrp)) < 1)
+	|| (({alive _x} count _containers) < 1)
+	|| (({alive _x} count _workers) < 1)
+	|| Hz_pops_task_auxFailCondition
+	)
+
+};
+
+if (
+		!Hz_pops_task_auxFailCondition
+		&& (({alive _x} count _containers) > 0)
+		&& (({alive _x} count _workers) > 0)
+		) then {
+
+			(format ["The workers will need about %1 minutes to distribute the supplies to the population. Make sure they're undisturbed and can work safely with the supplies at the drop zone.",round (_supplyTime/60)]) remoteExecCall ["hint",0,false];
+	
+};
+
 _spawnedSquads = (_minSquadCount max (round (random _maxSquadCount)));
 hz_reward = 1;
 _otherReward = _otherReward + _downPayment;
 
 _lastAliveContainerCount = 6;
 _lastAliveWorkerCount = 4;
+
+_waitForArrival = false;
+
+if ((random 1) < 0.5) then {
+
+_waitForArrival = true;
+
+};
 
 waituntil { 
 
@@ -270,7 +300,7 @@ waituntil {
 	[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
 
 	(
-	(({([(getpos _x) select 0, (getpos _x) select 1,0] distance _spawnpos) > 750} count _containers) > 0)
+	(if (!_waitForArrival) then {({(_x distance _spawnpos) > 750} count _workers) > 0} else {({(_x distance _position) < 100} count _workers) > 0})
 	|| (({alive _x} count _containers) < 1)
 	|| (({alive _x} count _workers) < 1)
 	|| Hz_pops_task_auxFailCondition
@@ -314,7 +344,7 @@ if(_spawnedSquads > 0) then {
 		sleep 1;
 		if(!isnil "Hz_AI_moveAndCapture") then {
 			
-			_spawnedVehs = [_grp, _position,mps_opfor_truck,mps_opfor_ncov,300] call Hz_AI_moveAndCapture;  
+			_spawnedVehs = [_grp, _position,mps_opfor_ins_truck,mps_opfor_ins_ncov,300] call Hz_AI_moveAndCapture;  
 
 			patrol_task_vehs = patrol_task_vehs + _spawnedVehs;					 
 			
@@ -342,17 +372,6 @@ if((random 1) < 0.3) then {
 
 _supplyBar = 0;
 
-if (
-	(call Hz_fnc_taskSuccessCheckGenericConditions)
-	&& !Hz_pops_task_auxFailCondition
-	&& (({alive _x} count _containers) > 0)
-	&& (({alive _x} count _workers) > 0)
-	) then {
-
-	(format ["The workers will need about %1 minutes to distribute the supplies to the population. Make sure they're undisturbed and can work safely with the supplies at the drop zone.",round (_supplyTime/60)]) remoteExecCall ["hint",0,false];
-	
-};
-
 while { 
 
     (call Hz_fnc_taskSuccessCheckGenericConditions)
@@ -371,6 +390,8 @@ while {
 		&& (({if (alive _x) then {((_x distance _position) < 50) && ((vehicle _x) == _x)} else {true}} count _workers) == 4)
 	
 	) then {_supplyBar = _supplyBar + 1;};
+	
+	if (_supplyBar == 1) then { "The workers are now distributing the supplies. Provide security until they finish." remoteExecCall ["hint",0,false]; };
 	
 	_count = {alive _x} count _workers;
 	if (_count < _lastAliveWorkerCount) then {
