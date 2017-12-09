@@ -57,7 +57,7 @@ case "RHS_AMMO_762X51_M80_BALL": {1.75};
 
 case "RH_762X51_B_M80A1": {1.25};
 case "RH_762x51_B_Mk316LR": {0.8};
-case "RH_762x51_B_LFMJSB": {0.85};
+case "RH_762x51_B_LFMJSB": {2.50};
 
 case "CUP_B_762X51_TRACER_WHITE_SPLASH": {1.75};
 case "CUP_B_762X51_TRACER_RED_SPLASH": {1.75};
@@ -85,9 +85,9 @@ case "B_338_BALL": {6};
 case "RHS_B_9X19_7N21": {0.25};
 case "RHS_B_9X19_7N31": {0.25};
 
-case "RH_9X19_B_M822": {-1};
+case "RH_9X19_B_M822": {0.25};
 case "RH_9X19_B_HP": {0.45};
-case "RH_9X19_B_HPSB": {-1};
+case "RH_9X19_B_HPSB": {0.65};
 
 ////9x39
 case "RHS_B_9X39_SP5": {3};
