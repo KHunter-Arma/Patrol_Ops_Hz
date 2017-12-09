@@ -8,10 +8,33 @@ wepInfo = wepInfo - [
 ////////////////////////////////////////////////////////////////////////////////////
 
 
-"RHS_WEAP_MAAWS",
-"RHS_WEAP_SMAW",
-"RHS_WEAP_SMAW_GREEN",
-"RHS_WEAP_RPG7"
+
+"RHS_WEAP_SVDS",
+"RHS_WEAP_SVDS_NPZ",
+"RH_SAMR_TG",
+"RH_SAMR_DES",
+"RH_SAMR_WDL",
+"RH_SAMR",
+"RHS_WEAP_SVDP",
+"RHS_WEAP_SVDP_WD",
+"RHS_WEAP_SVDP_WD_NPZ",
+"RHS_WEAP_SVDP_NPZ",
+"RHS_WEAP_M110",
+"RH_MK12MOD1",
+"RH_SAMR",
+"RH_M110",
+"RH_MK11",
+"RH_MK12MOD1_TG",
+"RH_MK12MOD1_DES",
+"RH_MK12MOD1_WDL",
+"RHS_WEAP_M14EBRRI",
+"RHS_WEAP_SR25",
+"RHS_WEAP_SR25_D",
+"RHS_WEAP_SR25_EC",
+"RHS_WEAP_SR25_EC_D",
+"RHS_WEAP_SR25_EC_WD",
+"RHS_WEAP_SR25_WD"
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -33,10 +56,19 @@ attachmentsInfo = attachmentsInfo - [
 ////////////////////////////////////////////////////////////////////////////////////
 
 
-"RHS_OPTIC_MAAWS",
-"RHS_ACC_PGO7V",
-"RHS_ACC_PGO7V2",
-"RHS_ACC_PGOV3"
+
+"RHSUSF_ACC_M8541",
+"RHSUSF_ACC_M8541_LOW",
+"RHSUSF_ACC_M8541_LOW_D",
+"RHSUSF_ACC_M8541_LOW_WD",
+"RHSUSF_ACC_PREMIER_ANPVS27",
+"RHSUSF_ACC_PREMIER_LOW",
+"RHSUSF_ACC_PREMIER",
+"RHSUSF_ACC_LEUPOLDMK4",
+"RHSUSF_ACC_LEUPOLDMK4_2",
+"RHSUSF_ACC_LEUPOLDMK4_2_D",
+"RHSUSF_ACC_ANPVS27"
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////
