@@ -96,7 +96,7 @@ case "MUZZLE_SNDS_M_SND_F": {1099};
 case "RHSUSF_ACC_GRIP2": {35};
 case "RHSUSF_ACC_GRIP2_TAN": {35};
 case "RHSUSF_ACC_GRIP2_WD": {35};
-case "RHSUSF_ACC_GRIP1": {-1};
+case "RHSUSF_ACC_GRIP1": {150};
 case "RHSUSF_ACC_HARRIS_BIPOD": {135};
 case "RHSUSF_ACC_GRIP3": {70};
 case "RHSUSF_ACC_GRIP3_TAN": {70};
@@ -124,7 +124,7 @@ case "RHSUSF_ACC_ROTEX_MP7_DESERT": {-1};
 case "RHSUSF_ACC_ROTEX_MP7_WINTER": {-1};
 case "RH_HBSD": {1200};
 case "RH_DELFT": {219};
-
+case "RHS_OPTIC_MAAWS": {850};
 				
 default {-1};
 

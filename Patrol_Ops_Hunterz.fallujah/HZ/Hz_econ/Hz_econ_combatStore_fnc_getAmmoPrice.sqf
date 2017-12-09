@@ -57,7 +57,7 @@ case "RHS_AMMO_762X51_M80_BALL": {1.75};
 
 case "RH_762X51_B_M80A1": {1.25};
 case "RH_762x51_B_Mk316LR": {0.8};
-case "RH_762x51_B_LFMJSB": {-1};
+case "RH_762x51_B_LFMJSB": {0.85};
 
 //762x54
 case "RHS_B_762X54_BALL": {1.25};
