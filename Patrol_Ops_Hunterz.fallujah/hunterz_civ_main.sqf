@@ -408,7 +408,7 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
         
         if ((random 1) < 0.7) then {
           
-          [_civ] joinSilent (createGroup EAST);
+          [_civ] joinSilent (createGroup (SIDE_B select 0));
           _civ addMagazine "30Rnd_762x39_AK47";
           _civ addMagazine "30Rnd_762x39_AK47";
           _civ addMagazine "30Rnd_762x39_AK47";
@@ -423,7 +423,7 @@ if(Hz_civ_enable_client_processing) then {{_ownerIDs set [count _ownerIDs, owner
           //    if(Hz_civ_enable_client_processing) then {_client = _ownerIDs call mps_getrandomelement; _civ setowner _client;};
           
         } else   {
-          [_civ] joinSilent (createGroup EAST);
+          [_civ] joinSilent (createGroup (SIDE_B select 0));
           
           if ((random 1) > 0.1) then  {
             _civ addWeapon "RPG7V";

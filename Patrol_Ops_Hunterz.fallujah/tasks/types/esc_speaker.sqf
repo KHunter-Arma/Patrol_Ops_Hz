@@ -653,7 +653,7 @@ case (_preachCounter >= _preachMax) : {
 
 			(
 			!(call Hz_fnc_taskSuccessCheckGenericConditions)
-			&& (((_vip distance _returnPoint) < 15) && (!captive _vip))
+			|| (((_vip distance _returnPoint) < 15) && (!captive _vip))
 			|| !(alive _vip)
 			|| (({(_vip distance _x) < 300} count playableUnits) < 1)
 			|| Hz_pops_task_auxFailCondition
@@ -727,7 +727,7 @@ if((call Hz_fnc_taskSuccessCheckGenericConditions) && (alive _vip) && (({(_vip d
 
 /*--------------------CLEAN UP (NEW VERSION)---------------------------------*/       
 
-[patrol_task_units,_position,patrol_task_vehs,_vip,_crowd] spawn {
+[patrol_task_units,_position,patrol_task_vehs,_vip,_crowd,_newComp] spawn {
 	
 	
 	private ["_units","_vehs","_markers"];
@@ -736,11 +736,13 @@ if((call Hz_fnc_taskSuccessCheckGenericConditions) && (alive _vip) && (({(_vip d
 	_vehs = _this select 2;
 	_vip = _this select 3;
 	_crowd = _this select 4;
+	_newComp = _this select 5;
 	
 	while{ ({(_x distance _pos) < 50} count playableUnits) > 0} do { sleep 60 };
 	
 	{deletevehicle _x} foreach (_vip getVariable "guards");
 	{deletevehicle _x} foreach _crowd;
+	{deletevehicle _x} foreach _newComp;
 	deleteVehicle _vip;	
 	
 	{deletevehicle _x}forEach _units;

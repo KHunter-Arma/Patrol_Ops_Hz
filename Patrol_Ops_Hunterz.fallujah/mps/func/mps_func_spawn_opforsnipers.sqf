@@ -62,7 +62,7 @@ _buildings = nearestObjects [_position, ["Building"], _radius];
 _highbuildings = [];
 
 {
-  _buildingheight = ((boundingboxreal _x select 1) select 2)*2;
+  _buildingheight = (((boundingboxreal _x) select 1) select 2)*2;
   
   if(_buildingheight > _maxHeight) then {_highbuildings set [count _highbuildings, _x];};
   // if (count _highbuildings > 10) exitwith{};

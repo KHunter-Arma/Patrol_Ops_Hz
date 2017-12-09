@@ -17,10 +17,11 @@ _list = [
 	//	"def_castle",
 	//	"esc_speaker",
 		//"esc_supplies",
-		"sar_pow"
+		"sar_pow",
+		"esc_journalist"
     ];
 		
-if(hz_debug) then {_list = ["sar_pow"];};
+if(hz_debug) then {_list = ["esc_journalist"];};
 
 //init
 taskrequested = false;
