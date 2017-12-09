@@ -107,8 +107,6 @@ CASE "RHSUSF_WEAP_MP7A2_DESERT": {1850};
 CASE "RHSUSF_WEAP_MP7A2_WINTER": {1850};
 
 
-
-
 //disposeable anti-tank
 //AT-4s
 case "RHS_WEAP_M136": {1480};
@@ -141,6 +139,9 @@ case "RHS_WEAP_IGLA": {5000};
 
 //stinger
 case "RHS_WEAP_FIM92": {3800};
+
+//Strela
+case "CUP_LAUNCH_9K32STRELA": {12000};
 
 //40mm launchers
 case "RHS_WEAP_M32": {19500};
@@ -357,7 +358,23 @@ case "RHS_WEAP_RSP30_GREEN": {14};
 case "RHS_WEAP_RSP30_RED": {14};
 case "RHS_WEAP_TR8": {174};
 
-				
+//BINOCULARS
+case "BINOCULAR": {250};
+case "LERCA_1200_BLACK": {500};
+case "LERCA_1200_TAN": {500};
+case "LEUPOLD_MK4": {2210};
+case "ACE_MX2A": {6089};
+case "RHS_PDU4": {6000};
+case "RHS_TR8_PERISCOPE": {174};
+case "RHS_TR8_PERISCOPE_PIP": {174};
+case "ACE_VECTORDAY": {30000};
+case "ACE_VECTOR": {52923};
+case "ACE_YARDAGE450": {150};
+case "LASERDESIGNATOR": {12000};
+case "LASERDESIGNATOR_03": {12000};
+case "LASERDESIGNATOR_01_KHK_F": {12000};
+
+
 default {-1};
 
 };
