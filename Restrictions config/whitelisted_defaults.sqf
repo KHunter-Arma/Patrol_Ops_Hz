@@ -399,8 +399,12 @@ itemsInfo = itemsInfo - [
 "TRYK_V_PLATECARRIER_BLK",
 "TRYK_V_PLATECARRIER_WOOD",
 "TRYK_V_PLATECARRIER_COYO",
-"TRYK_V_PLATECARRIER_ACU"
+"TRYK_V_PLATECARRIER_ACU",
 
+"B_BERGEN_DGTL_F",
+"B_BERGEN_HEX_F",
+"B_BERGEN_MCAMO_F",
+"B_BERGEN_TNA_F"
 
 
 ////////////////////////////////////////////////////////////////////////////////////
