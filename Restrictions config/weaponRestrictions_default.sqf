@@ -163,7 +163,7 @@ Hz_econ_cfg_weaponsRestrictions_default =
 "RHS_WEAP_M4A1_M203S_WD",
 "RHS_WEAP_M4A1_WD_MSTOCK",
 "RHS_WEAP_M590_8RD",
-"RHS_WEAP_M590_5RD",.
+"RHS_WEAP_M590_5RD",
 "RHS_WEAP_SR25",
 "RHS_WEAP_SR25_D",
 "RHS_WEAP_SR25_EC",
@@ -184,7 +184,8 @@ Hz_econ_cfg_weaponsRestrictions_default =
 "RHSUSF_WEAP_MP7A2_DESERT",
 "RHSUSF_WEAP_MP7A2_WINTER",
 "RHS_WEAP_M32",
-"RHS_WEAP_M320"
+"RHS_WEAP_M320",
+"RHS_WEAP_MAAWS"
  
 
 ];

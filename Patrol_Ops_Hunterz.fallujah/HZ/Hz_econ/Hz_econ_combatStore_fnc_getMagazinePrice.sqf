@@ -133,7 +133,7 @@ case "RH_20RND_762X51_AR10": {22};
 
 case "RH_20Rnd_762x51_M80A1": {79};
 case "RH_20Rnd_762x51_Mk316LR": {79};
-case "RH_20Rnd_762x51_LFMJSB": {-1};
+case "RH_20Rnd_762x51_LFMJSB": {79};
 
 //762x54
 case "RHS_100RND_762X54MMR": {40};
@@ -161,9 +161,9 @@ case "RHS_MAG_9X19MM_7N31_20": {20};
 case "RHS_MAG_9X19MM_7N21_44": {30};
 case "RHS_MAG_9X19MM_7N31_44": {30};
 
-case "RH_32RND_9MM_M822": {-1};
-case "RH_32RND_9MM_HP": {-1};
-case "RH_32RND_9MM_HPSB": {-1};
+case "RH_32RND_9MM_M822": {19};
+case "RH_32RND_9MM_HP": {19};
+case "RH_32RND_9MM_HPSB": {19};
 
 //9x39
 case "RHS_20RND_9X39MM_SP5": {12};
@@ -238,10 +238,10 @@ case  "RHS_MAG_FAKELS": {45};
 case  "I_IR_GRENADE": {200};
 case  "O_IR_GRENADE": {200};
 case  "B_IR_GRENADE": {200};
-case  "ACE_HANDFLARE_GREEN": {-1};
-case  "ACE_HANDFLARE_RED": {-1};
-case  "ACE_HANDFLARE_WHITE": {-1};
-case  "ACE_HANDFLARE_YELLOW": {-1};
+case  "ACE_HANDFLARE_GREEN": {60};
+case  "ACE_HANDFLARE_RED": {60};
+case  "ACE_HANDFLARE_WHITE": {60};
+case  "ACE_HANDFLARE_YELLOW": {60};
 case  "RHS_MAG_M18_GREEN": {52};
 case  "RHS_MAG_M18_PURPLE": {52};
 case  "RHS_MAG_M18_RED": {52};
@@ -296,7 +296,7 @@ case  "IEDURBANSMALL_REMOTE_MAG": {40};
 case  "RHS_MINE_TM62M_MAG": {120};
 case  "TRAININGMINE_MAG": {250};
 case  "APERSMINE_RANGE_MAG": {200};  //vs50
-case  "ACE_FLARETRIPMINE_MAG": {-1};
+case  "ACE_FLARETRIPMINE_MAG": {20};
 
 case "LASERBATTERIES": {120};
 

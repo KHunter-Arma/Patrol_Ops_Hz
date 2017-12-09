@@ -7,7 +7,6 @@ wepInfo = wepInfo - [
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
 
-"RHS_WEAP_MAAWS",
 "RHS_WEAP_RSHG2",
 "RHS_WEAP_RPG26",
 "RHS_WEAP_M136",
@@ -69,7 +68,7 @@ wepInfo = wepInfo - [
 "RHS_WEAP_M4A1_WD",
 "RHS_WEAP_M4A1_WD_MSTOCK",
 "RHS_WEAP_M590_8RD",
-"RHS_WEAP_M590_5RD",.
+"RHS_WEAP_M590_5RD",
 "RHS_WEAP_MK18",
 "RHS_WEAP_MK18_BK",
 "RHS_WEAP_MK18_KAC_BK",
@@ -399,8 +398,12 @@ itemsInfo = itemsInfo - [
 "TRYK_V_PLATECARRIER_BLK",
 "TRYK_V_PLATECARRIER_WOOD",
 "TRYK_V_PLATECARRIER_COYO",
-"TRYK_V_PLATECARRIER_ACU"
+"TRYK_V_PLATECARRIER_ACU",
 
+"B_BERGEN_DGTL_F",
+"B_BERGEN_HEX_F",
+"B_BERGEN_MCAMO_F",
+"B_BERGEN_TNA_F"
 
 
 ////////////////////////////////////////////////////////////////////////////////////
