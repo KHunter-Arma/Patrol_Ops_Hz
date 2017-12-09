@@ -129,6 +129,9 @@ case "RHS_WEAP_RPG26": {260};
 case "RHS_WEAP_SMAW": {13000};
 case "RHS_WEAP_SMAW_GREEN": {13000};
 
+//MAAWS
+case "RHS_WEAP_MAAWS": {3585};
+
 //RPG7
 case "RHS_WEAP_RPG7": {1170};
 

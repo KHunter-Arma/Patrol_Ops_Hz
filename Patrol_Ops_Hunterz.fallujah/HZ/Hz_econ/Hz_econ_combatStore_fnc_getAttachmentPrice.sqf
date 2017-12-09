@@ -124,7 +124,7 @@ case "RHSUSF_ACC_ROTEX_MP7_DESERT": {-1};
 case "RHSUSF_ACC_ROTEX_MP7_WINTER": {-1};
 case "RH_HBSD": {1200};
 case "RH_DELFT": {219};
-
+case "RHS_OPTIC_MAAWS": {850};
 				
 default {-1};
 

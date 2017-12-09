@@ -65,7 +65,8 @@ Hz_econ_cfg_attachmentRestrictions_default =
 "MUZZLE_SNDS_M_SND_F",
 "MUZZLE_SNDS_H_MG_BLK_F",
 "MUZZLE_SNDS_H_MG",
-"MUZZLE_SNDS_H_MG_KHK_F"
+"MUZZLE_SNDS_H_MG_KHK_F",
+"RHS_OPTIC_MAAWS"
 
 
 ];

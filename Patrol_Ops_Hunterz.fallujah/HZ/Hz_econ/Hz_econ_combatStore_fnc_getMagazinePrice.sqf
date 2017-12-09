@@ -25,6 +25,11 @@ case "RHS_MAG_SMAW_HEAA": {235};
 case "RHS_MAG_SMAW_HEDP": {185};
 case "RHS_MAG_SMAW_SR": {38};
 
+//MAAWS
+case "RHS_MAG_MAAWS_HE": {145};
+case "RHS_MAG_MAAWS_HEDP": {190};
+case "RHS_MAG_MAAWS_HEAT": {410};
+
 //RPG7
 case "RHS_RPG7_PG7V_MAG": {90};
 case "RHS_RPG7_PG7VL_MAG": {140};
@@ -270,8 +275,8 @@ case  "RHS_MAG_ZARYA2": {22};
 
 //Explosives
 case  "APERSMINEDISPENSER_MAG": {250};
-case  "IEDLANDBIG_REMOTE_MAG": {-1};
-case  "IEDURBANBIG_REMOTE_MAG": {-1};
+case  "IEDLANDBIG_REMOTE_MAG": {100};
+case  "IEDURBANBIG_REMOTE_MAG": {70};
 case  "RHSUSF_M112_MAG": {110};
 case  "DEMOCHARGE_REMOTE_MAG": {220};
 case  "RHSUSF_M112X4_MAG": {440};
