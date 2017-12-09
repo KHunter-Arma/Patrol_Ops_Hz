@@ -184,7 +184,8 @@ Hz_econ_cfg_weaponsRestrictions_default =
 "RHSUSF_WEAP_MP7A2_DESERT",
 "RHSUSF_WEAP_MP7A2_WINTER",
 "RHS_WEAP_M32",
-"RHS_WEAP_M320"
+"RHS_WEAP_M320",
+"RHS_WEAP_MAAWS"
  
 
 ];
