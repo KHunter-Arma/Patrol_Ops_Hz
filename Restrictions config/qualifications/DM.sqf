@@ -67,8 +67,20 @@ attachmentsInfo = attachmentsInfo - [
 "RHSUSF_ACC_LEUPOLDMK4",
 "RHSUSF_ACC_LEUPOLDMK4_2",
 "RHSUSF_ACC_LEUPOLDMK4_2_D",
-"RHSUSF_ACC_ANPVS27"
+"RHSUSF_ACC_ANPVS27", 
 
+"OPTIC_DMS",
+"OPTIC_LRPS",
+"OPTIC_SOS",
+"OPTIC_AMS",
+"OPTIC_AMS_KHK",
+"OPTIC_AMS_SND",
+"OPTIC_KHS_BLK",
+"OPTIC_KHS_OLD",
+"OPTIC_KHS_TAN",
+"OPTIC_LRPS_GHEX_F",
+"OPTIC_LRPS_TNA_F",
+"OPTIC_SOS_KHK_F"
 
 
 ////////////////////////////////////////////////////////////////////////////////////

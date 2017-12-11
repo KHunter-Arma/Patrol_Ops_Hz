@@ -125,7 +125,42 @@ case "RHSUSF_ACC_ROTEX_MP7_WINTER": {-1};
 case "RH_HBSD": {1200};
 case "RH_DELFT": {219};
 case "RHS_OPTIC_MAAWS": {850};
-				
+
+case "OPTIC_ACO_GRN": {240};
+case "OPTIC_ACO": {240};
+case "OPTIC_ACO_GRN_SMG": {240};
+case "OPTIC_ACO_SMG": {240};
+case "OPTIC_ARCO": {1577};
+case "OPTIC_DMS": {1550};
+case "OPTIC_LRPS": {2100};
+case "OPTIC_HOLOSIGHT": {630};
+case "OPTIC_HOLOSIGHT_SMG": {630};
+case "OPTIC_SOS": {1170};
+case "OPTIC_MRCO": {1495};
+case "OPTIC_HAMR": {1370};
+case "OPTIC_YORRIS": {250};
+case "OPTIC_AMS": {2230};
+case "OPTIC_AMS_KHK": {2230};
+case "OPTIC_AMS_SND": {2230};
+case "OPTIC_KHS_BLK": {1250};
+case "OPTIC_KHS_OLD": {950};
+case "OPTIC_KHS_TAN": {1250};
+case "OPTIC_ARCO_BLK_F": {1577};
+case "OPTIC_ARCO_GHEX_F": {1577};
+case "OPTIC_ERCO_BLK_F": {2000};
+case "OPTIC_ERCO_SND_F": {2000};
+case "OPTIC_LRPS_GHEX_F": {2100};
+case "OPTIC_LRPS_TNA_F": {2100};
+case "OPTIC_HOLOSIGHT_BLK_F": {630};
+case "OPTIC_HOLOSIGHT_KHK_F": {630};
+case "OPTIC_HOLOSIGHT_SMG_BLK_F": {630};
+case "OPTIC_HOLOSIGHT_SMG_KHK_F": {630};
+case "OPTIC_SOS_KHK_F": {1170};
+case "OPTIC_HAMR_KHK_F": {1370};
+
+
+
+
 default {-1};
 
 };

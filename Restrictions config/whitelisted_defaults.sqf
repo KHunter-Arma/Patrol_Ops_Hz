@@ -150,9 +150,16 @@ attachmentsInfo = attachmentsInfo - [
 "MUZZLE_SNDS_M_SND_F",
 "MUZZLE_SNDS_H_MG_BLK_F",
 "MUZZLE_SNDS_H_MG",
-"MUZZLE_SNDS_H_MG_KHK_F"
+"MUZZLE_SNDS_H_MG_KHK_F",
 
-
+"OPTIC_ARCO",
+"OPTIC_MRCO",
+"OPTIC_HAMR",
+"OPTIC_ARCO_BLK_F",
+"OPTIC_ARCO_GHEX_F",
+"OPTIC_ERCO_BLK_F",
+"OPTIC_ERCO_SND_F",
+"OPTIC_HAMR_KHK_F"
 
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
