@@ -1,5 +1,6 @@
 Hz_econ_cfg_weaponsRestrictions_default =
 [
+"CUP_LAUNCH_9K32STRELA",
 "RHS_WEAP_AK103_GP25", 
 "RHS_WEAP_AK103_GP25_NPZ", 
 "RHS_WEAP_AK74_GP25", 
