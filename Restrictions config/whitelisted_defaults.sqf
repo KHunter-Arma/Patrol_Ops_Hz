@@ -80,8 +80,14 @@ wepInfo = wepInfo - [
 "RHSUSF_WEAP_MP7A2",
 "RHSUSF_WEAP_MP7A2_AOR1",
 "RHSUSF_WEAP_MP7A2_DESERT",
-"RHSUSF_WEAP_MP7A2_WINTER"
-
+"RHSUSF_WEAP_MP7A2_WINTER",
+"CUP_ARIFLE_AKM",
+"CUP_ARIFLE_AKS74_PSO",
+"CUP_ARIFLE_AKS74_NSPU",
+"PO_WEAP_M4_COMP4_ANPEQ15",
+"PO_WEAP_M4_EOT552_ANPEQ15",
+"CUP_HGUN_TAURUSTRACKER455_GOLD",
+"CUP_ARIFLE_FNFAL_ANPVS4"
 
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -159,7 +165,13 @@ attachmentsInfo = attachmentsInfo - [
 "OPTIC_ARCO_GHEX_F",
 "OPTIC_ERCO_BLK_F",
 "OPTIC_ERCO_SND_F",
-"OPTIC_HAMR_KHK_F"
+"OPTIC_HAMR_KHK_F",
+
+"CUP_OPTIC_PSO_1",
+"CUP_OPTIC_PSO_3",
+"CUP_OPTIC_NSPU"
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
@@ -217,8 +229,10 @@ magazinesInfo = magazinesInfo - [
 "RHS_MINE_TM62M_MAG",
 "TRAININGMINE_MAG",
 "APERSMINE_RANGE_MAG",
-"ACE_FLARETRIPMINE_MAG"
-
+"ACE_FLARETRIPMINE_MAG",
+"CUP_MINEE_M",
+"CUP_PIPEBOMB_M",
+"CUP_PIPEBOMB_M"
 
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
