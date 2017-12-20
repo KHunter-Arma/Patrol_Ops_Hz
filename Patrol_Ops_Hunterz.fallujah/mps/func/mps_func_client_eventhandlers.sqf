@@ -42,6 +42,7 @@ player addEventHandler ["Killed",{
 		player action ["nvGogglesOff", player];
 		
 		gogglesAtDeath = goggles player;
+		_hasEarplugs = player getvariable ["ACE_hasEarPlugsin",false];
 		
     WaitUntil{openMap false; 0 fadeSound 0; acre_sys_core_globalVolume = 0; alive player };
     
@@ -58,6 +59,7 @@ player addEventHandler ["Killed",{
     
     sleep 5;
     acre_sys_core_globalVolume = 1;
+		if (_hasEarplugs) then {player setvariable ["ACE_hasEarPlugsin",true]};
     0 fadesound 1;
     
     mps_rallypoint = player addaction ["<t color=""#ffc600"">Build Rallypoint</t>",(mps_path+"action\mps_buildtent.sqf"),[],0,false,false,"",mps_rally_condition];
@@ -66,8 +68,29 @@ player addEventHandler ["Killed",{
     if(nukeweather) then {terminate ashhandle; sleep 5; ashhandle = player spawn ash;};
     
   };
+	
   
-  []spawn{
+  []spawn {
+	
+		_exit = false;
+		
+		if (Hz_pops_enableDetainUnrecognisedUIDs) then {
+	
+			if ((!(getPlayerUID player) in Hz_pops_releasedUIDs)) then {
+			
+				_exit = true;
+			
+			};
+			
+		};
+		
+		if ((getPlayerUID player) in BanList) then {
+		
+			_exit = true;
+		
+		};
+		
+		if (_exit) exitWith {};
     
     if (!(player getVariable ["JointOps",false])) then {
     

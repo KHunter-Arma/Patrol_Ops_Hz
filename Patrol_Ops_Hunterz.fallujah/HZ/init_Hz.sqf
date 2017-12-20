@@ -31,6 +31,8 @@ Hz_sleep_mutex = false;
 
 //Client init
 if(!isDedicated)  then {
+
+	Hz_fnc_arrestPlayer = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_arrestPlayer.sqf";
   
   [] spawn {   
     
@@ -84,6 +86,13 @@ if(!isDedicated)  then {
 
 // Server init
 if (isServer) then {
+
+	if (Hz_pops_enableDetainUnrecognisedUIDs) then {
+	
+		Hz_pops_releasedUIDs = [];
+		publicvariable "Hz_pops_releasedUIDs";
+	
+	};
 
   nukeweatherCounter = 0;
   nukeWeatherCountdown_Mutex = false;

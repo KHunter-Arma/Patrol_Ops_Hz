@@ -6,7 +6,7 @@ diag_log diag_activeMissionFSMs;
 /*-------------------- TASK PARAMS ---------------------------------*/
 _reinforcementsMinimumSpawnRange = 5000;
 _ambientCombatIntensifyAmount = 60;
-_downPayment = 100000;
+_downPayment = 75000;
 
 _minDefendingSquadCount = 0;
 _maxDefendingSquadCount = 1;
@@ -44,7 +44,7 @@ _ins = true;
 if ((random 1) < 0.25) then {
 
 	_ins = false;
-	_downPayment = _downPayment*2;
+	_downPayment = _downPayment*1.15;
 
 	_buildings = nearestobjects [markerpos "ao_centre",["House"],3000];
 	_bigBuildings = [];
@@ -393,7 +393,7 @@ hz_reward = 1;
 While{ _pow1 distance getMarkerPos format["return_point_%1",(SIDE_A select 0)] > 15 && alive _pow1 && (call Hz_fnc_taskSuccessCheckGenericConditions)} do {
   
   sleep 5;
-  [_b+_c+_d,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
+  [_b+_c,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
   
 };
 

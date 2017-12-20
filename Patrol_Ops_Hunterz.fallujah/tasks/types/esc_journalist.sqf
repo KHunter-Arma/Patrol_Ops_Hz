@@ -8,10 +8,10 @@ diag_log diag_activeMissionFSMs;
 /*-------------------- TASK PARAMS ---------------------------------*/
 
 _downPayment = 60000;
-_numberOfTargets = 2;
+_numberOfTargets = 4;
 _minimumVantagePointHeight = 15;
 _ambientCombatIntensifyAmount = 60;
-_timeRequiredAtEachTarget = 10;
+_timeRequiredAtEachTarget = 5;
 
 //Useful for justifying task-specific difficulties.
 _rewardMultiplier = 1;

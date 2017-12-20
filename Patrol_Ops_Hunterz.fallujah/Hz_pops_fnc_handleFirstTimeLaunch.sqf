@@ -18,3 +18,9 @@
 ["nukeweatherCounter",SINGLE_VARIABLE,false] call Hz_pers_API_addMissionVariable;
 ["owner",true] call Hz_pers_API_addObjectVariable;
 ["owneruid",true] call Hz_pers_API_addObjectVariable;
+
+if (Hz_pops_enableDetainUnrecognisedUIDs) then {
+	
+	["Hz_pops_releasedUIDs",ONE_D_ARRAY,true] call Hz_pers_API_addMissionVariable;
+	
+};

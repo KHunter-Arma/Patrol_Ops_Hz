@@ -1,14 +1,14 @@
 version=53;
 class EditorData
 {
-	moveGridStep=1;
+	moveGridStep=0.125;
 	angleGridStep=0.2617994;
 	scaleGridStep=100;
 	autoGroupingDist=10;
 	toggles=10;
 	class ItemIDProvider
 	{
-		nextID=3847;
+		nextID=3881;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={8692.6523,71.949959,1888.5751};
-		dir[]={0.30823925,-0.82718408,0.46987307};
-		up[]={0.45374131,0.56188065,0.69167167};
-		aside[]={0.83615428,-2.1548476e-007,-0.54851973};
+		pos[]={7848.5601,8.9591093,1583.2047};
+		dir[]={0.77466571,-0.53149784,-0.34278116};
+		up[]={0.48612836,0.84699368,-0.21510737};
+		aside[]={-0.40466303,1.4121179e-007,-0.91451514};
 	};
 };
 binarizationWanted=0;
@@ -143,13 +143,15 @@ addons[]=
 	"CUP_AirVehicles_AmbientPlanes",
 	"A3_Structures_F_Argo_Commercial_FuelStation_01",
 	"A3_Structures_F_Exp_Walls_Concrete",
-	"nielsen_cim"
+	"nielsen_cim",
+	"A3_Structures_F_Exp_Civilian_Accessories",
+	"A3_Structures_F_Heli_Items_Sport"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=94;
+		items=95;
 		class Item0
 		{
 			className="globemaster_c17";
@@ -733,6 +735,13 @@ class AddonsMetaData
 			className="nielsen_cim";
 			name="nielsen_cim";
 		};
+		class Item94
+		{
+			className="A3_Structures_F_Exp_Civilian";
+			name="Arma 3 Apex - Civilian Buildings";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
 	};
 };
 class DynamicSimulation
@@ -994,7 +1003,6 @@ class Mission
 		forecastWeather=0;
 		forecastWind=0.1;
 		forecastWaves=0.1;
-		forecastLightnings=0.1;
 		rainForced=1;
 		lightningsForced=1;
 		wavesForced=1;
@@ -1009,7 +1017,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=700;
+		items=709;
 		class Item0
 		{
 			dataType="Object";
@@ -41720,6 +41728,155 @@ class Mission
 			name="spareTyreDelivery";
 			type="Empty";
 			id=3829;
+		};
+		class Item700
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={7849.6426,8.267457,1584.1454};
+				angles[]={1.5707964,3.1415927,5.4105206};
+			};
+			side="Empty";
+			flags=1;
+			class Attributes
+			{
+			};
+			id=3854;
+			type="Land_Plank_01_4m_F";
+			atlOffset=1.2237415;
+		};
+		class Item701
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={7849.1563,8.3967838,1584.6639};
+				angles[]={1.5707964,3.1415927,5.4105206};
+			};
+			side="Empty";
+			flags=1;
+			class Attributes
+			{
+			};
+			id=3855;
+			type="Land_Plank_01_4m_F";
+			atlOffset=1.3530684;
+		};
+		class Item702
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={7846.9038,8.10151,1587.2454};
+				angles[]={1.5707964,3.1415927,5.4105206};
+			};
+			side="Empty";
+			flags=1;
+			class Attributes
+			{
+			};
+			id=3856;
+			type="Land_Plank_01_4m_F";
+			atlOffset=1.0577946;
+		};
+		class Item703
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={7846.4175,8.2308369,1587.7639};
+				angles[]={1.5707964,3.1415927,5.4105206};
+			};
+			side="Empty";
+			flags=1;
+			class Attributes
+			{
+			};
+			id=3857;
+			type="Land_Plank_01_4m_F";
+			atlOffset=1.1871214;
+		};
+		class Item704
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={7850,8.1277151,1582};
+				angles[]={1.5707964,0,3.8397243};
+			};
+			side="Empty";
+			flags=1;
+			class Attributes
+			{
+			};
+			id=3864;
+			type="Land_Plank_01_4m_F";
+			atlOffset=1.0839996;
+		};
+		class Item705
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={7849.5,8.1277151,1581.5};
+				angles[]={1.5707964,0,3.8397243};
+			};
+			side="Empty";
+			flags=1;
+			class Attributes
+			{
+			};
+			id=3865;
+			type="Land_Plank_01_4m_F";
+			atlOffset=1.0839996;
+		};
+		class Item706
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={7849.9185,7.3265195,1582.9269};
+				angles[]={0,3.9814227,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=3867;
+			type="CUP_toilet_b_02";
+		};
+		class Item707
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={7848.5,8,1581.25};
+				angles[]={0,2.4231482,0};
+			};
+			side="Empty";
+			class Attributes
+			{
+			};
+			id=3873;
+			type="CUP_sink";
+			atlOffset=0.67348051;
+		};
+		class Item708
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={7846.8662,7.3550053,1582.9553};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=3876;
+			type="Land_Baseball_01_F";
 		};
 	};
 };

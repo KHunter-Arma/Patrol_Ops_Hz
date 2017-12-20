@@ -85,22 +85,72 @@ if(!isDedicated) then {
 if(Hz_weather_Snow) then {
 
 	[2016,12,25,mps_mission_hour,30] call mps_timeset;
-        EffectsModule setvariable ["particleEffects",[0,2,3]];
-        ColorModule setvariable ["intensity", 0.5];
         if(isServer) then {Hz_overrideweather = true; publicvariable "Hz_overrideweather";};
-        weather = 0.6;
+        weather = 1;
         0 setovercast weather;
-        _colour = ppEffectCreate ["Colorcorrections", 801];
-        _colour ppEffectEnable true;
-        _colour ppEffectAdjust [1.005,30,0.01,0,0,0,0,0.625,0.625,0.625,0.5,0,0,0,1];
-        _colour ppEffectCommit 0;
         []spawn {
             if(isnil "Hz_overrideweather") then {Hz_overrideweather = true;};
             while {Hz_overrideweather} do {
-                sleep 60;
+						
                 0 setrain 0;
-                0 setovercast 0.6;
+                0 setovercast 1;								
+								0 setlightnings 0;
                 0 setfog 0.2;
+								forceweatherchange;
+								
+								// Goon snowstorm script
+								/* Goon/Gooncorp 2015  */
+								
+									_obj = (vehicle player);
+									_pos = getposASL _obj;
+								 _n =  abs(wind select 0) + abs(wind select 1) + abs(wind select 2);
+								 _velocity = wind;
+								 _color = [1, 1, 1];   
+
+
+								_hndl = ppEffectCreate ["colorCorrections", 1501];
+								_hndl ppEffectEnable true;
+								_hndl ppEffectAdjust [0.8, 0.8, 0.0, [.3, .3, 1.0, .1], [.88, .88, .93, .45], [1 , 1, 1, 0.03]];//white 
+								_hndl ppEffectCommit 0;
+
+
+				 
+								 _snowflakes1 = "#particlesource" createVehicleLocal _pos; 
+					 //_snowflakes1  attachto [player, [0,0,12]];
+								 _snowflakes1  setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 14, 2, 0], "", "Billboard", 1, 22, [0, 0, 6], _velocity, (0), 1.69, 1, 1, [1.5], [[1,1,1,0],[1,1,1,1],[1,1,1,1]],[1000], 0, 0, "", "", _obj];
+								 _snowflakes1  setParticleRandom [0, [24 + (random 2),24 + (random 2), 4], [0, 0, 0], 0, 0, [0, 0, 0, .03], 0, 0];
+								 _snowflakes1  setParticleCircle [0, [0, 0, 0]];
+								 _snowflakes1  setDropInterval 0.001; 
+
+
+								 _snowflakes2 = "#particlesource" createVehicleLocal _pos; 
+					 //_snowflakes2  attachto [player, [0,0,12]];
+								 _snowflakes2  setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 2, 0], "", "Billboard", 1, 14, [0, 0, 6], _velocity, (0), 1.39, 0, 0, [.2], [[1,1,1,0],[1,1,1,1],[1,1,1,1]],[1000], 0, 0, "", "", _obj];
+								 _snowflakes2  setParticleRandom [0, [14 + (random 2),14 + (random 2), 5], [0, 0, 0], 0, 0, [0, 0, 0, 2], 0, 0];
+								_snowflakes2  setParticleCircle [0, [0, 0, 0]];
+								 _snowflakes2  setDropInterval 0.004; 
+
+
+								 _clouds1 = "#particlesource" createVehicleLocal _pos; 
+					 //_clouds1  attachto [player, [0,0,12]];
+								 _clouds1  setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 2, 0], "", "Billboard", 1,22, [0, 0, 16], _velocity, (_n * 4), 1.72, 1, 1, [22 + random 33], [[1,1,1,0],[1,1,1,1],[1,1,1,0]],[1000], 0, 0, "", "", _obj];
+								 _clouds1  setParticleRandom [3, [55 + (random 8),55 + (random 10), 55], [2, 2, 0], 0, 0, [0, 0, 0, 0], 0, 0];
+								 _clouds1  setParticleCircle [0, [0, 0, 0]];
+								 _clouds1  setDropInterval 0.05; 
+
+								 _clouds2 = "#particlesource" createVehicleLocal _pos; 
+					// _clouds2  attachto [player, [0,0,12]];
+								 _clouds2  setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 13, 6, 0], "", "Billboard", 1, 22, [0, 0, 36], _velocity, (0), 1.52, 1, 1, [5 + random 23], [[1,1,1,0],[1,1,1,.4],[1,1,1,0]],[1000], 0, 0, "", "", _obj];
+								 _clouds2  setParticleRandom [3, [24 + (random 8),24 + (random 10), 15], [2, 2, 0], 0, 0, [0, 0, 0, 0], 0, 0];
+								 _clouds2  setParticleCircle [0, [0, 0, 0]];
+								 _clouds2  setDropInterval 0.1; 
+
+								 sleep 30;
+								 deletevehicle _snowflakes1;
+								 deletevehicle _snowflakes2;
+								 deletevehicle _clouds1;
+								 deletevehicle _clouds2;
+								
                 };
         };
         
@@ -180,4 +230,4 @@ _ret = ["ACRE_PRC117F", [20000, 20000] ] call acre_api_fnc_setDefaultPowers;
 		
 		//ACRE settings
 		[true] call acre_api_fnc_setRevealToAI;
-		[0.4] call acre_api_fnc_setLossModelScale; //buggy
+		[0.3] call acre_api_fnc_setLossModelScale; //buggy

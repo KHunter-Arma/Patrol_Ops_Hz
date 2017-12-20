@@ -99,12 +99,13 @@ waitUntil {!(isNull player)};
 sleep 1;
 
 _uid = getplayeruid player;
+_exit = false;
 if(_uid in BanList) then {
 
-  hintc "You are banned from this server";
-  endmission "End3";
+  "-1" call Hz_fnc_arrestPlayer;
 
 };
+if (_exit) exitWith {};
 
 // Publicvariabled from server init. Used to sync destroyed objects/buildings from nuke for JIP
 if (count narray2 > 0) then {{_x setdamage 1;} foreach narray2;};
@@ -334,44 +335,108 @@ waituntil {sleep 0.1; !isnil "Hz_pops_restrictionPublicLimitCheckPassed"};
 
 if (!Hz_pops_restrictionSupervisorCheckPassed || !Hz_pops_restrictionPublicLimitCheckPassed) exitwith {};
 
-Hz_pers_clientReadyForLoad = true;
+_exit = false;
 
-_uid = getplayeruid player;
-_tentpos = getMarkerPos _uid;
-_tentposx = _tentpos select 0;
-_tentposy = _tentpos select 1;
-_tentposz = _tentpos select 2;
+if (Hz_pops_enableDetainUnrecognisedUIDs) then {
+	
+	if (!((getPlayerUID player) in Hz_pops_releasedUIDs)) then {
+	
+		_exit = true;
+	
+		//ping supervisors
+		[-1, {
+		
+			if (call Hz_func_isSupervisor) then {
+		
+				hint "A new player has joined and is now being detained!";
+		
+			};
+		
+		}] call CBA_fnc_globalExecute;		
+	
+		[] spawn {
+		
+			Hz_pops_abortClimbEH = player addEventHandler ["AnimChanged", {
+					if (local (_this select 0) && {_this select 1 == "ACE_Climb"}) then {
+							// abort climb animation
+							[_this select 0, "AmovPercMstpSnonWnonDnon", 2] call ace_common_fnc_doAnimation;
+							
+					};
+			}];
+		
+			call Hz_pers_API_disablePlayerSaveStateOnDisconnect;
+			player setposatl Hz_pops_detainPosition;				
+			
+			removeAllAssignedItems player;
+			removeVest player;
+			removeBackpack player;
+			removeHeadgear player;	
+			removeGoggles player;
+			
+			sleep 1;
+			
+			waituntil {sleep 1; ((!alive player) || ((player distance Hz_pops_detainPosition) > 50))};
 
-mps_rallypoint_tent = objnull;
-
-if(!((_tentposx == 0) && (_tentposy == 0) && (_tentposz == 0))) then {
-  
-  _objectsarr = nearestobjects [_tentpos,[Hz_pops_rallyTentType],100];
-  
-  {if(_x getvariable "owneruid" == _uid) then {mps_rallypoint_tent = _x;};} foreach _objectsarr;
-  
-  //Tent destroyed
-  if(!alive mps_rallypoint_tent) exitwith {deletemarker _uid;};
-  
-  RALLY_STATUS = true;
-  
-  //Replaced with extended persistency
-  /*
-  hint "Would you like to deploy at your tent?";
-  sleep 2;
-  mps_respawned_player = false;
-  createDialog "mps_respawn_dialog";
-  */
-  
-  waituntil {
-    sleep 60;  
-    !alive mps_rallypoint_tent
-  };
-
-  deleteVehicle mps_rallypoint_tent;
-  deleteMarker _uid;
-
-  RALLY_STATUS = false;
-  
+			if ((player distance Hz_pops_detainPosition) > 50) then {
+			
+				Hz_pops_releasedUIDs pushBack (getPlayeruid player);
+				publicVariable "Hz_pops_releasedUIDs";
+				call Hz_pers_API_enablePlayerSaveStateOnDisconnect;
+				player removeEventHandler ["AnimChanged",Hz_pops_abortClimbEH];				
+				Hz_pers_clientReadyForLoad = true;
+			
+			};
+		
+		};
+	
+	};
+	
 };
 
+[] spawn {
+
+	_uid = getplayeruid player;
+	_tentpos = getMarkerPos _uid;
+	_tentposx = _tentpos select 0;
+	_tentposy = _tentpos select 1;
+	_tentposz = _tentpos select 2;
+
+	mps_rallypoint_tent = objnull;
+
+	if(!((_tentposx == 0) && (_tentposy == 0) && (_tentposz == 0))) then {
+		
+		_objectsarr = nearestobjects [_tentpos,[Hz_pops_rallyTentType],100];
+		
+		{if(_x getvariable "owneruid" == _uid) then {mps_rallypoint_tent = _x;};} foreach _objectsarr;
+		
+		//Tent destroyed
+		if(!alive mps_rallypoint_tent) exitwith {deletemarker _uid;};
+		
+		RALLY_STATUS = true;
+		
+		//Replaced with extended persistency
+		/*
+		hint "Would you like to deploy at your tent?";
+		sleep 2;
+		mps_respawned_player = false;
+		createDialog "mps_respawn_dialog";
+		*/
+		
+		waituntil {
+			sleep 60;  
+			!alive mps_rallypoint_tent
+		};
+
+		deleteVehicle mps_rallypoint_tent;
+		deleteMarker _uid;
+
+		RALLY_STATUS = false;
+		
+	};
+
+
+};
+
+if (_exit) exitWith {};
+
+Hz_pers_clientReadyForLoad = true;

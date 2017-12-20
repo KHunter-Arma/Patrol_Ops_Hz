@@ -88,4 +88,32 @@ mps_respawn_process = [] spawn {
 
 	121 cuttext [localize "STR_AIS_new_message", "PLAIN"]; sleep 3;
 	121 cuttext ["","PLAIN"];
+			
+	if (Hz_pops_enableDetainUnrecognisedUIDs) then {
+	
+		if ((!(getPlayerUID player) in Hz_pops_releasedUIDs)) then {
+		
+			[] spawn {
+			
+				sleep 1;			
+				player setposatl Hz_pops_detainPosition;
+				sleep 1;		
+				
+				waituntil {sleep 1; ((!alive player) || ((player distance Hz_pops_detainPosition) > 50))};
+
+				if ((player distance Hz_pops_detainPosition) > 50) then {
+				
+					Hz_pops_releasedUIDs pushBack (getPlayeruid player);
+					publicVariable "Hz_pops_releasedUIDs";
+					call Hz_pers_API_enablePlayerSaveStateOnDisconnect;
+					player removeEventHandler ["AnimChanged",Hz_pops_abortClimbEH];
+					Hz_pers_clientReadyForLoad = true;
+				
+				};			
+			
+			};
+		
+		};
+			
+	};
 };

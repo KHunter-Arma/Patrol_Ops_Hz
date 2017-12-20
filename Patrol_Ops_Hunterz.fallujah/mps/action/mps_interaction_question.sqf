@@ -67,8 +67,6 @@ if(if(isNil "_alreadygathered") then {true} else {not _alreadygathered}) then{
 			_hint =  _intel call mps_getRandomElement;
 
 			hint format["%1",_hint];
-
-			_person setVariable ["mps_questioned",true,true];
 			
 		} else {
 			
@@ -83,6 +81,8 @@ if(if(isNil "_alreadygathered") then {true} else {not _alreadygathered}) then{
 			};
 			
 		};
+		
+		_person setVariable ["mps_questioned",true,true];
 
 	} else {
 
