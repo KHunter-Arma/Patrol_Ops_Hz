@@ -1,8 +1,15 @@
 Hz_initdone = false;
 Hz_roles_initdone = false;
+hz_debug = false;
+mps_debug = false;
+
 #include "Hz_config.sqf"
 
-if(!isDedicated && !isMultiplayer) then {hz_debug = true; hintsilent "DEBUG mode initialised!";} else {hz_debug = false;};
+if(!isDedicated && !isMultiplayer) then {
+  hz_debug = true;
+  mps_debug = true;
+  hintsilent "DEBUG mode initialised!";
+};
 
 if(isnil "hz_debug_air") then {hz_debug_air = false;};
 if(isnil "hz_debug_cas") then {hz_debug_cas = false;};
@@ -27,12 +34,12 @@ Hz_fnc_vehicleInit = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_vehic
 Hz_pops_fnc_storeBoughtVehicleInit = compile preprocessfilelinenumbers "Hz_pops_fnc_storeBoughtVehicleInit.sqf";
 Hz_func_isSupervisor = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_isSupervisor.sqf";
 Hz_func_find_nearest_ammo_crate = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_find_nearest_ammo_crate.sqf";
-Hz_sleep_mutex = false;
 
 //Client init
-if(!isDedicated)  then {
+if(!isDedicated) then {
 
 	Hz_fnc_arrestPlayer = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_arrestPlayer.sqf";
+  Hz_fnc_arrestedHandleEscape = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_arrestedHandleEscape.sqf";
   
   [] spawn {   
     

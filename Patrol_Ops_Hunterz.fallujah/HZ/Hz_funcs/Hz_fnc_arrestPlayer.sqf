@@ -24,6 +24,10 @@ if (_this == "-1") then {
 	removeGoggles player;
 	
 	player addUniform "TRYK_OVERALL_flesh";
+  player setvariable ["TL",false,true];
+  player setvariable ["PMC",false,true];
+  
+  call Hz_fnc_arrestedHandleEscape;
 
 } else {
 
@@ -80,6 +84,11 @@ if (_this == "-1") then {
 			_target setPosATL Hz_pops_arrestPosition;
 		
 		};
+    
+    _target setvariable ["TL",false,true];
+    _target setvariable ["PMC",false,true];
+    
+    [] remoteExecCall ["Hz_fnc_arrestedHandleEscape",_target,false];   
 
 		closeDialog 0; 
 

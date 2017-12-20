@@ -5,9 +5,6 @@ diag_log format ["###### %1 MPS.INIT ######", missionName];
 diag_log [diag_frameno, diag_ticktime, time, "Executing init_mps.sqf"];
 // =========================================================================================================
 
-// DeBuggint MPS
-mps_debug = false;
-
 // Declare a mission name and credits
 mps_mission_name = localize "STR_MISSION_NAME";
 mps_credits = "By [OCB]EightySix";
