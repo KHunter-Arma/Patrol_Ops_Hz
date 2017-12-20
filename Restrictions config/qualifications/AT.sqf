@@ -11,8 +11,14 @@ wepInfo = wepInfo - [
 "RHS_WEAP_MAAWS",
 "RHS_WEAP_SMAW",
 "RHS_WEAP_SMAW_GREEN",
-"RHS_WEAP_RPG7"
-
+"RHS_WEAP_RPG7",
+"CUP_LAUNCH_9K32STRELA",
+"CUP_LAUNCH_FIM92STINGER",
+"CUP_LAUNCH_IGLA",
+"CUP_LAUNCH_M47",
+"CUP_LAUNCH_METIS",
+"CUP_LAUNCH_RPG18",
+"CUP_LAUNCH_RPG7V"
 
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
@@ -36,7 +42,8 @@ attachmentsInfo = attachmentsInfo - [
 "RHS_OPTIC_MAAWS",
 "RHS_ACC_PGO7V",
 "RHS_ACC_PGO7V2",
-"RHS_ACC_PGOV3"
+"RHS_ACC_PGOV3",
+"CUP_OPTIC_PGO7V2"
 
 
 ////////////////////////////////////////////////////////////////////////////////////

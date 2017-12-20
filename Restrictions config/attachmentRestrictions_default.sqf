@@ -89,4 +89,12 @@ Hz_econ_cfg_attachmentRestrictions_default =
 "OPTIC_SOS_KHK_F",
 "OPTIC_HAMR_KHK_F"
 
+"CUP_OPTIC_AN_PVS_4",
+"CUP_OPTIC_GOSHAWK",
+"CUP_OPTIC_NSPU",
+"CUP_OPTIC_PGO7V2",
+"CUP_OPTIC_PSO_1",
+"CUP_OPTIC_PSO_3"
+
+
 ];
