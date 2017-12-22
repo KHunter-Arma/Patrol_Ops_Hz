@@ -135,11 +135,9 @@ sleep 0.01;
 */
 
 createVehicleCrew _vcl_new;
-sleep 0.1;
 (crew _vcl_new) joinSilent _group;
-sleep 0.1;
 _group addVehicle _vcl_new;
-
+(crew _vcl_new) allowGetIn true;
 
 } else {
     
@@ -154,10 +152,13 @@ if (_type == "LOP_IA_M113_W") then {[_vcl_new, ["Desert",1],[]] call BIS_fnc_ini
 {//_x createUnit [_respawnzone, _group];
 _group createUnit [_x,_respawnzone, [], 100, "FORM"];
 } forEach _AI_unitArray;
+sleep 0.1;
 
 _unitsGroup = units _group;
 _turrets = allTurrets _vcl_new;
 _turCount = count _turrets;
+
+_unitsGroup allowgetin true;
 
 for [{ _loop = 0 },{ _loop < count  _unitsGroup},{ _loop = _loop + 1}] do
 {	
@@ -186,7 +187,7 @@ for [{ _loop = 0 },{ _loop < count  _unitsGroup},{ _loop = _loop + 1}] do
         
         };
         
-	sleep 0.01;
+	sleep 0.1;
 };
 
 };

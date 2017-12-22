@@ -1,6 +1,3 @@
-call compile preprocessFileLineNumbers "initUPSRespawn.sqf";
-call compile preprocessfilelinenumbers "lk\nuke\nenvi.sqf";
-
 Receiving_finish = false;
 
 if (!isDedicated) then {
@@ -14,11 +11,15 @@ if (!isDedicated) then {
 
 };
 
-if (is3DEN) then {
+call compile preprocessFileLineNumbers "initUPSRespawn.sqf";
+call compile preprocessfilelinenumbers "lk\nuke\nenvi.sqf";
 
-	waitUntil {sleep 1; !is3DEN};
+diag_log format ["###### %1 ######", missionName];
+diag_log "Executing init_Hz.sqf";
 
-};
+#include "HZ\init_Hz.sqf" 
+
+diag_log "init_Hz done";
 
 if (isServer) then {
 
@@ -29,13 +30,6 @@ if (isServer) then {
 };
 
 introseqdone = false;
-
-diag_log format ["###### %1 ######", missionName];
-diag_log "Executing init_Hz.sqf";
-
-#include "HZ\init_Hz.sqf" 
-
-diag_log "init_Hz done";
 
 // For SP/Mission Testing
 	if(isNil "paramsArray") then { paramsArray = [-1,3,999,4,0,4,1,1,1,9,0,0,0,1,0,1,0,1,5,0,0]; };

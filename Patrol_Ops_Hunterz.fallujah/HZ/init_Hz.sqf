@@ -2,6 +2,16 @@ Hz_initdone = false;
 Hz_roles_initdone = false;
 hz_debug = false;
 mps_debug = false;
+if(isnil "hz_debug_air") then {hz_debug_air = false;};
+if(isnil "hz_debug_cas") then {hz_debug_cas = false;};
+if(isnil "hz_debug_patrols") then {hz_debug_patrols = false;};
+if(isnil "civ_debug") then {civ_debug = false;};
+
+if (is3DEN) then {
+
+	waitUntil {sleep 1; !is3DEN};
+
+};
 
 #include "Hz_config.sqf"
 
@@ -10,11 +20,6 @@ if(!isDedicated && !isMultiplayer) then {
   mps_debug = true;
   hintsilent "DEBUG mode initialised!";
 };
-
-if(isnil "hz_debug_air") then {hz_debug_air = false;};
-if(isnil "hz_debug_cas") then {hz_debug_cas = false;};
-if(isnil "hz_debug_patrols") then {hz_debug_patrols = false;};
-if(isnil "civ_debug") then {civ_debug = false;};
 
 //Ambient patrols respawn controller [only used by the server at the moment]
 if(isnil "missionload") then {missionload = true;};
