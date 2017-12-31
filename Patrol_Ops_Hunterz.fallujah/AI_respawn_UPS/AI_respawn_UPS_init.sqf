@@ -16,8 +16,9 @@ _group                   = group _unit;
 _unitsGroup     	= units _group;
 _side 			= side _unit;
 
-
 _group setvariable ["Hz_Patrolling",true];
+
+waitUntil {sleep 1; !isnil "hz_debug_patrols"};
 
 if (!isMultiplayer && !hz_debug_patrols) exitWith {
 

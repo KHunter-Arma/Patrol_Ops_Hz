@@ -192,7 +192,6 @@ for [{ _loop = 0 },{ _loop < count  _unitsGroup},{ _loop = _loop + 1}] do
 
 };
 
-
 _leader = leader _group;
 _group setFormation "STAG COLUMN";
 _group setSpeedMode "NORMAL";

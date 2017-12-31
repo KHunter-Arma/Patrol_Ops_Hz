@@ -7,7 +7,6 @@ _crew = crew _unit;
 _group 			= group _unit;
 _escort = [];
 {if((vehicle _x) == _x) then {_escort pushback (typeof _x);};}foreach units _group;
-
 if (!isServer) exitWith {};
 private ["_unit", "_lives", "_delay", "_respawn_point", "_marker", "_group", "_crew", "_side", "_isair","_AI_unitArray", "_escort", "_leader"];
 
@@ -24,6 +23,8 @@ _crew allowGetIn true;
 _group setvariable ["Hz_Patrolling",true];
 
 if(_this select 5) then {_isair = true;};
+
+waitUntil {sleep 1; !isnil "hz_debug_patrols"};
 
 if (!isMultiplayer && !hz_debug_patrols) exitWith {
 
