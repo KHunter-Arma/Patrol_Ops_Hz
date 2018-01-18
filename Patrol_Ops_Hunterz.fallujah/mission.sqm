@@ -8,7 +8,7 @@ class EditorData
 	toggles=10;
 	class ItemIDProvider
 	{
-		nextID=4521;
+		nextID=4523;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={7412.8154,10.335463,2240.8894};
-		dir[]={0,-0.70710683,0.70710683};
-		up[]={0,0.70710677,0.70710677};
-		aside[]={0.99999994,0,-0};
+		pos[]={7754.166,37.98518,8302.1602};
+		dir[]={-0.77430981,-0.60587913,0.18272965};
+		up[]={-0.58968812,0.79555076,0.13916136};
+		aside[]={0.22968827,7.5290154e-007,0.9732846};
 	};
 };
 binarizationWanted=0;
@@ -41453,7 +41453,7 @@ class Mission
 			};
 			id=3278;
 			type="FIR_F15E_Blank";
-			atlOffset=-0.0042824745;
+			atlOffset=-0.096854687;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -41554,7 +41554,7 @@ class Mission
 			};
 			id=3279;
 			type="FIR_F16C_Blank";
-			atlOffset=-0.0026612282;
+			atlOffset=-0.064201355;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -41655,7 +41655,7 @@ class Mission
 			};
 			id=3280;
 			type="FIR_F16C_Blank";
-			atlOffset=-0.0026612282;
+			atlOffset=-0.064201355;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -42793,6 +42793,60 @@ class Mission
 		};
 		class Item709
 		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={3634.1899,1.6657851,585.41998};
+				angles[]={0,1.4230018,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				disableSimulation=1;
+			};
+			id=4514;
+			type="RampConcrete";
+			atlOffset=-2.2179999;
+		};
+		class Item710
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={3633.3909,1.6883154,590.04706};
+				angles[]={0,1.4230018,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				disableSimulation=1;
+			};
+			id=4515;
+			type="RampConcrete";
+			atlOffset=-1.7243917;
+		};
+		class Item711
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={3632.8994,1.6482177,594.60553};
+				angles[]={0,1.4230018,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				disableSimulation=1;
+			};
+			id=4516;
+			type="RampConcrete";
+			atlOffset=-1.6809633;
+		};
+		class Item712
+		{
 			dataType="Group";
 			side="West";
 			class Entities
@@ -42803,15 +42857,16 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={7413.6289,7.0014391,2245.9121};
+						position[]={7725.6108,16.820938,8312.0303};
 					};
 					side="West";
 					flags=7;
 					class Attributes
 					{
+						init="call{hz_debug_patrols=true}";
 						isPlayer=1;
 					};
-					id=4513;
+					id=4522;
 					type="B_Soldier_A_F";
 					class CustomAttributes
 					{
@@ -42849,7 +42904,7 @@ class Mission
 											"STRING"
 										};
 									};
-									value="Male03ENG";
+									value="Male04ENG";
 								};
 							};
 						};
@@ -42868,7 +42923,7 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0.97000003;
+									value=1.02;
 								};
 							};
 						};
@@ -42879,61 +42934,7 @@ class Mission
 			class Attributes
 			{
 			};
-			id=4512;
-		};
-		class Item710
-		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={3634.1899,1.6657851,585.41998};
-				angles[]={0,1.4230018,0};
-			};
-			side="Empty";
-			flags=4;
-			class Attributes
-			{
-				disableSimulation=1;
-			};
-			id=4514;
-			type="RampConcrete";
-			atlOffset=-2.2179999;
-		};
-		class Item711
-		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={3633.3909,1.6883154,590.04706};
-				angles[]={0,1.4230018,0};
-			};
-			side="Empty";
-			flags=4;
-			class Attributes
-			{
-				disableSimulation=1;
-			};
-			id=4515;
-			type="RampConcrete";
-			atlOffset=-1.7243917;
-		};
-		class Item712
-		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={3632.8994,1.6482177,594.60553};
-				angles[]={0,1.4230018,0};
-			};
-			side="Empty";
-			flags=4;
-			class Attributes
-			{
-				disableSimulation=1;
-			};
-			id=4516;
-			type="RampConcrete";
-			atlOffset=-1.6809633;
+			id=4521;
 		};
 	};
 };
