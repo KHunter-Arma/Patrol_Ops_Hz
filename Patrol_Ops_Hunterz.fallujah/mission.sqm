@@ -16,7 +16,7 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={5497.7749,32.426044,3882.4792};
+		pos[]={7412.8154,10.335463,2240.8894};
 		dir[]={0,-0.70710683,0.70710683};
 		up[]={0,0.70710677,0.70710677};
 		aside[]={0.99999994,0,-0};
@@ -36219,7 +36219,7 @@ class Mission
 				};
 			};
 			id=1860;
-			atlOffset=-0.030842781;
+			atlOffset=-0.030858994;
 		};
 		class Item581
 		{
@@ -36239,7 +36239,7 @@ class Mission
 			};
 			id=1861;
 			type="CUP_O_BMP2_TKA";
-			atlOffset=-0.030842781;
+			atlOffset=-0.030858994;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -36538,7 +36538,7 @@ class Mission
 				};
 			};
 			id=1865;
-			atlOffset=0.044944763;
+			atlOffset=0.044878006;
 		};
 		class Item583
 		{
@@ -36558,7 +36558,7 @@ class Mission
 			};
 			id=1866;
 			type="CUP_O_BRDM2_TKA";
-			atlOffset=0.044944763;
+			atlOffset=0.044878006;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -37815,7 +37815,7 @@ class Mission
 					};
 					id=1901;
 					type="CUP_O_TK_Soldier_AT";
-					atlOffset=0.1970005;
+					atlOffset=0.19700003;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -37897,7 +37897,7 @@ class Mission
 					};
 					id=1903;
 					type="CUP_O_TK_Soldier_SL";
-					atlOffset=0.1970005;
+					atlOffset=0.19700003;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -38138,7 +38138,7 @@ class Mission
 					};
 					id=2051;
 					type="CUP_O_TK_Soldier_AMG";
-					atlOffset=0.1970005;
+					atlOffset=0.19700003;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -38817,7 +38817,7 @@ class Mission
 					};
 					id=2029;
 					type="CUP_O_TK_Soldier_AMG";
-					atlOffset=0.024056435;
+					atlOffset=0.024055958;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -42809,7 +42809,6 @@ class Mission
 					flags=7;
 					class Attributes
 					{
-						init="call{hz_debug_patrols = true;}";
 						isPlayer=1;
 					};
 					id=4513;
