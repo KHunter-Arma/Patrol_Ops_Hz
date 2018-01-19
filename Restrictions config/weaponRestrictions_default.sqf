@@ -207,7 +207,7 @@ Hz_econ_cfg_weaponsRestrictions_default =
 "CUP_SRIFLE_SVD",
 "CUP_SRIFLE_SVD_DES",
 "CUP_SVD_CAMO_D",
-"LOP_WEAP_SVDS",
+"RHS_WEAP_SVD"
 
 
 
