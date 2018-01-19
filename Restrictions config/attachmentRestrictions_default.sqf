@@ -87,7 +87,7 @@ Hz_econ_cfg_attachmentRestrictions_default =
 "OPTIC_LRPS_GHEX_F",
 "OPTIC_LRPS_TNA_F",
 "OPTIC_SOS_KHK_F",
-"OPTIC_HAMR_KHK_F"
+"OPTIC_HAMR_KHK_F",
 
 "CUP_OPTIC_AN_PVS_4",
 "CUP_OPTIC_GOSHAWK",
