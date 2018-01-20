@@ -57,34 +57,38 @@ if(!isDedicated) then {
       
       if ((_uid in Hz_pops_jointOpList) && (player iskindof Hz_JointOp_UnitBaseType)) exitwith {
         
-        Hz_playertype = "jointOp";
-				Hz_econ_combatStore_storeClosed = true;
-				Hz_econ_vehicleStore_storeClosed = true;
+        Hz_playertype = "jointOp";				
         if(isMultiplayer && Hz_pops_enableSlotRestrictions) then{[] execvm "Hz\Hz_scripts\Hz_restrict_slots.sqf";}; 
         
       };      
+			
+			Hz_econ_combatStore_storeClosed = false;
       
       if(_uid in Hz_pops_restrictions_supervisorList) then {
         
         Hz_playertype = "supervisor";
+				Hz_econ_vehicleStore_storeClosed = false;
         
       } else {
         
         if(_uid in Hz_pops_restrictions_publicNoRatioLimit) then {
           
           Hz_playertype = "publicNoLimit";
-					Hz_econ_vehicleStore_storeClosed = true;
           
         } else {
           
           Hz_playertype = "public";
-					Hz_econ_vehicleStore_storeClosed = true;
           
         };
         
       };
       
-      if(hz_debug) then {Hz_playertype = "supervisor"; Hz_econ_vehicleStore_storeClosed = false;};
+      if(hz_debug) then {
+			
+				Hz_playertype = "supervisor";
+				Hz_econ_vehicleStore_storeClosed = false;
+			
+			};
       
     };
     

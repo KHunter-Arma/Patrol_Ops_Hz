@@ -168,7 +168,7 @@ while {true} do {
 			if((({side _x == (SIDE_B select 0)}count nearestobjects [_artylocation,["CAManBase"],750]) < 20) && (count allunits < Hz_max_allunits)) then {
 
 				//call reinforcements
-				[creategroup (createGroup (SIDE_B select 0)),[-5000,15000,500],_artylocation,true] call CREATE_OPFOR_PARADROP;
+				[creategroup (SIDE_B select 0),[-5000,15000,500],_artylocation,true] call CREATE_OPFOR_PARADROP;
 
 				sleep 600;
 
