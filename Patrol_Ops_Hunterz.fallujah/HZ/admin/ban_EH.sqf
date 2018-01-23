@@ -14,7 +14,6 @@ if(isServer) then {
 
     if (getplayeruid player == ban) then {
 
-    hintc "You were banned by an admin.";
     endmission "End3";
 
     };

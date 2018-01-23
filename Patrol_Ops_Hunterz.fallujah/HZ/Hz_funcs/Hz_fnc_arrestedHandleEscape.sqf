@@ -9,7 +9,8 @@
     
     if (((getposatl player) distance Hz_pops_arrestPosition) > 50) then {
     
-      endmission "LOSER";
+			call Hz_pers_API_disablePlayerSaveStateOnDisconnect;
+      endmission "Escaped";
     
     };
 

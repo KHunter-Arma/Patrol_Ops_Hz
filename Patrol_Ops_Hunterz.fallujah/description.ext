@@ -69,7 +69,47 @@ class CfgDebriefing
 		pictureColor[] = {0.0,0.3,0.6,1};
 	};
 	
-		class loser
+	class publicRestriction
+	{
+		title = "Restricted Access";
+		subtitle = "";
+		description = "This is a semi-private server. You must be accompanied by a trained B.A.D. PMC member to play on this server.";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0.6,0.1,0.2,1};
+	};
+	
+	class playerLimit
+	{
+		title = "Player Limit";
+		subtitle = "";
+		description = "This server restricts the number of players not part of B.A.D. PMC playing on the server. You must wait until another such player leaves, or more B.A.D. PMC members join.";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0.6,0.1,0.2,1};
+	};
+	
+	class wrongSlot
+	{
+		title = "Unauthorised Slot Use";
+		subtitle = "";
+		description = "You are not authorised to use this slot. Please pick another slot to join.";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0.6,0.1,0.2,1};
+	};
+	
+	class Escaped
+	{
+		title = "Warning";
+		subtitle = "";
+		description = "Desynchronised. Please reconnect.";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0.6,0.1,0.2,1};
+	};
+	
+	class addon
 	{
 		title = "Disallowed Addon";
 		subtitle = "";
@@ -77,14 +117,23 @@ class CfgDebriefing
 		pictureBackground = "";
 		picture = "";
 		pictureColor[] = {0.6,0.1,0.2,1};
-	};
+	};	
 	
+	class JointOpManpower
+	{
+		title = "Not enough members";
+		subtitle = "";
+		description = "You have exceeded the time limit allowed to gather the minimum number of your unit's members required on the server. Joint operations are not available with less than 8 of your unit's members online.";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0.6,0.1,0.2,1};
+	};	
 			
-		class End2
+	class End2
 	{
 		title = "Kicked";
 		subtitle = "";
-		description = "You were kicked from the server by an admin.";
+		description = "You were kicked from the server.";
 		pictureBackground = "";
 		picture = "";
 		pictureColor[] = {0.6,0.1,0.2,1};
@@ -94,7 +143,7 @@ class CfgDebriefing
 	{
 		title = "Banned";
 		subtitle = "";
-		description = "You were banned from this server by an admin.";
+		description = "You were banned from the server.";
 		pictureBackground = "";
 		picture = "";
 		pictureColor[] = {0.6,0.1,0.2,1};

@@ -283,9 +283,8 @@ if(!hz_debug) then {
 				
 					Hz_pops_restrictionSupervisorCheckPassed = false;
           
-          hint parseText format ["<t size='1.5' shadow='1' color='#ff0000' shadowColor='#000000'>WARNING! You are not allowed to play on this server without being supervised by a trained B.A.D. PMC member! You will now be returned to the lobby.</t>"];
-          sleep 10;
-          endMission "LOSER"; 
+          call Hz_pers_API_disablePlayerSaveStateOnDisconnect;
+          endMission "publicRestriction"; 
           
         } else {Hz_pops_restrictionSupervisorCheckPassed = true;}; };
       
@@ -315,11 +314,9 @@ if ((toupper Hz_playertype) != "SUPERVISOR") then {
     
     if ((_countSupervisors/_countNonSupervisors) < Hz_publicPlayerRatioLimit) then {
       
-			Hz_pops_restrictionPublicLimitCheckPassed = false;
-			
-      hint "WARNING\nThe maximum number of public players currently allowable on the server has been reached. You will now be returned to the lobby.";
-			sleep 10;
-      endMission "LOSER"; 
+			Hz_pops_restrictionPublicLimitCheckPassed = false;			
+			call Hz_pers_API_disablePlayerSaveStateOnDisconnect;
+      endMission "playerLimit"; 
       
     } else {Hz_pops_restrictionPublicLimitCheckPassed = true;};
     
