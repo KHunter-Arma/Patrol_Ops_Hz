@@ -36,6 +36,8 @@ if (_vehicle iskindof "MtvrReammo_DES_EP1") then {
   _vehicle setammocargo 0;
 };
 
+_initstatement = _initstatement + "_obj addaction ['<t color=''#dce2ed''>'+'Check fuel', {hint format ['%1%2 full',(fuel (_this select 0))*100,'%'];},[],-99,false,true,'','_this == (driver _target)'];";
+
 if(_initstatement != "") then {
   [_vehicle,_initstatement] remoteexeccall ["Hz_fnc_setVehicleInit",0,true];
 };

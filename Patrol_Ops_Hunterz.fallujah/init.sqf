@@ -11,7 +11,12 @@ if (!isDedicated) then {
 
 };
 
-call compile preprocessFileLineNumbers "initUPSRespawn.sqf";
+if (isServer) then {
+
+	call compile preprocessFileLineNumbers "initUPSRespawn.sqf";
+
+};
+
 call compile preprocessfilelinenumbers "lk\nuke\nenvi.sqf";
 
 diag_log format ["###### %1 ######", missionName];
@@ -22,7 +27,7 @@ diag_log "Executing init_Hz.sqf";
 diag_log "init_Hz done";
 
 if (isServer) then {
-
+	
 	Hz_pops_fnc_handleFirstTimeLaunch = compile preprocessFileLineNumbers "Hz_pops_fnc_handleFirstTimeLaunch.sqf";
 	Hz_pops_fnc_setupRestrictions = compile preprocessFileLineNumbers "\Hz_cfg\Hz_econ\setup.sqf";
 	Hz_pops_fnc_persistencyPostLoadCustomFunction = compile preprocessFileLineNumbers "Hz_pops_fnc_persistencyPostLoadCustomFunction.sqf";
