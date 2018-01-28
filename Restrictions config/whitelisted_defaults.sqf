@@ -85,7 +85,9 @@ wepInfo = wepInfo - [
 "CUP_ARIFLE_AKS74",
 "RHS_WEAP_M4_CARRYHANDLE",
 "CUP_HGUN_TAURUSTRACKER455_GOLD",
-"CUP_ARIFLE_FNFAL_RAILED"
+"CUP_ARIFLE_FNFAL_RAILED",
+"RHSUSF_WEAP_GLOCK17G4"
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////
