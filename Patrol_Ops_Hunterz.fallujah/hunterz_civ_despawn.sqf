@@ -37,7 +37,7 @@ if(!Hz_civ_initdone) exitwith {};
 if(!_mutex) exitwith {};
 
 _exit = false;
-if(!isnil "Hz_civ_global_safe") then {
+if(Hz_ambw_civ_forceGlobalMutex) then {
   if(!Hz_civ_global_safe) exitwith {_exit = true;};
   Hz_civ_global_safe = false;
 };
@@ -73,4 +73,4 @@ _trigger setVariable ["mutex",true];
 
 publicvariable "civtotal";
 
-if(!isnil "Hz_civ_global_safe") then {Hz_civ_global_safe = true;};
+if(Hz_ambw_civ_forceGlobalMutex) then {Hz_civ_global_safe = true;};

@@ -77,6 +77,26 @@ mps_config_vehicles = mps_config_vehicles + [
 	["INS","truck","CUP_I_V3S_Covered_TKG"],
 	["INS","apc","CUP_I_BTR40_MG_TKG"],
 	["INS","mobiaa","CUP_I_Ural_ZU23_TK_Gue"],
-	["INS","tank","CUP_I_T34_TK_GUE"]	
+	["INS","tank","CUP_I_T34_TK_GUE"],
+	
+	["IA","attakh","LOP_IA_Mi24V_FAB"],
+	["IA","attakh","LOP_IA_Mi8MTV3_FAB"],
+	["IA","cargoh","LOP_IA_Mi8MT_Cargo"],
+	["IA","cargoh","LOP_IA_UH1Y_UN"],
+	["IA","cargop","RHS_C130J"],
+	["IA","airsup","FIR_F16C_Ag_lizard"],
+	["IA","attakp","rhsgref_cdf_b_su25"],
+	["IA","cargoc","LOP_IA_M1025_D"],
+	["IA","truck","LOP_IA_Ural"],
+	["IA","truck","LOP_IA_Ural_open"],
+	["IA","attakc","LOP_IA_M1025_W_M2"],
+	["IA","attakc","LOP_IA_M1025_W_Mk19"],
+	["IA","apc","LOP_IA_BMP1"],
+	["IA","apc","LOP_IA_BTR80"],
+	["IA","apc","LOP_IA_M113_W"],
+	["IA","tank","LOP_IA_M1A1_AIM_D"],
+	["IA","tank","LOP_IA_T55"],
+	["IA","tank","LOP_IA_T72BA"],
+	["IA","mobiaa","LOP_IA_ZSU234"]
         
 ];

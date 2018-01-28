@@ -67,7 +67,20 @@ class HZ_admin {
 				h = 0.0616668 * safezoneH;
 				colorText[] = {0.99609375, 0.98046875, 0.3671875, 1};
 				SizeEx = 0.03;
-			};*/
+			};*/			
+			class HZ_admin_button_arrest: RscButton
+			{
+				idc = 5137;
+				text = "Arrest";
+				x = 0.487188 * safezoneW + safezoneX;
+				y = 0.774166 * safezoneH + safezoneY;
+				w = 0.104688 * safezoneW;
+				h = 0.0633334 * safezoneH;
+				colorBackground[] = {1,0.05,0,0.8};
+				colorBackgroundActive[] = {1,0,0,1};
+				action = "Hz_admin_selected_UID call Hz_fnc_arrestPlayer";
+			};
+			/*
 			class HZ_admin_button_ban: RscButton
 			{
 				idc = 5137;
@@ -80,6 +93,7 @@ class HZ_admin {
 				colorBackgroundActive[] = {1,0,0,1};
 				action = "call Hz_func_admin_ban";
 			};
+			*/
 			class HZ_admin_version: RscText
 			{
 				idc = 5138;
@@ -89,6 +103,19 @@ class HZ_admin {
 				w = 0.0729165 * safezoneW;
 				h = 0.0208333 * safezoneH;
 			};
+			class HZ_admin_button_release: RscButton
+			{
+				idc = 5139;
+				text = "Release";
+				x = 0.640104 * safezoneW + safezoneX;
+				y = 0.775 * safezoneH + safezoneY;
+				w = 0.104688 * safezoneW;
+				h = 0.0633334 * safezoneH;
+				colorBackground[] = {1,0.5,0,1};
+				colorBackgroundActive[] = {1,0.3,0,1};
+				action = "if (Hz_admin_selected_UID != ""0"") then {BanList = BanList - [Hz_admin_selected_UID]; publicvariable ""BanList""; hint ""Player released"";} else {hint ""Error\nNo player selected!""};";
+			};
+			/*			
 			class HZ_admin_button_kick: RscButton
 			{
 				idc = 5139;
@@ -101,6 +128,7 @@ class HZ_admin {
 				colorBackgroundActive[] = {1,0.3,0,1};
 				action = "call Hz_func_admin_kick";
 			};
+			*/
 			class HZ_admin_title: RscText
 			{
 				idc = 5140;

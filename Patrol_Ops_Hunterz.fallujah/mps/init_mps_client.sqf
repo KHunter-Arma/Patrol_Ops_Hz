@@ -99,12 +99,13 @@ waitUntil {!(isNull player)};
 sleep 1;
 
 _uid = getplayeruid player;
+_exit = false;
 if(_uid in BanList) then {
 
-  hintc "You are banned from this server";
-  endmission "End3";
+  "-1" call Hz_fnc_arrestPlayer;
 
 };
+if (_exit) exitWith {};
 
 // Publicvariabled from server init. Used to sync destroyed objects/buildings from nuke for JIP
 if (count narray2 > 0) then {{_x setdamage 1;} foreach narray2;};
@@ -225,50 +226,6 @@ if(isnil "limitviewdistance") then {limitviewdistance = false;};
 };
 */
 
-[] spawn {
-  
-  sleep 30;
-  [cim_action_getDown1] call CBA_fnc_removePlayerAction;
-  [cim_action_getDownAll] call CBA_fnc_removePlayerAction;
-  [cim_action_getAway1] call CBA_fnc_removePlayerAction;
-  [cim_action_getAwayAll] call CBA_fnc_removePlayerAction;
-  [cim_action_getInside1] call CBA_fnc_removePlayerAction;
-  [cim_action_getInsideAll] call CBA_fnc_removePlayerAction;
-  [cim_action_StopCar] call CBA_fnc_removePlayerAction;
-  [cim_action_Search] call CBA_fnc_removePlayerAction;
-  [cim_action_Disarm] call CBA_fnc_removePlayerAction;
-  [cim_action_getDownAll] call CBA_fnc_removePlayerAction;
-  [cim_action_Pacify] call CBA_fnc_removePlayerAction;
-  [cim_action_Arrest] call CBA_fnc_removePlayerAction;
-  [cim_action_release] call CBA_fnc_removePlayerAction;
-  [cim_action_uncuff] call CBA_fnc_removePlayerAction;
-  sleep 3;
-  cim_action_getDown1 = [['<t color="#FF0000">'+"Verbal Command: Get down!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getDown_Client.sqf"), [player,false,cursorTarget], 10, false, true, CIM_Module getVariable "nielsen_cim_key_getDown","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (cursorTarget isKindof ""MAN"") AND (cursorTarget distance player > 2)"]] call CBA_fnc_addPlayerAction;
-  cim_action_getDownAll = [['<t color="#FF0000">'+"Verbal Command: Get down!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getDown_Client.sqf"), [player,true], 10, false, true, CIM_Module getVariable "nielsen_cim_key_getDown","cim_key_pressed AND !((cursorTarget isKindof ""MAN"") AND (side cursorTarget == CIVILIAN))"]] call CBA_fnc_addPlayerAction;
-
-  cim_action_getAway1 = [['<t color="#FF0000">'+"Verbal Command: Clear area!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getAway_Client.sqf"), [player,false,cursorTarget], 9, false, true, CIM_Module getVariable "nielsen_cim_key_getAway","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (cursorTarget isKindof ""MAN"") AND (cursorTarget distance player > 2)"]] call CBA_fnc_addPlayerAction;
-  cim_action_getAwayAll = [['<t color="#FF0000">'+"Verbal Command: Clear area!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getAway_Client.sqf"), [player,true], 9, false, true, CIM_Module getVariable "nielsen_cim_key_getAway","cim_key_pressed AND !((cursorTarget isKindof ""MAN"") AND (side cursorTarget == CIVILIAN))"]] call CBA_fnc_addPlayerAction;
-
-  cim_action_getInside1 = [['<t color="#FF0000">'+"Verbal Command: Get inside!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getInside_Client.sqf"), [player,false,cursorTarget], 8, false, true, CIM_Module getVariable "nielsen_cim_key_getInside","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (cursorTarget isKindof ""MAN"") AND (cursorTarget distance player > 2)"]] call CBA_fnc_addPlayerAction;
-  cim_action_getInsideAll = [['<t color="#FF0000">'+"Verbal Command: Get inside!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_getInside_Client.sqf"), [player,true], 8, false, true, CIM_Module getVariable "nielsen_cim_key_getInside","cim_key_pressed AND !((cursorTarget isKindof ""MAN"") AND (side cursorTarget == CIVILIAN))"]] call CBA_fnc_addPlayerAction;
-
-  cim_action_StopCar = [['<t color="#FF0000">'+"Verbal Command: Get out of the car!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_stopCar_Client.sqf"), [player], 7, false, true, CIM_Module getVariable "nielsen_cim_key_stopCar","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (cursorTarget isKindof ""CAR"") AND (cursorTarget distance player <= 75);"]] call CBA_fnc_addPlayerAction;
-
-  cim_action_Search = [['<t color="#FF0000">'+"Search individual!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_search_Client.sqf"), [player], 10, false, true, CIM_Module getVariable "nielsen_cim_key_Search","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (alive cursorTarget) AND (cursorTarget distance player <= 2) AND (cursorTarget isKindof ""MAN"") AND !(cursorTarget in CIM_List_Searched)"]] call CBA_fnc_addPlayerAction;
-  cim_action_Disarm = [['<t color="#FF0000">'+"Remove Belongings!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_disarm_Client.sqf"), [player], 10, false, true, CIM_Module getVariable "nielsen_cim_key_Search","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (alive cursorTarget) AND (cursorTarget distance player <= 2) AND (cursorTarget isKindof ""MAN"") AND (cursorTarget in CIM_List_Searched)"]] call CBA_fnc_addPlayerAction;
-
-  cim_action_Pacify = [['<t color="#FF0000">'+"Key-cuff individual!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_Pacify_Client.sqf"), [player], 9, false, true, CIM_Module getVariable "nielsen_cim_key_Pacify","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (alive cursorTarget) AND (cursorTarget distance player <= 2) AND (cursorTarget isKindof ""MAN"") AND !(cursorTarget in CIM_List_Keycuff)"]] call CBA_fnc_addPlayerAction;
-  
-  cim_action_Arrest = [['<t color="#FF0000">'+"Detain individual!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_arrest_Client.sqf"), [player], 8, false, true, CIM_Module getVariable "nielsen_cim_key_Arrest","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (alive cursorTarget) AND (cursorTarget distance player <= 2) AND (group cursorTarget != group _target) AND (cursorTarget isKindof ""MAN"")"]] call CBA_fnc_addPlayerAction;
-
-  cim_action_release = [['<t color="#FF0000">'+"Release individual!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_release_Client.sqf"), [player], 8, false, true, CIM_Module getVariable "nielsen_cim_key_release","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (alive cursorTarget) AND (cursorTarget distance player <= 2) AND (group cursorTarget == group _target) AND (cursorTarget isKindof ""MAN"")"]] call CBA_fnc_addPlayerAction;
-
-  cim_action_uncuff = [['<t color="#FF0000">'+"Uncuff individual!"+'</t>', (mps_path+"nielsen_cim_reinit\nielsen_cim_uncuff_Client.sqf"), [player], 9, false, true, CIM_Module getVariable "nielsen_cim_key_release","cim_key_pressed AND (side cursorTarget == CIVILIAN) AND (alive cursorTarget) AND (cursorTarget distance player <= 2) AND (cursorTarget in CIM_List_KeyCuff) AND (cursorTarget isKindof ""MAN"")"]] call CBA_fnc_addPlayerAction;
-
-  //  hint "Civilian Module reinitialised!";
-  
-};
-
 waituntil {introseqdone};
 
 removeallweapons player;
@@ -326,9 +283,8 @@ if(!hz_debug) then {
 				
 					Hz_pops_restrictionSupervisorCheckPassed = false;
           
-          hint parseText format ["<t size='1.5' shadow='1' color='#ff0000' shadowColor='#000000'>WARNING! You are not allowed to play on this server without being supervised by a trained B.A.D. PMC member! You will now be returned to the lobby.</t>"];
-          sleep 10;
-          endMission "LOSER"; 
+          call Hz_pers_API_disablePlayerSaveStateOnDisconnect;
+          endMission "publicRestriction"; 
           
         } else {Hz_pops_restrictionSupervisorCheckPassed = true;}; };
       
@@ -358,11 +314,9 @@ if ((toupper Hz_playertype) != "SUPERVISOR") then {
     
     if ((_countSupervisors/_countNonSupervisors) < Hz_publicPlayerRatioLimit) then {
       
-			Hz_pops_restrictionPublicLimitCheckPassed = false;
-			
-      hint "WARNING\nThe maximum number of public players currently allowable on the server has been reached. You will now be returned to the lobby.";
-			sleep 10;
-      endMission "LOSER"; 
+			Hz_pops_restrictionPublicLimitCheckPassed = false;			
+			call Hz_pers_API_disablePlayerSaveStateOnDisconnect;
+      endMission "playerLimit"; 
       
     } else {Hz_pops_restrictionPublicLimitCheckPassed = true;};
     
@@ -378,44 +332,108 @@ waituntil {sleep 0.1; !isnil "Hz_pops_restrictionPublicLimitCheckPassed"};
 
 if (!Hz_pops_restrictionSupervisorCheckPassed || !Hz_pops_restrictionPublicLimitCheckPassed) exitwith {};
 
-Hz_pers_clientReadyForLoad = true;
+_exit = false;
 
-_uid = getplayeruid player;
-_tentpos = getMarkerPos _uid;
-_tentposx = _tentpos select 0;
-_tentposy = _tentpos select 1;
-_tentposz = _tentpos select 2;
+if (Hz_pops_enableDetainUnrecognisedUIDs) then {
+	
+	if (!((getPlayerUID player) in Hz_pops_releasedUIDs)) then {
+	
+		_exit = true;
+	
+		//ping supervisors
+		[-1, {
+		
+			if (call Hz_func_isSupervisor) then {
+		
+				hint "A new player has joined and is now being detained!";
+		
+			};
+		
+		}] call CBA_fnc_globalExecute;		
+	
+		[] spawn {
+		
+			Hz_pops_abortClimbEH = player addEventHandler ["AnimChanged", {
+					if (local (_this select 0) && {_this select 1 == "ACE_Climb"}) then {
+							// abort climb animation
+							[_this select 0, "AmovPercMstpSnonWnonDnon", 2] call ace_common_fnc_doAnimation;
+							
+					};
+			}];
+		
+			call Hz_pers_API_disablePlayerSaveStateOnDisconnect;
+			player setposatl Hz_pops_detainPosition;				
+			
+			removeAllAssignedItems player;
+			removeVest player;
+			removeBackpack player;
+			removeHeadgear player;	
+			removeGoggles player;
+			
+			sleep 1;
+			
+			waituntil {sleep 1; ((!alive player) || ((player distance Hz_pops_detainPosition) > 50))};
 
-mps_rallypoint_tent = objnull;
-
-if(!((_tentposx == 0) && (_tentposy == 0) && (_tentposz == 0))) then {
-  
-  _objectsarr = nearestobjects [_tentpos,[Hz_pops_rallyTentType],100];
-  
-  {if(_x getvariable "owneruid" == _uid) then {mps_rallypoint_tent = _x;};} foreach _objectsarr;
-  
-  //Tent destroyed
-  if(!alive mps_rallypoint_tent) exitwith {deletemarker _uid;};
-  
-  RALLY_STATUS = true;
-  
-  //Replaced with extended persistency
-  /*
-  hint "Would you like to deploy at your tent?";
-  sleep 2;
-  mps_respawned_player = false;
-  createDialog "mps_respawn_dialog";
-  */
-  
-  waituntil {
-    sleep 60;  
-    !alive mps_rallypoint_tent
-  };
-
-  deleteVehicle mps_rallypoint_tent;
-  deleteMarker _uid;
-
-  RALLY_STATUS = false;
-  
+			if ((player distance Hz_pops_detainPosition) > 50) then {
+			
+				Hz_pops_releasedUIDs pushBack (getPlayeruid player);
+				publicVariable "Hz_pops_releasedUIDs";
+				call Hz_pers_API_enablePlayerSaveStateOnDisconnect;
+				player removeEventHandler ["AnimChanged",Hz_pops_abortClimbEH];				
+				Hz_pers_clientReadyForLoad = true;
+			
+			};
+		
+		};
+	
+	};
+	
 };
 
+[] spawn {
+
+	_uid = getplayeruid player;
+	_tentpos = getMarkerPos _uid;
+	_tentposx = _tentpos select 0;
+	_tentposy = _tentpos select 1;
+	_tentposz = _tentpos select 2;
+
+	mps_rallypoint_tent = objnull;
+
+	if(!((_tentposx == 0) && (_tentposy == 0) && (_tentposz == 0))) then {
+		
+		_objectsarr = nearestobjects [_tentpos,[Hz_pops_rallyTentType],100];
+		
+		{if(_x getvariable "owneruid" == _uid) then {mps_rallypoint_tent = _x;};} foreach _objectsarr;
+		
+		//Tent destroyed
+		if(!alive mps_rallypoint_tent) exitwith {deletemarker _uid;};
+		
+		RALLY_STATUS = true;
+		
+		//Replaced with extended persistency
+		/*
+		hint "Would you like to deploy at your tent?";
+		sleep 2;
+		mps_respawned_player = false;
+		createDialog "mps_respawn_dialog";
+		*/
+		
+		waituntil {
+			sleep 60;  
+			!alive mps_rallypoint_tent
+		};
+
+		deleteVehicle mps_rallypoint_tent;
+		deleteMarker _uid;
+
+		RALLY_STATUS = false;
+		
+	};
+
+
+};
+
+if (_exit) exitWith {};
+
+Hz_pers_clientReadyForLoad = true;

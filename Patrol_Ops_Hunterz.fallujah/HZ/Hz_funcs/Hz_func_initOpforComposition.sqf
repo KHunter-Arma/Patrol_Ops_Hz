@@ -39,12 +39,12 @@ private ["_objects", "_ins", "_side", "_mannedVehicles", "_sentryType", "_return
 					
 					_unitType = "";
 					if (_ins) then {
-						_unitType = mps_opfor_ins_riflemen call bis_fnc_selectrandom;
+						_unitType = mps_opfor_ins_riflemen call mps_getrandomelement;
 					} else {        
 						if (_isTank) then {
-							_unitType = mps_opfor_crewmen call bis_fnc_selectrandom;
+							_unitType = mps_opfor_crewmen call mps_getrandomelement;
 						} else {
-							_unitType = mps_opfor_riflemen call bis_fnc_selectrandom;
+							_unitType = mps_opfor_riflemen call mps_getrandomelement;
 						};        
 					};
 					
@@ -60,12 +60,12 @@ private ["_objects", "_ins", "_side", "_mannedVehicles", "_sentryType", "_return
 					
 					_unitType = "";
 					if (_ins) then {
-						_unitType = mps_opfor_ins_riflemen call bis_fnc_selectrandom;
+						_unitType = mps_opfor_ins_riflemen call mps_getrandomelement;
 					} else {        
 						if (_isTank) then {
-							_unitType = mps_opfor_crewmen call bis_fnc_selectrandom;
+							_unitType = mps_opfor_crewmen call mps_getrandomelement;
 						} else {
-							_unitType = mps_opfor_riflemen call bis_fnc_selectrandom;
+							_unitType = mps_opfor_riflemen call mps_getrandomelement;
 						};        
 					};
 
@@ -99,12 +99,12 @@ private ["_objects", "_ins", "_side", "_mannedVehicles", "_sentryType", "_return
 					
 					_unitType = "";
 					if (_ins) then {
-						_unitType = mps_opfor_ins_riflemen call bis_fnc_selectrandom;
+						_unitType = mps_opfor_ins_riflemen call mps_getrandomelement;
 					} else {        
 						if (_isTank) then {
-							_unitType = mps_opfor_crewmen call bis_fnc_selectrandom;
+							_unitType = mps_opfor_crewmen call mps_getrandomelement;
 						} else {
-							_unitType = mps_opfor_riflemen call bis_fnc_selectrandom;
+							_unitType = mps_opfor_riflemen call mps_getrandomelement;
 						};        
 					};
 					
@@ -120,12 +120,12 @@ private ["_objects", "_ins", "_side", "_mannedVehicles", "_sentryType", "_return
 					
 					_unitType = "";
 					if (_ins) then {
-						_unitType = mps_opfor_ins_riflemen call bis_fnc_selectrandom;
+						_unitType = mps_opfor_ins_riflemen call mps_getrandomelement;
 					} else {        
 						if (_isTank) then {
-							_unitType = mps_opfor_crewmen call bis_fnc_selectrandom;
+							_unitType = mps_opfor_crewmen call mps_getrandomelement;
 						} else {
-							_unitType = mps_opfor_riflemen call bis_fnc_selectrandom;
+							_unitType = mps_opfor_riflemen call mps_getrandomelement;
 						};        
 					};
 
@@ -158,11 +158,11 @@ private ["_objects", "_ins", "_side", "_mannedVehicles", "_sentryType", "_return
 			
 			if (_ins) then {
 				
-				_unitType = mps_opfor_ins_riflemen call bis_fnc_selectrandom;
+				_unitType = mps_opfor_ins_riflemen call mps_getrandomelement;
 				
 			} else {
 				
-				_unitType = mps_opfor_riflemen call bis_fnc_selectrandom;
+				_unitType = mps_opfor_riflemen call mps_getrandomelement;
 				
 			};
 			

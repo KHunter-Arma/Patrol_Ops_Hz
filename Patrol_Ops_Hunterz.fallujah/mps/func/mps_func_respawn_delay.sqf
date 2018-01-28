@@ -2,7 +2,7 @@
 
 private["_timer"];
 
-	_timer = 10;
+	_timer = 5;
 
 	while {_timer > 0} do {
 

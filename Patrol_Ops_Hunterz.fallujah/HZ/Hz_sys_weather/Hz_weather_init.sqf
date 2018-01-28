@@ -13,7 +13,7 @@ if (!isDedicated) then {
 
 if (isServer) then {
 
-  Hz_weather_func_dynamicWeather = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_weather_func_dynamicWeather.sqf";
+  Hz_weather_func_dynamicWeather = compile preprocessfilelinenumbers "HZ\Hz_sys_weather\Hz_weather_func_dynamicWeather.sqf";
 
   weather_fog = Hz_weather_avg_fog;
   weather_rain = Hz_weather_avg_rain;

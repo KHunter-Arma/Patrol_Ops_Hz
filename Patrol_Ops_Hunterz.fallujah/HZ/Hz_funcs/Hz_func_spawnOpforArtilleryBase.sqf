@@ -82,7 +82,7 @@ while {true} do {
 				_grp = creategroup (SIDE_B select 0);
 
 				for "_i" from 1 to 3 do {
-					_dude = _grp createUnit [(mps_opfor_riflemen call bis_fnc_selectRandom), _artylocation, [], 50, "NONE"];
+					_dude = _grp createUnit [(mps_opfor_riflemen call mps_getrandomelement), _artylocation, [], 50, "NONE"];
 					if(_i == 1) then {_dude assignasgunner _x; _dude moveingunner _x;} else {_dude assignascargo _x; _dude moveincargo _x;};
 				};
 				
@@ -102,7 +102,7 @@ while {true} do {
 				_grp = creategroup (SIDE_B select 0);
 
 				for "_i" from 1 to 2 do {
-					_dude = _grp createUnit [(mps_opfor_riflemen call bis_fnc_selectRandom), _artylocation, [], 50, "NONE"];
+					_dude = _grp createUnit [(mps_opfor_riflemen call mps_getrandomelement), _artylocation, [], 50, "NONE"];
 					if(_i == 1) then {_dude assignasgunner _x; _dude moveingunner _x;} else {_dude assignascargo _x; _dude moveincargo _x;};
 				};	
 				
@@ -168,7 +168,7 @@ while {true} do {
 			if((({side _x == (SIDE_B select 0)}count nearestobjects [_artylocation,["CAManBase"],750]) < 20) && (count allunits < Hz_max_allunits)) then {
 
 				//call reinforcements
-				[creategroup east,[-5000,15000,500],_artylocation,true] call CREATE_OPFOR_PARADROP;
+				[creategroup (SIDE_B select 0),[-5000,15000,500],_artylocation,true] call CREATE_OPFOR_PARADROP;
 
 				sleep 600;
 

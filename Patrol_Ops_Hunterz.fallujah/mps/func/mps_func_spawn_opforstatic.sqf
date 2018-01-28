@@ -47,13 +47,13 @@ if(not surfaceIsWater [_mgpos select 0, _mgpos select 1]) then{
     _mg setdir _dir;
     
     _grp = createGroup (SIDE_B select 0);
-    if(!_INS) then {(mps_opfor_riflemen call bis_fnc_selectrandom) createUnit [_mgpos, _grp ];} else {(mps_opfor_ins_riflemen call bis_fnc_selectrandom) createUnit [_mgpos, _grp ];};
+    if(!_INS) then {(mps_opfor_riflemen call mps_getrandomelement) createUnit [_mgpos, _grp ];} else {(mps_opfor_ins_riflemen call mps_getrandomelement) createUnit [_mgpos, _grp ];};
     leader _grp moveInGunner _mg;
     _gunner = gunner _mg;
     
   } else {
     
-    _compName = mps_opfor_staticWeaponComps call BIS_fnc_selectRandom;
+    _compName = mps_opfor_staticWeaponComps call mps_getrandomelement;
     
     _comp = [_mgpos, _dir,(call compile preprocessfilelinenumbers (format ["Compositions\Opfor\Statics\%1.sqf",_compName]))] call BIS_fnc_ObjectsMapper;
     

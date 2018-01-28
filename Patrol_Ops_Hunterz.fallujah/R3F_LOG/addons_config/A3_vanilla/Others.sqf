@@ -24,6 +24,8 @@ R3F_LOG_CFG_can_transport_cargo = R3F_LOG_CFG_can_transport_cargo +
 
 R3F_LOG_CFG_can_be_transported_cargo = R3F_LOG_CFG_can_be_transported_cargo +
 [
+  ["Land_SandbagBarricade_01_half_F",5],
+  ["Land_SandbagBarricade_01_hole_F",7],
 	["targetbase", 3],
 	["land_pierladder_f", 3],
 	["metal_pole_f", 1],
@@ -32,7 +34,7 @@ R3F_LOG_CFG_can_be_transported_cargo = R3F_LOG_CFG_can_be_transported_cargo +
 	["land_pallets_stack_f", 4],
 	["land_chairplastic_f", 1],
 	["land_chairwood_f", 1],
-	["items_base_f", 1],
+	["items_base_f", 10],
 	["land_canisterfuel_f", 2],
 	["land_metalbarrel_f", 5],
 	["land_portable_generator_f", 6],
@@ -60,6 +62,8 @@ R3F_LOG_CFG_can_be_transported_cargo = R3F_LOG_CFG_can_be_transported_cargo +
 
 R3F_LOG_CFG_can_be_moved_by_player = R3F_LOG_CFG_can_be_moved_by_player +
 [
+  "Land_SandbagBarricade_01_half_F",
+  "Land_SandbagBarricade_01_hole_F",
 	"targetbase",
 	"land_pierladder_f",
 	"metal_pole_f",

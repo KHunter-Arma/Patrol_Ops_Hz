@@ -1,4 +1,4 @@
-diag_log [time, diag_fps, daytime, "##### POPS HZ TASK ##### Defend Castle #####"];
+diag_log [time, diag_fps, daytime, "##### POPS HZ TASK ##### Defend FOB #####"];
 diag_log diag_activeSQFScripts;
 diag_log diag_activeSQSScripts;
 diag_log diag_activeMissionFSMs;
@@ -6,18 +6,18 @@ diag_log diag_activeMissionFSMs;
 /*-------------------- TASK PARAMS ---------------------------------*/
 _EnemySpawnMinimumRange = Hz_max_desired_server_VD + 500;
 _taskRadius = 200;
-_minSquadCount = 4;
-_maxSquadCount = 7;
+_minSquadCount = 3;
+_maxSquadCount = 6;
 
 //Chance of a squad having the following vehicle support (can't have more than 1 vehicle per squad)
 _CASchance = 0;
 _TankChance = 0;
-_IFVchance = 0;
-_AAchance = 0;
-_CarChance = 0.3;
+_IFVchance = 0.1;
+_AAchance = 0.1;
+_CarChance = 0.5;
 
 //Useful for justifying task-specific difficulties.
-_rewardMultiplier = 1;
+_rewardMultiplier = 0.75;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 
@@ -29,7 +29,83 @@ Hz_task_ID = _taskid;
 Hz_econ_aux_rewards = 0;
 _otherReward = 0;
 
-_newComp = [_position, random 360,(call compile preprocessfilelinenumbers "Compositions\Other\castle.sqf")] call BIS_fnc_ObjectsMapper;   
+_newComp = [_position, random 360,(call compile preprocessfilelinenumbers "Compositions\Blufor\Bases\IA_fob.sqf")] call BIS_fnc_ObjectsMapper; 
+
+//init composition
+_ammoCratesFilled = 0;
+_statGrp = creategroup (SIDE_A select 0);
+_guardPos = _position;
+
+{
+
+  if(_x iskindof "CampEast_EP1") then {
+  
+    _x enableSimulationGlobal false;
+  
+  };
+
+  //lock and man vehicles but not statics
+  if ((_x iskindof "Car") || (_x iskindof "Tank")) then {
+  
+    _x setvehiclelock "LOCKEDPLAYER";
+    
+    if ((_x emptyPositions "gunner") > 0) then {
+    
+      _dude = _statGrp createUnit [mps_blufor_riflemen call mps_getRandomElement, getpos _x, [], 200, "NONE"];
+      _dude assignasgunner _x;
+      _dude moveingunner _x;
+    
+    };
+  
+  };
+  
+  if (_x iskindof "ReammoBox_F") then {
+  
+    clearWeaponCargoGlobal _x;
+    clearItemCargoGlobal _x;
+    clearMagazineCargoGlobal _x;
+    
+    _ammoCratesFilled = _ammoCratesFilled + 1;
+    if (_ammoCratesFilled > 2) exitWith {};  
+    
+    if (_ammoCratesFilled == 1) then {
+    
+      _x addMagazineCargoGlobal ["rhs_mag_127x108mm_50",15];    
+    
+    } else {
+    
+      _x addMagazineCargoGlobal ["rhs_mag_100rnd_127x99_mag_Tracer_Red",5];
+    
+    };
+  
+  };
+  
+  if (_x iskindof "Land_GuardShed") then {
+  
+  _guardPos = ([_x] call bis_fnc_buildingpositions) select 0;
+  
+  };
+
+} foreach _newComp;
+
+//create defenders
+_defGrp = creategroup (SIDE_A select 0);
+
+_dude = _defGrp createUnit [mps_blufor_leader call mps_getRandomElement, _position, [], 10, "NONE"];
+_dude = _defGrp createUnit [mps_blufor_riflemen call mps_getRandomElement, _position, [], 10, "NONE"];
+_dude setposatl _guardPos;
+_dude forcespeed 0;
+_dude setUnitPos "UP";
+for "_i" from 1 to 12 do {
+
+  _dude = _defGrp createUnit [mps_blufor_inf call mps_getRandomElement, _position, [], 10, "NONE"];
+
+}; 
+_defGrp setFormation "DIAMOND";
+{
+
+
+} foreach units _defGrp;
 
 /*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
 
@@ -39,8 +115,8 @@ mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_dea
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
 [ format["TASK%1",_taskid],
-"Defend Castle",
-"An insurgent faction working with the Takistanis aims to capture a historical castle in the region to use it as a bargaining chip and strenghten their position on the table. Our clients want you to be the welcome party and prevent that from happening.",
+"Assist FOB",
+"We've been entrusted with a delicate task. NATO Joint Operations Command contacted us early this morning about an Iraqi FOB that recently found itself to be in a strategic position. Apparently their defences are in need of a serious reorganisation. We're hired as advisors, and you are to head in there to get the place battle-ready ASAP, or the first raid that comes will probably end very badly not just for them, but all units in the region. Give them your support in fortifying the base, and watch out for any enemy movement in the meantime. If you ask the Iraqis, they say an attack may be imminent...",
 (SIDE_A select 0),
 [format["MARK%1",_taskid],(_position),"mil_objective","ColorBlue"," Defend"],
 "created",
@@ -51,21 +127,11 @@ _position
 hz_reward = 1;
 while{ 
 
-(({ (side _x) == (SIDE_A select 0)} count (nearestObjects [_position,["CAManBase"],_taskRadius])) == 0)
+(({ isplayer _x} count (nearestObjects [_position,["CAManBase"],_taskRadius])) == 0)
 &&
 (call Hz_fnc_taskSuccessCheckGenericConditions)
 
 } do { sleep 5 };
-
-/*------------------------- TIMER ---------------------------------------------*/  
-
-"Intel reports you have less than 30 minutes before the main force arrives. Get ready!" remoteExecCall ["hint",0,false];
-
-/*
-_wait = 120;
-_wait = _wait + random 300;
-sleep _wait;
-*/
 
 /*--------------------CREATE ENEMY NEAR LOCATION---------------------------------*/
 
@@ -78,11 +144,11 @@ if(_b > 0) then {
 	for "_i" from 1 to _b do {
 		
 		//exit spawn loop and transfer to reinforcements script if too many units present on map
-		if((count allunits) > Hz_max_allunits) exitwith {_r = (_b - _i) + 1; [_EnemySpawnMinimumRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] spawn Hz_task_reinforcements;};
+		if((count allunits) > Hz_max_allunits) exitwith {_r = (_b - _i) + 1; [_EnemySpawnMinimumRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] spawn Hz_task_reinforcements;};
 
-		_grp = [ _spawnpos,"INS",random 24,300 ] call CREATE_OPFOR_SQUAD;
+		_grp = [ _spawnpos,"INF",random 24,300 ] call CREATE_OPFOR_SQUAD;
 		
-		_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] call Hz_func_opforVehicleSupport;
+		_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] call Hz_func_opforVehicleSupport;
 		_vehicletypes = _Vehsupport select 0;
 		_otherReward = _otherReward + (_Vehsupport select 1);
 		
@@ -102,7 +168,7 @@ if(_b > 0) then {
 		
 		if(!isnil "Hz_AI_moveAndCapture") then {
 			
-			_spawnedVehs = [_grp, _position,mps_opfor_ins_truck,mps_opfor_ins_ncov] call Hz_AI_moveAndCapture;  
+			_spawnedVehs = [_grp, _position,mps_opfor_truck,mps_opfor_ncov] call Hz_AI_moveAndCapture;  
 
 			patrol_task_vehs = patrol_task_vehs + _spawnedVehs;					 
 			
@@ -121,7 +187,7 @@ while{
 
     ({(side _x) == (SIDE_A select 0)} count nearestObjects[_position,["CAManBase","LandVehicle","Air"],_taskRadius] != 0)
     && (call Hz_fnc_taskSuccessCheckGenericConditions)
-    && (({if (!isnull _x) then {(side _x) == (SIDE_C select 0)} else {false}} count patrol_task_units) > ((count patrol_task_units) / 3))
+    && (({if (!isnull _x) then {(side _x) == (SIDE_B select 0)} else {false}} count patrol_task_units) > ((count patrol_task_units) / 3))
     
     } do { 
 	

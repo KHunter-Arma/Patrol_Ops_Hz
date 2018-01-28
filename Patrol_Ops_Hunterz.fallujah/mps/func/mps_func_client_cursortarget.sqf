@@ -76,7 +76,7 @@ private["_cursTarget"];
 			if ({_cursTarget isKindOf _x} count ["Base_WarfareBBarracks"] > 0) then { _recruit_units = _cursTarget addaction ["<t color=""#FFc600"">Recruit Unit</t>",(mps_path+"action\mps_recruit_dialog.sqf"),[],-1,true,true,"",""]; };
 
 // Question Civillians
-			if ({_cursTarget isKindOf _x} count ["Man"] > 0 && side _cursTarget == civilian && alive  _cursTarget) then { _intelaction1 = _cursTarget addAction [format["Question %1",_type], (mps_path+"action\mps_interaction_question.sqf"),[],1,true,true,"","!isplayer _target"]; };
+			if (_cursTarget isKindOf "Civilian" && ((side _cursTarget == civilian) || (captive _cursTarget)) && alive  _cursTarget) then { _intelaction1 = _cursTarget addAction [format["Question %1",_type], (mps_path+"action\mps_interaction_question.sqf"),[],1,true,true,"","!isplayer _target"]; };
 		//	if ({_cursTarget isKindOf _x} count ["Man"] > 0 && side _cursTarget == civilian && !alive _cursTarget) then { _intelaction2 = _cursTarget addAction [format["Search %1 for Intel",_type], (mps_path+"action\mps_interaction_question.sqf"),[],1,true,true,"",""]; };
 
 // ADMIN LOCK VEHICLE
@@ -84,7 +84,7 @@ private["_cursTarget"];
 		//	if( {_cursTarget isKindOf _x} count ["LandVehicle","Air"] > 0 && (serverCommandAvailable "#shutdown") ) then { _adminunlock = _cursTarget addAction [format["Unlock %1",_type], (mps_path+"action\mps_admin_lock.sqf"),0,1,true,true,"","(_target getVariable ""mps_veh_locked"")"]; };
 		//	if( {_cursTarget isKindOf _x} count ["LandVehicle","Air"] > 0 && (serverCommandAvailable "#shutdown") ) then { _adminreset = _cursTarget addAction [format["Reset %1",_type], (mps_path+"action\mps_admin_reset.sqf"),0,1,true,true,"","(_target getVariable ""mps_veh_locked"")"]; };
 
-			waitUntil{ sleep 0.5; _cursTarget != cursorTarget };
+			waitUntil{ sleep 1; _cursTarget != cursorTarget };
 
 		//	if(!isNil "_ied_detonate") then {_cursTarget removeAction _ied_detonate };
 		//	if(!isNil "_ied_defuse")   then {_cursTarget removeAction _ied_defuse };
