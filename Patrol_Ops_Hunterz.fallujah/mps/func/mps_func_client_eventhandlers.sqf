@@ -76,7 +76,7 @@ player addEventHandler ["Killed",{
 		
 		if (Hz_pops_enableDetainUnrecognisedUIDs) then {
 	
-			if ((!(getPlayerUID player) in Hz_pops_releasedUIDs)) then {
+			if (!((getPlayerUID player) in Hz_pops_releasedUIDs)) then {
 			
 				_exit = true;
 			

@@ -2,29 +2,26 @@
 // © JULY 2009 - norrin (norrin@iinet.net.au)
 #define HZ_DEBUG(X) if(hz_debug_patrols) then {hint X;}
 
+if (!isServer) exitWith {};
+
+private ["_group", "_unit", "_crew", "_escort", "_lives", "_delay", "_respawn_point", "_marker", "_isair", "_side", "_unitTypeArray", "_vehType", "_leader"];
+
 _unit = _this select 0;
 _crew = crew _unit;
 _group 			= group _unit;
 _escort = [];
 {if((vehicle _x) == _x) then {_escort pushback (typeof _x);};}foreach units _group;
-if (!isServer) exitWith {};
-private ["_unit", "_lives", "_delay", "_respawn_point", "_marker", "_group", "_crew", "_side", "_isair","_AI_unitArray", "_escort", "_leader"];
 
 _lives			= _this select 1;
 _delay 			= _this select 2;
 _respawn_point          = _this select 3;
 _marker			= _this select 4;
-
+_isair = if ((count _this) > 5) then {_this select 5} else {false};
 _side 			= side _unit; 
-_isair = false;
-
-_crew allowGetIn true;
 
 _group setvariable ["Hz_Patrolling",true];
 
-if(_this select 5) then {_isair = true;};
-
-waitUntil {sleep 1; !isnil "hz_debug_patrols"};
+waitUntil {!isnil "hz_debug_patrols"};
 
 if (!isMultiplayer && !hz_debug_patrols) exitWith {
 
@@ -37,17 +34,27 @@ if (!isMultiplayer && !hz_debug_patrols) exitWith {
 
 };
 
-// AI unit array is guys that are in the vehicle at the beginning of the mission (10 second delay on top is to wait for moveincargo commands to work)
+// Unit type array is for guys that are in the vehicle at the beginning of the mission
 //for APCs this will be all the group members if all are in the vehicle.
 //for tanks it will only be the actualy crew and not the rest of the squad.
-//same goes for AI skill array. this is why the setskill command in the persistent script is overriden to set all group members' skill to a constant.
 
-_AI_unitArray  = [];
-{_AI_unitArray set [count _AI_unitArray, typeOf _x];
+_unitTypeArray  = [];
+{_unitTypeArray set [count _unitTypeArray, typeOf _x];
 }forEach _crew;
+
+_vehType = typeof _unit;
+_unit setvehiclelock "LOCKED";
 
 _leader = leader _group;
 
 waitUntil {!isnil "UPS_respawn_initDone"};
-[_leader,_marker,_isair] execVM "AIvcl_respawn_UPS\UPSvcl_init.sqf";
-[_unit, _lives, _delay, _respawn_point, _marker, _crew, _side, _AI_unitArray,_escort,time] call AIvcl_respawn_UPS;
+
+[_leader,_marker,_isair] call Hz_pops_patrols_startUPS;
+
+if (alive _unit) then {
+
+	Hz_pops_deleteVehicleArray pushBack _unit;
+
+};
+
+Hz_pops_UPSRespawnArray pushBack [_vehType, _lives, _respawn_point, _marker, _side, _unitTypeArray,_escort,_isair];

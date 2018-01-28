@@ -12,7 +12,6 @@ _vehicle = vehicle (leader _group);
 
 if(!_isair) then {
 
-//this is execvm'd so we just call from this thread
 [_group,_marker,"SHOWMARKER"] call Hz_AI_UPS_Hz;
 
 } else {
@@ -150,7 +149,6 @@ sleep 5;
       _group setbehaviour "AWARE";
       _group setcombatmode "RED";
       
-			//this is execvm'd so we just call from this thread
       [_group,_marker,"SHOWMARKER"] call Hz_AI_UPS_Hz;
       
     };

@@ -8,7 +8,7 @@ class EditorData
 	toggles=10;
 	class ItemIDProvider
 	{
-		nextID=4523;
+		nextID=4525;
 	};
 	class MarkerIDProvider
 	{
@@ -16,16 +16,16 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={7737.8848,26.022125,8308.376};
-		dir[]={-0.77430981,-0.60587913,0.18272965};
-		up[]={-0.58968812,0.79555076,0.13916136};
-		aside[]={0.22968827,7.5290154e-007,0.9732846};
+		pos[]={10030.229,12.816519,2056.9846};
+		dir[]={-0.79374093,-0.30789325,0.52458906};
+		up[]={-0.25693068,0.95139235,0.16980906};
+		aside[]={0.55137396,-1.0664808e-006,0.83426559};
 	};
 };
 binarizationWanted=0;
 addons[]=
 {
-	"globemaster_c17",
+	"USAF_C17",
 	"RHS_US_A2_AirImport",
 	"CUP_WheeledVehicles_Stryker",
 	"rhsusf_c_troops",
@@ -155,8 +155,8 @@ class AddonsMetaData
 		items=96;
 		class Item0
 		{
-			className="globemaster_c17";
-			name="globemaster_c17";
+			className="USAF_C17";
+			name="USAF_C17";
 		};
 		class Item1
 		{
@@ -1025,7 +1025,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=712;
+		items=713;
 		class Item0
 		{
 			dataType="Object";
@@ -1043,8 +1043,8 @@ class Mission
 				presence=0;
 			};
 			id=53;
-			type="globemaster_c17_therock";
-			atlOffset=4.7683716e-007;
+			type="USAF_C17";
+			atlOffset=0.08730793;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -42844,6 +42844,97 @@ class Mission
 			id=4516;
 			type="RampConcrete";
 			atlOffset=-1.6809633;
+		};
+		class Item712
+		{
+			dataType="Group";
+			side="West";
+			class Entities
+			{
+				items=1;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={10022.23,7.0014391,2063.5181};
+					};
+					side="West";
+					flags=7;
+					class Attributes
+					{
+						init="call{hz_debug_patrols = true}";
+						isPlayer=1;
+					};
+					id=4524;
+					type="B_Soldier_A_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENG";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.01;
+								};
+							};
+						};
+						nAttributes=3;
+					};
+				};
+			};
+			class Attributes
+			{
+			};
+			id=4523;
 		};
 	};
 };
