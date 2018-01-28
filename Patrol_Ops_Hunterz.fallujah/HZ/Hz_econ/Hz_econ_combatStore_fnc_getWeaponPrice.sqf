@@ -358,9 +358,9 @@ case "RHS_WEAP_RSP30_GREEN": {14};
 case "RHS_WEAP_RSP30_RED": {14};
 case "RHS_WEAP_TR8": {174};
 
-case "RHSUSF_WEAP_GLOCK17G4": {};
-case "RHSUSF_WEAP_M1911A1": {};
-case "RHSUSF_WEAP_M9": {};
+case "RHSUSF_WEAP_GLOCK17G4": {-1};
+case "RHSUSF_WEAP_M1911A1": {-1};
+case "RHSUSF_WEAP_M9": {-1};
 
 
 
