@@ -8,7 +8,7 @@ class EditorData
 	toggles=10;
 	class ItemIDProvider
 	{
-		nextID=4532;
+		nextID=4547;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={7866.4922,36.05999,2202.4255};
-		dir[]={-0.45344496,-0.16894664,0.87526947};
-		up[]={-0.077789359,0.98557758,0.15015419};
-		aside[]={0.88801891,7.1199611e-007,0.46005556};
+		pos[]={8315.2549,9.0259924,2018.908};
+		dir[]={-0.25676784,-0.96594071,0.034122624};
+		up[]={-0.95748687,0.25892219,0.12723988};
+		aside[]={0.13174042,2.324814e-007,0.99135512};
 	};
 };
 binarizationWanted=0;
@@ -161,13 +161,14 @@ addons[]=
 	"nielsen_cim",
 	"A3_Structures_F_Exp_Civilian_Accessories",
 	"A3_Structures_F_Heli_Items_Sport",
-	"USAF_C130J"
+	"USAF_C130J",
+	"Hz_mod_ambientWar"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=105;
+		items=106;
 		class Item0
 		{
 			className="USAF_C17";
@@ -826,6 +827,13 @@ class AddonsMetaData
 			className="USAF_C130J";
 			name="USAF_C130J";
 		};
+		class Item105
+		{
+			className="Hz_mod_ambientWar";
+			name="Hunter'z Ambient War Module";
+			author="K.Hunter";
+			url="https://github.com/KHunter-Arma";
+		};
 	};
 };
 class DynamicSimulation
@@ -1101,7 +1109,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=708;
+		items=709;
 		class Item0
 		{
 			dataType="Object";
@@ -15265,7 +15273,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8539.7451,8.8304548,1518.3284};
+				position[]={8539.7451,9.0233364,1518.3284};
 				angles[]={0,6.0373974,0};
 			};
 			side="Empty";
@@ -15275,6 +15283,7 @@ class Mission
 			};
 			id=951;
 			type="ShedBig";
+			atlOffset=0.19288158;
 		};
 		class Item426
 		{
@@ -15602,19 +15611,19 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8533.0811,9.1625214,1528.621};
+				position[]={8532.748,9.0785217,1528.797};
 				angles[]={0,0.69841093,0};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
-				health=0.18251286;
 				lock="LOCKED";
 				init="call{this setVariable [""ace_rearm_isSupplyVehicle"", true]}";
 			};
 			id=992;
 			type="CUP_B_MTVR_Ammo_USA";
+			atlOffset=-0.083999634;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -15644,7 +15653,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8532.5645,8.8304548,1528.0332};
+				position[]={8532.5645,9.0391827,1528.0332};
 				angles[]={0,5.3183079,0};
 			};
 			side="Empty";
@@ -15654,6 +15663,7 @@ class Mission
 			};
 			id=993;
 			type="ShedBig";
+			atlOffset=0.20872784;
 		};
 		class Item448
 		{
@@ -15701,7 +15711,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8546.0889,8.8304548,1507.8804};
+				position[]={8546.0889,9.0286732,1507.8804};
 			};
 			side="Empty";
 			flags=4;
@@ -15710,6 +15720,7 @@ class Mission
 			};
 			id=995;
 			type="ShedBig";
+			atlOffset=0.19821835;
 		};
 		class Item450
 		{
@@ -17949,7 +17960,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=1;
+							value=1.2;
 						};
 					};
 				};
@@ -17968,7 +17979,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=1;
+							value=20;
 						};
 					};
 				};
@@ -22091,7 +22102,7 @@ class Mission
 				position[]={5528.3018,9.0527,3613.8374};
 			};
 			side="West";
-			flags=4;
+			flags=6;
 			class Attributes
 			{
 				lock="LOCKEDPLAYER";
@@ -41084,8 +41095,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41103,8 +41114,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41123,8 +41134,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41143,8 +41154,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41163,8 +41174,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=1000;
 				sizeB=1000;
 				repeatable=1;
@@ -41183,8 +41194,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41203,8 +41214,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger,true] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger,true] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41222,8 +41233,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=600;
 				sizeB=600;
 				repeatable=1;
@@ -41242,8 +41253,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger,true] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger,true] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=1200;
 				sizeB=1200;
 				repeatable=1;
@@ -41262,8 +41273,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41282,8 +41293,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41301,8 +41312,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41321,8 +41332,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger,true] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger,true] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=1000;
 				sizeB=1000;
 				repeatable=1;
@@ -41340,8 +41351,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger,true] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger,true] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=1000;
 				sizeB=1000;
 				repeatable=1;
@@ -41359,8 +41370,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger,true] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger,true] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=1000;
 				sizeB=1000;
 				repeatable=1;
@@ -41379,8 +41390,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger,true] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger,true] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=1000;
 				sizeB=1000;
 				repeatable=1;
@@ -41398,8 +41409,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger,true] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger,true] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=1000;
 				sizeB=1000;
 				repeatable=1;
@@ -41418,8 +41429,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger,true] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger,true] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=1000;
 				sizeB=1000;
 				repeatable=1;
@@ -41438,8 +41449,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger,true,30] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger,true,30] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger,true,30] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger,true,30] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=1500;
 				sizeB=1500;
 				repeatable=1;
@@ -41457,8 +41468,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger,true,30] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger,true,30] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger,true,30] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger,true,30] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=1500;
 				sizeB=1500;
 				repeatable=1;
@@ -41476,8 +41487,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger,true] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger,true] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=1500;
 				sizeB=1500;
 				repeatable=1;
@@ -41495,8 +41506,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger,true,15] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger,true,15] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger,true,15] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger,true,15] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41514,8 +41525,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger,true,30] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger,true,30] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger,true,30] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger,true,30] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=1000;
 				sizeB=1000;
 				repeatable=1;
@@ -41533,8 +41544,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger,true,30] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger,true,30] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger,true,30] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger,true,30] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=1000;
 				sizeB=1000;
 				repeatable=1;
@@ -41552,8 +41563,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger,true,30] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger,true,30] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger,true,30] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger,true,30] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=700;
 				sizeB=700;
 				repeatable=1;
@@ -41571,8 +41582,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger,true] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger,true] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=1000;
 				sizeB=1000;
 				repeatable=1;
@@ -41591,8 +41602,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41611,8 +41622,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41631,8 +41642,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41651,8 +41662,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41670,8 +41681,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41689,8 +41700,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41708,8 +41719,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41727,8 +41738,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41747,8 +41758,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41766,8 +41777,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41786,8 +41797,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41806,8 +41817,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41826,8 +41837,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41845,8 +41856,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41865,8 +41876,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41885,8 +41896,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41905,8 +41916,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41925,8 +41936,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41944,8 +41955,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41963,8 +41974,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -41982,8 +41993,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -42002,8 +42013,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -42021,8 +42032,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -42040,8 +42051,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -42059,8 +42070,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -42078,8 +42089,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -42097,8 +42108,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{this}";
-				onActivation="call{[thistrigger,true] call hz_spawncivs;}";
-				onDeactivation="call{[thistrigger,true] call Hz_despawncivs;}";
+				onActivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_spawnCivs;}";
+				onDeactivation="call{[thistrigger,true] call Hz_ambw_civ_fnc_despawnCivs;}";
 				sizeA=500;
 				sizeB=500;
 				repeatable=1;
@@ -43453,23 +43464,6 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8121.062,9.3114796,1316.08};
-				angles[]={0,5.3718481,0};
-			};
-			side="Empty";
-			flags=4;
-			class Attributes
-			{
-			};
-			id=4202;
-			type="Land_FloodLight_F";
-			atlOffset=0.043160439;
-		};
-		class Item702
-		{
-			dataType="Object";
-			class PositionInfo
-			{
 				position[]={3634.1899,1.6657851,585.41998};
 				angles[]={0,1.4230018,0};
 			};
@@ -43483,7 +43477,7 @@ class Mission
 			type="RampConcrete";
 			atlOffset=-2.2179999;
 		};
-		class Item703
+		class Item702
 		{
 			dataType="Object";
 			class PositionInfo
@@ -43501,7 +43495,7 @@ class Mission
 			type="RampConcrete";
 			atlOffset=-1.7243917;
 		};
-		class Item704
+		class Item703
 		{
 			dataType="Object";
 			class PositionInfo
@@ -43519,7 +43513,7 @@ class Mission
 			type="RampConcrete";
 			atlOffset=-1.6809633;
 		};
-		class Item705
+		class Item704
 		{
 			dataType="Object";
 			class PositionInfo
@@ -43535,7 +43529,7 @@ class Mission
 			id=4529;
 			type="Land_BarGate_01_open_F";
 		};
-		class Item706
+		class Item705
 		{
 			dataType="Object";
 			class PositionInfo
@@ -43552,6 +43546,7 @@ class Mission
 			};
 			id=4530;
 			type="USAF_C130J_Cargo";
+			atlOffset=-4.7683716e-007;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -43576,7 +43571,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item707
+		class Item706
 		{
 			dataType="Object";
 			class PositionInfo
@@ -43676,6 +43671,33 @@ class Mission
 				};
 				nAttributes=4;
 			};
+		};
+		class Item707
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8683.0127,7,1921.032};
+			};
+			id=4532;
+			type="Hz_mod_ambientWar_module";
+		};
+		class Item708
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={8121.0498,8.3159962,1316.1409};
+				angles[]={0,3.932385,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=4538;
+			type="Land_PortableLight_single_F";
+			atlOffset=0.23218298;
 		};
 	};
 };

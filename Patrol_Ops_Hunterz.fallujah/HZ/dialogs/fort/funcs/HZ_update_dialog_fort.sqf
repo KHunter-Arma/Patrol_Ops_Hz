@@ -14,6 +14,13 @@ hz_fort_cost = hz_fort_selected call Hz_fort_getObjectCost;
 _display = format ["Item Cost: $%1",hz_fort_cost];
 ctrlSetText [4135, _display];
 
-_pic = gettext (configfile >> "cfgVehicles" >> hz_fort_selected >> "picture");
-if(_pic == "pictureStaticObject") then {_pic = gettext (configfile >> "cfgVehicles" >> hz_fort_selected >> "icon");};
+_pic = gettext (configfile >> "cfgVehicles" >> hz_fort_selected >> "EditorPreview");
+
+if (_pic == "\A3\EditorPreviews_F\Data\CfgVehicles\Default\Prop.jpg") then {
+
+	_pic = gettext (configfile >> "cfgVehicles" >> hz_fort_selected >> "picture");
+
+	if(_pic == "pictureStaticObject") then {_pic = gettext (configfile >> "cfgVehicles" >> hz_fort_selected >> "icon");};
+
+};
 ctrlSetText [4134,_pic];

@@ -39,6 +39,7 @@ Hz_fnc_vehicleInit = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_vehic
 Hz_pops_fnc_storeBoughtVehicleInit = compile preprocessfilelinenumbers "Hz_pops_fnc_storeBoughtVehicleInit.sqf";
 Hz_func_isSupervisor = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_isSupervisor.sqf";
 Hz_func_find_nearest_ammo_crate = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_find_nearest_ammo_crate.sqf";
+Hz_func_locateFOB = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_locateFOB.sqf";
 
 //Client init
 if(!isDedicated) then {
@@ -103,6 +104,10 @@ if(!isDedicated) then {
 // Server init
 if (isServer) then {
 
+	civilian setfriend [west, 1];
+	civilian setfriend [east, 1];
+	civilian setfriend [resistance, 1];
+
 	if (Hz_pops_enableDetainUnrecognisedUIDs) then {
 	
 		Hz_pops_releasedUIDs = [];
@@ -138,9 +143,6 @@ if (isServer) then {
     };   
     
   };
-  
-	Hz_civ_initdone = false;
-  call compile preprocessfilelinenumbers "hunterz_civ_init.sqf";   
   
 	Hz_fnc_calculateTaskReward = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_calculateTaskReward.sqf";
 	Hz_fnc_taskReward = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_taskReward.sqf";

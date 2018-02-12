@@ -3,7 +3,7 @@
 //mps_self_heal_condition = "damage player > 0.2 && damage player < 0.9";
 mps_rally_condition = "player distance ( getMarkerPos format[""respawn_%1"",(SIDE_A select 0)] ) > 2000 && !RALLY_STATUS && (((position player) select 2) < 2) && ((vehicle player) == player)";
 
-mps_rallypoint = player addaction ["<t color=""#ffc600"">Build Tent</t>",(mps_path+"action\mps_buildtent.sqf"),[],0,false,false,"",mps_rally_condition];
+//mps_rallypoint = player addaction ["<t color=""#ffc600"">Build Tent</t>",(mps_path+"action\mps_buildtent.sqf"),[],0,false,false,"",mps_rally_condition];
 mps_client_hud_act = player addAction [localize "STR_Client_HUD_menu",(mps_path+"action\mps_hud_switch.sqf"),[],-1,false,false,"",""];
 //actionreset = 0;
 Killed_EH_block = false;
@@ -34,7 +34,7 @@ player addEventHandler ["Killed",{
   
   [] spawn {
 
-    player removeaction mps_rallypoint;
+  //  player removeaction mps_rallypoint;
     player removeaction mps_client_hud_act;     
     
     sleep 2;
@@ -54,7 +54,7 @@ player addEventHandler ["Killed",{
       
     };
     
-    player removeaction mps_rallypoint;
+    //player removeaction mps_rallypoint;
     player removeaction mps_client_hud_act;
     
     sleep 5;
@@ -62,7 +62,7 @@ player addEventHandler ["Killed",{
 		if (_hasEarplugs) then {player setvariable ["ACE_hasEarPlugsin",true]};
     0 fadesound 1;
     
-    mps_rallypoint = player addaction ["<t color=""#ffc600"">Build Rallypoint</t>",(mps_path+"action\mps_buildtent.sqf"),[],0,false,false,"",mps_rally_condition];
+   // mps_rallypoint = player addaction ["<t color=""#ffc600"">Build Rallypoint</t>",(mps_path+"action\mps_buildtent.sqf"),[],0,false,false,"",mps_rally_condition];
     mps_client_hud_act = player addAction [localize "STR_Client_HUD_menu",(mps_path+"action\mps_hud_switch.sqf"),[],-1,false,false,"",""];
     
     if(nukeweather) then {terminate ashhandle; sleep 5; ashhandle = player spawn ash;};

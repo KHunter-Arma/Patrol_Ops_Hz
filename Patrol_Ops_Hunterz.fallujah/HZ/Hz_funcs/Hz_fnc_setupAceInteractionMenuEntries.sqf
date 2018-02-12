@@ -25,19 +25,40 @@
  
 private _action = [
 	"Hz_requestTask",
-	"Request task",
+	"Request mission",
 	"\x\Hz\Hz_mod_economy\media\Hunterz_iconSmall.paa",
 	{
+	
 		if(!taskrequested) then {
+		
+			private _exit = false;
+			private _fobPos = call Hz_func_locateFOB;
+			private _basePos = markerpos "BASE";
+			
+			{
+			
+				if (((_x distance _basePos) > 500) || ((_x distance _fobPos) > 500)) exitWith {
+				
+					_exit = true;
+				
+				};
+			
+			} foreach playableUnits;
+			
+			if (_exit) exitWith {
+			
+				hint "All players must be at base or FOB to request a mission.";
+			
+			};
 		
 			taskrequested = true;
 			publicVariable "taskrequested";
 			
-			hint "Task requested. You will receive a new task once the task conditions are met.";
+			hint "Mission requested. You will receive a new mission once the mission conditions are met.";
 		
 		} else {
 		
-			hint "A new task has already been requested. You will receive a new task only if all task conditions are met.";
+			hint "A new mission has already been requested. You will receive a new mission only if all mission conditions are met.";
 		
 		};
 	},

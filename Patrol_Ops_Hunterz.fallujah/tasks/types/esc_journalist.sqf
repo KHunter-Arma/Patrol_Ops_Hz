@@ -94,6 +94,7 @@ _vip = _grp createUnit [ _type, _returnPoint, [], 10, "NONE"];
 _vip setRank "PRIVATE";
 dostop _vip;
 _vip setVariable ["Hz_disableFSM",true];
+_vip setVariable ["Hz_ambw_disableSideRelations",true];
 
 [_vip,["<t color=""#00FF00"">Request to follow</t>",{
 

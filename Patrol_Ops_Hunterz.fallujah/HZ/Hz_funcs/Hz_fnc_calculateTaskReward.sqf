@@ -9,3 +9,5 @@ hz_reward = ((Hz_econ_perSquadReward * _squadCount) + _additionalRewards + Hz_ec
 _deathPenalty = (mps_mission_deathlimit - mps_mission_deathcount) * Hz_econ_penaltyPerPlayerdeath;
 
 hz_reward = (hz_reward - _deathPenalty)*_rewardMultiplier;
+
+hz_reward = hz_reward*(Hz_ambw_srel_relationsOwnSide/Hz_ambw_srel_relationsOwnSideStarting);

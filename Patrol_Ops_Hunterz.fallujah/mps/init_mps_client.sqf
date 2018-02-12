@@ -228,8 +228,12 @@ if(isnil "limitviewdistance") then {limitviewdistance = false;};
 
 waituntil {introseqdone};
 
-removeallweapons player;
-removeallitems player;
+if (!Hz_debug) then {
+
+	removeallweapons player;
+	removeallitems player;
+	
+};
 
 if(!hz_debug) then {
 

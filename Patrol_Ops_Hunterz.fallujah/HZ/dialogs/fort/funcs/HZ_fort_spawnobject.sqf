@@ -49,5 +49,6 @@ if(!hz_debug) then {
 	hint "DEBUG MODE: Object spawn succesful!";
 
 	_obj = hz_fort_selected createVehicle (markerpos "hz_buyfortification");
+	[_obj] call Hz_fnc_vehicleInit;
 
 };

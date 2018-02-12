@@ -4,4 +4,10 @@
 
 } foreach Hz_pers_network_vehicles;
 
+{
+
+	[_x] call Hz_fnc_vehicleInit;
+
+} foreach Hz_pers_network_objects;
+
 call Hz_weather_func_dynamicWeather;
