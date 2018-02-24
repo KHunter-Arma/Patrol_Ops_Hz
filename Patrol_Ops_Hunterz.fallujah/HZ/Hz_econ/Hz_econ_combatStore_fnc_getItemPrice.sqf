@@ -674,7 +674,31 @@ case "EWK_CIGAR2": {14};
 case "EWK_CIG1": {1};
 case "EWK_GLASSES_CIG1": {1};
 case "IMMERSION_POPS_POP0": {1};
-			
+
+//beards 
+case "SFG_TAC_BEARDD": {0};
+case "SFG_TAC_BEARDB": {0};
+case "SFG_TAC_BEARDG": {0};
+case "SFG_TAC_BEARDO": {0};
+
+case "SFG_TAC_CHOPSD": {0};
+case "SFG_TAC_CHOPSG": {0};
+case "SFG_TAC_CHOPSB": {0};
+case "SFG_TAC_CHOPSO": {0};
+case "SFG_TAC_MOUSTACHED": {0};
+case "SFG_TAC_MOUSTACHEG": {0};
+case "SFG_TAC_MOUSTACHEB": {0};
+case "SFG_TAC_MOUSTACHEO": {0};
+case "SFG_TAC_CHINLESSBD": {0};
+case "SFG_TAC_CHINLESSBG": {0};
+case "SFG_TAC_CHINLESSBB": {0};
+case "SFG_TAC_CHINLESSBO": {0};
+
+case "SFG_TAC_SMALLBEARDD": {0};
+case "SFG_TAC_SMALLBEARDB": {0};
+case "SFG_TAC_SMALLBEARDG": {0};
+case "SFG_TAC_SMALLBEARDO": {0};
+
 default {-1};
 
 };
