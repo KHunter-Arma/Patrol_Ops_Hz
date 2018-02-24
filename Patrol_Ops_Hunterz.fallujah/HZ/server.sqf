@@ -69,7 +69,7 @@ while {true} do
 			
 				if(!(_x getvariable ["NoDelete",false]) && ((_x distance (markerpos "respawn_west")) > 300) && (({(_x distance _dude) < 300} count playableUnits) < 1)) then {
 				
-					_weaponHolders = nearestObjects [_x, ["WeaponHolderSimulated"],2];
+					_weaponHolders = nearestObjects [_x, ["WeaponHolderSimulated"],3];
 			
 					{
 						
@@ -88,6 +88,8 @@ while {true} do
 	};
 	
 	{deletegroup _x;}foreach allgroups;
+	
+	call Hz_func_setrealtime;
 	
 	//50 minute loop
 	if(_timescaler1 > 12) then {
@@ -124,7 +126,6 @@ while {true} do
 		_timescaler3 = 0;
 
 		call Hz_weather_func_dynamicWeather;
-		call Hz_func_setrealtime;
 		
 	};
 	

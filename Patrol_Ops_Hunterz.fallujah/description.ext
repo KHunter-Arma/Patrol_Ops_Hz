@@ -45,6 +45,20 @@ class cfgFunctions
   
 };
 
+class Extended_InitPost_EventHandlers
+{
+		
+	class CAManBase {		
+
+		class RemoveMap {
+			
+			init = "if (!isplayer (_this select 0)) then {(_this select 0) unassignItem 'ItemMap'; (_this select 0) removeItem 'ItemMap';};";
+			
+		};
+	};
+			
+};
+
 class RscTitles {
 	#include "mps\dialog\mps_titles.sqf"
 };
