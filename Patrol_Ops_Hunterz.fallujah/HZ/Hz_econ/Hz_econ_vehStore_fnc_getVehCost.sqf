@@ -11,16 +11,16 @@
 
 switch (true) do {
 
-case (_this iskindof "PO_LandRover_Base_MG") : {66000};
+//case (_this iskindof "PO_LandRover_Base_MG") : {66000};
 case (_this iskindof "PO_LandRover_base") : {50000};
-case (_this iskindof "rhsusf_m1025_w_mk19") : {255700};
-case (_this iskindof "rhsusf_m1025_w_m2") : {256000};
-case (_this iskindof "rhsusf_m1025_w") : {240000};
-case (_this iskindof "rhsusf_m998_w_2dr") : {65000}; 
+//case (_this iskindof "rhsusf_m1025_w_mk19") : {255700};
+//case (_this iskindof "rhsusf_m1025_w_m2") : {256000};
+//case (_this iskindof "rhsusf_m1025_w") : {240000};
+//case (_this iskindof "rhsusf_m998_w_2dr") : {65000}; 
 case (_this iskindof "Offroad_01_repair_base_F") : {37000};
 case (_this iskindof "Offroad_01_armed_base_F") : {48000}; // Ref: Toyota Hilux
 case (_this iskindof "Offroad_01_unarmed_base_F") : {32000};
-case (_this iskindof "CUP_SUV_Armored_Base") : {350000}; 
+//case (_this iskindof "CUP_SUV_Armored_Base") : {350000}; 
 case (_this iskindof "CUP_SUV_Unarmed_Base") : {50000};  // Ref: Chevrolet Tahoe
 case (_this iskindof "SUV_01_base_F") : {77500};  // Ref: BMW X6
 case (_this iskindof "Offroad_02_base_F") : {32000};  // Ref: Jeep Wrangler

@@ -6,6 +6,8 @@ _return = switch (_weapon) do {
 
 
 //RHSUSF
+
+/*
 CASE "RHS_WEAP_HK416D10": {1800};
 CASE "RHS_WEAP_HK416D10_M320": {5300};
 CASE "RHS_WEAP_HK416D10_LMT": {1895};
@@ -46,15 +48,24 @@ CASE "RHS_WEAP_M249_PIP_S_VFG": {7800};
 CASE "RHS_WEAP_M249_PIP": {7000};
 CASE "RHS_WEAP_M27IAR": {2000};
 CASE "RHS_WEAP_M27IAR_GRIP": {2070};
+*/
+
 CASE "RHS_WEAP_M4": {700};
 CASE "RHS_WEAP_M4_CARRYHANDLE": {700};
 CASE "RHS_WEAP_M4_CARRYHANDLE_PMAG": {700};
 CASE "RHS_WEAP_M4_CARRYHANDLE_MSTOCK": {760};
 CASE "RHS_WEAP_M4_M203": {1780};
+
+/*
 CASE "RHS_WEAP_M4_M203S": {1760};
 CASE "RHS_WEAP_M4M320": {4200};
+*/
+
 CASE "RHS_WEAP_M4_PMAG": {700};
 CASE "RHS_WEAP_M4_MSTOCK":{760};
+
+/*
+
 CASE "RHS_WEAP_M40A5": {5000};
 CASE "RHS_WEAP_M40A5_D": {5000};
 CASE "RHS_WEAP_M40A5_WD": {5000};
@@ -84,8 +95,14 @@ CASE "RHS_WEAP_M4A1_MSTOCK": {1423};
 CASE "RHS_WEAP_M4A1_WD": {990};
 CASE "RHS_WEAP_M4A1_M203S_WD": {2050};
 CASE "RHS_WEAP_M4A1_WD_MSTOCK": {1423};
+
+*/
+
 CASE "RHS_WEAP_M590_8RD": {770};
 CASE "RHS_WEAP_M590_5RD": {470};
+
+/*
+
 CASE "RHS_WEAP_SR25": {7000};
 CASE "RHS_WEAP_SR25_D": {7000};
 CASE "RHS_WEAP_SR25_EC": {2800};
@@ -106,10 +123,15 @@ CASE "RHSUSF_WEAP_MP7A2_AOR1": {1850};
 CASE "RHSUSF_WEAP_MP7A2_DESERT": {1850};
 CASE "RHSUSF_WEAP_MP7A2_WINTER": {1850};
 
+*/
+
 
 //disposeable anti-tank
 //AT-4s
+
 case "RHS_WEAP_M136": {1480};
+
+/*
 case "RHS_WEAP_M136_HEDP": {1500};
 case "RHS_WEAP_M136_HP": {1600};
 
@@ -130,28 +152,43 @@ case "RHS_WEAP_SMAW_GREEN": {13000};
 //MAAWS
 case "RHS_WEAP_MAAWS": {3585};
 
+*/
+
 //RPG7
 case "RHS_WEAP_RPG7": {1170};
 
 //anti-air
 //igla
+
+/*
+
 case "RHS_WEAP_IGLA": {5000};
 
 //stinger
 case "RHS_WEAP_FIM92": {3800};
 
+*/
+
 //Strela
 case "CUP_LAUNCH_9K32STRELA": {12000};
 
 //40mm launchers
+
+/*
+
 case "RHS_WEAP_M32": {19500};
 case "RHS_WEAP_M320": {3500};
+
+*/
 
 //RH-M4
 case "RH_M4": {700};                  
 case "RH_M4_M203": {1780};             
 case "RH_M4_RIS": {750};             
-case "RH_M4_RIS_M203": {1830};         
+case "RH_M4_RIS_M203": {1830};   
+
+/*
+      
 case "RH_M4_RIS_M203S": {1810}; 
 case "RH_M4A1_RIS": {750};           
 case "RH_M4A1_RIS_M203": {1830};       
@@ -159,8 +196,14 @@ case "RH_M4A1_RIS_M203S": {1810};
 case "RH_M4SBR": {1653};
 case "RH_M4SBR_G": {1653};
 case "RH_M4SBR_B": {1653};
+
+*/
+
 case "RH_M16A1": {225};
 case "RH_M16A1GL": {1805};
+
+/*
+
 case "RH_M16A2": {586};
 case "RH_M16A2GL": {1666};
 case "RH_M16A3": {700};
@@ -188,12 +231,20 @@ case "RH_MK11": {7000};
 case "RH_M110": {2455};
 case "RH_SR25EC": {2800};
 case "RH_SBR9": {1349};
+
+*/
+
 case "RH_M4_TG": {700};        
 case "RH_M4_DES": {700};	
 case "RH_M4_WDL": {700};	
+
+
+/*
+
+
 case "RH_M4_M203_TG": {1780};
 case "RH_M4_M203_DES": {1780};	
-case "RH_M4_M203_WDL": {1780};	
+case "RH_M4_M203_WDL": {1780};
 case "RH_M4A1_RIS_TG": {750};	
 case "RH_M4A1_RIS_WDL": {750};	
 case "RH_M4A1_RIS_M203_TG": {1830};	
@@ -261,10 +312,21 @@ case "RHS_WEAP_AK105_NPZ": {870};
 case "RHS_WEAP_AK105_ZENITCO01": {1505};
 case "RHS_WEAP_AK105_ZENITCO01_B33": {1855};
 
+*/
+
 case "RHS_WEAP_AK74": {870};
+
+/*
+
 case "RHS_WEAP_AK74_GP25": {970};
 case "RHS_WEAP_AK74_3": {1020};
+
+*/
+
 case "RHS_WEAP_AK74_2": {870};
+
+/*
+
 case "RHS_WEAP_AK74M": {885};
 case "RHS_WEAP_AK74M_2MAG" :{885};
 case "RHS_WEAP_AK74M_2MAG_NPZ": {950};
@@ -293,19 +355,41 @@ case "RHS_WEAP_AK74N_NPZ": {935};
 case "RHS_WEAP_AK74N_2_NPZ": {1025};
 case "RHS_WEAP_AK74N_2": {985};
 
+*/
+
 case "RHS_WEAP_AKM": {770};
+
+/*
+
 case "RHS_WEAP_AKM_GP25": {870};
 case "RHS_WEAP_AKM_ZENITCO01_B33": {1320};
 case "RHS_WEAP_AKMN": {790};
 case "RHS_WEAP_AKMN_GP25": {890};
 case "RHS_WEAP_AKMN_GP25_NPZ": {955};
 case "RHS_WEAP_AKMN_NPZ": {855};
+
+*/
+
 case "RHS_WEAP_AKMS": {725};
+
+/*
+
 case "RHS_WEAP_AKMS_GP25": {825};
 
+*/
+
 case "RHS_WEAP_AKS74": {825};
+
+/*
+
 case "RHS_WEAP_AKS74_GP25": {925};
+
+*/
+
 case "RHS_WEAP_AKS74_2": {940};
+
+/*
+
 case "RHS_WEAP_AKS74N": {850};
 case "RHS_WEAP_AKS74N_GP25": {950};
 case "RHS_WEAP_AKS74N_GP25_NPZ": {1015};
@@ -321,8 +405,13 @@ case "RHS_WEAP_ASVAL_GRIP": {2490};
 case "RHS_WEAP_ASVAL_GRIP_NPZ": {2465};
 case "RHS_WEAP_ASVAL_NPZ": {2655};
 
+*/
+
 //PKs
 case "RHS_WEAP_PKM": {3550};
+
+/*
+
 case "RHS_WEAP_PKP": {3595};
 
 //PM63
@@ -348,27 +437,53 @@ case "RHS_WEAP_VSS_GRIP": {2495};
 case "RHS_WEAP_VSS_GRIP_NPZ": {2560};
 case "RHS_WEAP_VSS_NPZ": {2535};
 
+
+
 //sidearms
 case "RHS_WEAP_PB_6P9": {450};
 case "RHS_WEAP_PYA": {685};
+
+*/
+
+
 case "RHS_WEAP_MAKAROV_PM": {400};
+
+/*
 case "RHS_WEAP_PP2000_FOLDED": {400};
+
+*/
+
+
 case "RHS_WEAP_RSP30_WHITE": {14};
 case "RHS_WEAP_RSP30_GREEN": {14};
 case "RHS_WEAP_RSP30_RED": {14};
+
+/*
+
 case "RHS_WEAP_TR8": {174};
+
+*/
 
 case "RHSUSF_WEAP_GLOCK17G4": {540};
 case "RHSUSF_WEAP_M1911A1": {1700};
 case "RHSUSF_WEAP_M9": {675};
 
 
-
 //BINOCULARS
+
 case "BINOCULAR": {250};
+
+/*
+
 case "LERCA_1200_BLACK": {500};
 case "LERCA_1200_TAN": {500};
+
+*/
+
 case "LEUPOLD_MK4": {2210};
+
+/*
+
 case "ACE_MX2A": {6089};
 case "RHS_PDU4": {6000};
 case "RHS_TR8_PERISCOPE": {174};
@@ -379,6 +494,8 @@ case "ACE_YARDAGE450": {150};
 case "LASERDESIGNATOR": {12000};
 case "LASERDESIGNATOR_03": {12000};
 case "LASERDESIGNATOR_01_KHK_F": {12000};
+
+*/
 
 
 default {-1};

@@ -433,17 +433,29 @@ case "TRYK_H_BOONIEHAT_MARPAT_DESERT": {18};
 case "TRYK_H_BOONIEHAT_MARPAT_WOOD": {18};
 case "TRYK_H_BOONIEHAT_JSDF": {18};
 case "TRYK_H_BOONIEHAT_WOOD": {18};
+
+/*
+
 case "TRYK_H_LHS_HEL_G": {-1};
+
+*/
+
 case "TRYK_H_EARMUFF": {595};
 case "TRYK_ESS_CAP": {95};
 case "TRYK_ESS_CAP_OD": {95};
 case "TRYK_ESS_CAP_TAN": {95};
+
+/*
+
 case "TRYK_H_GHILLIE_OVER_GREEN": {-1};
 case "TRYK_H_GHILLIE_TOP_GREEN": {-1};
 case "TRYK_H_GHILLIE_TOP_HEADLESS_GREEN": {-1};
 case "TRYK_H_GHILLIE_OVER": {-1};
 case "TRYK_H_GHILLIE_TOP": {-1};
 case "TRYK_H_GHILLIE_TOP_HEADLESS": {-1};
+
+*/
+
 case "TRYK_H_HEADSET2": {80};
 case "TRYK_H_HEADSETCAP_GLASSES": {45};
 case "TRYK_H_HEADSETCAP_BLK_GLASSES": {45};
@@ -451,6 +463,9 @@ case "TRYK_H_HEADSETCAP_OD_GLASSES" : {45};
 case "TRYK_H_HEADSETCAP_BLK": {95};
 case "TRYK_H_HEADSETCAP_OD": {95};
 case "TRYK_H_HEADSETCAP": {95};
+
+/*
+
 case "TRYK_H_AOR1": {305};
 case "TRYK_H_AOR2": {305};
 case "TRYK_H_GR": {305};
@@ -468,19 +483,40 @@ case "TRYK_H_PASGT_COYO": {90};
 case "TRYK_H_PASGT_OD": {90};
 case "TRYK_H_PASGT_TAN": {90};
 case "TRYK_H_DELTAHELM_NV": {-1};
+
+*/
+
 case "TRYK_R_CAP_BLK": {15};
 case "TRYK_R_CAP_TAN": {15};
 case "TRYK_R_CAP_OD_US": {15};
 case "TRYK_R_CAP_BLK_GLASSES": {45};
 case "TRYK_R_CAP_OD_GLASSES": {45};
 case "TRYK_R_CAP_TAN_GLASSES": {45};
+
+/*
+
 case "TRYK_H_HELMET_SNOW": {-1};
+
+*/
+
 case "TRYK_H_WH": {-1};
 case "TRYK_H_TACEARMUFF_H": {595};
+
+/*
+
 case "TRYK_H_HELMET_JSDF": {525};
+
+*/
+
 case "TRYK_H_WIG": {-1};
+
+/*
+
 case "TRYK_H_HELMET_WINTER": {-1};
 case "TRYK_H_HELMET_WINTER_2": {-1};
+
+*/
+
 case "TRYK_H_WOOLHAT": {6};
 case "TRYK_H_WOOLHAT_BR": {6};
 case "TRYK_H_WOOLHAT_CU": {6};
@@ -495,12 +531,18 @@ case "RHS_BOONIEHAT_OCP": {18};
 case "RHS_BOONIEHAT_UCP": {18};
 case "RHSUSF_BOWMAN": {25};
 case "RHSUSF_BOWMAN_CAP": {40};
+
+/*
+
 case "RHSUSF_PROTECH_HELMET": {32};
 case "RHSUSF_PROTECH_HELMET_ESS":{112};
 case "RHSUSF_PROTECH_HELMET_RHINO": {612};
 case "RHSUSF_PROTECH_HELMET_RHINO_ESS": {692};
 case "RHS_8POINT_MARPATD": {15};
 case "RHS_8POINT_MARPATWD": {15};
+
+*/
+
 case "RHSUSF_PATROLCAP_OCP": {15};
 case "RHSUSF_PATROLCAP_UCP": {15};
 
@@ -582,10 +624,15 @@ case "TRYK_TAC_SET_WH": {635};
 case "G_AVIATOR": {170};
 
 //NVGs (DO NOT ADD TYRKS ITEMS)
+
+/*
+
 case "RHS_1PN138": {1500};
 case "RHSUSF_ANPVS_14": {3595};
 case "RHSUSF_ANPVS_15": {12352};
 case "RHSUSF_RHINO" : {178};
+
+*/
 
 //MAPS
 case "ITEMMAP": {2000};
