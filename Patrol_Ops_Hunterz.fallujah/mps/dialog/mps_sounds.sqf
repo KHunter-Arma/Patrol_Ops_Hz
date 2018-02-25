@@ -1,6 +1,6 @@
 //class CfgSounds {
 
-        sounds[] = {nuke1s, nuke2s, radzoneb, nblast, incoming};
+  sounds[] = {nuke1s, nuke2s, radzoneb, nblast, incoming};
 
 	class nuke1s
 	{
@@ -52,62 +52,6 @@
                 name="Outro";
 		sound[]={"media\outro.ogg",db,1.0};
 		titles[] = {};
-        };
-        
-        class shout  {
+        };      
             
-        name     = "AllahAkbar";
-        sound[]  = {"media\shout.ogg",1,1,200};
-        titles[] = {};
-        };
-        
-                class pain1  {
-            
-        name     = "pain1";
-        sound[]  = {"media\pain1.ogg",0.025,1};
-        titles[] = {};
-        };
-        
-                class pain2  {
-            
-        name     = "pain2";
-        sound[]  = {"media\pain2.ogg",0.025,1};
-        titles[] = {};
-        };
-        
-                class pain3  {
-            
-        name     = "pain3";
-        sound[]  = {"media\pain3.ogg",0.025,1};
-        titles[] = {};
-        };
-        
-        //Not sure if it's JSRS but arty sounds could be heard from very far away with gain 20...
-        
-        //new: was 0.01
-         class arty1  {
-            
-        name     = "arty1";
-        sound[]  = {"media\arty1.ogg",1,1};
-        titles[] = {};
-        };
-        
-                class arty2  {
-            
-        name     = "arty2";
-        sound[]  = {"media\arty2.ogg",1,1};
-        titles[] = {};
-        };
-        
-                class arty3  {
-            
-        name     = "arty3";
-        sound[]  = {"media\arty3.ogg",1,1};
-        titles[] = {};
-        };
-        
-        
-    
-        
-        
 //};

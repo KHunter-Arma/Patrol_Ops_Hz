@@ -166,4 +166,4 @@ execVM "R3F_LOG\init.sqf";
 
 //ACRE settings
 [true] call acre_api_fnc_setRevealToAI;
-[0.3] call acre_api_fnc_setLossModelScale; //buggy
+[0] call acre_api_fnc_setLossModelScale; // still buggy -- disable for now
