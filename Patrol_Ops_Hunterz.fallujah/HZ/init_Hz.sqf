@@ -149,7 +149,6 @@ if (isServer) then {
 	Hz_fnc_taskSuccessCheckGenericConditions = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_taskSuccessCheckGenericConditions.sqf";
   Hz_func_findSpawnPos            = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_func_findSpawnPos.sqf";
   Hz_task_reinforcements = compile preprocessfilelinenumbers "HZ\Hz_scripts\Hz_task_reinforcements.sqf";
-  Hz_sinisterCiv = compile preprocessfilelinenumbers "HZ\Hz_scripts\Hz_sinisterCiv.sqf";
   Hz_func_bombingrun = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_bombingrun.sqf";
   Hz_func_callinBomber = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_callinBomber.sqf";
   Hz_func_opforVehicleSupport = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_opforVehicleSupport.sqf";

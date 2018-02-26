@@ -252,19 +252,29 @@ if(!hz_debug) then {
       {
         if (isPlayer _x) then
         {
-          _allPlayers = _allPlayers + [_x];
+          _allPlayers pushBack _x;
         };
       } forEach playableUnits;
       
       
       {
-        _uid = getPlayerUID _x;
-        _uids = _uids + [_uid];   
+			
+        _uids pushBack (getPlayerUID _x);   
         
-      }foreach _allplayers;
+      } foreach _allplayers;
       
       
-      _condition = {if (_x in _uids) exitwith {false}; true}foreach Hz_pops_restrictions_supervisorList;
+      _condition = true;			
+			
+			{
+			
+				if (_x in _uids) exitwith {
+				
+					_condition = false;
+				
+				};
+			
+			} foreach Hz_pops_restrictions_supervisorList;
       
       if (_condition) then {
         
@@ -273,15 +283,29 @@ if(!hz_debug) then {
         {
           if (isPlayer _x) then
           {
-            _deadplayers = _deadplayers + [_x];
+            _deadplayers pushBack _x;
           };
         } forEach Alldead;
         
         _deaduids = [];
         
-        {_deaduids = _deaduids + [getPlayerUID _x];}foreach _deadplayers;
+        {
+				
+					_deaduids pushBack (getPlayerUID _x);
+				
+				} foreach _deadplayers;
         
-        _condition = {if(_x in _deaduids) exitwith {false}; true}foreach Hz_pops_restrictions_supervisorList;
+        _condition = true;				
+				
+				{
+				
+					if(_x in _deaduids) exitwith {
+					
+					_condition = false;
+					
+					};
+				
+				} foreach Hz_pops_restrictions_supervisorList;
         
         if (_condition) then {
 				
@@ -290,7 +314,10 @@ if(!hz_debug) then {
           call Hz_pers_API_disablePlayerSaveStateOnDisconnect;
           endMission "publicRestriction"; 
           
-        } else {Hz_pops_restrictionSupervisorCheckPassed = true;}; };
+        } else {Hz_pops_restrictionSupervisorCheckPassed = true;}; 
+				
+				
+			};
       
       sleep 300;
     };

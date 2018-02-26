@@ -15,6 +15,8 @@ _attachment = toupper _this;
 
 _return = switch (_attachment) do {
     		
+/*				
+				
 case "RHS_ACC_RAKURSPM": {600};
 case "RHS_ACC_1P87": {800};
 case "RHS_ACC_DH520X56": {1650};
@@ -49,7 +51,13 @@ case "RHSUSF_ACC_ACOG_ANPVS27": {12575};
 case "RHSUSF_ACC_M2A1": {800};
 case "RHSUSF_ACC_EOTECH_552": {570};
 case "RHSUSF_ACC_EOTECH_552_D": {570};
+
+*/
+
 case "RHSUSF_ACC_COMPM4": {780};
+
+/*
+
 case "RHSUSF_ACC_M8541": {3900};
 case "RHSUSF_ACC_M8541_LOW": {3900};
 case "RHSUSF_ACC_M8541_LOW_D": {3900};
@@ -80,19 +88,34 @@ case "RHSUSF_ACC_ANPEQ15_LIGHT": {1945};
 case "RHSUSF_ACC_ANPEQ15_BK": {1945};
 case "RHSUSF_ACC_ANPEQ15_BK_LIGHT": {1945};
 case "RHSUSF_ACC_ANPEQ15A": {1506};
+
+*/
+
 case "RHSUSF_ACC_M952V": {665};
 case "RHSUSF_ACC_WMX": {650};
 case "RHSUSF_ACC_WMX_BK": {650};
 case "ACE_ACC_POINTER_GREEN": {1506};
 case "ACE_MUZZEL_MZLS_L": {125};
+
+/*
+
 case "RHSUSF_ACC_NT4_BLACK": {1500};
 case "RHSUSF_ACC_NT4_TAN": {1500};
 case "RHSUSF_ACC_ROTEX5_GREY": {1090};
 case "RHSUSF_ACC_ROTEX5_TAN": {1090};
+
+*/
+
 case "RHSUSF_ACC_SF3P556": {135};
 case "RHSUSF_ACC_SFMB556": {149};
+
+/*
+
 case "MUZZLE_SNDS_M_KHK_F": {1099};
 case "MUZZLE_SNDS_M_SND_F": {1099};
+
+*/
+
 case "RHSUSF_ACC_GRIP2": {35};
 case "RHSUSF_ACC_GRIP2_TAN": {35};
 case "RHSUSF_ACC_GRIP2_WD": {35};
@@ -109,7 +132,11 @@ case "BIPOD_01_F_MTP": {135};
 case "BIPOD_03_F_OLI": {135};
 case "BIPOD_01_F_SND": {135};
 case "BIPOD_02_F_TAN": {135};
+
+/*
+
 case "RHSUSF_ACC_ARDEC_M240": {30};
+
 case "MUZZLE_SNDS_H_MG_BLK_F": {664};
 case "MUZZLE_SNDS_H_MG": {664};
 case "MUZZLE_SNDS_H_MG_KHK_F": {664};
@@ -118,6 +145,7 @@ case "RHSUSF_ACC_M2010S_D": {1440};
 case "RHSUSF_ACC_M2010S_SA": {1440};
 case "RHSUSF_ACC_M2010S_WD": {1440};
 case "RHSUSF_ACC_SR25S": {1800};
+
 case "RHSUSF_ACC_ROTX_MP7_AOR1": {-1};
 case "RHSUSF_ACC_ROTEX_MP7": {-1};
 case "RHSUSF_ACC_ROTEX_MP7_DESERT": {-1};
@@ -158,7 +186,7 @@ case "OPTIC_HOLOSIGHT_SMG_KHK_F": {630};
 case "OPTIC_SOS_KHK_F": {1170};
 case "OPTIC_HAMR_KHK_F": {1370};
 
-
+*/
 
 
 default {-1};

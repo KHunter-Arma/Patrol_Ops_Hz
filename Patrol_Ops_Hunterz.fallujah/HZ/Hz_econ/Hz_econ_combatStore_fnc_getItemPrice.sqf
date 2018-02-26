@@ -644,7 +644,7 @@ case "ITEMGPS": {1500};
 case "ITEMRADIO": {110};
 
 //NAVIGATION
-case "ITEMCOMPAS": {100};
+case "ITEMCOMPASS": {100};
 
 //WATCH
 case "ITEMWATCH": {100};
@@ -676,12 +676,24 @@ case  "ACE_ENTRENCHINGTOOL": {38.25};
 case  "ACE_EPINEPHRINE": {55};
 case  "ACE_FLASHLIGHT_MX991": {20};
 case  "ACE_SPRAYPAINTGREEN": {4};
+
+/*
+
 case  "ACE_HUNTIR_MONITOR": {3600};
 case  "ACE_IR_STROBE_ITEM": {200};
+
+*/
+
 case  "ACE_KESTREL4500": {460};
 case  "ACE_FLASHLIGHT_KSF1": {40};
+
+/*
+
 case  "ACE_M26_CLACKER": {50};
 case  "ACE_CLACKER": {75};
+
+*/
+
 case  "ACE_FLASHLIGHT_XL50": {45};
 case  "ACE_MAPTOOLS": {45};
 case  "ACE_MICRODAGR": {2200};
@@ -697,11 +709,11 @@ case  "ACE_SPRAYPAINTRED": {4};
 case  "ACE_SALINEIV": {8};
 case  "ACE_SALINEIV_250": {4.5};
 case  "ACE_SALINEIV_500": {6};
-case  "ACRE_PRC117F_ID_1": {3706.55};
-case  "ACRE_PRC148_ID_1": {7500};
-case  "ACRE_PRC152_ID_1": {7000};
-case  "ACRE_PRC343_ID_1": {110};
-case  "ACRE_PRC77_ID_1": {325};
+case  "ACRE_PRC117F": {3706.55};
+case  "ACRE_PRC148": {7500};
+case  "ACRE_PRC152": {7000};
+case  "ACRE_PRC343": {110};
+case  "ACRE_PRC77": {325};
 case  "ACE_SANDBAG_EMPTY": {4};
 case  "ACE_SPOTTINGSCOPE": {503.79};
 case  "ACE_TRIPOD": {782};
@@ -710,8 +722,8 @@ case  "TOOLKIT": {100};
 case  "ACE_TOURNIQUET": {30};
 case  "ACE_UAVBATTERY": {400};
 case  "ACE_WIRECUTTER": {272.41};
-case  "ACRE_SEM52SL_ID_1": {1500};
-case  "ACRE_SEM70_ID_1": {5000};
+case  "ACRE_SEM52SL": {1500};
+case  "ACRE_SEM70": {5000};
 
 
 

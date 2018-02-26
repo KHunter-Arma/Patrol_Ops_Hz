@@ -7,6 +7,9 @@ _return = switch (_magazine) do {
 //disposeable anti-tank
 //AT-4s
 case "RHS_M136_MAG": {0};
+
+/*
+
 case "RHS_M136_HEDP_MAG": {0};
 case "RHS_M136_HP_MAG": {0};
 
@@ -30,13 +33,20 @@ case "RHS_MAG_MAAWS_HE": {145};
 case "RHS_MAG_MAAWS_HEDP": {190};
 case "RHS_MAG_MAAWS_HEAT": {410};
 
+*/
+
 //RPG7
 case "RHS_RPG7_PG7V_MAG": {90};
 case "RHS_RPG7_PG7VL_MAG": {140};
+
+/*
+
 case "RHS_RPG7_PG7VR_MAG": {250};
 case "RHS_RPG7_OG7V_MAG": {40};
 case "RHS_RPG7_TBG7V_MAG": {320}; 
 case "RHS_RPG7_TYPE69_AIRBURST_MAG": {92};
+
+
 
 //anti-air
 //igla
@@ -53,9 +63,17 @@ case "RHSUSF_MAG_40RND_46X30_AP": {87};
 case "RHSUSF_MAG_40RND_46X30_JHP": {87};
 case "RHSUSF_MAG_40RND_46X30_FMJ": {87};
 
+
+
 //545x39
 case "RHS_30RND_545X39_AK": {18};
+
+*/
+
 case "RHS_30RND_545X39_AK_NO_TRACERS": {18};
+
+/*
+
 case "RHS_30RND_545X39_7N6_AK": {18};
 case "RHS_30RND_545X39_7N10_AK": {18};
 case "RHS_30RND_545X39_7N22_AK": {18};
@@ -68,11 +86,25 @@ case "RHS_45RND_545X39_7N22_AK": {60};
 case "RHS_45RND_545X39_AK_GREEN": {60};
 case "RHS_45RND_545X39_7U1_AK": {60};
 
+*/
+
 //556x45
+
+/*
+
+// BIS stuff...
+
 case "30RND_556X45_STANAG_TRACER_YELLOW": {20};
 case "30RND_556X45_STANAG_TRACER_GREEN": {20};
 case "30RND_556X45_STANAG_TRACER_RED": {20};
 case "30RND_556X45_STANAG": {20};
+
+*/
+
+case "RHS_MAG_30RND_556X45_M855_STANAG": {20};
+
+/*
+
 case "RHS_MAG_30RND_556X45_M200_STANAG": {20};
 case "RHS_MAG_30RND_556X45_M855A1_STANAG_TRACER_ORANGE": {20};
 case "RHS_MAG_30RND_556X45_M855A1_STANAG_TRACER_YELLOW": {20};
@@ -100,15 +132,30 @@ case "RH_60RND_556X45_M855A1": {149};
 case "RH_60RND_556X45_MK262": {149};
 case "RH_60RND_556X45_MK318": {149};
 
+*/
+
 //762x39
 case "RHS_30RND_762X39MM": {90};
+
+/*
+
 case "RHS_30RND_762X39MM_TRACER": {90};
 case "RHS_30RND_762X39MM_89": {90}; 
 case "RHS_30RND_762X39MM_U": {90};
 
+*/
+
+/*
+
 //762x51
 case "RHSUSF_20RND_762X51_M118_SPECIAL_MAG": {25};
+
+*/
+
 case "RHSUSF_20RND_762X51_M62_MAG": {25};
+
+/*
+
 case "RHSUSF_20RND_762X51_M993_MAG": {25};
 
 case "RHSUSF_5RND_762X51_M62_MAG": {0};
@@ -132,14 +179,20 @@ case "RHSUSF_50RND_762X51_M62_TRACER": {75};
 case "RHSUSF_50RND_762X51_M61_AP": {75};
 case "RHSUSF_50RND_762X51":{75};
 
+
 case "RH_20RND_762X51_AR10": {22};
 
 case "RH_20Rnd_762x51_M80A1": {79};
 case "RH_20Rnd_762x51_Mk316LR": {79};
 case "RH_20Rnd_762x51_LFMJSB": {79};
 
+*/
+
 //762x54
 case "RHS_100RND_762X54MMR": {40};
+
+/*
+
 case "RHS_100RND_762X54MMR_GREEN": {40};
 case "RHS_100RND_762X54MMR_7N13": {40};
 case "RHS_100RND_762X54MMR_7N26": {40};
@@ -147,7 +200,12 @@ case "RHS_100RND_762X54MMR_7BZ3": {40};
 
 case "RHS_10RND_762X54MMR_7N1": {100};
 
+*/
+
 //.300 blk
+
+/*
+
 case "RH_30RND_762X35_FMJ": {11};
 case "RH_30RND_762X35_MATCH": {11};
 case "RH_30RND_762X35_MSB": {11};
@@ -164,34 +222,59 @@ case "RHS_MAG_9X19MM_7N31_20": {20};
 case "RHS_MAG_9X19MM_7N21_44": {30};
 case "RHS_MAG_9X19MM_7N31_44": {30};
 
+*/
+
 case "RH_32RND_9MM_M822": {19};
+
+/*
+
 case "RH_32RND_9MM_HP": {19};
 case "RH_32RND_9MM_HPSB": {19};
 
+*/
+
 //9x39
+/*
+
 case "RHS_20RND_9X39MM_SP5": {12};
 case "RHS_20RND_9X39MM_SP6": {12};
 case "RHS_10RND_9X39MM_SP5": {10};
 case "RHS_10RND_9X39MM_SP6": {10};
+
+
 
 //.50 BMG
 case "RHSUSF_MAG_10RND_STD_50BMG_MK211": {170};
 case "RHSUSF_MAG_10RND_STD_50BMG_M33": {170};
 
 //12 ga
+
+
 case "RHSUSF_5RND_FRAG": {0};
 case "RHSUSF_5RND_HE": {0};
+
+*/
+
 case "RHSUSF_5RND_SLUG": {0};
-case "RHSUSF_5RND_DOOMSDAY_BUCK": {0};
+case "RHSUSF_5RND_DOOMSDAY_BUCK": {-1};
 case "RHSUSF_5RND_00BUCK": {0};
+
+/*
 
 case "RHSUSF_8RND_FRAG": {0};
 case "RHSUSF_8RND_HE": {0};
+
+*/
+
+
 case "RHSUSF_8RND_SLUG": {0};
-case "RHSUSF_8RND_DOOMSDAY_BUCK": {0};
+case "RHSUSF_8RND_DOOMSDAY_BUCK": {-1};
 case "RHSUSF_8RND_00BUCK": {0};
 
 //40mm
+
+/*
+
 case "RHSUSF_MAG_6RND_M716_YELLOW": {0};
 case "RHSUSF_MAG_6RND_M715_GREEN": {0};
 case "RHSUSF_MAG_6RND_M714_WHITE": {0};
@@ -207,12 +290,27 @@ case "RHSUSF_MAG_6RND_M433_HEDP": {0};
 case "RHSUSF_MAG_6RND_M441_HE": {0};
 
 case "ACE_HUNTIR_M203": {400};
+
+*/
+
 case "RHS_MAG_M441_HE": {15};
+
+/*
+
 case "RHS_MAG_M433_HEDP": {20};
+
+*/
+
 case "RHS_MAG_M781_PRACTICE": {10};
+
+/*
+
 case "RHS_MAG_M397_HET": {55};
 case "RHS_MAG_M4009": {30};
 case "RHS_MAG_M576": {15};
+
+*/
+
 case "RHS_MAG_M585_WHITE": {15};
 case "RHS_MAG_M661_GREEN": {15};
 case "RHS_MAG_M662_RED": {15};
@@ -222,8 +320,13 @@ case "RHS_MAG_M715_GREEN": {10};
 case "RHS_MAG_M716_YELLOW": {10};
 
 //Throwables
+/*
+
 case  "ACE_M14": {58};
 case  "RHS_MAG_AN_M14_TH3": {58};
+
+*/
+
 case  "RHS_MAG_AN_M8HC": {52};
 case  "CHEMLIGHT_BLUE": {1};
 case  "CHEMLIGHT_GREEN": {1};
@@ -236,11 +339,17 @@ case  "ACE_CHEMLIGHT_ORANGE": {1};
 case  "CHEMLIGHT_RED": {1};
 case  "ACE_CHEMLIGHT_WHITE": {1};
 case  "CHEMLIGHT_YELLOW": {1};
+
+/*
+
 case  "RHS_MAG_FAKEL": {40};
 case  "RHS_MAG_FAKELS": {45};
 case  "I_IR_GRENADE": {200};
 case  "O_IR_GRENADE": {200};
 case  "B_IR_GRENADE": {200};
+
+*/
+
 case  "ACE_HANDFLARE_GREEN": {60};
 case  "ACE_HANDFLARE_RED": {60};
 case  "ACE_HANDFLARE_WHITE": {60};
@@ -257,7 +366,10 @@ case  "SMOKESHELLYELLOW": {52};
 case  "HANDGRENADE": {34};
 case  "RHS_MAG_M18_YELLOW": {52};
 case  "RHS_MAG_M67": {34};
-case  "RHS_MAG_M69": {-4};
+
+/*
+
+case  "RHS_MAG_M69": {-1};
 case  "RHS_MAG_M7A3_CS": {213};
 case  "SMOKESHELL": {52};
 case  "RHS_MAG_MK84": {175};
@@ -276,10 +388,20 @@ case  "MINIGRENADE": {34};
 case  "RHS_MAG_RGO": {32};
 case  "RHS_MAG_ZARYA2": {22};
 
+*/
+
 //Explosives
+/*
+
 case  "APERSMINEDISPENSER_MAG": {250};
+
+*/
+
 case  "IEDLANDBIG_REMOTE_MAG": {100};
 case  "IEDURBANBIG_REMOTE_MAG": {70};
+
+/*
+
 case  "RHSUSF_M112_MAG": {110};
 case  "DEMOCHARGE_REMOTE_MAG": {220};
 case  "RHSUSF_M112X4_MAG": {440};
@@ -294,14 +416,27 @@ case  "RHS_MAG_MINE_PFM1": {115};
 case  "RHS_MINE_PMN2_MAG": {225};
 case  "APERSTRIPMINE_WIRE_MAG": {220}; //pmr3
 case  "RHS_MAG_MINE_PTM1": {120};
+
+*/
+
 case  "IEDLANDSMALL_REMOTE_MAG": {70};
 case  "IEDURBANSMALL_REMOTE_MAG": {40};
+
+/*
+
 case  "RHS_MINE_TM62M_MAG": {120};
 case  "TRAININGMINE_MAG": {250};
 case  "APERSMINE_RANGE_MAG": {200};  //vs50
+
+*/
+
 case  "ACE_FLARETRIPMINE_MAG": {20};
 
+/*
+
 case "LASERBATTERIES": {120};
+
+*/
 
 //cigs
 case "MURSHUN_CIGS_CIGPACK": {6};
