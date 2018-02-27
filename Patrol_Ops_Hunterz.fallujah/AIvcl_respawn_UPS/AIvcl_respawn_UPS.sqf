@@ -115,4 +115,4 @@ if (alive _vehicle) then {
 
 };
 
-Hz_pops_UPSRespawnArray pushBack [_vehType, _lives, _respawn_point, _marker, _side, _unitTypeArray,_escort,_isair];
+Hz_pops_UPSRespawnArray pushBack [_type, _lives, _respawn_point, _marker, _side, _unitTypeArray,_escort,_isair];
