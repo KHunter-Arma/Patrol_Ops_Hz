@@ -317,7 +317,7 @@ if(!hz_debug) then {
         } else {Hz_pops_restrictionSupervisorCheckPassed = true;}; 
 				
 				
-			};
+			} else {Hz_pops_restrictionSupervisorCheckPassed = true;}; 
       
       sleep 300;
     };

@@ -4,14 +4,14 @@
 
 if (!isServer) exitWith {};
 
-private ["_group", "_type", "_lives", "_respawn_point", "_marker", "_side", "_unitArray", "_escort", "_isair", "_signx", "_signy", "_respawnzone", "_vehIsTank", "_vehicle", "_dude", "_unitsGroup", "_turrets", "_turCount", "_loop", "_guy", "_leader", "_vehType", "_unitTypeArray"];
+private ["_group", "_type", "_lives", "_respawn_point", "_marker", "_side", "_unitTypeArray", "_escort", "_isair", "_signx", "_signy", "_respawnzone", "_vehIsTank", "_vehicle", "_dude", "_unitsGroup", "_turrets", "_turCount", "_loop", "_guy", "_leader", "_vehType", "_unitTypeArray"];
 
 _type 			= _this select 0;
 _lives			= _this select 1;
 _respawn_point      	= _this select 2;
 _marker			= _this select 3;
 _side 			= _this select 4;
-_unitArray	= _this select 5;
+_unitTypeArray	= _this select 5;
 _escort = _this select 6;
 _isair = _this select 7;
 
@@ -60,7 +60,7 @@ if (_vehIsTank) then {
 
 	{
 		_group createUnit [_x,_respawnzone, [], 100, "FORM"];
-	} forEach _unitArray;
+	} forEach _unitTypeArray;
 
 	_unitsGroup = units _group;
 	_turrets = allTurrets [_vehicle, false];

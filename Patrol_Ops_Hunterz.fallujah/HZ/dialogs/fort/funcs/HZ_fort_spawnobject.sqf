@@ -17,10 +17,11 @@ if(!hz_debug) then {
 			_obj = hz_fort_selected createVehicle (markerpos "hz_buyfortification");
 			[_obj] call Hz_fnc_vehicleInit;
 
-			if(hz_fort_selected iskindof "ReammoBox") then {
+			if((hz_fort_selected iskindof "ReammoBox") || (hz_fort_selected iskindof "ReammoBox_F")) then {
 				
 				clearweaponcargoglobal _obj;
 				clearmagazinecargoglobal _obj;
+				clearItemCargoGlobal _obj;
 				
 				_obj call Hz_pers_API_addCrate;
 				
