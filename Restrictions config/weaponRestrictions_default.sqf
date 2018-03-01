@@ -215,7 +215,8 @@ Hz_econ_cfg_weaponsRestrictions_default =
 "RHS_WEAP_M70B3N_PBG40",
 "RHS_WEAP_M21A_PBG40",
 "RHS_WEAP_M82A1",
-"RH_MUZI"
+"RH_MUZI",
+"CUP_ARIFLE_RPK74M"
 
 
 
