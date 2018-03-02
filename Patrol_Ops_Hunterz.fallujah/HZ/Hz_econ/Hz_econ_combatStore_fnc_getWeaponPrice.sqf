@@ -157,6 +157,9 @@ case "RHS_WEAP_MAAWS": {3585};
 //RPG7
 case "RHS_WEAP_RPG7": {1170};
 
+//M72A2
+case "HAFM_LAW": {875};
+
 //anti-air
 //igla
 

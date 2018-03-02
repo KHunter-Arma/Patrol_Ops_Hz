@@ -209,7 +209,8 @@ Hz_econ_cfg_weaponsRestrictions_default =
 "CUP_SVD_CAMO_D",
 "RHS_WEAP_SVD",
 "RH_SR25EC",
-"RHSUSF_WEAP_GLOCK17G4"
+"RHSUSF_WEAP_GLOCK17G4",
+"HAFM_LAW"
 
 
 

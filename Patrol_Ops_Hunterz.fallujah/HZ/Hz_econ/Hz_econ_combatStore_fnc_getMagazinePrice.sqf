@@ -5,6 +5,10 @@ _magazine = toupper _this;
 _return = switch (_magazine) do {
     		
 //disposeable anti-tank
+
+//M72A2
+case "HAFM_M72_ROCKET": {0};
+
 //AT-4s
 case "RHS_M136_MAG": {0};
 
