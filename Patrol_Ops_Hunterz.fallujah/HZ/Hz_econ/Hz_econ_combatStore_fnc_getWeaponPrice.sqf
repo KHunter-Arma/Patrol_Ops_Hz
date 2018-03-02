@@ -413,6 +413,12 @@ case "RHS_WEAP_ASVAL_NPZ": {2655};
 //PKs
 case "RHS_WEAP_PKM": {3550};
 
+//RPKs
+case "CUP_ARIFLE_RPK74": {2065};
+case "CUP_ARIFLE_RPK74_45": {2925};
+
+
+
 /*
 
 case "RHS_WEAP_PKP": {3595};
@@ -499,6 +505,97 @@ case "LASERDESIGNATOR_03": {12000};
 case "LASERDESIGNATOR_01_KHK_F": {12000};
 
 */
+
+//RHS GREF
+case "RHS_WEAP_IZH18": {305};
+case "RHS_WEAP_KAR98K": {590};
+case "RHS_WEAP_M21A": {630};
+case "RHS_WEAP_M21A_PR": {670};
+case "RHS_WEAP_M21S": {615};
+case "RHS_WEAP_M21S_PR": {655};
+case "RHS_WEAP_M70AB2": {450};
+case "RHS_WEAP_M70B1": {570};
+case "RHS_WEAP_M92": {600};
+case "RHS_WEAP_M38": {350};
+case "RHS_WEAP_M38_RAIL": {360};
+case "RHS_WEAP_MOSIN_SBR": {425};
+case "RHS_WEAP_SAVZ58P": {1200};
+case "RHS_WEAP_SAVZ58P_BLACK": {1200};
+case "RHS_WEAP_SAVZ58P_RAIL": {1400};
+case "RHS_WEAP_SAVZ58P_RAIL_BLACK": {1400};
+case "RHS_WEAP_SAVZ58V": {1130};
+case "RHS_WEAP_SAVZ58V_BLACK": {1130};
+case "RHS_WEAP_SAVZ58V_RAIL": {1330};
+case "RHS_WEAP_SAVZ68V_RAIL_BLACK": {1330};
+case "RHS_WEAP_SAVZ61": {595};
+
+CASE "RHS_WEAP_SAVZ61_FOLDED": {595};
+CASE "RHS_WEAP_TT33": {220};
+
+//RHS SAF
+
+/*
+
+case "RHS_WEAP_MINIMI_PARA_RAILED": {7500};
+case "RHS_WEAP_G36KV_AG36": {2600};
+
+*/
+
+case "RHS_WEAP_M21A_PBG40": {730};
+case "RHS_WEAP_M70B1N": {570};
+case "RHS_WEAP_M70B3N": {590};
+case "RHS_WEAP_M70B3N_PBG40": {690};
+
+/*
+
+case "RHS_WEAP_M82A1": {9119};
+
+*/
+
+case "RHS_WEAP_SCORPION": {595};
+
+//RH Pistols
+case "RH_M9": {675};
+case "RH_M9C": {-1};
+case "RH_PYTHON": {-1};
+case "RH_CZ75": {-1};
+case "RH_DEAGLE": {-1};
+case "RH_DEAGLEG": {-1};
+case "RH_DEAGLEM": {-1};
+case "RH_DEAGLES": {-1};
+case "RH_FN57": {-1};
+case "RH_FN57_T": {-1};
+case "RH_FN57_G": {-1};
+case "RH_FNP45": {-1};
+case "RH_FNPT": {-1};
+case "RH_G17": {540};
+case "RH_G18": {535};
+case "RH_G19": {-1};
+case "RH_G19T": {-1};
+case "RH_GSH18": {-1};
+case "RH_TEC9": {-1};
+case "RH_KIMBER": {-1};
+case "RH_KIMBER_NW": {-1};
+case "RH_M1911": {1700};
+case "RH_MAK": {400};
+case "RH_MATEBA": {-1};
+case "RH_MUZI": {690};
+case "RH_MP412": {-1};
+case "RH_MK2": {-1};
+case "RH_P226": {1165};
+case "RH_P226S": {-1};
+case "RH_SW659": {-1};
+case "RH_BULL": {-1};
+case "RH_BULLB": {-1};
+case "RH_TTRACKER": {450};
+case "RH_TTRACKER_G": {-1};
+case "RH_TT33": {220};
+case "RH_USPM": {-1};
+case "RH_USP": {-1};
+case "RH_VP70": {-1};
+case "RH_VZ61": {595};
+
+
 
 
 default {-1};
