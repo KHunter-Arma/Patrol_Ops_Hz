@@ -98,7 +98,7 @@ case "RHS_B_9X19_7N21": {0.25};
 case "RHS_B_9X19_7N31": {0.25};
 case "RHS_AMMO_9X19_FMJ": {0.25};
 case "RHS_AMMO_9X19_JHP": {0.45};
-case "rhs_ammo_45ACP_MHP": {0.33};
+case "RHS_AMMO_45ACP_MHP": {0.33};
 
 case "RH_9X19_B_M822": {0.25};
 case "RH_9X19_B_HP": {0.45};
