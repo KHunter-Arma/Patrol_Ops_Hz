@@ -21,7 +21,11 @@ wepInfo = wepInfo - [
 "CUP_SRIFLE_SVD_DES",
 "CUP_SRIFLE_SVD",
 "CUP_SVD_CAMO_D",
-"RHS_WEAP_SVD"
+"RHS_WEAP_SVD",
+"CUP_SRIFLE_SVD_DES",
+"CUP_SRIFLE_SVD",
+"RHS_WEAP_M76"
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////
