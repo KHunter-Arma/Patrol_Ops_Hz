@@ -530,13 +530,25 @@ CASE "RHS_WEAP_SAVZ61_FOLDED": {595};
 CASE "RHS_WEAP_TT33": {220};
 
 //RHS SAF
+
+/*
+
 case "RHS_WEAP_MINIMI_PARA_RAILED": {7500};
 case "RHS_WEAP_G36KV_AG36": {2600};
+
+*/
+
 case "RHS_WEAP_M21A_PBG40": {730};
 case "RHS_WEAP_M70B1N": {570};
 case "RHS_WEAP_M70B3N": {590};
 case "RHS_WEAP_M70B3N_PBG40": {690};
+
+/*
+
 case "RHS_WEAP_M82A1": {9119};
+
+*/
+
 case "RHS_WEAP_SCORPION": {595};
 
 //RH Pistols
