@@ -92,12 +92,6 @@ publicVariable "mps_logistics_referencepoint";
 
 nuke_event = [];
 
-//for remote debugging
-UPS_respawn_calls = 0;
-UPS_vcl_respawn_calls = 0;
-publicvariable "UPS_respawn_calls";
-publicvariable "UPS_vcl_respawn_calls";
-
 //Initial VD for server
 setviewdistance 2000;
 

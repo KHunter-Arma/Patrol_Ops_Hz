@@ -106,9 +106,6 @@ _group setCombatMode "SAFE";
 
 [_leader, _marker,_isair] call Hz_pops_patrols_startUPS;
 
-UPS_vcl_respawn_calls = UPS_vcl_respawn_calls + 1;
-publicvariable "UPS_vcl_respawn_calls";
-
 if (alive _vehicle) then {
 
 	Hz_pops_deleteVehicleArray pushBack _vehicle;

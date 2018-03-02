@@ -4,11 +4,11 @@
 
 if (!isServer) exitWith {};
 
-private ["_group", "_unit", "_crew", "_escort", "_lives", "_delay", "_respawn_point", "_marker", "_isair", "_side", "_unitTypeArray", "_vehType", "_leader"];
+private ["_unit", "_group", "_crew", "_escort", "_lives", "_delay", "_respawn_point", "_marker", "_isair", "_side", "_unitTypeArray", "_vehType", "_leader"];
 
 _unit = _this select 0;
 _crew = crew _unit;
-_group 			= group _unit;
+_group = group _unit;
 _escort = [];
 {if((vehicle _x) == _x) then {_escort pushback (typeof _x);};}foreach units _group;
 

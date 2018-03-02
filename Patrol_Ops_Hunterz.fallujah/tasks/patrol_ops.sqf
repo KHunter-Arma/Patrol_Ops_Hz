@@ -13,12 +13,12 @@ if(count mps_loc_hills > 0) then {
 */
 
 _list = [
-  //  "def_base",
-	//	"def_castle",
-	//	"esc_speaker",
-		//"esc_supplies",
+    "def_base",
+		"def_castle",
+		"esc_speaker",
+		"esc_supplies",
     "def_fob",
-	//	"sar_pow",
+		"sar_pow",
 		"esc_journalist"
     ];
 		
