@@ -411,7 +411,6 @@ case "RHS_WEAP_ASVAL_NPZ": {2655};
 case "RHS_WEAP_PKM": {3550};
 
 //RPKs
-case "CUP_ARIFLE_RPK74M": {2065};
 case "CUP_ARIFLE_RPK74": {2065};
 case "CUP_ARIFLE_RPK74_45": {2925};
 
