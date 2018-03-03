@@ -14,7 +14,7 @@ _CASchance = 0;
 _TankChance = 0;
 _IFVchance = 0;
 _AAchance = 0;
-_CarChance = 0.3;
+_CarChance = 0.6;
 
 //Useful for justifying task-specific difficulties.
 _rewardMultiplier = 1;
@@ -121,7 +121,7 @@ while{
 
     ({(side _x) == (SIDE_A select 0)} count nearestObjects[_position,["CAManBase","LandVehicle","Air"],_taskRadius] != 0)
     && (call Hz_fnc_taskSuccessCheckGenericConditions)
-    && (({if (!isnull _x) then {(side _x) == (SIDE_C select 0)} else {false}} count patrol_task_units) > ((count patrol_task_units) / 3))
+    && (({if (!isnull _x) then {(side _x) == (SIDE_C select 0)} else {false}} count patrol_task_units) > (2*(count patrol_task_units) / 3))
     
     } do { 
 	

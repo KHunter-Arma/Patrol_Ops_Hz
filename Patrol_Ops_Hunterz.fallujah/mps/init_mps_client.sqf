@@ -468,3 +468,54 @@ if (Hz_pops_enableDetainUnrecognisedUIDs) then {
 if (_exit) exitWith {};
 
 Hz_pers_clientReadyForLoad = true;
+
+sleep 5;
+
+if ((player getVariable ["ace_medical_ivBags",[]]) isEqualTo []) then {
+
+	player spawn {
+
+		if (isnil "ace_medical_IVAnimTestRunning") then {		
+			ace_medical_IVAnimTestRunning = false;	
+		};	
+		if (ace_medical_IVAnimTestRunning) exitWith {};
+		ace_medical_IVAnimTestRunning = true;
+
+		//put weapon on back (or anim doesn't work)
+		_this call ace_common_fnc_fixLoweredRifleAnimation;
+		_this action ["SwitchWeapon", _this, _this, 299];
+
+		//prevent unit re-equipping weapon and forcing animation exit
+		_this showHUD false;
+		
+		_this playMoveNow "AinjPpneMstpSnonWnonDnon";
+		
+		waitUntil {(animationState _this) == "ainjppnemstpsnonwnondnon"};
+
+		while {(alive _this) && !((_this getVariable ["ace_medical_ivBags",[]]) isEqualTo [])} do {
+
+			//prevent unit from interacting (e.g. gearing) with something and forcing animation exit
+			closeDialog 0;
+			
+			//disable interaction menu
+			closeDialog 314412;
+			
+			//there are still many exploits so force animation if player managed to escape...
+			if ((animationState _this) != "ainjppnemstpsnonwnondnon") then {
+			
+				_this call ace_common_fnc_fixLoweredRifleAnimation;
+				_this action ["SwitchWeapon", _this, _this, 299];		
+				_this playMoveNow "AinjPpneMstpSnonWnonDnon";
+				
+				waitUntil {(animationState _this) == "ainjppnemstpsnonwnondnon"};
+			
+			};
+
+		};
+		
+		_this showHUD true;
+		ace_medical_IVAnimTestRunning = false;
+
+	};
+
+};

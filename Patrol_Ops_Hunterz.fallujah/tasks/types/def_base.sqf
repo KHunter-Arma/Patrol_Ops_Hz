@@ -114,7 +114,7 @@ while{
 
     ({(side _x) == (SIDE_A select 0)} count nearestObjects[_position,["CAManBase","LandVehicle","Air"],_taskRadius] != 0)
     && (call Hz_fnc_taskSuccessCheckGenericConditions)
-    && (({if (!isnull _x) then {(side _x) == (SIDE_C select 0)} else {false}} count patrol_task_units) > ((count patrol_task_units) / 3))
+    && (({if (!isnull _x) then {(side _x) == (SIDE_C select 0)} else {false}} count patrol_task_units) > (2*(count patrol_task_units) / 3))
     
     } do { 
 	
@@ -137,6 +137,10 @@ if((call Hz_fnc_taskSuccessCheckGenericConditions) && ({(side _x) == (SIDE_A sel
 
 /*--------------------CLEAN UP (NEW VERSION)---------------------------------*/       
 
+// No cleanup for this task needed... get your damn base back in action...
+
+/*
+
 [patrol_task_units,_position,patrol_task_vehs] spawn {
 	
 	
@@ -149,6 +153,8 @@ if((call Hz_fnc_taskSuccessCheckGenericConditions) && ({(side _x) == (SIDE_A sel
 	{deletevehicle _x}forEach _vehs;
 	
 };      
+
+*/
 
 /*--------------------RESET INTEL---------------------------------*/
 

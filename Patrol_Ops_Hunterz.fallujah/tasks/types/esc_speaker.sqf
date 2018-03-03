@@ -270,7 +270,8 @@ waituntil {
 	[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
 
 	(
-	((_vip distance _position) < 50)
+//	((_vip distance _position) < 50)
+		(({(_x distance _position) < 150} count playableUnits) > 0)
 	|| !(alive _vip)
 	|| (({(_vip distance _x) < 300} count playableUnits) < 1)
 	|| Hz_pops_task_auxFailCondition
@@ -381,6 +382,10 @@ case (_rand < 0.8) : {
 			
 			_abort = false;
 			
+			/*
+			
+			// ground attack taking too long -- don't wait
+			
 			waituntil {
 				
 				sleep 10;
@@ -389,6 +394,8 @@ case (_rand < 0.8) : {
 				(_vip getvariable "preaching") || Hz_pops_task_auxFailCondition
 				
 			};		
+			
+			*/
 
 			if (Hz_pops_task_auxFailCondition) exitWith {};
 

@@ -344,7 +344,7 @@ if(_spawnedSquads > 0) then {
 		sleep 1;
 		if(!isnil "Hz_AI_moveAndCapture") then {
 			
-			_spawnedVehs = [_grp, _position,mps_opfor_ins_truck,mps_opfor_ins_ncov,300] call Hz_AI_moveAndCapture;  
+			_spawnedVehs = [_grp, _position,mps_opfor_ins_truck,mps_opfor_ins_ncov,650] call Hz_AI_moveAndCapture;  
 
 			patrol_task_vehs = patrol_task_vehs + _spawnedVehs;					 
 			
