@@ -469,6 +469,11 @@ if (_exit) exitWith {};
 
 Hz_pers_clientReadyForLoad = true;
 
+
+/*
+
+//ACE Medical IV anim test
+
 sleep 5;
 
 if ((player getVariable ["ace_medical_ivBags",[]]) isEqualTo []) then {
@@ -486,7 +491,7 @@ if ((player getVariable ["ace_medical_ivBags",[]]) isEqualTo []) then {
 		_this action ["SwitchWeapon", _this, _this, 299];
 
 		//prevent unit re-equipping weapon and forcing animation exit
-		_this showHUD false;
+		showHUD false;
 		
 		_this playMoveNow "AinjPpneMstpSnonWnonDnon";
 		
@@ -513,9 +518,11 @@ if ((player getVariable ["ace_medical_ivBags",[]]) isEqualTo []) then {
 
 		};
 		
-		_this showHUD true;
+		showHUD true;
 		ace_medical_IVAnimTestRunning = false;
 
 	};
 
 };
+
+*/

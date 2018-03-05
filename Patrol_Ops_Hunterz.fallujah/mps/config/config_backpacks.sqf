@@ -2,6 +2,8 @@
 // Adapted by EightySix
 // ADD BACKPACKS TO THE LIST TO HAVE THEM APPEAR IN THE BACKPACK MENU
 
+/*
+
 if(mps_co) then {
 
 [] spawn {
@@ -56,6 +58,9 @@ if(mps_co) then {
 };
 
 };
+
+*/
+
 /*
 "USBasicBag",
 "US_UAV_Pack_EP1",

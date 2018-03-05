@@ -10,7 +10,7 @@ _penaltyPerLostContainer = 2000;
 _penaltyPerLostWorker = 5000;
 
 // in case the mission turns into a defend task
-_EnemySpawnMinimumRange = Hz_max_desired_server_VD + 500;
+_EnemySpawnMinimumRange = 5000;
 _taskRadius = 50;
 _minSquadCount = 3;
 _maxSquadCount = 6;
@@ -222,6 +222,12 @@ for "_i" from 1 to (6 + (round random 15)) do {
 
 };
 
+/*------------------- INTENSIFY AMBIENT COMBAT------------------------------------*/
+
+missionload = false;
+Hz_max_ambient_units = Hz_max_ambient_units + Hz_ambient_units_intensify_amount;
+Hz_max_allunits = Hz_max_allunits + Hz_ambient_units_intensify_amount; 
+
 /*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
 
 mps_civilian_intel = (_containers + _workers); publicVariable "mps_civilian_intel";
@@ -358,16 +364,6 @@ if(_spawnedSquads > 0) then {
 	};
 };
 
-/*-------------------RANDOM INTENSIFY AMBIENT COMBAT------------------------------------*/
-/*
-missionload = false;
-_ambience = false;
-if((random 1) < 0.3) then {
-	_ambience = true;
-	Hz_max_ambient_units = Hz_max_ambient_units + Hz_ambient_units_intensify_amount;
-
-};
-*/
 /*--------------------MISSION CRITERIA TO PASS---------------------------------*/
 
 _supplyBar = 0;
@@ -486,14 +482,11 @@ if (hz_reward > 0) then {
 
 };
 
-/*-------------------RANDOM INTENSIFY AMBIENT COMBAT---------------------------*/
-/*
-if(_ambience) then {
-	
-	Hz_max_ambient_units = Hz_max_ambient_units - Hz_ambient_units_intensify_amount;
+/*------------------- INTENSIFY AMBIENT COMBAT---------------------------*/
 
-};
-*/
+Hz_max_ambient_units = Hz_max_ambient_units - Hz_ambient_units_intensify_amount;
+Hz_max_allunits = Hz_max_allunits - Hz_ambient_units_intensify_amount; 
+
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/
 if( (_supplyBar >= _supplyTime) && (({ alive _x } count _workers) > 0) && (call Hz_fnc_taskSuccessCheckGenericConditions) && !Hz_pops_task_auxFailCondition) then {
 

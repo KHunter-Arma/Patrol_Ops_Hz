@@ -87,7 +87,15 @@ while {true} do
 
 	};
 	
-	{deletegroup _x;}foreach allgroups;
+	{
+	
+		if (({alive _x} count (units _x)) < 1) then {
+		
+			deletegroup _x;
+		
+		};
+	
+	}foreach allgroups;
 	
 	call Hz_func_setrealtime;
 	

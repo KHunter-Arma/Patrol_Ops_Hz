@@ -4,7 +4,7 @@ diag_log diag_activeSQSScripts;
 diag_log diag_activeMissionFSMs;
 
 /*-------------------- TASK PARAMS ---------------------------------*/
-_EnemySpawnMinimumRange = Hz_max_desired_server_VD + 500;
+_EnemySpawnMinimumRange = 5000;
 _taskRadius = 1500;
 _minSquadCount = 8;
 _maxSquadCount = 15;
@@ -73,21 +73,25 @@ if(_b > 0) then {
 		//exit spawn loop and transfer to reinforcements script if too many units present on map
 		if((count allunits) > Hz_max_allunits) exitwith {_r = (_b - _i) + 1; [_EnemySpawnMinimumRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] spawn Hz_task_reinforcements;};
 
-		_grp = [ _spawnpos,"INS",random 24,300 ] call CREATE_OPFOR_SQUAD;
+		_grp = [ _spawnpos,"INS",24+ (random 24),300 ] call CREATE_OPFOR_SQUAD;
 		
 		_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] call Hz_func_opforVehicleSupport;
 		_vehicletypes = _Vehsupport select 0;
 		_otherReward = _otherReward + (_Vehsupport select 1);
 		
+		_grpLeader = objNull;
+		
 		if((count _vehicletypes) > 0) then { 
 			
 			_car_type = _vehicletypes call mps_getRandomElement;
 			_vehgrp = [_car_type,(SIDE_C select 0),_spawnpos,300] call mps_spawn_vehicle;
+			_grpLeader = leader _vehgrp;
 			sleep 0.1;
       patrol_task_vehs pushback (vehicle (leader _vehgrp));
 			(units _vehgrp) joinSilent _grp;
 			sleep 0.1;
 			deleteGroup _vehgrp;
+			_grp setLeader _grpLeader;
 			
 		};
 		
@@ -114,7 +118,7 @@ while{
 
     ({(side _x) == (SIDE_A select 0)} count nearestObjects[_position,["CAManBase","LandVehicle","Air"],_taskRadius] != 0)
     && (call Hz_fnc_taskSuccessCheckGenericConditions)
-    && (({if (!isnull _x) then {(side _x) == (SIDE_C select 0)} else {false}} count patrol_task_units) > (2*(count patrol_task_units) / 3))
+    && (({if (!isnull _x) then {(side _x) == (SIDE_C select 0)} else {false}} count patrol_task_units) > (1*(count patrol_task_units) / 4))
     
     } do { 
 	

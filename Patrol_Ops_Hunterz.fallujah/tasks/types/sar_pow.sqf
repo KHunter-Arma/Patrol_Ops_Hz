@@ -5,7 +5,7 @@ diag_log diag_activeMissionFSMs;
 
 /*-------------------- TASK PARAMS ---------------------------------*/
 _reinforcementsMinimumSpawnRange = 5000;
-_ambientCombatIntensifyAmount = 60;
+_ambientCombatIntensifyAmount = 80;
 _downPayment = 75000;
 
 _minDefendingSquadCount = 0;
@@ -403,7 +403,7 @@ if (captive _pow1) then {
 
 };
 
-/*-------------------RANDOM INTENSIFY AMBIENT COMBAT---------------------------*/
+/*------------------- INTENSIFY AMBIENT COMBAT---------------------------*/
   
 Hz_max_ambient_units = Hz_max_ambient_units - _ambientCombatIntensifyAmount;
 

@@ -10,7 +10,7 @@ diag_log diag_activeMissionFSMs;
 _downPayment = 60000;
 _numberOfTargets = 4;
 _minimumVantagePointHeight = 15;
-_ambientCombatIntensifyAmount = 60;
+_ambientCombatIntensifyAmount = 80;
 _timeRequiredAtEachTarget = 5;
 
 //Useful for justifying task-specific difficulties.
@@ -119,6 +119,8 @@ format ["A hotshot %1 war correspondent has just arrived in Fallujah thinking he
 "created",
 [0,0,0]
 ] call mps_tasks_add;
+
+
 
 /*--------------------WAIT UNTIL TARGET MEETS PLAYERS---------------------------------*/
 

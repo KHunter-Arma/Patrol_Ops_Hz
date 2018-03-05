@@ -163,7 +163,3 @@ if(mps_debug) then {
 "kick" addPublicVariableEventHandler {[]execvm "HZ\admin\kick_EH.sqf"; };
 
 execVM "R3F_LOG\init.sqf";      
-
-//ACRE settings
-[true] call acre_api_fnc_setRevealToAI;
-[0] call acre_api_fnc_setLossModelScale; // still buggy -- disable for now

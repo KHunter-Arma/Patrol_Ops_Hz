@@ -12,7 +12,7 @@ _speechCompletePayment = 30000;
 _speechTimeMinutes = 20;
 
 // in case the mission turns into a defend task
-_EnemySpawnMinimumRange = Hz_max_desired_server_VD + 500;
+_EnemySpawnMinimumRange = 5000;
 _taskRadius = 50;
 _minSquadCount = 2;
 _maxSquadCount = 6;
@@ -238,6 +238,13 @@ format ["We've been hired to provide security detail to a prominent local tribe 
 "created",
 _position
 ] call mps_tasks_add;
+
+
+/*------------------- INTENSIFY AMBIENT COMBAT------------------------------------*/
+
+missionload = false;
+Hz_max_ambient_units = Hz_max_ambient_units + Hz_ambient_units_intensify_amount;
+Hz_max_allunits = Hz_max_allunits + Hz_ambient_units_intensify_amount; 
 
 /*--------------------WAIT UNTIL TARGET MEETS PLAYERS---------------------------------*/
 
@@ -654,6 +661,11 @@ if (hz_reward > 0) then {
 	hz_reward = ceil hz_reward;
 
 };
+
+/*------------------- INTENSIFY AMBIENT COMBAT---------------------------*/
+
+Hz_max_ambient_units = Hz_max_ambient_units - Hz_ambient_units_intensify_amount;
+Hz_max_allunits = Hz_max_allunits - Hz_ambient_units_intensify_amount; 
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/  
 
