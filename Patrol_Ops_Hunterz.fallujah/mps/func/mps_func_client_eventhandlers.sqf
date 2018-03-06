@@ -97,14 +97,11 @@ player addEventHandler ["Killed",{
     if (!(player getVariable ["JointOps",false])) then {
     
     sleep (random 3);
-    
+    /*
     if(Hz_patrol_task_in_progress)  then {
       
       mps_mission_deathcount = mps_mission_deathcount - 1; 
       publicVariable "mps_mission_deathcount";
-      sleep 1;
-      //Lives limit deprecated -- replaced by financial failure
-      //  hint parseText format["Acceptable Mission Casualties Left: %1",mps_mission_deathcount];
       
     } else {
       
@@ -112,7 +109,11 @@ player addEventHandler ["Killed",{
       publicVariable "Hz_econ_funds";
 
     };
-    
+    */
+		
+		Hz_econ_funds = Hz_econ_funds - Hz_econ_penaltyPerPlayerdeath;
+		publicVariable "Hz_econ_funds";
+		
     };
     
     sleep 7;

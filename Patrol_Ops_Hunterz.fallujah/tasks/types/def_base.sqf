@@ -91,7 +91,7 @@ if(_b > 0) then {
 			(units _vehgrp) joinSilent _grp;
 			sleep 0.1;
 			deleteGroup _vehgrp;
-			_grp setLeader _grpLeader;
+			_grp selectleader _grpLeader;
 			
 		};
 		
@@ -109,6 +109,11 @@ if(_b > 0) then {
 			_wp setWaypointType "SAD";
 			
 		};
+		
+		
+		//unbunching delay
+		sleep 180;
+		
 	};
 };   
 
@@ -118,7 +123,7 @@ while{
 
     ({(side _x) == (SIDE_A select 0)} count nearestObjects[_position,["CAManBase","LandVehicle","Air"],_taskRadius] != 0)
     && (call Hz_fnc_taskSuccessCheckGenericConditions)
-    && (({if (!isnull _x) then {(side _x) == (SIDE_C select 0)} else {false}} count patrol_task_units) > (1*(count patrol_task_units) / 4))
+    && (({if (!isnull _x) then {(side _x) == (SIDE_C select 0)} else {false}} count patrol_task_units) > (1*(count patrol_task_units) / 6))
     
     } do { 
 	

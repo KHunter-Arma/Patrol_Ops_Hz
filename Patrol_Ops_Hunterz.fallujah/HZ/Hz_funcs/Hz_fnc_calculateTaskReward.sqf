@@ -6,7 +6,8 @@ _rewardMultiplier = _this select 2;
 
 hz_reward = ((Hz_econ_perSquadReward * _squadCount) + _additionalRewards + Hz_econ_aux_rewards);
 
-_deathPenalty = (mps_mission_deathlimit - mps_mission_deathcount) * Hz_econ_penaltyPerPlayerdeath;
+//_deathPenalty = (mps_mission_deathlimit - mps_mission_deathcount) * Hz_econ_penaltyPerPlayerdeath;
+_deathPenalty = 0;
 
 hz_reward = (hz_reward - _deathPenalty)*_rewardMultiplier;
 
