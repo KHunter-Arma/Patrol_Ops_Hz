@@ -89,23 +89,13 @@ _guardPos = _position;
 } foreach _newComp;
 
 //create defenders
-_defGrp = creategroup (SIDE_A select 0);
-
+_defGrp = [_position,"INF",12,10] call CREATE_BLUFOR_SQUAD;
 _dude = _defGrp createUnit [mps_blufor_leader call mps_getRandomElement, _position, [], 10, "NONE"];
 _dude = _defGrp createUnit [mps_blufor_riflemen call mps_getRandomElement, _position, [], 10, "NONE"];
 _dude setposatl _guardPos;
 _dude forcespeed 0;
 _dude setUnitPos "UP";
-for "_i" from 1 to 12 do {
-
-  _dude = _defGrp createUnit [mps_blufor_inf call mps_getRandomElement, _position, [], 10, "NONE"];
-
-}; 
 _defGrp setFormation "DIAMOND";
-{
-
-
-} foreach units _defGrp;
 
 /*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
 

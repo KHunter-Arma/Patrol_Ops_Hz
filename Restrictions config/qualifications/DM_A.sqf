@@ -71,7 +71,12 @@ attachmentsInfo = attachmentsInfo - [
 "OPTIC_KHS_TAN",
 "OPTIC_LRPS_GHEX_F",
 "OPTIC_LRPS_TNA_F",
-"OPTIC_SOS_KHK_F"
+"OPTIC_SOS_KHK_F",
+
+"RHS_ACC_PSO1M2",
+"RHS_ACC_PSO1M21",
+"CUP_OPTIC_PSO_1",
+"CUP_OPTIC_PSO_3"
 
 
 ////////////////////////////////////////////////////////////////////////////////////

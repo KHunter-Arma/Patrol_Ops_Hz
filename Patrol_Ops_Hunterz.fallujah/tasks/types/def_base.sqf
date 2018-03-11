@@ -6,8 +6,8 @@ diag_log diag_activeMissionFSMs;
 /*-------------------- TASK PARAMS ---------------------------------*/
 _EnemySpawnMinimumRange = 5000;
 _taskRadius = 1500;
-_minSquadCount = 8;
-_maxSquadCount = 15;
+_minSquadCount = 4;
+_maxSquadCount = 10;
 
 //Chance of a squad having the following vehicle support (can't have more than 1 vehicle per squad)
 _CASchance = 0;
@@ -45,6 +45,24 @@ mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_dea
 "created",
 _position
 ] call mps_tasks_add;
+
+/*--------------------CREATE DEFENDERS ---------------------------------*/
+
+_group = createGroup (SIDE_A select 0);
+
+for "_i" from 1 to 12 do {
+
+_group createUnit ["USAF_SecurityForces_rifleman_Hz", [8172.02,2200.39,0], [], 70, "NONE"];
+
+};
+
+_group = createGroup (SIDE_A select 0);
+
+for "_i" from 1 to 12 do {
+
+_group createUnit ["USAF_SecurityForces_rifleman_Hz", [7800.5,1834.66,0], [], 50, "NONE"];
+
+};
 
 /*--------------------WAIT UNTIL PLAYERS ARRIVE---------------------------------*/
 

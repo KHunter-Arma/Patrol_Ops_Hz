@@ -162,8 +162,8 @@ Hz_pers_fnc_convert1DArrayTo2D = {
 
 player addeventhandler ["Respawn", {
 
-  _this spawn {           
-    
+  _this spawn {
+
     _unit = _this select 0;
     _corpse = _this select 1;
 				
@@ -261,6 +261,8 @@ player addeventhandler ["Respawn", {
 		_uniformItems,
 		_assignedItems]; 
 		*/
+				
+		sleep 0.1;
 		
 		removeAllWeapons _corpse;
 		removeAllItems _corpse;
@@ -302,28 +304,52 @@ player addeventhandler ["Respawn", {
 		sleep 1;
 		
 		{
-			_unit addWeapon (_x select 0);
-			
-			//add magazine
-			_magArray = _x select 4;
-			if ((count _magArray) > 0) then {
-				_unit addWeaponItem [(_x select 0), [(_magArray select 0), (_magArray select 1)]];
-			};
-			
-			//Grenade launcher?
-			if ((typename (_x select 5)) == "ARRAY") then {
+				_unit addWeapon (_x select 0);	
 				
-				_magArray = _x select 5;
+				//add magazine
+				_magArray = _x select 4;
 				if ((count _magArray) > 0) then {
 					_unit addWeaponItem [(_x select 0), [(_magArray select 0), (_magArray select 1)]];
 				};
+				
+				//attachments
+				_wep = _x select 0;
+				_wepComponents = _wep call BIS_fnc_weaponComponents;
+				
+				{
+				
+					if (!((tolower _x) in _wepComponents)) then {
+					
+						_unit addWeaponItem [_wep, _x];
+						sleep 0.1;
+					
+					};
+				
+				} foreach [_x select 1, _x select 2, _x select 3];
+				
+				//Grenade launcher?
+				if ((typename (_x select 5)) == "ARRAY") then {
+					
+					_magArray = _x select 5;
+					if ((count _magArray) > 0) then {
+						_unit addWeaponItem [(_x select 0), [(_magArray select 0), (_magArray select 1)]];
+					};
+					
+					if (!((tolower (_x select 6)) in _wepComponents)) then {
+					
+						_unit addWeaponItem [_wep, (_x select 6)];
+					
+					};	
 
-			};
-			
-			//attachments
-			_unit addWeaponItem [_x select 0, _x select 1];
-			_unit addWeaponItem [_x select 0, _x select 2];
-			_unit addWeaponItem [_x select 0, _x select 3];
+				} else {
+				
+					if (!((tolower (_x select 5)) in _wepComponents)) then {
+					
+						_unit addWeaponItem [_wep, (_x select 5)];
+					
+					};	
+				
+				};
 
 		} foreach _weaponsItems;
 		
@@ -359,7 +385,7 @@ player addeventhandler ["Respawn", {
 		}foreach _assignedItems;
 		
     _corpse setvariable ["NoDelete",false,true];
-
+		
   };
 
 }];

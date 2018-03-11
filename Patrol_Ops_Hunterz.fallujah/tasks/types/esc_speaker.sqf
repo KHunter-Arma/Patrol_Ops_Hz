@@ -374,11 +374,11 @@ case (_rand < 0.8) : {
 
 		// insurgent attack
 		
-		[_vip,_goTime,_b,_position,_EnemySpawnMinimumRange,_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] spawn {
+		[_vip,_goTime,_spawnedSquads,_position,_EnemySpawnMinimumRange,_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] spawn {
 			
 			_vip = _this select 0;
 			_goTime = _this select 1;
-			_b = _this select 2;
+			_spawnedSquads = _this select 2;
 			_position = _this select 3;
 			_EnemySpawnMinimumRange = _this select 4;
 			_CASchance = _this select 5;
@@ -408,12 +408,12 @@ case (_rand < 0.8) : {
 
 			_spawnpos = [_position,_EnemySpawnMinimumRange] call Hz_func_findspawnpos;
 
-			if(_b > 0) then { 
+			if(_spawnedSquads > 0) then { 
 				
-				for "_i" from 1 to _b do {
+				for "_i" from 1 to _spawnedSquads do {
 					
 					//exit spawn loop and transfer to reinforcements script if too many units present on map
-					if((count allunits) > Hz_max_allunits) exitwith {_r = (_b - _i) + 1; [_EnemySpawnMinimumRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] spawn Hz_task_reinforcements;};
+					if((count allunits) > Hz_max_allunits) exitwith {_r = (_spawnedSquads - _i) + 1; [_EnemySpawnMinimumRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] spawn Hz_task_reinforcements;};
 
 					_grp = [ _spawnpos,"INS",random 24,300 ] call CREATE_OPFOR_SQUAD;
 					
@@ -458,11 +458,11 @@ case (_rand < 0.8) : {
 
 		// taki spec ops paradropped
 		
-		[_vip,_goTime,_b,_position] spawn {
+		[_vip,_goTime,_spawnedSquads,_position] spawn {
 			
 			_vip = _this select 0;
 			_goTime = _this select 1;
-			_b = _this select 2;
+			_spawnedSquads = _this select 2;
 			_position = _this select 3;
 			
 			_abort = false;
@@ -478,7 +478,7 @@ case (_rand < 0.8) : {
 			
 			if (Hz_pops_task_auxFailCondition) exitWith {};
 			
-			for "_i" from 1 to _b do {					
+			for "_i" from 1 to _spawnedSquads do {					
 				
 				_spawnpos = [((markerpos "patrol_respawn_opfor") select 0) + 500 + random 500,((markerpos "patrol_respawn_opfor") select 1) + 500 + random 500,800];
 				
@@ -511,7 +511,7 @@ while {
 		_vip setvariable ["preachTime",_preachCounter];
 		_otherReward = _otherReward + _speechRewardPerSecond;
 		
-		if ((random 1) < 0.0001) then {
+		if ((random 1) < 0.0003) then {
 			
 			_temp = +_crowd;
 			{
