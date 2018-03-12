@@ -31,7 +31,9 @@ wepInfo = wepInfo - [
 "RHS_WEAP_PKP",
 "CUP_ARIFLE_RPK74",
 "CUP_ARIFLE_RPK74_45",
-"CUP_LMG_PKM"
+"CUP_LMG_PKM",
+"CUP_LMG_UK59"
+
 
 
 

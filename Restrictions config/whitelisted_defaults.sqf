@@ -168,7 +168,6 @@ attachmentsInfo = attachmentsInfo - [
 "OPTIC_ERCO_BLK_F",
 "OPTIC_ERCO_SND_F",
 "OPTIC_HAMR_KHK_F",
-
 "CUP_OPTIC_NSPU"
 
 
