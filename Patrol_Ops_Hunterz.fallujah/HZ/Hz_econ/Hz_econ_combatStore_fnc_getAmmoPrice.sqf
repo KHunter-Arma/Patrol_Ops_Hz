@@ -81,6 +81,7 @@ case "RHS_B_762X54_7N26_BALL": {2};
 case "RHS_B_762X54_7BZ3_BALL": {1.5};
 case "RHS_B_762X54_7N1_BALL": {0.68};
 case "CUP_B_762X54_BALL_WHITE_TRACER": {1.5};
+case "CUP_B_762X54_BALL_GREEN_TRACER": {1.5};
 
 //.300 blk
 case "RH_762X35_B_FMJ": {1};
@@ -104,9 +105,20 @@ case "RH_9X19_B_M822": {0.25};
 case "RH_9X19_B_HP": {0.45};
 case "RH_9X19_B_HPSB": {0.65};
 
+case "CUP_B_9X19_BALL": {0.25};
+
+//9x21
+case "B_9X21_BALL_TRACER_GREEN": {0.7};
+case "B_9X21_BALL_TRACER_RED": {0.7};
+case "B_9X21_BALL_TRACER_YELLOW": {0.7};
+case "B_9X21_BALL": {0.4};
+
 ////9x39
 case "RHS_B_9X39_SP5": {3};
 case "RHS_B_9X39_SP6": {4};
+
+//93x64
+case "CUP_B_93X64_BALL": {0.57};
 
 //12.7x99 BMG
 case "RHSUSF_AMMO_127X99_MK211": {30};
@@ -166,6 +178,14 @@ case "RH_454_CASULL": {-1};
 case "RH_50_AE_BALL": {-1};
 
 
+case "RHS_AMMO_PG9V": {-1};
+case "RHS_AMMO_PG9N": {-1};
+case "RHS_AMMO_PG9VNT": {-1};
+case "RHS_AMMO_OG9VM": {-1};
+case "RHS_AMMO_OG9V": {-1};
+
+case "CUP_SH_PG9_AT": {-1};
+case "CUP_SH_OG9_HE": {-1};
 
 default {-1};
 
