@@ -292,7 +292,44 @@ case "RH_SAMR_WDL": {2520};
 case "RH_SBR9_TG": {1349};
 case "RH_SBR9_DES": {1349};
 case "RH_SBR9_WDL": {1349};
+*/
 
+//RH Pistols
+case "RH_PYTHON": {-1};
+case "RH_CZ75": {-1};
+case "RH_DEAGLE": {-1};
+case "RH_DEAGLEG": {-1};
+case "RH_DEAGLEM": {-1};
+case "RH_DEAGLES": {-1};
+case "RH_FN57": {-1};
+case "RH_FN57_T": {-1};
+case "RH_FN57_G": {-1};
+case "RH_FNP45": {-1};
+case "RH_FNPT": {-1};
+case "RH_G17": {540};
+case "RH_G18": {535};
+case "RH_G19": {-1};
+case "RH_G19T": {-1};
+case "RH_GSH18": {-1};
+case "RH_TEC9": {-1};
+case "RH_KIMBER": {-1};
+case "RH_KIMBER_NW": {-1};
+case "RH_MATEBA": {-1};
+case "RH_MUZI": {690};
+case "RH_MP412": {-1};
+case "RH_MK2": {-1};
+case "RH_P226": {1165};
+case "RH_P226S": {-1};
+case "RH_SW659": {-1};
+case "RH_BULL": {-1};
+case "RH_BULLB": {-1};
+case "RH_TTRACKER": {450};
+case "RH_TTRACKER_G": {-1};
+case "RH_USPM": {-1};
+case "RH_USP": {-1};
+case "RH_VP70": {-1};
+
+/*
 //AK's
 case "RHS_WEAP_AK103": {760};
 case "RHS_WEAP_AK103_1": {1200};
@@ -446,7 +483,59 @@ case "RHS_WEAP_VSS_GRIP": {2495};
 case "RHS_WEAP_VSS_GRIP_NPZ": {2560};
 case "RHS_WEAP_VSS_NPZ": {2535};
 
+//RHS GREF
+case "RHS_WEAP_IZH18": {305};
+case "RHS_WEAP_KAR98K": {590};
+case "RHS_WEAP_M21A": {630};
+case "RHS_WEAP_M21A_PR": {670};
+case "RHS_WEAP_M21S": {615};
+case "RHS_WEAP_M21S_PR": {655};
+case "RHS_WEAP_M70AB2": {450};
+case "RHS_WEAP_M70B1": {570};
+case "RHS_WEAP_M92": {600};
+case "RHS_WEAP_M38": {350};
+case "RHS_WEAP_M38_RAIL": {360};
 
+/*
+
+case "RHS_WEAP_MOSIN_SBR": {425};
+
+*/
+
+case "RHS_WEAP_SAVZ58P": {1200};
+case "RHS_WEAP_SAVZ58P_BLACK": {1200};
+case "RHS_WEAP_SAVZ58P_RAIL": {1400};
+case "RHS_WEAP_SAVZ58P_RAIL_BLACK": {1400};
+case "RHS_WEAP_SAVZ58V": {1130};
+case "RHS_WEAP_SAVZ58V_BLACK": {1130};
+case "RHS_WEAP_SAVZ58V_RAIL": {1330};
+case "RHS_WEAP_SAVZ68V_RAIL_BLACK": {1330};
+case "RHS_WEAP_SAVZ61": {595};
+case "RHS_WEAP_M76": {1100};
+case "RHS_WEAP_SAVZ61_FOLDED": {595};
+case "RHS_WEAP_TT33": {220};
+
+//RHS SAF
+
+/*
+
+case "RHS_WEAP_MINIMI_PARA_RAILED": {7500};
+case "RHS_WEAP_G36KV_AG36": {2600};
+
+*/
+
+case "RHS_WEAP_M21A_PBG40": {730};
+case "RHS_WEAP_M70B1N": {570};
+case "RHS_WEAP_M70B3N": {590};
+case "RHS_WEAP_M70B3N_PBG40": {690};
+
+/*
+
+case "RHS_WEAP_M82A1": {9119};
+
+*/
+
+case "RHS_WEAP_SCORPION": {595};
 
 //sidearms
 case "RHS_WEAP_PB_6P9": {450};
@@ -505,95 +594,6 @@ case "LASERDESIGNATOR_03": {12000};
 case "LASERDESIGNATOR_01_KHK_F": {12000};
 
 */
-
-//RHS GREF
-case "RHS_WEAP_IZH18": {305};
-case "RHS_WEAP_KAR98K": {590};
-case "RHS_WEAP_M21A": {630};
-case "RHS_WEAP_M21A_PR": {670};
-case "RHS_WEAP_M21S": {615};
-case "RHS_WEAP_M21S_PR": {655};
-case "RHS_WEAP_M70AB2": {450};
-case "RHS_WEAP_M70B1": {570};
-case "RHS_WEAP_M92": {600};
-case "RHS_WEAP_M38": {350};
-case "RHS_WEAP_M38_RAIL": {360};
-
-/*
-
-case "RHS_WEAP_MOSIN_SBR": {425};
-
-*/
-
-case "RHS_WEAP_SAVZ58P": {1200};
-case "RHS_WEAP_SAVZ58P_BLACK": {1200};
-case "RHS_WEAP_SAVZ58P_RAIL": {1400};
-case "RHS_WEAP_SAVZ58P_RAIL_BLACK": {1400};
-case "RHS_WEAP_SAVZ58V": {1130};
-case "RHS_WEAP_SAVZ58V_BLACK": {1130};
-case "RHS_WEAP_SAVZ58V_RAIL": {1330};
-case "RHS_WEAP_SAVZ68V_RAIL_BLACK": {1330};
-case "RHS_WEAP_SAVZ61": {595};
-case "RHS_WEAP_M76": {1100};
-case "RHS_WEAP_SAVZ61_FOLDED": {595};
-case "RHS_WEAP_TT33": {220};
-
-//RHS SAF
-
-/*
-
-case "RHS_WEAP_MINIMI_PARA_RAILED": {7500};
-case "RHS_WEAP_G36KV_AG36": {2600};
-
-*/
-
-case "RHS_WEAP_M21A_PBG40": {730};
-case "RHS_WEAP_M70B1N": {570};
-case "RHS_WEAP_M70B3N": {590};
-case "RHS_WEAP_M70B3N_PBG40": {690};
-
-/*
-
-case "RHS_WEAP_M82A1": {9119};
-
-*/
-
-case "RHS_WEAP_SCORPION": {595};
-
-//RH Pistols
-case "RH_PYTHON": {-1};
-case "RH_CZ75": {-1};
-case "RH_DEAGLE": {-1};
-case "RH_DEAGLEG": {-1};
-case "RH_DEAGLEM": {-1};
-case "RH_DEAGLES": {-1};
-case "RH_FN57": {-1};
-case "RH_FN57_T": {-1};
-case "RH_FN57_G": {-1};
-case "RH_FNP45": {-1};
-case "RH_FNPT": {-1};
-case "RH_G17": {540};
-case "RH_G18": {535};
-case "RH_G19": {-1};
-case "RH_G19T": {-1};
-case "RH_GSH18": {-1};
-case "RH_TEC9": {-1};
-case "RH_KIMBER": {-1};
-case "RH_KIMBER_NW": {-1};
-case "RH_MATEBA": {-1};
-case "RH_MUZI": {690};
-case "RH_MP412": {-1};
-case "RH_MK2": {-1};
-case "RH_P226": {1165};
-case "RH_P226S": {-1};
-case "RH_SW659": {-1};
-case "RH_BULL": {-1};
-case "RH_BULLB": {-1};
-case "RH_TTRACKER": {450};
-case "RH_TTRACKER_G": {-1};
-case "RH_USPM": {-1};
-case "RH_USP": {-1};
-case "RH_VP70": {-1};
 
 //CUP
 case "CUP_SRIFLE_SVD": {1840};
