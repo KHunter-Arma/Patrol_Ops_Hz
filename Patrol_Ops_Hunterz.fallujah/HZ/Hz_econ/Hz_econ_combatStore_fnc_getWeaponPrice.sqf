@@ -355,14 +355,8 @@ case "RHS_WEAP_AK105_ZENITCO01_B33": {1855};
 */
 
 case "RHS_WEAP_AK74": {870};
-
-/*
-
 case "RHS_WEAP_AK74_GP25": {970};
-case "RHS_WEAP_AK74_3": {1020};
-
-*/
-
+case "RHS_WEAP_AK74_3": {1020}
 case "RHS_WEAP_AK74_2": {870};
 
 /*
@@ -388,54 +382,60 @@ case "RHS_WEAP_AK74M_ZENITCO01_B33": {1935};
 case "RHS_WEAP_AK74MR": {1060};
 case "RHS_WEAP_AK74MR_GP25": {1160};
 
-case "RHS_WEAP_AK74N": {870};
-case "RHS_WEAP_AK74N_GP25": {970};
-case "RHS_WEAP_AK74N_GP25_NPZ": {1035};
-case "RHS_WEAP_AK74N_NPZ": {935};
-case "RHS_WEAP_AK74N_2_NPZ": {1025};
-case "RHS_WEAP_AK74N_2": {985};
-
 */
 
-case "RHS_WEAP_AKM": {770};
+case "RHS_WEAP_AK74N": {870};
+case "RHS_WEAP_AK74N_GP25": {970};
 
 /*
 
+case "RHS_WEAP_AK74N_GP25_NPZ": {1035};
+case "RHS_WEAP_AK74N_NPZ": {935};
+case "RHS_WEAP_AK74N_2_NPZ": {1025};
+
+*/
+
+case "RHS_WEAP_AK74N_2": {985};
+
+case "RHS_WEAP_AKM": {770};
 case "RHS_WEAP_AKM_GP25": {870};
+
+/*
+
 case "RHS_WEAP_AKM_ZENITCO01_B33": {1320};
+
+*/
+
 case "RHS_WEAP_AKMN": {790};
 case "RHS_WEAP_AKMN_GP25": {890};
+
+/*
+
 case "RHS_WEAP_AKMN_GP25_NPZ": {955};
 case "RHS_WEAP_AKMN_NPZ": {855};
 
 */
 
 case "RHS_WEAP_AKMS": {725};
-
-/*
-
 case "RHS_WEAP_AKMS_GP25": {825};
-
-*/
-
 case "RHS_WEAP_AKS74": {825};
-
-/*
-
 case "RHS_WEAP_AKS74_GP25": {925};
-
-*/
-
 case "RHS_WEAP_AKS74_2": {940};
-
-/*
-
 case "RHS_WEAP_AKS74N": {850};
 case "RHS_WEAP_AKS74N_GP25": {950};
+
+/*
+
 case "RHS_WEAP_AKS74N_GP25_NPZ": {1015};
 case "RHS_WEAP_AKS74N_NPZ": {915};
 case "RHS_WEAP_AKS74N_2_NPZ": {};
+
+*/
+
 case "RHS_WEAP_AKS74N_2": {940};
+
+/*
+
 case "RHS_WEAP_AKS74U": {780};
 case "RHS_WEAP_AKS74UN": {780};
 
@@ -449,12 +449,6 @@ case "RHS_WEAP_ASVAL_NPZ": {2655};
 
 //PKs
 case "RHS_WEAP_PKM": {3550};
-
-//RPKs
-case "CUP_ARIFLE_RPK74": {2065};
-case "CUP_ARIFLE_RPK74_45": {2925};
-
-
 
 /*
 
@@ -588,7 +582,13 @@ case "RHS_TR8_PERISCOPE": {174};
 case "RHS_TR8_PERISCOPE_PIP": {174};
 case "ACE_VECTORDAY": {30000};
 case "ACE_VECTOR": {52923};
+
+*/
+
 case "ACE_YARDAGE450": {150};
+
+/*
+
 case "LASERDESIGNATOR": {12000};
 case "LASERDESIGNATOR_03": {12000};
 case "LASERDESIGNATOR_01_KHK_F": {12000};
@@ -612,12 +612,18 @@ case "LOP_WEAP_LEEENFIELD_RAILED": {600};
 //NiArms
 case "HLC_RIFLE_AK47": {534};
 case "HLC_RIFLE_AK74": {870};
-case "HLC_RIFLE_AK74_DIRTY": {770};
+case "HLC_RIFLE_AK74_DIRTY": {550};
 case "HLC_RIFLE_AK74_MTK": {910};
 case "HLC_RIFLE_AKM": {770};
 case "HLC_RIFLE_AKMGL": {870};
 case "HLC_RIFLE_AKM_MTK": {810};
+
+/*
+
 case "HLC_RIFLE_AKS74U": {780};
+
+*/
+
 case "HLC_RIFLE_RPK": {2775};
 case "HLC_RIFLE_RPK74N": {2065};
 
