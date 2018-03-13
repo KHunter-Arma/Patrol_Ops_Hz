@@ -222,7 +222,13 @@ Hz_econ_cfg_weaponsRestrictions_default =
 "RHS_WEAP_M76",
 "CUP_LMG_UK59",
 "CUP_SRIFLE_CZ550",
-"CUP_SRIFLE_CZ550_RAIL"
+"CUP_SRIFLE_CZ550_RAIL",
+"HLC_RIFLE_AKMGL",
+"HLC_RIFLE_RPK",
+"HLC_RIFLE_RPK74N",
+"STR_AKM",  //gp-25
+"STR_AK_74_GP"
+
 
 
 

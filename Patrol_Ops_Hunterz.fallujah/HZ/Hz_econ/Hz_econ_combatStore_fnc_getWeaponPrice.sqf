@@ -595,6 +595,7 @@ case "RH_USPM": {-1};
 case "RH_USP": {-1};
 case "RH_VP70": {-1};
 
+//CUP
 case "CUP_SRIFLE_SVD": {1840};
 case "CUP_SRIFLE_SVD_DES": {1840};
 case "CUP_SRIFLE_CZ550": {890};
@@ -604,8 +605,29 @@ case "CUP_HGUN_DUTY": {517};
 case "CUP_HGUN_COMPACT": {562.50};
 case "CUP_HGUN_PHANTOM": {636};
 
+//Project Opfor
 case "LOP_WEAP_LEEENFIELD": {500};
 case "LOP_WEAP_LEEENFIELD_RAILED": {600};
+
+//NiArms
+case "HLC_RIFLE_AK47": {534};
+case "HLC_RIFLE_AK74": {870};
+case "HLC_RIFLE_AK74_DIRTY": {770};
+case "HLC_RIFLE_AK74_MTK": {910};
+case "HLC_RIFLE_AKM": {770};
+case "HLC_RIFLE_AKMGL": {870};
+case "HLC_RIFLE_AKM_MTK": {810};
+case "HLC_RIFLE_AKS74U": {780};
+case "HLC_RIFLE_RPK": {2775};
+case "HLC_RIFLE_RPK74N": {2065};
+
+//weird ruski mod
+case "STR_AK_74_GP": {970};
+case "STR_AKM": {870}; //GP-25
+case "STR_AKM_CS": {700};
+case "STR_RPD": {2300};
+case "STR_SKS_OLD": {845};
+
 
 default {-1};
 

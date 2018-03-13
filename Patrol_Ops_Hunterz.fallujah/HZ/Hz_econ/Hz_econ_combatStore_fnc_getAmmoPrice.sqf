@@ -178,14 +178,23 @@ case "RH_454_CASULL": {-1};
 case "RH_50_AE_BALL": {-1};
 
 
-case "RHS_AMMO_PG9V": {-1};
-case "RHS_AMMO_PG9N": {-1};
-case "RHS_AMMO_PG9VNT": {-1};
-case "RHS_AMMO_OG9VM": {-1};
-case "RHS_AMMO_OG9V": {-1};
+case "RHS_AMMO_PG9V": {409};
+case "RHS_AMMO_PG9N": {409};
+case "RHS_AMMO_PG9VNT": {409};
+case "RHS_AMMO_OG9VM": {409};
+case "RHS_AMMO_OG9V": {409};
 
-case "CUP_SH_PG9_AT": {-1};
-case "CUP_SH_OG9_HE": {-1};
+case "CUP_SH_PG9_AT": {409};
+case "CUP_SH_OG9_HE": {409};
+
+
+case "HLC_762X39_AP": {2};
+case "HLC_762X39_BALL": {0.25};
+case "HLC_762X39_TRACER": {2};
+case "FH_545X39_EP": {0.5};
+case "FH_545X39_BALL": {0.25};
+case "FH_545X39_TRACER": {0.5};
+case "FH_545X39_7U1": {0.5};
 
 default {-1};
 

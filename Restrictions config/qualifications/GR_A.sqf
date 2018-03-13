@@ -54,7 +54,11 @@ wepInfo = wepInfo - [
 "CUP_ARIFLE_M16A2_GL",
 "RHS_WEAP_G36KV_AG36",
 "RHS_WEAP_M70B3N_PBG40",
-"RHS_WEAP_M21A_PBG40"
+"RHS_WEAP_M21A_PBG40",
+"HLC_RIFLE_AKMGL",
+"STR_AKM",  //gp-25
+"STR_AK_74_GP"
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////

@@ -532,6 +532,29 @@ case "CUP_18RND_9X19_PHANTOM": {56};
 
 case "LOP_10RND_77MM_MAG": {10};
 
+case "10RND_SKS_MAG": {6};
+case "100RND_KOROB_RPD": {60};
+
+case "HLC_30RND_762X39_AP_AK": {16};
+case "HLC_45RND_762X39_AP_RPK": {60};
+case "HLC_75RND_762X39_AP_RPK": {60};
+case "HLC_30RND_762X39_B_AK": {16};
+case "HLC_45RND_762X39_M_RPK": {60};
+case "HLC_75RND_762X39_M_RPK": {60};
+case "HLC_30RND_762X39_S_AK": {16};
+case "HLC_30RND_762X39_T_AK": {16};
+case "HLC_45RND_762X39_T_RPK": {60};
+
+case "HLC_30RND_545X39_EP_AK": {18};
+case "HLC_30RND_545X39_B_AK": {18};
+case "HLC_45RND_545X39_M_RPK": {60};
+case "HLC_60RND_545X39_T_RPK": {60};
+case "HLC_30RND_545X39_S_AK": {18};
+case "HLC_30RND_545X39_T_AK": {18};
+case "HLC_45RND_545X39_T_RPK": {60};
+
+
+
 default {-1};
 
 };
