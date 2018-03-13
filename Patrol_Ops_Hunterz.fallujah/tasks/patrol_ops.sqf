@@ -19,7 +19,8 @@ _list = [
 		"esc_supplies",
     "def_fob",
 		"sar_pow",
-		"esc_journalist"
+		"esc_journalist",
+		"sad_cache"
     ];
 		
 if(hz_debug) then {_list = ["def_castle"];};
