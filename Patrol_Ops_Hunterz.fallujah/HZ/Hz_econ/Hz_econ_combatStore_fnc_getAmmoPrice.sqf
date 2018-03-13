@@ -211,6 +211,14 @@ case "RH_B_40SW": {-1};
 case "RH_44MAG_BALL": {0.25};
 case "RH_454_CASULL": {-1};
 
+case "RHS_AMMO_PG9V": {-1};
+case "RHS_AMMO_PG9N": {-1};
+case "RHS_AMMO_PG9VNT": {-1};
+case "RHS_AMMO_OG9VM": {-1};
+case "RHS_AMMO_OG9V": {-1};
+
+case "CUP_SH_PG9_AT": {-1};
+case "CUP_SH_OG9_HE": {-1};
 
 default {-1};
 
