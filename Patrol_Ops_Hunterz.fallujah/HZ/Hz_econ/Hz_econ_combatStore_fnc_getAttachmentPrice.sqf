@@ -21,7 +21,13 @@ case "RHS_ACC_RAKURSPM": {600};
 case "RHS_ACC_1P87": {800};
 case "RHS_ACC_DH520X56": {1650};
 case "RHS_ACC_EKP8_18": {280};
+
+*/
+
 case "RHS_ACC_1P29": {550};
+
+/*
+
 case "RHS_ACC_1P63": {540};
 case "RHS_ACC_1P78": {650};
 case "RHS_ACC_1PN93_1": {1780};
@@ -188,6 +194,8 @@ case "OPTIC_HAMR_KHK_F": {1370};
 
 */
 
+case "CUP_OPTIC_PSO_1": {300};
+case "CUP_OPTIC_PSO_3": {-1}; //is this supposed to be a PO 3-9x24...?
 
 default {-1};
 
