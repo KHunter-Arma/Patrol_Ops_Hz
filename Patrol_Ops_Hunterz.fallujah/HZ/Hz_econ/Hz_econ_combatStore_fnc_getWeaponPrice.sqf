@@ -531,6 +531,8 @@ case "RHS_WEAP_M82A1": {9119};
 
 case "RHS_WEAP_SCORPION": {595};
 
+/*
+
 //sidearms
 case "RHS_WEAP_PB_6P9": {450};
 case "RHS_WEAP_PYA": {685};
