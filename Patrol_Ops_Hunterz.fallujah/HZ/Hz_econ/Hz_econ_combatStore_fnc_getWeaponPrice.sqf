@@ -356,7 +356,7 @@ case "RHS_WEAP_AK105_ZENITCO01_B33": {1855};
 
 case "RHS_WEAP_AK74": {870};
 case "RHS_WEAP_AK74_GP25": {970};
-case "RHS_WEAP_AK74_3": {1020}
+case "RHS_WEAP_AK74_3": {1020};
 case "RHS_WEAP_AK74_2": {870};
 
 /*
@@ -530,6 +530,8 @@ case "RHS_WEAP_M82A1": {9119};
 */
 
 case "RHS_WEAP_SCORPION": {595};
+
+/*
 
 //sidearms
 case "RHS_WEAP_PB_6P9": {450};
