@@ -165,11 +165,11 @@ _guardPositions = _guardPositions - [_powPos];
 
 	if (_ins) then {
 	
-		_unit = _powgrp createUnit [mps_opfor_ins call mps_getRandomElement,_position,[],200,"NONE"];
+		_unit = _powgrp createUnit [mps_opfor_ins call mps_getRandomElement,_position,[],50,"NONE"];
 	
 	} else {
 	
-		_unit = _powgrp createUnit [mps_opfor_inf call mps_getRandomElement,_position,[],200,"NONE"];
+		_unit = _powgrp createUnit [mps_opfor_inf call mps_getRandomElement,_position,[],50,"NONE"];
 		
 	};
 	
@@ -192,8 +192,6 @@ _guardPositions = _guardPositions - [_powPos];
 
 /*--------------------CREATE ENEMY AT LOCATION------------------------*/
 
-_troops = [];
-	
 _staticguns = _minStaticWeapon max (round (random _maxStaticWeapon));
 if(_staticguns > 0) then {
 

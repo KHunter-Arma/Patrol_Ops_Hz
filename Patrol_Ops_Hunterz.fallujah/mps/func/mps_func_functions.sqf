@@ -157,16 +157,17 @@ mps_blufor_cargoplane = [];
 	
 } forEach mps_config_units;
 
+//Spread out and reassemble
 _temp = +mps_opfor_inf;
 _temp2 = [];
 
 {
   if ((count mps_opfor_inf) == 0) exitwith {};
-  _val =  mps_opfor_inf call mps_getrandomelement;
+	_randomIndex = floor (random (count mps_opfor_inf));
+  _val =  mps_opfor_inf select _randomIndex;
   _temp2 set [count _temp2,_val];
-  mps_opfor_inf = mps_opfor_inf - [_val];
-  
-  
+	mps_opfor_inf set [_randomIndex,""];
+  mps_opfor_inf = mps_opfor_inf - [""];    
 } foreach _temp;
 
 mps_opfor_inf = +_temp2;
@@ -176,13 +177,30 @@ _temp2 = [];
 
 {
   if ((count mps_opfor_ins) == 0) exitwith {};
-  _val =  mps_opfor_ins call mps_getrandomelement;
+	_randomIndex = floor (random (count mps_opfor_ins));
+  _val =  mps_opfor_ins select _randomIndex;
   _temp2 set [count _temp2,_val];
-  mps_opfor_ins = mps_opfor_ins - [_val];   
+	mps_opfor_ins set [_randomIndex,""];
+  mps_opfor_ins = mps_opfor_ins - [""];   
   
 } foreach _temp;
 
 mps_opfor_ins = +_temp2;
+
+_temp = +mps_blufor_inf;
+_temp2 = [];
+
+{
+  if ((count mps_blufor_inf) == 0) exitwith {};
+	_randomIndex = floor (random (count mps_blufor_inf));
+  _val =  mps_blufor_inf select _randomIndex;
+  _temp2 set [count _temp2,_val];
+	mps_blufor_inf set [_randomIndex,""];
+  mps_blufor_inf = mps_blufor_inf - [""];   
+  
+} foreach _temp;
+
+mps_blufor_inf = +_temp2;
 
 
 {
