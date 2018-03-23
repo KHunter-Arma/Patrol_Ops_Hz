@@ -18,6 +18,8 @@
 ["nukeweatherCounter",SINGLE_VARIABLE,false] call Hz_pers_API_addMissionVariable;
 ["owner",true] call Hz_pers_API_addObjectVariable;
 ["owneruid",true] call Hz_pers_API_addObjectVariable;
+["Hz_ambw_srel_relationscivilian",SINGLE_VARIABLE,true] call Hz_pers_API_addMissionVariable;
+["Hz_ambw_srel_relationsownside",SINGLE_VARIABLE,true] call Hz_pers_API_addMissionVariable;
 
 if (Hz_pops_enableDetainUnrecognisedUIDs) then {
 	
