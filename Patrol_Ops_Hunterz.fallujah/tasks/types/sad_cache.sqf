@@ -152,6 +152,9 @@ for "_i" from 1 to _cacheCount do {
 	
 		_splosion = "IEDUrbanBig_Remote_Ammo" createVehicle (getposatl (_this select 0));
 		_splosion setDamage 1;
+		
+		mps_civilian_intel = mps_civilian_intel - [_this select 0];
+		publicVariable "mps_civilian_intel";
 	
 	}];
 	
