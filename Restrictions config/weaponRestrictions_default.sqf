@@ -227,7 +227,8 @@ Hz_econ_cfg_weaponsRestrictions_default =
 "HLC_RIFLE_RPK",
 "HLC_RIFLE_RPK74N",
 "STR_AKM",  //gp-25
-"STR_AK_74_GP"
+"STR_AK_74_GP",
+"STR_RPD"
 
 
 
