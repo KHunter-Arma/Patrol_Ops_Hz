@@ -188,8 +188,6 @@ Hz_econ_cfg_weaponsRestrictions_default =
 "RHS_WEAP_M320",
 "RHS_WEAP_MAAWS",
 "CUP_ARIFLE_AK74_GL",
-"CUP_ARIFLE_AKM",
-"CUP_ARIFLE_AKS74",
 "CUP_ARIFLE_FNFAL_RAILED",
 "CUP_ARIFLE_M16A2_GL",
 "CUP_ARIFLE_RPK74",
@@ -227,7 +225,8 @@ Hz_econ_cfg_weaponsRestrictions_default =
 "HLC_RIFLE_RPK",
 "HLC_RIFLE_RPK74N",
 "STR_AKM",  //gp-25
-"STR_AK_74_GP"
+"STR_AK_74_GP",
+"STR_RPD"
 
 
 
