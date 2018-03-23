@@ -34,7 +34,8 @@ wepInfo = wepInfo - [
 "CUP_LMG_PKM",
 "CUP_LMG_UK59",
 "HLC_RIFLE_RPK",
-"HLC_RIFLE_RPK74N"
+"HLC_RIFLE_RPK74N",
+"STR_RPD"
 
 
 
