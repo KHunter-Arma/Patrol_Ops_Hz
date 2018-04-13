@@ -1,7 +1,6 @@
 #include "\x\Hz\Hz_mod_persistency\parsing_descriptors.txt"
 
 ["Hz_econ_funds",SINGLE_VARIABLE,true] call Hz_pers_API_addMissionVariable;
-["civ_killed_count",SINGLE_VARIABLE,true] call Hz_pers_API_addMissionVariable;
 ["nuke_event",ONE_D_ARRAY,true] call Hz_pers_API_addMissionVariable;
 ["Hz_save_radar_spawn_timer",SINGLE_VARIABLE,false] call Hz_pers_API_addMissionVariable;
 ["Hz_save_radar_pos",SINGLE_VARIABLE,false] call Hz_pers_API_addMissionVariable;
