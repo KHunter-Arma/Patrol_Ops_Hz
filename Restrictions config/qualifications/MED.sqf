@@ -77,7 +77,10 @@ itemsInfo = itemsInfo - [
 ////////////////////////////////////////////////////////////////////////////////////
 
 
-
+"TRYK_B_MEDBAG_UCP",
+"TRYK_B_MEDBAG_OD",
+"TRYK_B_MEDBAG_BK",
+"TRYK_B_MEDBAG"
 
 
 
