@@ -454,8 +454,12 @@ case "RHS_WEAP_PKM": {3550};
 
 case "RHS_WEAP_PKP": {3595};
 
+*/
+
 //PM63
 case "RHS_WEAP_PM63": {550};
+
+/*
 
 //PP2000
 case "RHS_WEAP_PP2000": {400};
@@ -476,6 +480,8 @@ case "RHS_WEAP_VSS": {2470};
 case "RHS_WEAP_VSS_GRIP": {2495};
 case "RHS_WEAP_VSS_GRIP_NPZ": {2560};
 case "RHS_WEAP_VSS_NPZ": {2535};
+
+*/
 
 //RHS GREF
 case "RHS_WEAP_IZH18": {305};
