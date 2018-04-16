@@ -111,7 +111,15 @@ player addEventHandler ["Killed",{
     };
     */
 		
-		Hz_econ_funds = Hz_econ_funds - Hz_econ_penaltyPerPlayerdeath;
+		_penalty = Hz_econ_penaltyPerPlayerdeath;
+		
+		if ((toupper Hz_playertype) != "SUPERVISOR") then {
+		
+			_penalty = _penalty / 3;
+		
+		};
+		
+		Hz_econ_funds = Hz_econ_funds - _penalty;
 		publicVariable "Hz_econ_funds";
 		
     };
