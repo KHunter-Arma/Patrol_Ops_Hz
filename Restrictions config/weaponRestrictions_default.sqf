@@ -43,6 +43,7 @@ Hz_econ_cfg_weaponsRestrictions_default =
 "RHS_WEAP_M4A1_CARRYHANDLE_PMAG",
 "RH_M4_M203",
 "RH_M4_RIS_M203S",
+"RH_M4_RIS_M203",
 "RH_M4A1_RIS_M203",
 "RH_M4A1_RIS_M203S",
 "RH_M4SBR",
