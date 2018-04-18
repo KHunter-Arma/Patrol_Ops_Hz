@@ -4594,7 +4594,7 @@ class CustomAttributes
 																"BOOL"
 															};
 														};
-														value=1;
+														value=0;
 													};
 												};
 												class Item1
@@ -56301,7 +56301,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="0.1";
+							value="0.05";
 						};
 					};
 				};
