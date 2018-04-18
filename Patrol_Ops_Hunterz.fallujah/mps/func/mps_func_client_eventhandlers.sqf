@@ -19,30 +19,89 @@ if( if( !isNil "ace_wounds_enabled" ) then { false } else { true } ) then {
 //player addEventHandler ["Killed",{player spawn mps_respawn_gear}];
 
 gogglesAtDeath = "";
+ownedWepHolders = [];
 
 player addEventHandler ["Killed",{
   
   if(Killed_EH_block) exitwith {};
   Killed_EH_block = true;
-  player setvariable ["NoDelete",true,true];
+	
+	_player = _this select 0;
+	
+  _player setvariable ["NoDelete",true,true];
+	
+	gogglesAtDeath = goggles _player;
+	ownedWepHolders = [];
   
   mps_killed_event = [(_this select 0),(_this select 1),PlayerSide]; publicVariable "mps_killed_event";
   
   //player removeAction mps_self_heal;
-  
-  disableUserInput false;
-  
-  [] spawn {
+    
+  _player spawn {
+	
+		_player = _this;
+	
+		_weaponHoldersExcluded = nearestObjects [_player, ["WeaponHolderSimulated"],30];
 
-  //  player removeaction mps_rallypoint;
-    player removeaction mps_client_hud_act;     
+  //  _player removeaction mps_rallypoint;
+    _player removeaction mps_client_hud_act;     
+		
+		_handgun = handgunWeapon _player;
+		_primary = primaryWeapon _player;
+		_secondary = secondaryWeapon _player;
     
     sleep 2;
 		
-		player action ["nvGogglesOff", player];
+		_player action ["nvGogglesOff", _player];		
 		
-		gogglesAtDeath = goggles player;
-		_hasEarplugs = player getvariable ["ACE_hasEarPlugsin",false];
+		_hasEarplugs = _player getvariable ["ACE_hasEarPlugsin",false];
+		
+		_weaponsNeedToBeFound = [];
+		
+		{
+		
+			if (_x != "") then {
+			
+				_weaponsNeedToBeFound pushBack _x;
+			
+			};
+		
+		} foreach [_handgun,_primary,_secondary];
+		
+		_timeout = time + 10;
+		
+		while {openMap false; 0 fadeSound 0; acre_sys_core_globalVolume = 0; ((count _weaponsNeedToBeFound) > 0) || (time > _timeout) || (alive player)} do {
+		
+			_weaponHolders = nearestObjects [_player, ["WeaponHolderSimulated"],30];
+			
+			{
+			
+				if (!(_x in _weaponHoldersExcluded)) then {
+			
+					_weps = weaponCargo _x;
+					_wepHolder = _x;
+					
+					{
+					
+						if (_x in _weaponsNeedToBeFound) then {
+						
+							_weaponsNeedToBeFound = _weaponsNeedToBeFound - [_x];
+							
+							if (!(_wepHolder in ownedWepHolders)) then {
+							
+								ownedWepHolders pushBack _wepHolder;
+							
+							};
+						
+						};
+					
+					} foreach _weps;
+				
+				};
+			
+			} foreach _weaponHolders;
+		
+		};
 		
     WaitUntil{openMap false; 0 fadeSound 0; acre_sys_core_globalVolume = 0; alive player };
     
@@ -111,7 +170,15 @@ player addEventHandler ["Killed",{
     };
     */
 		
-		Hz_econ_funds = Hz_econ_funds - Hz_econ_penaltyPerPlayerdeath;
+		_penalty = Hz_econ_penaltyPerPlayerdeath;
+		
+		if ((toupper Hz_playertype) != "SUPERVISOR") then {
+		
+			_penalty = _penalty / 3;
+		
+		};
+		
+		Hz_econ_funds = Hz_econ_funds - _penalty;
 		publicVariable "Hz_econ_funds";
 		
     };
@@ -234,15 +301,13 @@ player addeventhandler ["Respawn", {
 		_weaponsItems = weaponsitems _corpse;
 		
 		if ((vehicle _corpse) == _corpse) then {
-		
-			_weaponHolders = nearestObjects [_corpse, ["WeaponHolderSimulated"],3];
-			
+					
 			{
 				
 				_weaponsItems = _weaponsItems + (weaponsitemscargo _x);
 				deletevehicle _x;
 			
-			} foreach _weaponHolders;
+			} foreach ownedWepHolders;
 		
 		};
 		
@@ -385,6 +450,8 @@ player addeventhandler ["Respawn", {
 		}foreach _assignedItems;
 		
     _corpse setvariable ["NoDelete",false,true];
+		
+		ownedWepHolders = [];
 		
   };
 
