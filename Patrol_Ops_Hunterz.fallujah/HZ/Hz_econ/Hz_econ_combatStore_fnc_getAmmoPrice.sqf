@@ -196,7 +196,7 @@ case "RHS_G_GDM40": {15};
 case "G_40MM_SMOKEBLUE": {15};
 case "G_40MM_SMOKEGREEN": {15};
 case "G_40MM_SMOKEORANGE": {15};
-case "G_40MM_SMOKEPURPLE": {};
+case "G_40MM_SMOKEPURPLE": {15};
 case "G_40MM_SMOKERED": {15};
 case "G_40MM_SMOKE": {15};
 case "G_40MM_SMOKEYELLOW": {15};
