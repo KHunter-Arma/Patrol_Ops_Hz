@@ -179,7 +179,6 @@ case "RHSUSF_40MM_HEDP": {20};
 case "RHS_AMMO_M397": {55};
 case "RHS_AMMO_M576_BUCKSHOT": {15};
 case "RHSUSF_40MM_PRACTICE": {10};
-case "RHS_G_VG40SZ": {30};
 case "RHSUSF_40MM_WHITE": {15};
 case "RHSUSF_40MM_GREEN": {15};
 case "RHSUSF_40MM_RED": {15};
@@ -192,6 +191,26 @@ case "F_HUNTIR": {400};
 case "RHS_AMMO_MK19M3_M384": {28};
 case "RHS_AMMO_MK19M3_M430I": {28};
 case "RHS_AMMO_MK19M3_M1001": {32};
+
+case "RHS_G_GDM40": {15};
+case "G_40MM_SMOKEBLUE": {15};
+case "G_40MM_SMOKEGREEN": {15};
+case "G_40MM_SMOKEORANGE": {15};
+case "G_40MM_SMOKEPURPLE": {};
+case "G_40MM_SMOKERED": {15};
+case "G_40MM_SMOKE": {15};
+case "G_40MM_SMOKEYELLOW": {15};
+case "RHS_G_VG40MD_GREEN": {10};
+case "RHS_G_VG40MD_RED": {10};
+case "RHS_G_VG40MD_WHITE": {10};
+case "RHS_40MM_GREEN": {10};
+case "RHS_40MM_RED": {10};
+case "RHS_40MM_WHITE": {10};
+case "RHS_G_VG40SZ": {25};
+case "RHS_G_VG40TB": {30};
+case "RHS_G_VOG25": {10};
+case "G_40MM_HE": {10};
+case "RHS_G_VOG25P": {15};
 
 
 //SPG-9 ammo
