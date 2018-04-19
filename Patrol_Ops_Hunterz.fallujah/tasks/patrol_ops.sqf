@@ -20,10 +20,11 @@ _list = [
     "def_fob",
 		"sar_pow",
 		"esc_journalist",
-		"sad_cache"
+		"sad_cache",
+		"sar_supplies"
     ];
 		
-if(hz_debug) then {_list = ["def_castle"];};
+if(hz_debug) then {_list = ["sar_supplies"];};
 
 //init
 taskrequested = false;
