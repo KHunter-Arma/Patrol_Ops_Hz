@@ -259,7 +259,7 @@ if(_spawnedSquads > 0) then {
 		
 		_tempos = [_position,_EnemySpawnMinimumRange] call Hz_func_findspawnpos;
 		
-		_grp = [ _tempos,"INS",random 24,50 ] call CREATE_OPFOR_SQUAD;
+		_grp = [ _tempos,"INS",24 + random 24,300 ] call CREATE_OPFOR_SQUAD;
 		
 		_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] call Hz_func_opforVehicleSupport;
 		_vehicletypes = _Vehsupport select 0;
@@ -291,7 +291,9 @@ if(_spawnedSquads > 0) then {
 			_wp setWaypointType "SAD";
 			
 		};
-		sleep 1;
+		
+		//unbunching delay
+		sleep 120;
 	};
 };
 

@@ -415,7 +415,7 @@ case (_rand < 0.8) : {
 					//exit spawn loop and transfer to reinforcements script if too many units present on map
 					if((count allunits) > Hz_max_allunits) exitwith {_r = (_spawnedSquads - _i) + 1; [_EnemySpawnMinimumRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] spawn Hz_task_reinforcements;};
 
-					_grp = [ _spawnpos,"INS",random 24,300 ] call CREATE_OPFOR_SQUAD;
+					_grp = [ _spawnpos,"INS",24 + (random 24),300 ] call CREATE_OPFOR_SQUAD;
 					
 					_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] call Hz_func_opforVehicleSupport;
 					_vehicletypes = _Vehsupport select 0;
@@ -424,7 +424,7 @@ case (_rand < 0.8) : {
 					if((count _vehicletypes) > 0) then { 
 						
 						_car_type = _vehicletypes call mps_getRandomElement;
-						_vehgrp = [_car_type,(SIDE_C select 0),_spawnpos,300] call mps_spawn_vehicle;
+						_vehgrp = [_car_type,(SIDE_C select 0),_spawnpos,100] call mps_spawn_vehicle;
 						sleep 0.1;
 						patrol_task_vehs pushback (vehicle (leader _vehgrp));
 						(units _vehgrp) joinSilent _grp;
@@ -447,6 +447,10 @@ case (_rand < 0.8) : {
 						_wp setWaypointType "SAD";
 						
 					};
+					
+					//unbunching delay
+					sleep 120;
+					
 				};
 			};
 			

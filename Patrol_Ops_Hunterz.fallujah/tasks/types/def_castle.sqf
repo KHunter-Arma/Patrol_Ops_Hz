@@ -91,7 +91,7 @@ if(_b > 0) then {
 		if((count _vehicletypes) > 0) then { 
 			
 			_car_type = _vehicletypes call mps_getRandomElement;
-			_vehgrp = [_car_type,(SIDE_C select 0),_spawnpos,300] call mps_spawn_vehicle;			
+			_vehgrp = [_car_type,(SIDE_C select 0),_spawnpos,100] call mps_spawn_vehicle;			
 			_grpLeader = leader _vehgrp;
 			sleep 0.1;
       patrol_task_vehs pushback (vehicle (leader _vehgrp));
@@ -118,7 +118,7 @@ if(_b > 0) then {
 		};
 		
 		//unbunching delay
-		sleep 180;
+		sleep 300;
 		
 	};
 };   
