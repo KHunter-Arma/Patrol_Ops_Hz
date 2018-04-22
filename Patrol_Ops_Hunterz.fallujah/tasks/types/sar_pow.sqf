@@ -397,7 +397,7 @@ While{ _pow1 distance getMarkerPos format["return_point_%1",(SIDE_A select 0)] >
 
 if (captive _pow1) then {
 
-	waitUntil {sleep 2; (!captive _pow1) || (!alive _pow1)};
+	waitUntil {sleep 2; (!captive _pow1) || (!alive _pow1) || !(call Hz_fnc_taskSuccessCheckGenericConditions)};
 
 };
 

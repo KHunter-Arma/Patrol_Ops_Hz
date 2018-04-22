@@ -37,7 +37,7 @@ private _action = [
 			
 			{
 			
-				if (((_x distance _basePos) > 500) || ((_x distance _fobPos) > 500)) exitWith {
+				if (((_x distance _basePos) > 1000) || ((_x distance _fobPos) > 250)) exitWith {
 				
 					_exit = true;
 				

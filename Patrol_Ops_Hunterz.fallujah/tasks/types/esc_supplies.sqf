@@ -436,7 +436,7 @@ if( (_supplyBar >= _supplyTime) && (({ alive _x } count _workers) > 0) && (call 
 
 /*--------------------CLEAN UP (NEW VERSION)---------------------------------*/       
 
-[patrol_task_units,_position,patrol_task_vehs] spawn {
+[patrol_task_units,_position,patrol_task_vehs,_crowd] spawn {
 	
 	private ["_units","_vehs","_markers"];
 	_units = _this select 0;
@@ -444,6 +444,7 @@ if( (_supplyBar >= _supplyTime) && (({ alive _x } count _workers) > 0) && (call 
 	
 	while{ {isPlayer _x} count nearestObjects[(_this select 1),["CAManBase","LandVehicle","Plane"],1500] > 0} do { sleep 60 };
 	{deletevehicle _x}forEach _units;
+	{deletevehicle _x}forEach (_this select 3);
 	{deletevehicle _x}forEach _vehs;
 	
 };      
