@@ -35,6 +35,7 @@ Hz_econ_cfg_weaponsRestrictions_default =
 "RH_M16A3",
 "RH_M16A4",
 "RH_M16A4GL",
+"RH_M16A1GL",
 "RH_M16A4_M",
 "RHS_WEAP_M16A4_CARRYHANDLE_PMAG",
 "RHS_WEAP_M4_M320",
