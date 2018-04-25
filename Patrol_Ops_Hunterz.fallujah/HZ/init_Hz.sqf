@@ -46,6 +46,7 @@ if(!isDedicated) then {
 
 	Hz_fnc_arrestPlayer = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_arrestPlayer.sqf";
   Hz_fnc_arrestedHandleEscape = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_arrestedHandleEscape.sqf";
+	Hz_fnc_transferGearToNearestAmmoCrate = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_transferGearToNearestAmmoCrate.sqf";
   
   [] spawn {   
     

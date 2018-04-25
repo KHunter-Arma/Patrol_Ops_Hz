@@ -15,13 +15,7 @@ if (_this == "-1") then {
 	moveout player;
 	player setPosATL Hz_pops_arrestPosition;
 	
-	removeallweapons player;
-	removeallitems player;
-	removeAllAssignedItems player;
-	removeVest player;
-	removeBackpack player;
-	removeHeadgear player;	
-	removeGoggles player;
+	player call Hz_fnc_transferGearToNearestAmmoCrate;
 	
 	player addUniform "TRYK_OVERALL_flesh";
   player setvariable ["TL",false,true];
@@ -61,15 +55,7 @@ if (_this == "-1") then {
 		if (!isNull _target) then {
 	
 			_target remoteExecCall ["Hz_pers_API_disablePlayerSaveStateOnDisconnect",_target,false];
-			_target remoteExecCall ["removeAllItems",_target,false];
-			_target remoteExecCall ["removeAllWeapons",_target,false];
-			removeVest _target;
-			removeUniform _target;
-			_target remoteExecCall ["removeBackpack",_target,false];
-			_target remoteExecCall ["removeAllAssignedItems",_target,false];
-			removeHeadgear _target;
-			removeGoggles _target;
-			
+			_target remoteExecCall ["Hz_fnc_transferGearToNearestAmmoCrate",_target,false];			
 			[missionNamespace, ["Hz_func_isSupervisor",{false}]] remoteExecCall ["setVariable",_target,false];
 			
 			[_target, ["AnimChanged", {
@@ -78,7 +64,12 @@ if (_this == "-1") then {
 					};
 			}]] remoteExecCall ["addEventHandler",_target,false];
 			
-			_target addUniform "TRYK_OVERALL_flesh";
+			_target spawn {
+			
+				uiSleep 3;
+				_this addUniform "TRYK_OVERALL_flesh";
+			
+			};
 			
 			moveout _target;
 			_target setPosATL Hz_pops_arrestPosition;
