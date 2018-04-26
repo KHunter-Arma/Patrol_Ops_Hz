@@ -6,8 +6,8 @@ diag_log diag_activeMissionFSMs;
 /*-------------------- TASK PARAMS ---------------------------------*/
 _downPayment = 30000;
 _supplyTime = 1200;
-_penaltyPerLostContainer = 2000;
-_penaltyPerLostWorker = 5000;
+_penaltyPerLostContainer = 20000;
+_penaltyPerLostWorker = 50000;
 
 // in case the mission turns into a defend task
 _EnemySpawnMinimumRange = 5000;
@@ -103,31 +103,31 @@ for "_i" from 1 to 4 do {
 
 } foreach _workers;
 
-_rand = random 1;
+_rand = random 100;
 
 _locationDescription = "";
 _position = [0,0,0];
 
 switch (true) do {
 
-	case (_rand < 0.33) : {
+	case (_rand < 33) : {
 
-	_position = [4637.1,2359.13,0];
-	_locationDescription = "the old army base";
+		_position = [4637.1,2359.13,0];
+		_locationDescription = "the old army base";
 
 	};
 
-	case (_rand < 0.66) : {
+	case (_rand < 66) : {
 
-	_position = [3526.63,6819.39,0];
-	_locationDescription = "the train station";
+		_position = [3526.63,6819.39,0];
+		_locationDescription = "the train station";
 
 	};
 	
 	default {
 
-	_position = [8984.87,9105.5,0];
-	_locationDescription = "Mukhtar village";
+		_position = [8984.87,9105.5,0];
+		_locationDescription = "Mukhtar village";
 
 	};
 
@@ -300,6 +300,7 @@ if(_spawnedSquads > 0) then {
 /*--------------------MISSION CRITERIA TO PASS---------------------------------*/
 
 _supplyBar = 0;
+_stanceWarningDone = false;
 
 while { 
 
@@ -318,7 +319,25 @@ while {
 		(({if (alive _x) then {(_x distance _position) < 50} else {true}} count _containers) == 6)
 		&& (({if (alive _x) then {((_x distance _position) < 50) && ((vehicle _x) == _x)} else {true}} count _workers) == 4)
 	
-	) then {_supplyBar = _supplyBar + 1;};
+	) then {
+	
+		_exit = false;
+		if (!_stanceWarningDone) then {
+
+			if (({if (alive _x) then {(stance _x) == "STAND"} else {true}} count _workers) != 4) then {
+			
+				"The workers won't be able to work if they are not standing up." remoteExecCall ["hint",0,false];
+				_exit = true;
+				_stanceWarningDone = true;
+			
+			};
+		
+		};		
+		if (_exit) exitWith {};
+		
+		_supplyBar = _supplyBar + 1;
+	
+	};
 	
 	if (_supplyBar == 1) then { "The workers are now distributing the supplies. Provide security until they finish." remoteExecCall ["hint",0,false]; };
 	

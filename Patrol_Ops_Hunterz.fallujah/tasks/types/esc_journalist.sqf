@@ -201,14 +201,11 @@ for "_i" from 1 to _numberOfTargets do {
 	};
 	
 	[_vip] joinsilent (creategroup (SIDE_A select 0));
-	sleep 2;
-	_vip setBehaviour "CARELESS";
-	// he can get stuck in crouch if he doesn't have weapons
-	_vip setUnitPos "DOWN";
 	sleep 1;
-	_vip setUnitPos "UP";
-	_vip forcespeed 15;
-	_vip domove _target;
+	[_vip,"CARELESS"] remoteExecCall ["setBehaviour",_vip,false];
+	[_vip,"UP"] remoteExecCall ["setUnitPos",_vip,false];
+	[_vip,15] remoteExecCall ["forcespeed",_vip,false];
+	[_vip,_target] remoteExecCall ["domove",_vip,false];
 	
 	[-1, {
 

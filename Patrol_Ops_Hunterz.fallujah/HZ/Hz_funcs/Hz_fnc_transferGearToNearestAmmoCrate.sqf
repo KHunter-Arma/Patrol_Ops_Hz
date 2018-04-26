@@ -96,11 +96,14 @@ if (isnull _crate) then {
 
 _crate additemcargoglobal [_vestType,1];
 _crate additemcargoglobal [_uniformType,1];
-_crate additemcargoglobal [_backpackType,1];
+_crate addBackpackCargoGlobal [_backpackType,1];
 _crate additemcargoglobal [_headGear,1];
 _crate additemcargoglobal [_goggles,1];
 
 {
+		
+	if !((_x select 0) in _assignedItems) then {
+
 		_crate addWeaponCargoGlobal [_x select 0, 1];	
 		
 		//add magazine
@@ -146,6 +149,8 @@ _crate additemcargoglobal [_goggles,1];
 			};	
 		
 		};
+		
+	};
 
 } foreach _weaponsItems;
 
