@@ -406,7 +406,7 @@ if (captive _pow1) then {
 Hz_max_ambient_units = Hz_max_ambient_units - _ambientCombatIntensifyAmount;
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/
-missionload = true;
+missionload = false;
 if( alive _pow1 && (call Hz_fnc_taskSuccessCheckGenericConditions)) then {
   [format["TASK%1",_taskid],"succeeded"] call mps_tasks_upd;
   

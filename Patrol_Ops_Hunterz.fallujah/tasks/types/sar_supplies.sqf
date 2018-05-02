@@ -346,6 +346,12 @@ _otherReward = _cacheCount*_rewardPerCache;
 
 } foreach _caches;
 
+/*------------------- INTENSIFY AMBIENT COMBAT------------------------------------*/
+
+missionload = false;
+Hz_max_ambient_units = Hz_max_ambient_units + Hz_ambient_units_intensify_amount;
+Hz_max_allunits = Hz_max_allunits + Hz_ambient_units_intensify_amount; 
+
 /*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
 
 mps_civilian_intel = +_caches; publicVariable "mps_civilian_intel";
@@ -374,8 +380,13 @@ While{ (({if (alive _x) then {(_x distance _returnPoint) > 20} else {false}} cou
   
 };
 
+/*------------------- INTENSIFY AMBIENT COMBAT---------------------------*/
+
+Hz_max_ambient_units = Hz_max_ambient_units - Hz_ambient_units_intensify_amount;
+Hz_max_allunits = Hz_max_allunits - Hz_ambient_units_intensify_amount; 
+
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/
-missionload = true;
+missionload = false;
 if((call Hz_fnc_taskSuccessCheckGenericConditions) && ({alive _x} count _caches > 0)) then {
   [format["TASK%1",_taskid],"succeeded"] call mps_tasks_upd;
   

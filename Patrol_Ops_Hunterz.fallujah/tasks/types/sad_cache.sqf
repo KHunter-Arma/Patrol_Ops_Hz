@@ -349,6 +349,8 @@ _otherReward = _cacheCount*_rewardPerCache;
 
 } foreach _caches;
 
+missionload = false;
+
 /*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
 
 mps_civilian_intel = +_caches; publicVariable "mps_civilian_intel";
@@ -375,7 +377,7 @@ While{ (({alive _x} count _caches) > 0) && (call Hz_fnc_taskSuccessCheckGenericC
 };
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/
-missionload = true;
+missionload = false;
 if(call Hz_fnc_taskSuccessCheckGenericConditions) then {
   [format["TASK%1",_taskid],"succeeded"] call mps_tasks_upd;
   
