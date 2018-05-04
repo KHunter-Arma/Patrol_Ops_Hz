@@ -94,7 +94,8 @@ Hz_econ_cfg_attachmentRestrictions_default =
 "CUP_OPTIC_NSPU",
 "CUP_OPTIC_PGO7V2",
 "CUP_OPTIC_PSO_1",
-"CUP_OPTIC_PSO_3"
+"CUP_OPTIC_PSO_3",
+"OPTIC_STR_PB"
 
 
 ];
