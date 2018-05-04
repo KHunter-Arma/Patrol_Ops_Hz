@@ -16,7 +16,7 @@ _groupType = mps_opfor_inf;
 if(count _this > 3) then { _paradrop = _this select 3};
 if(count _this > 4) then { _groupType = _this select 4};
 
-_flyin = 200;
+_flyin = 500;
 _droptype = mps_opfor_ncoh call mps_getRandomElement;
 
 if(_droptype isKindof "Plane") then { _paradrop = true };
@@ -83,7 +83,7 @@ if (!isEngineOn _drophelo && alive _helopilot) then {
   _helopilot action ["engineOn", vehicle _helopilot];
 };
 
-_drophelo flyinheight 200;
+_drophelo flyinheight 500;
 _drophelo doMove _dest;
 
 [_drophelo,_dest,_helopilot,_helogrp,_paradrop,_spawnpos,_drophelogrp] spawn {
@@ -180,7 +180,7 @@ _drophelo doMove _dest;
   };
 
   sleep 2;
-  _drophelo flyinheight 200;
+  _drophelo flyinheight 500;
   _drophelo doMove _spawnpos;
 
   waitUntil {sleep 30; _helopilot doMove _spawnpos; _drophelo distance _spawnpos < 2000 || !canMove _drophelo || !alive _helopilot};

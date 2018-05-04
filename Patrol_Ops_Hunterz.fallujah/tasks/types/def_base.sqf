@@ -21,8 +21,6 @@ _rewardMultiplier = 0.5;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 
-if (_EnemySpawnMinimumRange < 2000) then {_EnemySpawnMinimumRange = 2000;};
-
 //These are markers placed in editor
 _position = markerpos "BASE";
 _taskid = format["%1%2%3",round (_position select 0),round (_position select 1),(round random 999)];

@@ -184,6 +184,7 @@ _guardPositions = _guardPositions - [_powPos];
 
 [_pow1,["<t color=""#00FF00"">Request to follow</t>",{
 
+		(_this select 0) setCaptive false;
 		[_this select 0] joinsilent (group (_this select 1));
 		
 		(_this select 0) forcespeed -1;

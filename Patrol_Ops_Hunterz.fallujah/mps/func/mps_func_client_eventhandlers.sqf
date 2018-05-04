@@ -70,7 +70,12 @@ player addEventHandler ["Killed",{
 		
 		_timeout = time + 10;
 		
-		while {openMap false; 0 fadeSound 0; acre_sys_core_globalVolume = 0; ((count _weaponsNeedToBeFound) > 0) || (time > _timeout) || (alive player)} do {
+		while {true} do {
+		
+			openMap false; 0 fadeSound 0; acre_sys_core_globalVolume = 0;
+			
+			//try to resolve loop getting stuck with exitwith instead...
+			if (((count _weaponsNeedToBeFound) < 1) || (_timeout > time) || (alive player)) exitwith {};
 		
 			_weaponHolders = nearestObjects [_player, ["WeaponHolderSimulated"],30];
 			

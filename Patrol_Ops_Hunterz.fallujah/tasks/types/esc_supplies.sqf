@@ -10,7 +10,7 @@ _penaltyPerLostContainer = 20000;
 _penaltyPerLostWorker = 50000;
 
 // in case the mission turns into a defend task
-_EnemySpawnMinimumRange = 5000;
+_EnemySpawnMinimumRange = 3000;
 _taskRadius = 50;
 _minSquadCount = 3;
 _maxSquadCount = 6;
@@ -66,6 +66,7 @@ for "_i" from 1 to 4 do {
 
 		_dudes = (_this select 0) getvariable "workers";
 	
+		_dudes joinsilent grpNull;
 		_dudes joinsilent (group (_this select 1));
 		
 		{_x forcespeed -1} foreach _dudes;
@@ -207,12 +208,13 @@ _lastAliveContainerCount = 6;
 _lastAliveWorkerCount = 4;
 
 _waitForArrival = false;
-
+/*
 if ((random 1) < 0.5) then {
 
 _waitForArrival = true;
 
 };
+*/
 
 waituntil { 
 

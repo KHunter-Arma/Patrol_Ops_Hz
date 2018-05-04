@@ -21,8 +21,6 @@ _rewardMultiplier = 0.7;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 
-if (_EnemySpawnMinimumRange < 2000) then {_EnemySpawnMinimumRange = 2000;};
-
 _position = [markerpos "ao_centre",3000] call Hz_func_findspawnpos;
 _taskid = format["%1%2%3",round (_position select 0),round (_position select 1),(round random 999)];
 Hz_task_ID = _taskid;

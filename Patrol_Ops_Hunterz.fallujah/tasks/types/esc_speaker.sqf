@@ -12,7 +12,7 @@ _speechCompletePayment = 30000;
 _speechTimeMinutes = 20;
 
 // in case the mission turns into a defend task
-_EnemySpawnMinimumRange = 5000;
+_EnemySpawnMinimumRange = 3000;
 _taskRadius = 50;
 _minSquadCount = 2;
 _maxSquadCount = 6;
@@ -29,8 +29,6 @@ _rewardMultiplier = 1;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 Hz_pops_task_auxFailCondition = false;
-
-if (_EnemySpawnMinimumRange < 2000) then {_EnemySpawnMinimumRange = 2000;};
 
 _rand = random 1;
 _position = [0,0,0];
@@ -199,8 +197,9 @@ _vip setvariable ["preachTime",0];
 
 [_vip,["<t color=""#00FF00"">Request to follow</t>",{
 
-	[_this select 0] joinsilent (group (_this select 1));
-	((_this select 0) getvariable "guards") joinsilent (group (_this select 1));
+	_units = (_this select 0) + ((_this select 0) getvariable "guards");
+	_units joinsilent grpNull;
+	_units joinsilent (group (_this select 1));
 
 }, [], 1, true, true, "", "(!captive _target) && (alive _target) && ((group _target) != (group _this))"]] remoteexeccall ["addAction",0,true];
 
@@ -343,6 +342,7 @@ case (_rand < 0.1) : {
 			//[objNull,_bomber,rSAY,"shout"] call RE;
 			[_bomber,"shout"] remoteExecCall ["say3D",0,false];
 			
+			[_bomber] joinsilent grpNull;
 			[_bomber] joinsilent createGroup (SIDE_B select 0);
 			
 			//[objNull,_bomber,rPLAYMOVE,"AmovPercMstpSsurWnonDnon"] call RE;
@@ -353,7 +353,6 @@ case (_rand < 0.1) : {
 			uisleep 0.5;
 			[_bomber,"AmovPercMstpSsurWnonDnon"] remoteExecCall ["switchMove",0,false];
 			_bomber disableAI "anim";
-			[_bomber] joinsilent (creategroup (SIDE_B select 0));
 			uisleep 1;
 			//     _uncon = _bomber call ace_sys_wounds_fnc_isUncon;
 			//    waituntil {!_uncon; sleep 2;};
@@ -485,6 +484,7 @@ case (_rand < 0.8) : {
 			for "_i" from 1 to _spawnedSquads do {					
 				
 				_spawnpos = [((markerpos "patrol_respawn_opfor") select 0) + 500 + random 500,((markerpos "patrol_respawn_opfor") select 1) + 500 + random 500,800];
+				uisleep 30;
 				
 				_paratroopers = [createGroup (SIDE_B select 0),_spawnpos,_position,true,["CUP_O_TK_SpecOps_MG","CUP_O_TK_SpecOps","CUP_O_TK_SpecOps_TL","CUP_O_TK_SpecOps","CUP_O_TK_SpecOps_TL"]] call CREATE_OPFOR_PARADROP;
 				patrol_task_units = patrol_task_units + _paratroopers;				
@@ -515,7 +515,7 @@ while {
 		_vip setvariable ["preachTime",_preachCounter];
 		_otherReward = _otherReward + _speechRewardPerSecond;
 		
-		if ((random 1) < 0.0003) then {
+		if ((random 1) < 0.0006) then {
 			
 			_temp = +_crowd;
 			{
@@ -556,6 +556,7 @@ while {
 				
 			};
 			
+			[_dude] joinSilent grpNull;
 			[_dude] joinSilent (createGroup (SIDE_B select 0));
 			
 			_dude reveal [_vip,4];

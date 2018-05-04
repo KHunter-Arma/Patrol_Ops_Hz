@@ -98,6 +98,7 @@ _vip setVariable ["Hz_ambw_disableSideRelations",true];
 
 [_vip,["<t color=""#00FF00"">Request to follow</t>",{
 
+	[_this select 0] joinsilent grpNull;
 	[_this select 0] joinsilent (group (_this select 1));
 
 }, [], 1, true, true, "", "(!captive _target) && (alive _target) && ((group _target) != (group _this))"]] remoteexeccall ["addAction",0,true];
@@ -200,6 +201,7 @@ for "_i" from 1 to _numberOfTargets do {
 		
 	};
 	
+	[_vip] joinsilent grpNull;
 	[_vip] joinsilent (creategroup (SIDE_A select 0));
 	sleep 1;
 	[_vip,"CARELESS"] remoteExecCall ["setBehaviour",_vip,false];
