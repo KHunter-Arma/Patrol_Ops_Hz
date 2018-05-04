@@ -229,7 +229,6 @@ Hz_econ_cfg_weaponsRestrictions_default =
 "STR_AKM",  //gp-25
 "STR_AK_74_GP",
 "STR_RPD",
-"STR_3XLIN_SN_SCOPED",
 "STR_RPK",
 "STR_PUL_DP"
 
