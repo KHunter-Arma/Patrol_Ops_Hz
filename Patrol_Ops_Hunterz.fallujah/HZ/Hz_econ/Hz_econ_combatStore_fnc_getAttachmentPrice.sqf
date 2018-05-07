@@ -39,7 +39,13 @@ case "RHS_ACC_PGO7V": {450};
 case "RHS_ACC_PGO7V2": {480};
 case "RHS_ACC_PGOV3": {500};
 case "RHS_ACC_PKAS": {460};
+
+*/
+
 case "RHS_ACC_PSO1M2": {300};
+
+/*
+
 case "RHS_ACC_PSO1M21": {335};
 
 case "RHSUSF_ACC_ANPAS13GV1": {7630};
