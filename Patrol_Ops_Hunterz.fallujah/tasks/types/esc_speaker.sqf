@@ -481,10 +481,11 @@ case (_rand < 0.8) : {
 			
 			if (Hz_pops_task_auxFailCondition) exitWith {};
 			
-			for "_i" from 1 to _spawnedSquads do {					
+			//since a chopper carries about half the troops than average squad size normally...
+			for "_i" from 1 to (_spawnedSquads*2) do {					
 				
 				_spawnpos = [((markerpos "patrol_respawn_opfor") select 0) + 500 + random 500,((markerpos "patrol_respawn_opfor") select 1) + 500 + random 500,800];
-				uisleep 30;
+				uisleep 20;
 				
 				_paratroopers = [createGroup (SIDE_B select 0),_spawnpos,_position,true,["CUP_O_TK_SpecOps_MG","CUP_O_TK_SpecOps","CUP_O_TK_SpecOps_TL","CUP_O_TK_SpecOps","CUP_O_TK_SpecOps_TL"]] call CREATE_OPFOR_PARADROP;
 				patrol_task_units = patrol_task_units + _paratroopers;				

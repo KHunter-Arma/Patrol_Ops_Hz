@@ -137,6 +137,7 @@ for "_i" from 1 to _cacheCount do {
 	sleep 0.1;
 	_cache setVariable ["R3F_LOG_disabled",true,true];
 	_cache setVariable ["value",_rewardPerCache];
+	_cache setVariable ["cachePos",getposatl _cache];
 	_caches pushBack _cache;
 	
 	clearItemCargoGlobal _cache;
@@ -377,6 +378,21 @@ While{ (({if (alive _x) then {(_x distance _returnPoint) > 20} else {false}} cou
   
   sleep 5;
   [_totalSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
+	
+	{
+	
+		if (_x in mps_civilian_intel) then {
+	
+			if (((getposatl _x) distance (_x getVariable "cachePos")) > 50) then {
+			
+				mps_civilian_intel = mps_civilian_intel - [_x];
+				publicVariable "mps_civilian_intel";
+			
+			};
+		
+		};
+	
+	} foreach _caches;
   
 };
 

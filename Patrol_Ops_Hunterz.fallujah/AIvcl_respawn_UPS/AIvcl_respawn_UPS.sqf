@@ -29,17 +29,16 @@ if ((count _escort) > 0) then {
 };
 
 _vehicle = objNull;
+_group = createGroup _side;
+_group setvariable ["Hz_Patrolling",true]; 
 
 if (_vehIsTank) then {
-	_group = createGroup _side;
-
+	
 	{
-		_dude = _group createUnit [_x,_respawnzone, [], 100, "FORM"];
+		_dude = _group createUnit [_x,_respawnzone, [], 100, "NONE"];
 		[_dude] allowGetIn false;
 		
 	} foreach _escort;
-
-	_group setvariable ["Hz_Patrolling",true]; 
 
 	_vehicle = _type createVehicle _respawnzone;
 	_vehicle setvehiclelock "LOCKED";
@@ -51,52 +50,25 @@ if (_vehIsTank) then {
 
 } else {
 	
-	_group = createGroup _side;
-
 	_vehicle = _type createVehicle _respawnzone;
 	_vehicle setvehiclelock "LOCKEDPLAYER";
 
 	if (_type == "LOP_IA_M113_W") then {[_vehicle, ["Desert",1],[]] call BIS_fnc_initVehicle;};
+	
+	_passengerUnits = +_unitTypeArray;	
+	createVehicleCrew _vehicle;	
+	{	
+		_passengerUnits = _passengerUnits - [typeof _x];	
+	} foreach (crew _vehicle);
+	
+	(crew _vehicle) joinSilent _group;
+	_group addVehicle _vehicle;
 
 	{
-		_group createUnit [_x,_respawnzone, [], 100, "FORM"];
-	} forEach _unitTypeArray;
-
-	_unitsGroup = units _group;
-	_turrets = allTurrets [_vehicle, false];
-	_turCount = count _turrets;
-
-	_unitsGroup allowgetin true;
-
-	for [{ _loop = 0 },{ _loop < count  _unitsGroup},{ _loop = _loop + 1}] do
-	{	
-		_guy = _unitsGroup select _loop;
-		
-		switch (true) do {
-			
-		case ((_vehicle emptyPositions "Driver") > 0) : { _guy assignasDriver _vehicle; [_guy] orderGetIn true; _guy moveinDriver _vehicle;};
-		case (_turCount > 0) : {
-				
-				_guy assignasTurret [_vehicle,_turrets select 0];
-				[_guy] orderGetIn true;
-				_guy moveinTurret [_vehicle,_turrets select 0];
-				_turrets = _turrets - [_turrets select 0];
-				_turCount = _turCount - 1;
-				
-			};	
-			
-			default {
-				
-				_guy assignascargo _vehicle;
-				[_guy] orderGetIn true;
-				_guy moveincargo _vehicle;
-				
-			};
-			
-		};
-		
-	};
-
+		_dude = _group createUnit [_x,_respawnzone, [], 100, "NONE"];
+		_dude moveInCargo _vehicle;		
+	} forEach _passengerUnits;
+	
 };
 
 _leader = leader _group;
