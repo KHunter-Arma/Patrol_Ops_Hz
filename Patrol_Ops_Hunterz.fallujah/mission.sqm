@@ -8,7 +8,7 @@ class EditorData
 	toggles=10;
 	class ItemIDProvider
 	{
-		nextID=5035;
+		nextID=5047;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={7389.5933,543.60626,3206.3049};
-		dir[]={-0.25537309,-0.82033962,-0.51170272};
-		up[]={-0.36631775,0.57187545,-0.73400837};
-		aside[]={-0.89476836,-9.2061237e-007,0.4465462};
+		pos[]={8189.7832,33.211517,2156.0791};
+		dir[]={-0.21399269,-0.5892334,-0.77911425};
+		up[]={-0.15606412,0.80795217,-0.56820452};
+		aside[]={-0.96429056,-1.5512342e-007,0.264853};
 	};
 };
 binarizationWanted=0;
@@ -6099,7 +6099,7 @@ class CustomAttributes
 																"SCALAR"
 															};
 														};
-														value=1;
+														value=5;
 													};
 												};
 												class Item1
@@ -6144,7 +6144,7 @@ class CustomAttributes
 																"SCALAR"
 															};
 														};
-														value=1;
+														value=2.5151711;
 													};
 												};
 												class Item1
@@ -6189,7 +6189,7 @@ class CustomAttributes
 																"SCALAR"
 															};
 														};
-														value=1;
+														value=3.0112007;
 													};
 												};
 												class Item1
