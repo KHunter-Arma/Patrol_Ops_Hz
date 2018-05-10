@@ -470,6 +470,7 @@ if (Hz_pops_enableDetainUnrecognisedUIDs) then {
 if (_exit) exitWith {};
 
 Hz_pers_clientReadyForLoad = true;
+ace_advanced_fatigue_recoveryFactor = 500;
 showScoretable 0;
 
 

@@ -270,7 +270,14 @@ _speechRewardPerSecond = _speechCompletePayment / _preachMax;
 
 _spawnedSquads = (_minSquadCount max (round (random _maxSquadCount)));
 
-waituntil { 
+waituntil {
+
+	if (captive _vip) then {
+	
+		[_vip, false] remoteExecCall ["ACE_captives_fnc_setHandcuffed",_vip,false];
+		[_vip, false] remoteExecCall ["setCaptive",_vip,false];
+	
+	};
 
 	sleep 5;
 	[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
@@ -601,6 +608,13 @@ case (_preachCounter >= _preachMax) : {
 		"The VIP has finished his speech. Return him to base ASAP." remoteExecCall ["hint",0,false];
 
 		waituntil { 
+		
+			if (captive _vip) then {
+	
+				[_vip, false] remoteExecCall ["ACE_captives_fnc_setHandcuffed",_vip,false];
+				[_vip, false] remoteExecCall ["setCaptive",_vip,false];
+			
+			};
 
 			sleep 5;
 			[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;

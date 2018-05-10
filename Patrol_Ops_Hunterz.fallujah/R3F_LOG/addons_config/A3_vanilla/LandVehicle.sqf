@@ -50,10 +50,11 @@ R3F_LOG_CFG_can_transport_cargo = R3F_LOG_CFG_can_transport_cargo +
 	["o_truck_03_ammo_f", 0],
 	["o_truck_03_device_f", 0],
 	["o_truck_03_fuel_f", 0],
-	["van_01_base_f", 5],
-	["c_van_01_box_f", 40],
-	["c_van_01_transport_f", 25],
-	["i_g_van_01_transport_f", 25],
+	["Van_01_fuel_base_F", 2],
+	["Van_01_box_base_F", 40],
+	["Van_01_transport_base_F", 15],
+	["Van_02_vehicle_base_F", 60],
+	["Van_02_transport_base_F", 20],
 	["wheeled_apc_f", 10]
 ];
 

@@ -50,7 +50,7 @@ case (_this iskindof "Van_01_transport_base_F") : {22500}; // Ref: Isuzu Grafter
 case (_this iskindof "Van_01_box_base_F") : {24000};
 case (_this iskindof "Van_01_fuel_base_F") : {40000};
 case (_this iskindof "Van_02_vehicle_base_F") : {45600}; // Ref: Mercedes Sprinter
-case (_this iskindof "Van_02_transport_base_F") : {45600};
+case (_this iskindof "Van_02_transport_base_F") : {50000};
 
 default {-1};
 

@@ -6,20 +6,20 @@
 [] spawn {
 
 setwind weather_wind;
-sleep 1;
-forceWeatherChange;
+//sleep 1;
+//forceWeatherChange;
 sleep 1;
 
 300 setovercast weather;
 
 uisleep 310;
-forceWeatherChange;
+//forceWeatherChange;
 60 setrain weather_rain;
 uisleep 70;
-forceWeatherChange;
+//forceWeatherChange;
 300 setfog weather_fog;
 uisleep 310;
-forceWeatherChange;
+//forceWeatherChange;
 
 };
 

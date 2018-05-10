@@ -102,15 +102,20 @@ if(!Hz_overrideweather) then {
   
   _windx = weather_wind select 0;
   _windy = weather_wind select 1;
-  
+	
+	//round to nearest 0.1
+	_windx = (round (_windx*10))/10;
+	_windy = (round (_windy*10))/10;
+	weather_fog = (round (weather_fog*10))/10;
+	weather_rain = (round (weather_rain*10))/10;
+	weather = (round (weather*10))/10;	
+	
+  //fit into limits
   if(_windx > Hz_weather_max_windSpeed) then {_windx = Hz_weather_max_windSpeed;};
   if(_windy > Hz_weather_max_windSpeed) then {_windy = Hz_weather_max_windSpeed;};
   if(_windx < -Hz_weather_max_windSpeed) then {_windx = -Hz_weather_max_windSpeed;};
   if(_windy < -Hz_weather_max_windSpeed) then {_windy = -Hz_weather_max_windSpeed;};
-  
   weather_wind = [_windx, _windy, true]; 
-	
-	//fit into limits
 	if (weather_fog > Hz_weather_max_fog) then {weather_fog = Hz_weather_max_fog;};
   if (weather_fog < Hz_weather_min_fog) then {weather_fog = Hz_weather_min_fog;};
   if (weather_rain > Hz_weather_max_rain) then {weather_rain = Hz_weather_max_rain;};

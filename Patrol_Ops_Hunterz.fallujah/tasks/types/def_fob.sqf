@@ -62,6 +62,7 @@ _guardPos = _position;
     clearWeaponCargoGlobal _x;
     clearItemCargoGlobal _x;
     clearMagazineCargoGlobal _x;
+		clearBackpackCargoGlobal _x;
     
     _ammoCratesFilled = _ammoCratesFilled + 1;
     if (_ammoCratesFilled > 2) exitWith {};  

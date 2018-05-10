@@ -187,7 +187,13 @@ for "_i" from 1 to _numberOfTargets do {
 	taskMarker setMarkerText (format ["Target (%1m high)",round (taskTarget select 2)]);
 	taskMarker setMarkerType "mil_objective";
 
-	waituntil { 
+	waituntil {
+
+		if (captive _vip) then {
+		
+			[_vip, false] remoteExecCall ["setCaptive",_vip,false];
+		
+		};
 
 		sleep 5;
 		[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
@@ -222,6 +228,12 @@ for "_i" from 1 to _numberOfTargets do {
 	_timeOnTarget = 0;
 	
 	waituntil { 
+	
+		if (captive _vip) then {
+		
+			[_vip, false] remoteExecCall ["setCaptive",_vip,false];
+		
+		};
 
 		sleep 1;
 		[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;

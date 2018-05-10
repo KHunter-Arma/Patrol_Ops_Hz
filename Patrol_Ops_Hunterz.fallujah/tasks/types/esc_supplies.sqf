@@ -216,7 +216,17 @@ _waitForArrival = true;
 };
 */
 
-waituntil { 
+waituntil {
+
+	{
+			
+		if (captive _x) then {
+	
+		[_x, false] remoteExecCall ["setCaptive",_x,false];
+	
+		};
+				
+	} foreach _workers;
 
 	sleep 5;
 	
@@ -319,7 +329,7 @@ while {
 	if (
 	
 		(({if (alive _x) then {(_x distance _position) < 50} else {true}} count _containers) == 6)
-		&& (({if (alive _x) then {((_x distance _position) < 50) && ((vehicle _x) == _x)} else {true}} count _workers) == 4)
+		&& (({if (alive _x) then {((_x distance _position) < 50) && ((vehicle _x) == _x) && (!captive _x)} else {true}} count _workers) == 4)
 	
 	) then {
 	
@@ -369,7 +379,17 @@ case (_supplyBar >= _supplyTime) : {
 		
 		"The supplies have reached the population. Return the workers to base ASAP." remoteExecCall ["hint",0,false];
 
-		waituntil { 
+		waituntil {
+
+			{
+			
+				if (captive _x) then {
+			
+				[_x, false] remoteExecCall ["setCaptive",_x,false];
+			
+				};
+				
+			} foreach _workers;
 
 			sleep 5;
 			

@@ -153,6 +153,10 @@ removeGoggles _pow1;
 
 [_pow1, true] call ACE_captives_fnc_setHandcuffed;
 
+sleep 1;
+
+_powPos = getposatl _pow1;
+
 _powBuilding = (nearestObjects [_pow1,["House"],50]) select 0;
 _powBuilding setvariable ["occupied",true];
 
@@ -393,6 +397,13 @@ While{ _pow1 distance getMarkerPos format["return_point_%1",(SIDE_A select 0)] >
   
   sleep 5;
   [_b+_c,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
+	
+	if (((_pow1 distance2D _powPos) > 3) && (captive _pow1)) then {
+	
+		[_pow1, false] remoteExecCall ["ACE_captives_fnc_setHandcuffed",_pow1,false];
+		[_pow1, false] remoteExecCall ["setCaptive",_pow1,false];
+	
+	};
   
 };
 

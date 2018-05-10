@@ -141,6 +141,7 @@ for "_i" from 1 to _cacheCount do {
 	clearItemCargoGlobal _cache;
 	clearWeaponCargoGlobal _cache;
 	clearMagazineCargoGlobal _cache;
+	clearBackpackCargoGlobal _cache;
 	
 	_cache addWeaponCargoGlobal ["hlc_rifle_ak74_dirty",2];
 	_cache addMagazineCargoGlobal ["hlc_30Rnd_545x39_B_AK",30];
