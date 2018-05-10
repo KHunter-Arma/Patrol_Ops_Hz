@@ -168,9 +168,30 @@ attachmentsInfo = attachmentsInfo - [
 "OPTIC_ERCO_BLK_F",
 "OPTIC_ERCO_SND_F",
 "OPTIC_HAMR_KHK_F",
-"CUP_OPTIC_NSPU"
+"CUP_OPTIC_NSPU",
 
-
+"RH_TA01NSN",
+"RH_TA01NSN_2D",
+"RH_TA01NSN_TAN",
+"RH_TA01NSN_TAN_2D",
+"RH_TA31RMR",
+"RH_TA31RMR_2D",
+"RH_TA31RMR_TAN",
+"RH_TA31RMR_TAN_2D,"
+"RH_TA31RCO",
+"RH_TA31RCO_2D",
+"RH_TA31RCO_TAN",
+"RH_TA31RCO_TAN_2D",
+"RH_TA648",
+"RH_C79",
+"RH_C79_2D",
+"RH_M145",
+"RH_EOTECH553MAG",
+"RH_EOTECH553MAG_TAN",
+"RH_EOTHHS1",
+"RH_EOTHHS1_TAN",
+"RH_SHORTDOT",
+"RH_ACCUPOINT"
 
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
