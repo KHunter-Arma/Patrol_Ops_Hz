@@ -400,8 +400,7 @@ While{ _pow1 distance getMarkerPos format["return_point_%1",(SIDE_A select 0)] >
 	
 	if (((_pow1 distance2D _powPos) > 3) && (captive _pow1)) then {
 	
-		[_pow1, false] remoteExecCall ["ACE_captives_fnc_setHandcuffed",_pow1,false];
-		[_pow1, false] remoteExecCall ["setCaptive",_pow1,false];
+		_pow1 call Hz_fnc_noCaptiveCheck;
 	
 	};
   

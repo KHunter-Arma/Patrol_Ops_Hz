@@ -157,10 +157,12 @@ for "_i" from 1 to 4 do {
 	_dude addMagazine "CUP_30Rnd_762x39_AK47_M";
 	_dude addMagazine "CUP_30Rnd_762x39_AK47_M";
 	
-	_dude addEventHandler ["Killed",{
+	_dude addEventHandler ["MPKilled",{
 	
 		_dude = _this select 0;
 		_killer = _this select 1;
+		
+		if (!local _dude) exitWith {};
 		
 		_condition = false;
 		
@@ -182,7 +184,7 @@ for "_i" from 1 to 4 do {
 			
 		};	
 		
-		if (_condition) then {Hz_pops_task_auxFailCondition = true;};
+		if (_condition) then {Hz_pops_task_auxFailCondition = true; publicVariable "Hz_pops_task_auxFailCondition";};
 	
 	}];
 	
@@ -252,6 +254,7 @@ waituntil {
 	sleep 5;
 
 	(((group _vip) != _grp)
+	|| (captive _vip)
 	|| !(alive _vip)
 	|| Hz_pops_task_auxFailCondition
 	)
@@ -272,12 +275,9 @@ _spawnedSquads = (_minSquadCount max (round (random _maxSquadCount)));
 
 waituntil {
 
-	if (captive _vip) then {
-	
-		[_vip, false] remoteExecCall ["ACE_captives_fnc_setHandcuffed",_vip,false];
-		[_vip, false] remoteExecCall ["setCaptive",_vip,false];
-	
-	};
+	_vip call Hz_fnc_noCaptiveCheck;
+	{_x call Hz_fnc_noCaptiveCheck} foreach _guards;
+	(units group _vip) call Hz_fnc_noSideCivilianCheck;
 
 	sleep 5;
 	[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
@@ -514,6 +514,10 @@ while {
 	&& ((_preachCounter < _preachMax) || (((_vip distance _returnPoint) < 15) && (!captive _vip)))
 	
 } do { 
+
+	(units group _vip) call Hz_fnc_noSideCivilianCheck;		
+	_vip call Hz_fnc_noCaptiveCheck;
+	{_x call Hz_fnc_noCaptiveCheck} foreach _guards;
 	
 	uisleep 1;
 	
@@ -523,7 +527,7 @@ while {
 		_vip setvariable ["preachTime",_preachCounter];
 		_otherReward = _otherReward + _speechRewardPerSecond;
 		
-		if ((random 1) < 0.0006) then {
+		if ((random 1) < 0.0012) then {
 			
 			_temp = +_crowd;
 			{
@@ -607,14 +611,11 @@ case (_preachCounter >= _preachMax) : {
 		
 		"The VIP has finished his speech. Return him to base ASAP." remoteExecCall ["hint",0,false];
 
-		waituntil { 
-		
-			if (captive _vip) then {
-	
-				[_vip, false] remoteExecCall ["ACE_captives_fnc_setHandcuffed",_vip,false];
-				[_vip, false] remoteExecCall ["setCaptive",_vip,false];
-			
-			};
+		waituntil {
+
+			(units group _vip) call Hz_fnc_noSideCivilianCheck;		
+			_vip call Hz_fnc_noCaptiveCheck;
+			{_x call Hz_fnc_noCaptiveCheck} foreach _guards;
 
 			sleep 5;
 			[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;

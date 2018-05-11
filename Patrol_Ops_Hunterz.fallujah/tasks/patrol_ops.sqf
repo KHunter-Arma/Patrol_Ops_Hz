@@ -24,7 +24,7 @@ _list = [
 		"sar_supplies"
     ];
 		
-if(hz_debug) then {_list = ["sar_supplies"];};
+if(hz_debug) then {_list = ["esc_supplies"];};
 
 //init
 taskrequested = false;

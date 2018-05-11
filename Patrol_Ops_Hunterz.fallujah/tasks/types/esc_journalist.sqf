@@ -188,12 +188,10 @@ for "_i" from 1 to _numberOfTargets do {
 	taskMarker setMarkerType "mil_objective";
 
 	waituntil {
+	
+		(units group _vip) call Hz_fnc_noSideCivilianCheck;
 
-		if (captive _vip) then {
-		
-			[_vip, false] remoteExecCall ["setCaptive",_vip,false];
-		
-		};
+		_vip call Hz_fnc_noCaptiveCheck;
 
 		sleep 5;
 		[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
@@ -229,11 +227,9 @@ for "_i" from 1 to _numberOfTargets do {
 	
 	waituntil { 
 	
-		if (captive _vip) then {
-		
-			[_vip, false] remoteExecCall ["setCaptive",_vip,false];
-		
-		};
+		(units group _vip) call Hz_fnc_noSideCivilianCheck;
+	
+		_vip call Hz_fnc_noCaptiveCheck;
 
 		sleep 1;
 		[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
@@ -309,7 +305,11 @@ case ((count _targets) == 0) : {
 		
 		"The reporter has finished his work. Our job is done here. Take him back to base ASAP." remoteExecCall ["hint",0,false];
 
-		waituntil { 
+		waituntil {
+		
+			(units group _vip) call Hz_fnc_noSideCivilianCheck;
+			
+			_vip call Hz_fnc_noCaptiveCheck;
 
 			sleep 5;
 			[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;

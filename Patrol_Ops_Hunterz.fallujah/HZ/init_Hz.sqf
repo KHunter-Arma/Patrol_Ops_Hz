@@ -159,6 +159,8 @@ if (isServer) then {
   Hz_func_setRealTime = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_setRealTime.sqf";
   //Hz_func_spawnOpforArtilleryBase = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_spawnOpforArtilleryBase.sqf";    
   Hz_func_initOpforComposition = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_initOpforComposition.sqf";    
+	Hz_fnc_noCaptiveCheck = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_noCaptiveCheck.sqf";  
+	Hz_fnc_noSideCivilianCheck = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_noSideCivilianCheck.sqf";  
   
   if(!isMultiplayer) then {{if(!isplayer _x) then {deletevehicle _x};}foreach switchableunits;};
 

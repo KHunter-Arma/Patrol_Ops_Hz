@@ -73,10 +73,12 @@ for "_i" from 1 to 4 do {
 
 	}, [], 1, true, true, "", "(!captive _target) && (alive _target) && ((group _target) != (group _this))"]] remoteexeccall ["addAction",0,true];
 	
-	_x addEventHandler ["Killed",{
+	_x addEventHandler ["MPKilled",{
 	
 		_dude = _this select 0;
 		_killer = _this select 1;
+		
+		if (!local _dude) exitWith {};
 		
 		_condition = false;
 		
@@ -98,7 +100,7 @@ for "_i" from 1 to 4 do {
 			
 		};	
 		
-		if (_condition) then {Hz_pops_task_auxFailCondition = true;};
+		if (_condition) then {Hz_pops_task_auxFailCondition = true; publicVariable "Hz_pops_task_auxFailCondition";};
 	
 	}];
 
@@ -182,7 +184,8 @@ waitUntil {
 
 	sleep 5;
 	(
-	((count (units _workergrp)) < 1)
+		 (({captive _x} count _workers) > 0)
+	|| ((count (units _workergrp)) < 1)
 	|| (({alive _x} count _containers) < 1)
 	|| (({alive _x} count _workers) < 1)
 	|| Hz_pops_task_auxFailCondition
@@ -218,15 +221,8 @@ _waitForArrival = true;
 
 waituntil {
 
-	{
-			
-		if (captive _x) then {
-	
-		[_x, false] remoteExecCall ["setCaptive",_x,false];
-	
-		};
-				
-	} foreach _workers;
+	(units group _workers) call Hz_fnc_noSideCivilianCheck;	
+	{_x call Hz_fnc_noCaptiveCheck} foreach _workers;
 
 	sleep 5;
 	
@@ -322,7 +318,10 @@ while {
 		&& !Hz_pops_task_auxFailCondition
 		&& (_supplyBar < _supplyTime)
     
-    } do { 
+    } do {
+
+	(units group _workers) call Hz_fnc_noSideCivilianCheck;	
+	{_x call Hz_fnc_noCaptiveCheck} foreach _workers;
 	
 	uisleep 1;
 	
@@ -381,15 +380,8 @@ case (_supplyBar >= _supplyTime) : {
 
 		waituntil {
 
-			{
-			
-				if (captive _x) then {
-			
-				[_x, false] remoteExecCall ["setCaptive",_x,false];
-			
-				};
-				
-			} foreach _workers;
+			(units group _workers) call Hz_fnc_noSideCivilianCheck;	
+			{_x call Hz_fnc_noCaptiveCheck} foreach _workers;
 
 			sleep 5;
 			
