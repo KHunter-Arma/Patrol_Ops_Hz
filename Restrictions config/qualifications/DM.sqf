@@ -95,7 +95,7 @@ attachmentsInfo = attachmentsInfo - [
 "RHS_ACC_PSO1M21",
 "RHS_ACC_PSO1M2_AK",
 "CUP_OPTIC_PSO_1",
-"CUP_OPTIC_PSO_3"
+"CUP_OPTIC_PSO_3",
 
 "RH_LEU_MK4",
 "RH_M3LR"
