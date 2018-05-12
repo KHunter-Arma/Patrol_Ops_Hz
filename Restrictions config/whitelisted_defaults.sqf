@@ -177,7 +177,7 @@ attachmentsInfo = attachmentsInfo - [
 "RH_TA31RMR",
 "RH_TA31RMR_2D",
 "RH_TA31RMR_TAN",
-"RH_TA31RMR_TAN_2D,"
+"RH_TA31RMR_TAN_2D",
 "RH_TA31RCO",
 "RH_TA31RCO_2D",
 "RH_TA31RCO_TAN",
