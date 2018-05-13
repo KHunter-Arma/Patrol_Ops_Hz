@@ -1,5 +1,5 @@
 
-if(!isServer) then {
+if(!isServer && !(call Hz_fnc_isHC)) then {
 
     waituntil {!isnull player};    
 

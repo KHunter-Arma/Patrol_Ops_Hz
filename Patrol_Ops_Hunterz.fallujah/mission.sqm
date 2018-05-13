@@ -8,7 +8,7 @@ class EditorData
 	toggles=10;
 	class ItemIDProvider
 	{
-		nextID=5047;
+		nextID=5048;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={8189.7832,33.211517,2156.0791};
-		dir[]={-0.21399269,-0.5892334,-0.77911425};
-		up[]={-0.15606412,0.80795217,-0.56820452};
-		aside[]={-0.96429056,-1.5512342e-007,0.264853};
+		pos[]={8677.7627,235.93616,1809.3553};
+		dir[]={0.013553172,-0.92307121,0.38441506};
+		up[]={0.032524329,0.38462064,0.9225024};
+		aside[]={0.99938768,-6.2109029e-007,-0.035233881};
 	};
 };
 binarizationWanted=0;
@@ -16675,7 +16675,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=917;
+		items=918;
 		class Item0
 		{
 			dataType="Object";
@@ -64548,6 +64548,19 @@ class Mission
 				};
 				nAttributes=1;
 			};
+		};
+		class Item917
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8680.9209,7,1925.396};
+			};
+			name="HC";
+			isPlayable=1;
+			description="HC";
+			id=5047;
+			type="HeadlessClient_F";
 		};
 	};
 };

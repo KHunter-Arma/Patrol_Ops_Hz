@@ -2,7 +2,7 @@ private ["_objectsarr","_uid","_tentpos","_tentposx","_tentposy","_tentposz"];
 
 // Client Initialise
 
-if(isDedicated) exitWith {};
+if(isDedicated || (call Hz_fnc_isHC)) exitWith {};
 
 if (!hz_debug && isMultiplayer) then {
 

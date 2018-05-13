@@ -3,7 +3,7 @@
 // Re-written by K.Hunter for urban sniper functionality
 
 private ["_buildingheight","_sniper","_building","_highbuildings","_buildingxbound","_buildingybound","_position","_allunits","_snipers","_sniperlist","_buildings","_group","_rewardcount"];
-if(!isServer) exitWith{};
+if(!(call Hz_fnc_isTaskMaster)) exitWith{};
 
 _position = _this select 0;
 _radius = 350;

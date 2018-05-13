@@ -1,5 +1,5 @@
 
-if(isDedicated) exitwith {};
+if(isDedicated || (call Hz_fnc_isHC)) exitwith {};
 
 private ["_pos","_nearobjects","_obj","_postruck","_truck","_cargo"];
 

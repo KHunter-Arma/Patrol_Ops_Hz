@@ -199,7 +199,7 @@ _vip setvariable ["preachTime",0];
 
 [_vip,["<t color=""#00FF00"">Request to follow</t>",{
 
-	_units = (_this select 0) + ((_this select 0) getvariable "guards");
+	_units = [_this select 0] + ((_this select 0) getvariable "guards");
 	_units joinsilent grpNull;
 	_units joinsilent (group (_this select 1));
 

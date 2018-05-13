@@ -15,7 +15,19 @@ if (is3DEN) then {
 
 #include "Hz_config.sqf"
 
-if(!isDedicated && !isMultiplayer) then {
+Hz_fnc_isHC = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isHC.sqf";
+Hz_fnc_isAiMaster = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isAiMaster.sqf";
+Hz_fnc_isTaskMaster = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isTaskMaster.sqf";
+
+if (call Hz_fnc_isAiMaster) then {
+
+	call compile preprocessFileLineNumbers "initUPSRespawn.sqf";
+
+};
+
+call compile preprocessfilelinenumbers "lk\nuke\nenvi.sqf";
+
+if(!isMultiplayer) then {
   hz_debug = true;
   mps_debug = true;
   hintsilent "DEBUG mode initialised!";
@@ -42,7 +54,7 @@ Hz_func_find_nearest_ammo_crate = compile preprocessfilelinenumbers "HZ\Hz_funcs
 Hz_func_locateFOB = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_locateFOB.sqf";
 
 //Client init
-if(!isDedicated) then {
+if(!isDedicated && !(call Hz_fnc_isHC)) then {
 
 	Hz_fnc_arrestPlayer = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_arrestPlayer.sqf";
   Hz_fnc_arrestedHandleEscape = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_arrestedHandleEscape.sqf";
@@ -145,6 +157,16 @@ if (isServer) then {
     
   };
   
+  if(!isMultiplayer) then {{if(!isplayer _x) then {deletevehicle _x};}foreach switchableunits;};
+
+};
+
+if (call Hz_fnc_isHC) then {
+	[] execvm "HZ\init_HC.sqf";
+};
+
+if (isServer || (call Hz_fnc_isHC)) then {
+
 	Hz_fnc_calculateTaskReward = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_calculateTaskReward.sqf";
 	Hz_fnc_taskReward = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_taskReward.sqf";
 	Hz_fnc_taskSuccessCheckGenericConditions = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_taskSuccessCheckGenericConditions.sqf";
@@ -161,7 +183,5 @@ if (isServer) then {
   Hz_func_initOpforComposition = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_initOpforComposition.sqf";    
 	Hz_fnc_noCaptiveCheck = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_noCaptiveCheck.sqf";  
 	Hz_fnc_noSideCivilianCheck = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_noSideCivilianCheck.sqf";  
-  
-  if(!isMultiplayer) then {{if(!isplayer _x) then {deletevehicle _x};}foreach switchableunits;};
 
 };

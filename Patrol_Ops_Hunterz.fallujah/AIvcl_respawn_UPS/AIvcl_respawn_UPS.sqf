@@ -2,7 +2,7 @@
 // © JULY 2009 - norrin
 #define HZ_DEBUG(X) if(hz_debug_patrols) then {hint X;}
 
-if (!isServer) exitWith {};
+if (!(call Hz_fnc_isAiMaster)) exitWith {};
 
 private ["_group", "_type", "_lives", "_respawn_point", "_marker", "_side", "_unitTypeArray", "_escort", "_isair", "_signx", "_signy", "_respawnzone", "_vehIsTank", "_vehicle", "_dude", "_unitsGroup", "_turrets", "_turCount", "_loop", "_guy", "_leader", "_vehType", "_unitTypeArray"];
 

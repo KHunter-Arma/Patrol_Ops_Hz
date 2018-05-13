@@ -1,7 +1,7 @@
 // Written by EightySix
 // OLD version
 
-if(!isServer) exitWith{};
+if(!(call Hz_fnc_isTaskMaster)) exitWith{};
 private["_position","_locations","_location","_radius","_sidea","_sideb"];
 
 	if(isNil "mps_used_locations") then {mps_used_locations = [];};

@@ -1,7 +1,7 @@
 // Written by BON_IF
 // Adpated by EightySix
 
-if(isDedicated) exitWith{};
+if(isDedicated || (call Hz_fnc_isHC)) exitWith{};
 
 _object = _this select 0;
 _totaltime = _this select 1;

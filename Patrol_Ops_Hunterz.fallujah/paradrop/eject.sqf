@@ -13,7 +13,6 @@
    0 = [vehicle, altitude] execVM "eject.sqf"
 */  
 
-if (!isServer) exitWith {};
 private ["_paras","_vehicle","_chuteHeight","_dir"];
 _vehicle = _this select 0; 
 _chuteheight = if ( count _this > 1 ) then { _this select 1 } else { 100 };

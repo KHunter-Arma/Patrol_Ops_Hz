@@ -1,6 +1,8 @@
+HC_taskMasterName = "_SERVER_";
+HC_patrolsName = "HC";
 Receiving_finish = false;
 
-if (!isDedicated) then {
+if (!isDedicated && hasInterface) then {
 
 	onPreloadFinished {
   
@@ -10,14 +12,6 @@ if (!isDedicated) then {
   };
 
 };
-
-if (isServer) then {
-
-	call compile preprocessFileLineNumbers "initUPSRespawn.sqf";
-
-};
-
-call compile preprocessfilelinenumbers "lk\nuke\nenvi.sqf";
 
 diag_log format ["###### %1 ######", missionName];
 diag_log "Executing init_Hz.sqf";
@@ -44,7 +38,7 @@ introseqdone = false;
 
 [] execVM "mps\init_mps.sqf";       
 
-if(!isDedicated) then {
+if(!isDedicated && !(call Hz_fnc_isHC)) then {
 	WaitUntil{ !(isNull player) && !isNil "mps_init" && Receiving_finish };
 }else{
 	Receiving_finish = true;
@@ -131,7 +125,7 @@ if(Hz_weather_Snow) then {
 };       
 
 //JIP nuke effects
-if(!isServer && nukeweather) then {
+if(!isServer && nukeweather && !(call Hz_fnc_isHC)) then {
 
 [] call compile preprocessfilelinenumbers "lk\nuke\nenvi.sqf";
 player spawn envi;
@@ -141,7 +135,7 @@ player spawn windef;
  
 };
 // This is the intro Sequence. Edit this line to have your own text fill the screen on intro.
-if(!mps_debug && !hz_debug) then {["Bad Company Presents...",format["Patrol Ops Hunter'z\n%1",toupper(worldname)],"Mission by\nK.Hunter","Patrol Ops Framework\nby EightySix"] spawn mps_intro; } else {introseqdone = true;};
+if(!mps_debug && !hz_debug && !isDedicated && !(call Hz_fnc_isHC)) then {["Bad Company Presents...",format["Patrol Ops Hunter'z\n%1",toupper(worldname)],"Mission by\nK.Hunter","Patrol Ops Framework\nby EightySix"] spawn mps_intro; } else {introseqdone = true;};
 
 
 // This line prepares the outro. To call the outro, declare "mps_mission_finished = true" in a trigger or line of code to trigger the outro sequence.
@@ -162,4 +156,8 @@ if(mps_debug) then {
 "ban" addPublicVariableEventHandler {[]execvm "HZ\admin\ban_EH.sqf"; };
 "kick" addPublicVariableEventHandler {[]execvm "HZ\admin\kick_EH.sqf"; };
 
-execVM "R3F_LOG\init.sqf";      
+if (!(call Hz_fnc_isHC)) then {
+
+	execVM "R3F_LOG\init.sqf";      
+
+};

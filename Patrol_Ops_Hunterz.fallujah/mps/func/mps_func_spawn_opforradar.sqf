@@ -29,7 +29,7 @@ _TargetDetectionRate = 30;
 
 
 
-if(!isServer) exitWith{};
+if(!(call Hz_fnc_isAiMaster)) exitWith{};
 
 //init delay
 sleep 60;

@@ -1,6 +1,6 @@
 // Written by EightySix
 
-if(!isServer) exitWith{};
+if(!(call Hz_fnc_isTaskMaster)) exitWith{};
 
 _this spawn {
 	private["_count","_task","_mission"];

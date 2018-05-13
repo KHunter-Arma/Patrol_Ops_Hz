@@ -2,7 +2,7 @@
 // Adapted by Eightysix
 
 
-if(isDedicated) exitWith {};
+if(isDedicated || (call Hz_fnc_isHC)) exitWith {};
 
 if( isNil "mps_teamkiller_value" ) then { mps_teamkiller_value = 0; };
 if( isNil "mps_teamkiller_busy") then { mps_teamkiller_busy = false; };

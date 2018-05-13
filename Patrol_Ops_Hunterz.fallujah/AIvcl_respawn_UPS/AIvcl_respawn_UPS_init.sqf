@@ -47,6 +47,10 @@ _unit setvehiclelock "LOCKED";
 
 _leader = leader _group;
 
+waitUntil {!isnil "Hz_fnc_isAiMaster"};
+
+if (call Hz_fnc_isAiMaster) then {
+
 waitUntil {!isnil "UPS_respawn_initDone"};
 
 [_leader,_marker,_isair] call Hz_pops_patrols_startUPS;
@@ -57,4 +61,19 @@ if (alive _unit) then {
 
 };
 
-Hz_pops_UPSRespawnArray pushBack [_vehType, _lives, _respawn_point, _marker, _side, _unitTypeArray,_escort,_isair];
+	Hz_pops_UPSRespawnArray pushBack [_vehType, _lives, _respawn_point, _marker, _side, _unitTypeArray,_escort,_isair];
+
+} else {
+
+	{
+
+		deletevehicle (vehicle _x);
+		deletevehicle _x;
+
+	} foreach units _unit;
+	
+	waitUntil {!isnil "Hz_pops_UPSPassToHCArray"};
+	
+	Hz_pops_UPSPassToHCArray pushBack [_vehType, _lives, _respawn_point, _marker, _side, _unitTypeArray,_escort,_isair];
+
+};

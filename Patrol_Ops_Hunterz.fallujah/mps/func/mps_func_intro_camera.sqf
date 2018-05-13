@@ -1,6 +1,6 @@
 // Written by EightySix
 
-if(isDedicated) exitWith{};
+if(isDedicated || (call Hz_fnc_isHC)) exitWith{};
 	private["_object"];
 
 // Get Date from Server
