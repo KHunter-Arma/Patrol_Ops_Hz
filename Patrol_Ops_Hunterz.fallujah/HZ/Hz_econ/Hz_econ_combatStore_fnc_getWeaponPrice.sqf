@@ -517,9 +517,10 @@ case "RHS_WEAP_TT33": {220};
 
 //RHS SAF
 
+case "RHS_WEAP_MINIMI_PARA_RAILED": {7500};
+
 /*
 
-case "RHS_WEAP_MINIMI_PARA_RAILED": {7500};
 case "RHS_WEAP_G36KV_AG36": {2600};
 
 */
