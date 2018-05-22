@@ -19,6 +19,10 @@ Hz_fnc_isHC = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isHC.sqf";
 Hz_fnc_isAiMaster = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isAiMaster.sqf";
 Hz_fnc_isTaskMaster = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isTaskMaster.sqf";
 
+//Ambient patrols respawn controller [only used by the server at the moment]
+if(isnil "missionload") then {missionload = true;};
+if(isnil "jointops") then {jointops = false;};
+
 if (call Hz_fnc_isAiMaster) then {
 
 	call compile preprocessFileLineNumbers "initUPSRespawn.sqf";
@@ -32,10 +36,6 @@ if(!isMultiplayer) then {
   mps_debug = true;
   hintsilent "DEBUG mode initialised!";
 };
-
-//Ambient patrols respawn controller [only used by the server at the moment]
-if(isnil "missionload") then {missionload = true;};
-if(isnil "jointops") then {jointops = false;};
 
 //init Weather
 call compile preprocessFileLineNumbers "HZ\Hz_sys_weather\Hz_weather_init.sqf";

@@ -10,6 +10,7 @@ if (((count playableunits) > 14) &&
     ) then { 
     
         missionload = true; 
+				publicVariable "missionload";
         taskrequested = true;
         publicvariable "taskrequested";                
                 

@@ -373,7 +373,9 @@ if(_c > 0) then {
 
 /*------------------- INTENSIFY AMBIENT COMBAT------------------------------------*/
 missionload = false;
+publicVariable "missionload";
 Hz_max_ambient_units = Hz_max_ambient_units + _ambientCombatIntensifyAmount;
+publicVariable "Hz_max_ambient_units";
 
 /*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
 
@@ -417,7 +419,7 @@ if (captive _pow1) then {
 Hz_max_ambient_units = Hz_max_ambient_units - _ambientCombatIntensifyAmount;
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/
-missionload = false;
+
 if( alive _pow1 && (call Hz_fnc_taskSuccessCheckGenericConditions)) then {
   [format["TASK%1",_taskid],"succeeded"] call mps_tasks_upd;
   

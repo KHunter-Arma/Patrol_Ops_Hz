@@ -34,7 +34,7 @@ _AAchance = 0;
 _CarChance = 0.5;
 
 //Useful for justifying task-specific difficulties.
-_rewardmultiplier = 1;
+_rewardmultiplier = 0.75;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 
@@ -258,7 +258,7 @@ _otherReward = _cacheCount*_rewardPerCache;
 
 		for "_i" from 1 to _d do {
 		
-			_grpgar = [ _position,"INS",6,_DefenseRadius,"hide" ] call CREATE_OPFOR_SQUAD;				
+			_grpgar = [ _position,"INS",6 + (random 6),_DefenseRadius,"hide" ] call CREATE_OPFOR_SQUAD;				
 			
 			patrol_task_units = patrol_task_units + (units _grpgar);
 		};
@@ -283,7 +283,7 @@ _otherReward = _cacheCount*_rewardPerCache;
 			
 			_tempos = [_position,_reinforcementsMinimumSpawnRange] call Hz_func_findspawnpos;
 				
-			_grppat = [ _position,"INS",4 + random 8,100,"patrol"] call CREATE_OPFOR_SQUAD;
+			_grppat = [ _position,"INS",12 + (random 12),100,"patrol"] call CREATE_OPFOR_SQUAD;
 			_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance, "INS"] call Hz_func_opforVehicleSupport;
 					
 			_vehicletypes = _Vehsupport select 0;
@@ -325,7 +325,7 @@ _otherReward = _cacheCount*_rewardPerCache;
 
 			_tempos = [_position,_reinforcementsMinimumSpawnRange] call Hz_func_findspawnpos;
 			
-			_grpdef = [ _position,"INS",2 + random 10,_DefenseRadius,"standby"] call CREATE_OPFOR_SQUAD;
+			_grpdef = [ _position,"INS",12 + (random 12),_DefenseRadius,"standby"] call CREATE_OPFOR_SQUAD;
 			_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance, "INS"] call Hz_func_opforVehicleSupport;
 							
 			_vehicletypes = _Vehsupport select 0;
@@ -351,6 +351,7 @@ _otherReward = _cacheCount*_rewardPerCache;
 } foreach _caches;
 
 missionload = false;
+publicVariable "missionload";
 
 /*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
 
@@ -378,7 +379,7 @@ While{ (({alive _x} count _caches) > 0) && (call Hz_fnc_taskSuccessCheckGenericC
 };
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/
-missionload = false;
+
 if(call Hz_fnc_taskSuccessCheckGenericConditions) then {
   [format["TASK%1",_taskid],"succeeded"] call mps_tasks_upd;
   

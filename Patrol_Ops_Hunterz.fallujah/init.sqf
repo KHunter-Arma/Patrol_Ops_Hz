@@ -1,4 +1,4 @@
-HC_taskMasterName = "_SERVER_";
+HC_taskMasterName = "HC_2"; //_SERVER_ to pass to server
 HC_patrolsName = "HC";
 Receiving_finish = false;
 

@@ -7,7 +7,7 @@ diag_log diag_activeMissionFSMs;
 _reinforcementsMinimumSpawnRange = 5000;
 
 _minCacheCount = 1;
-_maxCacheCount = 4;
+_maxCacheCount = 3;
 _rewardPerCache = 30000;
 _minDistanceBetweenCaches = 300;
 
@@ -34,7 +34,7 @@ _AAchance = 0;
 _CarChance = 0.5;
 
 //Useful for justifying task-specific difficulties.
-_rewardmultiplier = 1;
+_rewardmultiplier = 0.5;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 
@@ -255,7 +255,7 @@ _otherReward = _cacheCount*_rewardPerCache;
 
 		for "_i" from 1 to _d do {
 		
-			_grpgar = [ _position,"INS",6,_DefenseRadius,"hide" ] call CREATE_OPFOR_SQUAD;				
+			_grpgar = [ _position,"INS",6 + (random 6),_DefenseRadius,"hide" ] call CREATE_OPFOR_SQUAD;				
 			
 			patrol_task_units = patrol_task_units + (units _grpgar);
 		};
@@ -280,7 +280,7 @@ _otherReward = _cacheCount*_rewardPerCache;
 			
 			_tempos = [_position,_reinforcementsMinimumSpawnRange] call Hz_func_findspawnpos;
 				
-			_grppat = [ _position,"INS",4 + random 8,100,"patrol"] call CREATE_OPFOR_SQUAD;
+			_grppat = [ _position,"INS",12 + (random 12),100,"patrol"] call CREATE_OPFOR_SQUAD;
 			_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance, "INS"] call Hz_func_opforVehicleSupport;
 					
 			_vehicletypes = _Vehsupport select 0;
@@ -322,7 +322,7 @@ _otherReward = _cacheCount*_rewardPerCache;
 
 			_tempos = [_position,_reinforcementsMinimumSpawnRange] call Hz_func_findspawnpos;
 			
-			_grpdef = [ _position,"INS",2 + random 10,_DefenseRadius,"standby"] call CREATE_OPFOR_SQUAD;
+			_grpdef = [ _position,"INS",12 + (random 12),_DefenseRadius,"standby"] call CREATE_OPFOR_SQUAD;
 			_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance, "INS"] call Hz_func_opforVehicleSupport;
 							
 			_vehicletypes = _Vehsupport select 0;
@@ -350,8 +350,11 @@ _otherReward = _cacheCount*_rewardPerCache;
 /*------------------- INTENSIFY AMBIENT COMBAT------------------------------------*/
 
 missionload = false;
+publicVariable "missionload";
 Hz_max_ambient_units = Hz_max_ambient_units + Hz_ambient_units_intensify_amount;
+publicVariable "Hz_max_ambient_units";
 Hz_max_allunits = Hz_max_allunits + Hz_ambient_units_intensify_amount; 
+publicVariable "Hz_max_allunits";
 
 /*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
 
@@ -402,7 +405,7 @@ Hz_max_ambient_units = Hz_max_ambient_units - Hz_ambient_units_intensify_amount;
 Hz_max_allunits = Hz_max_allunits - Hz_ambient_units_intensify_amount; 
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/
-missionload = false;
+
 if((call Hz_fnc_taskSuccessCheckGenericConditions) && ({alive _x} count _caches > 0)) then {
   [format["TASK%1",_taskid],"succeeded"] call mps_tasks_upd;
   

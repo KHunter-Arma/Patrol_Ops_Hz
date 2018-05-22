@@ -31,7 +31,9 @@ taskrequested = false;
 publicvariable "taskrequested";
 stopreinforcements = true;
 
-waituntil {missionload = false; sleep 10; taskrequested || jointops};
+missionload = false;
+publicVariable "missionload";
+waituntil {sleep 10; taskrequested || jointops};
 
 _j = (count _list - 1) min (round random (count _list));
 _next = _list select _j;
@@ -49,9 +51,12 @@ for "_i" from 1 to mps_mission_counter do {
     _next = _list select _j;
     _lim = _lim + 1;
   };
-
-  waituntil {missionload = false; sleep 10; taskrequested || jointops};
-  
+	
+	missionload = false;
+	publicVariable "missionload";
+	
+  waituntil {sleep 10; taskrequested || jointops};
+	  
   if(jointops) exitwith {[] execvm "tasks\joint_ops.sqf";};
   
   _continue = false;
@@ -80,6 +85,7 @@ for "_i" from 1 to mps_mission_counter do {
     };
     
     missionload = true; 
+		publicVariable "missionload";
     
     waituntil {sleep 5;
       (count allunits) < Hz_max_units_before_task};

@@ -244,9 +244,11 @@ _position
 /*------------------- INTENSIFY AMBIENT COMBAT------------------------------------*/
 
 missionload = false;
+publicVariable "missionload";
 Hz_max_ambient_units = Hz_max_ambient_units + Hz_ambient_units_intensify_amount;
+publicVariable "Hz_max_ambient_units";
 Hz_max_allunits = Hz_max_allunits + Hz_ambient_units_intensify_amount; 
-
+publicVariable "Hz_max_allunits";
 /*--------------------WAIT UNTIL TARGET MEETS PLAYERS---------------------------------*/
 
 waituntil { 
@@ -410,7 +412,7 @@ case (_rand < 0.8) : {
 			
 			*/
 
-			if (Hz_pops_task_auxFailCondition) exitWith {};
+			if (Hz_pops_task_auxFailCondition) exitWith {};				
 
 			_spawnpos = [_position,_EnemySpawnMinimumRange] call Hz_func_findspawnpos;
 
@@ -487,7 +489,7 @@ case (_rand < 0.8) : {
 			};				
 			
 			if (Hz_pops_task_auxFailCondition) exitWith {};
-			
+						
 			//since a chopper carries about half the troops than average squad size normally...
 			for "_i" from 1 to (_spawnedSquads*2) do {					
 				
@@ -686,7 +688,9 @@ if (hz_reward > 0) then {
 /*------------------- INTENSIFY AMBIENT COMBAT---------------------------*/
 
 Hz_max_ambient_units = Hz_max_ambient_units - Hz_ambient_units_intensify_amount;
+publicVariable "Hz_max_ambient_units";
 Hz_max_allunits = Hz_max_allunits - Hz_ambient_units_intensify_amount; 
+publicVariable "Hz_max_allunits";
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/  
 

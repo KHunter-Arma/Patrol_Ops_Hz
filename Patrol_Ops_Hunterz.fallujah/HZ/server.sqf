@@ -62,28 +62,32 @@ while {true} do
 	if((count alldead) > Hz_max_deadunits) then {
 
 		//dead body cleanup    
-		{
-			if(_x iskindof "CAManBase") then {
-			
-				_dude = _x;
-			
-				if(!(_x getvariable ["NoDelete",false]) && ((_x distance (markerpos "respawn_west")) > 300) && (({(_x distance _dude) < 300} count playableUnits) < 1)) then {
+		{			
+				if (local _x) then {
 				
-					_weaponHolders = nearestObjects [_x, ["WeaponHolderSimulated"],3];
-			
-					{
-						
-						deletevehicle _x;
+					if(_x iskindof "CAManBase") then {
 					
-					} foreach _weaponHolders;					
-				
-					deleteVehicle _x;
+						_dude = _x;
+					
+						if(!(_x getvariable ["NoDelete",false]) && ((_x distance (markerpos "respawn_west")) > 300) && (({(_x distance _dude) < 300} count playableUnits) < 1)) then {
+						
+							_weaponHolders = nearestObjects [_x, ["WeaponHolderSimulated"],3];
+					
+							{
+								
+								deletevehicle _x;
+							
+							} foreach _weaponHolders;					
+						
+							deleteVehicle _x;
+						
+						};
+					
+					};
 				
 				};
-			
-			};
 
-		}foreach AllDead;
+			}foreach AllDead;
 
 	};
 	
@@ -116,17 +120,21 @@ while {true} do
 		
 		{
 		
-		//dead vehicle cleanup
-		if ((_x iskindof "LandVehicle") || (_x iskindof "Air") || (_x iskindof "Boat")) then {
+			if (local _x) then {
 		
-				_veh = _x;
-		
-				if(!(_x getvariable ["NoDelete",false]) && (({(_x distance _veh) < 300} count playableUnits) < 1)) then {
+				//dead vehicle cleanup
+				if ((_x iskindof "LandVehicle") || (_x iskindof "Air") || (_x iskindof "Boat")) then {
 				
-				deleteVehicle _x;				
+						_veh = _x;
 				
+						if(!(_x getvariable ["NoDelete",false]) && (({(_x distance _veh) < 300} count playableUnits) < 1)) then {
+						
+							deleteVehicle _x;				
+						
+						};
+					
 				};
-			
+				
 			};
 			
 		}foreach AllDead;      

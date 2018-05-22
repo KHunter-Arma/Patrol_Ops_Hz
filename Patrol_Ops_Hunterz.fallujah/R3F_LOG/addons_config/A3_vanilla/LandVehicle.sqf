@@ -27,12 +27,12 @@ R3F_LOG_CFG_can_be_lifted = R3F_LOG_CFG_can_be_lifted +
 
 R3F_LOG_CFG_can_transport_cargo = R3F_LOG_CFG_can_transport_cargo +
 [
-	["tank", 2],
-	["car", 2],
-	["motorcycle", 1],
+	["tank", 15],
+	["car", 15],
+	["motorcycle", 2],
 	["truck_f", 30],
 	["bus", 10],
-	["wheeled_apc_f", 3],
+	["wheeled_apc_f", 15],
 	
 	/*
 	
@@ -58,34 +58,47 @@ R3F_LOG_CFG_can_transport_cargo = R3F_LOG_CFG_can_transport_cargo +
 	
 	*/
 	
-	["PO_LandRover_base",5],
-	["rhsusf_hmmwe_base",5],
-	["Offroad_01_repair_base_F",2],
-	["Offroad_01_armed_base_F",2],
-	["Offroad_01_unarmed_base_F",10],
-	["CUP_SUV_Armored_Base",2],
-	["CUP_SUV_Unarmed_Base",4],
-	["SUV_01_base_F",5],
-	["Offroad_02_base_F",7],
-	["Offroad_02_AT_base_F",2],
-	["Offroad_02_LMG_base_F",2],
-	["CUP_Ikarus_Base",10],
-	["CUP_C_Golf4_Base",2],
-	["Hatchback_01_base_F",2],
-	["CUP_C_OCTAVIA_CIV",3],
-	["Van_01_transport_base_F",5],
-	["Van_01_box_base_F",30],
-	["Van_01_fuel_base_F",1],
-	["Van_02_vehicle_base_F",40],
-	["Van_02_transport_base_F",10]	
+	[ "CUP_C_Golf4_red_Civ", 15],
+	[ "CUP_C_Golf4_whiteblood_Civ", 15],
+	[ "C_Hatchback_01_F", 30],
+	[ "C_Hatchback_01_sport_F", 30],
+	[ "C_Van_01_fuel_F", 10],
+	[ "CUP_C_Ikarus_TKC", 60],
+	[ "CUP_C_Lada_White_CIV", 20],
+	[ "CUP_C_Skoda_White_CIV", 25],
+	[ "CUP_C_Octavia_CIV", 40],
+	[ "CUP_C_Volha_Gray_TKCIV", 15],
+	[ "I_C_Offroad_02_unarmed_F", 10],
+	[ "I_C_Offroad_02_LMG_F", 10],
+	[ "CUP_C_Datsun", 15],
+	[ "CUP_O_Datsun_PK", 10],
+	[ "LOP_AFR_Landrover", 15],
+	[ "CUP_B_LR_Ambulance_CZ_W", 15],
+	[ "LOP_AFR_Landrover_M2", 25],
+	[ "CUP_C_LR_Transport_CTK", 10],
+	[ "CUP_B_LR_Special_M2_GB_W", 35],
+	[ "C_Offroad_01_F", 15],
+	[ "I_G_Offroad_01_armed_F", 15],
+	[ "B_G_Offroad_01_repair_F", 20],
+	[ "C_Quadbike_01_F", 0],
+	[ "CUP_C_S1203_CIV", 15],
+	[ "CUP_C_S1203_Ambulance_CIV", 10],
+	[ "CUP_C_SUV_TK", 15],
+	[ "C_SUV_01_F", 40],
+	[ "C_Van_01_transport_F", 10],
+	[ "C_Van_01_box_F", 150],
+	[ "CUP_C_V3S_Open_TKC", 25],
+	[ "CUP_C_V3S_Covered_TKC", 25]
 	
 ];
 
 R3F_LOG_CFG_can_be_transported_cargo = R3F_LOG_CFG_can_be_transported_cargo +
 [
+/*
 	["kart_01_base_f", 20],
 	["quadbike_01_base_f", 40],
 	["ugv_01_base_f", 100]
+*/
 ];
 
 R3F_LOG_CFG_can_be_moved_by_player = R3F_LOG_CFG_can_be_moved_by_player +

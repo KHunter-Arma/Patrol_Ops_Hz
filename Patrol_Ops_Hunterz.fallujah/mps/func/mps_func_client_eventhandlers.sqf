@@ -177,7 +177,7 @@ player addEventHandler ["Killed",{
 		
 		if ((toupper Hz_playertype) != "SUPERVISOR") then {
 		
-			_penalty = _penalty / 3;
+			_penalty = _penalty / 2;
 		
 		};
 		

@@ -19,7 +19,9 @@ _rewardMultiplier = 1;
 /*--------------------CREATE LOCATION---------------------------------*/
 Hz_pops_task_auxFailCondition = false;
 missionload = false;
+publicVariable "missionload";
 Hz_max_ambient_units = Hz_max_ambient_units + _ambientCombatIntensifyAmount;
+publicVariable "Hz_max_ambient_units";
 _timeRequiredAtEachTarget = _timeRequiredAtEachTarget*60;
 
 _buildings = nearestobjects [markerpos "ao_centre",["House"],3000];
@@ -369,6 +371,7 @@ if (hz_reward > 0) then {
 };
 
 Hz_max_ambient_units = Hz_max_ambient_units - _ambientCombatIntensifyAmount;
+publicVariable "Hz_max_ambient_units";
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/  
 

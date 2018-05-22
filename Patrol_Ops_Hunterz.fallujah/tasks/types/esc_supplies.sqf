@@ -159,8 +159,11 @@ for "_i" from 1 to (6 + (round random 15)) do {
 /*------------------- INTENSIFY AMBIENT COMBAT------------------------------------*/
 
 missionload = false;
+publicVariable "missionload";
 Hz_max_ambient_units = Hz_max_ambient_units + Hz_ambient_units_intensify_amount;
-Hz_max_allunits = Hz_max_allunits + Hz_ambient_units_intensify_amount; 
+publicVariable "Hz_max_ambient_units";
+Hz_max_allunits = Hz_max_allunits + Hz_ambient_units_intensify_amount;
+publicVariable "Hz_max_allunits";
 
 /*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
 
@@ -451,7 +454,9 @@ if (hz_reward > 0) then {
 /*------------------- INTENSIFY AMBIENT COMBAT---------------------------*/
 
 Hz_max_ambient_units = Hz_max_ambient_units - Hz_ambient_units_intensify_amount;
+publicVariable "Hz_max_ambient_units";
 Hz_max_allunits = Hz_max_allunits - Hz_ambient_units_intensify_amount; 
+publicVariable "Hz_max_allunits";
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/
 if( (_supplyBar >= _supplyTime) && (({ alive _x } count _workers) > 0) && (call Hz_fnc_taskSuccessCheckGenericConditions) && !Hz_pops_task_auxFailCondition) then {
