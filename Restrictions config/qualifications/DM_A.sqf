@@ -80,7 +80,8 @@ attachmentsInfo = attachmentsInfo - [
 "CUP_OPTIC_PSO_3",
 
 "RH_LEU_MK4",
-"RH_M3LR"
+"RH_M3LR",
+"RH_ACCUPOINT"
 
 
 ////////////////////////////////////////////////////////////////////////////////////

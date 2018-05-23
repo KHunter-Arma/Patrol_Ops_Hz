@@ -52,6 +52,10 @@ attachmentsInfo = attachmentsInfo - [
 ////////////////////////////////////////////////////////////////////////////////////
 
 
+"RHSUSF_ACC_ELCAN",
+"RHSUSF_ACC_ELCAN_ARD",
+"RHSUSF_ACC_ACOG_MDO",
+"RH_M145"
 
 
 
