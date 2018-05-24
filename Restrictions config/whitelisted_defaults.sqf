@@ -89,7 +89,8 @@ wepInfo = wepInfo - [
 "RHSUSF_WEAP_GLOCK17G4",
 "RHS_WEAP_IZH18",
 "RH_MUZI",
-"HAFM_LAW"
+"HAFM_LAW",
+"LEUPOLD_MK4"
 
 
 
