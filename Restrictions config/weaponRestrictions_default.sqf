@@ -230,7 +230,8 @@ Hz_econ_cfg_weaponsRestrictions_default =
 "STR_AK_74_GP",
 "STR_RPD",
 "STR_RPK",
-"STR_PUL_DP"
+"STR_PUL_DP",
+"LEUPOLD_MK4"
 
 
 

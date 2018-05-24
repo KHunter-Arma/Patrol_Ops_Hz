@@ -37,7 +37,8 @@ wepInfo = wepInfo - [
 "HLC_RIFLE_RPK74N",
 "STR_RPD",
 "STR_RPK",
-"STR_PUL_DP"
+"STR_PUL_DP",
+"RHS_WEAP_MINIMI_PARA_RAILED"
 
 
 
