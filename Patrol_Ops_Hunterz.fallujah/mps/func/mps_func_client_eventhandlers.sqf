@@ -20,6 +20,9 @@ if( if( !isNil "ace_wounds_enabled" ) then { false } else { true } ) then {
 
 gogglesAtDeath = "";
 ownedWepHolders = [];
+handgunWeaponPlayer = "";
+primaryWeaponPlayer = "";
+secondaryWeaponPlayer = "";
 
 player addEventHandler ["Killed",{
   
@@ -46,9 +49,9 @@ player addEventHandler ["Killed",{
   //  _player removeaction mps_rallypoint;
     _player removeaction mps_client_hud_act;     
 		
-		_handgun = handgunWeapon _player;
-		_primary = primaryWeapon _player;
-		_secondary = secondaryWeapon _player;
+		handgunWeaponPlayer = handgunWeapon _player;
+		primaryWeaponPlayer = primaryWeapon _player;
+		secondaryWeaponPlayer = secondaryWeapon _player;
     
     sleep 2;
 		
@@ -66,7 +69,7 @@ player addEventHandler ["Killed",{
 			
 			};
 		
-		} foreach [_handgun,_primary,_secondary];
+		} foreach [handgunWeaponPlayer,primaryWeaponPlayer,secondaryWeaponPlayer];
 		
 		while {true} do {
 		
@@ -372,6 +375,9 @@ player addeventhandler ["Respawn", {
 		sleep 1;
 		
 		{
+				
+			if (((_x select 0) == handgunWeaponPlayer) || ((_x select 0) == primaryWeaponPlayer) || ((_x select 0) == secondaryWeaponPlayer)) then {
+			
 				_unit addWeapon (_x select 0);	
 				
 				//add magazine
@@ -418,6 +424,8 @@ player addeventhandler ["Respawn", {
 					};	
 				
 				};
+				
+			};
 
 		} foreach _weaponsItems;
 		
