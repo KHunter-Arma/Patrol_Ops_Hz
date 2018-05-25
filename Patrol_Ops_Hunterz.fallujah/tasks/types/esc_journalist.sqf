@@ -193,7 +193,11 @@ for "_i" from 1 to _numberOfTargets do {
 	
 		(units group _vip) call Hz_fnc_noSideCivilianCheck;
 
-		_vip call Hz_fnc_noCaptiveCheck;
+		if (captive _vip) then {
+			
+			[_vip, false] remoteExecCall ["setCaptive",_vip,false];
+			
+		};
 
 		sleep 5;
 		[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
@@ -231,7 +235,11 @@ for "_i" from 1 to _numberOfTargets do {
 	
 		(units group _vip) call Hz_fnc_noSideCivilianCheck;
 	
-		_vip call Hz_fnc_noCaptiveCheck;
+		if (captive _vip) then {
+			
+				[_vip, false] remoteExecCall ["setCaptive",_vip,false];
+			
+		};
 
 		sleep 1;
 		[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
@@ -311,7 +319,11 @@ case ((count _targets) == 0) : {
 		
 			(units group _vip) call Hz_fnc_noSideCivilianCheck;
 			
-			_vip call Hz_fnc_noCaptiveCheck;
+			if (captive _vip) then {
+			
+				[_vip, false] remoteExecCall ["setCaptive",_vip,false];
+			
+			};
 
 			sleep 5;
 			[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;

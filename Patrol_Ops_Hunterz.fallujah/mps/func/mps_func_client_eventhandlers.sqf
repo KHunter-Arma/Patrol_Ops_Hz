@@ -376,7 +376,12 @@ player addeventhandler ["Respawn", {
 		
 		{
 				
-			if (((_x select 0) == handgunWeaponPlayer) || ((_x select 0) == primaryWeaponPlayer) || ((_x select 0) == secondaryWeaponPlayer)) then {
+			if (
+					((_x select 0) == handgunWeaponPlayer)
+					|| ((_x select 0) == primaryWeaponPlayer)
+					|| ((_x select 0) == secondaryWeaponPlayer)
+					|| ((_x select 0) in _assignedItems)
+					) then {
 			
 				_unit addWeapon (_x select 0);	
 				
@@ -457,6 +462,7 @@ player addeventhandler ["Respawn", {
 		} foreach (_uniformItems select 0);
 		
 		{
+			//does not add binoculars
 			_unit linkItem _x;
 		}foreach _assignedItems;
 		
