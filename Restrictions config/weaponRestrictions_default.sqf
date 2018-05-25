@@ -231,7 +231,8 @@ Hz_econ_cfg_weaponsRestrictions_default =
 "STR_RPD",
 "STR_RPK",
 "STR_PUL_DP",
-"LEUPOLD_MK4"
+"LEUPOLD_MK4",
+"RHS_WEAP_M21A_PR_PBG40"
 
 
 
