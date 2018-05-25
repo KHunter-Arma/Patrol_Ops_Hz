@@ -59,7 +59,8 @@ wepInfo = wepInfo - [
 "RHS_WEAP_M21A_PBG40",
 "HLC_RIFLE_AKMGL",
 "STR_AKM",  //gp-25
-"STR_AK_74_GP"
+"STR_AK_74_GP",
+"RHS_WEAP_M21A_PR_PBG40"
 
 
 
