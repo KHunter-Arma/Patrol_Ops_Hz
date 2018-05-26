@@ -365,8 +365,8 @@ case "RHSUSF_5RND_HE": {0};
 case "RHSUSF_5RND_SLUG": {0};
 case "RHSUSF_5RND_DOOMSDAY_BUCK": {-1};
 case "RHSUSF_5RND_00BUCK": {0};
-case "RHSGREF_1RND_00BUCK": {0};
-case "RHSGREF_1RND_SLUG": {0};
+case "RHSGREF_1RND_00BUCK": {0.5};
+case "RHSGREF_1RND_SLUG": {0.66};
 
 /*
 
