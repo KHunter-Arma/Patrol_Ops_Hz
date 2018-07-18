@@ -9,6 +9,7 @@ if (!hz_debug && isMultiplayer) then {
   //delete UPS markers on client...
   deleteMarkerlocal "UPS";
 	deleteMarkerlocal "UPS_b";
+	deleteMarkerlocal "UPS_ins";
 
 };
 
@@ -470,8 +471,12 @@ if (Hz_pops_enableDetainUnrecognisedUIDs) then {
 
 if (_exit) exitWith {};
 
+player unassignItem "ItemMap";
+player removeItem "ItemMap";
+player unassignItem "ItemCompass";
+player removeItem "ItemCompass";
 Hz_pers_clientReadyForLoad = true;
-ace_advanced_fatigue_recoveryFactor = 50;
+ace_advanced_fatigue_recoveryFactor = 25;
 showScoretable 0;
 
 

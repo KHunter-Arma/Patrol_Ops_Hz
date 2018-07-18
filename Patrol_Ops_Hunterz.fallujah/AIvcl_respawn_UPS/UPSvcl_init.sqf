@@ -1,16 +1,17 @@
 //  UPS_init.sqf
 // © JULY 2009 - norrin
 
-private ["_unit","_marker","_isair","_vehicle","_group","_passengerarr","_moveto","_driver","_leader","_rndx","_rndy","_flightgrp"];
+private ["_vehicle","_marker","_isair","_vehicle","_group","_passengerarr","_moveto","_driver","_leader","_rndx","_rndy","_flightgrp"];
 
-_unit 	= _this select 0;
+_vehicle 	= _this select 0;
 _marker	= _this select 1;
 _isair = _this select 2;
-_group = group _unit;
-_vehicle = vehicle (leader _group);
+_group = group _vehicle;
+
+_isman = _vehicle isKindOf "CAManBase";
 
 
-if(!_isair) then {
+if(!_isair || _isman) then {
 
 [_group,_marker,"SHOWMARKER"] call Hz_AI_UPS_Hz;
 
@@ -38,9 +39,9 @@ if(!_isair) then {
   if(random 1 < 0.5) then {_rndy = -1;} else {_rndy = 1;};
 
   _moveto = [(markerpos "LZ" select 0) + (_rndx * (random 60)),(markerpos "LZ" select 1) + (_rndy * (random 30))];
-  _unit setBehaviour "COMBAT";
-  _unit setCombatMode "YELLOW";
-  _unit domove _moveto;
+  _vehicle setBehaviour "COMBAT";
+  _vehicle setCombatMode "YELLOW";
+  _vehicle domove _moveto;
 
 
 
@@ -75,19 +76,19 @@ if(!_isair) then {
 
     /*
 waituntil {sleep 1; ((!alive _driver ) || (!alive _vehicle )|| (_moveto distance _vehicle < 100))};
-_unit setspeedmode "LIMITED";
-_unit setCombatMode "YELLOW";
-_unit setBehaviour "COMBAT";
+_vehicle setspeedmode "LIMITED";
+_vehicle setCombatMode "YELLOW";
+_vehicle setBehaviour "COMBAT";
 
 _vehicle forcespeed 30;
 
 if((!alive _driver ) || (!alive _vehicle )) exitwith {_driver enableai "autotarget";_driver enableai "target";_driver enableai "fsm";};
-_unit domove _moveto;
+_vehicle domove _moveto;
 sleep 10;
-//waituntil {_vehicle land "GET OUT"; _height1 = (getposatl _vehicle) select 2; if (_height1 < 5) exitwith {true}; sleep 3; if ((getposatl _vehicle) select 2 < 5) exitwith {true}; sleep 3; if ((getposatl _vehicle) select 2 < 5) exitwith {true}; sleep 3;  _height2 = (getposatl _vehicle) select 2; if (_height2 < 5) exitwith {true}; if( abs(_height1 - _height2) < 1) then {_unit domove (markerpos "ao_centre"); sleep 15;_unit domove _moveto; sleep 10;}; ((getposatl _vehicle) select 2 < 5)};
+//waituntil {_vehicle land "GET OUT"; _height1 = (getposatl _vehicle) select 2; if (_height1 < 5) exitwith {true}; sleep 3; if ((getposatl _vehicle) select 2 < 5) exitwith {true}; sleep 3; if ((getposatl _vehicle) select 2 < 5) exitwith {true}; sleep 3;  _height2 = (getposatl _vehicle) select 2; if (_height2 < 5) exitwith {true}; if( abs(_height1 - _height2) < 1) then {_vehicle domove (markerpos "ao_centre"); sleep 15;_vehicle domove _moveto; sleep 10;}; ((getposatl _vehicle) select 2 < 5)};
 if(_moveto distance _vehicle < 70) then {_vehicle land "GET OUT";};
 while {((getposatl _vehicle) select 2) > 13} do {
-if((speed _vehicle < 2) || (_moveto distance _vehicle > 70)) then {_unit domove (markerpos "ao_centre"); sleep 13;_unit domove _moveto;} else {sleep 2; _vehicle land "GET OUT";};
+if((speed _vehicle < 2) || (_moveto distance _vehicle > 70)) then {_vehicle domove (markerpos "ao_centre"); sleep 13;_vehicle domove _moveto;} else {sleep 2; _vehicle land "GET OUT";};
 sleep 5;
 };*/
 

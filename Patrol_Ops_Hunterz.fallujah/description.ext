@@ -42,9 +42,9 @@ class Extended_InitPost_EventHandlers
 		
 	class CAManBase {		
 
-		class RemoveMap {
+		class RemoveItemsAI {
 			
-			serverInit = "if (!((_this select 0) in playableunits)) then {(_this select 0) unassignItem 'ItemMap'; (_this select 0) removeItem 'ItemMap'; (_this select 0) unlinkItem 'CUP_NVG_PVS7'};";
+			serverInit = "if (!((_this select 0) in playableunits)) then {(_this select 0) unassignItem 'ItemMap'; (_this select 0) removeItem 'ItemMap'; (_this select 0) unlinkItem 'CUP_NVG_PVS7'; (_this select 0) removeItem 'ACRE_PRC343';};";
 			
 		};
 	};

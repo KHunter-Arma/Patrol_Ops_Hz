@@ -93,9 +93,13 @@ while {true} do
 	
 	{
 	
-		if (({alive _x} count (units _x)) < 1) then {
-		
-			deletegroup _x;
+		if (local _x) then {
+	
+			if (({alive _x} count (units _x)) < 1) then {
+			
+				deletegroup _x;
+			
+			};
 		
 		};
 	

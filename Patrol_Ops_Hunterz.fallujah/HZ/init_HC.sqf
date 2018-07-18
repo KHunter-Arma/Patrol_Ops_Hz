@@ -61,6 +61,20 @@ _timescaler3 = 0;
 
 		};
 		
+		{
+	
+			if (local _x) then {
+		
+				if (({alive _x} count (units _x)) < 1) then {
+				
+					deletegroup _x;
+				
+				};
+			
+			};
+	
+		}foreach allgroups;
+		
 		//3 hour loop
 		if(_timescaler3 > 45) then {
 			

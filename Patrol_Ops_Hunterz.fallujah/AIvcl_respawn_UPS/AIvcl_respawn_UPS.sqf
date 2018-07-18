@@ -23,7 +23,9 @@ _signy = if ((random 1) < 0.5) then {-1} else {1};
 _respawnzone = [(((markerPos _respawn_point) select 0) + (random 715)*_signx),(((markerPos _respawn_point) select 1) + (random 715)*_signy),0];
 
 _vehIsTank = false;
-if ((count _escort) > 0) then {
+_isman = _type isKindOf "CAManBase";
+
+if (((count _escort) > 0) && !_isman) then {
 
 	_vehIsTank = true;
 };
@@ -32,43 +34,56 @@ _vehicle = objNull;
 _group = createGroup _side;
 _group setvariable ["Hz_Patrolling",true]; 
 
-if (_vehIsTank) then {
-	
+if (_isman) then {
+
 	{
-		_dude = _group createUnit [_x,_respawnzone, [], 100, "NONE"];
-		[_dude] allowGetIn false;
-		
+			_dude = _group createUnit [_x,_respawnzone, [], 100, "NONE"];
+			[_dude] allowGetIn false;
+			
 	} foreach _escort;
 
-	_vehicle = _type createVehicle _respawnzone;
-	_vehicle setvehiclelock "LOCKED";
-
-	createVehicleCrew _vehicle;
-	(crew _vehicle) joinSilent _group;
-	_group addVehicle _vehicle;
-	(crew _vehicle) allowGetIn true;
 
 } else {
-	
-	_vehicle = _type createVehicle _respawnzone;
-	_vehicle setvehiclelock "LOCKEDPLAYER";
 
-	if (_type == "LOP_IA_M113_W") then {[_vehicle, ["Desert",1],[]] call BIS_fnc_initVehicle;};
-	
-	_passengerUnits = +_unitTypeArray;	
-	createVehicleCrew _vehicle;	
-	{	
-		_passengerUnits = _passengerUnits - [typeof _x];	
-	} foreach (crew _vehicle);
-	
-	(crew _vehicle) joinSilent _group;
-	_group addVehicle _vehicle;
+	if (_vehIsTank) then {
+		
+		{
+			_dude = _group createUnit [_x,_respawnzone, [], 100, "NONE"];
+			[_dude] allowGetIn false;
+			
+		} foreach _escort;
 
-	{
-		_dude = _group createUnit [_x,_respawnzone, [], 100, "NONE"];
-		_dude moveInCargo _vehicle;		
-	} forEach _passengerUnits;
-	
+		_vehicle = _type createVehicle _respawnzone;
+		_vehicle setvehiclelock "LOCKED";
+
+		createVehicleCrew _vehicle;
+		(crew _vehicle) joinSilent _group;
+		_group addVehicle _vehicle;
+		(crew _vehicle) allowGetIn true;
+
+	} else {
+		
+		_vehicle = _type createVehicle _respawnzone;
+		_vehicle setvehiclelock "LOCKEDPLAYER";
+
+		if (_type == "LOP_IA_M113_W") then {[_vehicle, ["Desert",1],[]] call BIS_fnc_initVehicle;};
+		
+		_passengerUnits = +_unitTypeArray;	
+		createVehicleCrew _vehicle;	
+		{	
+			_passengerUnits = _passengerUnits - [typeof _x];	
+		} foreach (crew _vehicle);
+		
+		(crew _vehicle) joinSilent _group;
+		_group addVehicle _vehicle;
+
+		{
+			_dude = _group createUnit [_x,_respawnzone, [], 100, "NONE"];
+			_dude moveInCargo _vehicle;		
+		} forEach _passengerUnits;
+		
+	};
+
 };
 
 _leader = leader _group;
