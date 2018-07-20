@@ -127,7 +127,7 @@ while {true} do
 			if (local _x) then {
 		
 				//dead vehicle cleanup
-				if ((_x iskindof "LandVehicle") || (_x iskindof "Air") || (_x iskindof "Boat")) then {
+				if ((_x iskindof "LandVehicle") || (_x iskindof "Air") || (_x iskindof "Boat_F")) then {
 				
 						_veh = _x;
 				

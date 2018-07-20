@@ -48,7 +48,17 @@ class Extended_InitPost_EventHandlers
 			
 		};
 	};
-			
+	
+	class SoldierWB : CAManBase {};
+	class CUP_Creatures_Military_TK_Soldier_Base : SoldierWB {
+	
+		class addTakiArmor {
+		
+			serverInit = "_vestItems = vestItems (_this select 0); (_this select 0) addvest 'rhs_6b5_rifleman_khaki'; {(vestContainer (_this select 0)) addItemCargo [_x,1];} foreach _vestItems;";
+		
+		};
+	
+	};
 };
 
 class RscTitles {

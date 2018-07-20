@@ -50,7 +50,7 @@ if (isnull _cargo) then {
   _cargo setpos _pos;
   _truck setvariable ["Cargo",objNull,true];
 
-  if(_cargo iskindof "Boat") then {
+  if(_cargo iskindof "Boat_F") then {
     
     _cargo setvehiclelock "UNLOCKED";
     [-2, {
