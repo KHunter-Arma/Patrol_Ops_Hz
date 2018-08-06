@@ -99,13 +99,12 @@ case "RHS_ACC_1PN93_2": {2100};
 case "RHS_ACC_EKP1": {440};
 case "RHS_ACC_EPK8_02": {280};
 case "RHS_ACC_NITA": {580};
-case "RHS_ACC_PGO7V": {450};
 case "RHS_ACC_PGO7V2": {480};
 case "RHS_ACC_PGOV3": {500};
 case "RHS_ACC_PKAS": {460};
 */
 
-
+case "RHS_ACC_PGO7V": {450};
 
 case "RHS_ACC_PSO1M2": {300};
 
