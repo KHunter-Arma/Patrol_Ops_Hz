@@ -16,7 +16,7 @@ Hz_pops_UPSRespawnArray = [];
 		
 				if ((count crew _x) == 0) then {
 				
-					if (({ isplayer _x} count nearestObjects [getposatl _x,["CAManBase"],2000]) == 0) then {
+					if (({ isplayer _x} count nearestObjects [getposatl _x,["CAManBase"],1000]) == 0) then {
 					
 						Hz_pops_deleteVehicleArray = Hz_pops_deleteVehicleArray - [_x];
 						deletevehicle _x;				
