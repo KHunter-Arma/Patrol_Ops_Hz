@@ -497,7 +497,7 @@ case "STR_RPD": {2300};
 case "STR_SKS_OLD": {845};
 
 
-
+/*
 //HLC	
 case "HLC_RIFLE_HONEYBADGER": {-1};
 case "HLC_RIFLE_AWCOVERT_BL": {-1};
@@ -758,7 +758,7 @@ case "HLC_RIFLE_RK62": {-1};
 case "HLC_RIFLE_AEK971": {-1};
 case "HLC_RIFLE_AEK971_MTK": {-1};
 case "HLC_RIFLE_AEK971WORN": {-1};
-
+*/
 
 
 //BINOCULARS
