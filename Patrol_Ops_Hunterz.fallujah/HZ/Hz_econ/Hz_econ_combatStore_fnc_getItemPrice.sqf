@@ -292,6 +292,8 @@ case "TRYK_U_B_WOOD3C_COMBATUNIFORMTSHIRT": {456};
 case "TRYK_U_B_WOOD_MARPAT_COMBATUNIFORM": {456};
 case "TRYK_U_B_WOOD_MARPAT_COMBATUNIFORMTSHIRT": {456};
 
+
+
 //Vests
 case "TRYK_V_BULLETPROOF_BL": {230};
 case "TRYK_V_BULLETPROOF_BLK": {230};
@@ -332,6 +334,8 @@ case "TRYK_V_TACVEST_COYO": {262};
 case "TRYK_V_PLATECARRIER_JSDF": {2324};
 
 case "CUP_V_B_RRV_MEDIC": {250};
+
+
 
 //Rucks
 case "TRYK_B_ALICEPACK": {86};
@@ -421,6 +425,8 @@ case "B_VIPERLIGHTHARNESS_HEX_F": {200};
 case "B_VIPERLIGHTHARNESS_KHK_F": {200};
 case "B_VIPERLIGHTHARNESS_OLI_F": {200};
 
+
+
 //Headgear
 case "TRYK_KIO_BALACLAVA": {8};
 case "TRYK_H_BANDANA_H": {10};
@@ -435,27 +441,31 @@ case "TRYK_H_BOONIEHAT_MARPAT_WOOD": {18};
 case "TRYK_H_BOONIEHAT_JSDF": {18};
 case "TRYK_H_BOONIEHAT_WOOD": {18};
 
+
+
 /*
-
 case "TRYK_H_LHS_HEL_G": {-1};
-
 */
+
+
 
 case "TRYK_H_EARMUFF": {595};
 case "TRYK_ESS_CAP": {95};
 case "TRYK_ESS_CAP_OD": {95};
 case "TRYK_ESS_CAP_TAN": {95};
 
-/*
 
+
+/*
 case "TRYK_H_GHILLIE_OVER_GREEN": {-1};
 case "TRYK_H_GHILLIE_TOP_GREEN": {-1};
 case "TRYK_H_GHILLIE_TOP_HEADLESS_GREEN": {-1};
 case "TRYK_H_GHILLIE_OVER": {-1};
 case "TRYK_H_GHILLIE_TOP": {-1};
 case "TRYK_H_GHILLIE_TOP_HEADLESS": {-1};
-
 */
+
+
 
 case "TRYK_H_HEADSET2": {80};
 case "TRYK_H_HEADSETCAP_GLASSES": {45};
@@ -465,8 +475,9 @@ case "TRYK_H_HEADSETCAP_BLK": {95};
 case "TRYK_H_HEADSETCAP_OD": {95};
 case "TRYK_H_HEADSETCAP": {95};
 
-/*
 
+
+/*
 case "TRYK_H_AOR1": {305};
 case "TRYK_H_AOR2": {305};
 case "TRYK_H_GR": {305};
@@ -484,8 +495,9 @@ case "TRYK_H_PASGT_COYO": {90};
 case "TRYK_H_PASGT_OD": {90};
 case "TRYK_H_PASGT_TAN": {90};
 case "TRYK_H_DELTAHELM_NV": {-1};
-
 */
+
+
 
 case "TRYK_R_CAP_BLK": {15};
 case "TRYK_R_CAP_TAN": {15};
@@ -494,29 +506,35 @@ case "TRYK_R_CAP_BLK_GLASSES": {45};
 case "TRYK_R_CAP_OD_GLASSES": {45};
 case "TRYK_R_CAP_TAN_GLASSES": {45};
 
+
+
 /*
-
 case "TRYK_H_HELMET_SNOW": {-1};
-
 */
+
+
 
 case "TRYK_H_WH": {-1};
 case "TRYK_H_TACEARMUFF_H": {595};
 
+
+
 /*
-
 case "TRYK_H_HELMET_JSDF": {525};
-
 */
+
+
 
 case "TRYK_H_WIG": {-1};
 
-/*
 
+
+/*
 case "TRYK_H_HELMET_WINTER": {-1};
 case "TRYK_H_HELMET_WINTER_2": {-1};
-
 */
+
+
 
 case "TRYK_H_WOOLHAT": {6};
 case "TRYK_H_WOOLHAT_BR": {6};
@@ -524,6 +542,8 @@ case "TRYK_H_WOOLHAT_CU": {6};
 case "TRYK_H_WOOLHAT_CW": {6};
 case "TRYK_H_WOOLHAT_TAN": {6};
 case "TRYK_H_WOOLHAT_WH": {6};
+
+case "H_CAP_GRN_BI": {15};
 
 case "RHS_BOONIEHAT_M81": {18};
 case "RHS_BOONIEHAT2_MARPATD": {18};
@@ -533,21 +553,22 @@ case "RHS_BOONIEHAT_UCP": {18};
 case "RHSUSF_BOWMAN": {25};
 case "RHSUSF_BOWMAN_CAP": {40};
 
-/*
 
+
+/*
 case "RHSUSF_PROTECH_HELMET": {32};
 case "RHSUSF_PROTECH_HELMET_ESS":{112};
 case "RHSUSF_PROTECH_HELMET_RHINO": {612};
 case "RHSUSF_PROTECH_HELMET_RHINO_ESS": {692};
 case "RHS_8POINT_MARPATD": {15};
 case "RHS_8POINT_MARPATWD": {15};
-
 */
+
+
 
 case "RHSUSF_PATROLCAP_OCP": {15};
 case "RHSUSF_PATROLCAP_UCP": {15};
 
-case "H_CAP_GRN_BI": {15};
 case "CUP_H_PMC_CAP_GREY": {15};
 case "CUP_H_PMC_CAP_PRR_GREY": {95};
 case "CUP_H_PMC_CAP_PRR_TAN": {95};
@@ -558,27 +579,8 @@ case "CUP_H_FR_CAP_HEADSET_GREEN": {40};
 case "CUP_H_SLA_BERETRED": {20};
 
 
+
 //Facewear
-case "RHS_BALACLAVA": {8};
-case "RHS_BALACLAVA1_OLIVE": {8};
-case "RHS_GOOGLES_BLACK": {30};
-case "RHS_GOOGLES_YELLOW": {30};
-case "RHS_GOOGLES_ORANGE": {30};
-case "RHS_GOOGLES_CLEAR": {30};
-case "RHS_ESS_BLACK": {80};
-case "RHS_SCARF": {10};
-
-case "G_BALACLAVA_BLK": {5};
-case "G_BALACALVA_COMBAT": {85};
-case "G_BALACLAVA_LOWPROFILE": {105};
-case "G_BALACLAVA_OLI": {5};
-case "G_BANDANNA_BEAST": {10};
-case "G_BANDANNA_BLK": {10};
-case "G_BANDANNA_KHK": {10};
-case "G_BANDANNA_OLI": {10};
-case "G_BANDANNA_SHADES": {94};
-case "G_BANDANNA_TAN": {10};
-
 case "TRYK_KIO_BALACLAVA_BLK": {8};
 case "TRYK_KIO_BALACLAVAS": {8};
 case "TRYK_KIO_BALACLAVA_WH": {8};
@@ -625,33 +627,63 @@ case "TRYK_TAC_SET_TAN": {635};
 case "TRYK_TAC_SET_WH": {635};
 
 case "G_AVIATOR": {170};
+case "G_BALACLAVA_BLK": {5};
+case "G_BALACALVA_COMBAT": {85};
+case "G_BALACLAVA_LOWPROFILE": {105};
+case "G_BALACLAVA_OLI": {5};
+case "G_BANDANNA_BEAST": {10};
+case "G_BANDANNA_BLK": {10};
+case "G_BANDANNA_KHK": {10};
+case "G_BANDANNA_OLI": {10};
+case "G_BANDANNA_SHADES": {94};
+case "G_BANDANNA_TAN": {10};
+
+case "RHS_BALACLAVA": {8};
+case "RHS_BALACLAVA1_OLIVE": {8};
+case "RHS_GOOGLES_BLACK": {30};
+case "RHS_GOOGLES_YELLOW": {30};
+case "RHS_GOOGLES_ORANGE": {30};
+case "RHS_GOOGLES_CLEAR": {30};
+case "RHS_ESS_BLACK": {80};
+case "RHS_SCARF": {10};
+
+
 
 //NVGs (DO NOT ADD TYRKS ITEMS)
-
 /*
-
 case "RHS_1PN138": {1500};
 case "RHSUSF_ANPVS_14": {3595};
 case "RHSUSF_ANPVS_15": {12352};
 case "RHSUSF_RHINO" : {178};
-
 */
+
+
 
 //MAPS
 case "ITEMMAP": {2000};
 
+
+
 //TERMINALS
 case "ITEMGPS": {1500};
+
+
 
 //COMMUNICATION
 case "ITEMRADIO": {110};
 
+
+
 //NAVIGATION
 case "ITEMCOMPASS": {100};
 
+
+
 //WATCH
-case "ITEMWATCH": {100};
 case "ACE_ALTIMETER": {170};
+case "ITEMWATCH": {100};
+
+
 
 //Invent items
 case  "ACE_RANGETABLE_82MM": {5};
@@ -680,22 +712,26 @@ case  "ACE_EPINEPHRINE": {55};
 case  "ACE_FLASHLIGHT_MX991": {20};
 case  "ACE_SPRAYPAINTGREEN": {4};
 
-/*
 
+
+/*
 case  "ACE_HUNTIR_MONITOR": {3600};
 case  "ACE_IR_STROBE_ITEM": {200};
-
 */
+
+
 
 case  "ACE_KESTREL4500": {460};
 case  "ACE_FLASHLIGHT_KSF1": {40};
 
-/*
 
+
+/*
 case  "ACE_M26_CLACKER": {50};
 case  "ACE_CLACKER": {75};
-
 */
+
+
 
 case  "ACE_FLASHLIGHT_XL50": {45};
 case  "ACE_MAPTOOLS": {45};
@@ -736,6 +772,8 @@ case "EWK_CIGAR2": {14};
 case "EWK_CIG1": {1};
 case "EWK_GLASSES_CIG1": {1};
 case "IMMERSION_POPS_POP0": {1};
+
+
 
 //beards 
 case "SFG_TAC_BEARDD": {0};
