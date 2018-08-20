@@ -5,7 +5,7 @@
 "jsrs_soundmod_niarms_arsenal_weapons",
 "jsrs_soundmod_specialist_military_arms_weapons",
 "JSRS_RHS_T72",
-"Blastcore_VEP",
+//"Blastcore_VEP",
 "dzn_EJAM",
 "diwako_ragdoll",
 "HA_SandStorm",
