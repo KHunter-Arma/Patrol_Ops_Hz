@@ -157,7 +157,7 @@ for "_i" from 1 to 4 do {
 	_dude addMagazine "CUP_30Rnd_762x39_AK47_M";
 	_dude addMagazine "CUP_30Rnd_762x39_AK47_M";
 	
-	_dude addEventHandler ["MPKilled",{
+	_dude addMPEventHandler ["MPKilled",{
 	
 		_dude = _this select 0;
 		_killer = _this select 1;

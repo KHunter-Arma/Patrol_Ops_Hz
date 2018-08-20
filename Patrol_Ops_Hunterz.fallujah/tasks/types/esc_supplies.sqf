@@ -73,7 +73,7 @@ for "_i" from 1 to 4 do {
 
 	}, [], 1, true, true, "", "(!captive _target) && (alive _target) && ((group _target) != (group _this))"]] remoteexeccall ["addAction",0,true];
 	
-	_x addEventHandler ["MPKilled",{
+	_x addMPEventHandler ["MPKilled",{
 	
 		_dude = _this select 0;
 		_killer = _this select 1;
@@ -224,7 +224,10 @@ _waitForArrival = true;
 
 waituntil {
 
-	(units group _workers) call Hz_fnc_noSideCivilianCheck;	
+	{
+		if (alive _x) exitWith {(units group _x) call Hz_fnc_noSideCivilianCheck};
+	} foreach _workers;
+	
 	{_x call Hz_fnc_noCaptiveCheck} foreach _workers;
 
 	sleep 5;
@@ -323,7 +326,10 @@ while {
     
     } do {
 
-	(units group _workers) call Hz_fnc_noSideCivilianCheck;	
+	{
+		if (alive _x) exitWith {(units group _x) call Hz_fnc_noSideCivilianCheck};
+	} foreach _workers;
+	
 	{_x call Hz_fnc_noCaptiveCheck} foreach _workers;
 	
 	uisleep 1;
@@ -383,7 +389,10 @@ case (_supplyBar >= _supplyTime) : {
 
 		waituntil {
 
-			(units group _workers) call Hz_fnc_noSideCivilianCheck;	
+			{
+				if (alive _x) exitWith {(units group _x) call Hz_fnc_noSideCivilianCheck};
+			} foreach _workers;
+	
 			{_x call Hz_fnc_noCaptiveCheck} foreach _workers;
 
 			sleep 5;
