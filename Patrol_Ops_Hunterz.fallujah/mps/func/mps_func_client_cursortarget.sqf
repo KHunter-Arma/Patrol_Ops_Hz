@@ -1,7 +1,7 @@
 // Written by EightySix
 // Inspired by R3F logistics
 
-if(isDedicated) exitWith{};
+if(isDedicated || (call Hz_fnc_isHC)) exitWith{};
 
 private ["_cursTarget","_recruit_units","_intelaction1","_type","_condition_load","_condition_drag","_condition_unload"];
 

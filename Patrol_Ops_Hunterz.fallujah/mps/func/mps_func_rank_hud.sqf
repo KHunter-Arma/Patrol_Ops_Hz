@@ -1,6 +1,6 @@
 // Written by EightySix
 
-if(isDedicated || !mps_rank_sys_enabled) exitWith {};
+if(isDedicated || !mps_rank_sys_enabled || (call Hz_fnc_isHC)) exitWith {};
 
 private ["_ranksig","_name","_rank","_score","_text","_ctrl"];
 

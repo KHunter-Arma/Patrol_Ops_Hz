@@ -2,12 +2,14 @@ private ["_objectsarr","_uid","_tentpos","_tentposx","_tentposy","_tentposz"];
 
 // Client Initialise
 
-if(isDedicated) exitWith {};
+if(isDedicated || (call Hz_fnc_isHC)) exitWith {};
 
 if (!hz_debug && isMultiplayer) then {
 
   //delete UPS markers on client...
   deleteMarkerlocal "UPS";
+	deleteMarkerlocal "UPS_b";
+	deleteMarkerlocal "UPS_ins";
 
 };
 
@@ -86,26 +88,28 @@ if (!hz_debug && isMultiplayer) then {
 // Adapted by EightySix
 //	[] execFSM (mps_path+"fsm\mps_client_3rdperson.fsm");
 
-// Begin Client Cursor Monitoring for actions on objects
-[] execVM (mps_path+"func\mps_func_client_cursortarget.sqf");
-GrassLayerchanged = false;
-
-// Remove all gear from a joining player and equip defaults
-//	[] execVM (mps_path+"config\config_defaultgear.sqf");
-
-
 waitUntil {!(isNull player)};
 
 sleep 1;
 
 _uid = getplayeruid player;
 _exit = false;
+Hz_pops_clientInitDone = false;
 if(_uid in BanList) then {
 
   "-1" call Hz_fnc_arrestPlayer;
-
+	_exit = true;
+	
 };
 if (_exit) exitWith {};
+Hz_pops_clientInitDone = true;
+
+// Begin Client Cursor Monitoring for actions on objects
+[] execVM (mps_path+"func\mps_func_client_cursortarget.sqf");
+GrassLayerchanged = false;
+
+// Remove all gear from a joining player and equip defaults
+//	[] execVM (mps_path+"config\config_defaultgear.sqf");
 
 // Publicvariabled from server init. Used to sync destroyed objects/buildings from nuke for JIP
 if (count narray2 > 0) then {{_x setdamage 1;} foreach narray2;};
@@ -467,7 +471,13 @@ if (Hz_pops_enableDetainUnrecognisedUIDs) then {
 
 if (_exit) exitWith {};
 
+player unassignItem "ItemMap";
+player removeItem "ItemMap";
+player unassignItem "ItemCompass";
+player removeItem "ItemCompass";
 Hz_pers_clientReadyForLoad = true;
+ace_advanced_fatigue_recoveryFactor = 12.5;
+showScoretable 0;
 
 
 /*

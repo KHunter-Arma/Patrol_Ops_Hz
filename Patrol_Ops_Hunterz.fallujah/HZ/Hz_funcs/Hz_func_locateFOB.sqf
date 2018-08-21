@@ -2,7 +2,7 @@ private ["_FOBobject","_return","_HQlist"];
 
 _FOBobject = objNull;
 _HQlist = [];
-_return = markerpos "respawn_west";
+_return = [0,0,0];
 
 {
 

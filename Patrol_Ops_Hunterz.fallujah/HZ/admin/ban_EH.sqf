@@ -9,6 +9,8 @@ if(isServer) then {
     };
     
 } else {
+
+		if (call Hz_fnc_isHC) exitWith {};
     
     waituntil {!isnull player};    
 

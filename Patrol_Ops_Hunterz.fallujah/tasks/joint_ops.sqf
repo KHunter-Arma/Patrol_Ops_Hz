@@ -10,6 +10,7 @@ if (((count playableunits) > 14) &&
     ) then { 
     
         missionload = true; 
+				publicVariable "missionload";
         taskrequested = true;
         publicvariable "taskrequested";                
                 
@@ -37,6 +38,7 @@ if (((count playableunits) > 14) &&
         patrol_task_units = [];
         patrol_task_vehs = [];
         stopreinforcements = false;
+				publicVariable "stopreinforcements";
                                     
 	_script = [] execVM format["tasks\jops_types\%1.sqf",_next];
         
@@ -51,6 +53,7 @@ if (((count playableunits) > 14) &&
         taskrequested = false;
         publicvariable "taskrequested";
         stopreinforcements = true;
+				publicVariable "stopreinforcements";
         
         Hz_max_deadunits = Hz_max_deadunits*2;
         Hz_max_allunits = Hz_max_allunits/1.1;

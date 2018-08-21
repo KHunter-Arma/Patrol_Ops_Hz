@@ -38,7 +38,7 @@ if((count _this) > 9) then {
 
 for "_i" from 1 to _count do {
 
-  waituntil { missionload = true; sleep 20; (((count allunits) < Hz_max_allunits) || stopreinforcements)};
+  waituntil {sleep 20; (((count allunits) < Hz_max_allunits) || stopreinforcements)};
 
   //has task ended?
   if (stopreinforcements) exitwith {};

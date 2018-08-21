@@ -1,6 +1,6 @@
 // Written by EightySix
 
-if(!isServer) exitWith{};
+if(!(call Hz_fnc_isTaskMaster)) exitWith{};
 private["_position","_locations","_location","_radius","_sidea","_sideb"];
 
 	if(isNil "mps_used_locations") then {mps_used_locations = [];};
@@ -32,4 +32,4 @@ private["_position","_locations","_location","_radius","_sidea","_sideb"];
 
 	mps_used_locations = mps_used_locations + [_location];
 
-_location;
+_location

@@ -1,7 +1,7 @@
 // Written by MSO Team
 // Modified by Eightysix
 
-if(isDedicated) exitWith{};
+if(isDedicated || (call Hz_fnc_isHC)) exitWith{};
 
 mps_acre_enabled = isClass(configFile/"CfgPatches"/"acre_main");
 

@@ -15,15 +15,27 @@ if (is3DEN) then {
 
 #include "Hz_config.sqf"
 
-if(!isDedicated && !isMultiplayer) then {
-  hz_debug = true;
-  mps_debug = true;
-  hintsilent "DEBUG mode initialised!";
-};
+Hz_fnc_isHC = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isHC.sqf";
+Hz_fnc_isAiMaster = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isAiMaster.sqf";
+Hz_fnc_isTaskMaster = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isTaskMaster.sqf";
 
 //Ambient patrols respawn controller [only used by the server at the moment]
 if(isnil "missionload") then {missionload = true;};
 if(isnil "jointops") then {jointops = false;};
+
+if (call Hz_fnc_isAiMaster) then {
+
+	call compile preprocessFileLineNumbers "initUPSRespawn.sqf";
+
+};
+
+call compile preprocessfilelinenumbers "lk\nuke\nenvi.sqf";
+
+if(!isMultiplayer) then {
+  hz_debug = true;
+  mps_debug = true;
+  hintsilent "DEBUG mode initialised!";
+};
 
 //init Weather
 call compile preprocessFileLineNumbers "HZ\Hz_sys_weather\Hz_weather_init.sqf";
@@ -42,10 +54,11 @@ Hz_func_find_nearest_ammo_crate = compile preprocessfilelinenumbers "HZ\Hz_funcs
 Hz_func_locateFOB = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_locateFOB.sqf";
 
 //Client init
-if(!isDedicated) then {
+if(!isDedicated && !(call Hz_fnc_isHC)) then {
 
 	Hz_fnc_arrestPlayer = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_arrestPlayer.sqf";
   Hz_fnc_arrestedHandleEscape = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_arrestedHandleEscape.sqf";
+	Hz_fnc_transferGearToNearestAmmoCrate = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_transferGearToNearestAmmoCrate.sqf";
   
   [] spawn {   
     
@@ -144,6 +157,16 @@ if (isServer) then {
     
   };
   
+  if(!isMultiplayer) then {{if(!isplayer _x) then {deletevehicle _x};}foreach switchableunits;};
+
+};
+
+if (call Hz_fnc_isHC) then {
+	[] execvm "HZ\init_HC.sqf";
+};
+
+if (isServer || (call Hz_fnc_isHC)) then {
+
 	Hz_fnc_calculateTaskReward = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_calculateTaskReward.sqf";
 	Hz_fnc_taskReward = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_taskReward.sqf";
 	Hz_fnc_taskSuccessCheckGenericConditions = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_taskSuccessCheckGenericConditions.sqf";
@@ -158,7 +181,7 @@ if (isServer) then {
   Hz_func_setRealTime = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_setRealTime.sqf";
   //Hz_func_spawnOpforArtilleryBase = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_spawnOpforArtilleryBase.sqf";    
   Hz_func_initOpforComposition = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_initOpforComposition.sqf";    
-  
-  if(!isMultiplayer) then {{if(!isplayer _x) then {deletevehicle _x};}foreach switchableunits;};
+	Hz_fnc_noCaptiveCheck = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_noCaptiveCheck.sqf";  
+	Hz_fnc_noSideCivilianCheck = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_noSideCivilianCheck.sqf";  
 
 };

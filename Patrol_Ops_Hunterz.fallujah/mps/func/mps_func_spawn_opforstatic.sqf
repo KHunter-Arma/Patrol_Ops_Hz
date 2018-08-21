@@ -3,7 +3,7 @@
 
 
 private ["_originalPos", "_side", "_INS", "_ang", "_radius", "_a", "_b", "_mgpos", "_mg", "_grp", "_dir", "_gunner", "_compName", "_comp","_pos", "_posgrp", "_hidetime"];
-if(!isServer) exitWith {};
+if(!(call Hz_fnc_isTaskMaster)) exitWith {};
 if(count _this < 1) exitWith{};
 
 _originalPos = _this select 0;

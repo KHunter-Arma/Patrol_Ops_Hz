@@ -1,7 +1,7 @@
 // Written by BON_IF
 // Adpated by EightySix
 
-if(isDedicated) exitWith{};
+if(isDedicated || (call Hz_fnc_isHC)) exitWith{};
 
 [] spawn {
 	

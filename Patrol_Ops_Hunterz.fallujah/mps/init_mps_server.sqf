@@ -26,6 +26,7 @@ rallytents = [];
 BanList = [];
 publicvariable "BanList";
 publicvariable "rallytents";
+publicvariable "Hz_save_prev_tasks_list";
 
 //to be used for syncing nuke destruction for JIP
 publicvariable "narray2";
@@ -98,6 +99,14 @@ setviewdistance 2000;
 //for cleanup of bicycles
 tempbikes = [];
 publicvariable "tempbikes";
+
+if (!(call Hz_fnc_isAiMaster)) then {
+
+	Hz_pops_UPSPassToHCArray = [];
+	sleep 10;
+	publicVariable "Hz_pops_UPSPassToHCArray";
+
+};
 
 //if(mps_ambient_airpatrols) then {[] spawn CREATE_OPFOR_AIRPATROLS;};    
 	

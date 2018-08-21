@@ -1,7 +1,7 @@
 // Written by BON_IF
 // Adapted by EightySix
 
-if( isDedicated ) exitWith {};
+if( isDedicated || (call Hz_fnc_isHC)) exitWith {};
 if( mps_ace_wounds )  exitWith {};
 if( if(isNil "ace_wounds_enabled" ) then {false}else{true} ) exitWith {};
 

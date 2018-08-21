@@ -1,8 +1,28 @@
 
 private ["_dirn","_dire","_dist","_intel_loc","_distintel","_intel","_hint","_person","_badresponse","_infcount","_rndfactor","_factor","_alreadygathered"];
 
-if(isNil "mps_civilian_intel") then {mps_civilian_intel = ["The civilians don't appear to be able to help"]};
-if(count mps_civilian_intel == 0) then {mps_civilian_intel = ["The civilians don't appear to be able to help"]};
+if(isNil "mps_civilian_intel") exitwith {
+	if (random 1 < 0.5) then {
+		
+		hint "This person has no idea what you're talking about.";
+		
+	} else {
+	
+		hint "This person says they don't know anything about what you're asking.";
+	
+	};
+};
+if(count mps_civilian_intel == 0) exitwith {
+	if (random 1 < 0.5) then {
+		
+		hint "This person has no idea what you're talking about.";
+	
+	} else {
+	
+		hint "This person says they don't know anything about what you're asking.";
+	
+	};
+};
 
 _person = (_this select 0);
 
@@ -95,5 +115,3 @@ if(if(isNil "_alreadygathered") then {true} else {not _alreadygathered}) then{
 	hint "This person has already been questioned";
 
 };
-
-if(true) exitWith {};

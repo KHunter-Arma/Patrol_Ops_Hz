@@ -153,6 +153,10 @@ removeGoggles _pow1;
 
 [_pow1, true] call ACE_captives_fnc_setHandcuffed;
 
+sleep 1;
+
+_powPos = getposatl _pow1;
+
 _powBuilding = (nearestObjects [_pow1,["House"],50]) select 0;
 _powBuilding setvariable ["occupied",true];
 
@@ -184,6 +188,7 @@ _guardPositions = _guardPositions - [_powPos];
 
 [_pow1,["<t color=""#00FF00"">Request to follow</t>",{
 
+		(_this select 0) setCaptive false;
 		[_this select 0] joinsilent (group (_this select 1));
 		
 		(_this select 0) forcespeed -1;
@@ -368,7 +373,9 @@ if(_c > 0) then {
 
 /*------------------- INTENSIFY AMBIENT COMBAT------------------------------------*/
 missionload = false;
+publicVariable "missionload";
 Hz_max_ambient_units = Hz_max_ambient_units + _ambientCombatIntensifyAmount;
+publicVariable "Hz_max_ambient_units";
 
 /*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
 
@@ -392,12 +399,18 @@ While{ _pow1 distance getMarkerPos format["return_point_%1",(SIDE_A select 0)] >
   
   sleep 5;
   [_b+_c,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
+	
+	if (((_pow1 distance2D _powPos) > 3) && (captive _pow1)) then {
+	
+		_pow1 call Hz_fnc_noCaptiveCheck;
+	
+	};
   
 };
 
 if (captive _pow1) then {
 
-	waitUntil {sleep 2; (!captive _pow1) || (!alive _pow1)};
+	waitUntil {sleep 2; (!captive _pow1) || (!alive _pow1) || !(call Hz_fnc_taskSuccessCheckGenericConditions)};
 
 };
 
@@ -406,7 +419,7 @@ if (captive _pow1) then {
 Hz_max_ambient_units = Hz_max_ambient_units - _ambientCombatIntensifyAmount;
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/
-missionload = true;
+
 if( alive _pow1 && (call Hz_fnc_taskSuccessCheckGenericConditions)) then {
   [format["TASK%1",_taskid],"succeeded"] call mps_tasks_upd;
   

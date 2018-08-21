@@ -3,8 +3,8 @@
  * The configuration is splitted in categories dispatched in the included files.
  */
 
-//#include "A3_vanilla\Air.sqf"
-//#include "A3_vanilla\LandVehicle.sqf"
+#include "A3_vanilla\Air.sqf"
+#include "A3_vanilla\LandVehicle.sqf"
 #include "A3_vanilla\StaticWeapon.sqf"
 #include "A3_vanilla\Ship.sqf"
 #include "A3_vanilla\Building.sqf"

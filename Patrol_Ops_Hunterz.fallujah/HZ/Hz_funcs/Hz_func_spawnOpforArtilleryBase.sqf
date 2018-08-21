@@ -1,6 +1,6 @@
 
 private ["_newComp","_location","_artylocation","_dude","_grp","_marker","_defendersGrp","_car_type","_vehgrp","_aliveGuns","_cond","_rocketArty","_composition","_carspawnpos"];
-if(!isServer) exitWith{};
+if(!(call Hz_fnc_isAiMaster)) exitWith{};
 
 //init delay
 //sleep 60;

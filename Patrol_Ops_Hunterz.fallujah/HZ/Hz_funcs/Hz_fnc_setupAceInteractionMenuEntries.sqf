@@ -35,16 +35,32 @@ private _action = [
 			private _fobPos = call Hz_func_locateFOB;
 			private _basePos = markerpos "BASE";
 			
-			{
+			if (_fobPos isEqualTo [0,0,0]) then {
 			
-				if (((_x distance _basePos) > 500) || ((_x distance _fobPos) > 500)) exitWith {
-				
-					_exit = true;
-				
-				};
+				{
 			
-			} foreach playableUnits;
+					if ((_x distance _basePos) > 1000) exitWith {
+					
+						_exit = true;
+					
+					};
 			
+				} foreach playableUnits;				
+			
+			} else {
+			
+				{
+			
+					if (((_x distance _basePos) > 1000) || ((_x distance _fobPos) > 250)) exitWith {
+					
+						_exit = true;
+					
+					};
+			
+				} foreach playableUnits;
+			
+			};			
+									
 			if (_exit) exitWith {
 			
 				hint "All players must be at base or FOB to request a mission.";

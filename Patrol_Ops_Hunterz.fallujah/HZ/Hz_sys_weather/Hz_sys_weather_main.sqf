@@ -13,21 +13,21 @@ if(weather_change) then {
     [] spawn {
         
     uisleep 160;
-    forceWeatherChange;
+    //forceWeatherChange;
      
     30 setrain weather_rain;
     uisleep 40;
-    forceWeatherChange;
+    //forceWeatherChange;
     150 setfog weather_fog;
     uisleep 160;
-    forceWeatherChange;
+    //forceWeatherChange;
     
     };
     
     setwind weather_wind;
     
     uisleep 350;
-    forceWeatherChange;
+    //forceWeatherChange;
     
 };
 
