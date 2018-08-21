@@ -61,37 +61,34 @@ case "RHSUSF_MAG_40RND_46X30_AP": {87};
 case "RHSUSF_MAG_40RND_46X30_JHP": {87};
 case "RHSUSF_MAG_40RND_46X30_FMJ": {87};
 
-
-
-//545x39
-case "RHS_30RND_545X39_AK": {18};
-
 */
 
+//545x39
 case "RHS_30RND_545X39_AK_NO_TRACERS": {18};
-
-
+case "RHS_30RND_545X39_AK": {18};
+case "RHS_30RND_545X39_AK_GREEN": {18};
+case "RHS_45RND_545X39_AK": {60};
+case "RHS_45RND_545X39_AK_GREEN": {60};
 
 /*
 case "RHS_30RND_545X39_7N6_AK": {18};
 case "RHS_30RND_545X39_7N10_AK": {18};
 case "RHS_30RND_545X39_7N22_AK": {18};
-case "RHS_30RND_545X39_AK_GREEN": {18};
 case "RHS_30RND_545X39_7U1_AK": {18};
-case "RHS_45RND_545X39_AK": {60};
 case "RHS_45RND_545X39_7N6_AK": {60};
 case "RHS_45RND_545X39_7N10_AK": {60};
 case "RHS_45RND_545X39_7N22_AK": {60};
-case "RHS_45RND_545X39_AK_GREEN": {60};
 case "RHS_45RND_545X39_7U1_AK": {60};
 */
 
+case "CUP_75RND_TE4_LRT4_GREEN_TRACER_545X39_RPK_M": {60};
+case "HLC_60RND_545X39_T_RPK": {60};
 
-
+//declutter (exists in RHS - or does not exist IRL)
+/*
 case "HLC_30RND_545X39_EP_AK": {18};
 case "HLC_30RND_545X39_B_AK": {18};
 case "HLC_45RND_545X39_M_RPK": {60};
-case "HLC_60RND_545X39_T_RPK": {60};
 case "HLC_30RND_545X39_S_AK": {18};
 case "HLC_30RND_545X39_T_AK": {18};
 case "HLC_45RND_545X39_T_RPK": {60};
@@ -102,8 +99,7 @@ case "CUP_30RND_545X39_AK_M": {18};
 case "CUP_30RND_TE1_RED_TRACER_545X39_AK_M": {18};
 case "CUP_30RND_TE1_WHITE_TRACER_545X39_AK_M": {18};
 case "CUP_30RND_TE1_YELLOW_TRACER_545X39_AK_M": {18};
-case "CUP_75RND_TE4_LRT4_GREEN_TRACER_545X39_RPK_M": {60};
-
+*/
 
 
 //.22 LR
@@ -194,19 +190,24 @@ case "RHS_30RND_762X39MM_SAVZ58_TRACER": {25};
 case "RHS_30RND_762X39MM_TRACER": {90};
 case "RHS_30RND_762X39MM_89": {90}; 
 case "RHS_30RND_762X39MM_U": {90};
+
+case "HLC_45RND_762X39_AP_RPK": {60};
+
 */
 
+case "HLC_45RND_762X39_M_RPK": {60};
+case "HLC_45RND_762X39_T_RPK": {60};
 
-
+//declutter
+/*
 case "HLC_30RND_762X39_AP_AK": {16};
-case "HLC_45RND_762X39_AP_RPK": {60};
 case "HLC_75RND_762X39_AP_RPK": {60};
 case "HLC_30RND_762X39_B_AK": {16};
-case "HLC_45RND_762X39_M_RPK": {60};
 case "HLC_75RND_762X39_M_RPK": {60};
 case "HLC_30RND_762X39_S_AK": {16};
 case "HLC_30RND_762X39_T_AK": {16};
-case "HLC_45RND_762X39_T_RPK": {60};
+*/
+
 
 case "10RND_SKS_MAG": {6};
 case "100RND_KOROB_RPD": {60};
@@ -488,7 +489,7 @@ case "RHS_VG40TB": {30};
 */
 
 
-
+/*
 case "HLC_GRD_BLUE": {15};
 case "HLC_GRD_GREEN": {15};
 case "HLC_GRD_ORANGE": {15};
@@ -497,7 +498,7 @@ case "HLC_GRD_RED": {15};
 case "HLC_GRD_WHITE": {15};
 case "HLC_GRD_YELLOW": {15};
 case "HLC_VOG25_AK": {10}; 
-
+*/
 
 
 //various non standardized mags

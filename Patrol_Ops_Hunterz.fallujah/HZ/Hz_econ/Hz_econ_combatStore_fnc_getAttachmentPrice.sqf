@@ -312,6 +312,13 @@ case "CUP_OPTIC_PSO_3": {600}; //is this supposed to be a PO 3-9x24...?
 
 
 
+//OTHERS
+case "GVL_X2000_POINT": {600};
+case "GVL_X2000_WIDE": {600};
+
+
+
+
 default {-1};
 
 };
