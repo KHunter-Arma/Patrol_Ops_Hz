@@ -16,6 +16,22 @@ if( if( !isNil "ace_wounds_enabled" ) then { false } else { true } ) then {
 };
 */
 
+//prevent panic anim exploit against broken legs
+player addEventHandler ["AnimChanged", {
+	params ["_unit", "_anim"];
+  
+  if ((_anim find "apan") != -1) then {
+  
+    if ((((getAllHitPointsDamage _unit) select 2) select 10) >= 0.5) then {
+    
+      _unit playmovenow "amovpercmstpslowwrfldnon";
+      
+    };
+  
+  };
+  
+}];
+
 //player addEventHandler ["Killed",{player spawn mps_respawn_gear}];
 
 gogglesAtDeath = "";
@@ -32,6 +48,10 @@ player addEventHandler ["Killed",{
 	_player = _this select 0;
 	
   _player setvariable ["NoDelete",true,true];
+  
+  handgunWeaponPlayer = handgunWeapon _player;
+  primaryWeaponPlayer = primaryWeapon _player;
+  secondaryWeaponPlayer = secondaryWeapon _player;
 	
 	gogglesAtDeath = goggles _player;
 	ownedWepHolders = [];
@@ -49,10 +69,6 @@ player addEventHandler ["Killed",{
   //  _player removeaction mps_rallypoint;
     _player removeaction mps_client_hud_act;     
 		
-		handgunWeaponPlayer = handgunWeapon _player;
-		primaryWeaponPlayer = primaryWeapon _player;
-		secondaryWeaponPlayer = secondaryWeapon _player;
-    
     sleep 2;
 		
 		_player action ["nvGogglesOff", _player];		
@@ -60,7 +76,7 @@ player addEventHandler ["Killed",{
 		_hasEarplugs = _player getvariable ["ACE_hasEarPlugsin",false];
 		
 		_weaponsNeedToBeFound = [];
-		
+		 
 		{
 		
 			if (_x != "") then {
@@ -69,11 +85,28 @@ player addEventHandler ["Killed",{
 			
 			};
 		
-		} foreach [handgunWeaponPlayer,primaryWeaponPlayer,secondaryWeaponPlayer];
-		
+		} foreach [handgunWeaponPlayer,primaryWeaponPlayer,secondaryWeaponPlayer];    
+
+    
 		while {true} do {
-		
-			openMap false; 0 fadeSound 0; acre_sys_core_globalVolume = 0;
+    
+      if ((vehicle _player) != _player) then {
+      
+        waitUntil {
+        
+          openMap false; 0 fadeSound 0; acre_sys_core_globalVolume = 0;
+          
+          ((vehicle player) == player)
+        
+        };
+        
+        if (!alive player) then {
+        
+          _weaponHoldersExcluded = nearestObjects [_player, ["WeaponHolderSimulated"],30];
+        
+        };
+      
+      };		
 			
 			//try to resolve loop getting stuck with exitwith instead...
 			if (((count _weaponsNeedToBeFound) < 1) || (alive player)) exitwith {};
