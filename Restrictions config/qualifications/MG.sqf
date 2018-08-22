@@ -90,7 +90,8 @@ magazinesInfo = magazinesInfo - [
 ////////////////////////////////////////////////////////////////////////////////////
 
 
-
+"RHS_45RND_545X39_AK",
+"RHS_45RND_545X39_AK_GREEN",
 "HLC_45RND_762X39_AP_RPK",
 "HLC_75RND_762X39_AP_RPK",
 "HLC_45RND_762X39_M_RPK",
