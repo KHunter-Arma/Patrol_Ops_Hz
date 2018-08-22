@@ -22,11 +22,7 @@ player addEventHandler ["AnimChanged", {
   
   if ((_anim find "apan") != -1) then {
   
-    if ((((getAllHitPointsDamage _unit) select 2) select 10) >= 0.5) then {
-    
-      _unit playmovenow "amovpercmstpslowwrfldnon";
-      
-    };
+   _unit playmovenow "amovpercmstpslowwrfldnon";
   
   };
   
@@ -110,6 +106,8 @@ player addEventHandler ["Killed",{
 			
 			//try to resolve loop getting stuck with exitwith instead...
 			if (((count _weaponsNeedToBeFound) < 1) || (alive player)) exitwith {};
+      
+      openMap false; 0 fadeSound 0; acre_sys_core_globalVolume = 0;
 		
 			_weaponHolders = nearestObjects [_player, ["WeaponHolderSimulated"],30];
 			
