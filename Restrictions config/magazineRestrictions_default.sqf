@@ -2,7 +2,8 @@ Hz_econ_cfg_magazineRestrictions_default =
 [
 
 
-
+"RHS_45RND_545X39_AK",
+"RHS_45RND_545X39_AK_GREEN",
 "RHS_MAG_M7A3_CS",
 "RHS_MAG_AN_M14_TH3",
 "ACE_M14",
