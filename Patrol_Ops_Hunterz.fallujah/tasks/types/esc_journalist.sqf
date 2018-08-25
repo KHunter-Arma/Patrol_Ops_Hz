@@ -304,6 +304,7 @@ for "_i" from 1 to _numberOfTargets do {
 
 };
 
+deleteMarker taskMarker;
 
 /*--------------------MISSION CRITERIA TO PASS---------------------------------*/
 
