@@ -29,6 +29,34 @@ while {true} do
 	_timescaler2 = _timescaler2 + 1;
 	_timescaler3 = _timescaler3 + 1;
 	
+	// unglitch garrisoned infantry etc.
+	{
+	
+		if (local _x) then {
+		
+			if ((vehicle _x) == _x) then {
+		
+				if (((animationState _x) find "afal") != -1) then {
+				
+					if ((_x distance (_x getVariable ["animCorrectionOldPos",getposatl _x])) < 1) then {
+					
+						_endPos = getPosASL _x;
+						_beginPos = [_endPos select 0, _endPos select 1, (_endPos select 2) + 250];
+						_correctionPos = ((lineIntersectsSurfaces [_beginPos, _endPos, _x]) select 0) select 0;
+						_x setPosASL [_correctionPos select 0, _correctionPos select 1, (_correctionPos select 2) + 1.5];
+					
+					};
+					
+					_x setVariable ["animCorrectionOldPos",getposatl _x];
+							
+				};
+			
+			};
+		
+		};
+	
+	} foreach allunits;
+	
 	//track unconscious units and kill them if they're lying at the same place for more than 10 minutes
 // using setcaptive isn't reliable as it might return non-unconscious actual captives -- better to remove this cleanup 
 /*	
