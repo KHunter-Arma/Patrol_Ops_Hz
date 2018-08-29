@@ -554,6 +554,12 @@ case  "ACE_HANDFLARE_YELLOW": {60};
 case  "RHS_MAG_M18_GREEN": {52};
 case  "RHS_MAG_M18_PURPLE": {52};
 case  "RHS_MAG_M18_RED": {52};
+case  "RHS_MAG_M18_YELLOW": {52};
+case  "RHS_MAG_M67": {34};
+
+//duplicate BIS stuff...
+/*
+case  "SMOKESHELL": {52};
 case  "SMOKESHELLBLUE": {52};
 case  "SMOKESHELLGREEN": {52};
 case  "SMOKESHELLORANGE": {52};
@@ -561,15 +567,12 @@ case  "SMOKESHELLPURPLE": {52};
 case  "SMOKESHELLRED": {52};
 case  "SMOKESHELLYELLOW": {52};
 case  "HANDGRENADE": {34};
-case  "RHS_MAG_M18_YELLOW": {52};
-case  "RHS_MAG_M67": {34};
-
+*/
 
 
 /*
 case  "RHS_MAG_M69": {-1};
 case  "RHS_MAG_M7A3_CS": {213};
-case  "SMOKESHELL": {52};
 case  "RHS_MAG_MK84": {175};
 case  "ACE_M84": {175};
 case  "RHS_MAG_MK3A2": {50};
