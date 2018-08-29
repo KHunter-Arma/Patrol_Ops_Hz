@@ -178,6 +178,8 @@ _guardPositions = _guardPositions - [_powPos];
 	};
 	
 	_unit forcespeed 0;
+	_unit setvariable ["Hz_noMove",true];
+	_unit setvariable ["Hz_clearingBuilding",true];
 	dostop _unit;
 	_unit setposatl _x;	
 	_unit setUnitPos "UP";

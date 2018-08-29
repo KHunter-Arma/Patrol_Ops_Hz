@@ -9,7 +9,7 @@ diag_log diag_activeMissionFSMs;
 
 _downPayment = 10000;
 _speechCompletePayment = 30000;
-_speechTimeMinutes = 20;
+_speechTimeMinutes = 30;
 
 // in case the mission turns into a defend task
 _EnemySpawnMinimumRange = 3000;
@@ -529,7 +529,7 @@ while {
 		_vip setvariable ["preachTime",_preachCounter];
 		_otherReward = _otherReward + _speechRewardPerSecond;
 		
-		if ((random 1) < 0.0012) then {
+		if ((random 1) < 0.0015) then {
 			
 			_temp = +_crowd;
 			{

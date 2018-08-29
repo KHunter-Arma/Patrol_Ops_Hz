@@ -23,6 +23,13 @@ Hz_fnc_isTaskMaster = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isTa
 if(isnil "missionload") then {missionload = true;};
 if(isnil "jointops") then {jointops = false;};
 
+if(!isMultiplayer) then {
+  hz_debug = true;
+  mps_debug = true;
+	Hz_enableHC = false;
+  hintsilent "DEBUG mode initialised!";
+};
+
 if (call Hz_fnc_isAiMaster) then {
 
 	call compile preprocessFileLineNumbers "initUPSRespawn.sqf";
@@ -30,12 +37,6 @@ if (call Hz_fnc_isAiMaster) then {
 };
 
 call compile preprocessfilelinenumbers "lk\nuke\nenvi.sqf";
-
-if(!isMultiplayer) then {
-  hz_debug = true;
-  mps_debug = true;
-  hintsilent "DEBUG mode initialised!";
-};
 
 //init Weather
 call compile preprocessFileLineNumbers "HZ\Hz_sys_weather\Hz_weather_init.sqf";

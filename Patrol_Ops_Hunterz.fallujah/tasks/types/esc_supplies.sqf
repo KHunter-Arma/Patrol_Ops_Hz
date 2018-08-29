@@ -5,7 +5,7 @@ diag_log diag_activeMissionFSMs;
 
 /*-------------------- TASK PARAMS ---------------------------------*/
 _downPayment = 30000;
-_supplyTime = 1200;
+_supplyTime = 1800;
 _penaltyPerLostContainer = 20000;
 _penaltyPerLostWorker = 50000;
 
