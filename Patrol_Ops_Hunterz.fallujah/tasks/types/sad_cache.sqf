@@ -172,6 +172,8 @@ for "_i" from 1 to _cacheCount do {
 
 		_unit = _cacheGrp createUnit [mps_opfor_ins call mps_getRandomElement,_cachePos,[],50,"NONE"];
 		_unit forcespeed 0;
+		_unit setvariable ["Hz_noMove",true];
+		_unit setvariable ["Hz_clearingBuilding",true];
 		dostop _unit;
 		_unit setposatl _x;	
 		_unit setUnitPos "UP";
