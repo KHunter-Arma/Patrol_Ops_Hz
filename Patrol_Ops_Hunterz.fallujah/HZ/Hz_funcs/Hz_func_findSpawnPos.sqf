@@ -4,7 +4,7 @@ private ["_marker1","_maxDistance","_marker2","_taskpos","_minDistance","_blackl
 _taskpos = _this select 0;
 _minDistance = _this select 1;
 
-_maxDistance = _minDistance*2;
+_maxDistance = _minDistance + 500;
 
 if ((count _this) > 2) then {
 
@@ -46,9 +46,10 @@ while {(format ["%1",_spawnpos]) == "[0,0,0]"} do {
     };
         }foreach _unitarray;
         
-_spawnpos = [_taskpos, _minDistance, _maxDistance, 3, 0, 1, 0,_blacklistpos,[[(markerpos "patrol_respawn_n") select 0, (markerpos "patrol_respawn_n") select 1,0],[0,0,0]]] call BIS_fnc_findSafePos;
+_spawnpos = [_taskpos, _minDistance, _maxDistance, 3, 0, 1, 0,_blacklistpos,[[0,0,0]]] call BIS_fnc_findSafePos;
 
 _tries = _tries + 1;
+_maxDistance = _maxDistance + 500;
 if(_tries > 100) exitwith {};
 
 };

@@ -11,10 +11,10 @@ _maxSquadCount = 6;
 
 //Chance of a squad having the following vehicle support (can't have more than 1 vehicle per squad)
 _CASchance = 0;
-_TankChance = 0;
+_TankChance = 0.1;
 _IFVchance = 0.1;
-_AAchance = 0.1;
-_CarChance = 0.5;
+_AAchance = 0.3;
+_CarChance = 0.75;
 
 //Useful for justifying task-specific difficulties.
 _rewardMultiplier = 0.7;
@@ -96,6 +96,9 @@ _dude forcespeed 0;
 _dude setUnitPos "UP";
 _defGrp setFormation "DIAMOND";
 
+_defGrp setVariable ["Hz_defending",true];
+_defGrp setCombatMode "GREEN";
+
 /*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
 
 mps_civilian_intel = []; publicVariable "mps_civilian_intel";
@@ -161,7 +164,7 @@ if(_b > 0) then {
 		
 		if(!isnil "Hz_AI_moveAndCapture") then {
 			
-			_spawnedVehs = [_grp, _position,mps_opfor_truck,mps_opfor_ncov,1000] call Hz_AI_moveAndCapture;  
+			_spawnedVehs = [_grp, _position,mps_opfor_truck,mps_opfor_ncov,1500] call Hz_AI_moveAndCapture;  
 
 			patrol_task_vehs = patrol_task_vehs + _spawnedVehs;					 
 			

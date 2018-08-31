@@ -24,7 +24,7 @@ _list = [
 		"sar_supplies"
     ];
 		
-if(hz_debug) then {_list = ["esc_supplies"];};
+if(hz_debug) then {_list = ["def_fob"];};
 
 //init
 taskrequested = false;
