@@ -109,7 +109,8 @@ case "CUP_30RND_TE1_YELLOW_TRACER_545X39_AK_M": {18};
 case "CUP_5X_22_LR_17_HMR_M": {0};
 case "RH_10RND_22LR_MK2": {-1};
 
-
+//Mosin Nagant M38
+case "RHSGREF_5RND_762X54_M38": {5};
 
 //556x45
 
@@ -293,8 +294,8 @@ case "CUP_10RND_762X54_SVD_M": {50};
 
 
 
-//7.7mm
-case "LOP_10RND_77MM_MAG": {10};
+//.303 Lee Enfield
+case "CUP_10x_303_M": {10};
 
 
 

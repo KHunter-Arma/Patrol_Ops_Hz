@@ -309,6 +309,8 @@ case "RHS_WEAP_RSP30_WHITE": {14};
 case "RHS_WEAP_RSP30_GREEN": {14};
 case "RHS_WEAP_RSP30_RED": {14};
 
+case "RHS_WEAP_M79" : {3500};
+
 
 	
 //RH-M4
@@ -486,12 +488,8 @@ case "CUP_LMG_UK59": {-1};
 case "CUP_HGUN_DUTY": {517};
 case "CUP_HGUN_COMPACT": {562.50};
 case "CUP_HGUN_PHANTOM": {636};
-
-
-
-//Project Opfor
-case "LOP_WEAP_LEEENFIELD": {500};
-case "LOP_WEAP_LEEENFIELD_RAILED": {600};
+case "CUP_SRIFLE_LEEENFIELD": {500};
+case "CUP_SRIFLE_LEEENFIELD_RAIL": {600};
 
 
 
