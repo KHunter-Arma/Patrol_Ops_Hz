@@ -1,4 +1,4 @@
-if(isDedicated) exitWith{};
+if(isDedicated || (call Hz_fnc_isHC)) exitWith{};
 
 player createDiarySubject ["patrol1","Patrol Brief"];
 player createDiarySubject ["patrol2","Patrol Wiki"];

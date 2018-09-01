@@ -4,7 +4,7 @@
 	mps_tasks_initDone = false;
 
 	mps_tasks_add = {
-		if isserver then {
+		if (call Hz_fnc_isTaskMaster) then {
 			private ["_name","_short","_long","_cond","_marker","_state","_dest"];
 			_name = _this select 0;
 			_short = _this select 1;
@@ -15,7 +15,7 @@
 			if (count _this > 6) then { _dest = _this select 6 } else { _dest = 0 };
 			mps_tasks_Tasks set [count mps_tasks_Tasks, [_name,_short,_long,_cond,_marker,_state,_dest]];
 			publicvariable "mps_tasks_Tasks";
-			if (!isdedicated && mps_tasks_initDone) then {
+			if (!isdedicated && mps_tasks_initDone && !(call Hz_fnc_isHC)) then {
 				mps_tasks_Tasks spawn mps_tasks_handleEvent;
 			};
 		};
@@ -105,7 +105,7 @@
 		mps_tasks_TasksLocal set [count mps_tasks_TasksLocal,[_name,_state,_handles]];
 	};
 	mps_tasks_assign = {
-		if isserver then {
+		if (call Hz_fnc_isTaskMaster) then {
 			private "_task";
 			for "_i" from 0 to (count mps_tasks_Tasks - 1) do {
 				if (_this == ((mps_tasks_Tasks select _i) select 0)) then {
@@ -115,7 +115,7 @@
 				};
 			};
                             publicvariable "mps_tasks_Tasks";
-			if (!isdedicated && mps_tasks_initDone) then {
+			if (!isdedicated && mps_tasks_initDone && !(call Hz_fnc_isHC)) then {
 				mps_tasks_Tasks spawn mps_tasks_handleEvent;
 			};
 		};
@@ -174,7 +174,7 @@
 			} else {
 				if mps_debug then { diag_log format ["mps_Taskmaster> handleEvent calling addTask: %1",_name]};
 				_x call mps_tasks_addTask;
-				if (!isdedicated && mps_tasks_initDone) then {
+				if (!isdedicated && mps_tasks_initDone && !(call Hz_fnc_isHC)) then {
 					playSound "IncomingTask";
 				};
 			};
@@ -246,7 +246,7 @@
 		[_p select 1,["",((taskDescription (_this select 0)) select 1)]] call BIS_fnc_showNotification;
 	};
 	mps_tasks_upd = {
-		if isserver then {
+		if (call Hz_fnc_isTaskMaster) then {
 			private ["_task","_state"];
 			_state = (_this select 1);
 			for "_i" from 0 to (count mps_tasks_Tasks - 1) do {
@@ -263,7 +263,7 @@
 				};
 			};
 			publicvariable "mps_tasks_Tasks";
-			if (!isdedicated && mps_tasks_initDone) then {
+			if (!isdedicated && mps_tasks_initDone && !(call Hz_fnc_isHC)) then {
 				mps_tasks_Tasks spawn mps_tasks_handleEvent;
 			};
 		};
@@ -305,7 +305,7 @@
 			};
 		};
 	};
-if isserver then {
+if (call Hz_fnc_isTaskMaster) then {
 	mps_tasks_Tasks = []; // Array member: ["Name","Title","Desc","Marker","State"]
 	if (!isnil "_this") then {
 		if (count _this > 0) then {
@@ -323,7 +323,7 @@ if isserver then {
 	};
 	
 };
-if !isdedicated then {
+if (!isdedicated  && !(call Hz_fnc_isHC)) then {
 	mps_tasks_showHints = false;
 	mps_tasks_TasksLocal = []; // Array member: ["TaskName","TaskState",TaskHandles]
 	if (!isnil "_this") then {

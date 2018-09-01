@@ -19,11 +19,11 @@ case (_this iskindof "CUP_C_S1203_CIV") : {2000};
 case (_this iskindof "CUP_C_S1203_Ambulance_CIV") : {2300};
 case (_this iskindof "CUP_C_Volha_Gray_TKCIV") : {5700};
 case (_this iskindof "PO_LandRover_Base_SPG9") : {-1};
-case (_this iskindof "PO_LandRover_Base_MG") : {65000};
+case (_this iskindof "PO_LandRover_Base_MG") : {-1}; //65000 ****************************************
 case (_this iskindof "CUP_C_LR_Transport_CTK") : {50000};
 case (_this iskindof "PO_LandRover_base") : {50000};
 case (_this iskindof "CUP_B_LR_Ambulance_CZ_W") : {75000};
-case (_this iskindof "CUP_B_LR_Special_M2_GB_W") : {82000};
+case (_this iskindof "CUP_B_LR_Special_M2_GB_W") : {-1}; //82000 **************************************
 //case (_this iskindof "rhsusf_m1025_w_mk19") : {255700};
 //case (_this iskindof "rhsusf_m1025_w_m2") : {256000};
 //case (_this iskindof "rhsusf_m1025_w") : {240000};
@@ -31,9 +31,9 @@ case (_this iskindof "CUP_B_LR_Special_M2_GB_W") : {82000};
 case (_this iskindof "Offroad_01_AT_base_F") : {-1}; // Ref: Toyota Hilux
 case (_this iskindof "Offroad_01_repair_military_base_F") : {37000};
 case (_this iskindof "Offroad_01_repair_base_F") : {-1};
-case (_this iskindof "Offroad_01_armed_base_F") : {46500}; 
+case (_this iskindof "Offroad_01_armed_base_F") : {-1};  //46500 ******************************************
 case (_this iskindof "Offroad_01_unarmed_base_F") : {32000};
-case (_this iskindof "CUP_SUV_Armored_Base") : {-1}; //case (_this iskindof "CUP_SUV_Armored_Base") : {350000}; 
+case (_this iskindof "CUP_SUV_Armored_Base") : {-1}; // 350000 ******************************************
 case (_this iskindof "CUP_SUV_Unarmed_Base") : {50000};  // Ref: Chevrolet Tahoe
 case (_this iskindof "SUV_01_base_F") : {77500};  // Ref: BMW X6
 case (_this iskindof "Offroad_02_LMG_base_F") : {40000};
@@ -50,7 +50,7 @@ case (_this iskindof "Van_01_transport_base_F") : {22500}; // Ref: Isuzu Grafter
 case (_this iskindof "Van_01_box_base_F") : {24000};
 case (_this iskindof "Van_01_fuel_base_F") : {40000};
 case (_this iskindof "Van_02_vehicle_base_F") : {45600}; // Ref: Mercedes Sprinter
-case (_this iskindof "Van_02_transport_base_F") : {45600};
+case (_this iskindof "Van_02_transport_base_F") : {50000};
 
 default {-1};
 

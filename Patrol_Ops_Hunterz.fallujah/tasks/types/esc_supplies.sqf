@@ -5,12 +5,12 @@ diag_log diag_activeMissionFSMs;
 
 /*-------------------- TASK PARAMS ---------------------------------*/
 _downPayment = 30000;
-_supplyTime = 1200;
-_penaltyPerLostContainer = 2000;
-_penaltyPerLostWorker = 5000;
+_supplyTime = 1800;
+_penaltyPerLostContainer = 20000;
+_penaltyPerLostWorker = 50000;
 
 // in case the mission turns into a defend task
-_EnemySpawnMinimumRange = 5000;
+_EnemySpawnMinimumRange = 3000;
 _taskRadius = 50;
 _minSquadCount = 3;
 _maxSquadCount = 6;
@@ -66,16 +66,19 @@ for "_i" from 1 to 4 do {
 
 		_dudes = (_this select 0) getvariable "workers";
 	
+		_dudes joinsilent grpNull;
 		_dudes joinsilent (group (_this select 1));
 		
 		{_x forcespeed -1} foreach _dudes;
 
 	}, [], 1, true, true, "", "(!captive _target) && (alive _target) && ((group _target) != (group _this))"]] remoteexeccall ["addAction",0,true];
 	
-	_x addEventHandler ["Killed",{
+	_x addMPEventHandler ["MPKilled",{
 	
 		_dude = _this select 0;
 		_killer = _this select 1;
+		
+		if (!local _dude) exitWith {};
 		
 		_condition = false;
 		
@@ -97,37 +100,37 @@ for "_i" from 1 to 4 do {
 			
 		};	
 		
-		if (_condition) then {Hz_pops_task_auxFailCondition = true;};
+		if (_condition) then {Hz_pops_task_auxFailCondition = true; publicVariable "Hz_pops_task_auxFailCondition";};
 	
 	}];
 
 } foreach _workers;
 
-_rand = random 1;
+_rand = random 100;
 
 _locationDescription = "";
 _position = [0,0,0];
 
 switch (true) do {
 
-	case (_rand < 0.33) : {
+	case (_rand < 33) : {
 
-	_position = [4637.1,2359.13,0];
-	_locationDescription = "the old army base";
+		_position = [4637.1,2359.13,0];
+		_locationDescription = "the old army base";
 
 	};
 
-	case (_rand < 0.66) : {
+	case (_rand < 66) : {
 
-	_position = [3526.63,6819.39,0];
-	_locationDescription = "the train station";
+		_position = [3526.63,6819.39,0];
+		_locationDescription = "the train station";
 
 	};
 	
 	default {
 
-	_position = [8984.87,9105.5,0];
-	_locationDescription = "Mukhtar village";
+		_position = [8984.87,9105.5,0];
+		_locationDescription = "Mukhtar village";
 
 	};
 
@@ -156,8 +159,11 @@ for "_i" from 1 to (6 + (round random 15)) do {
 /*------------------- INTENSIFY AMBIENT COMBAT------------------------------------*/
 
 missionload = false;
+publicVariable "missionload";
 Hz_max_ambient_units = Hz_max_ambient_units + Hz_ambient_units_intensify_amount;
-Hz_max_allunits = Hz_max_allunits + Hz_ambient_units_intensify_amount; 
+publicVariable "Hz_max_ambient_units";
+Hz_max_allunits = Hz_max_allunits + Hz_ambient_units_intensify_amount;
+publicVariable "Hz_max_allunits";
 
 /*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
 
@@ -181,7 +187,8 @@ waitUntil {
 
 	sleep 5;
 	(
-	((count (units _workergrp)) < 1)
+		 (({captive _x} count _workers) > 0)
+	|| ((count (units _workergrp)) < 1)
 	|| (({alive _x} count _containers) < 1)
 	|| (({alive _x} count _workers) < 1)
 	|| Hz_pops_task_auxFailCondition
@@ -207,14 +214,21 @@ _lastAliveContainerCount = 6;
 _lastAliveWorkerCount = 4;
 
 _waitForArrival = false;
-
+/*
 if ((random 1) < 0.5) then {
 
 _waitForArrival = true;
 
 };
+*/
 
-waituntil { 
+waituntil {
+
+	{
+		if (alive _x) exitWith {(units group _x) call Hz_fnc_noSideCivilianCheck};
+	} foreach _workers;
+	
+	{_x call Hz_fnc_noCaptiveCheck} foreach _workers;
 
 	sleep 5;
 	
@@ -259,7 +273,7 @@ if(_spawnedSquads > 0) then {
 		
 		_tempos = [_position,_EnemySpawnMinimumRange] call Hz_func_findspawnpos;
 		
-		_grp = [ _tempos,"INS",random 24,50 ] call CREATE_OPFOR_SQUAD;
+		_grp = [ _tempos,"INS",24 + random 24,300 ] call CREATE_OPFOR_SQUAD;
 		
 		_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] call Hz_func_opforVehicleSupport;
 		_vehicletypes = _Vehsupport select 0;
@@ -291,13 +305,16 @@ if(_spawnedSquads > 0) then {
 			_wp setWaypointType "SAD";
 			
 		};
-		sleep 1;
+		
+		//unbunching delay
+		sleep 120;
 	};
 };
 
 /*--------------------MISSION CRITERIA TO PASS---------------------------------*/
 
 _supplyBar = 0;
+_stanceWarningDone = false;
 
 while { 
 
@@ -307,16 +324,40 @@ while {
 		&& !Hz_pops_task_auxFailCondition
 		&& (_supplyBar < _supplyTime)
     
-    } do { 
+    } do {
+
+	{
+		if (alive _x) exitWith {(units group _x) call Hz_fnc_noSideCivilianCheck};
+	} foreach _workers;
+	
+	{_x call Hz_fnc_noCaptiveCheck} foreach _workers;
 	
 	uisleep 1;
 	
 	if (
 	
 		(({if (alive _x) then {(_x distance _position) < 50} else {true}} count _containers) == 6)
-		&& (({if (alive _x) then {((_x distance _position) < 50) && ((vehicle _x) == _x)} else {true}} count _workers) == 4)
+		&& (({if (alive _x) then {((_x distance _position) < 50) && ((vehicle _x) == _x) && (!captive _x)} else {true}} count _workers) == 4)
 	
-	) then {_supplyBar = _supplyBar + 1;};
+	) then {
+	
+		_exit = false;
+		if (!_stanceWarningDone) then {
+
+			if (({if (alive _x) then {(stance _x) == "STAND"} else {true}} count _workers) != 4) then {
+			
+				"The workers won't be able to work if they are not standing up." remoteExecCall ["hint",0,false];
+				_exit = true;
+				_stanceWarningDone = true;
+			
+			};
+		
+		};		
+		if (_exit) exitWith {};
+		
+		_supplyBar = _supplyBar + 1;
+	
+	};
 	
 	if (_supplyBar == 1) then { "The workers are now distributing the supplies. Provide security until they finish." remoteExecCall ["hint",0,false]; };
 	
@@ -346,7 +387,13 @@ case (_supplyBar >= _supplyTime) : {
 		
 		"The supplies have reached the population. Return the workers to base ASAP." remoteExecCall ["hint",0,false];
 
-		waituntil { 
+		waituntil {
+
+			{
+				if (alive _x) exitWith {(units group _x) call Hz_fnc_noSideCivilianCheck};
+			} foreach _workers;
+	
+			{_x call Hz_fnc_noCaptiveCheck} foreach _workers;
 
 			sleep 5;
 			
@@ -416,7 +463,9 @@ if (hz_reward > 0) then {
 /*------------------- INTENSIFY AMBIENT COMBAT---------------------------*/
 
 Hz_max_ambient_units = Hz_max_ambient_units - Hz_ambient_units_intensify_amount;
+publicVariable "Hz_max_ambient_units";
 Hz_max_allunits = Hz_max_allunits - Hz_ambient_units_intensify_amount; 
+publicVariable "Hz_max_allunits";
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/
 if( (_supplyBar >= _supplyTime) && (({ alive _x } count _workers) > 0) && (call Hz_fnc_taskSuccessCheckGenericConditions) && !Hz_pops_task_auxFailCondition) then {
@@ -436,7 +485,7 @@ if( (_supplyBar >= _supplyTime) && (({ alive _x } count _workers) > 0) && (call 
 
 /*--------------------CLEAN UP (NEW VERSION)---------------------------------*/       
 
-[patrol_task_units,_position,patrol_task_vehs] spawn {
+[patrol_task_units,_position,patrol_task_vehs,_crowd] spawn {
 	
 	private ["_units","_vehs","_markers"];
 	_units = _this select 0;
@@ -444,6 +493,7 @@ if( (_supplyBar >= _supplyTime) && (({ alive _x } count _workers) > 0) && (call 
 	
 	while{ {isPlayer _x} count nearestObjects[(_this select 1),["CAManBase","LandVehicle","Plane"],1500] > 0} do { sleep 60 };
 	{deletevehicle _x}forEach _units;
+	{deletevehicle _x}forEach (_this select 3);
 	{deletevehicle _x}forEach _vehs;
 	
 };      

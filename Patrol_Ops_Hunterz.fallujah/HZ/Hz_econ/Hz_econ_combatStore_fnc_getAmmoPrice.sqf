@@ -15,7 +15,8 @@ case "RHS_AMMO_46X30_FMJ": {0.5};
 case "RHS_AMMO_46X30_JHP": {0.75};
 case "RHS_AMMO_46X30_AP": {1};
 
-
+//.303 Lee Enfield
+case "CUP_B_303_BALL": {0.88};
 
 //545x39
 case "RHS_B_545X39_BALL": {0.25};

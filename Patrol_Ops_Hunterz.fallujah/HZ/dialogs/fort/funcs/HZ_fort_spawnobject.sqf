@@ -21,6 +21,7 @@ if(!hz_debug) then {
 				
 				clearweaponcargoglobal _obj;
 				clearmagazinecargoglobal _obj;
+				clearBackpackCargoGlobal _obj;
 				clearItemCargoGlobal _obj;
 				
 				_obj call Hz_pers_API_addCrate;

@@ -29,6 +29,34 @@ while {true} do
 	_timescaler2 = _timescaler2 + 1;
 	_timescaler3 = _timescaler3 + 1;
 	
+	// unglitch garrisoned infantry etc.
+	{
+	
+		if (local _x) then {
+		
+			if ((vehicle _x) == _x) then {
+		
+				if (((animationState _x) find "afal") != -1) then {
+				
+					if ((_x distance (_x getVariable ["animCorrectionOldPos",getposatl _x])) < 1) then {
+					
+						_endPos = getPosASL _x;
+						_beginPos = [_endPos select 0, _endPos select 1, (_endPos select 2) + 250];
+						_correctionPos = ((lineIntersectsSurfaces [_beginPos, _endPos, _x]) select 0) select 0;
+						_x setPosASL [_correctionPos select 0, _correctionPos select 1, (_correctionPos select 2) + 1.5];
+					
+					};
+					
+					_x setVariable ["animCorrectionOldPos",getposatl _x];
+							
+				};
+			
+			};
+		
+		};
+	
+	} foreach allunits;
+	
 	//track unconscious units and kill them if they're lying at the same place for more than 10 minutes
 // using setcaptive isn't reliable as it might return non-unconscious actual captives -- better to remove this cleanup 
 /*	
@@ -62,36 +90,44 @@ while {true} do
 	if((count alldead) > Hz_max_deadunits) then {
 
 		//dead body cleanup    
-		{
-			if(_x iskindof "CAManBase") then {
-			
-				_dude = _x;
-			
-				if(!(_x getvariable ["NoDelete",false]) && ((_x distance (markerpos "respawn_west")) > 300) && (({(_x distance _dude) < 300} count playableUnits) < 1)) then {
+		{			
+				if (local _x) then {
 				
-					_weaponHolders = nearestObjects [_x, ["WeaponHolderSimulated"],3];
-			
-					{
-						
-						deletevehicle _x;
+					if(_x iskindof "CAManBase") then {
 					
-					} foreach _weaponHolders;					
-				
-					deleteVehicle _x;
+						_dude = _x;
+					
+						if(!(_x getvariable ["NoDelete",false]) && ((_x distance (markerpos "respawn_west")) > 300) && (({(_x distance _dude) < 300} count playableUnits) < 1)) then {
+						
+							_weaponHolders = nearestObjects [_x, ["WeaponHolderSimulated"],3];
+					
+							{
+								
+								deletevehicle _x;
+							
+							} foreach _weaponHolders;					
+						
+							deleteVehicle _x;
+						
+						};
+					
+					};
 				
 				};
-			
-			};
 
-		}foreach AllDead;
+			}foreach AllDead;
 
 	};
 	
 	{
 	
-		if (({alive _x} count (units _x)) < 1) then {
-		
-			deletegroup _x;
+		if (local _x) then {
+	
+			if (({alive _x} count (units _x)) < 1) then {
+			
+				deletegroup _x;
+			
+			};
 		
 		};
 	
@@ -116,17 +152,21 @@ while {true} do
 		
 		{
 		
-		//dead vehicle cleanup
-		if ((_x iskindof "LandVehicle") || (_x iskindof "Air") || (_x iskindof "Boat")) then {
+			if (local _x) then {
 		
-				_veh = _x;
-		
-				if(!(_x getvariable ["NoDelete",false]) && (({(_x distance _veh) < 300} count playableUnits) < 1)) then {
+				//dead vehicle cleanup
+				if ((_x iskindof "LandVehicle") || (_x iskindof "Air") || (_x iskindof "Boat_F")) then {
 				
-				deleteVehicle _x;				
+						_veh = _x;
 				
+						if(!(_x getvariable ["NoDelete",false]) && (({(_x distance _veh) < 300} count playableUnits) < 1)) then {
+						
+							deleteVehicle _x;				
+						
+						};
+					
 				};
-			
+				
 			};
 			
 		}foreach AllDead;      

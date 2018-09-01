@@ -1,7 +1,7 @@
 // Written by BON_IF
 // Adpated by EightySix
 
-if(!isServer) exitWith{};
+if(!(call Hz_fnc_isTaskMaster)) exitWith{};
 
 EnemiesSpawned = false;
 _Enemies = [];

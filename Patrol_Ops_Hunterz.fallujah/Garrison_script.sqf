@@ -255,7 +255,8 @@ if ((count _objectslist) >= 1) then {
           _x setPos (_localbuilding buildingPos _buildpos);                           
           sleep 0.05;
           _x forcespeed 0;
-          _x setvariable ["Hz_noMove",true];
+					_x setvariable ["Hz_noMove",true];
+					_x setvariable ["Hz_clearingBuilding",true];
           
         } else {
           sleep 0.1;
@@ -432,7 +433,8 @@ if ((count _objectslist) >= 1) then {
               _x setPos (_localbuilding buildingPos _buildpos);
               sleep 0.05;
               _x forcespeed 0;
-              _x setvariable ["Hz_noMove",true];
+							_x setvariable ["Hz_noMove",true];
+							_x setvariable ["Hz_clearingBuilding",true];
               dostop _x;
             } else {
               sleep 0.1;
@@ -683,7 +685,8 @@ if((count (units _remainders)) > 0) then {
             dostop _x;
             _x setposatl [_posx, _posy, _posz];
             _x forcespeed 0;
-            _x setvariable ["Hz_noMove",true];
+						_x setvariable ["Hz_noMove",true];
+						_x setvariable ["Hz_clearingBuilding",true];
             
           }foreach units _remainders;        
           

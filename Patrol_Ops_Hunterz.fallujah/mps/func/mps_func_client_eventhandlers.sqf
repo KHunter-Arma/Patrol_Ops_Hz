@@ -16,10 +16,25 @@ if( if( !isNil "ace_wounds_enabled" ) then { false } else { true } ) then {
 };
 */
 
+//prevent panic anim exploit against broken legs
+player addEventHandler ["AnimChanged", {
+	params ["_unit", "_anim"];
+  
+  if ((_anim find "apan") != -1) then {
+  
+   _unit playmovenow "amovpercmstpslowwrfldnon";
+  
+  };
+  
+}];
+
 //player addEventHandler ["Killed",{player spawn mps_respawn_gear}];
 
 gogglesAtDeath = "";
 ownedWepHolders = [];
+handgunWeaponPlayer = "";
+primaryWeaponPlayer = "";
+secondaryWeaponPlayer = "";
 
 player addEventHandler ["Killed",{
   
@@ -29,6 +44,10 @@ player addEventHandler ["Killed",{
 	_player = _this select 0;
 	
   _player setvariable ["NoDelete",true,true];
+  
+  handgunWeaponPlayer = handgunWeapon _player;
+  primaryWeaponPlayer = primaryWeapon _player;
+  secondaryWeaponPlayer = secondaryWeapon _player;
 	
 	gogglesAtDeath = goggles _player;
 	ownedWepHolders = [];
@@ -46,10 +65,6 @@ player addEventHandler ["Killed",{
   //  _player removeaction mps_rallypoint;
     _player removeaction mps_client_hud_act;     
 		
-		_handgun = handgunWeapon _player;
-		_primary = primaryWeapon _player;
-		_secondary = secondaryWeapon _player;
-    
     sleep 2;
 		
 		_player action ["nvGogglesOff", _player];		
@@ -57,7 +72,7 @@ player addEventHandler ["Killed",{
 		_hasEarplugs = _player getvariable ["ACE_hasEarPlugsin",false];
 		
 		_weaponsNeedToBeFound = [];
-		
+		 
 		{
 		
 			if (_x != "") then {
@@ -66,11 +81,33 @@ player addEventHandler ["Killed",{
 			
 			};
 		
-		} foreach [_handgun,_primary,_secondary];
-		
-		_timeout = time + 10;
-		
-		while {openMap false; 0 fadeSound 0; acre_sys_core_globalVolume = 0; ((count _weaponsNeedToBeFound) > 0) || (time > _timeout) || (alive player)} do {
+		} foreach [handgunWeaponPlayer,primaryWeaponPlayer,secondaryWeaponPlayer];    
+
+    
+		while {true} do {
+    
+      if ((vehicle _player) != _player) then {
+      
+        waitUntil {
+        
+          openMap false; 0 fadeSound 0; acre_sys_core_globalVolume = 0;
+          
+          ((vehicle player) == player)
+        
+        };
+        
+        if (!alive player) then {
+        
+          _weaponHoldersExcluded = nearestObjects [_player, ["WeaponHolderSimulated"],30];
+        
+        };
+      
+      };		
+			
+			//try to resolve loop getting stuck with exitwith instead...
+			if (((count _weaponsNeedToBeFound) < 1) || (alive player)) exitwith {};
+      
+      openMap false; 0 fadeSound 0; acre_sys_core_globalVolume = 0;
 		
 			_weaponHolders = nearestObjects [_player, ["WeaponHolderSimulated"],30];
 			
@@ -120,9 +157,7 @@ player addEventHandler ["Killed",{
     acre_sys_core_globalVolume = 1;
 		if (_hasEarplugs) then {player setvariable ["ACE_hasEarPlugsin",true]};
     0 fadesound 1;
-		
-		[player] joinsilent (creategroup (SIDE_A select 0));
-    
+		    
    // mps_rallypoint = player addaction ["<t color=""#ffc600"">Build Rallypoint</t>",(mps_path+"action\mps_buildtent.sqf"),[],0,false,false,"",mps_rally_condition];
     mps_client_hud_act = player addAction [localize "STR_Client_HUD_menu",(mps_path+"action\mps_hud_switch.sqf"),[],-1,false,false,"",""];
     
@@ -174,7 +209,7 @@ player addEventHandler ["Killed",{
 		
 		if ((toupper Hz_playertype) != "SUPERVISOR") then {
 		
-			_penalty = _penalty / 3;
+			_penalty = _penalty / 2;
 		
 		};
 		
@@ -369,6 +404,14 @@ player addeventhandler ["Respawn", {
 		sleep 1;
 		
 		{
+				
+			if (
+					((_x select 0) == handgunWeaponPlayer)
+					|| ((_x select 0) == primaryWeaponPlayer)
+					|| ((_x select 0) == secondaryWeaponPlayer)
+					|| ((_x select 0) in _assignedItems)
+					) then {
+			
 				_unit addWeapon (_x select 0);	
 				
 				//add magazine
@@ -415,6 +458,8 @@ player addeventhandler ["Respawn", {
 					};	
 				
 				};
+				
+			};
 
 		} foreach _weaponsItems;
 		
@@ -446,6 +491,7 @@ player addeventhandler ["Respawn", {
 		} foreach (_uniformItems select 0);
 		
 		{
+			//does not add binoculars
 			_unit linkItem _x;
 		}foreach _assignedItems;
 		

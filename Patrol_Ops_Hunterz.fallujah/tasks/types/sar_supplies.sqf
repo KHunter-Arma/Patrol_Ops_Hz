@@ -1,4 +1,4 @@
-diag_log [time, diag_fps, daytime, "##### POPS HZ TASK ##### Search & Destroy Cache #####"];
+diag_log [time, diag_fps, daytime, "##### POPS HZ TASK ##### Search & Recover Supplies #####"];
 diag_log diag_activeSQFScripts;
 diag_log diag_activeSQSScripts;
 diag_log diag_activeMissionFSMs;
@@ -8,15 +8,15 @@ _reinforcementsMinimumSpawnRange = 5000;
 
 _minCacheCount = 1;
 _maxCacheCount = 3;
-_rewardPerCache = 10000;
+_rewardPerCache = 30000;
 _minDistanceBetweenCaches = 300;
 
 _minDefendingSquadCountPerCache = 1;
-_maxDefendingSquadCountPerCache = 3;
+_maxDefendingSquadCountPerCache = 2;
 _DefenseRadius = 200;
 
-_minGarrisonedSquadCountPerCache = 2;
-_maxGarrisonedSquadCountPerCache = 3;
+_minGarrisonedSquadCountPerCache = 1;
+_maxGarrisonedSquadCountPerCache = 2;
 
 _minPatrollingSquadCountPerCache = 0;
 _maxPatrollingSquadCountPerCache = 1;
@@ -24,7 +24,7 @@ _maxPatrollingSquadCountPerCache = 1;
 _minStaticWeaponPerCache = 0;
 _maxStaticWeaponPerCache = 0;
 
-_intelAtCacheChance = 0.7;
+_intelAtCacheChance = 0.6;
 
 //Chance of a squad having the following vehicle support (can't have more than 1 vehicle per squad)
 _CASchance = 0;
@@ -34,7 +34,7 @@ _AAchance = 0;
 _CarChance = 0.5;
 
 //Useful for justifying task-specific difficulties.
-_rewardmultiplier = 0.75;
+_rewardmultiplier = 0.5;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 
@@ -132,31 +132,28 @@ for "_i" from 1 to _cacheCount do {
 	};
 
 	_cachePos = _closedPositions call mps_getRandomElement;
-	_cache = "rhs_weapon_crate" createVehicle [-5000,500,0];
+	_cache = "Land_PlasticCase_01_large_idap_F" createVehicle [-5000,500,0];
 	_cache setposatl _cachePos;
 	sleep 0.1;
 	_cache setVariable ["R3F_LOG_disabled",true,true];
+	_cache setVariable ["value",_rewardPerCache];
+	_cache setVariable ["cachePos",getposatl _cache];
 	_caches pushBack _cache;
 	
 	clearItemCargoGlobal _cache;
 	clearWeaponCargoGlobal _cache;
 	clearMagazineCargoGlobal _cache;
-	clearBackpackCargoGlobal _cache;
-	
-	_cache addWeaponCargoGlobal ["hlc_rifle_ak74_dirty",2];
-	_cache addMagazineCargoGlobal ["hlc_30Rnd_545x39_B_AK",30];
-	_cache addMagazineCargoGlobal ["rhs_rpg7_PG7V_mag",3];
-	_cache addMagazineCargoGlobal ["rhs_100Rnd_762x54mmR",4];
-	_cache addMagazineCargoGlobal ["hlc_30Rnd_762x39_b_ak",60];
-	_cache addMagazineCargoGlobal ["5rnd_762_mos",20];
 	
 	_cache addEventHandler ["Killed",{
 	
-		_splosion = "IEDUrbanBig_Remote_Ammo" createVehicle (getposatl (_this select 0));
-		_splosion setDamage 1;
+		_cache = _this select 0;
 		
-		mps_civilian_intel = mps_civilian_intel - [_this select 0];
+		mps_civilian_intel = mps_civilian_intel - [_cache];
 		publicVariable "mps_civilian_intel";
+		
+		Hz_econ_aux_rewards = Hz_econ_aux_rewards - (_cache getVariable "value");
+		
+		deletevehicle _cache;
 	
 	}];
 	
@@ -198,7 +195,7 @@ if ((count _caches) > 1) then {
 			};
 
 			_pos = getposatl _x;
-			_intelPos = [_pos select 0, _pos select 1, (_pos select 2) + 0.83];
+			_intelPos = [_pos select 0, _pos select 1, (_pos select 2) + 0.68];
 			_intel = "EvMap" createVehicle [-500,5000,0];
 			_intel setVariable ["R3F_LOG_disabled",true,true];
 			_intel setposatl _intelPos;
@@ -352,8 +349,14 @@ _otherReward = _cacheCount*_rewardPerCache;
 
 } foreach _caches;
 
+/*------------------- INTENSIFY AMBIENT COMBAT------------------------------------*/
+
 missionload = false;
 publicVariable "missionload";
+Hz_max_ambient_units = Hz_max_ambient_units + Hz_ambient_units_intensify_amount;
+publicVariable "Hz_max_ambient_units";
+Hz_max_allunits = Hz_max_allunits + Hz_ambient_units_intensify_amount; 
+publicVariable "Hz_max_allunits";
 
 /*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
 
@@ -363,8 +366,8 @@ mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_dea
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
 [format["TASK%1",_taskid],
-"Destroy Insurgent Caches",
-"It’s bad enough that the Takistani Army is gaining ground near Fallujah, but its proxies are making their move too. Iraqi intelligence has just discovered that one of the larger insurgent factions has begun building arms caches around the AO, which they are planning on using for sabotage missions. They might even target US establishments in the region. Question the locals to find information about any caches. Once you find a cache, look for evidence of existence of any others, and destroy any that are found.",
+"Search and Recover Supplies",
+"An IDAP convoy was recently attacked by insurgent forces. It was carrying a load of freshly received relief supplies to be distributed across the country. This has made them very upset because they had waited for their delivery for a while, and it’s unlikely they’ll get anything this big for a long time. They’ve hired us to find the supplies and bring them back. Unfortunately most of the supplies are expected to have been salvaged and distributed among the enemy already. However, IDAP are still hopeful. They want us to ask around and try to locate any of them that are still intact. Some of them may still be recoverable in nearby insurgent camps and strongholds.",
 true,
 [],
 "created",
@@ -373,16 +376,39 @@ true,
 
 /*--------------------MISSION CRITERIA TO PASS---------------------------------*/
 hz_reward = 1;
-While{ (({alive _x} count _caches) > 0) && (call Hz_fnc_taskSuccessCheckGenericConditions)} do {
+_returnPoint = getMarkerPos format ["return_point_%1",(SIDE_A select 0)];
+While{ (({if (alive _x) then {(_x distance _returnPoint) > 20} else {false}} count _caches) > 0)
+				&& (call Hz_fnc_taskSuccessCheckGenericConditions)
+		 } do {
   
   sleep 5;
   [_totalSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
+	
+	{
+	
+		if (_x in mps_civilian_intel) then {
+	
+			if (((getposatl _x) distance (_x getVariable "cachePos")) > 50) then {
+			
+				mps_civilian_intel = mps_civilian_intel - [_x];
+				publicVariable "mps_civilian_intel";
+			
+			};
+		
+		};
+	
+	} foreach _caches;
   
 };
 
+/*------------------- INTENSIFY AMBIENT COMBAT---------------------------*/
+
+Hz_max_ambient_units = Hz_max_ambient_units - Hz_ambient_units_intensify_amount;
+Hz_max_allunits = Hz_max_allunits - Hz_ambient_units_intensify_amount; 
+
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/
 
-if(call Hz_fnc_taskSuccessCheckGenericConditions) then {
+if((call Hz_fnc_taskSuccessCheckGenericConditions) && ({alive _x} count _caches > 0)) then {
   [format["TASK%1",_taskid],"succeeded"] call mps_tasks_upd;
   
   call Hz_fnc_taskReward;
@@ -392,6 +418,8 @@ if(call Hz_fnc_taskSuccessCheckGenericConditions) then {
 };
 
 /*--------------------CLEAN UP (NEW VERSION)---------------------------------*/       
+
+{deletevehicle _x} foreach _caches;
 
 [patrol_task_units,markerpos "BASE",patrol_task_vehs] spawn {
   

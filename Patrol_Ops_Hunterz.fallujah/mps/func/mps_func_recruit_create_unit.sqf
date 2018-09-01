@@ -3,7 +3,7 @@
 
 
 private ["_queuepos","_update_queue","_display","_listbox","_sel","_unittype","_typename","_queuecount","_spawnpos","_unit"];
-if(isDedicated) exitWith{};
+if(isDedicated || (call Hz_fnc_isHC)) exitWith{};
 if((count (units group player) + count mps_recruit_queue) >= mps_group_maxsize) exitWith {hint "You've reached the max. allowed group size."};
 
 if(!([]call Hz_func_isSupervisor)) exitwith {hint "You are not allowed to recruit AI";};

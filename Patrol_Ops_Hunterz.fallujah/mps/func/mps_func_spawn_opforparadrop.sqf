@@ -16,7 +16,7 @@ _groupType = mps_opfor_inf;
 if(count _this > 3) then { _paradrop = _this select 3};
 if(count _this > 4) then { _groupType = _this select 4};
 
-_flyin = 200;
+_flyin = 400 + (random 200);
 _droptype = mps_opfor_ncoh call mps_getRandomElement;
 
 if(_droptype isKindof "Plane") then { _paradrop = true };
@@ -49,23 +49,23 @@ _drophelo setvehiclelock "locked";
 if(count (units _helogrp) == 0) then {
 
 	_helogrp setvariable ["Hz_attacking",true];
-  
-  //_helogrp = [_spawnpos,"INF",(8 + random 5),10] call CREATE_OPFOR_SQUAD; 
+	
+	//_helogrp = [_spawnpos,"INF",(8 + random 5),10] call CREATE_OPFOR_SQUAD; 
 
-  _count = _drophelo emptyPositions "cargo";
+	_count = _drophelo emptyPositions "cargo";
 
-  for "_i" from 1 to _count do {
-    
-    _type = _groupType call mps_getrandomelement;
-    _unit = _helogrp createUnit [_type, [-1000,-1000,0],[],50,"NONE"];
+	for "_i" from 1 to _count do {
+		
+		_type = _groupType call mps_getrandomelement;
+		_unit = _helogrp createUnit [_type, [-1000,-1000,0],[],50,"NONE"];
 
-    _unit assignascargo _drophelo;
-    _unit moveincargo _drophelo;
+		_unit assignascargo _drophelo;
+		_unit moveincargo _drophelo;
 
-  };
+	};
 	/*
-  (units _helogrp) allowgetin true;
-  (units _helogrp) orderGetIn true;
+	(units _helogrp) allowgetin true;
+	(units _helogrp) orderGetIn true;
 */
 };
 
@@ -75,51 +75,52 @@ _helopilot disableAI "TARGET";
 _helopilot disableAI "AUTOTARGET";
 
 if (!isEngineOn _drophelo && alive _helopilot) then {
-  if (!canMove _drophelo) then {
-    _drophelo setDammage 0;
-    _drophelo setFuel 1;
-    sleep 1; 
-  }; 
-  _helopilot action ["engineOn", vehicle _helopilot];
+	if (!canMove _drophelo) then {
+		_drophelo setDammage 0;
+		_drophelo setFuel 1;
+		sleep 1; 
+	}; 
+	_helopilot action ["engineOn", vehicle _helopilot];
 };
 
-_drophelo flyinheight 200;
+_drophelo flyinheight _flyin;
 _drophelo doMove _dest;
 
-[_drophelo,_dest,_helopilot,_helogrp,_paradrop,_spawnpos,_drophelogrp] spawn {
+[_drophelo,_dest,_helopilot,_helogrp,_paradrop,_spawnpos,_drophelogrp,_flyin] spawn {
 
-  _drophelo = _this select 0;
-  _dest = _this select 1;
-  _helopilot = _this select 2;
-  _helogrp = _this select 3;
-  _paradrop = _this select 4;
-  _spawnpos = _this select 5;
-  _drophelogrp = _this select 6;
+	_drophelo = _this select 0;
+	_dest = _this select 1;
+	_helopilot = _this select 2;
+	_helogrp = _this select 3;
+	_paradrop = _this select 4;
+	_spawnpos = _this select 5;
+	_drophelogrp = _this select 6;
+	_flyin = _this select 7;
 
-  waitUntil { _drophelo distance _dest <= 650 || !canMove _drophelo || !alive _helopilot };
+	waitUntil { _drophelo distance _dest <= 650 || !canMove _drophelo || !alive _helopilot };
 
-  _newgrp = _helogrp;
-  _dudes = units _helogrp;
+	_newgrp = _helogrp;
+	_dudes = units _helogrp;
 
-  if(_paradrop || !(toupper (behaviour _helopilot) IN ["CARELESS","SAFE","AWARE"]) ) then {
-    
-		/*
-		 // ARMA 3 PORT
+	if(_paradrop || !(toupper (behaviour _helopilot) IN ["CARELESS","SAFE","AWARE"]) ) then {
 		
-    {	if( (assignedVehicleRole _x) select 0 == "Cargo")then {
-        unassignVehicle _x;			
-        _x action ["EJECT", vehicle _x];
-        _x stop false;
-        [_x] allowGetIn false;
-        [_x] joinsilent _newgrp;
-        //increased sleep so dudes don't kill each other with parachutes... #armaphysics
-        uisleep 3;
-        
-      };
-      
-    } forEach _dudes;		
-	*/
+		/*
+		// ARMA 3 PORT
+		
+		{	if( (assignedVehicleRole _x) select 0 == "Cargo")then {
+				unassignVehicle _x;			
+				_x action ["EJECT", vehicle _x];
+				_x stop false;
+				[_x] allowGetIn false;
+				[_x] joinsilent _newgrp;
+				//increased sleep so dudes don't kill each other with parachutes... #armaphysics
+				uisleep 3;
+				
+			};
 			
+		} forEach _dudes;		
+	*/
+		
 		[_drophelo,100,_dudes] spawn paraEject;
 		
 		/*
@@ -127,77 +128,77 @@ _drophelo doMove _dest;
 		_dudes joinsilent _newgrp;
 		
 	*/
-	
-		{
 		
+		{
+			
 			waituntil {uisleep 1; ((!alive _x) || (captive _x) || ((vehicle _x) != _drophelo))};
 			
 		} foreach _dudes;
 		
-  }else{
-    waitUntil{unitReady _drophelo || (((getposatl _drophelo) select 2) < 20) || !alive _helopilot};
+	}else{
+		waitUntil{unitReady _drophelo || (((getposatl _drophelo) select 2) < 20) || !alive _helopilot};
 
-    _drophelo land "GetOut";
-    waituntil {!alive _drophelo || ((abs((velocity _drophelo) select 2)) <= 1 && ((position _drophelo) select 2) < 5)};
-    
-    {   if( (assignedVehicleRole _x) select 0 == "Cargo")then {
-        unassignVehicle _x;
-        _x action ["getOut", vehicle _x];
-        _x stop false;
-        [_x] allowGetIn false;
-        uisleep 0.5;
-        [_x] joinsilent _newgrp;
-      };
-      
-    } forEach _dudes;
-    
-    _drophelo land "NONE";
-  };
+		_drophelo land "GetOut";
+		waituntil {!alive _drophelo || ((abs((velocity _drophelo) select 2)) <= 1 && ((position _drophelo) select 2) < 5)};
+		
+		{   if( (assignedVehicleRole _x) select 0 == "Cargo")then {
+				unassignVehicle _x;
+				_x action ["getOut", vehicle _x];
+				_x stop false;
+				[_x] allowGetIn false;
+				uisleep 0.5;
+				[_x] joinsilent _newgrp;
+			};
+			
+		} forEach _dudes;
+		
+		_drophelo land "NONE";
+	};
 
-  [_newgrp,_dest]spawn {
+	[_newgrp,_dest]spawn {
 
-    private ["_grp","_dest","_wp"];
-    _grp = _this select 0;
-    _dest = _this select 1;
-    
-    //landing
-    waituntil {sleep 2; (vehicle (leader _grp)) == (leader _grp)};
+		private ["_grp","_dest","_wp"];
+		_grp = _this select 0;
+		_dest = _this select 1;
+		
+		//landing
+		waituntil {sleep 2; (vehicle (leader _grp)) == (leader _grp)};
 
-    uisleep 40;
+		uisleep 40;
 
-    if(!isnil "Hz_AI_moveAndCapture") then {
-      
-      [_grp, _dest] call Hz_AI_moveAndCapture;       
-      
-    } else {
-      
-      _wp = _grp addWaypoint [_dest,20];
-      _wp setWaypointType "SAD";
-      
-    };
-    _grp setformation "DIAMOND";
-    
-  };
+		if(!isnil "Hz_AI_moveAndCapture") then {
+			
+			[_grp, _dest] call Hz_AI_moveAndCapture;       
+			
+		} else {
+			
+			_wp = _grp addWaypoint [_dest,20];
+			_wp setWaypointType "SAD";
+			
+		};
+		_grp setformation "DIAMOND";
+		
+	};
 
-  sleep 2;
-  _drophelo flyinheight 200;
-  _drophelo doMove _spawnpos;
+	sleep 2;
+	_drophelo flyinheight _flyin;
+	_drophelo doMove _spawnpos;
 
-  waitUntil {sleep 30; _helopilot doMove _spawnpos; _drophelo distance _spawnpos < 2000 || !canMove _drophelo || !alive _helopilot};
+	waitUntil {sleep 30; _helopilot doMove _spawnpos; _drophelo distance _spawnpos < 2000 || !canMove _drophelo || !alive _helopilot};
 
-  _exit = false;
-  if (!alive _helopilot) then {
+	_exit = false;
+	if (!alive _helopilot) then {
 
-    sleep 60;
-    if (!alive _drophelo) then {_exit = true;} else {sleep 600};
+		sleep 60;
+		if (!alive _drophelo) then {_exit = true;} else {sleep 600};
 
-  };
+	};
 
-  if(_exit) exitwith {};
+	if(_exit) exitwith {};
 
-  { _x action ["EJECT", vehicle _x]; sleep 0.2; deleteVehicle _x; } forEach (crew _drophelo);
-  deleteVehicle _drophelo;
-  deleteGroup _drophelogrp;
+	{ _x action ["EJECT", vehicle _x]; sleep 0.2; deleteVehicle _x; } forEach (crew _drophelo);
+	deleteVehicle _drophelo;
+	deleteGroup _drophelogrp;
 
 };
 

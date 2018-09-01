@@ -1,6 +1,5 @@
 // Written by EightySix
 
-if(isDedicated) exitWith{};
 private["_count","_titles","_time"];
 
 _titles = _this;

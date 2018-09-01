@@ -99,11 +99,11 @@ mps_path = "mps\";
 	mps_getRandomElement		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_getrandomarrayelement.sqf");
 	
 // Load the Configruation Variables
-  [] call compile preprocessFileLineNumbers (mps_path+"config\config_ammobox.sqf");
+  //[] call compile preprocessFileLineNumbers (mps_path+"config\config_ammobox.sqf");
   [] call compile preprocessFileLineNumbers (mps_path+"config\config_units.sqf");
   [] call compile preprocessFileLineNumbers (mps_path+"config\config_vehicles.sqf");
-  [] call compile preprocessFileLineNumbers (mps_path+"config\config_backpacks.sqf");
-  [] call compile preprocessFileLineNumbers (mps_path+"config\config_aas.sqf");
+  //[] call compile preprocessFileLineNumbers (mps_path+"config\config_backpacks.sqf");
+  //[] call compile preprocessFileLineNumbers (mps_path+"config\config_aas.sqf");
   [] call compile preprocessFileLineNumbers (mps_path+"func\mps_func_functions.sqf");
 
 // FUNCTIONS LISTS which are called when needed.

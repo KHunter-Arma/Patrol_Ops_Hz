@@ -1,6 +1,6 @@
 
 private ["_faction","_class"];
-if(!isServer) exitWith{ waitUntil{!isNil "mps_recruit_unittypes"}; };
+if(!(call Hz_fnc_isTaskMaster)) exitWith{ waitUntil{!isNil "mps_recruit_unittypes"}; };
 
 mps_class_commander = [];
 mps_class_tl = [];

@@ -9,10 +9,10 @@ diag_log diag_activeMissionFSMs;
 
 _downPayment = 10000;
 _speechCompletePayment = 30000;
-_speechTimeMinutes = 20;
+_speechTimeMinutes = 30;
 
 // in case the mission turns into a defend task
-_EnemySpawnMinimumRange = 5000;
+_EnemySpawnMinimumRange = 3000;
 _taskRadius = 50;
 _minSquadCount = 2;
 _maxSquadCount = 6;
@@ -29,8 +29,6 @@ _rewardMultiplier = 1;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 Hz_pops_task_auxFailCondition = false;
-
-if (_EnemySpawnMinimumRange < 2000) then {_EnemySpawnMinimumRange = 2000;};
 
 _rand = random 1;
 _position = [0,0,0];
@@ -159,10 +157,12 @@ for "_i" from 1 to 4 do {
 	_dude addMagazine "CUP_30Rnd_762x39_AK47_M";
 	_dude addMagazine "CUP_30Rnd_762x39_AK47_M";
 	
-	_dude addEventHandler ["Killed",{
+	_dude addMPEventHandler ["MPKilled",{
 	
 		_dude = _this select 0;
 		_killer = _this select 1;
+		
+		if (!local _dude) exitWith {};
 		
 		_condition = false;
 		
@@ -184,7 +184,7 @@ for "_i" from 1 to 4 do {
 			
 		};	
 		
-		if (_condition) then {Hz_pops_task_auxFailCondition = true;};
+		if (_condition) then {Hz_pops_task_auxFailCondition = true; publicVariable "Hz_pops_task_auxFailCondition";};
 	
 	}];
 	
@@ -199,8 +199,9 @@ _vip setvariable ["preachTime",0];
 
 [_vip,["<t color=""#00FF00"">Request to follow</t>",{
 
-	[_this select 0] joinsilent (group (_this select 1));
-	((_this select 0) getvariable "guards") joinsilent (group (_this select 1));
+	_units = [_this select 0] + ((_this select 0) getvariable "guards");
+	_units joinsilent grpNull;
+	_units joinsilent (group (_this select 1));
 
 }, [], 1, true, true, "", "(!captive _target) && (alive _target) && ((group _target) != (group _this))"]] remoteexeccall ["addAction",0,true];
 
@@ -243,9 +244,11 @@ _position
 /*------------------- INTENSIFY AMBIENT COMBAT------------------------------------*/
 
 missionload = false;
+publicVariable "missionload";
 Hz_max_ambient_units = Hz_max_ambient_units + Hz_ambient_units_intensify_amount;
+publicVariable "Hz_max_ambient_units";
 Hz_max_allunits = Hz_max_allunits + Hz_ambient_units_intensify_amount; 
-
+publicVariable "Hz_max_allunits";
 /*--------------------WAIT UNTIL TARGET MEETS PLAYERS---------------------------------*/
 
 waituntil { 
@@ -253,6 +256,7 @@ waituntil {
 	sleep 5;
 
 	(((group _vip) != _grp)
+	|| (captive _vip)
 	|| !(alive _vip)
 	|| Hz_pops_task_auxFailCondition
 	)
@@ -271,7 +275,11 @@ _speechRewardPerSecond = _speechCompletePayment / _preachMax;
 
 _spawnedSquads = (_minSquadCount max (round (random _maxSquadCount)));
 
-waituntil { 
+waituntil {
+
+	_vip call Hz_fnc_noCaptiveCheck;
+	{_x call Hz_fnc_noCaptiveCheck} foreach _guards;
+	(units group _vip) call Hz_fnc_noSideCivilianCheck;
 
 	sleep 5;
 	[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
@@ -343,6 +351,7 @@ case (_rand < 0.1) : {
 			//[objNull,_bomber,rSAY,"shout"] call RE;
 			[_bomber,"shout"] remoteExecCall ["say3D",0,false];
 			
+			[_bomber] joinsilent grpNull;
 			[_bomber] joinsilent createGroup (SIDE_B select 0);
 			
 			//[objNull,_bomber,rPLAYMOVE,"AmovPercMstpSsurWnonDnon"] call RE;
@@ -353,7 +362,6 @@ case (_rand < 0.1) : {
 			uisleep 0.5;
 			[_bomber,"AmovPercMstpSsurWnonDnon"] remoteExecCall ["switchMove",0,false];
 			_bomber disableAI "anim";
-			[_bomber] joinsilent (creategroup (SIDE_B select 0));
 			uisleep 1;
 			//     _uncon = _bomber call ace_sys_wounds_fnc_isUncon;
 			//    waituntil {!_uncon; sleep 2;};
@@ -404,7 +412,7 @@ case (_rand < 0.8) : {
 			
 			*/
 
-			if (Hz_pops_task_auxFailCondition) exitWith {};
+			if (Hz_pops_task_auxFailCondition) exitWith {};				
 
 			_spawnpos = [_position,_EnemySpawnMinimumRange] call Hz_func_findspawnpos;
 
@@ -415,7 +423,7 @@ case (_rand < 0.8) : {
 					//exit spawn loop and transfer to reinforcements script if too many units present on map
 					if((count allunits) > Hz_max_allunits) exitwith {_r = (_spawnedSquads - _i) + 1; [_EnemySpawnMinimumRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] spawn Hz_task_reinforcements;};
 
-					_grp = [ _spawnpos,"INS",random 24,300 ] call CREATE_OPFOR_SQUAD;
+					_grp = [ _spawnpos,"INS",24 + (random 24),300 ] call CREATE_OPFOR_SQUAD;
 					
 					_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] call Hz_func_opforVehicleSupport;
 					_vehicletypes = _Vehsupport select 0;
@@ -424,7 +432,7 @@ case (_rand < 0.8) : {
 					if((count _vehicletypes) > 0) then { 
 						
 						_car_type = _vehicletypes call mps_getRandomElement;
-						_vehgrp = [_car_type,(SIDE_C select 0),_spawnpos,300] call mps_spawn_vehicle;
+						_vehgrp = [_car_type,(SIDE_C select 0),_spawnpos,100] call mps_spawn_vehicle;
 						sleep 0.1;
 						patrol_task_vehs pushback (vehicle (leader _vehgrp));
 						(units _vehgrp) joinSilent _grp;
@@ -447,6 +455,10 @@ case (_rand < 0.8) : {
 						_wp setWaypointType "SAD";
 						
 					};
+					
+					//unbunching delay
+					sleep 120;
+					
 				};
 			};
 			
@@ -477,10 +489,12 @@ case (_rand < 0.8) : {
 			};				
 			
 			if (Hz_pops_task_auxFailCondition) exitWith {};
-			
-			for "_i" from 1 to _spawnedSquads do {					
+						
+			//since a chopper carries about half the troops than average squad size normally...
+			for "_i" from 1 to (_spawnedSquads*2) do {					
 				
 				_spawnpos = [((markerpos "patrol_respawn_opfor") select 0) + 500 + random 500,((markerpos "patrol_respawn_opfor") select 1) + 500 + random 500,800];
+				uisleep 20;
 				
 				_paratroopers = [createGroup (SIDE_B select 0),_spawnpos,_position,true,["CUP_O_TK_SpecOps_MG","CUP_O_TK_SpecOps","CUP_O_TK_SpecOps_TL","CUP_O_TK_SpecOps","CUP_O_TK_SpecOps_TL"]] call CREATE_OPFOR_PARADROP;
 				patrol_task_units = patrol_task_units + _paratroopers;				
@@ -502,6 +516,10 @@ while {
 	&& ((_preachCounter < _preachMax) || (((_vip distance _returnPoint) < 15) && (!captive _vip)))
 	
 } do { 
+
+	(units group _vip) call Hz_fnc_noSideCivilianCheck;		
+	_vip call Hz_fnc_noCaptiveCheck;
+	{_x call Hz_fnc_noCaptiveCheck} foreach _guards;
 	
 	uisleep 1;
 	
@@ -511,7 +529,7 @@ while {
 		_vip setvariable ["preachTime",_preachCounter];
 		_otherReward = _otherReward + _speechRewardPerSecond;
 		
-		if ((random 1) < 0.0003) then {
+		if ((random 1) < 0.0015) then {
 			
 			_temp = +_crowd;
 			{
@@ -552,6 +570,7 @@ while {
 				
 			};
 			
+			[_dude] joinSilent grpNull;
 			[_dude] joinSilent (createGroup (SIDE_B select 0));
 			
 			_dude reveal [_vip,4];
@@ -594,7 +613,11 @@ case (_preachCounter >= _preachMax) : {
 		
 		"The VIP has finished his speech. Return him to base ASAP." remoteExecCall ["hint",0,false];
 
-		waituntil { 
+		waituntil {
+
+			(units group _vip) call Hz_fnc_noSideCivilianCheck;		
+			_vip call Hz_fnc_noCaptiveCheck;
+			{_x call Hz_fnc_noCaptiveCheck} foreach _guards;
 
 			sleep 5;
 			[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
@@ -665,7 +688,9 @@ if (hz_reward > 0) then {
 /*------------------- INTENSIFY AMBIENT COMBAT---------------------------*/
 
 Hz_max_ambient_units = Hz_max_ambient_units - Hz_ambient_units_intensify_amount;
+publicVariable "Hz_max_ambient_units";
 Hz_max_allunits = Hz_max_allunits - Hz_ambient_units_intensify_amount; 
+publicVariable "Hz_max_allunits";
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/  
 

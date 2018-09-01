@@ -21,8 +21,6 @@ _rewardMultiplier = 0.7;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 
-if (_EnemySpawnMinimumRange < 2000) then {_EnemySpawnMinimumRange = 2000;};
-
 _position = [markerpos "ao_centre",3000] call Hz_func_findspawnpos;
 _taskid = format["%1%2%3",round (_position select 0),round (_position select 1),(round random 999)];
 Hz_task_ID = _taskid;
@@ -91,7 +89,7 @@ if(_b > 0) then {
 		if((count _vehicletypes) > 0) then { 
 			
 			_car_type = _vehicletypes call mps_getRandomElement;
-			_vehgrp = [_car_type,(SIDE_C select 0),_spawnpos,300] call mps_spawn_vehicle;			
+			_vehgrp = [_car_type,(SIDE_C select 0),_spawnpos,100] call mps_spawn_vehicle;			
 			_grpLeader = leader _vehgrp;
 			sleep 0.1;
       patrol_task_vehs pushback (vehicle (leader _vehgrp));
@@ -118,7 +116,7 @@ if(_b > 0) then {
 		};
 		
 		//unbunching delay
-		sleep 180;
+		sleep 300;
 		
 	};
 };   
@@ -129,7 +127,7 @@ while{
 
     ({(side _x) == (SIDE_A select 0)} count nearestObjects[_position,["CAManBase","LandVehicle","Air"],_taskRadius] != 0)
     && (call Hz_fnc_taskSuccessCheckGenericConditions)
-    && (({if (!isnull _x) then {(side _x) == (SIDE_C select 0)} else {false}} count patrol_task_units) > (1*(count patrol_task_units) / 6))
+    && (({if (!isnull _x) then {(side _x) == (SIDE_C select 0)} else {false}} count patrol_task_units) > (1*(count patrol_task_units) / 10))
     
     } do { 
 	

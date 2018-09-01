@@ -8,7 +8,7 @@
 ["Hz_save_arty_pos",SINGLE_VARIABLE,false] call Hz_pers_API_addMissionVariable;
 ["Hz_save_arty_rocketArty",SINGLE_VARIABLE,false] call Hz_pers_API_addMissionVariable;
 ["BanList",ONE_D_ARRAY,true] call Hz_pers_API_addMissionVariable;
-["Hz_save_prev_tasks_list",ONE_D_ARRAY,false] call Hz_pers_API_addMissionVariable;
+["Hz_save_prev_tasks_list",ONE_D_ARRAY,true] call Hz_pers_API_addMissionVariable;
 ["weather_fog",SINGLE_VARIABLE,false] call Hz_pers_API_addMissionVariable;
 ["weather_wind",SINGLE_VARIABLE,false] call Hz_pers_API_addMissionVariable;
 ["weather_rain",SINGLE_VARIABLE,false] call Hz_pers_API_addMissionVariable;

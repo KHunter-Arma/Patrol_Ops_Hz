@@ -1,7 +1,7 @@
 // Written by BON_IF
 // Adpated by EightySix
 
-if(!isServer) exitWith{};
+if(!(call Hz_fnc_isTaskMaster)) exitWith{};
 
 _locations = nearestLocations [ [0,0] ,["Name","NameLocal","NameVillage","NameCity","NameCityCapital","ViewPoint"],20000];
 _patrollocations = [];

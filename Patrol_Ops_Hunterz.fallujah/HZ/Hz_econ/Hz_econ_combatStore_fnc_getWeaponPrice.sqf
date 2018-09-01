@@ -12,15 +12,11 @@ case "RHS_WEAP_MAAWS": {3585};
 */
 
 
-
 case "RHS_WEAP_RPG7": {1170};
-case "HAFM_LAW": {875};
 
-
-
-//disposeable anti-tank
-case "RHS_WEAP_M136": {1480};
-
+//disposable anti-tank
+case "RHS_WEAP_M136": {5700}; //normal price 1480
+case "HAFM_LAW": {4300}; //normal price 875
 
 
 /*
@@ -151,7 +147,7 @@ case "RHSUSF_WEAP_MP7A2_WINTER": {1850};
 */
 
 
-
+/*
 case "RHS_WEAP_M4": {700};
 case "RHS_WEAP_M4_CARRYHANDLE": {700};
 case "RHS_WEAP_M4_CARRYHANDLE_PMAG": {700};
@@ -159,6 +155,7 @@ case "RHS_WEAP_M4_CARRYHANDLE_MSTOCK": {760};
 case "RHS_WEAP_M4_M203": {1780};
 case "RHS_WEAP_M4_PMAG": {700};
 case "RHS_WEAP_M4_MSTOCK":{760};
+*/
 
 case "RHS_WEAP_M590_8RD": {770};
 case "RHS_WEAP_M590_5RD": {470};
@@ -312,18 +309,23 @@ case "RHS_WEAP_RSP30_WHITE": {14};
 case "RHS_WEAP_RSP30_GREEN": {14};
 case "RHS_WEAP_RSP30_RED": {14};
 
+case "RHS_WEAP_M79" : {3500};
+
 
 	
 //RH-M4
+/*
 case "RH_M4": {700};                  
 case "RH_M4_M203": {1780};             
 case "RH_M4_RIS": {750};             
 case "RH_M4_RIS_M203": {1830};   
-case "RH_M16A1": {225};
-case "RH_M16A1GL": {1805};
 case "RH_M4_TG": {700};        
 case "RH_M4_DES": {700};	
 case "RH_M4_WDL": {700};	
+*/
+
+case "RH_M16A1": {225};
+case "RH_M16A1GL": {1805};
 
 
 /*     
@@ -428,7 +430,13 @@ case "RH_FN57_G": {-1};
 case "RH_FNP45": {-1};
 case "RH_FNPT": {-1};
 case "RH_G17": {540};
+
+/*
+
 case "RH_G18": {535};
+
+*/
+
 case "RH_G19": {-1};
 case "RH_G19T": {-1};
 case "RH_GSH18": {-1};
@@ -480,12 +488,8 @@ case "CUP_LMG_UK59": {-1};
 case "CUP_HGUN_DUTY": {517};
 case "CUP_HGUN_COMPACT": {562.50};
 case "CUP_HGUN_PHANTOM": {636};
-
-
-
-//Project Opfor
-case "LOP_WEAP_LEEENFIELD": {500};
-case "LOP_WEAP_LEEENFIELD_RAILED": {600};
+case "CUP_SRIFLE_LEEENFIELD": {500};
+case "CUP_SRIFLE_LEEENFIELD_RAIL": {600};
 
 
 

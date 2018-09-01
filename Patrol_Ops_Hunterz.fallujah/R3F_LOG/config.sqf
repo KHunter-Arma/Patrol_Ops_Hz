@@ -223,7 +223,7 @@ R3F_LOG_CFG_string_condition_allow_creation_factory_on_this_client = "true";
 
 /****** LIST OF ADDONS CONFIG TO INCLUDE / LISTE DES CONFIG D'ADDONS A INCLURE ******/
 #include "addons_config\A3_vanilla.sqf"
-#include "addons_config\All_in_Arma.sqf"
+//#include "addons_config\All_in_Arma.sqf"
 //#include "addons_config\R3F_addons.sqf"
 //#include "addons_config\YOUR_ADDITIONAL_ADDON.sqf"
 
@@ -293,26 +293,6 @@ R3F_LOG_CFG_can_be_lifted = R3F_LOG_CFG_can_be_lifted +
 R3F_LOG_CFG_can_transport_cargo = R3F_LOG_CFG_can_transport_cargo +
 [
 	// e.g. : ["MyTransporterClassName1", itsCapacity], ["MyTransporterClassName2", itsCapacity]
-	
-	["PO_LandRover_base",10],
-	["rhsusf_hmmwe_base",10],
-	["Offroad_01_repair_base_F",5],
-	["Offroad_01_armed_base_F",10],
-	["Offroad_01_unarmed_base_F",22],
-	["CUP_SUV_Armored_Base",8],
-	["CUP_SUV_Unarmed_Base",15],
-	["SUV_01_base_F",12],
-	["Offroad_02_base_F",15],
-	["CUP_Ikarus_Base",10],
-	["CUP_C_Golf4_Base",5],
-	["Hatchback_01_base_F",10],
-	["Quadbike_01_base_F",1],
-	["CUP_C_OCTAVIA_CIV",10],
-	["Van_01_transport_base_F",10],
-	["Van_01_box_base_F",60],
-	["Van_01_fuel_base_F",0],
-	["Van_02_vehicle_base_F",15],
-	["Van_02_transport_base_F",75]
 	
 ];
 

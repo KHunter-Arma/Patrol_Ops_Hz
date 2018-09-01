@@ -19,7 +19,9 @@ _rewardMultiplier = 1;
 /*--------------------CREATE LOCATION---------------------------------*/
 Hz_pops_task_auxFailCondition = false;
 missionload = false;
+publicVariable "missionload";
 Hz_max_ambient_units = Hz_max_ambient_units + _ambientCombatIntensifyAmount;
+publicVariable "Hz_max_ambient_units";
 _timeRequiredAtEachTarget = _timeRequiredAtEachTarget*60;
 
 _buildings = nearestobjects [markerpos "ao_centre",["House"],3000];
@@ -98,6 +100,7 @@ _vip setVariable ["Hz_ambw_disableSideRelations",true];
 
 [_vip,["<t color=""#00FF00"">Request to follow</t>",{
 
+	[_this select 0] joinsilent grpNull;
 	[_this select 0] joinsilent (group (_this select 1));
 
 }, [], 1, true, true, "", "(!captive _target) && (alive _target) && ((group _target) != (group _this))"]] remoteexeccall ["addAction",0,true];
@@ -186,7 +189,15 @@ for "_i" from 1 to _numberOfTargets do {
 	taskMarker setMarkerText (format ["Target (%1m high)",round (taskTarget select 2)]);
 	taskMarker setMarkerType "mil_objective";
 
-	waituntil { 
+	waituntil {
+	
+		(units group _vip) call Hz_fnc_noSideCivilianCheck;
+
+		if (captive _vip) then {
+			
+			[_vip, false] remoteExecCall ["setCaptive",_vip,false];
+			
+		};
 
 		sleep 5;
 		[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
@@ -200,15 +211,13 @@ for "_i" from 1 to _numberOfTargets do {
 		
 	};
 	
+	[_vip] joinsilent grpNull;
 	[_vip] joinsilent (creategroup (SIDE_A select 0));
-	sleep 2;
-	_vip setBehaviour "CARELESS";
-	// he can get stuck in crouch if he doesn't have weapons
-	_vip setUnitPos "DOWN";
 	sleep 1;
-	_vip setUnitPos "UP";
-	_vip forcespeed 15;
-	_vip domove _target;
+	[_vip,"CARELESS"] remoteExecCall ["setBehaviour",_vip,false];
+	[_vip,"UP"] remoteExecCall ["setUnitPos",_vip,false];
+	[_vip,15] remoteExecCall ["forcespeed",_vip,false];
+	[_vip,_target] remoteExecCall ["domove",_vip,false];
 	
 	[-1, {
 
@@ -223,6 +232,14 @@ for "_i" from 1 to _numberOfTargets do {
 	_timeOnTarget = 0;
 	
 	waituntil { 
+	
+		(units group _vip) call Hz_fnc_noSideCivilianCheck;
+	
+		if (captive _vip) then {
+			
+				[_vip, false] remoteExecCall ["setCaptive",_vip,false];
+			
+		};
 
 		sleep 1;
 		[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
@@ -287,6 +304,7 @@ for "_i" from 1 to _numberOfTargets do {
 
 };
 
+deleteMarker taskMarker;
 
 /*--------------------MISSION CRITERIA TO PASS---------------------------------*/
 
@@ -298,7 +316,15 @@ case ((count _targets) == 0) : {
 		
 		"The reporter has finished his work. Our job is done here. Take him back to base ASAP." remoteExecCall ["hint",0,false];
 
-		waituntil { 
+		waituntil {
+		
+			(units group _vip) call Hz_fnc_noSideCivilianCheck;
+			
+			if (captive _vip) then {
+			
+				[_vip, false] remoteExecCall ["setCaptive",_vip,false];
+			
+			};
 
 			sleep 5;
 			[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
@@ -358,6 +384,7 @@ if (hz_reward > 0) then {
 };
 
 Hz_max_ambient_units = Hz_max_ambient_units - _ambientCombatIntensifyAmount;
+publicVariable "Hz_max_ambient_units";
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/  
 

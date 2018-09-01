@@ -1,22 +1,33 @@
 AIvcl_respawn_UPS = compile preprocessFileLineNumbers "AIvcl_respawn_UPS\AIvcl_respawn_UPS.sqf";
 Hz_pops_patrols_startUPS = compile preprocessFileLineNumbers "AIvcl_respawn_UPS\UPSvcl_init.sqf";
+Hz_pops_deleteVehicleArray = [];
+Hz_pops_UPSRespawnArray = [];
 
 // UPS respawn thread
 [] spawn {
-
-	Hz_pops_deleteVehicleArray = [];
-	Hz_pops_UPSRespawnArray = [];
 
 	while {true} do {
 
 		sleep 20;
 
 		{
+		
+			if (alive _x) then {
+		
+				if ((count crew _x) == 0) then {
+				
+					if (({ isplayer _x} count nearestObjects [getposatl _x,["CAManBase"],1000]) == 0) then {
+					
+						Hz_pops_deleteVehicleArray = Hz_pops_deleteVehicleArray - [_x];
+						deletevehicle _x;				
+					
+					};
+				
+				};
 			
-			if (({ isplayer _x} count nearestObjects [getposatl _x,["CAManBase"],400]) == 0) then {
+			} else {
 			
 				Hz_pops_deleteVehicleArray = Hz_pops_deleteVehicleArray - [_x];
-				deletevehicle _x;				
 			
 			};
 
@@ -24,7 +35,9 @@ Hz_pops_patrols_startUPS = compile preprocessFileLineNumbers "AIvcl_respawn_UPS\
 		
 		{
 		
-			_randomPatrol = Hz_pops_UPSRespawnArray call mps_getRandomElement; 
+			_randomIndex = floor random (count Hz_pops_UPSRespawnArray);
+		
+			_randomPatrol = Hz_pops_UPSRespawnArray select _randomIndex; 
 		
 			if 	(			
 					((count allunits) < Hz_max_ambient_units)
@@ -33,7 +46,8 @@ Hz_pops_patrols_startUPS = compile preprocessFileLineNumbers "AIvcl_respawn_UPS\
 					) exitWith {
 								 
 					  _randomPatrol spawn AIvcl_respawn_UPS;
-						Hz_pops_UPSRespawnArray = Hz_pops_UPSRespawnArray - [_randomPatrol];
+						Hz_pops_UPSRespawnArray set [_randomIndex,"nil"];
+						Hz_pops_UPSRespawnArray = Hz_pops_UPSRespawnArray - ["nil"];
 			
 					};
 		

@@ -20,17 +20,20 @@ _list = [
     "def_fob",
 		"sar_pow",
 		"esc_journalist",
-		"sad_cache"
+		"sad_cache",
+		"sar_supplies"
     ];
 		
-if(hz_debug) then {_list = ["def_castle"];};
+if(hz_debug) then {_list = ["esc_supplies"];};
 
 //init
 taskrequested = false;
 publicvariable "taskrequested";
 stopreinforcements = true;
 
-waituntil {missionload = false; sleep 10; taskrequested || jointops};
+missionload = false;
+publicVariable "missionload";
+waituntil {sleep 10; taskrequested || jointops};
 
 _j = (count _list - 1) min (round random (count _list));
 _next = _list select _j;
@@ -48,9 +51,12 @@ for "_i" from 1 to mps_mission_counter do {
     _next = _list select _j;
     _lim = _lim + 1;
   };
-
-  waituntil {missionload = false; sleep 10; taskrequested || jointops};
-  
+	
+	missionload = false;
+	publicVariable "missionload";
+	
+  waituntil {sleep 10; taskrequested || jointops};
+	  
   if(jointops) exitwith {[] execvm "tasks\joint_ops.sqf";};
   
   _continue = false;
@@ -79,6 +85,7 @@ for "_i" from 1 to mps_mission_counter do {
     };
     
     missionload = true; 
+		publicVariable "missionload";
     
     waituntil {sleep 5;
       (count allunits) < Hz_max_units_before_task};
@@ -86,6 +93,7 @@ for "_i" from 1 to mps_mission_counter do {
     patrol_task_units = [];
     patrol_task_vehs = [];
     stopreinforcements = false;
+		publicVariable "stopreinforcements";
     
     //check to see conditions are still true after last wait
     if (
@@ -103,6 +111,7 @@ for "_i" from 1 to mps_mission_counter do {
         _prev = _prev + [_next];
       };   
       Hz_save_prev_tasks_list = _prev;
+			publicVariable "Hz_save_prev_tasks_list";
       
 			mps_mission_status = 1;
       Hz_patrol_task_in_progress = true;
@@ -123,6 +132,7 @@ for "_i" from 1 to mps_mission_counter do {
     taskrequested = false;
     publicvariable "taskrequested";
     stopreinforcements = true;
+		publicVariable "stopreinforcements";
     
   } else {
   
@@ -132,6 +142,7 @@ for "_i" from 1 to mps_mission_counter do {
       _prev = _prev + [_next];
     };   
     Hz_save_prev_tasks_list = _prev;
+		publicVariable "Hz_save_prev_tasks_list";
   
   };
   
