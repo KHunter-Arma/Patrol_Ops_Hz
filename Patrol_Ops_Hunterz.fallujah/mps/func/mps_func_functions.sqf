@@ -1,4 +1,3 @@
-
 private ["_faction","_class"];
 if(!(call Hz_fnc_isTaskMaster)) exitWith{};
 
