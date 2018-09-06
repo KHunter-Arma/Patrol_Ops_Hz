@@ -15,7 +15,8 @@ if(!hz_debug) then {
 			publicvariable "Hz_econ_funds";
 			
 			_obj = hz_fort_selected createVehicle (markerpos "hz_buyfortification");
-			[_obj] call Hz_fnc_vehicleInit;
+			[_obj] call Hz_fnc_vehicleInit;			
+			[_obj, 300] call ace_cargo_fnc_setSize;
 
 			if((hz_fort_selected iskindof "ReammoBox") || (hz_fort_selected iskindof "ReammoBox_F")) then {
 				

@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={4912.6719,841.87463,7874.2222};
-		dir[]={-0.6820488,-0.71656603,0.14609556};
-		up[]={-0.70068753,0.69751853,0.15001602};
-		aside[]={0.20940059,4.8845541e-005,0.97783154};
+		pos[]={8236.958,8.5192642,2114.1956};
+		dir[]={0.84817302,-0.29326922,-0.44116649};
+		up[]={0.26022503,0.9560284,-0.13527276};
+		aside[]={-0.46143904,6.7668501e-005,-0.88719577};
 	};
 };
 binarizationWanted=0;
@@ -32931,7 +32931,7 @@ class Mission
 			side="Empty";
 			class Attributes
 			{
-				init="call{this setvariable [""R3F_LOG_disabled"",true]}";
+				init="call{this setvariable [""R3F_LOG_disabled"",true]; this setObjectTextureGlobal [0,""media\Hunterz_logo3.paa""];}";
 				createAsSimpleObject=1;
 			};
 			id=1148;

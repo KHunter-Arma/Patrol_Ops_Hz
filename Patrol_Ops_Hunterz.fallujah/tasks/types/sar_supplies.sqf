@@ -133,6 +133,7 @@ for "_i" from 1 to _cacheCount do {
 
 	_cachePos = _closedPositions call mps_getRandomElement;
 	_cache = "Land_PlasticCase_01_large_idap_F" createVehicle [-5000,500,0];
+	[_cache, 200] call ace_cargo_fnc_setSize;
 	_cache setposatl _cachePos;
 	sleep 0.1;
 	_cache setVariable ["R3F_LOG_disabled",true,true];
