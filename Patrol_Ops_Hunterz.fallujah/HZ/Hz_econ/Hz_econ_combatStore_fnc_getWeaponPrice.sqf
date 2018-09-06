@@ -4,6 +4,8 @@ _weapon = toupper _this;
 
 _return = switch (_weapon) do {
 
+case "USSR_GUITARA": {150};
+
 //anti-tank
 /*
 case "RHS_WEAP_SMAW": {13000};
