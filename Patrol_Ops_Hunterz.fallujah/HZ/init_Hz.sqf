@@ -30,12 +30,6 @@ if(!isMultiplayer) then {
   hintsilent "DEBUG mode initialised!";
 };
 
-if (call Hz_fnc_isAiMaster) then {
-
-	call compile preprocessFileLineNumbers "initUPSRespawn.sqf";
-
-};
-
 call compile preprocessfilelinenumbers "lk\nuke\nenvi.sqf";
 
 //init Weather

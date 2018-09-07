@@ -39,7 +39,23 @@ introseqdone = false;
 [] execVM "mps\init_mps.sqf";       
 
 if(!isDedicated && !(call Hz_fnc_isHC)) then {
-	WaitUntil{ !(isNull player) && !isNil "mps_init" && Receiving_finish };
+
+	//WaitUntil{ !(isNull player) && !isNil "mps_init" && Receiving_finish };
+	
+	//try to safely resolve 'stuck in loading screen bug' of Arma 3... thank you again BIS
+	WaitUntil{ !(isNull player) && !isNil "mps_init"};
+	_counter = 0;
+	WaitUntil { 
+		
+		sleep 1;
+		_counter = _counter + 1;
+		
+		(Receiving_finish || ((_counter > 20) && (diag_fps > 20)))
+	
+	};
+	
+	if (!Receiving_finish) then {endLoadingScreen};
+	
 }else{
 	Receiving_finish = true;
 	WaitUntil{!isNil "mps_init"};
