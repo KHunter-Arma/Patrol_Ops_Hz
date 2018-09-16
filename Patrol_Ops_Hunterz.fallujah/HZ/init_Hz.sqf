@@ -15,6 +15,13 @@ if (is3DEN) then {
 
 #include "Hz_config.sqf"
 
+if(!isMultiplayer) then {
+  hz_debug = true;
+  mps_debug = true;
+	Hz_enableHC = false;
+  hintsilent "DEBUG mode initialised!";
+};
+
 Hz_fnc_isHC = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isHC.sqf";
 Hz_fnc_isAiMaster = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isAiMaster.sqf";
 Hz_fnc_isTaskMaster = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isTaskMaster.sqf";
@@ -22,13 +29,6 @@ Hz_fnc_isTaskMaster = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isTa
 //Ambient patrols respawn controller [only used by the server at the moment]
 if(isnil "missionload") then {missionload = true;};
 if(isnil "jointops") then {jointops = false;};
-
-if(!isMultiplayer) then {
-  hz_debug = true;
-  mps_debug = true;
-	Hz_enableHC = false;
-  hintsilent "DEBUG mode initialised!";
-};
 
 call compile preprocessfilelinenumbers "lk\nuke\nenvi.sqf";
 

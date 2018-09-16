@@ -476,7 +476,7 @@ player removeItem "ItemMap";
 player unassignItem "ItemCompass";
 player removeItem "ItemCompass";
 Hz_pers_clientReadyForLoad = true;
-ace_advanced_fatigue_recoveryFactor = 8;
+//ace_advanced_fatigue_recoveryFactor = 8;
 showScoretable 0;
 
 

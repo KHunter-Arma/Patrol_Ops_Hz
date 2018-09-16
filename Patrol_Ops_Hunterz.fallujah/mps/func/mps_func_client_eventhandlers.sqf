@@ -16,6 +16,8 @@ if( if( !isNil "ace_wounds_enabled" ) then { false } else { true } ) then {
 };
 */
 
+player addEventHandler ["HandleRating", {0}];
+
 //prevent panic anim exploit against broken legs
 player addEventHandler ["AnimChanged", {
 	params ["_unit", "_anim"];
@@ -26,6 +28,33 @@ player addEventHandler ["AnimChanged", {
   
   };
   
+}];
+
+player addEventHandler ["GetInMan",{
+
+	if (!isnil {player getVariable "ace_medical_ivBags"}) then {
+	
+		if ((_this select 1) != "cargo") exitWith {
+		
+			moveout player;
+			(_this select 2) spawn {
+			
+				sleep 0.3;
+				player moveInCargo _this;
+			
+			};
+		
+		};
+	
+		if !((toUpper typeof (_this select 2)) in ["CUP_C_S1203_AMBULANCE_CIV","CUP_B_LR_AMBULANCE_CZ_W"]) exitwith {
+		
+			moveout player;
+			hintsilent "You can only board an ambulance";
+		
+		};
+	
+	};
+
 }];
 
 //player addEventHandler ["Killed",{player spawn mps_respawn_gear}];
