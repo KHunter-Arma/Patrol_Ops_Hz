@@ -25,7 +25,7 @@ if (_vehicle isKindOf "LandVehicle") then {
 
 if (((toUpper (typeof _vehicle)) find "CUP") != -1) then {
 
-	_initstatement = _initstatement + "_obj addaction ['<t color=''#dce2ed''>'+'Check fuel', {hint format ['%1%2 full',(floor fuel (_this select 0))*100,'%'];},[],-99,false,true,'','_this == (driver _target)'];";
+	_initstatement = _initstatement + "_obj addaction ['<t color=''#dce2ed''>'+'Check fuel', {hint format ['%1%2 full',floor (( fuel (_this select 0))*100),'%'];},[],-99,false,true,'','_this == (driver _target)'];";
 	
 };
 

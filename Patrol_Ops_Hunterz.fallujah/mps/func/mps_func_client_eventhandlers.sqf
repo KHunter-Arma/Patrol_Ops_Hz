@@ -16,7 +16,7 @@ if( if( !isNil "ace_wounds_enabled" ) then { false } else { true } ) then {
 };
 */
 
-player addEventHandler ["HandleRating", {0}];
+[player,["HandleScore", {false}]] remoteExecCall ["addEventHandler",2,false];
 
 //prevent panic anim exploit against broken legs
 player addEventHandler ["AnimChanged", {
@@ -186,6 +186,8 @@ player addEventHandler ["Killed",{
     acre_sys_core_globalVolume = 1;
 		if (_hasEarplugs) then {player setvariable ["ACE_hasEarPlugsin",true]};
     0 fadesound 1;
+		
+		[player,["HandleScore", {false}]] remoteExecCall ["addEventHandler",2,false];
 		    
    // mps_rallypoint = player addaction ["<t color=""#ffc600"">Build Rallypoint</t>",(mps_path+"action\mps_buildtent.sqf"),[],0,false,false,"",mps_rally_condition];
     mps_client_hud_act = player addAction [localize "STR_Client_HUD_menu",(mps_path+"action\mps_hud_switch.sqf"),[],-1,false,false,"",""];
