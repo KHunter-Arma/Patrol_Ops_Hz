@@ -57,6 +57,8 @@ if(!isDedicated && !(call Hz_fnc_isHC)) then {
 	if (!Receiving_finish) then {endLoadingScreen};
 	
 }else{
+
+	if (call Hz_fnc_isHC) then {waitUntil {(name player) != "Error: No vehicle"}};
 	Receiving_finish = true;
 	WaitUntil{!isNil "mps_init"};
 };
