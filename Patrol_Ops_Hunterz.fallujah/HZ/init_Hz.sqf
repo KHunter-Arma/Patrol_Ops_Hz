@@ -157,7 +157,11 @@ if (isServer) then {
 };
 
 if (call Hz_fnc_isHC) then {
+
+	waitUntil {(name player) != "Error: No vehicle"};
+
 	[] execvm "HZ\init_HC.sqf";
+	
 };
 
 if (isServer || (call Hz_fnc_isHC)) then {
