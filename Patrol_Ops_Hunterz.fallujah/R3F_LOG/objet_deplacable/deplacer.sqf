@@ -28,7 +28,8 @@ else
   _centre = boundingCenter _objet;
   _objVol = abs (((_corner select 0) - (_centre select 0))*((_corner select 1) - (_centre select 1))*((_corner select 2) - (_centre select 2))*8);
   
-  _prepTime = (ceil _objVol)*10 - 10;
+  //_prepTime = (ceil _objVol)*10 - 10;
+	_prepTime = (ceil _objVol) - 10;
   _exit = false;
   
   if (_prepTime > 0) then {

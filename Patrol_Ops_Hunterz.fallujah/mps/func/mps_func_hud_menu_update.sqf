@@ -14,6 +14,7 @@ sliderSetPosition [86003,vpos];
 		vpos = (sliderPosition 86003);
 
 		setviewdistance vpos;
+		setObjectViewDistance vpos*8/10;
 
 		ctrlSetText [86002, format["Viewdistance %1m",(round vpos)]];
 
