@@ -33,7 +33,7 @@ if(isnil "jointops") then {jointops = false;};
 call compile preprocessfilelinenumbers "lk\nuke\nenvi.sqf";
 
 //init Weather
-call compile preprocessFileLineNumbers "HZ\Hz_sys_weather\Hz_weather_init.sqf";
+[] execVM "HZ\Hz_sys_weather\Hz_weather_init.sqf";
 
 // Init dialogs
 call compile preprocessfilelinenumbers "HZ\dialogs\fort\HZ_fort_init.sqf";
