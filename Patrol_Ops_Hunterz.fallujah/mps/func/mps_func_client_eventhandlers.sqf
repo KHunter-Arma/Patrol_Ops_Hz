@@ -176,8 +176,23 @@ player addEventHandler ["Killed",{
     if (nukeweather) then {
       
       snow attachto [player, [0,5,3]];
-      
+			
     };
+		
+		if (Hz_weather_sandstorm) then {
+		
+			["DESTROY"] call HA_fnc_sandStorm;
+			["INIT",[false,"ALTERNATIVE_LOW",true,"DISABLE"]] call HA_fnc_sandStorm;  
+			
+			player setUnitTrait ["camouflageCoef",0.1];
+
+		};
+		
+		if (Hz_weather_Snow) then {
+		
+			player setUnitTrait ["camouflageCoef",0.4];
+
+		};
     
     //player removeaction mps_rallypoint;
     player removeaction mps_client_hud_act;

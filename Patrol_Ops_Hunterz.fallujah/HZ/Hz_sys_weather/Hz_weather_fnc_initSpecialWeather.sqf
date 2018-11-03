@@ -13,7 +13,7 @@ switch (true) do {
     
     if(isServer) then {
       
-      weather_wind = [14,14,true];
+      weather_wind = [-14,-14,true];
       weather = 1;
       weather_rain = 0;
       weather_fog = 0.2;
@@ -40,8 +40,20 @@ switch (true) do {
     };
     
     if (isDedicated) exitWith {};
+		
+		if (call Hz_fnc_isHC) exitWith {		
+			[]spawn {      
+				while {Hz_overrideweather} do {	
+					0 setlightnings 0;
+					call Hz_sys_weather_fnc_weatherSync;					
+					sleep 30;					
+				};    
+			};	
+		};
 
     []spawn {
+		
+			player setUnitTrait ["camouflageCoef",0.4];
       
       while {Hz_overrideweather} do {
         
@@ -50,8 +62,6 @@ switch (true) do {
         
         // Goon snowstorm script
         /* Goon/Gooncorp 2015  */
-        
-        if (hasInterface) then {
         
           _obj = (vehicle player);
           _pos = getposASL _obj;
@@ -101,13 +111,7 @@ switch (true) do {
           deletevehicle _snowflakes1;
           deletevehicle _snowflakes2;
           deletevehicle _clouds1;
-          deletevehicle _clouds2;
-        
-        } else {
-        
-          sleep 30;
-        
-        };
+          deletevehicle _clouds2;        
         
       };
     
@@ -120,8 +124,20 @@ switch (true) do {
     [2016,07,25,mps_mission_hour,30] call mps_timeset;
     
      if (hasInterface) then {
-    
-      ["INIT",[false,"DEFAULT_LOW",true,"DISABLE"]] call HA_fnc_sandStorm;      
+			
+			sandstorm_color = ppEffectCreate ["ColorCorrections",1500]; 
+			sandstorm_color ppEffectEnable true; 
+			sandstorm_color ppEffectAdjust [0.875,0.875,-0.1,[1.652,0.764,0,0.2],[1,1,1,0.8],[0.835,0,0,0],[0,0,-0.265,-0.194,-0.017,0.279,0.624],1,0.001,0,0,1,1,1]; 
+			sandstorm_color ppEffectForceInNVG false; 
+			sandstorm_color ppEffectCommit 0;
+
+			sandstorm_grain = ppEffectCreate ["FilmGrain",2000]; 
+			sandstorm_grain ppEffectEnable true; 
+			sandstorm_grain ppEffectAdjust [0.05,2,2,0.1,12.5,10,true]; 
+			sandstorm_grain ppEffectForceInNVG true; 
+			sandstorm_grain ppEffectCommit 0;
+			
+      ["INIT",[false,"ALTERNATIVE_LOW",true,"DISABLE"]] call HA_fnc_sandStorm;      
     
     }; 
     
@@ -130,7 +146,7 @@ switch (true) do {
       weather_wind = [14,14,true];
       weather = 0;
       weather_rain = 0;
-      weather_fog = 1;
+      weather_fog = 0.4;
       
       publicVariable "weather";
       publicVariable "weather_wind";
@@ -153,15 +169,31 @@ switch (true) do {
     
     };
     
-    if (isDedicated) exitWith {};
+    if (isDedicated) exitWith {};		
+		if (call Hz_fnc_isHC) exitWith {		
+			[]spawn {      
+				while {Hz_overrideweather} do {					
+					call Hz_sys_weather_fnc_weatherSync;					
+					sleep 90;					
+				};    
+			};	
+		};
 
     []spawn {
+		
+			player setUnitTrait ["camouflageCoef",0.1];
       
       while {Hz_overrideweather} do {
+				
+				_logicSound = "logic" createVehicleLocal (getpos player);
+				_logicSound attachto [player,[0,0,40]];
+				_logicSound say3D "HA_sandStorm";
         
         call Hz_sys_weather_fnc_weatherSync;
         
-        sleep 5;
+        sleep 90;
+				
+				deleteVehicle _logicSound;
         
       };
     
