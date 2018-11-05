@@ -109,7 +109,7 @@ _jet = _this select 0;
 		
 			sleep 0.5;
 			_vel = velocity (_this select 0);		
-			(_this select 6) setVelocity [(_vel select 0)/2, (_vel select 1)/2,-320];
+			(_this select 6) setVelocity [(_vel select 0)/2, (_vel select 1)/2,-250-(((getposatl (_this select 0)) select 2) - 1000)/2];
 		
 		};
 	
@@ -149,7 +149,7 @@ _jet = _this select 0;
 
   _jet flyInHeight 7000;
 
-  waituntil {sleep 3; if( ((getposatl _jet)select 2) < 6000) then {_jet flyInHeight 7000;}; ((_jet distance _exitpos) < 5000) || (((getposatl _jet) select 2) < 20)};
+  waituntil {sleep 3; if( ((getposatl _jet)select 2) < 6000) then {_jet flyInHeight 7000;}; ((_jet distance _pos) > 70000) || (((getposatl _jet) select 2) < 20)};
 
   {deletevehicle _x;}foreach crew _jet;
   deletevehicle _jet;
