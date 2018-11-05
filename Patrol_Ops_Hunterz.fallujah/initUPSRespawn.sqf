@@ -52,6 +52,39 @@ Hz_pops_UPSRespawnArray = [];
 					};
 		
 		} foreach Hz_pops_UPSRespawnArray;
+    
+    if ((playersNumber (SIDE_A select 0)) == 0) then {
+    
+      {
+      
+        if (local _x) then {
+        
+          if (_x getVariable ["Hz_disabledPatrol",false]) then {
+          
+            {
+            
+              _veh = vehicle _x;
+              
+              {
+              
+                deleteVehicle _x;
+              
+              } foreach crew _veh;
+
+              deleteVehicle _veh;
+              deleteVehicle _x;
+            
+            } foreach units _x;  
+
+            deleteGroup _x;
+          
+          };
+        
+        };
+      
+      } foreach allGroups;
+    
+    };
 
 	};
 
