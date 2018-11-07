@@ -1,12 +1,18 @@
+#define H_SPEED 70
+#define V_SPEED 260
+
 //if(isnull heli_radar) exitwith {};
 //if(!alive heli_radar) exitwith {};
-
 
 private ["_targetpos","_group","_jettype","_bombTypes","_jet1"];
 _targetpos = [(_this select 0) select 0, (_this select 0) select 1, ((_this select 0) select 2) + 1000];
 
 _jettype = _this select 2;
 _bombTypes = _this select 3;
+
+if (isnil "_jettype") exitwith {};
+if (isnil "_bombTypes") exitwith {};
+if ((count _bombTypes) < 1) exitwith {};
 
 _group = grpNull;
 _jet1 = objNull;
@@ -35,7 +41,6 @@ _jet1 forcespeed 2000;
 {_x disableai "autotarget";_x disableai "fsm"; _x disableai "target";}foreach crew _jet1;
 
 _weps = weapons _jet1;
-_jet1 setVehicleAmmo 0;
 {
 
 	if (!(_x in _weps)) then {
@@ -59,9 +64,8 @@ _jet = _this select 0;
   _gunner = gunner _jet;
   _group = group _lead;
 
-  _group addWaypoint [_pos,300];
-	//sleep 1;
-	//_jet setDriveOnPath [_pos];
+  _WP = _group addWaypoint [_pos,500];
+	_WP setWaypointType "MOVE";
 
   sleep 3;
 	{_x setSkill 1}foreach crew _jet;
@@ -69,7 +73,21 @@ _jet = _this select 0;
 	
 	waituntil {uisleep 0.1; ((_jet distance _pos) < 10000) || (((getposatl _jet) select 2) < 20)};
 	
+	//allow this heavy fucker to turn...
 	_jet forceSpeed -1;
+
+	//height correction...
+	_jetpos = getposatl _jet;
+	if ((abs (1000 - (_jetpos select 2))) > 100) then {
+	
+		_vel = velocity _jet;
+		
+		_jet setposatl [_jetpos select 0, _jetpos select 1,1000];
+		_jet setVelocity _vel;
+		sleep 0.1;
+		_jet flyinheight 1000;
+	
+	};
 
   waituntil {uisleep 0.1; ((_jet distance _pos) < 4000) || (((getposatl _jet) select 2) < 20)};
   if (((getposatl _jet) select 2) < 20) exitwith {};
@@ -79,9 +97,9 @@ _jet = _this select 0;
 	_speed = sqrt ((_speed select 0)^2 + (_speed select 1)^2);
 	_truedir = [_jet,_pos] call BIS_fnc_dirTo;
 	_jet setdir _truedir;
-	_truedir = rad _truedir; 
-	_jet setVelocity [_speed*(cos _truedir),_speed*(sin _truedir),0];
-	sleep 0.1;
+	uisleep 0.1;
+	_jet setVelocity [_speed*(sin _truedir),_speed*(cos _truedir),0];
+	_jet setVariable ["bombVel",[H_SPEED*(sin _truedir),H_SPEED*(cos _truedir),-V_SPEED]];
 
   //anti-dive...  
   _lead disableai "move";
@@ -105,13 +123,8 @@ _jet = _this select 0;
 	
 	_EH = _jet addEventHandler ["Fired",{
 	
-		_this spawn {
-		
-			sleep 0.5;
-			_vel = velocity (_this select 0);		
-			(_this select 6) setVelocity [(_vel select 0)/2, (_vel select 1)/2,-250-(((getposatl (_this select 0)) select 2) - 1000)/2];
-		
-		};
+		(_this select 6) setVelocity [0,0,-1];
+		(_this select 6) setVelocity ((_this select 0) getVariable "bombVel");		
 	
 	}];
 
@@ -120,7 +133,7 @@ _jet = _this select 0;
     {
       _gunner fireAtTarget [objnull, _x];
       //uisleep 0.025;
-				uisleep 0.3;
+				uisleep 0.15;
       _jet setWeaponReloadingTime [_gunner, _x, 0];
 
     } foreach _bombTypes;
@@ -133,7 +146,8 @@ _jet = _this select 0;
 
   _exitpos = [30000,30000,7000];
 
-  _group move _exitpos;
+  _WP = _group addWaypoint [_exitpos,5000];
+	_WP setwaypointtype "MOVE";
 	_jet forcespeed 2000;
 
   //anti-dive loop
@@ -148,8 +162,10 @@ _jet = _this select 0;
 	_jet removeEventHandler ["Fired",_EH];
 
   _jet flyInHeight 7000;
+	
+	_timeout = time + 300;
 
-  waituntil {sleep 3; if( ((getposatl _jet)select 2) < 6000) then {_jet flyInHeight 7000;}; ((_jet distance _pos) > 70000) || (((getposatl _jet) select 2) < 20)};
+  waituntil {sleep 3; ((_jet distance _pos) > 70000) || {((getposatl _jet) select 2) < 20} || {time > _timeout}};
 
   {deletevehicle _x;}foreach crew _jet;
   deletevehicle _jet;
