@@ -107,7 +107,10 @@ case "CUP_30RND_TE1_YELLOW_TRACER_545X39_AK_M": {18};
 
 //.22 LR
 case "CUP_5X_22_LR_17_HMR_M": {0};
-case "RH_10RND_22LR_MK2": {-1};
+
+/*
+case "RH_10RND_22LR_MK2": {10};
+*/
 
 //Mosin Nagant M38
 case "RHSGREF_5RND_762X54_M38": {5};
@@ -178,7 +181,7 @@ case "RH_60RND_556X45_MK318": {149};
 
 //762x25
 case "RHS_MAG_762X25_8": {15};
-
+case "RH_8RND_762_TT33": {15};
 
 
 //.300 blk
@@ -319,7 +322,9 @@ case "RHSUSF_5RND_300WINMAG_XM2010": {90};
 case "RHS_5RND_338LAPUA_T5000": {150};
 */
 
-
+//9x18
+case "RH_8RND_9X18_MAK": {30};
+case "RHS_MAG_9X18_8_57N181S": {30};
 
 //9x19
 /*
@@ -329,25 +334,22 @@ case "RHS_MAG_9X19MM_7N21_44": {30};
 case "RHS_MAG_9X19MM_7N31_44": {30};
 */
 
-
-
-case "RHSUSF_MAG_17RND_9X19_FMJ": {30};
-case "RHSUSF_MAG_17RND_9X19_JHP": {30};
-case "RHSUSF_MAG_7X45ACP_MHP": {40};
+case "16RND_9X21_MAG": {20};
+case "RHSUSF_MAG_17RND_9X19_FMJ": {34};
+case "RHSUSF_MAG_17RND_9X19_JHP": {34};
 case "RHSUSF_MAG_15RND_9X19_FMJ": {40};
 case "RHSUSF_MAG_15RND_9X19_JHP": {40};
-
 case "RH_15RND_9X19_M9": {40};
-case "RH_16RND_9X19_CZ": {-1};
+case "RH_16RND_9X19_CZ": {53};
 case "RH_17RND_9X19_G17": {34};
 case "RH_33RND_9X19_G18": {58};
 case "RH_19RND_9X19_G18": {30};
 case "RH_18RND_9X19_GSH": {-1};
-case "RH_32RND_9X19_TEC": {-1};
+case "RH_32RND_9X19_TEC": {25};
 case "RH_30RND_9X19_UZI": {22};
 case "RH_15RND_9X19_SIG": {46};
-case "RH_14RND_9X19_SW": {-1};
-case "RH_18RND_9X19_VP": {-1};
+case "RH_14RND_9X19_SW": {20};
+case "RH_18RND_9X19_VP": {50};
 case "RH_32RND_9MM_M822": {19};
 
 
@@ -363,15 +365,6 @@ case "CUP_10RND_9X19_COMPACT": {38};
 case "CUP_18RND_9X19_PHANTOM": {56};
 
 
-
-//9x21
-case "16RND_9X21_GREEN_MAG": {53};
-case "16RND_9X21_RED_MAG": {53};
-case "16RND_9X21_YELLOW_MAG": {53};
-case "16RND_9X21_MAG": {53};
-
-
-
 //9x39
 /*
 case "RHS_20RND_9X39MM_SP5": {12};
@@ -380,23 +373,21 @@ case "RHS_10RND_9X39MM_SP5": {10};
 case "RHS_10RND_9X39MM_SP6": {10};
 */
 
-
+//Starter pistol flares
+case "6RND_GREENSIGNAL_F": {0};
+case "6RND_REDSIGNAL_F": {0};
 
 //.45 acp
+case "9RND_45ACP_MAG": {24};
+case "11RND_45ACP_MAG": {44};
+case "RHSUSF_MAG_7X45ACP_MHP": {40};
 case "RH_7RND_45CAL_M1911": {40};
-case "RH_12RND_45CAL_USP": {-1};
+case "RH_12RND_45CAL_USP": {35};
 case "RH_15RND_45CAL_FNP": {-1};
 case "RH_6RND_45ACP_MAG": {6};
 
-
-
-
 //.50 ae
-/*
-case "RH_7RND_50_AE": {-1};
-*/
-
-
+case "RH_7RND_50_AE": {43};
 
 //.50 BMG
 /*
@@ -524,10 +515,10 @@ case "RHSGREF_10RND_765X17_VZ61": {10};
 
 case "RH_20Rnd_57x28_FN": {-1};
 case "RH_20RND_32CAL_VZ61": {25};
-case "RH_6RND_357_MAG": {6};
-case "RH_16RND_40CAL_USP": {-1};
-case "RH_6RND_44_MAG": {6};
-case "RH_6RND_454_MAG": {6};
+case "RH_6RND_357_MAG": {8};
+case "RH_16RND_40CAL_USP": {34};
+case "RH_6RND_44_MAG": {10};
+case "RH_6RND_454_MAG": {29};
 
 
 
@@ -650,8 +641,6 @@ case  "RHS_MINE_TM62M_MAG": {120};
 case  "TRAININGMINE_MAG": {250};
 case  "APERSMINE_RANGE_MAG": {200};  //vs50
 */
-
-
 
 case  "ACE_FLARETRIPMINE_MAG": {20};
 

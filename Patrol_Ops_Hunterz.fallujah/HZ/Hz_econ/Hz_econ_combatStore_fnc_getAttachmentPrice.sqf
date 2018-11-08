@@ -264,7 +264,7 @@ case "RH_REFLEX": {612};
 case "RH_M3LR": {1250};
 case "RH_ZPOINT": {600};
 
-
+case "HLC_OPTIC_DOCTERV": {710};
 
 /*
 case "RH_PAS13CL": {3999};
