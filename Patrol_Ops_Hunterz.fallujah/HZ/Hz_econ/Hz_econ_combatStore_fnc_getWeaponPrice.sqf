@@ -313,6 +313,9 @@ case "RHS_WEAP_RSP30_RED": {14};
 
 case "RHS_WEAP_M79" : {3500};
 
+case "RHS_WEAP_M1GARAND_SA43" : {750};
+case "RHS_WEAP_MG42" : {1270};
+case "RHS_WEAP_MP44" : {600};
 
 	
 //RH-M4
