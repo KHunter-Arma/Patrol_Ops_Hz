@@ -18,6 +18,12 @@ case "RHS_AMMO_46X30_AP": {1};
 //.303 Lee Enfield
 case "CUP_B_303_BALL": {0.88};
 
+//.30-06 M1
+case "RHS_AMMO_762X63_M1T_TRACER": {1.5};
+case "RHS_AMMO_762X63_M2B_BALL": {0.75};
+
+
+
 //545x39
 case "RHS_B_545X39_BALL": {0.25};
 case "RHS_B_545X39_BALL_TRACER_GREEN": {0.5};
@@ -129,11 +135,11 @@ case "CUP_B_762X54_BALL_GREEN_TRACER": {1.5};
 //.300WM
 case "RHSUSF_B_300WINMAG": {1};
 
+//7.92x33
+case "RHS_AMMO_792X33_SME_BALL": {0.5};
 
-
-//792x57
-case "RHS_AMMO_792X57_BALL": {0.8};
-
+//7.92x57
+case "RHS_AMMO_792X57_BALL": {1.5};
 
 
 //.338 lap
