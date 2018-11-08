@@ -8,6 +8,8 @@ Hz_sys_weather_fnc_weatherSync = compile preprocessfilelinenumbers "Hz\Hz_sys_we
 Hz_weather_fnc_AI_VD_fog_adjuster = compile preprocessfilelinenumbers "Hz\Hz_sys_weather\Hz_weather_fnc_AI_VD_fog_adjuster.sqf";
 Hz_weather_syncClient = compile preprocessfilelinenumbers "Hz\Hz_sys_weather\Hz_weather_syncClient.sqf";
 Hz_weather_fnc_initSpecialWeather = compile preprocessfilelinenumbers "Hz\Hz_sys_weather\Hz_weather_fnc_initSpecialWeather.sqf";
+Hz_weather_handleAIWeatherSkills = compile preprocessfilelinenumbers "Hz\Hz_sys_weather\Hz_weather_handleAIWeatherSkills.sqf";
+Hz_weather_fnc_revertAISkills = compile preprocessfilelinenumbers "Hz\Hz_sys_weather\Hz_weather_fnc_revertAISkills.sqf";
 
 if (isServer) then {
 

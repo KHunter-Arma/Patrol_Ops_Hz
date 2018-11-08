@@ -19,6 +19,8 @@ if (weather_fog > 0.05) then {
       
       Hz_max_desired_server_VD = Hz_weather_original_max_server_VD;
     };
+		
+		call Hz_weather_fnc_revertAISkills;
 
   } else {
 
@@ -28,10 +30,13 @@ if (weather_fog > 0.05) then {
       _dist = -850*weather_fog + 859.2;
 
       Hz_max_desired_server_VD = _dist;
+			
+			call Hz_weather_fnc_revertAISkills;
 
     } else {
 
       Hz_max_desired_server_VD = 100;
+			[0,0,0.1,true] call Hz_weather_handleAIWeatherSkills;
 
     };
 
@@ -41,6 +46,8 @@ if (weather_fog > 0.05) then {
 } else {
 
   Hz_max_desired_server_VD = Hz_weather_original_max_server_VD;
+	
+	call Hz_weather_fnc_revertAISkills;
 
 };
 

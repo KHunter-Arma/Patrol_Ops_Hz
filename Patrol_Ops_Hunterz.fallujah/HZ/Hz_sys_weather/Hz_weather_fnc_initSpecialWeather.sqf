@@ -36,6 +36,7 @@ switch (true) do {
     if (isServer || (call Hz_fnc_isHC)) then {
     
       call Hz_weather_fnc_AI_VD_fog_adjuster;
+			[0.4,0.4,0.3,true] call Hz_weather_handleAIWeatherSkills;
     
     };
     
@@ -50,10 +51,16 @@ switch (true) do {
 				};    
 			};	
 		};
+		
+		snow_color = ppEffectCreate ["colorCorrections", 1501];
+		snow_color ppEffectEnable true;
+		snow_color ppEffectAdjust [0.8, 0.8, 0.0, [.3, .3, 1.0, .1], [.88, .88, .93, .45], [1 , 1, 1, 0.03]];//white 
+		snow_color ppEffectCommit 0;
 
     []spawn {
 		
-			player setUnitTrait ["camouflageCoef",0.4];
+			player setUnitTrait ["camouflageCoef",0.2];
+			player setUnitTrait ["audibleCoef",0.3];
       
       while {Hz_overrideweather} do {
         
@@ -67,15 +74,6 @@ switch (true) do {
           _pos = getposASL _obj;
           _n =  abs(wind select 0) + abs(wind select 1) + abs(wind select 2);
           _velocity = wind;
-          _color = [1, 1, 1];   
-
-
-          _hndl = ppEffectCreate ["colorCorrections", 1501];
-          _hndl ppEffectEnable true;
-          _hndl ppEffectAdjust [0.8, 0.8, 0.0, [.3, .3, 1.0, .1], [.88, .88, .93, .45], [1 , 1, 1, 0.03]];//white 
-          _hndl ppEffectCommit 0;
-
-
           
           _snowflakes1 = "#particlesource" createVehicleLocal _pos; 
           //_snowflakes1  attachto [player, [0,0,12]];
@@ -122,14 +120,27 @@ switch (true) do {
   case (Hz_weather_sandstorm) : {
   
     [2016,07,25,mps_mission_hour,30] call mps_timeset;
-    
+		
+    _waitForNight = true;
+		_waitForMorning = false;
+		
      if (hasInterface) then {
 			
 			sandstorm_color = ppEffectCreate ["ColorCorrections",1500]; 
 			sandstorm_color ppEffectEnable true; 
-			sandstorm_color ppEffectAdjust [0.875,0.875,-0.1,[1.652,0.764,0,0.2],[1,1,1,0.8],[0.835,0,0,0],[0,0,-0.265,-0.194,-0.017,0.279,0.624],1,0.001,0,0,1,1,1]; 
+			sandstorm_color ppEffectAdjust [0.875,0.875,-0.1,[1.652,0.764,0,0.12],[1,1,1,0.8],[0.835,0,0,0],[0,0,-0.265,-0.194,-0.017,0.279,0.624],1,0.001,0,0,1,1,1]; 
 			sandstorm_color ppEffectForceInNVG false; 
 			sandstorm_color ppEffectCommit 0;
+			
+			_time = daytime;
+			if ((_time >= 19.27) || {_time < 4.84}) then {
+			
+				_waitForNight = false;
+				_waitForMorning = true;
+				sandstorm_color ppEffectAdjust [1, 1, 0,[ 0, 0, 0, 0],[ 1, 1, 1, 1],[ 0, 0, 0, 0]]; 
+				sandstorm_color ppEffectCommit 0;
+			
+			};
 
 			sandstorm_grain = ppEffectCreate ["FilmGrain",2000]; 
 			sandstorm_grain ppEffectEnable true; 
@@ -140,7 +151,7 @@ switch (true) do {
       ["INIT",[false,"ALTERNATIVE_LOW",true,"DISABLE"]] call HA_fnc_sandStorm;      
     
     }; 
-    
+		
      if(isServer) then {
       
       weather_wind = [14,14,true];
@@ -165,7 +176,10 @@ switch (true) do {
 
     if (isServer || (call Hz_fnc_isHC)) then {
     
-      call Hz_weather_fnc_AI_VD_fog_adjuster;
+      call Hz_weather_fnc_AI_VD_fog_adjuster; //call to set variables once
+			Hz_max_desired_server_VD = 400; //override result because sand is OP
+			Hz_min_desired_server_VD = 0;
+			[0.1,0,0.2,true] call Hz_weather_handleAIWeatherSkills;
     
     };
     
@@ -179,11 +193,37 @@ switch (true) do {
 			};	
 		};
 
-    []spawn {
+    [_waitForNight, _waitForMorning] spawn {
 		
-			player setUnitTrait ["camouflageCoef",0.1];
+			_waitForNight = _this select 0;
+			_waitForMorning = _this select 1;
+		
+			player setUnitTrait ["camouflageCoef",0.05];
+			player setUnitTrait ["audibleCoef",0.2];
       
       while {Hz_overrideweather} do {
+			
+				if (_waitForNight && {daytime >= 19.27}) then {
+				
+					_waitForNight = false;
+					_waitForMorning = true;
+					
+					sandstorm_color ppEffectAdjust [1, 1, 0,[ 0, 0, 0, 0],[ 1, 1, 1, 1],[ 0, 0, 0, 0]]; 
+					sandstorm_color ppEffectCommit 600;
+				
+				} else {
+				
+					if (_waitForMorning && {daytime >= 4.84} && {daytime < 19}) then {
+					
+						_waitForNight = true;
+						_waitForMorning = false;
+						
+						sandstorm_color ppEffectAdjust [0.875,0.875,-0.1,[1.652,0.764,0,0.12],[1,1,1,0.8],[0.835,0,0,0],[0,0,-0.265,-0.194,-0.017,0.279,0.624],1,0.001,0,0,1,1,1]; 
+						sandstorm_color ppEffectCommit 600;
+					
+					};
+				
+				};
 				
 				_logicSound = "logic" createVehicleLocal (getpos player);
 				_logicSound attachto [player,[0,0,40]];
@@ -191,7 +231,7 @@ switch (true) do {
         
         call Hz_sys_weather_fnc_weatherSync;
         
-        sleep 90;
+        sleep 110;
 				
 				deleteVehicle _logicSound;
         
