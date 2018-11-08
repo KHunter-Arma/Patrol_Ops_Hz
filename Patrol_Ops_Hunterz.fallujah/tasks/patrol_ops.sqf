@@ -21,10 +21,11 @@ _list = [
 		"sar_pow",
 		"esc_journalist",
 		"sad_cache",
-		"sar_supplies"
+		"sar_supplies",
+		"def_inscamp"
     ];
 		
-if(hz_debug) then {_list = ["esc_supplies"];};
+if(hz_debug) then {_list = ["def_inscamp"];};
 
 //init
 taskrequested = false;

@@ -50,6 +50,7 @@ class Extended_InitPost_EventHandlers
 	};
 	
 	class SoldierWB : CAManBase {};
+	class SoldierGB : CAManBase {};
 	class CUP_Creatures_Military_TK_Soldier_Base : SoldierWB {
 	
 		class addTakiArmor {
@@ -59,6 +60,19 @@ class Extended_InitPost_EventHandlers
 		};
 	
 	};
+	
+	class rhs_infantry_msv_base : SoldierGB {};
+	class rhs_msv_rifleman : rhs_infantry_msv_base {};
+	class LOP_TKA_Infantry_Rifleman : rhs_msv_rifleman {
+	
+		class addTakiArmor {
+		
+			serverInit = "_vestItems = vestItems (_this select 0); (_this select 0) addvest 'rhs_6b5_rifleman_khaki'; {(vestContainer (_this select 0)) addItemCargo [_x,1];} foreach _vestItems; removeHeadgear (_this select 0); (_this select 0) addHeadgear 'CUP_H_TK_Helmet';";
+		
+		};
+	
+	};
+	
 };
 
 class RscTitles {

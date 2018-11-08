@@ -98,6 +98,8 @@ mps_path = "mps\";
 	
 	mps_getRandomElement		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_getrandomarrayelement.sqf");
 	
+	if (call Hz_fnc_isHC) then {waitUntil {(name player) != "Error: No vehicle"}};
+	
 // Load the Configruation Variables
   //[] call compile preprocessFileLineNumbers (mps_path+"config\config_ammobox.sqf");
   [] call compile preprocessFileLineNumbers (mps_path+"config\config_units.sqf");
@@ -105,7 +107,7 @@ mps_path = "mps\";
   //[] call compile preprocessFileLineNumbers (mps_path+"config\config_backpacks.sqf");
   //[] call compile preprocessFileLineNumbers (mps_path+"config\config_aas.sqf");
   [] call compile preprocessFileLineNumbers (mps_path+"func\mps_func_functions.sqf");
-
+	
 // FUNCTIONS LISTS which are called when needed.
   mps_weapons_list		= compile preprocessFileLineNumbers (mps_path+"config\config_armoury.sqf");
   mps_cleanup			= compile preprocessFileLineNumbers (mps_path+"func\mps_func_cleanup.sqf");
@@ -193,6 +195,8 @@ mps_path = "mps\";
 // Bon Recruitment Variables;
   mps_group_maxsize = (paramsArray select 18);
   mps_recruit_queue = [];
+	
+	Hz_resetBuildingVars = [];
 
 // Calling Public Event Handlers
   //[] call compile preprocessFileLineNumbers (mps_path+"func\mps_func_ammobox_pevh.sqf");

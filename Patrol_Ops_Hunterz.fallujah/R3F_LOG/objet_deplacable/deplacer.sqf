@@ -19,10 +19,38 @@ if (R3F_LOG_mutex_local_verrou) then
 else
 {
 	R3F_LOG_mutex_local_verrou = true;
+  
+  private ["_objet", "_decharger", "_joueur", "_dir_joueur", "_arme_courante", "_muzzle_courant", "_mode_muzzle_courant", "_restaurer_arme"];
+  
+  _objet = _this select 0;
+  
+	/*
+  _corner = (boundingBoxReal _objet) select 0;
+  _centre = boundingCenter _objet;
+  _objVol = abs (((_corner select 0) - (_centre select 0))*((_corner select 1) - (_centre select 1))*((_corner select 2) - (_centre select 2))*8);
+  */
+	_objVol = sizeof typeof _objet;
 	
+  _prepTime = (floor _objVol)*10 - 10;
+  _exit = false;
+  
+  if (_prepTime > 0) then {
+  
+    R3F_abortCarry = false;
+    R3F_readyToMove = false;  
+    
+    [_prepTime, [], {R3F_readyToMove = true;}, {R3F_abortCarry = true; R3F_readyToMove = true;}, "Preparing to move...",{(!captive player) && ((speed player) < 1)}] call ace_common_fnc_progressBar;
+    
+    waitUntil {R3F_readyToMove};
+    
+    if (R3F_abortCarry) then {_exit = true};    
+  
+  };
+  
+  if (_exit) exitWith {R3F_LOG_mutex_local_verrou = false;};
+  
 	R3F_LOG_objet_selectionne = objNull;
 	
-	private ["_objet", "_decharger", "_joueur", "_dir_joueur", "_arme_courante", "_muzzle_courant", "_mode_muzzle_courant", "_restaurer_arme"];
 	private ["_vec_dir_rel", "_vec_dir_up", "_dernier_vec_dir_up", "_avant_dernier_vec_dir_up", "_normale_surface"];
 	private ["_pos_rel_objet_initial", "_pos_rel_objet", "_dernier_pos_rel_objet", "_avant_dernier_pos_rel_objet"];
 	private ["_elev_cam_initial", "_elev_cam", "_offset_hauteur_cam", "_offset_bounding_center", "_offset_hauteur_terrain"];
@@ -31,7 +59,6 @@ else
 	private ["_action_relacher", "_action_aligner_pente", "_action_aligner_sol", "_action_aligner_horizon", "_action_tourner", "_action_rapprocher"];
 	private ["_idx_eh_fired", "_idx_eh_keyDown", "_idx_eh_keyUp", "_time_derniere_rotation", "_time_derniere_translation"];
 	
-	_objet = _this select 0;
 	_decharger = if (count _this >= 4) then {_this select 3} else {false};
 	_joueur = player;
 	_dir_joueur = getDir _joueur;

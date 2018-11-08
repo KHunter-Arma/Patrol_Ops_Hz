@@ -104,7 +104,7 @@ if(_b > 0) then {
 		
 		if(!isnil "Hz_AI_moveAndCapture") then {
 			
-			_spawnedVehs = [_grp, _position,mps_opfor_ins_truck,mps_opfor_ins_ncov,1000] call Hz_AI_moveAndCapture;  
+			_spawnedVehs = [_grp, _position,mps_opfor_ins_truck,mps_opfor_ins_ncov,1500] call Hz_AI_moveAndCapture;  
 
 			patrol_task_vehs = patrol_task_vehs + _spawnedVehs;					 
 			

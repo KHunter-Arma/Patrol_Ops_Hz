@@ -168,6 +168,7 @@ R3F_LOG_CFG_can_be_transported_cargo = R3F_LOG_CFG_can_be_transported_cargo +
 
 R3F_LOG_CFG_can_be_moved_by_player = R3F_LOG_CFG_can_be_moved_by_player +
 [
+	"ACE_Wheel",
   "Land_SandbagBarricade_01_half_F",
   "Land_SandbagBarricade_01_hole_F",
 	"targetbase",

@@ -5,21 +5,27 @@
 
 [] spawn {
 
-setwind weather_wind;
-//sleep 1;
-//forceWeatherChange;
-sleep 1;
+  setwind weather_wind;
+  //sleep 1;
+  //forceWeatherChange;
+  sleep 1;
 
-300 setovercast weather;
+  300 setovercast weather;
 
-uisleep 310;
-//forceWeatherChange;
-60 setrain weather_rain;
-uisleep 70;
-//forceWeatherChange;
-300 setfog weather_fog;
-uisleep 310;
-//forceWeatherChange;
+  uisleep 310;
+  //forceWeatherChange;
+  60 setrain weather_rain;
+  uisleep 70;
+  //forceWeatherChange;
+  300 setfog weather_fog;
+  uisleep 310;
+  //forceWeatherChange;
+
+  if (call Hz_fnc_isHC) then {
+
+   call Hz_weather_fnc_AI_VD_fog_adjuster;
+
+  };
 
 };
 

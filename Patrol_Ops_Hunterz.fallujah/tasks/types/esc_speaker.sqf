@@ -37,7 +37,7 @@ _locationDesc = "";
 
 switch (true) do {
 
-case (_rand < 0.3) : {
+case (_rand < 0.33) : {
 		
 		//HOTEL	
 		_position = [8251.68,5492.97,0];
@@ -46,7 +46,7 @@ case (_rand < 0.3) : {
 		
 	};
 	
-case (_rand < 0.6) : {
+case (_rand < 0.66) : {
 		
 		//HOSPITAL
 		

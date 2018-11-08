@@ -42,6 +42,7 @@ _otherReward = 0;
 for "_i" from 1 to 6 do {
 
 	_cont = (_supplyTypes call mps_getRandomElement) createVehicle _spawnpos;
+	[_cont, 300] call ace_cargo_fnc_setSize;
 	_containers pushBack _cont;
 	
 };
@@ -106,21 +107,21 @@ for "_i" from 1 to 4 do {
 
 } foreach _workers;
 
-_rand = random 100;
+_rand = random 1;
 
 _locationDescription = "";
 _position = [0,0,0];
 
 switch (true) do {
 
-	case (_rand < 33) : {
+	case (_rand < 0.33) : {
 
 		_position = [4637.1,2359.13,0];
 		_locationDescription = "the old army base";
 
 	};
 
-	case (_rand < 66) : {
+	case (_rand < 0.66) : {
 
 		_position = [3526.63,6819.39,0];
 		_locationDescription = "the train station";
@@ -295,7 +296,7 @@ if(_spawnedSquads > 0) then {
 		sleep 1;
 		if(!isnil "Hz_AI_moveAndCapture") then {
 			
-			_spawnedVehs = [_grp, _position,mps_opfor_ins_truck,mps_opfor_ins_ncov,650] call Hz_AI_moveAndCapture;  
+			_spawnedVehs = [_grp, _position,mps_opfor_ins_truck,mps_opfor_ins_ncov,1000] call Hz_AI_moveAndCapture;  
 
 			patrol_task_vehs = patrol_task_vehs + _spawnedVehs;					 
 			

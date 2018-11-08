@@ -1,7 +1,8 @@
 waitUntil {!isNull player};
 
-if ((name player) == HC_patrolsName) then {
+if (call Hz_fnc_isAiMaster) then {
 
+	call compile preprocessFileLineNumbers "initUPSRespawn.sqf";
 	waitUntil {!isnil "Hz_pops_UPSPassToHCArray"};
 	waitUntil {!isnil "Hz_max_ambient_units"};
 	
@@ -144,7 +145,7 @@ _timescaler3 = 0;
 
 while {true} do {
 
-	diag_log format ["### Hz_diag: %1, %2, %3, %4",diag_fps,viewDistance, count diag_activeSQFScripts, {local _x} count allunits, {local _x} count vehicles];
+	diag_log format ["### Hz_diag: %1, %2, %3, %4, %5",diag_fps,viewDistance, count diag_activeSQFScripts, {local _x} count allunits, {local _x} count vehicles];
 
 	uisleep 5;
 

@@ -32,7 +32,8 @@ while{ animationState _player == _anim }do{
 if (_break) then {
 	
 	disableUserInput true; 
-	_player switchMove "InBaseMoves_repairVehicleKnl";
+  [_player,"InBaseMoves_repairVehicleKnl"] remoteexeccall ["switchMove",0,false];
+  sleep 1;
 	//[player,"InBaseMoves_repairVehicleKnl"] remoteExecCall ["switchMove",0,false];
 	_player playMoveNow "InBaseMoves_repairVehicleKnl";
 	disableUserInput false; 

@@ -44,10 +44,13 @@ mps_config_units = mps_config_units + [
 ["INS","rf","CUP_O_TK_INS_Soldier_K98_Hz",5],
 ["INS","rf","CUP_O_TK_INS_Soldier_Mosin_Hz",5],
 ["INS","rf","CUP_O_TK_INS_Soldier_SKS_Hz",5],
+["INS","rf","CUP_O_TK_INS_Soldier_M1Garand_Hz",2],
+["INS","rf","CUP_O_TK_INS_Soldier_MP44_Hz",1],
 ["INS","rf","CUP_O_TK_INS_Soldier_FNFAL",5],
 ["INS","at","CUP_I_TK_GUE_Soldier_AT",10],
 ["INS","rf","CUP_I_TK_GUE_Soldier_AAT",10],
 ["INS","med","CUP_I_TK_GUE_Guerilla_Medic",10],
+["INS","med","CUP_I_TK_GUE_Guerilla_Medic2_Hz",2],
 ["INS","rf","CUP_I_TK_GUE_Guerilla_Enfield",7],
 ["INS","dmr","CUP_I_TK_GUE_Sniper",5], //SVD
 ["INS","mg","CUP_I_TK_GUE_Soldier_MG",7],

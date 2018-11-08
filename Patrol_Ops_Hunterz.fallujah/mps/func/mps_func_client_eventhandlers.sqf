@@ -16,6 +16,8 @@ if( if( !isNil "ace_wounds_enabled" ) then { false } else { true } ) then {
 };
 */
 
+[player,["HandleScore", {false}]] remoteExecCall ["addEventHandler",2,false];
+
 //prevent panic anim exploit against broken legs
 player addEventHandler ["AnimChanged", {
 	params ["_unit", "_anim"];
@@ -26,6 +28,33 @@ player addEventHandler ["AnimChanged", {
   
   };
   
+}];
+
+player addEventHandler ["GetInMan",{
+
+	if (!isnil {player getVariable "ace_medical_ivBags"}) then {
+	
+		if ((_this select 1) != "cargo") exitWith {
+		
+			moveout player;
+			(_this select 2) spawn {
+			
+				sleep 0.3;
+				player moveInCargo _this;
+			
+			};
+		
+		};
+	
+		if !((toUpper typeof (_this select 2)) in ["CUP_C_S1203_AMBULANCE_CIV","CUP_B_LR_AMBULANCE_CZ_W"]) exitwith {
+		
+			moveout player;
+			hintsilent "You can only board an ambulance";
+		
+		};
+	
+	};
+
 }];
 
 //player addEventHandler ["Killed",{player spawn mps_respawn_gear}];
@@ -147,8 +176,15 @@ player addEventHandler ["Killed",{
     if (nukeweather) then {
       
       snow attachto [player, [0,5,3]];
-      
+			
     };
+		
+		if (Hz_weather_sandstorm) then {
+		
+			["DESTROY"] call HA_fnc_sandStorm;
+			["INIT",[false,"ALTERNATIVE_LOW",true,"DISABLE"]] call HA_fnc_sandStorm;  
+
+		};
     
     //player removeaction mps_rallypoint;
     player removeaction mps_client_hud_act;
@@ -157,6 +193,8 @@ player addEventHandler ["Killed",{
     acre_sys_core_globalVolume = 1;
 		if (_hasEarplugs) then {player setvariable ["ACE_hasEarPlugsin",true]};
     0 fadesound 1;
+		
+		[player,["HandleScore", {false}]] remoteExecCall ["addEventHandler",2,false];
 		    
    // mps_rallypoint = player addaction ["<t color=""#ffc600"">Build Rallypoint</t>",(mps_path+"action\mps_buildtent.sqf"),[],0,false,false,"",mps_rally_condition];
     mps_client_hud_act = player addAction [localize "STR_Client_HUD_menu",(mps_path+"action\mps_hud_switch.sqf"),[],-1,false,false,"",""];

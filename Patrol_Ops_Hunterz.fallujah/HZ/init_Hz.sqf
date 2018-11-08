@@ -15,6 +15,13 @@ if (is3DEN) then {
 
 #include "Hz_config.sqf"
 
+if(!isMultiplayer) then {
+  hz_debug = true;
+  mps_debug = true;
+	Hz_enableHC = false;
+  hintsilent "DEBUG mode initialised!";
+};
+
 Hz_fnc_isHC = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isHC.sqf";
 Hz_fnc_isAiMaster = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isAiMaster.sqf";
 Hz_fnc_isTaskMaster = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isTaskMaster.sqf";
@@ -23,23 +30,10 @@ Hz_fnc_isTaskMaster = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isTa
 if(isnil "missionload") then {missionload = true;};
 if(isnil "jointops") then {jointops = false;};
 
-if(!isMultiplayer) then {
-  hz_debug = true;
-  mps_debug = true;
-	Hz_enableHC = false;
-  hintsilent "DEBUG mode initialised!";
-};
-
-if (call Hz_fnc_isAiMaster) then {
-
-	call compile preprocessFileLineNumbers "initUPSRespawn.sqf";
-
-};
-
 call compile preprocessfilelinenumbers "lk\nuke\nenvi.sqf";
 
 //init Weather
-call compile preprocessFileLineNumbers "HZ\Hz_sys_weather\Hz_weather_init.sqf";
+[] execVM "HZ\Hz_sys_weather\Hz_weather_init.sqf";
 
 // Init dialogs
 call compile preprocessfilelinenumbers "HZ\dialogs\fort\HZ_fort_init.sqf";
@@ -163,7 +157,11 @@ if (isServer) then {
 };
 
 if (call Hz_fnc_isHC) then {
+
+	waitUntil {(name player) != "Error: No vehicle"};
+
 	[] execvm "HZ\init_HC.sqf";
+	
 };
 
 if (isServer || (call Hz_fnc_isHC)) then {
