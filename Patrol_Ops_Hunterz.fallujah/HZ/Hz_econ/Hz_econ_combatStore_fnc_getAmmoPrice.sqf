@@ -77,7 +77,7 @@ case "RH_556X45_B_MK318": {0.85};
 
 //762x25
 case "RHS_AMMO_762X25_BALL": {0.25};
-
+case "RH_762X25": {0.25};
 
 
 //.300 blk
@@ -153,32 +153,26 @@ case "RHS_AMMO_9X17": {-1};
 
 
 //9x18
-case "RH_9X18_BALL": {-1};
-
+case "RH_9X18_BALL": {0.25};
+case "RHS_B_9X18_57N181S": {0.25};
 
 
 //9x19
-case "RHS_B_9X19_7N21": {0.25};
-case "RHS_B_9X19_7N31": {0.25};
+case "RHS_B_9X19_7N21": {0.3};
+case "RHS_B_9X19_7N31": {0.45};
 case "RHS_AMMO_9X19_FMJ": {0.25};
 case "RHS_AMMO_9X19_JHP": {0.45};
 
+case "RH_B_9X19_BALL": {0.25};
+case "CUP_B_9X19_BALL": {0.25};
 case "RH_9X19_B_M822": {0.25};
 case "RH_9X19_B_HP": {0.45};
 case "RH_9X19_B_HPSB": {0.65};
-case "RH_B_9X19_BALL": {-1};
+case "B_9X21_BALL": {0.25};
 
-case "CUP_B_9X19_BALL": {0.25};
-
-
-
-//9x21
-case "B_9X21_BALL_TRACER_GREEN": {0.7};
-case "B_9X21_BALL_TRACER_RED": {0.7};
-case "B_9X21_BALL_TRACER_YELLOW": {0.7};
-case "B_9X21_BALL": {0.4};
-
-
+//Starter pistol flares
+case "F_40MM_GREEN": {1.75};
+case "F_40MM_RED": {1.75};
 
 ////9x39
 case "RHS_B_9X39_SP5": {3};
@@ -193,7 +187,8 @@ case "CUP_B_93X64_BALL": {0.57};
 
 //.45 ACP
 case "RHS_AMMO_45ACP_MHP": {0.33};
-
+case "B_45ACP_BALL_GREEN": {0.33};
+case "B_45ACP_BALL": {0.33};
 case "RH_45ACP": {0.33};
 
 
@@ -284,8 +279,9 @@ case "CUP_SH_OG9_HE": {409};
 //various non standardized ammunition
 case "RH_57X28MM": {-1};
 case "RH_357MAG_BALL": {-1};
+case "RH_32ACP": {0.37};
 case "RH_B_40SW": {-1};
-case "RH_44MAG_BALL": {0.25};
+case "RH_44MAG_BALL": {-1};
 case "RH_454_CASULL": {-1};
 
 default {-1};

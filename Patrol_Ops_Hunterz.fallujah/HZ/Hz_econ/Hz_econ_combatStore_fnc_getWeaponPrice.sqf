@@ -420,18 +420,24 @@ case "RH_SBR9_DES": {1349};
 case "RH_SBR9_WDL": {1349};
 */
 
-
+case "HGUN_ACPC2_F": {1350};
+case "HGUN_PISTOL_HEAVY_01_F": {1430};
+case "HGUN_P07_F": {630};
+case "HGUN_P07_KHK_F": {630};
+case "HGUN_PISTOL_SIGNAL_F": {630};
 
 //RH Pistols
-case "RH_PYTHON": {-1};
-case "RH_CZ75": {-1};
-case "RH_DEAGLE": {-1};
-case "RH_DEAGLEG": {-1};
-case "RH_DEAGLEM": {-1};
-case "RH_DEAGLES": {-1};
-case "RH_FN57": {-1};
-case "RH_FN57_T": {-1};
-case "RH_FN57_G": {-1};
+case "RH_M9": {675};
+case "RH_M9C": {685};
+case "RH_PYTHON": {2000};
+case "RH_CZ75": {612};
+case "RH_DEAGLE": {1694};
+case "RH_DEAGLEG": {2254};
+case "RH_DEAGLEM": {1670};
+case "RH_DEAGLES": {2000};
+case "RH_FN57": {1399};
+case "RH_FN57_T": {1399};
+case "RH_FN57_G": {1399};
 case "RH_FNP45": {-1};
 case "RH_FNPT": {-1};
 case "RH_G17": {540};
@@ -442,26 +448,31 @@ case "RH_G18": {535};
 
 */
 
-case "RH_G19": {-1};
-case "RH_G19T": {-1};
+
+case "RH_G19": {500};
+case "RH_G19T": {500};
 case "RH_GSH18": {-1};
-case "RH_TEC9": {-1};
-case "RH_KIMBER": {-1};
-case "RH_KIMBER_NW": {-1};
-case "RH_MATEBA": {-1};
-case "RH_MUZI": {690};
-case "RH_MP412": {-1};
-case "RH_MK2": {-1};
+case "RH_TEC9": {500};
+case "RH_KIMBER": {1464};
+case "RH_KIMBER_NW": {1392};
+case "RH_M1911": {1700};
+case "RH_MAK": {400};
+case "RH_MATEBA": {3000};
+case "RH_MUZI": {960};
+case "RH_MP412": {1500};
+//case "RH_MK2": {350};
 case "RH_P226": {1165};
-case "RH_P226S": {-1};
-case "RH_SW659": {-1};
-case "RH_BULL": {-1};
-case "RH_BULLB": {-1};
+case "RH_P226S": {1413};
+case "RH_SW659": {350};
+case "RH_BULL": {930};
+case "RH_BULLB": {980};
 case "RH_TTRACKER": {450};
-case "RH_TTRACKER_G": {-1};
-case "RH_USPM": {-1};
-case "RH_USP": {-1};
-case "RH_VP70": {-1};
+case "RH_TTRACKER_G": {3500};
+case "RH_TT33": {220};
+case "RH_USPM": {1050};
+case "RH_USP": {850};
+case "RH_VP70": {600};
+case "RH_VZ61": {595};
 
 
 
