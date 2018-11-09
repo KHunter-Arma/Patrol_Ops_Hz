@@ -16,7 +16,7 @@ case "RHS_AMMO_46X30_JHP": {0.75};
 case "RHS_AMMO_46X30_AP": {1};
 
 //.303 Lee Enfield
-case "CUP_B_303_BALL": {0.88};
+case "CUP_B_303_BALL": {1.06};
 
 //.30-06 M1
 case "RHS_AMMO_762X63_M1T_TRACER": {1.5};
@@ -148,7 +148,7 @@ case "B_338_BALL": {6};
 
 
 //9x17
-case "RHS_AMMO_9X17": {-1};
+case "RHS_AMMO_9X17": {0.33};
 
 
 
@@ -194,7 +194,7 @@ case "RH_45ACP": {0.33};
 
 
 //.50 AE
-case "RH_50_AE_BALL": {-1};
+case "RH_50_AE_BALL": {1.71};
 
 
 
@@ -277,12 +277,12 @@ case "CUP_SH_OG9_HE": {409};
 
 
 //various non standardized ammunition
-case "RH_57X28MM": {-1};
-case "RH_357MAG_BALL": {-1};
+case "RH_57X28MM": {0.48};
+case "RH_357MAG_BALL": {0.32};
 case "RH_32ACP": {0.37};
-case "RH_B_40SW": {-1};
-case "RH_44MAG_BALL": {-1};
-case "RH_454_CASULL": {-1};
+case "RH_B_40SW": {0.28};
+case "RH_44MAG_BALL": {0.79};
+case "RH_454_CASULL": {1.34};
 
 default {-1};
 

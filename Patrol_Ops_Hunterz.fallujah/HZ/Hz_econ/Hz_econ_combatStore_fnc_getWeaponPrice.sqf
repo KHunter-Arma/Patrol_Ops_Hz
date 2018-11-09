@@ -317,6 +317,8 @@ case "RHS_WEAP_M1GARAND_SA43" : {750};
 case "RHS_WEAP_MG42" : {1270};
 case "RHS_WEAP_MP44" : {600};
 
+case "RHS_WEAP_M84" : {4250};
+
 	
 //RH-M4
 /*
@@ -425,6 +427,7 @@ case "HGUN_PISTOL_HEAVY_01_F": {1430};
 case "HGUN_P07_F": {630};
 case "HGUN_P07_KHK_F": {630};
 case "HGUN_PISTOL_SIGNAL_F": {630};
+case "HGUN_PISTOL_HEAVY_02_F": {1117};
 
 //RH Pistols
 case "RH_M9": {675};
@@ -438,8 +441,8 @@ case "RH_DEAGLES": {2000};
 case "RH_FN57": {1399};
 case "RH_FN57_T": {1399};
 case "RH_FN57_G": {1399};
-case "RH_FNP45": {-1};
-case "RH_FNPT": {-1};
+case "RH_FNP45": {1199};
+case "RH_FNPT": {1199};
 case "RH_G17": {540};
 
 /*

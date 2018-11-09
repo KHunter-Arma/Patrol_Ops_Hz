@@ -37,7 +37,6 @@ case "OPTIC_HOLOSIGHT_SMG": {630};
 case "OPTIC_SOS": {1170};
 case "OPTIC_MRCO": {1495};
 case "OPTIC_HAMR": {1370};
-case "OPTIC_YORRIS": {250};
 case "OPTIC_AMS": {2230};
 case "OPTIC_AMS_KHK": {2230};
 case "OPTIC_AMS_SND": {2230};
@@ -265,6 +264,16 @@ case "RH_M3LR": {1250};
 case "RH_ZPOINT": {600};
 
 case "HLC_OPTIC_DOCTERV": {710};
+case "HLC_OPTIC_ROMEO1_RX": {399};
+case "OPTIC_YORRIS": {250};
+case "CUP_ACC_CZ_M3X": {339};
+case "HLC_ACC_DBALPL": {1034};
+case "HLC_ACC_DBALPL_FL": {1034};
+case "HLC_ACC_TLR1": {160};
+case "RH_M6X": {379};
+case "RH_X2": {139};
+case "RH_X300": {299};
+
 
 /*
 case "RH_PAS13CL": {3999};
