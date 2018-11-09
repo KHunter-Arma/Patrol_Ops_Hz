@@ -279,7 +279,7 @@ case "RH_20Rnd_762x51_LFMJSB": {79};
 
 //762x54
 case "RHS_100RND_762X54MMR": {40};
-
+case "RHSSAF_250RND_762X54R": {60};
 
 
 /*
@@ -391,7 +391,7 @@ case "11RND_45ACP_MAG": {44};
 case "RHSUSF_MAG_7X45ACP_MHP": {40};
 case "RH_7RND_45CAL_M1911": {40};
 case "RH_12RND_45CAL_USP": {35};
-case "RH_15RND_45CAL_FNP": {-1};
+case "RH_15RND_45CAL_FNP": {54};
 case "RH_6RND_45ACP_MAG": {6};
 
 //.50 ae
@@ -521,7 +521,7 @@ case "HLC_VOG25_AK": {10};
 case "RHSGREF_20RND_765X17_VZ61": {25};
 case "RHSGREF_10RND_765X17_VZ61": {10};
 
-case "RH_20Rnd_57x28_FN": {-1};
+case "RH_20RND_57X28_FN": {35};
 case "RH_20RND_32CAL_VZ61": {25};
 case "RH_6RND_357_MAG": {8};
 case "RH_16RND_40CAL_USP": {34};

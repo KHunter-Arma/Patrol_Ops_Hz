@@ -137,7 +137,7 @@ switch (true) do {
 			
 				_waitForNight = false;
 				_waitForMorning = true;
-				sandstorm_color ppEffectAdjust [1, 1, 0,[ 0, 0, 0, 0],[ 1, 1, 1, 1],[ 0, 0, 0, 0]]; 
+				sandstorm_color ppEffectAdjust [0.875,0.875,-0.1,[1.652,0.764,0,0.01],[1,1,1,0.8],[0.835,0,0,0],[0,0,-0.265,-0.194,-0.017,0.279,0.624],1,0.001,0,0,1,1,1]; 
 				sandstorm_color ppEffectCommit 0;
 			
 			};
@@ -208,7 +208,7 @@ switch (true) do {
 					_waitForNight = false;
 					_waitForMorning = true;
 					
-					sandstorm_color ppEffectAdjust [1, 1, 0,[ 0, 0, 0, 0],[ 1, 1, 1, 1],[ 0, 0, 0, 0]]; 
+					sandstorm_color ppEffectAdjust [0.875,0.875,-0.1,[1.652,0.764,0,0.01],[1,1,1,0.8],[0.835,0,0,0],[0,0,-0.265,-0.194,-0.017,0.279,0.624],1,0.001,0,0,1,1,1]; 
 					sandstorm_color ppEffectCommit 600;
 				
 				} else {
@@ -231,7 +231,7 @@ switch (true) do {
         
         call Hz_sys_weather_fnc_weatherSync;
         
-        sleep 110;
+        sleep 100;
 				
 				deleteVehicle _logicSound;
         
