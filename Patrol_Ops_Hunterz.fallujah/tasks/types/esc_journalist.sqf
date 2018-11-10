@@ -17,6 +17,9 @@ _timeRequiredAtEachTarget = 5;
 _rewardMultiplier = 1;
 
 /*--------------------CREATE LOCATION---------------------------------*/
+
+_downPayment = _downPayment/_rewardMultiplier;
+
 Hz_pops_task_auxFailCondition = false;
 missionload = false;
 publicVariable "missionload";
