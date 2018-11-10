@@ -540,7 +540,9 @@ itemsInfo = itemsInfo - [
 "B_BERGEN_DGTL_F",
 "B_BERGEN_HEX_F",
 "B_BERGEN_MCAMO_F",
-"B_BERGEN_TNA_F"
+"B_BERGEN_TNA_F",
+"EWK_CIGAR1",
+"EWK_CIGAR2"
 
 
 ////////////////////////////////////////////////////////////////////////////////////
