@@ -26,6 +26,9 @@ _CarChance = 0.55;
 _rewardMultiplier = 1;
 
 /*--------------------CREATE TARGET-----------------------------------*/
+
+_downPayment = _downPayment/_rewardMultiplier;
+
 Hz_pops_task_auxFailCondition = false;
 _supplyTypes = ["Land_PaperBox_01_open_water_F","Land_PaperBox_01_open_boxes_F","Land_FoodSacks_01_large_white_idap_F","Land_PlasticCase_01_large_idap_F"];
 _escortTypes = ["C_IDAP_Man_AidWorker_03_F","C_IDAP_Man_AidWorker_04_F","C_IDAP_Man_AidWorker_06_F","C_IDAP_Man_AidWorker_05_F","C_IDAP_Man_AidWorker_02_F","C_IDAP_Man_AidWorker_09_F","C_IDAP_Man_AidWorker_08_F","C_IDAP_Man_AidWorker_07_F","C_IDAP_Man_AidWorker_01_F"];

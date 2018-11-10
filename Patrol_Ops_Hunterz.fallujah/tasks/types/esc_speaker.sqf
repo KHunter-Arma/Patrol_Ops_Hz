@@ -28,6 +28,10 @@ _CarChance = 0.3;
 _rewardMultiplier = 1;
 
 /*--------------------CREATE LOCATION---------------------------------*/
+
+_downPayment = _downPayment/_rewardMultiplier;
+_speechCompletePayment = _speechCompletePayment/_rewardMultiplier;
+
 Hz_pops_task_auxFailCondition = false;
 
 _rand = random 1;

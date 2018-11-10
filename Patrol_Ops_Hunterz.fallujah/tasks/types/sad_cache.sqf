@@ -38,6 +38,8 @@ _rewardmultiplier = 0.75;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 
+_rewardPerCache = _rewardPerCache/_rewardmultiplier;
+
 _caches = [];
 _cacheCount = _minCacheCount max (round (random _maxCacheCount));
 

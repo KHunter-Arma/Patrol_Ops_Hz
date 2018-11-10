@@ -17,7 +17,7 @@ R3F_LOG_CFG_can_be_lifted = R3F_LOG_CFG_can_be_lifted +
 	"box_east_ammoveh_f",
 	"ig_supplycrate_f",
 	"box_ind_ammoveh_f",
-	"box_nato_ammoveh_f"
+	"box_nato_ammoveh_f"	
 ];
 
 /*
@@ -66,5 +66,6 @@ R3F_LOG_CFG_can_be_transported_cargo = R3F_LOG_CFG_can_be_transported_cargo +
 
 R3F_LOG_CFG_can_be_moved_by_player = R3F_LOG_CFG_can_be_moved_by_player +
 [
-	"reammobox_f"
+	"reammobox_f",
+	"PlasticCase_01_base_F"
 ];

@@ -37,6 +37,8 @@ _rewardmultiplier = 1;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 
+_downPayment = _downPayment/_rewardMultiplier;
+
 _position = [-5000,-5000,0];
 _closedPositions = [];
 _ins = true;
