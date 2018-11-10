@@ -320,7 +320,9 @@ Hz_econ_cfg_itemRestrictions_default =
 "TRYK_B_MEDBAG_OD",
 "TRYK_B_MEDBAG_BK",
 "TRYK_B_MEDBAG",
-"ITEMGPS"
+"ITEMGPS",
+"EWK_CIGAR1",
+"EWK_CIGAR2"
 
 
 ];
