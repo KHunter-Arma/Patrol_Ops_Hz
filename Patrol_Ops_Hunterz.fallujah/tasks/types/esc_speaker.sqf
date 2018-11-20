@@ -352,8 +352,8 @@ case (_rand < 0.1) : {
 			
 			dostop _bomber;
 			
-			//[objNull,_bomber,rSAY,"shout"] call RE;
-			[_bomber,"shout"] remoteExecCall ["say3D",0,false];
+			//[objNull,_bomber,rSAY,"Hz_ambw_shout"] call RE;
+			[_bomber,"Hz_ambw_shout"] remoteExecCall ["say3D",0,false];
 			
 			[_bomber] joinsilent grpNull;
 			[_bomber] joinsilent createGroup (SIDE_B select 0);
@@ -586,7 +586,7 @@ while {
 			
 			sleep 1;
 			
-			[_dude,"shout"] remoteExecCall ["say3D",0,false];
+			[_dude,"Hz_ambw_shout"] remoteExecCall ["say3D",0,false];
 			
 			_curMuz = currentmuzzle _dude; 
 			_dude enableai "move";
