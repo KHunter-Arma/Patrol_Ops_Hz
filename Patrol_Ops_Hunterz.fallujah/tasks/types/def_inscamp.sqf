@@ -17,7 +17,7 @@ _AAchance = 0.1;
 _CarChance = 0.75;
 
 //Useful for justifying task-specific difficulties.
-_rewardMultiplier = 0.35;
+_rewardMultiplier = 0.5;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 
