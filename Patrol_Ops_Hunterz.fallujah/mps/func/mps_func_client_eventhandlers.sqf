@@ -64,6 +64,7 @@ ownedWepHolders = [];
 handgunWeaponPlayer = "";
 primaryWeaponPlayer = "";
 secondaryWeaponPlayer = "";
+binocularPlayer = "";
 
 player addEventHandler ["Killed",{
   
@@ -77,6 +78,7 @@ player addEventHandler ["Killed",{
   handgunWeaponPlayer = handgunWeapon _player;
   primaryWeaponPlayer = primaryWeapon _player;
   secondaryWeaponPlayer = secondaryWeapon _player;
+	binocularPlayer = binocular _player; //odd case but looks like needed
 	
 	gogglesAtDeath = goggles _player;
 	ownedWepHolders = [];
@@ -89,8 +91,6 @@ player addEventHandler ["Killed",{
 	
 		_player = _this;
 	
-		_weaponHoldersExcluded = nearestObjects [_player, ["WeaponHolderSimulated"],30];
-
   //  _player removeaction mps_rallypoint;
     _player removeaction mps_client_hud_act;     
 		
@@ -110,67 +110,46 @@ player addEventHandler ["Killed",{
 			
 			};
 		
-		} foreach [handgunWeaponPlayer,primaryWeaponPlayer,secondaryWeaponPlayer];    
+		} foreach [handgunWeaponPlayer,primaryWeaponPlayer,secondaryWeaponPlayer,binocularPlayer];    
 
     
 		while {true} do {
     
-      if ((vehicle _player) != _player) then {
-      
-        waitUntil {
-        
-          openMap false; 0 fadeSound 0; acre_sys_core_globalVolume = 0;
-          
-          ((vehicle player) == player)
-        
-        };
-        
-        if (!alive player) then {
-        
-          _weaponHoldersExcluded = nearestObjects [_player, ["WeaponHolderSimulated"],30];
-        
-        };
-      
-      };		
-			
 			//try to resolve loop getting stuck with exitwith instead...
-			if (((count _weaponsNeedToBeFound) < 1) || (alive player)) exitwith {};
+			if (alive player) exitwith {};
       
       openMap false; 0 fadeSound 0; acre_sys_core_globalVolume = 0;
 		
-			_weaponHolders = nearestObjects [_player, ["WeaponHolderSimulated"],30];
+		};
+		
+		if ((vehicle _player) == _player) then {
+      
+			_weaponHolders = nearestObjects [_player, ["WeaponHolderSimulated","WeaponHolder"],30];
 			
-			{
-			
-				if (!(_x in _weaponHoldersExcluded)) then {
-			
-					_weps = weaponCargo _x;
-					_wepHolder = _x;
+			{	
+				_weps = weaponCargo _x;
+				_wepHolder = _x;
+				
+				{
+				
+					if (_x in _weaponsNeedToBeFound) then {
 					
-					{
-					
-						if (_x in _weaponsNeedToBeFound) then {
+						_weaponsNeedToBeFound = _weaponsNeedToBeFound - [_x];
 						
-							_weaponsNeedToBeFound = _weaponsNeedToBeFound - [_x];
-							
-							if (!(_wepHolder in ownedWepHolders)) then {
-							
-								ownedWepHolders pushBack _wepHolder;
-							
-							};
+						if (!(_wepHolder in ownedWepHolders)) then {
+						
+							ownedWepHolders pushBack _wepHolder;
 						
 						};
 					
-					} foreach _weps;
+					};
 				
-				};
+				} foreach _weps;
 			
 			} foreach _weaponHolders;
-		
+      
 		};
-		
-    WaitUntil{openMap false; 0 fadeSound 0; acre_sys_core_globalVolume = 0; alive player };
-    
+		    
     Killed_EH_block = false;
     
     if (nukeweather) then {
@@ -373,16 +352,13 @@ player addeventhandler ["Respawn", {
 
 		_weaponsItems = weaponsitems _corpse;
 		
-		if ((vehicle _corpse) == _corpse) then {
-					
-			{
-				
-				_weaponsItems = _weaponsItems + (weaponsitemscargo _x);
-				deletevehicle _x;
+		sleep 2;			
+		{
 			
-			} foreach ownedWepHolders;
+			_weaponsItems = _weaponsItems + (weaponsitemscargo _x);
+			deletevehicle _x;
 		
-		};
+		} foreach ownedWepHolders;
 		
 			/*
 		{diag_log _x} foreach [_vestType,
