@@ -27,10 +27,6 @@ Hz_task_ID = _taskid;
 Hz_econ_aux_rewards = 0;
 _otherReward = 0;
 
-_newComp = [_position, random 360,(call compile preprocessfilelinenumbers "Compositions\Blufor\Bases\insurgent_camp.sqf")] call BIS_fnc_ObjectsMapper;
-
-//init composition
-
 _fnc_initDude = {
 
 	_this addMagazine "CUP_30Rnd_762x39_AK47_M";
@@ -56,16 +52,41 @@ _fnc_initDude = {
 
 };
 
+_newComp = [_position, random 360,(call compile preprocessfilelinenumbers "Compositions\Blufor\Bases\insurgent_camp.sqf")] call BIS_fnc_ObjectsMapper;
+
+
+//init composition
+/*
+{
+
+	if(_x iskindof "Land_tent_east") then {
+		
+		_x allowDamage false;
+	
+	};
+
+} foreach _newComp;
+*/
+{
+/*
+	if(_x iskindof "pook_camonet_land_west_FARP17") then {
+		
+		_x allowDamage false;
+	
+	};
+*/
+	if(_x iskindof "FoldTable") then {
+		
+		_x enableSimulation false;
+	
+	};
+	
+} foreach _newComp;
+
 _ammoCratesFilled = 0;
 _statGrp = creategroup (SIDE_A select 0);
 
 {
-	if(_x iskindof "Land_tent_east") then {
-  
-    _x enableSimulationGlobal false;
-  
-  };
-
 	if ((_x isKindOf "MetalBarrel_burning_F") || (_x isKindOf "Campfire_burning_F")) then {
 	
 		_x inflame true;
@@ -125,6 +146,8 @@ _statGrp = creategroup (SIDE_A select 0);
     };
   
   };
+	
+	[_x,2] remoteExecCall ["setFeatureType",0,true];
 
 } foreach _newComp;
 

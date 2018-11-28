@@ -7,9 +7,9 @@
 loadScreen = "mps\media\po2.paa";
 
 Respawn		= 3;
-RespawnDelay	= 360;
+RespawnDelay	= 380;
 respawnDialog	= 0;
-showGPS		= 1;
+showGPS		= 0;
 showCompass	= 1;
 showWatch	= 1;
 aiKills		= 0;
@@ -38,24 +38,49 @@ class cfgFunctions
 };
 
 class Extended_InitPost_EventHandlers
-{
-		
+{		
 	class CAManBase {		
 
 		class RemoveItemsAI {
 			
-			serverInit = "if (!((_this select 0) in playableunits)) then {(_this select 0) unassignItem 'ItemMap'; (_this select 0) removeItem 'ItemMap'; (_this select 0) unlinkItem 'CUP_NVG_PVS7'; (_this select 0) removeItem 'ACRE_PRC343';};";
+			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {(_this select 0) unassignItem 'ItemMap'; (_this select 0) removeItem 'ItemMap'; (_this select 0) unassignItem 'ItemGPS'; (_this select 0) removeItem 'ItemGPS'; (_this select 0) unassignItem 'ItemCompass'; (_this select 0) removeItem 'ItemCompass'; (_this select 0) unassignItem 'ItemWatch'; (_this select 0) removeItem 'ItemWatch'; (_this select 0) unlinkItem 'CUP_NVG_PVS7'; (_this select 0) removeItem 'ACRE_PRC343';};";
 			
 		};
 	};
 	
-	class SoldierWB : CAManBase {};
-	class SoldierGB : CAManBase {};
+	class SoldierWB : CAManBase {
+	
+		class doubleAiAmmo {
+		
+			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_magArray = primaryWeaponMagazine (_this select 0); if ((count _magArray) > 0) then {(_this select 0) addMagazines [_magArray select 0,20];};};";
+		
+		};
+	
+	};
+	class SoldierGB : CAManBase {
+	
+		class doubleAiAmmo {
+		
+			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_magArray = primaryWeaponMagazine (_this select 0); if ((count _magArray) > 0) then {(_this select 0) addMagazines [_magArray select 0,20];};};";
+		
+		};
+	
+	};	
+	class SoldierEB : CAManBase {
+	
+		class doubleAiAmmo {
+		
+			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_magArray = primaryWeaponMagazine (_this select 0); if ((count _magArray) > 0) then {(_this select 0) addMagazines [_magArray select 0,20];};};";
+		
+		};
+	
+	};
+	
 	class CUP_Creatures_Military_TK_Soldier_Base : SoldierWB {
 	
 		class addTakiArmor {
 		
-			serverInit = "_vestItems = vestItems (_this select 0); (_this select 0) addvest 'rhs_6b5_rifleman_khaki'; {(vestContainer (_this select 0)) addItemCargo [_x,1];} foreach _vestItems;";
+			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_vestItems = vestItems (_this select 0); (_this select 0) addvest 'rhs_6b5_rifleman_khaki'; {(vestContainer (_this select 0)) addItemCargo [_x,1];} foreach _vestItems;};";
 		
 		};
 	
@@ -67,7 +92,30 @@ class Extended_InitPost_EventHandlers
 	
 		class addTakiArmor {
 		
-			serverInit = "_vestItems = vestItems (_this select 0); (_this select 0) addvest 'rhs_6b5_rifleman_khaki'; {(vestContainer (_this select 0)) addItemCargo [_x,1];} foreach _vestItems; removeHeadgear (_this select 0); (_this select 0) addHeadgear 'CUP_H_TK_Helmet';";
+			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_vestItems = vestItems (_this select 0); (_this select 0) addvest 'rhs_6b5_rifleman_khaki'; {(vestContainer (_this select 0)) addItemCargo [_x,1];} foreach _vestItems;};";
+		
+		};
+		
+		class correctTakiUniform {
+		
+			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_uniformItems = uniformItems (_this select 0); (_this select 0) addUniform 'CUP_U_O_TK_Green'; {(uniformContainer (_this select 0)) addItemCargo [_x,1];} foreach _uniformItems; removeHeadgear (_this select 0); (_this select 0) addHeadgear 'CUP_H_TK_Helmet';};";
+		
+		};
+	
+	};
+	
+	class rhs_msv_crew : rhs_msv_rifleman {};
+	class LOP_TKA_Infantry_Crewman : rhs_msv_crew {
+	
+		class addTakiArmor {
+		
+			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_vestItems = vestItems (_this select 0); (_this select 0) addvest 'rhs_6b5_rifleman_khaki'; {(vestContainer (_this select 0)) addItemCargo [_x,1];} foreach _vestItems;};";
+		
+		};
+		
+		class correctTakiUniform {
+		
+			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_uniformItems = uniformItems (_this select 0); (_this select 0) addUniform 'CUP_U_O_TK_Green'; {(uniformContainer (_this select 0)) addItemCargo [_x,1];} foreach _uniformItems; removeHeadgear (_this select 0); (_this select 0) addHeadgear 'CUP_H_TK_TankerHelmet';};";
 		
 		};
 	
@@ -101,7 +149,7 @@ class CfgDebriefing
 	
 	class publicRestriction
 	{
-		title = "Restricted Access";
+		title = "Unauthorised Access";
 		subtitle = "";
 		description = "This is a semi-private server. You must be accompanied by a trained B.A.D. PMC member to play on this server.";
 		pictureBackground = "";
@@ -111,9 +159,9 @@ class CfgDebriefing
 	
 	class playerLimit
 	{
-		title = "Player Limit";
+		title = "Public Player Limit";
 		subtitle = "";
-		description = "This server restricts the number of players not part of B.A.D. PMC playing on the server. You must wait until another such player leaves, or more B.A.D. PMC members join.";
+		description = "This server restricts the number of players not part of B.A.D. PMC playing on the server. You must wait until another such player leaves, or more B.A.D. PMC members join, to play.";
 		pictureBackground = "";
 		picture = "";
 		pictureColor[] = {0.6,0.1,0.2,1};
@@ -121,7 +169,7 @@ class CfgDebriefing
 	
 	class wrongSlot
 	{
-		title = "Unauthorised Slot Use";
+		title = "Unauthorised Slot";
 		subtitle = "";
 		description = "You are not authorised to use this slot. Please pick another slot to join.";
 		pictureBackground = "";
