@@ -769,6 +769,7 @@ case  "ACRE_SEM70": {5000};
 //cigs
 case "EWK_CIGAR1": {14};
 case "EWK_CIGAR2": {14};
+case "IMMERSION_CIGS_CIGAR0": {14};
 case "EWK_CIG1": {1};
 case "EWK_GLASSES_CIG1": {1};
 case "IMMERSION_POPS_POP0": {1};
