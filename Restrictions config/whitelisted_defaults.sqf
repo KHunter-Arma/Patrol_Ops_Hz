@@ -542,7 +542,8 @@ itemsInfo = itemsInfo - [
 "B_BERGEN_MCAMO_F",
 "B_BERGEN_TNA_F",
 "EWK_CIGAR1",
-"EWK_CIGAR2"
+"EWK_CIGAR2",
+"IMMERSION_CIGS_CIGAR0"
 
 
 ////////////////////////////////////////////////////////////////////////////////////
