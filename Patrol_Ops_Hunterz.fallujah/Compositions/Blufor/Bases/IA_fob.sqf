@@ -19,7 +19,6 @@ Using orientation of objects: yes
 	["Land_WoodenTable_small_F",[-8.88275,6.01099,0.05],0,1,0,[0,0],"","",true,false], 
 	["CUP_postel_panelak1",[-10.8656,1.84497,0],273.749,1,0,[0,0],"","",true,false], 
 	["Land_vodni_vez",[7.82135,8.08594,-0.710476],274.887,1,0,[0,0],"","",true,false], 
-	["CampEast_EP1",[-11.0193,4.27539,0],274.088,1,0,[0,0],"","",true,false], 
 	["Land_Wall_IndCnc_4_F",[10.3172,9.38135,0],94.337,1,0,[0,-0],"","",true,false], 
 	["Land_Carpet_EP1",[-12.5948,4.90161,0.05],272.716,1,0,[0,0],"","",true,false], 
 	["Land_Table_small_EP1",[-12.5304,5.57422,0.05],273.383,1,0,[0,0],"","",true,false], 
@@ -108,5 +107,6 @@ Using orientation of objects: yes
 	["Land_CncBlock_Stripes",[39.9757,11.3408,0],92.6752,1,0,[0,-0],"","",true,false], 
 	["Wire",[43.534,-2.21436,0],4.36468,1,0,[0,0],"","",true,false], 
 	["Land_CncBlock_D",[45.6497,2.28125,0],91.6406,1,0,[0,-0],"","",true,false], 
-	["Wire",[44.1572,14.563,0],185.368,1,0,[0,0],"","",true,false]
+	["Wire",[44.1572,14.563,0],185.368,1,0,[0,0],"","",true,false],
+	["CampEast_EP1",[-11.0193,4.27539,0],274.088,1,0,[0,0],"","",true,false]
 ]

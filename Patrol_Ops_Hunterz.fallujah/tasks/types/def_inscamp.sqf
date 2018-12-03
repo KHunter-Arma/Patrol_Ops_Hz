@@ -66,15 +66,15 @@ _newComp = [_position, random 360,(call compile preprocessfilelinenumbers "Compo
 	};
 
 } foreach _newComp;
-*/
+
 {
-/*
+
 	if(_x iskindof "pook_camonet_land_west_FARP17") then {
 		
 		_x allowDamage false;
 	
 	};
-*/
+
 	if(_x iskindof "FoldTable") then {
 		
 		_x enableSimulation false;
@@ -82,6 +82,7 @@ _newComp = [_position, random 360,(call compile preprocessfilelinenumbers "Compo
 	};
 	
 } foreach _newComp;
+*/
 
 _ammoCratesFilled = 0;
 _statGrp = creategroup (SIDE_A select 0);

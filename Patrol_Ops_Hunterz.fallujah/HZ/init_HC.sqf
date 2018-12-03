@@ -10,7 +10,7 @@ if (call Hz_fnc_isAiMaster) then {
 	Hz_pops_UPSRespawnArray = +Hz_pops_UPSPassToHCArray;
 
 	Hz_max_ambient_units = Hz_max_ambient_units*3;
-	sleep 600;
+	sleep 900;
 	Hz_max_ambient_units = Hz_max_ambient_units/3;
 
 };

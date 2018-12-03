@@ -4,7 +4,8 @@ Area size: 100
 Using orientation of objects: yes
 */
 
-	[["MetalBarrel_burning_F",[-1.91162,3.89258,0],0,1,0,[0,0],"","",true,false], 
+	[
+	["MetalBarrel_burning_F",[-1.91162,3.89258,0],0,1,0,[0,0],"","",true,false], 
 	["Land_Bench_EP1",[-0.0219727,4.66089,0],339.244,1,0,[0,0],"","",true,false], 
 	["Land_BagFence_Long_F",[5.0835,-3.45752,0],239.356,1,0,[0,0],"","",true,false], 
 	["Land_Bench_EP1",[-3.21631,5.27148,0],228.18,1,0,[0,0],"","",true,false], 
@@ -34,12 +35,10 @@ Using orientation of objects: yes
 	["Land_KBud",[9.78564,6.9231,0],101.899,1,0,[0,-0],"","",true,false], 
 	["CUP_postel_panelak1",[10.8994,-5.5498,0.05],237.702,1,0,[0,0],"","",true,false], 
 	["Land_BagFence_Short_F",[0.33252,12.2197,0],178.788,1,0,[0,-0],"","",true,false], 
-	["Land_tent_east",[11.6499,-3.39307,0],240,1,0,[0,0],"","",true,false], 
 	["Land_BagFence_Long_F",[2.66504,12.2427,0],0,1,0,[0,0],"","",true,false], 
 	["Land_BagFence_Short_F",[-3.93555,12.2036,0],0,1,0,[0,0],"","",true,false], 
 	["Land_CampingChair_V2_F",[12.6099,-3.5813,0.05],313.029,1,0,[0,0],"","",true,false], 
 	["CUP_TKBasicAmmunitionBox_EP1",[-13.095,2.00708,0.05],337.946,1,0.0194195,[1.75973e-005,-8.33416e-005],"","",true,false], 
-	["Land_tent_east",[-13.5093,-1.46362,0],120,1,0,[0,-0],"","",true,false], 
 	["FoldTable",[13.8346,-4.98979,0],250.596,1,0,[0,0],"","",true,false], 
 	["Land_KBud",[9.53955,9.87085,0],72.8313,1,0,[0,0],"","",true,false], 
 	["Land_BagFence_Long_F",[-6.28369,12.2498,0],0,1,0,[0,0],"","",true,false], 
@@ -105,4 +104,7 @@ Using orientation of objects: yes
 	["Land_BagFence_Long_F",[-0.224609,26.1982,0],0,1,0,[0,0],"","",true,false], 
 	["Land_BagFence_Long_F",[2.68359,26.2124,0],0,1,0,[0,0],"","",true,false], 
 	["Land_BagFence_Long_F",[-3.12158,26.1973,0],0,1,0,[0,0],"","",true,false], 
-	["Land_BagFence_Long_F",[-6.0293,26.1899,0],0,1,0,[0,0],"","",true,false]]
+	["Land_BagFence_Long_F",[-6.0293,26.1899,0],0,1,0,[0,0],"","",true,false],
+	["Land_tent_east",[-13.5093,-1.46362,0],120,1,0,[0,-0],"","",true,false],
+	["Land_tent_east",[11.6499,-3.39307,0],240,1,0,[0,0],"","",true,false]	
+	]
