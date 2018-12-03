@@ -1,37 +1,26 @@
-[] spawn {
+private _exit = false;
 
-	_exit = false;
+while {!_exit} do {
 
-  while {!_exit} do {
-
-    sleep 2;
-    
-    if (((getposatl player) distance Hz_pops_arrestPosition) > 5) then {
-    
-			if !((getPlayerUID player) in BanList) exitWith {
-			
-				call Hz_pers_API_enablePlayerSaveStateOnDisconnect;
-				_exit = true;
-			
-			};
-		
-			/*
-		
-			call Hz_pers_API_disablePlayerSaveStateOnDisconnect;
-      endmission "Escaped";
-			
-			*/
-			
-			player setposatl Hz_pops_arrestPosition;
-    
-    };
-
-  };
+	waitUntil {alive player};
 	
-	if (!Hz_pops_clientInitDone) then {
+	sleep 2;
 	
-		[] execVM (mps_path+"init_mps_client.sqf");
+	if (((getposatl player) distance Hz_pops_arrestPosition) > 5) then {
+	
+		if !((getPlayerUID player) in BanList) exitWith {
+		
+			_exit = true;
+		
+		};
+	
+		//endmission "Escaped";
+		
+		player setposatl Hz_pops_arrestPosition;
 	
 	};
-	
+
 };	
+
+//we don't want dem inmate uniforms being used...
+removeUniform player;

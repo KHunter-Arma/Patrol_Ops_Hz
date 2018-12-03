@@ -2,7 +2,16 @@ private ["_objectsarr","_uid","_tentpos","_tentposx","_tentposy","_tentposz"];
 
 // Client Initialise
 
-if(isDedicated || (call Hz_fnc_isHC)) exitWith {};
+if(isDedicated || (call Hz_fnc_isHC)) exitWith {
+
+	if (call Hz_fnc_isHC) then {
+	
+		waituntil {!isnil "narray2"};
+		if (count narray2 > 0) then {{_x setdamage 1;} foreach narray2;};
+
+	};
+
+};
 
 if (!hz_debug && isMultiplayer) then {
 
@@ -91,18 +100,6 @@ if (!hz_debug && isMultiplayer) then {
 waitUntil {!(isNull player)};
 
 sleep 1;
-
-_uid = getplayeruid player;
-_exit = false;
-Hz_pops_clientInitDone = false;
-if(_uid in BanList) then {
-
-  "-1" call Hz_fnc_arrestPlayer;
-	_exit = true;
-	
-};
-if (_exit) exitWith {};
-Hz_pops_clientInitDone = true;
 
 // Begin Client Cursor Monitoring for actions on objects
 [] execVM (mps_path+"func\mps_func_client_cursortarget.sqf");
@@ -230,14 +227,28 @@ if(isnil "limitviewdistance") then {limitviewdistance = false;};
 };
 */
 
-waituntil {introseqdone};
-
 if (!Hz_debug) then {
 
 	removeallweapons player;
 	removeallitems player;
+	removeAllAssignedItems player;
+	removeVest player;
+	removeBackpack player;
+	removeHeadgear player;	
+	removeGoggles player;
 	
 };
+
+_uid = getplayeruid player;
+if(_uid in BanList) then {
+	
+	removeUniform player;
+	Hz_pers_clientReadyForLoad = true;
+	uisleep 5;	
+  "-1" call Hz_fnc_arrestPlayer;	
+};
+
+waituntil {introseqdone};
 
 if(!hz_debug) then {
 
@@ -314,8 +325,6 @@ if(!hz_debug) then {
         if (_condition) then {
 				
 					Hz_pops_restrictionSupervisorCheckPassed = false;
-          
-          call Hz_pers_API_disablePlayerSaveStateOnDisconnect;
           endMission "publicRestriction"; 
           
         } else {Hz_pops_restrictionSupervisorCheckPassed = true;}; 
@@ -349,8 +358,7 @@ if ((toupper Hz_playertype) != "SUPERVISOR") then {
     
     if ((_countSupervisors/_countNonSupervisors) < Hz_publicPlayerRatioLimit) then {
       
-			Hz_pops_restrictionPublicLimitCheckPassed = false;			
-			call Hz_pers_API_disablePlayerSaveStateOnDisconnect;
+			Hz_pops_restrictionPublicLimitCheckPassed = false;		
       endMission "playerLimit"; 
       
     } else {Hz_pops_restrictionPublicLimitCheckPassed = true;};
@@ -398,12 +406,6 @@ if (Hz_pops_enableDetainUnrecognisedUIDs) then {
 		
 			call Hz_pers_API_disablePlayerSaveStateOnDisconnect;
 			player setposatl Hz_pops_detainPosition;				
-			
-			removeAllAssignedItems player;
-			removeVest player;
-			removeBackpack player;
-			removeHeadgear player;	
-			removeGoggles player;
 			
 			sleep 1;
 			
@@ -471,68 +473,5 @@ if (Hz_pops_enableDetainUnrecognisedUIDs) then {
 
 if (_exit) exitWith {};
 
-player unassignItem "ItemMap";
-player removeItem "ItemMap";
-player unassignItem "ItemCompass";
-player removeItem "ItemCompass";
 Hz_pers_clientReadyForLoad = true;
-//ace_advanced_fatigue_recoveryFactor = 8;
 showScoretable 0;
-
-
-/*
-
-//ACE Medical IV anim test
-
-sleep 5;
-
-if ((player getVariable ["ace_medical_ivBags",[]]) isEqualTo []) then {
-
-	player spawn {
-
-		if (isnil "ace_medical_IVAnimTestRunning") then {		
-			ace_medical_IVAnimTestRunning = false;	
-		};	
-		if (ace_medical_IVAnimTestRunning) exitWith {};
-		ace_medical_IVAnimTestRunning = true;
-
-		//put weapon on back (or anim doesn't work)
-		_this call ace_common_fnc_fixLoweredRifleAnimation;
-		_this action ["SwitchWeapon", _this, _this, 299];
-
-		//prevent unit re-equipping weapon and forcing animation exit
-		showHUD false;
-		
-		_this playMoveNow "AinjPpneMstpSnonWnonDnon";
-		
-		waitUntil {(animationState _this) == "ainjppnemstpsnonwnondnon"};
-
-		while {(alive _this) && !((_this getVariable ["ace_medical_ivBags",[]]) isEqualTo [])} do {
-
-			//prevent unit from interacting (e.g. gearing) with something and forcing animation exit
-			closeDialog 0;
-			
-			//disable interaction menu
-			closeDialog 314412;
-			
-			//there are still many exploits so force animation if player managed to escape...
-			if ((animationState _this) != "ainjppnemstpsnonwnondnon") then {
-			
-				_this call ace_common_fnc_fixLoweredRifleAnimation;
-				_this action ["SwitchWeapon", _this, _this, 299];		
-				_this playMoveNow "AinjPpneMstpSnonWnonDnon";
-				
-				waitUntil {(animationState _this) == "ainjppnemstpsnonwnondnon"};
-			
-			};
-
-		};
-		
-		showHUD true;
-		ace_medical_IVAnimTestRunning = false;
-
-	};
-
-};
-
-*/

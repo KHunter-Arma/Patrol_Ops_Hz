@@ -78,7 +78,7 @@ class HZ_admin {
 				h = 0.0633334 * safezoneH;
 				colorBackground[] = {1,0.05,0,0.8};
 				colorBackgroundActive[] = {1,0,0,1};
-				action = "Hz_admin_selected_UID call Hz_fnc_arrestPlayer";
+				action = "Hz_admin_selected_UID spawn Hz_fnc_arrestPlayer";
 			};
 			/*
 			class HZ_admin_button_ban: RscButton
