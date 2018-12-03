@@ -83,10 +83,22 @@ if(!isDedicated && !(call Hz_fnc_isHC)) then {
         if(_uid in Hz_pops_restrictions_publicNoRatioLimit) then {
           
           Hz_playertype = "publicNoLimit";
+					
+					if (Hz_econ_funds < 100000) then {
+					
+						Hz_econ_combatStore_storeClosed = true;
+					
+					};
           
         } else {
           
           Hz_playertype = "public";
+					
+					if (Hz_econ_funds < 100000) then {
+					
+						Hz_econ_combatStore_storeClosed = true;
+					
+					};
           
         };
         

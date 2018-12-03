@@ -8,7 +8,7 @@ class EditorData
 	toggles=522;
 	class ItemIDProvider
 	{
-		nextID=5132;
+		nextID=5163;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={2754.2568,20.071953,6596.6953};
-		dir[]={0.88521683,-0.40794456,-0.2235752};
-		up[]={0.39553005,0.91300398,-0.099897303};
-		aside[]={-0.24487752,-7.3574483e-008,-0.96956176};
+		pos[]={2916.6064,150.90018,6540.106};
+		dir[]={-0.64689958,-0.73902047,0.18823932};
+		up[]={-0.70959294,0.67367601,0.20648332};
+		aside[]={0.27940899,3.7602149e-007,0.96020734};
 	};
 };
 binarizationWanted=0;
@@ -122,6 +122,7 @@ addons[]=
 	"A3_Characters_F_Heads",
 	"A3_Ui_F_Orange",
 	"A3_Structures_F_Civ_Accessories",
+	"acex_field_rations",
 	"CUP_Editor_Plants_Config",
 	"A3_Structures_F_Civ_Camping",
 	"A3_Structures_F_Heli_Items_Electronics",
@@ -171,7 +172,7 @@ class AddonsMetaData
 {
 	class List
 	{
-		items=100;
+		items=101;
 		class Item0
 		{
 			className="USAF_C17";
@@ -629,149 +630,156 @@ class AddonsMetaData
 		};
 		class Item73
 		{
+			className="acex_field_rations";
+			name="ACEX - Field Rations";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
+		};
+		class Item74
+		{
 			className="CUP_Editor_Plants_Config";
 			name="CUP_Editor_Plants_Config";
 		};
-		class Item74
+		class Item75
 		{
 			className="A3_Structures_F_Orange";
 			name="Arma 3 Orange - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item75
+		class Item76
 		{
 			className="CUP_BaseConfigs";
 			name="CUP_BaseConfigs";
 		};
-		class Item76
+		class Item77
 		{
 			className="Hz_unitConfigs";
 			name="Hunter'z Unit Configs";
 			author="K.Hunter";
 		};
-		class Item77
+		class Item78
 		{
 			className="CUP_Creatures_Military_Taki";
 			name="CUP_Creatures_Military_Taki";
 		};
-		class Item78
+		class Item79
 		{
 			className="CUP_TrackedVehicles_T55";
 			name="CUP_TrackedVehicles_T55";
 		};
-		class Item79
+		class Item80
 		{
 			className="CUP_TrackedVehicles_T72";
 			name="CUP_TrackedVehicles_T72";
 		};
-		class Item80
+		class Item81
 		{
 			className="CUP_TrackedVehicles_BMP";
 			name="CUP_TrackedVehicles_BMP";
 			author="Community Cupgrade Project";
 		};
-		class Item81
+		class Item82
 		{
 			className="CUP_WheeledVehicles_BRDM2";
 			name="CUP_WheeledVehicles_BRDM2";
 		};
-		class Item82
+		class Item83
 		{
 			className="CUP_WheeledVehicles_BTR60";
 			name="CUP_WheeledVehicles_BTR60";
 		};
-		class Item83
+		class Item84
 		{
 			className="CUP_TrackedVehicles_M113";
 			name="CUP_TrackedVehicles_M113";
 		};
-		class Item84
+		class Item85
 		{
 			className="CUP_WheeledVehicles_LR";
 			name="CUP_WheeledVehicles_LR";
 		};
-		class Item85
+		class Item86
 		{
 			className="CUP_WheeledVehicles_UAZ";
 			name="CUP_WheeledVehicles_UAZ";
 		};
-		class Item86
+		class Item87
 		{
 			className="murshun_cigs";
 			name="murshun_cigs";
 		};
-		class Item87
+		class Item88
 		{
 			className="FIR_F15_F";
 			name="FIR_F15_F";
 		};
-		class Item88
+		class Item89
 		{
 			className="FIR_F16_F";
 			name="FIR_F16_F";
 		};
-		class Item89
+		class Item90
 		{
 			className="ace_refuel";
 			name="ACE3 - Refuel";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item90
+		class Item91
 		{
 			className="nielsen_cim";
 			name="nielsen_cim";
 		};
-		class Item91
+		class Item92
 		{
 			className="A3_Structures_F_Exp_Civilian";
 			name="Arma 3 Apex - Civilian Buildings";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item92
+		class Item93
 		{
 			className="CUP_CA_Config";
 			name="CUP_CA_Config";
 		};
-		class Item93
+		class Item94
 		{
 			className="USAF_C130J";
 			name="USAF_C130J";
 		};
-		class Item94
+		class Item95
 		{
 			className="Hz_mod_ambientWar";
 			name="Hunter'z Ambient War Module";
 			author="K.Hunter";
 			url="https://github.com/KHunter-Arma";
 		};
-		class Item95
+		class Item96
 		{
 			className="A3_Data_F_Curator";
 			name="Arma 3 Zeus Update - Main Configuration";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item96
+		class Item97
 		{
 			className="A3_Props_F_Argo";
 			name="Arma 3 Malden - Decorative and Mission Objects";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item97
+		class Item98
 		{
 			className="CUP_Creatures_Military_TakiInsurgents";
 			name="CUP_Creatures_Military_TakiInsurgents";
 		};
-		class Item98
+		class Item99
 		{
 			className="CUP_WheeledVehicles_Datsun";
 			name="CUP_WheeledVehicles_Datsun";
 		};
-		class Item99
+		class Item100
 		{
 			className="po_factions_fic";
 			name="po_factions_fic";
@@ -904,7 +912,7 @@ class CustomAttributes
 								};
 								class value
 								{
-									items=306;
+									items=311;
 									class Item0
 									{
 										class data
@@ -5189,6 +5197,76 @@ class CustomAttributes
 											value="dzn_ejam_mappingsettings";
 										};
 									};
+									class Item306
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"STRING"
+												};
+											};
+											value="acex_field_rations_timewithoutwater";
+										};
+									};
+									class Item307
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"STRING"
+												};
+											};
+											value="acex_field_rations_timewithoutfood";
+										};
+									};
+									class Item308
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"STRING"
+												};
+											};
+											value="acex_field_rations_hudtype";
+										};
+									};
+									class Item309
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"STRING"
+												};
+											};
+											value="acex_field_rations_hudshowlevel";
+										};
+									};
+									class Item310
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"STRING"
+												};
+											};
+											value="acex_field_rations_hudtransparency";
+										};
+									};
 								};
 							};
 						};
@@ -5205,7 +5283,7 @@ class CustomAttributes
 								};
 								class value
 								{
-									items=306;
+									items=311;
 									class Item0
 									{
 										class data
@@ -18957,6 +19035,231 @@ class CustomAttributes
 															};
 														};
 														value="[""arifle_MX_F"",0.05,45,10,45,0,0]";
+													};
+												};
+												class Item1
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"SCALAR"
+															};
+														};
+														value=1;
+													};
+												};
+											};
+										};
+									};
+									class Item306
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"ARRAY"
+												};
+											};
+											class value
+											{
+												items=2;
+												class Item0
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"SCALAR"
+															};
+														};
+														value=4;
+													};
+												};
+												class Item1
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"SCALAR"
+															};
+														};
+														value=1;
+													};
+												};
+											};
+										};
+									};
+									class Item307
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"ARRAY"
+												};
+											};
+											class value
+											{
+												items=2;
+												class Item0
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"SCALAR"
+															};
+														};
+														value=12;
+													};
+												};
+												class Item1
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"SCALAR"
+															};
+														};
+														value=1;
+													};
+												};
+											};
+										};
+									};
+									class Item308
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"ARRAY"
+												};
+											};
+											class value
+											{
+												items=2;
+												class Item0
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"SCALAR"
+															};
+														};
+														value=1;
+													};
+												};
+												class Item1
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"SCALAR"
+															};
+														};
+														value=1;
+													};
+												};
+											};
+										};
+									};
+									class Item309
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"ARRAY"
+												};
+											};
+											class value
+											{
+												items=2;
+												class Item0
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"SCALAR"
+															};
+														};
+														value=70;
+													};
+												};
+												class Item1
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"SCALAR"
+															};
+														};
+														value=1;
+													};
+												};
+											};
+										};
+									};
+									class Item310
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"ARRAY"
+												};
+											};
+											class value
+											{
+												items=2;
+												class Item0
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"SCALAR"
+															};
+														};
+														value=-1;
 													};
 												};
 												class Item1
@@ -54037,6 +54340,7 @@ class Mission
 				};
 			};
 			id=1949;
+			atlOffset=4.7683716e-007;
 		};
 		class Item561
 		{
@@ -67304,6 +67608,7 @@ class Mission
 			};
 			id=5130;
 			type="LOP_TKA_ZSU234";
+			atlOffset=4.7683716e-007;
 			class CustomAttributes
 			{
 				class Attribute0
