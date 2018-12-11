@@ -764,7 +764,19 @@ case  "ACE_WIRECUTTER": {272.41};
 case  "ACRE_SEM52SL": {1500};
 case  "ACRE_SEM70": {5000};
 
-
+case  "ACE_CAN_FRANTA": {0.5};
+case  "ACE_CAN_REDGULL": {1.5};
+case  "ACE_CAN_SPIRIT": {0.5};
+case  "ACE_CANTEEN_EMPTY": {12};
+case  "ACE_MRE_BEEFSTEW": {8};
+case  "ACE_MRE_CHICKENTIKKAMASALA": {8};
+case  "ACE_MRE_CHICKENHERBDUMPLINGS": {8};
+case  "ACE_MRE_CREAMCHICKENSOUP": {8};
+case  "ACE_MRE_CREAMTOMATOSOUP": {8};
+case  "ACE_MRE_LAMBCURRY": {8};
+case  "ACE_MRE_MEATBALLSPASTA": {8};
+case  "ACE_MRE_STEAKVEGETABLES": {8};
+case  "ACE_WATERBOTTLE": {1.5};
 
 //cigs
 case "EWK_CIGAR1": {14};
