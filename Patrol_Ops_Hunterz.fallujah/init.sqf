@@ -38,11 +38,11 @@ introseqdone = false;
 
 [] execVM "mps\init_mps.sqf";       
 
-if(!isDedicated && !(call Hz_fnc_isHC)) then {
+if (hasInterface) then {
 
-	//WaitUntil{ !(isNull player) && !isNil "mps_init" && Receiving_finish };
-	
-	//try to safely resolve 'stuck in loading screen bug' of Arma 3... thank you again BIS
+	WaitUntil{ !(isNull player) && !isNil "mps_init" && Receiving_finish };
+/*	
+	//try to safely resolve 'stuck in loading screen bug' of Arma 3...
 	WaitUntil{ !(isNull player) && !isNil "mps_init"};
 	_counter = 0;
 	WaitUntil { 
@@ -55,8 +55,8 @@ if(!isDedicated && !(call Hz_fnc_isHC)) then {
 	};
 	
 	if (!Receiving_finish) then {endLoadingScreen};
-	
-}else{
+*/	
+} else {
 
 	if (call Hz_fnc_isHC) then {waitUntil {(name player) != "Error: No vehicle"}};
 	Receiving_finish = true;

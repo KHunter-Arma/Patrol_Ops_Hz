@@ -65,8 +65,6 @@ if (_isman) then {
 		
 		_vehicle = _type createVehicle _respawnzone;
 		_vehicle setvehiclelock "LOCKEDPLAYER";
-
-		if (_type == "LOP_IA_M113_W") then {[_vehicle, ["Desert",1],[]] call BIS_fnc_initVehicle;};
 		
 		_passengerUnits = +_unitTypeArray;	
 		createVehicleCrew _vehicle;	

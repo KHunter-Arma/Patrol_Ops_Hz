@@ -26296,7 +26296,7 @@ class Mission
 					flags=7;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=627;
@@ -26375,7 +26375,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=629;
@@ -26454,7 +26454,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=631;
@@ -26533,7 +26533,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=633;
@@ -26612,7 +26612,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=635;
@@ -26691,7 +26691,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=637;
@@ -26770,7 +26770,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=639;
@@ -26849,7 +26849,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=641;
@@ -26928,7 +26928,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=643;
@@ -27007,7 +27007,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=645;
@@ -27086,7 +27086,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=647;
@@ -27165,7 +27165,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=649;
@@ -27244,7 +27244,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=651;
@@ -27323,7 +27323,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=653;
@@ -27402,7 +27402,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=655;
@@ -27481,7 +27481,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=657;
@@ -27560,7 +27560,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=659;
@@ -27640,7 +27640,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=661;
@@ -27720,7 +27720,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=663;
@@ -27800,7 +27800,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=665;
@@ -27880,7 +27880,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=667;
@@ -27960,7 +27960,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=669;
@@ -28040,7 +28040,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=671;
@@ -28120,7 +28120,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Mercenary";
+						description="Contractor";
 						isPlayable=1;
 					};
 					id=673;
