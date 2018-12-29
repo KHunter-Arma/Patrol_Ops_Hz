@@ -29,7 +29,6 @@ if(player iskindof Hz_JointOp_UnitBaseType) then {
 
       if (({_x getvariable ["JointOps",false]}count playableunits) < 8) then {
         
-        call Hz_pers_API_disablePlayerSaveStateOnDisconnect;
         endMission "JointOpManpower"; 
 
       };

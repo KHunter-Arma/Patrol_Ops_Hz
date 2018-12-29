@@ -29,6 +29,22 @@ _otherReward = 0;
 
 _newComp = [_position, random 360,(call compile preprocessfilelinenumbers "Compositions\Other\castle.sqf")] call BIS_fnc_ObjectsMapper;   
 
+{
+
+	if (_x isKindOf "Land_WoodenRamp") then {
+	
+		_x allowdamage false;
+	
+	};
+
+} foreach _newComp;
+
+{
+
+	[_x,2] remoteExecCall ["setFeatureType",0,true];
+
+} foreach _newComp;
+
 /*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
 
 mps_civilian_intel = []; publicVariable "mps_civilian_intel";

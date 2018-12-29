@@ -8,7 +8,7 @@ _reinforcementsMinimumSpawnRange = 5000;
 
 _minCacheCount = 1;
 _maxCacheCount = 3;
-_rewardPerCache = 10000;
+_rewardPerCache = 20000;
 _minDistanceBetweenCaches = 300;
 
 _minDefendingSquadCountPerCache = 1;
@@ -34,7 +34,7 @@ _AAchance = 0;
 _CarChance = 0.5;
 
 //Useful for justifying task-specific difficulties.
-_rewardmultiplier = 0.75;
+_rewardmultiplier = 1;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 
@@ -137,7 +137,6 @@ for "_i" from 1 to _cacheCount do {
 	_cache = "rhs_weapon_crate" createVehicle [-5000,500,0];
 	_cache setposatl _cachePos;
 	sleep 0.1;
-	_cache setVariable ["R3F_LOG_disabled",true,true];
 	_caches pushBack _cache;
 	
 	clearItemCargoGlobal _cache;
@@ -151,6 +150,8 @@ for "_i" from 1 to _cacheCount do {
 	_cache addMagazineCargoGlobal ["rhs_100Rnd_762x54mmR",4];
 	_cache addMagazineCargoGlobal ["hlc_30Rnd_762x39_b_ak",60];
 	_cache addMagazineCargoGlobal ["5rnd_762_mos",20];
+	
+	_cache setVariable ["R3F_LOG_disabled",true,true];
 	
 	_cache addEventHandler ["Killed",{
 	

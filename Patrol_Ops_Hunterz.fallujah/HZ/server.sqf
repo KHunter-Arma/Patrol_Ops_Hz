@@ -40,10 +40,11 @@ while {true} do
 				
 					if ((_x distance (_x getVariable ["animCorrectionOldPos",getposatl _x])) < 1) then {
 					
-						_endPos = getPosASL _x;
-						_beginPos = [_endPos select 0, _endPos select 1, (_endPos select 2) + 250];
+						_posASL = getPosASL _x;
+						_endPos = _posASL vectorAdd [0,0,-2];
+						_beginPos = _posASL vectorAdd [0,0,100];
 						_correctionPos = ((lineIntersectsSurfaces [_beginPos, _endPos, _x]) select 0) select 0;
-						_x setPosASL [_correctionPos select 0, _correctionPos select 1, (_correctionPos select 2) + 1.5];
+						_x setPosASL [_posASL select 0, _posASL select 1, (_correctionPos select 2) + 0.5];
 					
 					};
 					

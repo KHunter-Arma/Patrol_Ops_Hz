@@ -34,7 +34,7 @@ _AAchance = 0;
 _CarChance = 0.5;
 
 //Useful for justifying task-specific difficulties.
-_rewardmultiplier = 0.5;
+_rewardmultiplier = 1;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 
@@ -138,7 +138,6 @@ for "_i" from 1 to _cacheCount do {
 	[_cache, 200] call ace_cargo_fnc_setSize;
 	_cache setposatl _cachePos;
 	sleep 0.1;
-	_cache setVariable ["R3F_LOG_disabled",true,true];
 	_cache setVariable ["value",_rewardPerCache];
 	_cache setVariable ["cachePos",getposatl _cache];
 	_caches pushBack _cache;

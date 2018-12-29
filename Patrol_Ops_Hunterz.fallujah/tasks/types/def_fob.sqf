@@ -17,7 +17,7 @@ _AAchance = 0.3;
 _CarChance = 0.75;
 
 //Useful for justifying task-specific difficulties.
-_rewardMultiplier = 0.7;
+_rewardMultiplier = 1;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 
@@ -30,19 +30,24 @@ _otherReward = 0;
 _newComp = [_position, random 360,(call compile preprocessfilelinenumbers "Compositions\Blufor\Bases\IA_fob.sqf")] call BIS_fnc_ObjectsMapper; 
 
 //init composition
+/*
+{
+
+  if(_x iskindof "CampEast_EP1") then {
+  
+    _x allowDamage false;
+  
+  };
+
+} foreach _newComp;
+*/
+
 _ammoCratesFilled = 0;
 _statGrp = creategroup (SIDE_A select 0);
 _guardPos = _position;
 
 {
-
-  if(_x iskindof "CampEast_EP1") then {
-  
-    _x enableSimulationGlobal false;
-  
-  };
-
-  //lock and man vehicles but not statics
+	//lock and man vehicles but not statics
   if ((_x iskindof "Car") || (_x iskindof "Tank")) then {
   
     _x setvehiclelock "LOCKEDPLAYER";
@@ -81,9 +86,11 @@ _guardPos = _position;
   
   if (_x iskindof "Land_GuardShed") then {
   
-  _guardPos = ([_x] call bis_fnc_buildingpositions) select 0;
+		_guardPos = ([_x] call bis_fnc_buildingpositions) select 0;
   
   };
+
+	[_x,2] remoteExecCall ["setFeatureType",0,true];
 
 } foreach _newComp;
 

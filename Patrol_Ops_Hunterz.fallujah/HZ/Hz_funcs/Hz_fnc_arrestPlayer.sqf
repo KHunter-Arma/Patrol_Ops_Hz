@@ -1,6 +1,4 @@
 if (_this == "-1") then {
-
-	call Hz_pers_API_disablePlayerSaveStateOnDisconnect;
 	
 	Hz_func_isSupervisor = {false};
 	
@@ -13,11 +11,17 @@ if (_this == "-1") then {
 	}];
 	
 	moveout player;
+	sleep 0.1;
 	player setPosATL Hz_pops_arrestPosition;
+	sleep 0.1;
 	
-	player call Hz_fnc_transferGearToNearestAmmoCrate;
+	if ((toUpper uniform player) != "TRYK_OVERALL_FLESH") then {
 	
-	player addUniform "TRYK_OVERALL_flesh";
+		player call Hz_fnc_transferGearToNearestAmmoCrate;
+		player addUniform "TRYK_OVERALL_flesh";
+	
+	};	
+	
   player setvariable ["TL",false,true];
   player setvariable ["PMC",false,true];
   
@@ -31,12 +35,17 @@ if (_this == "-1") then {
 
 	} else {
 	
-		if (_this in BanList) exitWith {hint "Player is already jailed!"};
+		if (_this in BanList) exitWith {
+		
+				closeDialog 0;
+				hint "Player is already jailed!";
+			
+		};
 	
 		BanList pushBackUnique _this;
     publicvariable "BanList";
-	
-		_target = objNull;
+			
+		private _target = objNull;
 	
 		{
 		
@@ -52,37 +61,13 @@ if (_this == "-1") then {
 		
 		} foreach (playableUnits + alldead + switchableUnits);
 	
-		if (!isNull _target) then {
-	
-			_target remoteExecCall ["Hz_pers_API_disablePlayerSaveStateOnDisconnect",_target,false];
-			_target remoteExecCall ["Hz_fnc_transferGearToNearestAmmoCrate",_target,false];			
-			[missionNamespace, ["Hz_func_isSupervisor",{false}]] remoteExecCall ["setVariable",_target,false];
-			
-			[_target, ["AnimChanged", {
-					if (local (_this select 0) && {_this select 1 == "ACE_Climb"}) then {
-							[_this select 0, "AmovPercMstpSnonWnonDnon", 2] call ace_common_fnc_doAnimation;							
-					};
-			}]] remoteExecCall ["addEventHandler",_target,false];
-			
-			_target spawn {
-			
-				uiSleep 3;
-				_this addUniform "TRYK_OVERALL_flesh";
-			
-			};
-			
-			moveout _target;
-			_target setPosATL Hz_pops_arrestPosition;
+		if (!isNull _target) then {		
+		
+			"-1" remoteExec ["Hz_fnc_arrestPlayer",_target,false];
 		
 		};
-    
-    _target setvariable ["TL",false,true];
-    _target setvariable ["PMC",false,true];
-    
-    [] remoteExecCall ["Hz_fnc_arrestedHandleEscape",_target,false];   
 
 		closeDialog 0; 
-
 		hint "Player arrested!";
 
 	};
