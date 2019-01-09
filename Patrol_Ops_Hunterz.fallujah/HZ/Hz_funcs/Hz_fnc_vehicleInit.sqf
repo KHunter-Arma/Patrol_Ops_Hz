@@ -21,6 +21,12 @@ if (_vehicle isKindOf "LandVehicle") then {
 	
 	};
 	
+	if (_vehicle isKindOf "C_IDAP_Truck_02_water_F") then {
+	
+		_initstatement = _initstatement + "_obj addaction ['<t color=''#00ffff''>'+'Fill water cooler','logistics\fillWater.sqf',[],-1,false,true,'','_dist = _this distance _target; (((vehicle _this) == _this) && (_dist < 6) && (_dist > 4))'];";
+	
+	};
+	
 };
 
 if (((toUpper (typeof _vehicle)) find "CUP") != -1) then {

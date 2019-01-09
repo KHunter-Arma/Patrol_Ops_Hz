@@ -504,6 +504,17 @@ player addeventhandler ["Respawn", {
 			_container addItemCargoGlobal [_x,(_uniformItems select 1) select _foreachIndex];
 		} foreach (_uniformItems select 0);
 		
+		//addMagazineAmmoCargo does not add empty magazines...
+		{
+
+			if ((_x select 1) == 0) then {
+			
+				_unit addMagazine [_x select 0,0];
+			
+			};
+
+		} foreach (_uniformMags + _vestMags + _backpackMags);
+		
 		{
 			//does not add binoculars
 			_unit linkItem _x;

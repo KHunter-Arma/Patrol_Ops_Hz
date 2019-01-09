@@ -124,7 +124,8 @@ Hz_fort_fortificationList = [
 "CampEast",
 "WarfareBCamp",
 "US_WarfareBFieldhHospital_Base_EP1",
-"Land_BagBunker_Tower_F"
+"Land_BagBunker_Tower_F",
+"Land_WaterCooler_01_new_F"
 ];
 
 //compositions

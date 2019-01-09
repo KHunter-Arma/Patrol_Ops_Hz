@@ -110,6 +110,12 @@ if(!isDedicated && !(call Hz_fnc_isHC)) then {
 				Hz_econ_vehicleStore_storeClosed = false;
 			
 			};
+			
+			if ((!isnil "Hz_pops_disableStore") && {Hz_pops_disableStore}) then {
+			
+				Hz_econ_combatStore_storeClosed = true;
+			
+			};
       
     };
     
