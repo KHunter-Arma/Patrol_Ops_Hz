@@ -335,7 +335,8 @@ case "RH_M4_WDL": {700};
 
 case "RH_M16A1": {225};
 case "RH_M16A1GL": {1805};
-
+case "RH_M16A2": {586};
+case "RH_M16A2GL": {1666};
 
 /*     
 case "RH_M4_RIS_M203S": {1810}; 
@@ -345,8 +346,6 @@ case "RH_M4A1_RIS_M203S": {1810};
 case "RH_M4SBR": {1653};
 case "RH_M4SBR_G": {1653};
 case "RH_M4SBR_B": {1653};
-case "RH_M16A2": {586};
-case "RH_M16A2GL": {1666};
 case "RH_M16A3": {700};
 case "RH_M16A4": {740};
 case "RH_M16A4GL": {1820};
