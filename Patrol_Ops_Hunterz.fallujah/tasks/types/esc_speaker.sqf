@@ -127,7 +127,7 @@ _grp = createGroup (SIDE_A select 0);
 _type = ["LOP_CHR_Civ_Functionary_01","LOP_CHR_Civ_Functionary_02","LOP_Tak_Civ_Man_10","LOP_Tak_Civ_Man_02","LOP_Tak_Civ_Man_09","LOP_Tak_Civ_Man_11","LOP_Tak_Civ_Man_12"] call mps_getRandomElement;
 _vip = _grp createUnit [ _type, ( getMarkerPos format["return_point_%1",(SIDE_A select 0)] ), [], 10, "NONE"];
 _vip setRank "PRIVATE";
-_vip setVariable ["Hz_ambw_disableSideRelations",true];
+_vip setVariable ["Hz_ambw_disableSideRelations",true,true];
 
 dostop _vip;
 
@@ -150,7 +150,7 @@ for "_i" from 1 to 4 do {
 	_dude setRank "PRIVATE";		
 	_guards pushBack _dude;
 	
-	_dude setVariable ["Hz_ambw_disableSideRelations",true];
+	_dude setVariable ["Hz_ambw_disableSideRelations",true,true];
 	
 	dostop _dude;
 	
@@ -533,7 +533,7 @@ while {
 		_vip setvariable ["preachTime",_preachCounter];
 		_otherReward = _otherReward + _speechRewardPerSecond;
 		
-		if ((random 1) < 0.0015) then {
+		if ((random 1) < 0.0013) then {
 			
 			_temp = +_crowd;
 			{

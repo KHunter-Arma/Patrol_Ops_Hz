@@ -17,6 +17,7 @@ if(!hz_debug) then {
 			_obj = hz_fort_selected createVehicle (markerpos "hz_buyfortification");
 			[_obj] call Hz_fnc_vehicleInit;			
 			[_obj, 300] call ace_cargo_fnc_setSize;
+			[_obj, 0] call acex_field_rations_fnc_setRemainingWater;
 
 			if((hz_fort_selected iskindof "ReammoBox") || (hz_fort_selected iskindof "ReammoBox_F")) then {
 				

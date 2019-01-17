@@ -144,7 +144,8 @@ while{
     ({(side _x) == (SIDE_A select 0)} count nearestObjects[_position,["CAManBase","LandVehicle","Air"],_taskRadius] != 0)
     && (call Hz_fnc_taskSuccessCheckGenericConditions)
     && (({if (!isnull _x) then {(side _x) == (SIDE_C select 0)} else {false}} count patrol_task_units) > (1*(count patrol_task_units) / 10))
-    
+    && !reinforcementsqueued
+		
     } do { 
 	
 	sleep 15;

@@ -54,11 +54,6 @@ if(count(_crewtype - ["Soldier"] - ["SoldiereCrew"])==0) then {
 
 if((_vec emptyPositions "commander") > 0) then {
 	_unit = _Grp createUnit [_crewtype select (round random _max), _pos, [], _radius, "NONE"];
-        _unit setSkill 0.4;
-        _unit setskill ["aimingSpeed",0.8];
-        _unit setskill ["spotDistance",1];
-        _unit setskill ["spotTime",1];
-        _unit setskill ["commanding",1];
 	_unit assignasCommander _vec;
         [_unit] orderGetIn true;
         _unit moveinCommander _vec;
@@ -67,11 +62,6 @@ if((_vec emptyPositions "commander") > 0) then {
 
 if((_vec emptyPositions "gunner") > 0) then {
 	_unit = _Grp createUnit [_crewtype select (round random _max), _pos, [], _radius, "NONE"];
-        _unit setSkill 0.4;
-        _unit setskill ["aimingSpeed",0.8];
-        _unit setskill ["spotDistance",1];
-        _unit setskill ["spotTime",1];
-        _unit setskill ["commanding",1];
 	_unit assignasGunner _vec;
         [_unit] orderGetIn true;
         _unit moveinGunner _vec;
@@ -80,11 +70,6 @@ if((_vec emptyPositions "gunner") > 0) then {
 
 if((_vec emptyPositions "driver") > 0) then {
 	_unit = _Grp createUnit [_crewtype select (round random _max), _pos, [], _radius, "NONE"];
-        _unit setSkill 0.4;
-        _unit setskill ["aimingSpeed",0.8];
-        _unit setskill ["spotDistance",1];
-        _unit setskill ["spotTime",1];
-        _unit setskill ["commanding",1];
 	_unit assignasDriver _vec;
         [_unit] orderGetIn true;
         _unit moveinDriver _vec;
@@ -94,11 +79,6 @@ if((_vec emptyPositions "driver") > 0) then {
 
 if(((_vec emptyPositions "cargo") == 1) && _vec iskindof "Tank") then {
 	_unit = _Grp createUnit [_crewtype select (round random _max), _pos, [], _radius, "NONE"];
-        _unit setSkill 0.4;
-        _unit setskill ["aimingSpeed",0.8];
-        _unit setskill ["spotDistance",1];
-        _unit setskill ["spotTime",1];
-        _unit setskill ["commanding",1];
 	_unit assignasCargo _vec;
         [_unit] orderGetIn true;
         _unit moveinCargo _vec;
@@ -126,16 +106,7 @@ if (((typeof _vec) in mps_opfor_lbomber) || ((typeof _vec) in mps_opfor_hbomber)
 _vec flyinheight 100;
 
 };
-
-
-
-{       
-        _x setSkill 0.4;
-        _x setskill ["aimingSpeed",0.8];
-        _x setskill ["spotDistance",1];
-        _x setskill ["spotTime",1];
-        _x setskill ["commanding",1];}foreach (crew _vec);
-   
+  
    
    //Reveal targets for CAS
 //[_vec,3500] execVM "HZ\HZ_scripts\HZ_AI_CAS.sqf";

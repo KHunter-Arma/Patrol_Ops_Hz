@@ -776,7 +776,7 @@ case  "ACE_MRE_CREAMTOMATOSOUP": {8};
 case  "ACE_MRE_LAMBCURRY": {8};
 case  "ACE_MRE_MEATBALLSPASTA": {8};
 case  "ACE_MRE_STEAKVEGETABLES": {8};
-case  "ACE_WATERBOTTLE": {1.5};
+case  "ACE_WATERBOTTLE": {0.75};
 
 //cigs
 case "EWK_CIGAR1": {14};

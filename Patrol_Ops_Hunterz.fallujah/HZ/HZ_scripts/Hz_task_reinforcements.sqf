@@ -35,6 +35,7 @@ if((count _this) > 9) then {
   
 };
 
+reinforcementsqueued = true;
 
 for "_i" from 1 to _count do {
 
@@ -175,3 +176,5 @@ for "_i" from 1 to _count do {
   sleep 60;
 
 };
+
+reinforcementsqueued = false;

@@ -70,9 +70,9 @@ if(count (units _helogrp) == 0) then {
 };
 
 _helopilot = driver _drophelo;
-_helopilot setSkill 1;
 _helopilot disableAI "TARGET";
 _helopilot disableAI "AUTOTARGET";
+_helopilot setSkill 1;
 
 if (!isEngineOn _drophelo && alive _helopilot) then {
 	if (!canMove _drophelo) then {

@@ -39,7 +39,7 @@ else
     R3F_abortCarry = false;
     R3F_readyToMove = false;  
     
-    [_prepTime, [], {R3F_readyToMove = true;}, {R3F_abortCarry = true; R3F_readyToMove = true;}, "Preparing to move...",{(!captive player) && ((speed player) < 1)}] call ace_common_fnc_progressBar;
+    [_prepTime, [], {R3F_readyToMove = true;}, {R3F_abortCarry = true; R3F_readyToMove = true;}, "Preparing to move...",{!captive player}] call ace_common_fnc_progressBar;
     
     waitUntil {R3F_readyToMove};
     
@@ -201,6 +201,9 @@ else
 					
 					// Relâcher l'objet dès que le joueur tire. Le detach sert à rendre l'objet solide pour ne pas tirer au travers.
 					_idx_eh_fired = _joueur addEventHandler ["Fired", {if (!surfaceIsWater getPos player) then {detach R3F_LOG_joueur_deplace_objet; R3F_LOG_joueur_deplace_objet = objNull;};}];
+					
+					//Prevent "walking wall" exploit if object is hit
+					_idx_eh_objhit = _objet addEventHandler ["Hit", {detach R3F_LOG_joueur_deplace_objet; R3F_LOG_joueur_deplace_objet = objNull;}];
 					
 					// Gestion des évènements KeyDown et KeyUp pour faire tourner l'objet avec les touches X/C
 					R3F_LOG_joueur_deplace_key_rotation = "";
@@ -457,6 +460,7 @@ else
 					};
 					
 					_joueur removeEventHandler ["Fired", _idx_eh_fired];
+					_objet removeEventHandler ["Hit",_idx_eh_objhit];
 					(findDisplay 46) displayRemoveEventHandler ["KeyDown", _idx_eh_keyDown];
 					(findDisplay 46) displayRemoveEventHandler ["KeyUp", _idx_eh_keyUp];
 					

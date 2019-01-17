@@ -31,6 +31,7 @@ if(hz_debug) then {_list = ["def_inscamp"];};
 taskrequested = false;
 publicvariable "taskrequested";
 stopreinforcements = true;
+reinforcementsqueued = false;
 
 missionload = false;
 publicVariable "missionload";

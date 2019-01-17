@@ -66,6 +66,32 @@ _group createUnit ["USAF_SecurityForces_rifleman_Hz", [7800.5,1834.66,0], [], 50
 
 while{ (({ (side _x) == (SIDE_A select 0)} count (nearestObjects [_position,["CAManBase"],_taskRadius])) == 0)} do { sleep 5 };
 
+Hz_econ_combatStore_storeClosed = true;
+publicVariable "Hz_econ_combatStore_storeClosed";
+Hz_pops_disableStore = true;
+publicVariable "Hz_pops_disableStore";
+
+[John,["<t color='#e01414'>Hunter'z Combat Store</t>",{hint "You actually expect me to handle weapons in this mess?!"}]] remoteExecCall ["addAction",0,true];
+
+[0, {
+
+	John addMagazines ["CUP_15Rnd_9x19_M9",15];	
+	John addWeapon "CUP_hgun_M9";	
+	John setUnitPos "MIDDLE";
+	
+	_grp = group John;	
+	_grp setBehaviour "AWARE";
+	_grp setCombatMode "GREEN";
+	
+	{
+	
+		_x enableAI "MOVE";
+		_x forceSpeed -1;
+	
+	} foreach (units _grp);
+	
+}] call CBA_fnc_globalExecute;
+
 /*------------------------- TIMER ---------------------------------------------*/  
 
 "Intel reports you have less than 30 minutes before the main force arrives. Get ready!" remoteExecCall ["hint",0,false];
@@ -139,6 +165,7 @@ while{
     ({(side _x) == (SIDE_A select 0)} count nearestObjects[_position,["CAManBase","LandVehicle","Air"],_taskRadius] != 0)
     && (call Hz_fnc_taskSuccessCheckGenericConditions)
     && (({if (!isnull _x) then {(side _x) == (SIDE_C select 0)} else {false}} count patrol_task_units) > (1*(count patrol_task_units) / 10))
+		&& !reinforcementsqueued
     
     } do { 
 	
