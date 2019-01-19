@@ -60,6 +60,7 @@ if (hasInterface) then {
 
 	if (call Hz_fnc_isHC) then {waitUntil {(name player) != "Error: No vehicle"}};
 	Receiving_finish = true;
+	endLoadingScreen;
 	WaitUntil{!isNil "mps_init"};
 };
 
