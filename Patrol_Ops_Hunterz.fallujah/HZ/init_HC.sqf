@@ -2,6 +2,7 @@ waitUntil {!isNull player};
 
 if (call Hz_fnc_isAiMaster) then {
 
+	sleep 60;
 	call compile preprocessFileLineNumbers "initUPSRespawn.sqf";
 	waitUntil {!isnil "Hz_pops_UPSPassToHCArray"};
 	waitUntil {!isnil "Hz_max_ambient_units"};
