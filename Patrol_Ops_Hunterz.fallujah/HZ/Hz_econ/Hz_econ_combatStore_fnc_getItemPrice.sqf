@@ -657,6 +657,7 @@ case "RHSUSF_ANPVS_15": {12352};
 case "RHSUSF_RHINO" : {178};
 */
 
+case "SAN_HEADLAMP_V2" : {25};
 
 
 //MAPS
