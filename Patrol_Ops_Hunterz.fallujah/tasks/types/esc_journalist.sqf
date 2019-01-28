@@ -7,7 +7,7 @@ diag_log diag_activeMissionFSMs;
 
 /*-------------------- TASK PARAMS ---------------------------------*/
 
-_downPayment = 60000;
+_rewardPerTarget = 50000;
 _numberOfTargets = 4;
 _minimumVantagePointHeight = 15;
 _ambientCombatIntensifyAmount = 80;
@@ -18,7 +18,7 @@ _rewardMultiplier = 1;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 
-_downPayment = _downPayment/_rewardMultiplier;
+_downPayment = (_rewardPerTarget*_numberOfTargets)/_rewardMultiplier;
 
 Hz_pops_task_auxFailCondition = false;
 missionload = false;
@@ -247,7 +247,7 @@ for "_i" from 1 to _numberOfTargets do {
 		sleep 1;
 		[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
 		
-		if (((_vip distance _target) <= 3) && !(captive _vip)) then {
+		if (((_vip distance _target) <= 3.5) && !(captive _vip)) then {
 		
 			_timeOnTarget = _timeOnTarget + 1;
 			
