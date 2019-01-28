@@ -7,15 +7,15 @@ diag_log diag_activeMissionFSMs;
 
 /*-------------------- TASK PARAMS ---------------------------------*/
 
-_downPayment = 10000;
-_speechCompletePayment = 30000;
+_downPayment = 50000;
+_speechCompletePayment = 150000;
 _speechTimeMinutes = 30;
 
 // in case the mission turns into a defend task
 _EnemySpawnMinimumRange = 3000;
 _taskRadius = 50;
-_minSquadCount = 2;
-_maxSquadCount = 6;
+_minSquadCount = 1;
+_maxSquadCount = 4;
 
 //Chance of a squad having the following vehicle support (can't have more than 1 vehicle per squad)
 _CASchance = 0;

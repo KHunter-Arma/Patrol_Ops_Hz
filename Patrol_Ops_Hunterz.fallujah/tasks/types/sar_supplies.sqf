@@ -8,7 +8,7 @@ _reinforcementsMinimumSpawnRange = 5000;
 
 _minCacheCount = 1;
 _maxCacheCount = 3;
-_rewardPerCache = 30000;
+_rewardPerCache = 100000;
 _minDistanceBetweenCaches = 300;
 
 _minDefendingSquadCountPerCache = 1;

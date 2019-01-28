@@ -48,7 +48,7 @@ class Extended_InitPost_EventHandlers
 		};
 	};
 	
-	class SoldierWB : CAManBase {
+	class SoldierWB	{
 	
 		class doubleAiAmmo {
 		
@@ -57,7 +57,7 @@ class Extended_InitPost_EventHandlers
 		};
 	
 	};
-	class SoldierGB : CAManBase {
+	class SoldierGB {
 	
 		class doubleAiAmmo {
 		
@@ -66,7 +66,7 @@ class Extended_InitPost_EventHandlers
 		};
 	
 	};	
-	class SoldierEB : CAManBase {
+	class SoldierEB {
 	
 		class doubleAiAmmo {
 		
@@ -76,7 +76,7 @@ class Extended_InitPost_EventHandlers
 	
 	};
 	
-	class CUP_Creatures_Military_TK_Soldier_Base : SoldierWB {
+	class CUP_Creatures_Military_TK_Soldier_Base {
 	
 		class addTakiArmor {
 		
@@ -86,9 +86,7 @@ class Extended_InitPost_EventHandlers
 	
 	};
 	
-	class rhs_infantry_msv_base : SoldierGB {};
-	class rhs_msv_rifleman : rhs_infantry_msv_base {};
-	class LOP_TKA_Infantry_Rifleman : rhs_msv_rifleman {
+	class LOP_TKA_Infantry_Rifleman {
 	
 		class addTakiArmor {
 		
@@ -104,8 +102,7 @@ class Extended_InitPost_EventHandlers
 	
 	};
 	
-	class rhs_msv_crew : rhs_msv_rifleman {};
-	class LOP_TKA_Infantry_Crewman : rhs_msv_crew {
+	class LOP_TKA_Infantry_Crewman {
 	
 		class addTakiArmor {
 		

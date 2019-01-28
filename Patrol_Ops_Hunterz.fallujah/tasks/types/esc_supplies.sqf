@@ -4,7 +4,7 @@ diag_log diag_activeSQSScripts;
 diag_log diag_activeMissionFSMs;
 
 /*-------------------- TASK PARAMS ---------------------------------*/
-_downPayment = 30000;
+_downPayment = 100000;
 _supplyTime = 1800;
 _penaltyPerLostContainer = 20000;
 _penaltyPerLostWorker = 50000;
@@ -12,8 +12,8 @@ _penaltyPerLostWorker = 50000;
 // in case the mission turns into a defend task
 _EnemySpawnMinimumRange = 3000;
 _taskRadius = 50;
-_minSquadCount = 3;
-_maxSquadCount = 6;
+_minSquadCount = 2;
+_maxSquadCount = 5;
 
 //Chance of a squad having the following vehicle support (can't have more than 1 vehicle per squad)
 _CASchance = 0;

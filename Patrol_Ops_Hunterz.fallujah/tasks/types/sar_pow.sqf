@@ -6,7 +6,7 @@ diag_log diag_activeMissionFSMs;
 /*-------------------- TASK PARAMS ---------------------------------*/
 _reinforcementsMinimumSpawnRange = 5000;
 _ambientCombatIntensifyAmount = 80;
-_downPayment = 75000;
+_downPayment = 150000;
 
 _minDefendingSquadCount = 0;
 _maxDefendingSquadCount = 1;
@@ -46,7 +46,7 @@ _ins = true;
 if ((random 1) < 0.25) then {
 
 	_ins = false;
-	_downPayment = _downPayment*1.15;
+	_downPayment = _downPayment*1.5;
 
 	_buildings = nearestobjects [markerpos "ao_centre",["House"],3000];
 	_bigBuildings = [];
