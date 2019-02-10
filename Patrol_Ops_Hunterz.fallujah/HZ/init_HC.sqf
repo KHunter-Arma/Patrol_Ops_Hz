@@ -2,6 +2,7 @@ waitUntil {!isNull player};
 
 if (call Hz_fnc_isAiMaster) then {
 
+	sleep 60;
 	call compile preprocessFileLineNumbers "initUPSRespawn.sqf";
 	waitUntil {!isnil "Hz_pops_UPSPassToHCArray"};
 	waitUntil {!isnil "Hz_max_ambient_units"};
@@ -44,6 +45,7 @@ _timescaler3 = 0;
 							_endPos = _posASL vectorAdd [0,0,-2];
 							_beginPos = _posASL vectorAdd [0,0,100];
 							_correctionPos = ((lineIntersectsSurfaces [_beginPos, _endPos, _x]) select 0) select 0;
+							if (isnil "_correctionPos") exitWith {};
 							_x setPosASL [_posASL select 0, _posASL select 1, (_correctionPos select 2) + 0.5];
 						
 						};

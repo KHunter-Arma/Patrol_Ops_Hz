@@ -6,8 +6,8 @@ diag_log diag_activeMissionFSMs;
 /*-------------------- TASK PARAMS ---------------------------------*/
 _EnemySpawnMinimumRange = 5000;
 _taskRadius = 200;
-_minSquadCount = 4;
-_maxSquadCount = 7;
+_minSquadCount = 2;
+_maxSquadCount = 4;
 
 //Chance of a squad having the following vehicle support (can't have more than 1 vehicle per squad)
 _CASchance = 0;
@@ -139,9 +139,10 @@ if(_b > 0) then {
 
 /*--------------------MISSION CRITERIA TO PASS---------------------------------*/
 hz_reward = 1;
+_nearObj = nearestObjects [_position,["CAManBase"],_taskRadius];
 while{ 
 
-    ({(side _x) == (SIDE_A select 0)} count nearestObjects[_position,["CAManBase","LandVehicle","Air"],_taskRadius] != 0)
+    (({(side _x) == (SIDE_A select 0)} count _nearObj != 0) || ({(side _x) == (SIDE_C select 0)} count _nearObj == 0))
     && (call Hz_fnc_taskSuccessCheckGenericConditions)
     && (({if (!isnull _x) then {(side _x) == (SIDE_C select 0)} else {false}} count patrol_task_units) > (1*(count patrol_task_units) / 10))
     && !reinforcementsqueued
@@ -151,6 +152,7 @@ while{
 	sleep 15;
 	
 	[_b,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
+	_nearObj = nearestObjects [_position,["CAManBase"],_taskRadius];
 	
 };       
 
