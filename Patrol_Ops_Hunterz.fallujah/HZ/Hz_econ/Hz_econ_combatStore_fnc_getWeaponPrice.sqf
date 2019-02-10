@@ -159,6 +159,12 @@ case "RHS_WEAP_M4_CARRYHANDLE_MSTOCK": {760};
 case "RHS_WEAP_M4_M203": {1780};
 case "RHS_WEAP_M4_PMAG": {700};
 case "RHS_WEAP_M4_MSTOCK":{760};
+case "RHS_WEAP_VHSD2": {2200};
+case "RHS_WEAP_VHSD2_CT13X": {2300};
+case "RHS_WEAP_VHSD2_BG": {3200};
+case "RHS_WEAP_VHSD2_BG_CT15X": {3300};
+case "RHS_WEAP_VHSK2": {2100};
+
 */
 
 case "RHS_WEAP_M590_8RD": {770};
@@ -491,38 +497,7 @@ case "HLC_RIFLE_AKM_MTK": {810};
 case "HLC_RIFLE_RPK": {2775};
 case "HLC_RIFLE_RPK74N": {2065};
 
-
-
 /*
-case "HLC_RIFLE_AKS74U": {780};
-*/
-
-
-
-//CUP
-case "CUP_SRIFLE_SVD": {1840};
-case "CUP_SRIFLE_SVD_DES": {1840};
-case "CUP_SRIFLE_CZ550": {890};
-case "CUP_SRIFLE_CZ550_RAIL": {890};
-case "CUP_LMG_UK59": {-1};
-case "CUP_HGUN_DUTY": {517};
-case "CUP_HGUN_COMPACT": {562.50};
-case "CUP_HGUN_PHANTOM": {636};
-case "CUP_SRIFLE_LEEENFIELD": {500};
-case "CUP_SRIFLE_LEEENFIELD_RAIL": {600};
-
-
-
-//weird ruski mod
-case "STR_AK_74_GP": {970};
-case "STR_AKM": {870}; //GP-25
-case "STR_AKM_CS": {700};
-case "STR_RPD": {2300};
-case "STR_SKS_OLD": {845};
-
-
-/*
-//HLC	
 case "HLC_RIFLE_HONEYBADGER": {2000};
 case "HLC_RIFLE_AWCOVERT_BL": {6750};
 case "HLC_RIFLE_AWCOVERT_FDE": {6750};
@@ -780,6 +755,40 @@ case "HLC_RIFLE_AEK971": {-1};
 case "HLC_RIFLE_AEK971_MTK": {-1};
 case "HLC_RIFLE_AEK971WORN": {-1};
 */
+
+
+
+//CUP
+/*
+case "CUP_ARIFLE_CZ805_A1": {2099};
+case "CUP_ARIFLE_CZ805_GL": {3099};
+case "CUP_ARIFLE_CZ805_A2": {1999};
+case "CUP_ARIFLE_CZ805_B": {2600};
+case "CUP_ARIFLE_CZ805_B_GL": {3600};
+*/
+
+case "CUP_SRIFLE_SVD": {1840};
+case "CUP_SRIFLE_SVD_DES": {1840};
+case "CUP_SRIFLE_CZ550": {890};
+case "CUP_SRIFLE_CZ550_RAIL": {890};
+case "CUP_LMG_UK59": {-1};
+case "CUP_HGUN_DUTY": {517};
+case "CUP_HGUN_COMPACT": {562.50};
+case "CUP_HGUN_PHANTOM": {636};
+case "CUP_SRIFLE_LEEENFIELD": {500};
+case "CUP_SRIFLE_LEEENFIELD_RAIL": {600};
+
+
+
+//weird ruski mod
+case "STR_AK_74_GP": {970};
+case "STR_AKM": {870}; //GP-25
+case "STR_AKM_CS": {700};
+case "STR_RPD": {2300};
+case "STR_SKS_OLD": {845};
+
+
+
 
 
 //BINOCULARS

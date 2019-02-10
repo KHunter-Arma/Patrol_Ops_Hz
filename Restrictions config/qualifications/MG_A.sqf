@@ -65,7 +65,8 @@ wepInfo = wepInfo - [
 "HLC_LMG_MG3KWS", 
 "HLC_LMG_MG42KWS_B", 
 "HLC_LMG_MG42KWS_G", 
-"HLC_LMG_MG42KWS_T"
+"HLC_LMG_MG42KWS_T",
+"RHS_WEAP_M84"
 
 
 ////////////////////////////////////////////////////////////////////////////////////
