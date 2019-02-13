@@ -499,32 +499,36 @@ case "RHSUSF_MAG_6RND_M576_BUCKSHOT": {0};
 case "RHSUSF_MAG_6RND_M397_HET": {0};
 case "RHSUSF_MAG_6RND_M433_HEDP": {0};
 case "RHSUSF_MAG_6RND_M441_HE": {0};
-*/
-
-
-
-case "RHS_MAG_M441_HE": {15};
-
-
-
-/*
 case "RHS_MAG_M433_HEDP": {20};
-*/
-
-
-
-case "RHS_MAG_M781_PRACTICE": {10};
-
-
-
-/*
 case "RHS_MAG_M397_HET": {55};
 case "RHS_MAG_M4009": {30};
 case "RHS_MAG_M576": {15};
+
+case "CUP_1RND_STARFLARE_WHITE_M203": {-1};
+case "CUP_1RND_STARFLARE_GREEN_M203":{-1};
+case "CUP_1RND_STARFLARE_RED_M203": {-1};
+
+
+case "RHS_GDM40": {15};
+case "RHS_GRD40_GREEN": {15};
+case "RHS_GRD40_RED": {15};
+case "RHS_GRD40_WHITE": {15};
+case "RHS_VOG25P": {15};
+case "RHS_VG40SZ": {25};
+case "RHS_VG40TB": {30};
+
+case "HLC_GRD_BLUE": {15};
+case "HLC_GRD_GREEN": {15};
+case "HLC_GRD_ORANGE": {15};
+case "HLC_GRD_PURPLE": {15};
+case "HLC_GRD_RED": {15};
+case "HLC_GRD_WHITE": {15};
+case "HLC_GRD_YELLOW": {15};
+case "HLC_VOG25_AK": {10};
 */
 
-
-
+case "RHS_MAG_M441_HE": {15};
+case "RHS_MAG_M781_PRACTICE": {10};
 case "RHS_MAG_M585_WHITE": {15};
 case "RHS_MAG_M661_GREEN": {15};
 case "RHS_MAG_M662_RED": {15};
@@ -532,6 +536,13 @@ case "RHS_MAG_M713_RED": {10};
 case "RHS_MAG_M714_WHITE": {10};
 case "RHS_MAG_M715_GREEN": {10};
 case "RHS_MAG_M716_YELLOW": {10};
+case "CUP_1RND_STARCLUSTER_WHITE_M203": {12};
+case "CUP_1RND_STARCLUSTER_GREEN_M203": {12};
+case "CUP_1RND_STARCLUSTER_RED_M203": {12};
+
+
+
+
 
 case "RHS_VG40MD_GREEN": {10};
 case "RHS_VG40MD_RED": {10};
@@ -540,30 +551,6 @@ case "RHS_VG40OP_GREEN": {10};
 case "RHS_VG40OP_RED": {10};
 case "RHS_VG40OP_WHITE": {10};
 case "RHS_VOG25": {10};
-
-
-
-/*
-case "RHS_GDM40": {15};
-case "RHS_GRD40_GREEN": {15};
-case "RHS_GRD40_RED": {15};
-case "RHS_GRD40_WHITE": {15};
-case "RHS_VOG25P": {15};
-case "RHS_VG40SZ": {25};
-case "RHS_VG40TB": {30};
-*/
-
-
-/*
-case "HLC_GRD_BLUE": {15};
-case "HLC_GRD_GREEN": {15};
-case "HLC_GRD_ORANGE": {15};
-case "HLC_GRD_PURPLE": {15};
-case "HLC_GRD_RED": {15};
-case "HLC_GRD_WHITE": {15};
-case "HLC_GRD_YELLOW": {15};
-case "HLC_VOG25_AK": {10}; 
-*/
 
 
 //various non standardized mags
