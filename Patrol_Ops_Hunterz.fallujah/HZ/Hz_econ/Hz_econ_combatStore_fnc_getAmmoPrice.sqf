@@ -131,7 +131,6 @@ case "CUP_B_762X54_BALL_WHITE_TRACER": {1.5};
 case "CUP_B_762X54_BALL_GREEN_TRACER": {1.5};
 
 
-
 //.300WM
 case "RHSUSF_B_300WINMAG": {1};
 
@@ -169,6 +168,10 @@ case "RH_9X19_B_M822": {0.25};
 case "RH_9X19_B_HP": {0.45};
 case "RH_9X19_B_HPSB": {0.65};
 case "B_9X21_BALL": {0.25};
+case "HLC_9X19_BALL": {0.25};
+case "HLC_9X19_JHP": {0.45};
+case "HLC_9X19_SUBSONIC": {0.33};
+
 
 //Starter pistol flares
 case "F_40MM_GREEN": {1.75};
@@ -183,7 +186,14 @@ case "RHS_B_9X39_SP6": {4};
 //93x64
 case "CUP_B_93X64_BALL": {0.57};
 
+//.357 SIG 
+case "HLC_357SIG_FMJ": {0.38};
+case "HLC_357SIG_JHP": {0.46};
 
+//.40 SW
+case "HLC_40SW_FMJ": {0.28};
+case "HLC_40SW_JHP": {0.65};
+case "HLC_40SW_SD": {0.5};
 
 //.45 ACP
 case "RHS_AMMO_45ACP_MHP": {0.33};

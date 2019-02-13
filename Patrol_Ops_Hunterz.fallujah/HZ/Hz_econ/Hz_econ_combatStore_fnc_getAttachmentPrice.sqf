@@ -319,8 +319,27 @@ case "SMA_ELCAN_SPECTER_TAN_ARDRDS_4Z": {2777};
 case "CUP_OPTIC_PSO_1": {300};
 case "CUP_OPTIC_PSO_3": {600}; //is this supposed to be a PO 3-9x24...?
 
+//HLC
+case "HLC_OPTIC_DOCTER_CADEX": {415};
+case "HLC_OPTIC_HP": {99};
+case "HLC_OPTIC_ROMEO1_RX": {200};
+case "HLC_OPTIC_SIGLITE": {96};
+case "HLC_OPTIC_ATT": {100};
+case "HLC_OPTIC_XS": {100};
+case "HLC_OPTIC_VTAC": {175};
+case "HLC_OPTIC_STAVENHAGEN": {100};
 
+case "HLC_ACC_TLR1": {100};
 
+/*
+case "HLC_MUZZLE_EVO9":{-1};
+case "HLC_MUZZLE_TIRANT9": {-1};
+case "HLC_MUZZLE_TIRANT9S": {-1};
+case "HLC_MUZZLE_OCTANE9": {-1};
+
+case "HLC_ACC_DBALPL": {1035};
+case "HLC_ACC_DBALPL_FL": {1035};
+*/
 //OTHERS
 case "GVL_X2000_POINT": {600};
 case "GVL_X2000_WIDE": {600};
