@@ -148,10 +148,7 @@ case "RHSUSF_WEAP_MP7A2": {1850};
 case "RHSUSF_WEAP_MP7A2_AOR1": {1850};
 case "RHSUSF_WEAP_MP7A2_DESERT": {1850};
 case "RHSUSF_WEAP_MP7A2_WINTER": {1850};
-*/
 
-
-/*
 case "RHS_WEAP_M4": {700};
 case "RHS_WEAP_M4_CARRYHANDLE": {700};
 case "RHS_WEAP_M4_CARRYHANDLE_PMAG": {700};
@@ -329,6 +326,11 @@ case "RHS_WEAP_M84" : {4250};
 
 	
 //RH-M4
+case "RH_M16A1": {225};
+case "RH_M16A1GL": {1805};
+case "RH_M16A2": {586};
+case "RH_M16A2GL": {1666};
+
 /*
 case "RH_M4": {700};                  
 case "RH_M4_M203": {1780};             
@@ -336,15 +338,7 @@ case "RH_M4_RIS": {750};
 case "RH_M4_RIS_M203": {1830};   
 case "RH_M4_TG": {700};        
 case "RH_M4_DES": {700};	
-case "RH_M4_WDL": {700};	
-*/
-
-case "RH_M16A1": {225};
-case "RH_M16A1GL": {1805};
-case "RH_M16A2": {586};
-case "RH_M16A2GL": {1666};
-
-/*     
+case "RH_M4_WDL": {700};     
 case "RH_M4_RIS_M203S": {1810}; 
 case "RH_M4A1_RIS": {750};           
 case "RH_M4A1_RIS_M203": {1830};       
@@ -437,6 +431,10 @@ case "HGUN_PISTOL_SIGNAL_F": {630};
 case "HGUN_PISTOL_HEAVY_02_F": {1117};
 
 //RH Pistols
+/*
+case "RH_G18": {535};
+case "RH_MK2": {350};
+*/
 case "RH_M9": {675};
 case "RH_M9C": {685};
 case "RH_PYTHON": {2000};
@@ -451,14 +449,6 @@ case "RH_FN57_G": {1399};
 case "RH_FNP45": {1199};
 case "RH_FNPT": {1199};
 case "RH_G17": {540};
-
-/*
-
-case "RH_G18": {535};
-
-*/
-
-
 case "RH_G19": {500};
 case "RH_G19T": {500};
 case "RH_GSH18": {-1};
@@ -470,7 +460,6 @@ case "RH_MAK": {400};
 case "RH_MATEBA": {3000};
 case "RH_MUZI": {960};
 case "RH_MP412": {1500};
-//case "RH_MK2": {350};
 case "RH_P226": {1165};
 case "RH_P226S": {1413};
 case "RH_SW659": {350};
@@ -813,7 +802,8 @@ case "CUP_HGUN_COMPACT": {562.50};
 case "CUP_HGUN_PHANTOM": {636};
 case "CUP_SRIFLE_LEEENFIELD": {500};
 case "CUP_SRIFLE_LEEENFIELD_RAIL": {600};
-
+case "CUP_ARIFLE_M16A2": {586};
+case "CUP_ARIFLE_M16A2_GL": {1666};
 
 
 //weird ruski mod
@@ -850,20 +840,13 @@ case "RHS_TR8_PERISCOPE": {174};
 case "RHS_TR8_PERISCOPE_PIP": {174};
 case "ACE_VECTORDAY": {30000};
 case "ACE_VECTOR": {52923};
-*/
 
-
-
-case "ACE_YARDAGE450": {150};
-
-
-
-/*
 case "LASERDESIGNATOR": {12000};
 case "LASERDESIGNATOR_03": {12000};
 case "LASERDESIGNATOR_01_KHK_F": {12000};
 */
 
+case "ACE_YARDAGE450": {150};
 
 
 default {-1};

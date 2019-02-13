@@ -242,6 +242,8 @@ Hz_econ_cfg_weaponsRestrictions_default =
 "CUP_ARIFLE_CZ805_B",
 "CUP_ARIFLE_CZ805_B_GL",
 "CUP_ARIFLE_CZ805_GL",
+"CUP_ARIFLE_M16A2_GL",
+
 
 "HGUN_P07_F",
 "HGUN_P07_KHK_F",
@@ -596,7 +598,6 @@ Hz_econ_cfg_weaponsRestrictions_default =
 "HLC_PISTOL_P239",
 "HLC_PISTOL_P239_357",
 "HLC_PISTOL_P239_40"
-
 
 
 
