@@ -635,7 +635,7 @@ case "HLC_RIFLE_AKS74U": {780};
 case "HLC_RIFLE_AKS74U_MTK": {905};
 case "HLC_RIFLE_RPK": {2775};
 case "HLC_RIFLE_RPK12": {-1};
-case "HLC_RIFLE_RPK74N": {-1};
+case "HLC_RIFLE_RPK74N": {2065};
 case "HLC_RIFLE_SAIGA12K": {-1};
 case "HLC_RIFLE_SLR": {680};
 case "HLC_RIFLE_SLRCHOPMOD": {680};
