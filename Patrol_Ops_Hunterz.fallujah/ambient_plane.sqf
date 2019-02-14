@@ -97,7 +97,8 @@ _plane addEventHandler ["LandedTouchDown", {
 
 		waitUntil {
 		
-			sleep 5;
+			sleep 5;	
+			_plane forceSpeed 10;
 			
 			if (alive _plane) then {
 			
@@ -116,6 +117,7 @@ _plane addEventHandler ["LandedTouchDown", {
 		waitUntil {
 		
 			sleep 5;
+			if (isEngineOn _plane) then {_plane forceSpeed 10};
 			
 			if (alive _plane) then {
 			
@@ -129,6 +131,7 @@ _plane addEventHandler ["LandedTouchDown", {
 			
 		};
 
+		sleep 0.5;
 		_plane forceSpeed -1;
 
 	};

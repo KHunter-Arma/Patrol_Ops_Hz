@@ -38,7 +38,19 @@ if ((typeName _jettype) == "OBJECT") then {
 _jet1 flyinheight 1000;
 _jet1 forcespeed 2000;
 
-{_x disableai "autotarget";_x disableai "fsm"; _x disableai "target";}foreach crew _jet1;
+{
+
+	_x disableai "AUTOTARGET";
+	_x disableai "FSM";
+	_x disableai "TARGET";
+	_x disableai "AUTOCOMBAT";	
+
+}foreach crew _jet1;
+
+_jet1 setvariable ["Hz_disableFSM",true];
+_group setbehaviour "AWARE";
+_group setCombatMode "GREEN";
+_group setvariable ["Hz_noBehaviour",true];
 
 _weps = weapons _jet1;
 {
