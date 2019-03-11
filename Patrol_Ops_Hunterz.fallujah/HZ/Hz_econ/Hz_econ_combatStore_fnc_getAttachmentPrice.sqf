@@ -218,7 +218,8 @@ case "RHSUSF_ACC_HARRIS_BIPOD": {135};
 case "RHSUSF_ACC_GRIP3": {70};
 case "RHSUSF_ACC_GRIP3_TAN": {70};
 
-
+case "RHS_ACC_DTKAKM": {0};
+case "RHS_ACC_DTK": {0};
 
 //RH
 case "RH_TA01NSN": {1350};
