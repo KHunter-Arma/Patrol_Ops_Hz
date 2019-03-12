@@ -4,7 +4,7 @@ diag_log diag_activeSQSScripts;
 diag_log diag_activeMissionFSMs;
 
 /*-------------------- TASK PARAMS ---------------------------------*/
-_reinforcementsMinimumSpawnRange = 5000;
+_reinforcementsMinimumSpawnRange = 3000;
 
 _minCacheCount = 1;
 _maxCacheCount = 3;

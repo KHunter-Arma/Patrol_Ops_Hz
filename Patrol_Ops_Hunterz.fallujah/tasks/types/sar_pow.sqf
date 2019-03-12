@@ -4,7 +4,7 @@ diag_log diag_activeSQSScripts;
 diag_log diag_activeMissionFSMs;
 
 /*-------------------- TASK PARAMS ---------------------------------*/
-_reinforcementsMinimumSpawnRange = 5000;
+_reinforcementsMinimumSpawnRange = 3000;
 _ambientCombatIntensifyAmount = 80;
 _downPayment = 150000;
 
@@ -137,6 +137,7 @@ _powgrp = createGroup (SIDE_B select 0);
 _pow1 = _powgrp createUnit [_powtype,[0,0,0],[],0,"FORM"];
 _powPos = _closedPositions call mps_getRandomElement;
 _pow1 setposatl _powPos;
+_pow1 setVariable ["Hz_ambw_disableSideRelations",true,true];
 
 _pow1 setCaptive true;
 _pow1 setRank "private";

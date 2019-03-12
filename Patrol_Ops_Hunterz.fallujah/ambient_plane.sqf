@@ -3,6 +3,8 @@ _airportID = _this select 1;
 
 _plane = ([[15000,-25000,10000], 0, _type, createGroup west] call BIS_fnc_spawnVehicle) select 0;
 
+ambient_plane = _plane;
+
 _grp = group _plane;
 
 sleep 1;

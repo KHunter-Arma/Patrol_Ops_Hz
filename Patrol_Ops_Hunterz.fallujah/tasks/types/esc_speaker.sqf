@@ -307,9 +307,10 @@ switch (true) do {
 
 case (_rand < 0.1) : {
 
+		_otherReward = _otherReward + 100000;
+
 		[_vip,_crowd,_goTime] spawn {
-		
-			_otherReward = _otherReward + 100000;
+					
 			_spawnedSquads = 0;
 			
 			_vip = _this select 0;
