@@ -183,7 +183,8 @@ if(_b > 0) then {
 		};
 		
 		//unbunching delay
-		sleep 300;
+		//increase this to make path finding easier? (more units with waypoints, less FPS...)
+		sleep 900;
 		
 	};
 };   

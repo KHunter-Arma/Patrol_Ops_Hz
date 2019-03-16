@@ -8,7 +8,7 @@ _this addaction ["<t color=""#42ebf4"">" + "Order spare tyre ($250)",{
 
 	_tyre = "ACE_Wheel" createvehicle [0,0,0];
 
-	_tyre setposatl [(markerpos "spareTyreDelivery") select 0, (markerpos "spareTyreDelivery") select 1, 0.3]; 
+	_tyre setposatl [(markerpos "spareTyreDelivery") select 0, (markerpos "spareTyreDelivery") select 1, 2.5]; 
 
 	Hz_econ_funds = Hz_econ_funds - 250;
 	publicvariable "Hz_econ_funds";
@@ -17,7 +17,7 @@ _this addaction ["<t color=""#42ebf4"">" + "Order spare tyre ($250)",{
 
 	hint "Spare tyre delivered";
 
-}];
+},[],-5];
 
 _this addaction ["<t color=""#42ebf4"">" + "Order jerry can ($30)",{
 
@@ -29,7 +29,7 @@ _this addaction ["<t color=""#42ebf4"">" + "Order jerry can ($30)",{
 
 	_tyre = "Land_CanisterFuel_F" createvehicle [0,0,0];
 
-	_tyre setposatl [(markerpos "spareTyreDelivery") select 0, (markerpos "spareTyreDelivery") select 1, 0.3]; 
+	_tyre setposatl [(markerpos "spareTyreDelivery") select 0, ((markerpos "spareTyreDelivery") select 1) - 1, 0.3]; 
 
 	Hz_econ_funds = Hz_econ_funds - 30;
 	publicvariable "Hz_econ_funds";
@@ -38,4 +38,4 @@ _this addaction ["<t color=""#42ebf4"">" + "Order jerry can ($30)",{
 
 	hint "Jerry can delivered";
 
-}];
+},[],-6];
