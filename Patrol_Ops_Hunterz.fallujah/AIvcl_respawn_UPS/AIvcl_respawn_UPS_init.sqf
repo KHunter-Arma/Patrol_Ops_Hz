@@ -31,6 +31,8 @@ if (!isMultiplayer && !hz_debug_patrols) exitWith {
 		deletevehicle _x;
 
 	} foreach units _vehicle;
+	
+	deleteGroup _group;
 
 };
 
@@ -55,15 +57,13 @@ if (!_isman) then {
 
 };
 
-_leader = leader _group;
-
 waitUntil {!isnil "Hz_fnc_isAiMaster"};
 
 if (call Hz_fnc_isAiMaster) then {
 
 	waitUntil {!isnil "UPS_respawn_initDone"};
 
-	[_leader,_marker,_isair] call Hz_pops_patrols_startUPS;
+	[_vehicle,_marker,_isair,_group] call Hz_pops_patrols_startUPS;
 
 	if (alive _vehicle) then {
 
@@ -81,6 +81,8 @@ if (call Hz_fnc_isAiMaster) then {
 		deletevehicle _x;
 
 	} foreach units _vehicle;
+	
+	deleteGroup _group;
 	
 	waitUntil {!isnil "Hz_pops_UPSPassToHCArray"};
 	

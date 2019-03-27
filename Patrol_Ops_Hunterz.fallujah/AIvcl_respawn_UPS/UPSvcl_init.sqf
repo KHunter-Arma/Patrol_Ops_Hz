@@ -6,12 +6,9 @@ private ["_vehicle","_marker","_isair","_vehicle","_group","_passengerarr","_mov
 _vehicle 	= _this select 0;
 _marker	= _this select 1;
 _isair = _this select 2;
-_group = group _vehicle;
+_group = _this select 3;
 
-_isman = _vehicle isKindOf "CAManBase";
-
-
-if(!_isair || _isman) then {
+if(!_isair) then {
 
 [_group,_marker,"SHOWMARKER"] call Hz_AI_UPS_Hz;
 
@@ -109,7 +106,8 @@ sleep 5;
       //_vehicle forcespeed -1;
       _flightgrp = creategroup west;
       (crew _vehicle) joinsilent _flightgrp;
-      sleep 0.1;
+      sleep 0.1;			
+			_flightgrp deleteGroupWhenEmpty true;
       _flightgrp setvariable ["Hz_supporting",true];   
       _flightgrp setvariable ["Hz_noBehaviour",true]; 
       _flightgrp setvariable ["Hz_careless",true];

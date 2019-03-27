@@ -23,6 +23,20 @@ Hz_pops_UPSRespawnArray = [];
 					
 					};
 				
+				} else {
+				
+					//failed spawn?...
+					if (canMove _x) then {
+					
+						_grp = group _x;
+						{deletevehicle _x} foreach crew _x;
+						{deletevehicle _x} foreach units _grp;
+						Hz_pops_deleteVehicleArray = Hz_pops_deleteVehicleArray - [_x];
+						deletevehicle _x;	
+						deleteGroup _grp;
+					
+					};
+				
 				};
 			
 			} else {
@@ -76,7 +90,7 @@ Hz_pops_UPSRespawnArray = [];
             
             } foreach units _x;  
 
-            deleteGroup _x;
+            //deleteGroup _x;
           
           };
         

@@ -84,12 +84,13 @@ if (_isman) then {
 
 };
 
-_leader = leader _group;
 _group setFormation "STAG COLUMN";
 _group setSpeedMode "NORMAL";
 _group setCombatMode "SAFE";
 
-[_leader, _marker,_isair] call Hz_pops_patrols_startUPS;
+[_vehicle,_marker,_isair,_group] call Hz_pops_patrols_startUPS;
+
+_group deleteGroupWhenEmpty true;
 
 if (alive _vehicle) then {
 
