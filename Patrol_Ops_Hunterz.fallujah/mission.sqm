@@ -25,6 +25,7 @@ class EditorData
 binarizationWanted=0;
 addons[]=
 {
+	#include "forced_addons.h"
 	"USAF_C17",
 	"CUP_WheeledVehicles_Stryker",
 	"rhsusf_c_troops",
