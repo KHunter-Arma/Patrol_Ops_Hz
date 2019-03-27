@@ -92,7 +92,7 @@ _timescaler3 = 0;
 			}foreach AllDead;
 
 		};
-		
+		/*
 		{
 	
 			if (local _x) then {
@@ -106,7 +106,7 @@ _timescaler3 = 0;
 			};
 	
 		}foreach allgroups;
-		
+		*/
 		//3 hour loop
 		if(_timescaler3 > 45) then {
 			

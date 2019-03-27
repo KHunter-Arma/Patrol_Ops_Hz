@@ -139,6 +139,8 @@ for "_i" from 1 to _count do {
       _vehgrp setvariable ["Hz_supporting",true];
       
       [_veh,mps_opfor_inf] call Hz_func_fill_up_vehicle; 
+			
+			_vehgrp deleteGroupWhenEmpty true;
       
     };
   case "PARA"  : {

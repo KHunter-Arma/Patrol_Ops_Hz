@@ -180,6 +180,8 @@ for "_i" from 1 to _cacheCount do {
 		patrol_task_units pushBack _unit;
 
 	} foreach _guardPositions;
+	
+	_cacheGrp deleteGroupWhenEmpty true;
 			
 };
 

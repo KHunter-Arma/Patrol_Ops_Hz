@@ -87,6 +87,7 @@ _group setvariable ["Hz_noBehaviour",true];
 
 _group setBehaviour "COMBAT";
 _group setCombatMode "YELLOW";
+_group deleteGroupWhenEmpty true;
 
 
 [-2, {

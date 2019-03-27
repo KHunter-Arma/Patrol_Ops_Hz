@@ -1,9 +1,9 @@
 _type = _this select 0;
 _target = _this select 1;
 
-_chopper = ([[15000,-25000,150], 0, _type, createGroup west] call BIS_fnc_spawnVehicle) select 0;
+_grp = createGroup west;
 
-_grp = group _chopper;
+_chopper = ([[15000,-25000,150], 0, _type, _grp] call BIS_fnc_spawnVehicle) select 0;
 
 ambient_chopper = _chopper;
 
@@ -11,6 +11,8 @@ sleep 1;
 
 _grp setCombatMode "WHITE";
 _grp setBehaviour "CARELESS";
+_grp deleteGroupWhenEmpty true;
+
 _chopper disableAI "FSM";
 _chopper disableAI "AUTOCOMBAT";
 _chopper disableAI "TARGET";

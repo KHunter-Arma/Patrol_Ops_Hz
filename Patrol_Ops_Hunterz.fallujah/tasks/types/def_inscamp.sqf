@@ -105,10 +105,9 @@ _statGrp = creategroup (SIDE_A select 0);
     _x setvehiclelock "LOCKEDPLAYER";
     
     if ((_x emptyPositions "gunner") > 0) then {
-    
-      _dude = (creategroup (SIDE_A select 0)) createUnit [Hz_ambw_hostileCivTypes call mps_getrandomelement, getpos _x, [], 200, "NONE"];
+			
+      _dude = _statGrp createUnit [Hz_ambw_hostileCivTypes call mps_getrandomelement, getpos _x, [], 200, "NONE"];
 			_dude call _fnc_initDude;
-			[_dude] joinSilent _statGrp;
       _dude assignasgunner _x;
       _dude moveingunner _x;
     
@@ -118,9 +117,8 @@ _statGrp = creategroup (SIDE_A select 0);
 	
 	if (_x iskindof "StaticWeapon") then {
 	
-		_dude = (creategroup (SIDE_A select 0)) createUnit [Hz_ambw_hostileCivTypes call mps_getrandomelement, getpos _x, [], 200, "NONE"];
+		_dude = _statGrp createUnit [Hz_ambw_hostileCivTypes call mps_getrandomelement, getpos _x, [], 200, "NONE"];
 		_dude call _fnc_initDude;
-		[_dude] joinSilent _statGrp;
 		_dude assignasgunner _x;
 		_dude moveingunner _x;
 	
@@ -152,11 +150,13 @@ _statGrp = creategroup (SIDE_A select 0);
 
 } foreach _newComp;
 
+_statGrp deleteGroupWhenEmpty true;
+
 //create defenders
 _defGrp = creategroup (SIDE_A select 0);
 for "_i" from 1 to 12 do {
 
-	_dude = (createGroup (SIDE_A select 0)) createUnit [Hz_ambw_hostileCivTypes call mps_getRandomElement, _position, [], 10, "NONE"];
+	_dude = _defGrp createUnit [Hz_ambw_hostileCivTypes call mps_getRandomElement, _position, [], 10, "NONE"];
 	_dude call _fnc_initDude;
 	if (_i == 6) then {
 	
@@ -175,13 +175,14 @@ for "_i" from 1 to 12 do {
 		_dude addMagazine "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Green_M";
 	
 	};	
-	[_dude] joinSilent _defGrp;
 
 };
 
 _defGrp setFormation "DIAMOND";
 _defGrp setVariable ["Hz_defending",true];
 _defGrp setCombatMode "GREEN";
+
+_defGrp deleteGroupWhenEmpty true;
 
 /*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
 

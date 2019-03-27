@@ -52,6 +52,8 @@ _group setbehaviour "AWARE";
 _group setCombatMode "GREEN";
 _group setvariable ["Hz_noBehaviour",true];
 
+_group deleteGroupWhenEmpty true;
+
 _weps = weapons _jet1;
 {
 

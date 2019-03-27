@@ -26,7 +26,7 @@ While{(surfaceIsWater _spawnpos || count (_spawnpos - [0]) == 0) && _count < 100
 	_spawnpos = [_x + _radius - random (_radius*2), _y + _radius - random (_radius*2)];
 	_count = _count + 1;
 };
-if(_count == 100) exitWith{_Grp};
+if(_count == 100) exitWith{_Grp deleteGroupWhenEmpty true; _Grp};
 _spawnpos set [2,0];
 
 if(!_flying) then {_vec = _type createVehicle _spawnpos;
@@ -151,5 +151,7 @@ _vec flyinheight 100;
 	deleteGroup _grp;
 };
 */
+
+_Grp deleteGroupWhenEmpty true;
 
 _Grp

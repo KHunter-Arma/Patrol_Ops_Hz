@@ -108,6 +108,8 @@ for "_i" from 1 to (40 + (round random 35)) do {
 
 };
 
+_crowdGrp deleteGroupWhenEmpty true;
+
 _crowdGrp setformdir ([_crowdPos,_position] call bis_fnc_dirto);
 
 {
@@ -128,6 +130,8 @@ _type = ["LOP_CHR_Civ_Functionary_01","LOP_CHR_Civ_Functionary_02","LOP_Tak_Civ_
 _vip = _grp createUnit [ _type, ( getMarkerPos format["return_point_%1",(SIDE_A select 0)] ), [], 10, "NONE"];
 _vip setRank "PRIVATE";
 _vip setVariable ["Hz_ambw_disableSideRelations",true,true];
+
+_grp deleteGroupWhenEmpty true;
 
 dostop _vip;
 
@@ -357,7 +361,10 @@ case (_rand < 0.1) : {
 			[_bomber,"Hz_ambw_shout"] remoteExecCall ["say3D",0,false];
 			
 			[_bomber] joinsilent grpNull;
-			[_bomber] joinsilent createGroup (SIDE_B select 0);
+			_bgroup = createGroup (SIDE_B select 0);
+			[_bomber] joinsilent _bgroup;
+			
+			_bgroup deleteGroupWhenEmpty true;
 			
 			//[objNull,_bomber,rPLAYMOVE,"AmovPercMstpSsurWnonDnon"] call RE;
 			
@@ -377,6 +384,7 @@ case (_rand < 0.1) : {
 				_bomb setDamage 1;
 				sleep 0.5;
 				deletevehicle _bomber;
+			  deleteGroup _bgroup;
 				
 			};
 		};   
@@ -501,7 +509,9 @@ case (_rand < 0.8) : {
 				_spawnpos = [((markerpos "patrol_respawn_opfor") select 0) + 500 + random 500,((markerpos "patrol_respawn_opfor") select 1) + 500 + random 500,800];
 				uisleep 20;
 				
-				_paratroopers = [createGroup (SIDE_B select 0),_spawnpos,_position,true,["CUP_O_TK_SpecOps_MG","CUP_O_TK_SpecOps","CUP_O_TK_SpecOps_TL","CUP_O_TK_SpecOps","CUP_O_TK_SpecOps_TL"]] call CREATE_OPFOR_PARADROP;
+				_paragrp = createGroup (SIDE_B select 0);
+				_paratroopers = [_paragrp,_spawnpos,_position,true,["CUP_O_TK_SpecOps_MG","CUP_O_TK_SpecOps","CUP_O_TK_SpecOps_TL","CUP_O_TK_SpecOps","CUP_O_TK_SpecOps_TL"]] call CREATE_OPFOR_PARADROP;
+				_paragrp deleteGroupWhenEmpty true;
 				patrol_task_units = patrol_task_units + _paratroopers;				
 				
 			};
@@ -576,7 +586,7 @@ while {
 			};
 			
 			[_dude] joinSilent grpNull;
-			[_dude] joinSilent (createGroup (SIDE_B select 0));
+			[_dude] joinSilent (createGroup [SIDE_B select 0,true]);
 			
 			_dude reveal [_vip,4];
 			

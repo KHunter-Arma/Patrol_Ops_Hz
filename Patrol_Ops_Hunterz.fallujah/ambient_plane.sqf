@@ -1,16 +1,18 @@
 _type = _this select 0;
 _airportID = _this select 1;
 
-_plane = ([[15000,-25000,10000], 0, _type, createGroup west] call BIS_fnc_spawnVehicle) select 0;
+_grp = createGroup west;
+
+_plane = ([[15000,-25000,10000], 0, _type, _grp] call BIS_fnc_spawnVehicle) select 0;
 
 ambient_plane = _plane;
-
-_grp = group _plane;
 
 sleep 1;
 
 _grp setCombatMode "WHITE";
 _grp setBehaviour "CARELESS";
+_grp deleteGroupWhenEmpty true;
+
 _plane disableAI "FSM";
 _plane disableAI "AUTOCOMBAT";
 _plane disableAI "TARGET";

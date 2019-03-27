@@ -120,7 +120,7 @@ while {true} do
 			}foreach AllDead;
 
 	};
-	
+	/*
 	{
 	
 		if (local _x) then {
@@ -134,7 +134,7 @@ while {true} do
 		};
 	
 	}foreach allgroups;
-	
+	*/
 	call Hz_func_setrealtime;
 	
 	//50 minute loop

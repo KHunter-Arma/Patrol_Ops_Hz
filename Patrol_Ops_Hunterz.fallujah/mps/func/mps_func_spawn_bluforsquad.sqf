@@ -44,7 +44,7 @@ While{(surfaceIsWater _spawnpos || count (_spawnpos - [0]) == 0) && _count < 100
   _spawnpos = [_x + _radius - random (_radius*2), _y + _radius - random (_radius*2)];
   _count = _count + 1;
 };
-if(_count == 100) exitWith{_Grp};
+if(_count == 100) exitWith{_Grp deleteGroupWhenEmpty true; _Grp};
 _spawnpos set [2,0];
 
 switch _type do{
@@ -62,6 +62,8 @@ for "_j" from 1 to _strength do {
   _unit = _Grp createUnit [_allunits select (round random _max),_spawnpos,[],_radius,"NONE"];
   
 };
+
+_Grp deleteGroupWhenEmpty true;
 
 if(_patrol) then {
 

@@ -101,6 +101,8 @@ dostop _vip;
 _vip setVariable ["Hz_disableFSM",true];
 _vip setVariable ["Hz_ambw_disableSideRelations",true,true];
 
+_grp deleteGroupWhenEmpty true;
+
 [_vip,["<t color=""#00FF00"">Request to follow</t>",{
 
 	[_this select 0] joinsilent grpNull;
@@ -215,7 +217,7 @@ for "_i" from 1 to _numberOfTargets do {
 	};
 	
 	[_vip] joinsilent grpNull;
-	[_vip] joinsilent (creategroup (SIDE_A select 0));
+	[_vip] joinsilent (creategroup [SIDE_A select 0,true]);
 	sleep 1;
 	[_vip,"CARELESS"] remoteExecCall ["setBehaviour",_vip,false];
 	[_vip,"UP"] remoteExecCall ["setUnitPos",_vip,false];

@@ -202,7 +202,7 @@ call compile preprocessFileLineNumbers (mps_path+"func\mps_func_client_eventhand
 };
 
 if (!hz_debug && ((side player) != civilian)) then {
-  [player] joinsilent (creategroup (SIDE_A select 0));
+  [player] joinsilent (creategroup [SIDE_A select 0,true]);
 };
 
 //call compile preprocessFileLineNumbers "notes.sqf";

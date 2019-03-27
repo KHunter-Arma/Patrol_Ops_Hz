@@ -47,8 +47,8 @@ _side = side _unit;
     };
   };
   */
-missionnamespace setvariable [format ["group1%1",name _unit],createGroup _side];
-_patrolgroup = missionnamespace getvariable (format ["group1%1",name _unit]);
+//missionnamespace setvariable [format ["group1%1",name _unit],createGroup _side];
+//_patrolgroup = missionnamespace getvariable (format ["group1%1",name _unit]);
 _remainders = creategroup _side;
 
 _objectslist = nearestObjects [_unit,["House"],_radius];
@@ -717,5 +717,7 @@ if((count (units _remainders)) > 0) then {
 
 //cover up screw-ups
 sleep 3;
+
+_remainders deleteGroupWhenEmpty true;
 
 {if(!alive _x) then {deletevehicle _x;} else {_x setdamage 0; if(!isnil "ace_sys_wounds_fnc_RemovePain") then {_x call ace_sys_wounds_fnc_RemovePain;};};}foreach _cleanup;

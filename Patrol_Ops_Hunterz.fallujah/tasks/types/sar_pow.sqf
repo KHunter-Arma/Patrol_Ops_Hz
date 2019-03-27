@@ -154,6 +154,8 @@ removeBackpack _pow1;
 removeHeadgear _pow1;	
 removeGoggles _pow1;
 
+_powgrp deleteGroupWhenEmpty true;
+
 [_pow1, true] call ACE_captives_fnc_setHandcuffed;
 
 sleep 1;

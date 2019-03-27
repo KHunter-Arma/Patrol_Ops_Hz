@@ -33,6 +33,8 @@ if (isNull _tower) then {
   _rtoGroup setvariable ["Hz_defending",true];
   _rto setvariable ["Hz_noMove",true];
   _rto forcespeed 0;
+	
+	_rtoGroup deleteGroupWhenEmpty true;
 
   removeAllWeapons _rto;
 
@@ -72,7 +74,9 @@ _grp setFormation "DIAMOND";
       
       if(count allunits < Hz_max_allunits) then {
         
-        _paratroopers = [createGroup (SIDE_B select 0),_spawnpos,_pos,true] call CREATE_OPFOR_PARADROP;
+				_paragrp = createGroup (SIDE_B select 0);
+        _paratroopers = [_paragrp,_spawnpos,_pos,true] call CREATE_OPFOR_PARADROP;
+				_paragrp deleteGroupWhenEmpty true;
         patrol_task_units = patrol_task_units + _paratroopers;
         sleep 900;        
         

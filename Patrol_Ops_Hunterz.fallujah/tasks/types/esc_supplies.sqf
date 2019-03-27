@@ -60,6 +60,8 @@ for "_i" from 1 to 4 do {
 
 };
 
+_workergrp deleteGroupWhenEmpty true;
+
 {
 
 	_x setvariable ["workers",_workers,true];
@@ -159,6 +161,8 @@ for "_i" from 1 to (6 + (round random 15)) do {
 	if ((random 1) > 0.96) then {_civ addweapon "B_OutdoorPack_tan";}; 
 
 };
+
+_crowdGrp deleteGroupWhenEmpty true;
 
 /*------------------- INTENSIFY AMBIENT COMBAT------------------------------------*/
 

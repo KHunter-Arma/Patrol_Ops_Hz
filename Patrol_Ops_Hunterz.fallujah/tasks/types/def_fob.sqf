@@ -94,6 +94,8 @@ _guardPos = _position;
 
 } foreach _newComp;
 
+_statGrp deleteGroupWhenEmpty true;
+
 //create defenders
 _defGrp = [_position,"INF",12,10] call CREATE_BLUFOR_SQUAD;
 _dude = _defGrp createUnit [mps_blufor_leader call mps_getRandomElement, _position, [], 10, "NONE"];

@@ -54,6 +54,8 @@ _group createUnit ["USAF_SecurityForces_rifleman_Hz", [8172.02,2200.39,0], [], 7
 
 };
 
+_group deleteGroupWhenEmpty true;
+
 _group = createGroup (SIDE_A select 0);
 
 for "_i" from 1 to 12 do {
@@ -61,6 +63,8 @@ for "_i" from 1 to 12 do {
 _group createUnit ["USAF_SecurityForces_rifleman_Hz", [7800.5,1834.66,0], [], 50, "NONE"];
 
 };
+
+_group deleteGroupWhenEmpty true;
 
 /*--------------------WAIT UNTIL PLAYERS ARRIVE---------------------------------*/
 
