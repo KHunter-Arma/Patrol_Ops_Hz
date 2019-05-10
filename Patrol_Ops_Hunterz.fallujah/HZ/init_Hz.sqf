@@ -87,6 +87,20 @@ if(!isDedicated && !(call Hz_fnc_isHC)) then {
 					if (Hz_econ_funds < 100000) then {
 					
 						Hz_econ_combatStore_storeClosed = true;
+						
+						"Hz_econ_funds" addPublicVariableEventHandler {
+						
+							if (Hz_econ_funds < 100000) then {
+					
+								Hz_econ_combatStore_storeClosed = true;
+								
+							} else {
+							
+								Hz_econ_combatStore_storeClosed = false;
+							
+							};
+						
+						};
 					
 					};
           
@@ -97,6 +111,20 @@ if(!isDedicated && !(call Hz_fnc_isHC)) then {
 					if (Hz_econ_funds < 100000) then {
 					
 						Hz_econ_combatStore_storeClosed = true;
+						
+						"Hz_econ_funds" addPublicVariableEventHandler {
+						
+							if (Hz_econ_funds < 100000) then {
+					
+								Hz_econ_combatStore_storeClosed = true;
+								
+							} else {
+							
+								Hz_econ_combatStore_storeClosed = false;
+							
+							};
+						
+						};
 					
 					};
           

@@ -103,6 +103,7 @@ switch (toupper _this) do {
 	CASE "WARFAREBCAMP" : {3000};
 	CASE "US_WARFAREBFIELDHHOSPITAL_BASE_EP1" : {2500};
 	CASE "LAND_WATERCOOLER_01_NEW_F" : {200};
+	CASE "LAND_FMRADIO_F" : {50};	
 
 	default {-1};
 

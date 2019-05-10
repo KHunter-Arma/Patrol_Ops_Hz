@@ -150,13 +150,14 @@ while {true} do {
 				_jet1 = nil;
 				_jet2 = nil;
 
-				_groupgrp2 = createGroup (createGroup (SIDE_B select 0));
+				_groupgrp2 = createGroup (SIDE_B select 0);
 				_jettype = mps_opfor_airsup call mps_getrandomelement;
 
 				_jet1 = ([[(position heli_radar select 0)+10000,(position heli_radar select 1)+12000,4000], 180, _jettype, _groupgrp2] call BIS_fnc_spawnVehicle) select 0;
 				_jet2 = ([[(position heli_radar select 0)+10100,(position heli_radar select 1)+12100,4000], 180, _jettype, _groupgrp2] call BIS_fnc_spawnVehicle) select 0;
 
 				_groupgrp2 setvariable ["Hz_defending",true];
+				_groupgrp2 deleteGroupWhenEmpty true;
 
 				_jet1 flyinheight 4000;
 				_jet2 flyinheight 4000;
@@ -347,7 +348,7 @@ while {true} do {
 				_helo1 = nil;
 				_helo2 = nil;
 
-				_groupgrp1 = createGroup (createGroup (SIDE_B select 0));
+				_groupgrp1 = createGroup (SIDE_B select 0);
 				
 				_types = [];
 				_types = mps_opfor_atkh + mps_opfor_atkp;
@@ -355,6 +356,8 @@ while {true} do {
 				
 
 				_helo1 = ([[(position heli_radar select 0)+10000,(position heli_radar select 1)+10000,1000], 180, _helotype, _groupgrp1] call BIS_fnc_spawnVehicle) select 0;
+				
+				_groupgrp1 deleteGroupWhenEmpty true;
 				
 				_helo1 setvehiclelock "LOCKED";
 				
@@ -688,7 +691,9 @@ _jet = _this;
 				//call reinforcements
 				//_paradrop = true;
 				//if((random 1) < 0.5) then {_paradrop = false;};
-				[creategroup (SIDE_B select 0),[-5000,15000,500],_radarlocation,true] call CREATE_OPFOR_PARADROP;
+				_paragrp = creategroup (SIDE_B select 0);
+				[_paragrp,[-5000,15000,500],_radarlocation,true] call CREATE_OPFOR_PARADROP;
+				_paragrp deleteGroupWhenEmpty true;
 
 				uisleep 450;
 

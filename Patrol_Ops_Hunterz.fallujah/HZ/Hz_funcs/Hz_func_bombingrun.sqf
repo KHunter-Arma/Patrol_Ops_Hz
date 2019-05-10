@@ -26,7 +26,22 @@ _jet3 = ([[(_spawnPos select 0) + 100,(_spawnPos select 1) - 100,2000], 225, _je
 
 _jets = [_jet1,_jet2,_jet3];
 
-{(driver _x) disableai "autotarget"; (driver _x) disableai "target"; _x flyinheight 250;}foreach _jets;
+{
+
+	(driver _x) disableai "AUTOTARGET";
+	(driver _x) disableai "TARGET";
+	(driver _x) disableai "FSM";
+	(driver _x) disableai "AUTOCOMBAT";
+	_x flyinheight 250;
+	_x setvariable ["Hz_disableFSM",true];
+
+}foreach _jets;
+
+_group setbehaviour "AWARE";
+_group setCombatMode "GREEN";
+_group setvariable ["Hz_noBehaviour",true];
+
+_group deleteGroupWhenEmpty true;
 
 {
 

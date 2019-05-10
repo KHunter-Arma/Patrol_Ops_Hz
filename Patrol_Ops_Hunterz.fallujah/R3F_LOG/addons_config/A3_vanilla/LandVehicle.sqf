@@ -63,6 +63,7 @@ R3F_LOG_CFG_can_transport_cargo = R3F_LOG_CFG_can_transport_cargo +
 	[ "C_Hatchback_01_F", 30],
 	[ "C_Hatchback_01_sport_F", 30],
 	[ "C_Van_01_fuel_F", 10],
+	[ "C_IDAP_Truck_02_water_F", 10],
 	[ "CUP_C_Ikarus_TKC", 60],
 	[ "CUP_C_Lada_White_CIV", 20],
 	[ "CUP_C_Skoda_White_CIV", 25],

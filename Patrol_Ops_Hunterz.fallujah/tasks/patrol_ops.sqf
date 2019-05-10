@@ -35,6 +35,8 @@ reinforcementsqueued = false;
 
 missionload = false;
 publicVariable "missionload";
+
+waituntil {sleep 10; time > 900};
 waituntil {sleep 10; taskrequested || jointops};
 
 _j = (count _list - 1) min (round random (count _list));

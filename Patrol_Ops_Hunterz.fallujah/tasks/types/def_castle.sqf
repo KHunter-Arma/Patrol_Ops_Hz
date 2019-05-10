@@ -4,7 +4,7 @@ diag_log diag_activeSQSScripts;
 diag_log diag_activeMissionFSMs;
 
 /*-------------------- TASK PARAMS ---------------------------------*/
-_EnemySpawnMinimumRange = 5000;
+_EnemySpawnMinimumRange = 3000;
 _taskRadius = 200;
 _minSquadCount = 2;
 _maxSquadCount = 4;
@@ -132,7 +132,8 @@ if(_b > 0) then {
 		};
 		
 		//unbunching delay
-		sleep 300;
+		//increase this to make path finding easier? (more units with waypoints, less FPS...)
+		sleep 900;
 		
 	};
 };   

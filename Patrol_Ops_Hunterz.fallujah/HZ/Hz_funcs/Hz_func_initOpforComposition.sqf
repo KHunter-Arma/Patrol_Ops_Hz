@@ -52,6 +52,8 @@ private ["_objects", "_ins", "_side", "_mannedVehicles", "_sentryType", "_return
 					_dude assignasgunner _x;
 					_dude moveingunner _x;
 					
+					_grp deleteGroupWhenEmpty true;
+					
 					_return set [count _return, _dude];
 					
 				};
@@ -112,6 +114,8 @@ private ["_objects", "_ins", "_side", "_mannedVehicles", "_sentryType", "_return
 					_dude assignasgunner _x;
 					_dude moveingunner _x;
 					
+					_grp deleteGroupWhenEmpty true;
+					
 					_return set [count _return, _dude];
 					
 				};
@@ -170,6 +174,8 @@ private ["_objects", "_ins", "_side", "_mannedVehicles", "_sentryType", "_return
 			_unit forceSpeed 0;
 			_unit setvariable ["Hz_noMove",true];
 			_unit setposatl _pos;
+			
+			_grp deleteGroupWhenEmpty true;
 			
 			_return set [count _return, _unit];
 			

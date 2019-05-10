@@ -475,6 +475,14 @@ case "TRYK_H_HEADSETCAP_BLK": {95};
 case "TRYK_H_HEADSETCAP_OD": {95};
 case "TRYK_H_HEADSETCAP": {95};
 
+case "AVIATOR": {170};
+case "SQUARES_TINTED": {-1};
+case "RHS_ESS_BLACK_NV": {80};
+case "RHS_GOOGLES_BLACK_NV": {30};
+case "CUP_G_OAKLEYS_DRK_NV": {-1};
+case "SHADES_BLACK": {-1};
+case "SPECTACLES_TINTED": {-1};
+
 
 
 /*
@@ -812,6 +820,27 @@ case "SFG_TAC_SMALLBEARDD": {0};
 case "SFG_TAC_SMALLBEARDB": {0};
 case "SFG_TAC_SMALLBEARDG": {0};
 case "SFG_TAC_SMALLBEARDO": {0};
+
+case "SFG_TAC_BEARDD_NV": {0};
+case "SFG_TAC_BEARDB_NV": {0};
+case "SFG_TAC_BEARDG_NV": {0};
+case "SFG_TAC_BEARDO_NV": {0};
+case "SFG_TAC_CHOPSD_NV": {0};
+case "SFG_TAC_CHOPSB_NV": {0};
+case "SFG_TAC_CHOPSG_NV": {0};
+case "SFG_TAC_CHOPSO_NV": {0};
+case "SFG_TAC_MOUSTACHEB_NV": {0};
+case "SFG_TAC_MOUSTACHED_NV": {0};
+case "SFG_TAC_MOUSTACHEG_NV": {0};
+case "SFG_TAC_MOUSTACHEO_NV": {0};
+case "SFG_TAC_CHINLESSBD_NV": {0};
+case "SFG_TAC_CHINLESSBB_NV": {0};
+case "SFG_TAC_CHINLESSBG_NV": {0};
+case "SFG_TAC_CHINLESSBO_NV": {0};
+case "SFG_TAC_SMALLBEARDB_NV": {0};
+case "SFG_TAC_SMALLBEARDD_NV": {0};
+case "SFG_TAC_SMALLBEARDG_NV": {0};
+case "SFG_TAC_SMALLBEARDO_NV": {0};
 
 default {-1};
 

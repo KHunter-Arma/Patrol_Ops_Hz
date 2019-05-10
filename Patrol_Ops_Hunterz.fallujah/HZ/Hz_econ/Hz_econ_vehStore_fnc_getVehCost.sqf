@@ -18,12 +18,11 @@ case (_this iskindof "CUP_C_Skoda_White_CIV") : {3500};
 case (_this iskindof "CUP_C_S1203_CIV") : {2000};
 case (_this iskindof "CUP_C_S1203_Ambulance_CIV") : {2300};
 case (_this iskindof "CUP_C_Volha_Gray_TKCIV") : {5700};
-case (_this iskindof "PO_LandRover_Base_SPG9") : {-1};
-case (_this iskindof "PO_LandRover_Base_MG") : {-1}; //65000 ****************************************
-case (_this iskindof "CUP_C_LR_Transport_CTK") : {50000};
-case (_this iskindof "PO_LandRover_base") : {50000};
-case (_this iskindof "CUP_B_LR_Ambulance_CZ_W") : {75000};
-case (_this iskindof "CUP_B_LR_Special_M2_GB_W") : {-1}; //82000 **************************************
+case (_this iskindof "CUP_LR_SPG9_Base") : {-1};
+case (_this iskindof "CUP_LR_MG_Base") : {-1}; //65000 ****************************************
+case (_this iskindof "CUP_LR_Transport_Base") : {50000};
+case (_this iskindof "CUP_LR_Ambulance_Base") : {75000};
+case (_this iskindof "CUP_LR_Special_Base") : {-1}; //82000 **************************************
 //case (_this iskindof "rhsusf_m1025_w_mk19") : {255700};
 //case (_this iskindof "rhsusf_m1025_w_m2") : {256000};
 //case (_this iskindof "rhsusf_m1025_w") : {240000};

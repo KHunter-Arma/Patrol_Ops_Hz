@@ -53,28 +53,19 @@ if (_isman) then {
 			
 		} foreach _escort;
 
-		_vehicle = _type createVehicle _respawnzone;
+		_vehicle = ([_respawnzone,90,_type,_group] call BIS_fnc_spawnVehicle) select 0;
 		_vehicle setvehiclelock "LOCKED";
-
-		createVehicleCrew _vehicle;
-		(crew _vehicle) joinSilent _group;
-		_group addVehicle _vehicle;
-		(crew _vehicle) allowGetIn true;
 
 	} else {
 		
-		_vehicle = _type createVehicle _respawnzone;
-		_vehicle setvehiclelock "LOCKEDPLAYER";
+		_vehicle = ([_respawnzone,90,_type,_group] call BIS_fnc_spawnVehicle) select 0;
+		_vehicle setvehiclelock "LOCKED";
 		
-		_passengerUnits = +_unitTypeArray;	
-		createVehicleCrew _vehicle;	
+		_passengerUnits = +_unitTypeArray;
 		{	
 			_passengerUnits = _passengerUnits - [typeof _x];	
 		} foreach (crew _vehicle);
 		
-		(crew _vehicle) joinSilent _group;
-		_group addVehicle _vehicle;
-
 		{
 			_dude = _group createUnit [_x,_respawnzone, [], 100, "NONE"];
 			_dude moveInCargo _vehicle;		
@@ -84,12 +75,13 @@ if (_isman) then {
 
 };
 
-_leader = leader _group;
 _group setFormation "STAG COLUMN";
 _group setSpeedMode "NORMAL";
 _group setCombatMode "SAFE";
 
-[_leader, _marker,_isair] call Hz_pops_patrols_startUPS;
+[_vehicle,_marker,_isair,_group] call Hz_pops_patrols_startUPS;
+
+_group deleteGroupWhenEmpty true;
 
 if (alive _vehicle) then {
 

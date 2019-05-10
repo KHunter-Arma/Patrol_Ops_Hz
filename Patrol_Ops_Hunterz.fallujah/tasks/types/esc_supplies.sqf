@@ -10,8 +10,8 @@ _penaltyPerLostContainer = 20000;
 _penaltyPerLostWorker = 50000;
 
 // in case the mission turns into a defend task
-_EnemySpawnMinimumRange = 3000;
-_taskRadius = 50;
+_EnemySpawnMinimumRange = 2000;
+_taskRadius = 15;
 _minSquadCount = 2;
 _maxSquadCount = 5;
 
@@ -59,6 +59,8 @@ for "_i" from 1 to 4 do {
 	_workers pushBack _worker; 
 
 };
+
+_workergrp deleteGroupWhenEmpty true;
 
 {
 
@@ -160,6 +162,8 @@ for "_i" from 1 to (6 + (round random 15)) do {
 
 };
 
+_crowdGrp deleteGroupWhenEmpty true;
+
 /*------------------- INTENSIFY AMBIENT COMBAT------------------------------------*/
 
 missionload = false;
@@ -255,7 +259,7 @@ waituntil {
 	[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
 
 	(
-	(if (!_waitForArrival) then {({(_x distance _spawnpos) > 750} count _workers) > 0} else {({(_x distance _position) < 100} count _workers) > 0})
+	(if (!_waitForArrival) then {({(_x distance _spawnpos) > 1000} count _workers) > 0} else {({(_x distance _position) < 100} count _workers) > 0})
 	|| (({alive _x} count _containers) < 1)
 	|| (({alive _x} count _workers) < 1)
 	|| Hz_pops_task_auxFailCondition
@@ -340,8 +344,8 @@ while {
 	
 	if (
 	
-		(({if (alive _x) then {(_x distance _position) < 50} else {true}} count _containers) == 6)
-		&& (({if (alive _x) then {((_x distance _position) < 50) && ((vehicle _x) == _x) && (!captive _x)} else {true}} count _workers) == 4)
+		(({if (alive _x) then {(_x distance _position) < _taskRadius} else {true}} count _containers) == 6)
+		&& (({if (alive _x) then {((_x distance _position) < _taskRadius) && ((vehicle _x) == _x) && (!captive _x)} else {true}} count _workers) == 4)
 	
 	) then {
 	

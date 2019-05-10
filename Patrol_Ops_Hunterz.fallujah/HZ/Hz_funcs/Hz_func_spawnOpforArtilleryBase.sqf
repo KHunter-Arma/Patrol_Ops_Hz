@@ -86,6 +86,8 @@ while {true} do {
 					if(_i == 1) then {_dude assignasgunner _x; _dude moveingunner _x;} else {_dude assignascargo _x; _dude moveincargo _x;};
 				};
 				
+				_grp deleteGroupWhenEmpty true;
+				
 				[_x] spawn Hz_AI_artillery;
 				_x setvehiclelock "locked";
 				_x setvariable ["R3F_LOG_disabled",true];
@@ -106,6 +108,8 @@ while {true} do {
 					if(_i == 1) then {_dude assignasgunner _x; _dude moveingunner _x;} else {_dude assignascargo _x; _dude moveincargo _x;};
 				};	
 				
+				_grp deleteGroupWhenEmpty true;
+				
 				[_x] spawn Hz_AI_rocketArtillery;
 				_x setvehiclelock "locked";
 				_x setvariable ["R3F_LOG_disabled",true];
@@ -124,7 +128,7 @@ while {true} do {
 			[WEST,"HQ"] sideChat mission_sidechat;               
 		};
 
-		_defendersGrp = creategroup (SIDE_B select 0);
+		//_defendersGrp = creategroup (SIDE_B select 0);
 		_carspawnpos = [(_artylocation select 0) + 350,(_artylocation select 1) + 350,0];
 
 		for "_i" from 1 to 3 do {
@@ -168,7 +172,9 @@ while {true} do {
 			if((({side _x == (SIDE_B select 0)}count nearestobjects [_artylocation,["CAManBase"],750]) < 20) && (count allunits < Hz_max_allunits)) then {
 
 				//call reinforcements
-				[creategroup (SIDE_B select 0),[-5000,15000,500],_artylocation,true] call CREATE_OPFOR_PARADROP;
+				_paragrp = creategroup (SIDE_B select 0);
+				[_paragrp,[-5000,15000,500],_artylocation,true] call CREATE_OPFOR_PARADROP;
+				_paragrp deleteGroupWhenEmpty true;
 
 				sleep 600;
 

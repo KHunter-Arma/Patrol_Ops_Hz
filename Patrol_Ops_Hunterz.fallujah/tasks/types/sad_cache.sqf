@@ -4,10 +4,10 @@ diag_log diag_activeSQSScripts;
 diag_log diag_activeMissionFSMs;
 
 /*-------------------- TASK PARAMS ---------------------------------*/
-_reinforcementsMinimumSpawnRange = 5000;
+_reinforcementsMinimumSpawnRange = 3000;
 
 _minCacheCount = 1;
-_maxCacheCount = 3;
+_maxCacheCount = 1;
 _rewardPerCache = 80000;
 _minDistanceBetweenCaches = 300;
 
@@ -184,6 +184,8 @@ for "_i" from 1 to _cacheCount do {
 		patrol_task_units pushBack _unit;
 
 	} foreach _guardPositions;
+	
+	_cacheGrp deleteGroupWhenEmpty true;
 			
 };
 

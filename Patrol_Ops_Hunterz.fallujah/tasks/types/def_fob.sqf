@@ -4,7 +4,7 @@ diag_log diag_activeSQSScripts;
 diag_log diag_activeMissionFSMs;
 
 /*-------------------- TASK PARAMS ---------------------------------*/
-_EnemySpawnMinimumRange = 5000;
+_EnemySpawnMinimumRange = 3000;
 _taskRadius = 200;
 _minSquadCount = 3;
 _maxSquadCount = 6;
@@ -93,6 +93,8 @@ _guardPos = _position;
 	[_x,2] remoteExecCall ["setFeatureType",0,true];
 
 } foreach _newComp;
+
+_statGrp deleteGroupWhenEmpty true;
 
 //create defenders
 _defGrp = [_position,"INF",12,10] call CREATE_BLUFOR_SQUAD;
@@ -183,7 +185,8 @@ if(_b > 0) then {
 		};
 		
 		//unbunching delay
-		sleep 300;
+		//increase this to make path finding easier? (more units with waypoints, less FPS...)
+		sleep 900;
 		
 	};
 };   

@@ -71,8 +71,8 @@ mps_config_vehicles = mps_config_vehicles + [
 	["INS","attakc","CUP_I_Datsun_PK_TK_Random"],
 	["INS","attakc","I_G_Offroad_01_armed_F"],
 	["INS","attakc","I_G_Offroad_01_AT_F"],
-	["INS","attakc","LOP_AM_Landrover_SPG9"],
-	["INS","attakc","LOP_AM_Landrover_M2"],
+	["INS","attakc","CUP_O_LR_SPG9_TKM"],
+	["INS","attakc","CUP_O_LR_MG_TKM"],
 	["INS","cargoc","CUP_I_Datsun_4seat_TK"],
 	["INS","truck","CUP_I_V3S_Open_TKG"],
 	["INS","truck","CUP_I_V3S_Covered_TKG"],
@@ -96,8 +96,8 @@ mps_config_vehicles = mps_config_vehicles + [
 	["IA","apc","LOP_IA_BTR80"],
 	["IA","apc","LOP_IA_M113_W"],
 	["IA","tank","LOP_IA_M1A1_AIM_D"],
-	["IA","tank","LOP_IA_T55"],
-	["IA","tank","LOP_IA_T72BA"],
+	["IA","tank","CUP_O_T55_IA"],
+	["IA","tank","CUP_O_T72_IA"],
 	["IA","mobiaa","LOP_IA_ZSU234"]
         
 ];

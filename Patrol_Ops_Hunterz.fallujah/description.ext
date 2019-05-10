@@ -39,6 +39,37 @@ class cfgFunctions
 
 class Extended_InitPost_EventHandlers
 {		
+
+	class LandVehicle {
+	
+		class RemoveRadios {
+		
+			init = "if (local (_this select 0)) then {if ((isnil 'Hz_pers_network_vehicles') || {!((_this select 0) in Hz_pers_network_vehicles)}) then {_items = itemCargo (_this select 0); clearItemCargoGlobal (_this select 0); _items = _items - ['ACRE_PRC343']; {(_this select 0) addItemCargoGlobal [_x,1];} foreach _items;};};"
+		
+		};
+	
+	};
+	
+	class Air {
+	
+		class RemoveRadios {
+		
+			init = "if (local (_this select 0)) then {if ((isnil 'Hz_pers_network_vehicles') || {!((_this select 0) in Hz_pers_network_vehicles)}) then {_items = itemCargo (_this select 0); clearItemCargoGlobal (_this select 0); _items = _items - ['ACRE_PRC343']; {(_this select 0) addItemCargoGlobal [_x,1];} foreach _items;};};"
+		
+		};
+	
+	};
+	
+	class Ship {
+	
+		class RemoveRadios {
+		
+			init = "if (local (_this select 0)) then {if ((isnil 'Hz_pers_network_vehicles') || {!((_this select 0) in Hz_pers_network_vehicles)}) then {_items = itemCargo (_this select 0); clearItemCargoGlobal (_this select 0); _items = _items - ['ACRE_PRC343']; {(_this select 0) addItemCargoGlobal [_x,1];} foreach _items;};};"
+		
+		};
+	
+	};
+
 	class CAManBase {		
 
 		class RemoveItemsAI {
