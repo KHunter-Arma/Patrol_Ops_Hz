@@ -253,7 +253,7 @@ waituntil {introseqdone};
 if(!hz_debug) then {
 
   // player check
-  [] spawn {
+ supervisorHandler = [] spawn {
 
     if (call Hz_func_isSupervisor) exitwith{Hz_pops_restrictionSupervisorCheckPassed = true;};
     
@@ -322,9 +322,18 @@ if(!hz_debug) then {
 				
 				} foreach Hz_pops_restrictions_supervisorList;
         
-        if (_condition) then {
+        if (_condition && (alive player)) then {
 				
 					Hz_pops_restrictionSupervisorCheckPassed = false;
+					//in case he's using store or something...
+					if (dialog) then {
+						waituntil {!dialog};
+						disableUserInput true;
+						hintsilent "Please wait...";
+						uisleep 5;
+						disableUserInput false;
+						uisleep 0.1;
+					};
           endMission "publicRestriction"; 
           
         } else {Hz_pops_restrictionSupervisorCheckPassed = true;}; 
@@ -332,7 +341,7 @@ if(!hz_debug) then {
 				
 			} else {Hz_pops_restrictionSupervisorCheckPassed = true;}; 
       
-      sleep 300;
+      sleep 20;
     };
 
   };
@@ -361,7 +370,98 @@ if ((toupper Hz_playertype) != "SUPERVISOR") then {
 			Hz_pops_restrictionPublicLimitCheckPassed = false;		
       endMission "playerLimit"; 
       
-    } else {Hz_pops_restrictionPublicLimitCheckPassed = true;};
+    } else {		
+		
+			Hz_pops_restrictionPublicLimitCheckPassed = true;
+			
+			//less has priority
+			player setVariable ["JoinTime",serverTime,true];
+			
+			//becomes redundant so kill other loop
+			terminate supervisorHandler;
+			
+			[] spawn {
+			
+				sleep 20;
+				
+				_joinTime = player getVariable "JoinTime";
+				
+				while {true} do {
+				
+					_countSupervisors = ({(getplayeruid _x) in Hz_pops_restrictions_supervisorList} count playableunits) + 
+					({(getplayeruid _x) in Hz_pops_restrictions_supervisorList} count alldead);    
+
+					_countNonSupervisors = ({!((getplayeruid _x) in Hz_pops_restrictions_supervisorList)} count playableunits) + 
+					({if(isplayer _x) then {!((getplayeruid _x) in Hz_pops_restrictions_supervisorList)} else {false}} count alldead);  
+					
+					if (
+							((_countSupervisors/_countNonSupervisors) < Hz_publicPlayerRatioLimit)
+							&& {
+									(_countSupervisors == 0)
+									||
+									{
+										((vehicle player) == player)
+										&& {
+										
+													_fobPos = call Hz_func_locateFOB;
+													if (_fobPos isEqualTo [0,0,0]) then {
+													
+														((player distance (markerpos "respawn_west")) < 500)
+													
+													} else {
+													
+														((player distance (markerpos "respawn_west")) < 500)
+														||
+														{(player distance _fobPos) < 500}
+													
+													}
+											}										
+									}									
+								}							
+						) then {
+						
+						//check who's next to be kicked
+						_highest = 0;
+						{
+						
+							if (isPlayer _x) then {
+							
+								_value = _x getVariable ["JoinTime",0];
+							
+								if (_value > _highest) then {
+								
+									_highest = _value;
+								
+								};
+							
+							};
+						
+ 						} foreach (alldead + playableunits);
+						
+						if (_highest <= _joinTime) then {
+						
+							//in case he's using store or something...
+							if (dialog) then {
+								waituntil {!dialog};
+								disableUserInput true;
+								hintsilent "Please wait...";
+								uisleep 5;
+								disableUserInput false;
+								uisleep 0.1;
+							};
+							endMission "playerLimit"; 
+							
+						};
+						
+					};
+					
+					sleep 20;
+				
+				};			
+			
+			};
+		
+		};
     
   } else {Hz_pops_restrictionPublicLimitCheckPassed = true;};
 
@@ -396,6 +496,9 @@ if (Hz_pops_enableDetainUnrecognisedUIDs) then {
 	
 		[] spawn {
 		
+			player setvariable ["animAllowed",false];
+			player forceWalk true;
+		
 			Hz_pops_abortClimbEH = player addEventHandler ["AnimChanged", {
 					if (local (_this select 0) && {_this select 1 == "ACE_Climb"}) then {
 							// abort climb animation
@@ -416,7 +519,9 @@ if (Hz_pops_enableDetainUnrecognisedUIDs) then {
 				Hz_pops_releasedUIDs pushBack (getPlayeruid player);
 				publicVariable "Hz_pops_releasedUIDs";
 				call Hz_pers_API_enablePlayerSaveStateOnDisconnect;
-				player removeEventHandler ["AnimChanged",Hz_pops_abortClimbEH];				
+				player removeEventHandler ["AnimChanged",Hz_pops_abortClimbEH];	
+				player setvariable ["animAllowed",true];	
+				player forceWalk false;				
 				Hz_pers_clientReadyForLoad = true;
 			
 			};
@@ -425,6 +530,45 @@ if (Hz_pops_enableDetainUnrecognisedUIDs) then {
 	
 	};
 	
+};
+
+[] spawn {
+
+	sleep 5;
+	_uid = getPlayerUID player;
+	_index = -1;
+	{
+
+		if (_x == _uid) exitWith {_index = _foreachIndex};
+
+	} foreach Hz_pops_restrictions_supervisorList;
+
+	if (_index == -1) exitWith {};
+
+	rankInsignia = Hz_pops_supervisor_rankPatches select _index;
+
+	fnc_setRankInsignia = {
+
+		[player , ""] call BIS_fnc_setUnitInsignia;
+		sleep 2;
+		[player , rankInsignia] call BIS_fnc_setUnitInsignia;
+
+	};
+
+	player addEventHandler ["InventoryClosed",{
+
+		[] spawn fnc_setRankInsignia;
+
+	}];
+
+	[missionNamespace,"arsenalClosed", {
+
+		[] spawn fnc_setRankInsignia;
+		
+	}] call BIS_fnc_addScriptedEventHandler;
+
+	call fnc_setRankInsignia;
+
 };
 
 [] spawn {

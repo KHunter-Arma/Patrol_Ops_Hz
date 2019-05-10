@@ -108,6 +108,44 @@ if (!(call Hz_fnc_isAiMaster)) then {
 
 };
 
+ambientPatrolBoosterRunning = false;
+addMissionEventHandler ["PlayerConnected",{
+
+	if (time < 7200) exitWith {};
+	if (ambientPatrolBoosterRunning) exitWith {};
+	ambientPatrolBoosterRunning = true;
+	if ((count (allPlayers - entities "HeadlessClient_F")) == 1) then {
+	
+		[] spawn {
+		
+			Hz_max_ambient_units_old = Hz_max_ambient_units;
+			Hz_max_ambient_units = Hz_max_ambient_units + 100;
+			
+			if (Hz_max_ambient_units > 250) then {
+			
+				Hz_max_ambient_units = 250;
+			
+			};
+			
+			publicVariable "Hz_max_ambient_units";
+			
+			sleep 900;
+			
+			Hz_max_ambient_units = Hz_max_ambient_units_old;
+			publicVariable "Hz_max_ambient_units";
+			
+			ambientPatrolBoosterRunning = false;
+				
+		};
+	
+	} else {
+	
+		ambientPatrolBoosterRunning = false;
+	
+	};
+
+}];
+
 //if(mps_ambient_airpatrols) then {[] spawn CREATE_OPFOR_AIRPATROLS;};    
 	
 //[] spawn Hz_func_spawnOpforArtilleryBase;  

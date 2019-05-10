@@ -7,7 +7,7 @@ diag_log diag_activeMissionFSMs;
 _reinforcementsMinimumSpawnRange = 3000;
 
 _minCacheCount = 1;
-_maxCacheCount = 3;
+_maxCacheCount = 1;
 _rewardPerCache = 80000;
 _minDistanceBetweenCaches = 300;
 

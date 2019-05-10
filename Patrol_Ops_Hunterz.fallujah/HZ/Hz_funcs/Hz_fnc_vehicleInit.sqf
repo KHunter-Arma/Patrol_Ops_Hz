@@ -41,6 +41,8 @@ if (((toUpper (typeof _vehicle)) find "CUP") != -1) then {
 	
 };
 
+_initstatement = _initstatement + "_obj addEventHandler ['Killed',{{_x setDamage 1} foreach (attachedObjects (_this select 0));}];";
+
 if(_initstatement != "") then {
   [_vehicle,_initstatement] remoteexeccall ["Hz_fnc_setVehicleInit",0,true];
 };

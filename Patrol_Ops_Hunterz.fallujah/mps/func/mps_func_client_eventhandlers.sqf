@@ -18,18 +18,6 @@ if( if( !isNil "ace_wounds_enabled" ) then { false } else { true } ) then {
 
 [player,["HandleScore", {false}]] remoteExecCall ["addEventHandler",2,false];
 
-//prevent panic anim exploit against broken legs
-player addEventHandler ["AnimChanged", {
-	params ["_unit", "_anim"];
-  
-  if ((_anim find "apan") != -1) then {
-  
-   _unit playmovenow "amovpercmstpslowwrfldnon";
-  
-  };
-  
-}];
-
 player addEventHandler ["GetInMan",{
 
 	if (!isnil {player getVariable "ace_medical_ivBags"}) then {
