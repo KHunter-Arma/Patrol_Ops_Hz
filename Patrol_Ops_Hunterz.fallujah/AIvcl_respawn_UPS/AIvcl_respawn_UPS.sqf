@@ -46,15 +46,18 @@ if (_isman) then {
 } else {
 
 	if (_vehIsTank) then {
+	
+		_vehicle = ([_respawnzone,90,_type,_group] call BIS_fnc_spawnVehicle) select 0;
+		_vehicle setvehiclelock "LOCKED";
+		
+		(units _group) allowGetIn true;
+		(units _group) orderGetIn true;
 		
 		{
 			_dude = _group createUnit [_x,_respawnzone, [], 100, "NONE"];
 			[_dude] allowGetIn false;
 			
-		} foreach _escort;
-
-		_vehicle = ([_respawnzone,90,_type,_group] call BIS_fnc_spawnVehicle) select 0;
-		_vehicle setvehiclelock "LOCKED";
+		} foreach _escort;	
 
 	} else {
 		
@@ -62,14 +65,28 @@ if (_isman) then {
 		_vehicle setvehiclelock "LOCKED";
 		
 		_passengerUnits = +_unitTypeArray;
-		{	
-			_passengerUnits = _passengerUnits - [typeof _x];	
-		} foreach (crew _vehicle);
+		_crewType = typeof driver _vehicle;
+		
+		_passengerUnits = _passengerUnits - [_crewType];		
+		
+		_diff = (count _unitTypeArray) - ((count _passengerUnits) + (count crew _vehicle));
+		if (_diff > 0) then {
+		
+			for "_i" from 1 to _diff do {
+			
+				_passengerUnits pushBack _crewType;
+			
+			};
+		
+		};
 		
 		{
 			_dude = _group createUnit [_x,_respawnzone, [], 100, "NONE"];
 			_dude moveInCargo _vehicle;		
 		} forEach _passengerUnits;
+		
+		(units _group) allowGetIn true;
+		(units _group) orderGetIn true;
 		
 	};
 

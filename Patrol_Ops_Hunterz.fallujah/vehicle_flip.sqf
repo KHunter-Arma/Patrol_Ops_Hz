@@ -41,6 +41,7 @@ while{ animationState _player == _anim }do{
 
 	if (_PlayersHelping >= _playersNeeded) exitWith { 
 		_break = true;
+		hint "Flipping vehicle...";
 	};
 	sleep 1;
 };
