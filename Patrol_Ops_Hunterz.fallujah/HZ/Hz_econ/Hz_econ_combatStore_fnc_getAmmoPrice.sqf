@@ -73,6 +73,26 @@ case "RH_556X45_B_M855A1": {3};
 case "RH_556X45_B_MK262": {2.5};
 case "RH_556X45_B_MK318": {0.85};
 
+case "HLC_556NATO_EPR": {3};
+case "HLC_B_556X45_BALL_TRACER_DIM": {1};
+case "HLC_556NATO_EPR_TRACER": {3.5};
+case "HLC_556NATO_SPR": {2.5};
+case "HLC_556NATO_SOST": {0.85};
+
+
+
+//6.8
+case "HLC_68X43_OTM": {1.25};
+case "HLC_68x43_FMJ": {0.8};
+case "HLC_68X43_IRDIM": {1};
+
+
+
+//7.5
+case "HLC_GP11_APBT": {1.5};
+case "HLC_GP11_FMJ": {0.75};
+case "HLC_GP11_TRACER": {1};
+
 
 
 //762x25
@@ -84,6 +104,10 @@ case "RH_762X25": {0.25};
 case "RH_762X35_B_FMJ": {1};
 case "RH_762X35_B_MATCH": {1};
 case "RH_762X35_B_MSB": {1};
+case "HLC_300BLACKOUT_BALL": {0.9};
+case "HLC_300BLACKOUT_RNBT": {1};
+case "HLC_300BLACKOUT_SMK": {0.75};
+
 
 
 
@@ -118,6 +142,13 @@ case "RH_762x51_B_LFMJSB": {2.50};
 case "CUP_B_762X51_TRACER_WHITE_SPLASH": {1.75};
 case "CUP_B_762X51_TRACER_RED_SPLASH": {1.75};
 
+case "HLC_762X51_BALL": {1.75};
+case "HLC_B_762X51_TRACER_DIM": {2};
+case "HLC_762X51_MK316_20IN": {0.8};
+case "HLC_762X51_BARRIER": {0.75};
+case "HLC_762X51_BTSUB": {1};
+case "HLC_762X51_TRACER": {1};
+
 
 
 //762x54
@@ -131,14 +162,31 @@ case "CUP_B_762X54_BALL_WHITE_TRACER": {1.5};
 case "CUP_B_762X54_BALL_GREEN_TRACER": {1.5};
 
 
+
 //.300WM
 case "RHSUSF_B_300WINMAG": {1};
+case "HLC_300WM_AP": {2};
+case "HLC_300WM_BTHP": {2};
+case "HLC_300WM_BTSP": {2};
+case "HLC_300WM_S_BT": {1.5};
+case "HLC_300WM_TRACER": {1};
+
+
+
+//30-06
+case "HLC_3006_FMJ": {0.65};
+
+
 
 //7.92x33
 case "RHS_AMMO_792X33_SME_BALL": {0.5};
 
 //7.92x57
 case "RHS_AMMO_792X57_BALL": {1.5};
+case "HLC_792X57_AP": {1.5};
+case "HLC_792X57_TRACER": {2.5};
+case "HLC_792X57_BALL": {0.5};
+
 
 
 //.338 lap
@@ -168,9 +216,12 @@ case "RH_9X19_B_M822": {0.25};
 case "RH_9X19_B_HP": {0.45};
 case "RH_9X19_B_HPSB": {0.65};
 case "B_9X21_BALL": {0.25};
+
 case "HLC_9X19_BALL": {0.25};
 case "HLC_9X19_JHP": {0.45};
 case "HLC_9X19_SUBSONIC": {0.33};
+case "HLC_9x19_JHP_SMG": {0.45};
+case "HLC_9X19_M882_SMG": {0.25};
 
 
 //Starter pistol flares
@@ -201,6 +252,9 @@ case "B_45ACP_BALL_GREEN": {0.33};
 case "B_45ACP_BALL": {0.33};
 case "RH_45ACP": {0.33};
 
+//10 mm 
+case "HLC_10MM_FMJ": {0.57};
+case "HLC_10MM_JHP": {1};
 
 
 //.50 AE
@@ -271,6 +325,8 @@ case "RHS_G_VG40SZ": {25};
 case "RHS_G_VG40TB": {30};
 case "RHS_G_VOG25": {10};
 case "RHS_G_VOG25P": {15};
+
+
 
 
 

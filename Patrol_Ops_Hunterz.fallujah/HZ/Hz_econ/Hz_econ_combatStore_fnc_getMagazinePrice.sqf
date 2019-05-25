@@ -548,9 +548,7 @@ case "HLC_8RND_357SIG_B_P239": {46};
 case "HLC_8RND_357SIG_JHP_P239": {46};
 
 //10 MM
-/*
 case "HLC_30RND_10MM_JHP_MP5": {50};
-*/
 case "HLC_30RND_10MM_B_MP5": {50};
 
 
