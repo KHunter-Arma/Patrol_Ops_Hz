@@ -146,6 +146,8 @@ addMissionEventHandler ["PlayerConnected",{
 
 }];
 
+[] execvm "SA_AdvancedTowing\advancedTowingInit.sqf";
+
 //if(mps_ambient_airpatrols) then {[] spawn CREATE_OPFOR_AIRPATROLS;};    
 	
 //[] spawn Hz_func_spawnOpforArtilleryBase;  

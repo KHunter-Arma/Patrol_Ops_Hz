@@ -8,6 +8,8 @@ if(isDedicated || (call Hz_fnc_isHC)) exitWith {
 	
 		waituntil {!isnil "narray2"};
 		if (count narray2 > 0) then {{_x setdamage 1;} foreach narray2;};
+		
+		[] execvm "SA_AdvancedTowing\advancedTowingInit.sqf";
 
 	};
 
@@ -247,6 +249,8 @@ if(_uid in BanList) then {
 	uisleep 5;	
   "-1" call Hz_fnc_arrestPlayer;	
 };
+
+[] execvm "SA_AdvancedTowing\advancedTowingInit.sqf";
 
 waituntil {introseqdone};
 
