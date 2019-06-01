@@ -89,7 +89,13 @@ attachmentsInfo = attachmentsInfo - [
 
 "RH_LEU_MK4",
 "RH_M3LR",
-"RH_ACCUPOINT"
+"RH_ACCUPOINT",
+
+"HLC_OPTIC_ZF95_G3",
+"HLC_OPTIC_LEUPOLDM3A_G3",
+"HLC_OPTIC_ACCUPOINT_G3",
+"HLC_OPTIC_STANAGZF2G_G3",
+"HLC_OPTIC_STANAGZF_G3"
 
 
 ////////////////////////////////////////////////////////////////////////////////////
