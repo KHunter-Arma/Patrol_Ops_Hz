@@ -22,22 +22,43 @@ player addEventHandler ["GetInMan",{
 
 	if (!isnil {player getVariable "ace_medical_ivBags"}) then {
 	
-		if ((_this select 1) != "cargo") exitWith {
+		if !((toUpper typeof (_this select 2)) in ["CUP_C_S1203_AMBULANCE_CIV","CUP_B_LR_AMBULANCE_CZ_W","CUP_B_LR_AMBULANCE_GB_W","C_VAN_02_MEDEVAC_F","CUP_B_HMMWV_AMBULANCE_USMC"]) exitwith {
+		
+			moveout player;
+			hintsilent "You can only board an ambulance";
+		
+		};
+	
+		if ((_this select 1) != "cargo") then {
 		
 			moveout player;
 			(_this select 2) spawn {
 			
-				sleep 0.3;
+				uisleep 0.3;
 				player moveInCargo _this;
 			
 			};
 		
-		};
+		};		
 	
-		if !((toUpper typeof (_this select 2)) in ["CUP_C_S1203_AMBULANCE_CIV","CUP_B_LR_AMBULANCE_CZ_W"]) exitwith {
-		
+	};
+
+}];
+
+player addEventHandler ["SeatSwitchedMan",{
+
+	if (!isnil {player getVariable "ace_medical_ivBags"}) then {
+			
+		if (((assignedVehicleRole player) select 0) == "Driver") then {
+					
+			hint "You're not able to drive";
 			moveout player;
-			hintsilent "You can only board an ambulance";
+			(_this select 2) spawn {
+			
+				uisleep 0.3;
+				player moveInCargo _this;
+			
+			};
 		
 		};
 	
@@ -112,7 +133,7 @@ player addEventHandler ["Killed",{
 		
 		if ((vehicle _player) == _player) then {
       
-			_weaponHolders = nearestObjects [_player, ["WeaponHolderSimulated","WeaponHolder"],30];
+			_weaponHolders = nearestObjects [_player, ["WeaponHolderSimulated","WeaponHolder","GroundWeaponHolder"],30];
 			
 			{	
 				_weps = weaponCargo _x;
