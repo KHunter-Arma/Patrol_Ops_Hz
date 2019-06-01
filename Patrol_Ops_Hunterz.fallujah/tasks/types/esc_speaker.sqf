@@ -12,7 +12,7 @@ _speechCompletePayment = 150000;
 _speechTimeMinutes = 30;
 
 // in case the mission turns into a defend task
-_EnemySpawnMinimumRange = 3000;
+_EnemySpawnMinimumRange = 2000;
 _taskRadius = 50;
 _minSquadCount = 1;
 _maxSquadCount = 4;
@@ -348,7 +348,7 @@ case (_rand < 0.1) : {
 			} foreach _temp;
 			
 			_bomber = _crowd call mps_getrandomelement; 
-			_bomber setVariable ["Hz_ambw_sideFaction",[SIDE_B select 0, "Civilians"]];
+			_bomber setVariable ["Hz_ambw_sideFaction",[SIDE_B select 0, "Civilians"],true];
 			_bomber setskill 1;
 			_bomber addMagazine "IEDUrbanBig_Remote_Mag";
 			_bomber setunitpos "UP";
@@ -357,7 +357,6 @@ case (_rand < 0.1) : {
 			
 			dostop _bomber;
 			
-			//[objNull,_bomber,rSAY,"Hz_ambw_shout"] call RE;
 			[_bomber,"Hz_ambw_shout"] remoteExecCall ["say3D",0,false];
 			
 			[_bomber] joinsilent grpNull;
@@ -365,27 +364,23 @@ case (_rand < 0.1) : {
 			[_bomber] joinsilent _bgroup;
 			
 			_bgroup deleteGroupWhenEmpty true;
-			
-			//[objNull,_bomber,rPLAYMOVE,"AmovPercMstpSsurWnonDnon"] call RE;
-			
+						
 			_bomber playMoveNow "AmovPercMstpSsurWnonDnon";
 			
 			_bomber disableAI "move";
 			uisleep 0.5;
 			[_bomber,"AmovPercMstpSsurWnonDnon"] remoteExecCall ["switchMove",0,false];
 			_bomber disableAI "anim";
-			uisleep 1;
-			//     _uncon = _bomber call ace_sys_wounds_fnc_isUncon;
-			//    waituntil {!_uncon; sleep 2;};
-			if (alive _bomber) then 
+			uisleep 1.4;
 			
-			{  _exppos = getPos _bomber;
+			if ((alive _bomber)  && {!(captive _bomber)}) then 
+			
+			{ 
+				_exppos = getPos _bomber;
 				_bomb = _explosiveClass createVehicle _exppos;
 				_bomb setDamage 1;
-				sleep 0.5;
-				deletevehicle _bomber;
-			  deleteGroup _bgroup;
-				
+				uisleep 0.1;
+				deletevehicle _bomber;			
 			};
 		};   
 

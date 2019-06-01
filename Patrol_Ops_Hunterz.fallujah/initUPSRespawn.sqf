@@ -15,14 +15,15 @@ Hz_pops_UPSRespawnArray = [];
 			if (alive _x) then {
 		
 				if ((count crew _x) == 0) then {
-				
+				//moved to dead vehicle main cleanup loop instead for ambience
+				/*
 					if (({ isplayer _x} count nearestObjects [getposatl _x,["CAManBase"],1000]) == 0) then {
 					
 						Hz_pops_deleteVehicleArray = Hz_pops_deleteVehicleArray - [_x];
 						deletevehicle _x;				
 					
 					};
-				
+				*/
 				} else {
 				
 					//failed spawn?...
@@ -54,9 +55,9 @@ Hz_pops_UPSRespawnArray = [];
 			_randomPatrol = Hz_pops_UPSRespawnArray select _randomIndex; 
 		
 			if 	(			
-					((count allunits) < Hz_max_ambient_units)
-					&& (!missionload)
-					&& (({isplayer _x} count nearestObjects[markerpos (_randomPatrol select 2),["CAManBase"],5000] < 1) || hz_debug)
+						(!missionload)
+					&& {(count allunits) < Hz_max_ambient_units}
+					&& {({isplayer _x} count nearestObjects[markerpos (_randomPatrol select 2),["CAManBase"],5000] < 1) || hz_debug}
 					) exitWith {
 								 
 					  _randomPatrol spawn AIvcl_respawn_UPS;
@@ -66,39 +67,35 @@ Hz_pops_UPSRespawnArray = [];
 					};
 		
 		} foreach Hz_pops_UPSRespawnArray;
-    
-    if ((playersNumber (SIDE_A select 0)) == 0) then {
-    
-      {
-      
-        if (local _x) then {
         
-          if (_x getVariable ["Hz_disabledPatrol",false]) then {
-          
-            {
-            
-              _veh = vehicle _x;
-              
-              {
-              
-                deleteVehicle _x;
-              
-              } foreach crew _veh;
+		{
+		
+			if (local _x) then {
+			
+				if ((_x getVariable ["Hz_disabledPatrol",false]) && {(time - (_x getvariable ["Hz_AI_lastCriticalDangerTime",-600])) > 300} && {({isplayer _x} count (nearestObjects [getpos leader _x,["CAManBase"],2000])) < 1}) then {
+				
+					{
+					
+						_veh = vehicle _x;
+						
+						{
+						
+							deleteVehicle _x;
+						
+						} foreach crew _veh;
 
-              deleteVehicle _veh;
-              deleteVehicle _x;
-            
-            } foreach units _x;  
+						deleteVehicle _veh;
+						deleteVehicle _x;
+					
+					} foreach units _x;  
 
-            //deleteGroup _x;
-          
-          };
-        
-        };
-      
-      } foreach allGroups;
-    
-    };
+					//deleteGroup _x;
+				
+				};
+			
+			};
+		
+		} foreach allGroups;    
 
 	};
 

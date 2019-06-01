@@ -83,7 +83,7 @@ class HZ_fort_main {
 			class HZ_fort_version: RscText
 			{
 				idc = 4138;
-				text = "v0.02";
+				text = "v0.3";
 				x = 0.716146 * safezoneW + safezoneX;
 				y = 0.825833 * safezoneH + safezoneY;
 				w = 0.0729165 * safezoneW;

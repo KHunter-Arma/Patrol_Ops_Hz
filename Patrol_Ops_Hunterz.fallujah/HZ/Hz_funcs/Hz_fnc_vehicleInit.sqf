@@ -12,7 +12,7 @@ if ((_vehicle iskindof "SignAd_SponsorS_ION_F") || (_vehicle iskindof "SignAd_Sp
 
 if (_vehicle isKindOf "LandVehicle") then {
 
-	_initstatement = _initstatement + "_obj addAction ['<t color=''#FF0000''>Flip vehicle</t>','vehicle_flip.sqf' , nil, 1.5, true, true, '', '(((vectorUp _target) select 2) < 0 || ((vectorUp _target) select 0) > 0.8) && (vehicle _this == _this)', 6, false, ''];";
+	_initstatement = _initstatement + "_obj setVariable ['flipAnimHandler',_obj addAction ['<t color=''#FF0000''>Flip vehicle</t>','vehicle_flip.sqf' , nil, 1.5, true, true, '', '((vehicle _this) == _this) && {(((vectorUp _target) select 2) < 0) || {((vectorUp _target) select 0) > 0.8}}', 6, false, '']];";
 	
 	if (_vehicle isKindOf "Van_02_vehicle_base_F") then {
 	

@@ -1,67 +1,88 @@
-if (isNil "fliprunning") then {fliprunning = false};
-if (fliprunning) exitWith {};
-fliprunning = true;
-
 _car = _this select 0;
 _player = _this select 1;
-_PlayersHelping = _car getVariable ["Flip_Needed",0];
-private "_playersNeeded";
 
 _mass = getMass _car; 
-/*
-switch (_mass) do { 
-	case (_mass >= 0 && _mass <= 1600) : { _playersNeeded = 1; }; 
-	case (_mass > 1600 && _mass <= 2140) : { _playersNeeded = 2; }; 
-	case (_mass > 2140) : { _playersNeeded = 3; }; 
-	default {  _playersNeeded = 3; }; 
-};
-*/
-
 _playersNeeded = ceil (_mass/800);
 if (_playersNeeded <= 0) then {_playersNeeded = 1};
+_PlayersHelping = _car getVariable ["playershelping",0];
 
-//copyToClipboard str _mass;
-//_playersNeeded = 1; //set for testing only, can be removed later
-_car setVariable ["Flip_Needed",_PlayersHelping + 1,true];   //setvariable
+if (_PlayersHelping >= _playersNeeded) exitWith {
+
+	hint "There's enough people to flip this already, no need for more!";
+
+};
+
+if (_PlayersHelping < 0) then {_PlayersHelping = 0};
+_car setVariable ["playershelping",_PlayersHelping + 1,true];
+
+_car removeAction (_car getVariable "flipAnimHandler");
+_cancelHandler = player addAction ["<t color='#FF0000'>Cancel animation</t>",{[player,""] remoteexeccall ["switchMove",0,false];}, nil, 99, false];
+
 [player,"AidlPknlMstpSnonWnonDnon_G01"] remoteExecCall ["switchMove",0,false];
-sleep 1;
+//this locks animation, which is required
 player playMoveNow "AidlPknlMstpSnonWnonDnon_G01";
-sleep 0.2; // transition time
-_anim = animationState _player;
-_break = false;
+_flipVehicle = false;
 
 if (_PlayersHelping < _playersNeeded) then {
 
-	hint "Waiting for more people to help flip this thing!...";
+	hint "Too heavy... We need more people to flip this thing!";
 
 };
 
-while{ animationState _player == _anim }do{
-	_PlayersHelping = _car getVariable ["Flip_Needed",0];
+while{ animationState _player == "AidlPknlMstpSnonWnonDnon_G01"} do {
+	_PlayersHelping = _car getVariable "playershelping";
 
 	if (_PlayersHelping >= _playersNeeded) exitWith { 
-		_break = true;
+		hintsilent "";
+		_flipVehicle = true;
+		sleep 1;
 	};
 	sleep 1;
 };
 
-if (_break) then {
+if (_flipVehicle) then {
+
+	_carpos = (getPosATL _car) vectorAdd [0,0,2];	
+  [_player,"InBaseMoves_table1"] remoteexeccall ["switchMove",0,false];
+	_player playMoveNow "InBaseMoves_table1";
+
+	[47, [_car,_playersNeeded,_carpos,_cancelHandler], {
+
+		_args = _this select 0;
+		_car = _args select 0;
+		_carpos = _args select 2;
+		_cancelHandler = _args select 3;
 	
-	disableUserInput true; 
-  [_player,"InBaseMoves_repairVehicleKnl"] remoteexeccall ["switchMove",0,false];
-  sleep 1;
-	_player playMoveNow "InBaseMoves_repairVehicleKnl";
-	disableUserInput false; 
-	sleep 18;
+		//3 lines of network congesting code isn't good... rip
+		[_car, [0,0,1]] remoteexeccall ["setVectorUp", _car, false];
+		_car setposatl _carpos;
+		
+		_car setVariable ["playershelping",0,true];
+		
+		player removeAction _cancelHandler;
+		_car setVariable ["flipAnimHandler",_car addAction ["<t color='#FF0000'>Flip vehicle</t>","vehicle_flip.sqf" , nil, 1.5, true, true, "", "((vehicle _this) == _this) && {(((vectorUp _target) select 2) < 0) || {((vectorUp _target) select 0) > 0.8}}", 6, false, ""]];
 
-	_carpos = [getPos _car select 0,getpos _car select 1, (getPos _car select 2) +2];
-	[_car, [0,0,1]] remoteexeccall ["setVectorUp", _car, false];
-	[_car, _carpos] remoteexeccall ["setPos", _car, false];
-} 
-else 
-{
-	_PlayersHelping = _car getVariable ["Flip_Needed",1];
-	_car setVariable ["Flip_Needed",_PlayersHelping - 1,true];
+	}, {
+	
+		_args = _this select 0;
+	
+		_car = _args select 0;
+		_cancelHandler = _args select 3;
+		
+		[player,""] remoteexeccall ["switchMove",0,false]; 
+		
+		_car setVariable ["playershelping",(_car getVariable "playershelping") - 1,true];
+		
+		player removeAction _cancelHandler;
+		_car setVariable ["flipAnimHandler",_car addAction ["<t color='#FF0000'>Flip vehicle</t>","vehicle_flip.sqf" , nil, 1.5, true, true, "", "((vehicle _this) == _this) && {(((vectorUp _target) select 2) < 0) || {((vectorUp _target) select 0) > 0.8}}", 6, false, ""]];
+	
+	}, "Flipping vehicle...",{_args = _this select 0; _args params ["_car","_playersNeeded"]; (!captive player) && {alive player} && {alive _car} && {(_car getVariable "playershelping") >= _playersNeeded}}] call ace_common_fnc_progressBar;	
+	
+} else {
+
+	player removeAction _cancelHandler;
+	
+	_car setVariable ["playershelping",(_car getVariable "playershelping") - 1,true];	
+	_car setVariable ["flipAnimHandler",_car addAction ["<t color='#FF0000'>Flip vehicle</t>","vehicle_flip.sqf" , nil, 1.5, true, true, "", "((vehicle _this) == _this) && {(((vectorUp _target) select 2) < 0) || {((vectorUp _target) select 0) > 0.8}}", 6, false, ""]];
+	
 };
-
-fliprunning = false;

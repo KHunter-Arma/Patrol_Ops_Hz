@@ -7,17 +7,17 @@ diag_log diag_activeMissionFSMs;
 _EnemySpawnMinimumRange = 3000;
 _taskRadius = 200;
 _minSquadCount = 2;
-_maxSquadCount = 4;
+_maxSquadCount = 5;
 
 //Chance of a squad having the following vehicle support (can't have more than 1 vehicle per squad)
 _CASchance = 0;
-_TankChance = 0;
-_IFVchance = 0;
-_AAchance = 0;
-_CarChance = 0.6;
+_TankChance = 0.03;
+_IFVchance = 0.4;
+_AAchance = 0.2;
+_CarChance = 0.8;
 
 //Useful for justifying task-specific difficulties.
-_rewardMultiplier = 0.7;
+_rewardMultiplier = 0.5;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 
