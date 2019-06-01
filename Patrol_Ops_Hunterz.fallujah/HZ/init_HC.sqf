@@ -119,7 +119,7 @@ _timescaler3 = 0;
 					
 							_veh = _x;
 					
-							if(!(_x getvariable ["NoDelete",false]) && (({(_x distance _veh) < 300} count playableUnits) < 1)) then {
+							if(!(_x getvariable ["NoDelete",false]) && (({(_x distance _veh) < 2000} count playableUnits) < 1)) then {
 							
 								deleteVehicle _x;				
 							
@@ -129,7 +129,32 @@ _timescaler3 = 0;
 					
 				};
 				
-			}foreach AllDead;      
+			}foreach AllDead;   
+
+			if (!isnil "Hz_pops_deleteVehicleArray") then {
+		
+				{
+
+					if (alive _x) then {
+				
+						if ((count crew _x) == 0) then {
+						
+							_veh = _x;
+						
+							if (({(_x distance _veh) < 2000} count playableUnits) < 1) then {
+							
+								Hz_pops_deleteVehicleArray = Hz_pops_deleteVehicleArray - [_x];
+								deletevehicle _x;				
+							
+							};
+						
+						};
+					
+					};
+
+				} foreach Hz_pops_deleteVehicleArray;
+		
+			};
 			
 			_timescaler3 = 0;
 			
