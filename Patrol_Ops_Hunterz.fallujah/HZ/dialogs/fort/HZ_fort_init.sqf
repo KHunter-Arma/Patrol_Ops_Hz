@@ -12,3 +12,5 @@ if(isServer) then {
     publicvariable "hz_fort_array"; 
 		
 };
+
+Hz_fort_fortificationList = [Hz_fort_fortificationList, [], { gettext (configFile >> "cfgvehicles" >> _x >> "displayname") }, "ASCEND"] call BIS_fnc_sortBy;
