@@ -667,6 +667,8 @@ case "RHSUSF_RHINO" : {178};
 
 case "SAN_HEADLAMP_V2" : {25};
 
+case "BC_TOWROPE" : {150};
+
 
 //MAPS
 case "ITEMMAP": {2000};

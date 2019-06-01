@@ -48,7 +48,8 @@ case (_this iskindof "CUP_C_OCTAVIA_CIV") : {30000};
 case (_this iskindof "Van_01_transport_base_F") : {22500}; // Ref: Isuzu Grafter 3.5t
 case (_this iskindof "Van_01_box_base_F") : {24000};
 case (_this iskindof "Van_01_fuel_base_F") : {40000};
-case (_this iskindof "Van_02_vehicle_base_F") : {45600}; // Ref: Mercedes Sprinter
+case (_this iskindof "C_Van_02_medevac_F") : {68000}; // Ref: Mercedes Sprinter
+case (_this iskindof "Van_02_vehicle_base_F") : {45600}; 
 case (_this iskindof "Van_02_transport_base_F") : {50000};
 case (_this iskindof "C_IDAP_Truck_02_water_F") : {12000}; //Ref: 1999 Kamaz 43101 6x6 Tanker
 
