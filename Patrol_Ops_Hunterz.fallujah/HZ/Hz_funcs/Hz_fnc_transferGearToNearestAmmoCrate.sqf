@@ -90,7 +90,7 @@ _dist = 300000;
 
 if (isnull _crate) then {
 
-	_crate = "WeaponHolder" createVehicle (markerpos "respawn_west");
+	_crate = "GroundWeaponHolder" createVehicle (markerpos "respawn_west");
 
 };
 

@@ -38,12 +38,16 @@ if (_isman) then {
 
 	{
 			_dude = _group createUnit [_x,_respawnzone, [], 100, "NONE"];
-			[_dude] allowGetIn false;
 			
 	} foreach _escort;
-
+	
+	_escort allowGetIn false;
+	_escort orderGetIn false;
 
 } else {
+
+	//needed before going into UPS or bis function will override name...
+	scriptName format ["HZUPSID: %1",_group];
 
 	if (_vehIsTank) then {
 	
@@ -55,9 +59,11 @@ if (_isman) then {
 		
 		{
 			_dude = _group createUnit [_x,_respawnzone, [], 100, "NONE"];
-			[_dude] allowGetIn false;
 			
-		} foreach _escort;	
+		} foreach _escort;
+
+		_escort allowGetIn false;
+		_escort orderGetIn false;
 
 	} else {
 		
