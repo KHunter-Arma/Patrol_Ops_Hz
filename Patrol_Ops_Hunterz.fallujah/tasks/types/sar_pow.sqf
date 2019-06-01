@@ -166,7 +166,16 @@ _powBuilding = (nearestObjects [_pow1,["House"],50]) select 0;
 _powBuilding setvariable ["occupied",true];
 
 _guardPositions = [_powBuilding] call BIS_fnc_buildingPositions;
-_guardPositions = _guardPositions - [_powPos];
+
+{
+
+	if ((_x distance _powPos) < 2) then {
+	
+		_guardPositions = _guardPositions - [_x];
+	
+	};
+
+} foreach _guardPositions;
 
 {
 

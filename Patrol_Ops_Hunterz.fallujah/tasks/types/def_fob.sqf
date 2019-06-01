@@ -94,6 +94,10 @@ _guardPos = _position;
 
 } foreach _newComp;
 
+_statGrp setFormation "DIAMOND";
+_statGrp setVariable ["Hz_defending",true];
+_statGrp setCombatMode "GREEN";
+
 _statGrp deleteGroupWhenEmpty true;
 
 //create defenders
@@ -103,10 +107,12 @@ _dude = _defGrp createUnit [mps_blufor_riflemen call mps_getRandomElement, _posi
 _dude setposatl _guardPos;
 _dude forcespeed 0;
 _dude setUnitPos "UP";
-_defGrp setFormation "DIAMOND";
 
+_defGrp setFormation "DIAMOND";
 _defGrp setVariable ["Hz_defending",true];
 _defGrp setCombatMode "GREEN";
+
+_defGrp deleteGroupWhenEmpty true;
 
 /*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
 
@@ -133,6 +139,9 @@ while{
 (call Hz_fnc_taskSuccessCheckGenericConditions)
 
 } do { sleep 5 };
+
+_defGrp setCombatMode "YELLOW";
+_statGrp setCombatMode "YELLOW";
 
 /*--------------------CREATE ENEMY NEAR LOCATION---------------------------------*/
 

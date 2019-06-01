@@ -11,7 +11,7 @@ _maxSquadCount = 5;
 
 //Chance of a squad having the following vehicle support (can't have more than 1 vehicle per squad)
 _CASchance = 0;
-_TankChance = 0.1;
+_TankChance = 0.01;
 _IFVchance = 0.3;
 _AAchance = 0.1;
 _CarChance = 0.75;
@@ -150,6 +150,10 @@ _statGrp = creategroup (SIDE_A select 0);
 
 } foreach _newComp;
 
+_statGrp setFormation "DIAMOND";
+_statGrp setVariable ["Hz_defending",true];
+_statGrp setCombatMode "GREEN";
+
 _statGrp deleteGroupWhenEmpty true;
 
 //create defenders
@@ -157,14 +161,15 @@ _defGrp = creategroup (SIDE_A select 0);
 for "_i" from 1 to 12 do {
 
 	_dude = _defGrp createUnit [Hz_ambw_hostileCivTypes call mps_getRandomElement, _position, [], 10, "NONE"];
-	_dude call _fnc_initDude;
 	if (_i == 6) then {
-	
+		
+		_dude addbackpack "CUP_B_TKI_Backpack_Gunner_RPG";
 		_dude addMagazine "CUP_PG7V_M";
 		_dude addWeapon "CUP_launch_RPG7V";
 		_dude addMagazine "CUP_PG7V_M";
 	
 	};
+	_dude call _fnc_initDude;
 	if (_i == 4) then {
 	
 		removeAllWeapons _dude;
@@ -175,6 +180,7 @@ for "_i" from 1 to 12 do {
 		_dude addMagazine "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Green_M";
 	
 	};	
+	_dude selectweapon (primaryweapon _dude);
 
 };
 
@@ -209,6 +215,23 @@ while{
 (call Hz_fnc_taskSuccessCheckGenericConditions)
 
 } do { sleep 5 };
+
+//wtf arma... they still "think" they're civilians...
+_defGrpOld = _defGrp;
+_defGrp = creategroup (SIDE_A select 0);
+(units _defGrpOld) joinSilent _defGrp;
+_defGrp setFormation "DIAMOND";
+_defGrp setVariable ["Hz_defending",true];
+_statGrpOld = _statGrp;
+_statGrp = creategroup (SIDE_A select 0);
+(units _statGrpOld) joinSilent _statGrp;
+_statGrp setFormation "DIAMOND";
+_statGrp setVariable ["Hz_defending",true];
+_defGrp deleteGroupWhenEmpty true;
+_statGrp deleteGroupWhenEmpty true;
+
+_statGrp setCombatMode "YELLOW";
+_defGrp setCombatMode "YELLOW";
 
 /*--------------------CREATE ENEMY NEAR LOCATION---------------------------------*/
 

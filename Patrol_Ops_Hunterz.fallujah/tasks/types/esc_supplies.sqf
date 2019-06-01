@@ -27,8 +27,6 @@ _rewardMultiplier = 1;
 
 /*--------------------CREATE TARGET-----------------------------------*/
 
-_downPayment = _downPayment/_rewardMultiplier;
-
 Hz_pops_task_auxFailCondition = false;
 _supplyTypes = ["Land_PaperBox_01_open_water_F","Land_PaperBox_01_open_boxes_F","Land_FoodSacks_01_large_white_idap_F","Land_PlasticCase_01_large_idap_F"];
 _escortTypes = ["C_IDAP_Man_AidWorker_03_F","C_IDAP_Man_AidWorker_04_F","C_IDAP_Man_AidWorker_06_F","C_IDAP_Man_AidWorker_05_F","C_IDAP_Man_AidWorker_02_F","C_IDAP_Man_AidWorker_09_F","C_IDAP_Man_AidWorker_08_F","C_IDAP_Man_AidWorker_07_F","C_IDAP_Man_AidWorker_01_F"];
@@ -216,7 +214,7 @@ if (
 
 _spawnedSquads = (_minSquadCount max (round (random _maxSquadCount)));
 hz_reward = 1;
-_otherReward = _otherReward + _downPayment;
+_otherReward = _otherReward + (_downPayment/_rewardMultiplier);
 
 _lastAliveContainerCount = 6;
 _lastAliveWorkerCount = 4;
@@ -244,7 +242,7 @@ waituntil {
 	if (_count < _lastAliveWorkerCount) then {
 	
 		_lastAliveWorkerCount = _count; 
-		_otherReward = _otherReward - _penaltyPerLostWorker;
+		_otherReward = _otherReward - (_penaltyPerLostWorker/_rewardMultiplier);
 		
 	};
 	
@@ -252,7 +250,7 @@ waituntil {
 	if (_count < _lastAliveContainerCount) then {
 	
 		_lastAliveContainerCount = _count; 
-		_otherReward = _otherReward - _penaltyPerLostContainer;
+		_otherReward = _otherReward - (_penaltyPerLostContainer/_rewardMultiplier);
 		
 	};
 	
@@ -373,7 +371,7 @@ while {
 	if (_count < _lastAliveWorkerCount) then {
 	
 		_lastAliveWorkerCount = _count; 
-		_otherReward = _otherReward - _penaltyPerLostWorker;
+		_otherReward = _otherReward - (_penaltyPerLostWorker/_rewardMultiplier);
 		
 	};
 	
@@ -381,7 +379,7 @@ while {
 	if (_count < _lastAliveContainerCount) then {
 	
 		_lastAliveContainerCount = _count; 
-		_otherReward = _otherReward - _penaltyPerLostContainer;
+		_otherReward = _otherReward - (_penaltyPerLostContainer/_rewardMultiplier);
 		
 	};
 	
@@ -409,7 +407,7 @@ case (_supplyBar >= _supplyTime) : {
 			if (_count < _lastAliveWorkerCount) then {
 			
 				_lastAliveWorkerCount = _count; 
-				_otherReward = _otherReward - _penaltyPerLostWorker;
+				_otherReward = _otherReward - (_penaltyPerLostWorker/_rewardMultiplier);
 				
 			};
 	

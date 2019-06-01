@@ -11,13 +11,13 @@ _maxSquadCount = 10;
 
 //Chance of a squad having the following vehicle support (can't have more than 1 vehicle per squad)
 _CASchance = 0;
-_TankChance = 0;
-_IFVchance = 0;
-_AAchance = 0;
-_CarChance = 0.6;
+_TankChance = 0.1;
+_IFVchance = 0.3;
+_AAchance = 0.5;
+_CarChance = 0.8;
 
 //Useful for justifying task-specific difficulties.
-_rewardMultiplier = 0.5;
+_rewardMultiplier = 0.3;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 
@@ -72,6 +72,8 @@ while{ (({ (side _x) == (SIDE_A select 0)} count (nearestObjects [_position,["CA
 
 Hz_econ_combatStore_storeClosed = true;
 publicVariable "Hz_econ_combatStore_storeClosed";
+Hz_econ_vehicleStore_storeClosed = true;
+publicVariable "Hz_econ_vehicleStore_storeClosed";
 Hz_pops_disableStore = true;
 publicVariable "Hz_pops_disableStore";
 
@@ -81,16 +83,19 @@ publicVariable "Hz_pops_disableStore";
 
 	John addMagazines ["CUP_15Rnd_9x19_M9",15];	
 	John addWeapon "CUP_hgun_M9";	
-	John setUnitPos "MIDDLE";
+	//John setUnitPos "MIDDLE";
 	
 	_grp = group John;	
-	_grp setBehaviour "AWARE";
-	_grp setCombatMode "GREEN";
+	_grp setBehaviour "SAFE";
+	_grp setCombatMode "YELLOW";
 	
 	{
 	
 		_x enableAI "MOVE";
-		_x forceSpeed -1;
+		//_x enableAI "PATH";
+		_x enableAI "AUTOCOMBAT";
+		_x setUnitPos "AUTO";
+		//_x forceSpeed -1;
 	
 	} foreach (units _grp);
 	
