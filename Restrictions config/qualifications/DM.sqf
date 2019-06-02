@@ -48,7 +48,9 @@ wepInfo = wepInfo - [
 "HLC_RIFLE_M14DMR_RAIL",
 "HLC_RIFLE_SG550SNIPER",
 "HLC_RIFLE_SG550SNIPER_RIS",
-"HLC_RIFLE_M14SOPMOD"
+"HLC_RIFLE_M14SOPMOD",
+"HLC_RIFLE_G3SG1", 
+"HLC_RIFLE_G3SG1RIS"  
 
 
 
@@ -108,7 +110,13 @@ attachmentsInfo = attachmentsInfo - [
 
 "RH_LEU_MK4",
 "RH_M3LR",
-"RH_ACCUPOINT"
+"RH_ACCUPOINT",
+
+"HLC_OPTIC_ZF95_G3",
+"HLC_OPTIC_LEUPOLDM3A_G3",
+"HLC_OPTIC_ACCUPOINT_G3",
+"HLC_OPTIC_STANAGZF2G_G3",
+"HLC_OPTIC_STANAGZF_G3"
 
 
 ////////////////////////////////////////////////////////////////////////////////////

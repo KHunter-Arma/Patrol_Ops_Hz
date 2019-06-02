@@ -171,8 +171,6 @@ wepInfo = wepInfo - [
 "HLC_RIFLE_FAL5061RAIL", 
 "HLC_RIFLE_LAR", 
 "HLC_RIFLE_HK51", 
-"HLC_RIFLE_G3SG1", 
-"HLC_RIFLE_G3SG1RIS",  
 "HLC_RIFLE_G36MLIC", 
 "HLC_RIFLE_G36A1", 
 "HLC_RIFLE_G36C", 
@@ -191,7 +189,7 @@ wepInfo = wepInfo - [
 "HLC_RIFLE_G3A3", 
 "HLC_RIFLE_G3A3RIS", 
 "HLC_RIFLE_G3A3V", 
-"HLC_RIFLE_G3A3VRIS", 
+"HLC_RIFLE_G3A3VRIS",
 "HLC_RIFLE_G3KA4", 
 "HLC_RIFLE_HK33A2", 
 "HLC_RIFLE_HK33A2RIS", 
@@ -508,7 +506,9 @@ attachmentsInfo = attachmentsInfo - [
 "HLC_MUZZLE_TIRANT9S",
 "HLC_MUZZLE_OCTANE9",
 "HLC_ACC_DBALPL",
-"HLC_ACC_DBALPL_FL"
+"HLC_ACC_DBALPL_FL",
+"HLC_OPTIC_ZFSG1"
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////
