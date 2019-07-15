@@ -507,7 +507,7 @@ attachmentsInfo = attachmentsInfo - [
 "HLC_MUZZLE_OCTANE9",
 "HLC_ACC_DBALPL",
 "HLC_ACC_DBALPL_FL",
-"HLC_OPTIC_ZFSG1"
+"HLC_OPTIC_ZF95_G3"
 
 
 
