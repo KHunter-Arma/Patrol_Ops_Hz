@@ -180,7 +180,7 @@ for "_i" from 1 to 4 do {
 			if (_dude == _killer) then {
 				
 				//civ might be sent away so keep radius large
-				_nearCars = nearestobjects [_dude,["LandVehicle"],30];
+				_nearCars = _dude nearEntities [["LandVehicle"],30];
 				
 				{
 					
@@ -250,13 +250,19 @@ _position
 
 
 /*------------------- INTENSIFY AMBIENT COMBAT------------------------------------*/
-
 missionload = false;
 publicVariable "missionload";
-Hz_max_ambient_units = Hz_max_ambient_units + Hz_ambient_units_intensify_amount;
-publicVariable "Hz_max_ambient_units";
-Hz_max_allunits = Hz_max_allunits + Hz_ambient_units_intensify_amount; 
-publicVariable "Hz_max_allunits";
+
+_rand = random 1;
+_suicidebomber = false;
+if (_rand < 0.1) then {
+
+	_suicidebomber = true;
+	Hz_max_ambient_units = Hz_max_ambient_units + Hz_ambient_units_intensify_amount;
+	publicVariable "Hz_max_ambient_units";
+
+};
+
 /*--------------------WAIT UNTIL TARGET MEETS PLAYERS---------------------------------*/
 
 waituntil { 
@@ -303,13 +309,11 @@ waituntil {
 };
 
 /*--------------------MISSION CRITERIA TO PASS---------------------------------*/
-_rand = random 1;
-
 _goTime = _preachMax / 4;
 
 switch (true) do {
 
-case (_rand < 0.1) : {
+case (_suicidebomber) : {
 
 		_otherReward = _otherReward + 100000;
 
@@ -465,7 +469,7 @@ case (_rand < 0.8) : {
 					};
 					
 					//unbunching delay
-					sleep 120;
+					sleep 450;
 					
 				};
 			};
@@ -697,10 +701,12 @@ if (hz_reward > 0) then {
 
 /*------------------- INTENSIFY AMBIENT COMBAT---------------------------*/
 
-Hz_max_ambient_units = Hz_max_ambient_units - Hz_ambient_units_intensify_amount;
-publicVariable "Hz_max_ambient_units";
-Hz_max_allunits = Hz_max_allunits - Hz_ambient_units_intensify_amount; 
-publicVariable "Hz_max_allunits";
+if (_suicidebomber) then {
+
+	Hz_max_ambient_units = Hz_max_ambient_units - Hz_ambient_units_intensify_amount;
+	publicVariable "Hz_max_ambient_units";
+
+};
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/  
 
@@ -728,12 +734,32 @@ if((call Hz_fnc_taskSuccessCheckGenericConditions) && (alive _vip) && (({(_vip d
 	
 	while{ ({(_x distance _pos) < 50} count playableUnits) > 0} do { sleep 60 };
 	
-	{deletevehicle _x} foreach (_vip getVariable "guards");
+	{
+		_veh = vehicle _x;
+		if (_veh == _x) then {							
+			deletevehicle _x;							
+		} else {							
+			_veh deleteVehicleCrew _x;							
+		};	
+	} foreach (_vip getVariable "guards");
 	{deletevehicle _x} foreach _crowd;
 	{deletevehicle _x} foreach _newComp;
-	deleteVehicle _vip;	
 	
-	{deletevehicle _x}forEach _units;
+	_veh = vehicle _vip;
+	if (_veh == _vip) then {							
+		deletevehicle _vip;							
+	} else {							
+		_veh deleteVehicleCrew _vip;							
+	};
+	
+	{	
+		_veh = vehicle _x;
+		if (_veh == _x) then {							
+			deletevehicle _x;							
+		} else {							
+			_veh deleteVehicleCrew _x;							
+		};	
+	}forEach _units;
 	{deletevehicle _x}forEach _vehs;
 	
 };      

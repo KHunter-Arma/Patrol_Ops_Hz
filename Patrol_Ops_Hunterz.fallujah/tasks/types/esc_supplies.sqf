@@ -92,7 +92,7 @@ _workergrp deleteGroupWhenEmpty true;
 			if (_dude == _killer) then {
 				
 				//civ might be sent away so keep radius large
-				_nearCars = nearestobjects [_dude,["LandVehicle"],30];
+				_nearCars = _dude nearEntities [["LandVehicle"],30];
 				
 				{
 					
@@ -166,11 +166,12 @@ _crowdGrp deleteGroupWhenEmpty true;
 
 missionload = false;
 publicVariable "missionload";
+/*
 Hz_max_ambient_units = Hz_max_ambient_units + Hz_ambient_units_intensify_amount;
 publicVariable "Hz_max_ambient_units";
 Hz_max_allunits = Hz_max_allunits + Hz_ambient_units_intensify_amount;
 publicVariable "Hz_max_allunits";
-
+*/
 /*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
 
 mps_civilian_intel = (_containers + _workers); publicVariable "mps_civilian_intel";
@@ -220,13 +221,9 @@ _lastAliveContainerCount = 6;
 _lastAliveWorkerCount = 4;
 
 _waitForArrival = false;
-/*
 if ((random 1) < 0.5) then {
-
-_waitForArrival = true;
-
+	_waitForArrival = true;
 };
-*/
 
 waituntil {
 
@@ -257,7 +254,7 @@ waituntil {
 	[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
 
 	(
-	(if (!_waitForArrival) then {({(_x distance _spawnpos) > 1000} count _workers) > 0} else {({(_x distance _position) < 100} count _workers) > 0})
+	(if (!_waitForArrival) then {({(_x distance _spawnpos) > 1000} count _workers) > 0} else {({(_x distance _position) < 200} count _workers) > 0})
 	|| (({alive _x} count _containers) < 1)
 	|| (({alive _x} count _workers) < 1)
 	|| Hz_pops_task_auxFailCondition
@@ -313,7 +310,7 @@ if(_spawnedSquads > 0) then {
 		};
 		
 		//unbunching delay
-		sleep 120;
+		sleep 450;
 	};
 };
 
@@ -467,12 +464,12 @@ if (hz_reward > 0) then {
 };
 
 /*------------------- INTENSIFY AMBIENT COMBAT---------------------------*/
-
+/*
 Hz_max_ambient_units = Hz_max_ambient_units - Hz_ambient_units_intensify_amount;
 publicVariable "Hz_max_ambient_units";
 Hz_max_allunits = Hz_max_allunits - Hz_ambient_units_intensify_amount; 
 publicVariable "Hz_max_allunits";
-
+*/
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/
 if( (_supplyBar >= _supplyTime) && (({ alive _x } count _workers) > 0) && (call Hz_fnc_taskSuccessCheckGenericConditions) && !Hz_pops_task_auxFailCondition) then {
 
@@ -486,7 +483,16 @@ if( (_supplyBar >= _supplyTime) && (({ alive _x } count _workers) > 0) && (call 
 
 /*--------------------CLEAN UP AFTER MISSION---------------------------------*/
 
-{if(alive _x) then {deletevehicle _x}} foreach _workers;
+{
+	if(alive _x) then {
+		_veh = vehicle _x;
+		if (_veh == _x) then {							
+			deletevehicle _x;							
+		} else {							
+			_veh deleteVehicleCrew _x;							
+		};
+	};
+} foreach _workers;
 {deletevehicle _x} foreach _containers;
 
 /*--------------------CLEAN UP (NEW VERSION)---------------------------------*/       
@@ -495,10 +501,18 @@ if( (_supplyBar >= _supplyTime) && (({ alive _x } count _workers) > 0) && (call 
 	
 	private ["_units","_vehs","_markers"];
 	_units = _this select 0;
+	_pos = _this select 1;
 	_vehs = _this select 2;
 	
-	while{ {isPlayer _x} count nearestObjects[(_this select 1),["CAManBase","LandVehicle","Plane"],1500] > 0} do { sleep 60 };
-	{deletevehicle _x}forEach _units;
+	while{({(_x distance _pos) < 1500} count playableunits) > 0} do { sleep 60 };
+	{	
+		_veh = vehicle _x;
+		if (_veh == _x) then {							
+			deletevehicle _x;							
+		} else {							
+			_veh deleteVehicleCrew _x;							
+		};
+	}forEach _units;
 	{deletevehicle _x}forEach (_this select 3);
 	{deletevehicle _x}forEach _vehs;
 	

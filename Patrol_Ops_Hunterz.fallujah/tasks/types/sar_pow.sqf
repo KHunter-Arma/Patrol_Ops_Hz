@@ -48,7 +48,7 @@ if ((random 1) < 0.25) then {
 	_ins = false;
 	_downPayment = _downPayment*1.5;
 
-	_buildings = nearestobjects [markerpos "ao_centre",["House"],3000];
+	_buildings = nearestObjects [(markerpos "ao_centre"),["House"],3000];
 	_bigBuildings = [];
 	{
 	
@@ -61,11 +61,12 @@ if ((random 1) < 0.25) then {
 	} foreach _buildings;
 	
 	_building = _bigBuildings call mps_getRandomElement;
-	_position = [getpos _building,0,350] call Hz_func_findspawnpos;
+	_posB = getpos _building;
+	_position = [_posB,0,350] call Hz_func_findspawnpos;
 	
-	if (((str _position) == (str [(markerpos "patrol_respawn_n") select 0, (markerpos "patrol_respawn_n") select 1,0])) || ((str _position) == "[0,0,0]")) then {
+	if ((str _position) == "[0,0,0]") then {
 	
-		_position = getPos _building;
+		_position = _posB;
 	
 	};
 	
@@ -87,13 +88,13 @@ if ((random 1) < 0.25) then {
 	
 	while {!_posFound} do {
 
-		while {(count (nearestobjects [_position,["House"],100])) < 4} do {
+		while {(count (nearestObjects [_position,["House"],100])) < 4} do {
 
 			_position = [markerpos "ao_centre",3500,7000] call Hz_func_findspawnpos;
 		
 		};
 
-		_nearbuildings = nearestObjects [_position, ["House"],200];
+		_nearbuildings = nearestObjects [_position,["House"],200];
 
 		{
 		
@@ -447,7 +448,12 @@ if( alive _pow1 && (call Hz_fnc_taskSuccessCheckGenericConditions)) then {
 
 /*--------------------CLEAN UP AFTER MISSION---------------------------------*/
 
-deleteVehicle _pow1;
+_veh = vehicle _pow1;
+if (_veh == _pow1) then {							
+	deletevehicle _pow1;							
+} else {							
+	_veh deleteVehicleCrew _pow1;							
+};
 
 /*--------------------CLEAN UP (NEW VERSION)---------------------------------*/       
 
@@ -456,10 +462,18 @@ deleteVehicle _pow1;
   
   private ["_units","_vehs","_markers"];
   _units = _this select 0;
+	_pos = _this select 1;
   _vehs = _this select 2;
   
-  while{ {isPlayer _x} count nearestObjects[(_this select 1),["CAManBase","LandVehicle","Plane"],1500] > 0} do { sleep 60 };
-  {deletevehicle _x}forEach _units;
+  while {({(_x distance _pos) < 1500} count playableunits) > 0} do { sleep 60 };
+  {
+		_veh = vehicle _x;
+		if (_veh == _x) then {							
+			deletevehicle _x;							
+		} else {							
+			_veh deleteVehicleCrew _x;							
+		};
+	}forEach _units;
   {deletevehicle _x}forEach _vehs;
 };      
 
