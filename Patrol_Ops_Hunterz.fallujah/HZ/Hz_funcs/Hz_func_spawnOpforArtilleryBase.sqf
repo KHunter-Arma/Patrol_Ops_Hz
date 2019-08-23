@@ -169,7 +169,7 @@ while {true} do {
 		_cond = true;
 		While{_cond} do { 
 			
-			if((({side _x == (SIDE_B select 0)}count nearestobjects [_artylocation,["CAManBase"],750]) < 20) && (count allunits < Hz_max_allunits)) then {
+			if((({side _x == (SIDE_B select 0)}count (_artylocation nearEntities [["CAManBase"],750])) < 20) && (count allunits < Hz_max_allunits)) then {
 
 				//call reinforcements
 				_paragrp = creategroup (SIDE_B select 0);
@@ -205,7 +205,7 @@ private ["_position"];
             
 _position = _this select 0;
 
-			while{ {isPlayer _x} count nearestObjects[_position,["CAManBase"],5000] > 0} do { sleep 60 };
+			while{ {(_x distance _position) < 5000} count playableunits > 0} do { sleep 60 };
 			{deletevehicle _x}forEach Hz_artyBaseObjects;
 
 		};

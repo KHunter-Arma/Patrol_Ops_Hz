@@ -1,5 +1,5 @@
 
-private ["_dirn","_dire","_dist","_intel_loc","_distintel","_intel","_hint","_person","_badresponse","_infcount","_rndfactor","_factor","_alreadygathered"];
+private ["_dirn","_dire","_dist","_intel_loc","_distintel","_intel","_hint","_person"];
 
 if(isNil "mps_civilian_intel") exitwith {
 	if (random 1 < 0.5) then {
@@ -26,28 +26,9 @@ if(count mps_civilian_intel == 0) exitwith {
 
 _person = (_this select 0);
 
-_badresponse = [
-"This person is confused about what your asking",
-"This person is becoming frustrated due to the language barrier",
-"This person does not appear to understand what you're asking",
-"Yallah yallah ziyed move!!!",
-//"I... err... English... no... ehm...",
-"Leave me alone you infidels!",
-"The justice of Allah will soon rain fire upon all you imperialists!"        
+if(!(_person getVariable ["mps_questioned",false])) then {
 
-] call mps_getRandomElement;
-
-_infcount = ( {_x in (playableunits+switchableunits) && (side _x == (SIDE_A select 0)) } count nearestObjects[position player,["Man"],10]) / mps_ref_playercount;
-
-_rndfactor = random 1;
-
-_factor = 1 - (_infcount*_rndfactor);
-
-_alreadygathered = _person getVariable "mps_questioned";
-
-if(if(isNil "_alreadygathered") then {true} else {not _alreadygathered}) then{
-
-	if(/*_factor > 0.93 && */(random 1 > 0.5)) then {
+	if(random 1 > 0.5) then {
 
 		if ((random 1) < 0.5) then {
 
@@ -56,7 +37,7 @@ if(if(isNil "_alreadygathered") then {true} else {not _alreadygathered}) then{
 
 			_dirn = "NORTH"; if( ( position player select 1 ) > (_intel_loc select 1) ) then {_dirn = "SOUTH"};
 			_dire = "EAST"; if( ( position player select 0 ) > (_intel_loc select 0) ) then {_dire = "WEST"};
-			_distintel = ( position player ) distance _intel_loc;
+			_distintel = ( position player ) distance2d _intel_loc;
 			_dist = "not far away";
 			
 			if (_distintel < 300) then {_dist = "not far away from here.";};
@@ -106,11 +87,20 @@ if(if(isNil "_alreadygathered") then {true} else {not _alreadygathered}) then{
 
 	} else {
 
-		hint _badresponse;
+		hint ([
+					"This person is confused about what your asking",
+					"This person is becoming frustrated due to the language barrier",
+					"This person does not appear to understand what you're asking",
+					"Yallah yallah ziyed move!!!",
+					//"I... err... English... no... ehm...",
+					"Leave me alone you infidels!",
+					"The justice of Allah will soon rain fire upon all you imperialists!"        
+
+					] call mps_getRandomElement);
 
 	};
 
-}else{
+} else {
 
 	hint "This person has already been questioned";
 

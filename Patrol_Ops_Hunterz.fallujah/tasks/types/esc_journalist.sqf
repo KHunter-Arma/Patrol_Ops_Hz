@@ -411,10 +411,22 @@ if((call Hz_fnc_taskSuccessCheckGenericConditions) && (alive _vip) && (({(_vip d
 	_units = _this select 0;
 	_vehs = _this select 1;
 	_vip = _this select 2;
+		
+	_veh = vehicle _vip;
+	if (_veh == _vip) then {							
+		deletevehicle _vip;							
+	} else {							
+		_veh deleteVehicleCrew _vip;							
+	};
 	
-	deleteVehicle _vip;	
-	
-	{deletevehicle _x}forEach _units;
+	{
+		_veh = vehicle _x;
+		if (_veh == _x) then {							
+			deletevehicle _x;							
+		} else {							
+			_veh deleteVehicleCrew _x;							
+		};
+	}forEach _units;
 	{deletevehicle _x}forEach _vehs;
 	
 };      

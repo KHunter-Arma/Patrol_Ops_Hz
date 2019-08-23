@@ -413,7 +413,14 @@ if(call Hz_fnc_taskSuccessCheckGenericConditions) then {
 	
 	};
 	
-  {deletevehicle _x}forEach _units;
+  {
+		_veh = vehicle _x;
+		if (_veh == _x) then {							
+			deletevehicle _x;							
+		} else {							
+			_veh deleteVehicleCrew _x;							
+		};
+	}forEach _units;
   {deletevehicle _x}forEach _vehs;
 };      
 

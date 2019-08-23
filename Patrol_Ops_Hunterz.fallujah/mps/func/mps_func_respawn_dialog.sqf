@@ -14,7 +14,7 @@ while {dialog} do {
 		_this select 0 displayCtrl 86006 ctrlShow true;
 	};
 
-	if (!RALLY_STATUS || (({alive _x} count nearestobjects [mps_rallypoint_tent,["WarfareBDepot"],150]) < 1) || (player getvariable ["JointOps",false])) then {
+	if (!RALLY_STATUS || ((count (mps_rallypoint_tent nearEntities [["WarfareBDepot"],150])) < 1) || (player getvariable ["JointOps",false])) then {
 		_this select 0 displayCtrl 86009 ctrlShow false;
 	}else{
 		_this select 0 displayCtrl 86009 ctrlShow true;

@@ -357,11 +357,12 @@ _otherReward = _cacheCount*_rewardPerCache;
 
 missionload = false;
 publicVariable "missionload";
+/*
 Hz_max_ambient_units = Hz_max_ambient_units + Hz_ambient_units_intensify_amount;
 publicVariable "Hz_max_ambient_units";
 Hz_max_allunits = Hz_max_allunits + Hz_ambient_units_intensify_amount; 
 publicVariable "Hz_max_allunits";
-
+*/
 /*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
 
 mps_civilian_intel = +_caches; publicVariable "mps_civilian_intel";
@@ -406,10 +407,12 @@ While{ (({if (alive _x) then {(_x distance _returnPoint) > 20} else {false}} cou
 };
 
 /*------------------- INTENSIFY AMBIENT COMBAT---------------------------*/
-
+/*
 Hz_max_ambient_units = Hz_max_ambient_units - Hz_ambient_units_intensify_amount;
+publicVariable "Hz_max_ambient_units";
 Hz_max_allunits = Hz_max_allunits - Hz_ambient_units_intensify_amount; 
-
+publicVariable "Hz_max_allunits";
+*/
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/
 
 if((call Hz_fnc_taskSuccessCheckGenericConditions) && ({alive _x} count _caches > 0)) then {
@@ -440,7 +443,14 @@ if((call Hz_fnc_taskSuccessCheckGenericConditions) && ({alive _x} count _caches 
 	
 	};
 	
-  {deletevehicle _x}forEach _units;
+  {
+		_veh = vehicle _x;
+		if (_veh == _x) then {							
+			deletevehicle _x;							
+		} else {							
+			_veh deleteVehicleCrew _x;							
+		};
+	}forEach _units;
   {deletevehicle _x}forEach _vehs;
 };      
 

@@ -49,6 +49,8 @@ if (!isnil "_anim") then {
 		_unit setPosATL _pos;
 		_unit setdir _dir;
 	};
+	
+	_unit switchmove "";
 
 } else {
 
@@ -59,5 +61,7 @@ if (!isnil "_anim") then {
 		sleep 30;
 		
 	};
+	
+	_unit switchmove "";
 
 };

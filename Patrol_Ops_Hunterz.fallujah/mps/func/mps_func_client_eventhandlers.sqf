@@ -121,13 +121,14 @@ player addEventHandler ["Killed",{
 		
 		} foreach [handgunWeaponPlayer,primaryWeaponPlayer,secondaryWeaponPlayer,binocularPlayer];    
 
+		_acreVol = [] call acre_api_fnc_getGlobalVolume;
     
 		while {true} do {
     
 			//try to resolve loop getting stuck with exitwith instead...
 			if (alive player) exitwith {};
       
-      openMap false; 0 fadeSound 0; acre_sys_core_globalVolume = 0;
+      openMap false; 0 fadeSound 0; [0] call acre_api_fnc_setGlobalVolume;
 		
 		};
 		
@@ -178,7 +179,7 @@ player addEventHandler ["Killed",{
     player removeaction mps_client_hud_act;
     
     sleep 5;
-    acre_sys_core_globalVolume = 1;
+    [_acreVol] call acre_api_fnc_setGlobalVolume;
 		if (_hasEarplugs) then {player setvariable ["ACE_hasEarPlugsin",true]};
     0 fadesound 1;
 		
@@ -440,7 +441,7 @@ player addeventhandler ["Respawn", {
 				//add magazine
 				_magArray = _x select 4;
 				if ((count _magArray) > 0) then {
-					_unit addWeaponItem [(_x select 0), [(_magArray select 0), (_magArray select 1)]];
+					_unit addWeaponItem [(_x select 0), [(_magArray select 0), (_magArray select 1)], true];
 				};
 				
 				//attachments
@@ -449,37 +450,18 @@ player addeventhandler ["Respawn", {
 				
 				{
 				
-					if (!((tolower _x) in _wepComponents)) then {
+					if ((_x != "") && {!((tolower _x) in _wepComponents)}) then {
 					
-						_unit addWeaponItem [_wep, _x];
+						_unit addWeaponItem [_wep, _x, true];
 						sleep 0.1;
 					
 					};
 				
-				} foreach [_x select 1, _x select 2, _x select 3];
+				} foreach [_x select 1, _x select 2, _x select 3, _x select 6];
 				
-				//Grenade launcher?
-				if ((typename (_x select 5)) == "ARRAY") then {
-					
-					_magArray = _x select 5;
-					if ((count _magArray) > 0) then {
-						_unit addWeaponItem [(_x select 0), [(_magArray select 0), (_magArray select 1)]];
-					};
-					
-					if (!((tolower (_x select 6)) in _wepComponents)) then {
-					
-						_unit addWeaponItem [_wep, (_x select 6)];
-					
-					};	
-
-				} else {
-				
-					if (!((tolower (_x select 5)) in _wepComponents)) then {
-					
-						_unit addWeaponItem [_wep, (_x select 5)];
-					
-					};	
-				
+				_magArray = _x select 5;
+				if ((count _magArray) > 0) then {
+					_unit addWeaponItem [(_x select 0), [(_magArray select 0), (_magArray select 1)], true];
 				};
 				
 			};

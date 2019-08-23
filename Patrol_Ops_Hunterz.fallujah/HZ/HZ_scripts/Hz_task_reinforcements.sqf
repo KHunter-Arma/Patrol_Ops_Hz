@@ -56,11 +56,11 @@ for "_i" from 1 to _count do {
   
   if (!_INS) then {
   
-    _vehgrp = [ _randspawnpos,"INF",random 24,300] call CREATE_OPFOR_SQUAD;
+    _vehgrp = [ _randspawnpos,"INF",24 + (random 24),300] call CREATE_OPFOR_SQUAD;
   
   } else {
   
-    _vehgrp = [ _randspawnpos,"INS",random 24,300] call CREATE_OPFOR_SQUAD;
+    _vehgrp = [ _randspawnpos,"INS",24 + (random 24),300] call CREATE_OPFOR_SQUAD;
   
   };
 
@@ -75,7 +75,9 @@ for "_i" from 1 to _count do {
     if((count _vehicletypes) > 0) then { 
 
       _car_type = _vehicletypes call mps_getRandomElement;
-      _tempgrp = grpNull;
+      _tempgrp = grpNull;			
+			_grpLeader = objNull;
+			
       if(!_INS) then {
       
       _tempgrp = [_car_type,(SIDE_B select 0),_spawnpos,100] call mps_spawn_vehicle;
@@ -84,16 +86,19 @@ for "_i" from 1 to _count do {
       
         _tempgrp = [_car_type,(SIDE_C select 0),_spawnpos,100] call mps_spawn_vehicle;
         
-      };    
+      };
+
+			_grpLeader = leader _tempgrp;	
+			sleep 0.1;
       
       _dude = (units _tempgrp) select 0;
       _supportveh = vehicle _dude;
       patrol_task_vehs set [count patrol_task_vehs, _supportveh];
       
       (units _tempgrp) joinSilent _vehgrp;
-      sleep 1;
-      if(!isnil "zeu_Groups") then {if(!(_vehgrp in zeu_Groups)) then {zeu_Groups set [count zeu_Groups, _vehgrp];};};
+      sleep 0.1;
       deleteGroup _tempgrp;
+			_vehgrp selectleader _grpLeader;
 
     };
     
@@ -115,7 +120,7 @@ for "_i" from 1 to _count do {
       
       if(!isnil "Hz_AI_moveAndCapture") then {
 			
-			_spawnedVehs = [_vehgrp, _targetpos,_truckTypes,_carTypes] call Hz_AI_moveAndCapture;  
+			_spawnedVehs = [_vehgrp, _targetpos,_truckTypes,_carTypes,2000] call Hz_AI_moveAndCapture;  
 
 			patrol_task_vehs = patrol_task_vehs + _spawnedVehs;					 
 			
@@ -179,4 +184,12 @@ for "_i" from 1 to _count do {
 
 };
 
+_timeout = time + 1800;
+waituntil {
+
+	sleep 15;
+
+	stopreinforcements || {time > _timeout}
+
+};
 reinforcementsqueued = false;

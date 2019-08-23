@@ -118,38 +118,19 @@ _crate additemcargoglobal [_goggles,1];
 		
 		{
 		
-			if (!((tolower _x) in _wepComponents)) then {
+			if ((_x != "") && {!((tolower _x) in _wepComponents)}) then {
 			
 				_crate additemcargoglobal [_x,1];
 			
 			};
 		
-		} foreach [_x select 1, _x select 2, _x select 3];
+		} foreach [_x select 1, _x select 2, _x select 3, _x select 6];
 		
-		//Grenade launcher?
-		if ((typename (_x select 5)) == "ARRAY") then {
-			
-			_magArray = _x select 5;
-			if ((count _magArray) > 0) then {
-				_crate addMagazineAmmoCargo [(_magArray select 0), 1, (_magArray select 1)];
-			};
-			
-			if (!((tolower (_x select 6)) in _wepComponents)) then {
-			
-				_crate additemcargoglobal [(_x select 6),1];
-			
-			};	
-
-		} else {
-		
-			if (!((tolower (_x select 5)) in _wepComponents)) then {
-			
-				_crate additemcargoglobal [(_x select 5), 1];
-			
-			};	
-		
+		_magArray = _x select 5;
+		if ((count _magArray) > 0) then {
+			_crate addMagazineAmmoCargo [(_magArray select 0), 1, (_magArray select 1)];
 		};
-		
+			
 	};
 
 } foreach _weaponsItems;

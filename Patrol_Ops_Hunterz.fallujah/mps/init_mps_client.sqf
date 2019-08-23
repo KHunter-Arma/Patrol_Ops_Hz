@@ -103,6 +103,8 @@ waitUntil {!(isNull player)};
 
 sleep 1;
 
+"respawn_west" call Hz_func_findGarrisonedRespawnPos;
+
 // Begin Client Cursor Monitoring for actions on objects
 [] execVM (mps_path+"func\mps_func_client_cursortarget.sqf");
 GrassLayerchanged = false;
@@ -587,9 +589,9 @@ if (Hz_pops_enableDetainUnrecognisedUIDs) then {
 
 	if(!((_tentposx == 0) && (_tentposy == 0) && (_tentposz == 0))) then {
 		
-		_objectsarr = nearestobjects [_tentpos,[Hz_pops_rallyTentType],100];
+		_objectsarr = _tentpos nearEntities [[Hz_pops_rallyTentType],100];
 		
-		{if(_x getvariable "owneruid" == _uid) then {mps_rallypoint_tent = _x;};} foreach _objectsarr;
+		{if(_x getvariable "owneruid" == _uid) exitWith {mps_rallypoint_tent = _x;};} foreach _objectsarr;
 		
 		//Tent destroyed
 		if(!alive mps_rallypoint_tent) exitwith {deletemarker _uid;};

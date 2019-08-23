@@ -26,11 +26,15 @@ waitUntil {!isnil "hz_debug_patrols"};
 if (!isMultiplayer && !hz_debug_patrols) exitWith {
 
 	{
-
-		deletevehicle (vehicle _x);
-		deletevehicle _x;
-
+		_veh = vehicle _x;
+		if (_veh == _x) then {							
+			deletevehicle _x;							
+		} else {							
+			_veh deleteVehicleCrew _x;							
+		};
 	} foreach units _vehicle;
+	
+	deletevehicle _vehicle;
 	
 	deleteGroup _group;
 
@@ -76,11 +80,15 @@ if (call Hz_fnc_isAiMaster) then {
 } else {
 
 	{
-
-		deletevehicle (vehicle _x);
-		deletevehicle _x;
-
+		_veh = vehicle _x;
+		if (_veh == _x) then {							
+			deletevehicle _x;							
+		} else {							
+			_veh deleteVehicleCrew _x;							
+		};
 	} foreach units _vehicle;
+	
+	deleteVehicle _vehicle;
 	
 	deleteGroup _group;
 	

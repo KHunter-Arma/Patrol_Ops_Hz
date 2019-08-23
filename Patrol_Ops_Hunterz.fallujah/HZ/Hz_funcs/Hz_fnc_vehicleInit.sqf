@@ -12,7 +12,7 @@ if ((_vehicle iskindof "SignAd_SponsorS_ION_F") || (_vehicle iskindof "SignAd_Sp
 
 if (_vehicle isKindOf "LandVehicle") then {
 
-	_initstatement = _initstatement + "_obj setVariable ['flipAnimHandler',_obj addAction ['<t color=''#FF0000''>Flip vehicle</t>','vehicle_flip.sqf' , nil, 1.5, true, true, '', '((vehicle _this) == _this) && {(((vectorUp _target) select 2) < 0) || {((vectorUp _target) select 0) > 0.8}}', 6, false, '']];";
+	_initstatement = _initstatement + "_obj setVariable ['flipAnimHandler',_obj addAction ['<t color=''#FF0000''>Flip vehicle</t>','logistics\vehicle_flip.sqf' , nil, 1.5, true, true, '', '((vehicle _this) == _this) && {_vectorUp = vectorUp _target; (((_vectorUp select 2) < 0) || {(_vectorUp select 0) > 0.8})}', 6, false, '']];";
 	
 	if (_vehicle isKindOf "Van_02_vehicle_base_F") then {
 	
@@ -41,7 +41,7 @@ if (((toUpper (typeof _vehicle)) find "CUP") != -1) then {
 	
 };
 
-_initstatement = _initstatement + "_obj addEventHandler ['Killed',{{_x setDamage 1} foreach (attachedObjects (_this select 0));}];";
+_initstatement = _initstatement + "_obj addEventHandler ['Killed',{{if ((_x isKindOf 'StaticWeapon') || {_x isKindOf 'Cargo_base_F'}) then {{_x setDamage 1;} foreach (attachedObjects _x);}; _x setDamage 1;} foreach (attachedObjects (_this select 0));}];";
 
 if(_initstatement != "") then {
   [_vehicle,_initstatement] remoteexeccall ["Hz_fnc_setVehicleInit",0,true];

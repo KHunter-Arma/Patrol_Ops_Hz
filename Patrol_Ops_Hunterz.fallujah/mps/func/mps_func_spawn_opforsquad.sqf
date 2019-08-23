@@ -106,7 +106,7 @@ DEFENSIVE BEHAVIOUR HANDLED BY MOD
       
       //[unit,radius,stationary?,([occupy percentage,maximum],warping?,minimum height)] execVM "Garrison_script.sqf"
         
-      [_Grp,_garrisonRadius,true,[100,2],true,2] execVM "Garrison_script.sqf";
+      [_Grp,_garrisonRadius,true,[100,2],true,2] execVM "Garrison_script\Garrison_script.sqf";
         
       
     };

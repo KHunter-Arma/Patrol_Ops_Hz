@@ -44,10 +44,6 @@ _chopper doMove [15000, 25000,10000];
 
 sleep 300;
 			
-{
-
-	deletevehicle _x;
-
-} foreach crew _chopper;
+{_chopper deletevehicleCrew _x} foreach crew _chopper;
 
 deleteVehicle _chopper;

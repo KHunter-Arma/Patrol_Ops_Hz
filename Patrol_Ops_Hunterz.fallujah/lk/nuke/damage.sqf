@@ -4,8 +4,8 @@ _narray1 = (nearestObjects [nukepos,[], 300]);
 _narray2 = (nearestObjects [nukepos,[], 500]);
 //_narray5 = (nearestObjects [nukepos,["Thing","Static"], 1000]) - (nearestObjects [nukepos,["Thing","Static"], 500]);
 
-_narray3 = ((nearestObjects [nukepos,["Air","Car","CAManBase","Tank"], 1000]) - (nearestObjects [nukepos,["Air","Car","CAManBase","Tank"], 500]));
-_narray4 = ((nearestObjects [nukepos,["Air","Car","CAManBase","Tank"], 2000]) - (nearestObjects [nukepos,["Air","Car","CAManBase","Tank"], 1000]));
+_narray3 = ((nukepos nearEntities [["Air","Ship","CAManBase","LandVehicle","StaticWeapon"], 1000]) - (nukepos nearEntities [["Air","Ship","CAManBase","LandVehicle","StaticWeapon"], 500]));
+_narray4 = ((nukepos nearEntities [["Air","Ship","CAManBase","LandVehicle","StaticWeapon"], 2000]) - (nukepos nearEntities [["Air","Ship","CAManBase","LandVehicle","StaticWeapon"], 1000]));
 
 _narray1 = _narray1 - Hz_nuke_damageExceptions;
 _narray2 = _narray2 - Hz_nuke_damageExceptions;

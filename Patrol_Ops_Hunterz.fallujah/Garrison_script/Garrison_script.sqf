@@ -57,94 +57,17 @@ _buildingsleft = [];
 _noposbuildings = [];
 
 //define functions
-
-if (isnil("fnc_smartlook")) then {
-  fnc_smartlook = compile loadfile "Garrison_fncs\fnc_smartlook.sqf";
-  //hint "smartlook compiled";
-};
-
-if (isnil("fnc_get_angle")) then {
-  fnc_get_angle = compile loadfile "Garrison_fncs\fnc_get_angle.sqf";
-  //hint "get_angle compiled";
-};
-
-if (isnil("fnc_cansee")) then {
-  fnc_cansee = compile loadfile "Garrison_fncs\fnc_cansee.sqf";
-  //hint "cansee compiled";
-};
-
-
-if (isnil("fnc_willsee")) then {
-  fnc_willsee = compile loadfile "Garrison_fncs\fnc_willsee.sqf";
-  //hint "willsee compiled";
-};
-
-
-if (isnil("fnc_willseetarget")) then {
-  fnc_willseetarget = compile loadfile "Garrison_fncs\fnc_willseetarget.sqf";
-  //hint "willseetarget compiled";
-};
-
-if (isnil("fnc_willseeincombat")) then {
-  fnc_willseeincombat = compile loadfile "Garrison_fncs\fnc_willseeincombat.sqf";
-  //hint "fnc_willseeincombat compiled";
-};
-
-if (isnil("fnc_Intersect_Pos")) then {
-  fnc_Intersect_Pos = compile loadfile "Garrison_fncs\fnc_intersect_pos.sqf";
-  //hint "fnc_Intersect_Pos compiled";
-};
-
-if (isnil("fnc_willwalk")) then {
-  fnc_willwalk = compile loadfile "Garrison_fncs\fnc_willwalk.sqf";
-  //hint "willwalk compiled";
-};
-
-if (isnil("fnc_indoors")) then {
-  fnc_indoors = compile loadfile "Garrison_fncs\fnc_indoors.sqf";
-  //hint "indoors compiled";
-};
-
 if (isnil("fnc_sillybuild_check")) then {
-  fnc_sillybuild_check = compile loadfile "Garrison_fncs\fnc_sillybuild_check.sqf";
+  fnc_sillybuild_check = compile loadfile "Garrison_script\fnc_sillybuild_check.sqf";
   //hint "sillybuild check compiled";
 };
 
-if (isnil("fnc_cqc_react")) then {
-  fnc_cqc_react = compile loadfile "Garrison_fncs\fnc_cqc_react.sqf";
-  //hint "cqc react compiled";
-};
-
-
-if (isnil("fnc_cqc_renew")) then {
-  fnc_cqc_renew = compile loadfile "Garrison_fncs\fnc_cqc_renew.sqf";
-  //hint "cqc renew compiled";
-};
-
-if (isnil("fnc_silenced")) then {
-  fnc_silenced = compile loadfile "Garrison_fncs\fnc_silenced.sqf";
-  //hint "fnc_silenced compiled";
-};
-
-// make em aware
-/*if (isnil("reactions")) then {
-  {
-
-    nul = [_x] spawn fnc_cqc_renew;
-    _x allowfleeing 0;
-    
-
-  } foreach allunits;
-  reactions = true;
-};*/
-
-
-
 // Populate the building list with occupiable buildings
+_objCount = count _objectslist;
 
-if ((count _objectslist) >= 1) then {
+if (_objCount > 0) then {
 
-  for "_i" from 0 to ((count _objectslist)-1) do {
+  for "_i" from 0 to (_objCount - 1) do {
     _build = _objectslist select _i;
     
     if (format ["%1",_build buildingPos 0] != "[0,0,0]") then {
@@ -268,88 +191,7 @@ if ((count _objectslist) >= 1) then {
         _poscoords = (_localbuilding buildingPos _buildpos);
         // assign the selected position to the units "homepos" variable so it remembers where he's meant to be
         _x setvariable ["homepos",_buildpos];
-        
-        
-        /*
-      nul = [_x,_poscoords,_patrolgroup,_stationary] spawn {
-        // Check that unit gets where he's trying to get to. if he doesn't after trying 4 times, join the patrol group
-        private ["_unit","_dpos","_dist","_ball","_roof","_cnt","_patrolgroup","_house","_angle","_outdir"];
-
-        _unit = _this select 0;
-        _dpos = _this select 1;
-        _patrolgroup = _this select 2;
-        _staying = _this select 3;
-        _group = group _unit;
-        
-        _cnt = 0;
-
-        While {sleep 3;true} do {
-
-          _dist = (getposATL _unit) distance _dpos;
-        
-          if (unitReady _unit) then {
-            _cnt = _cnt + 1;
-            dostop _unit;
-            sleep 0.1;
-            _unit MoveTo _dpos;
             
-            
-          };
-  
-          if ((_dist < 1)) exitwith {};
-          if (!(alive _unit)) exitwith {};
-          if (_cnt > 4) exitwith {//[_unit] join _patrolgroup;
-                                        };
-  
-        };
-        // if the unit is in position check the units height and whether or not he is indoors.
-        if (_cnt <= 4) then {
-
-          _indoors = [_unit] call fnc_indoors;
-          _uh = (getposATL _unit) select 2;
-          // if he's not indoors and he is over 1 meter from the ground, crouch. if crouching makes him blind (from a wall) he will stand back up.
-          if ((!(_indoors)) && (_uh > 1)) then {
-
-            _unit setunitpos "Middle";
-            sleep 2; 
-            if (!([_unit] call fnc_cansee)) then {_unit setunitpos "auto"};
-            // check to make sure that when he is inside or on the ground again he stops crouching.
-            nul = [_unit] spawn {
-
-              _unit = _this select 0;
-
-              while {sleep 3;alive _unit} do {
-
-                _indoors = [_unit] call fnc_indoors;
-                _uh = (getposATL _unit) select 2;
-
-                if ((_indoors) or (_uh < 2)) exitwith {_unit setunitpos "AUTO";};
-              };
-
-            }; 
-
-          };
-        
-          if (_staying) then {
-
-            _group setCombatMode "YELLOW";
-            _unit forcespeed 0;
-            _unit setvariable ["forcedspeed",0];
-
-            if (_indoors) then {
-              _unit setvariable ["indoors",true];
-            };
-
-          };
-          // make them randomly look around and move within the building.
-          nul = [_unit] spawn fnc_smartlook;
-
-        };	
-      
-      };
-                        */
-
-        
         
       } else {
 
@@ -445,82 +287,7 @@ if ((count _objectslist) >= 1) then {
 
             _poscoords = (_localbuilding buildingPos _buildpos);
             _x setvariable ["homepos",_buildpos];
-            
-            /*nul = [_x,_poscoords,_patrolgroup,_stationary] spawn {
-
-            private ["_unit","_dpos","_dist","_ball","_roof","_cnt","_patrolgroup","_housecenter"];
-
-            _unit = _this select 0;
-            _dpos = _this select 1;
-            _patrolgroup = _this select 2;
-            _staying = _this select 3;
-            _group = group _unit;
-            _cnt = 0;
-
-            While {sleep 3;alive _unit} do {
-
-              _dist = (getposATL _unit) distance _dpos;
-            
-              if (unitReady _unit) then {
-                _cnt = _cnt + 1;
-                dostop _unit;
-                sleep 0.1;
-                _unit MoveTo _dpos;
-            
-            
-              };
-  
-              if ((_dist < 1)) exitwith {};
-              if (!(alive _unit)) exitwith {};
-              if (_cnt > 4) exitwith {//[_unit] join _patrolgroup;
-                                                        };
-  
-            };
-        
-            if (_cnt <= 4) then {
-
-              _indoors = [_unit] call fnc_indoors;
-              _uh = (getposATL _unit) select 2;
-
-              if ((!(_indoors)) && (_uh > 1)) then {
-          
-                _unit setunitpos "Middle";
-                sleep 2; 
-                if (!([_unit] call fnc_cansee)) then {_unit setunitpos "auto"};
-
-                /*nul = [_unit] spawn {
-
-                  _unit = _this select 0;
-                  
-                  while {sleep 3;alive _unit} do {
-            
-                    _indoors = [_unit] call fnc_indoors;
-                    _uh = (getposATL _unit) select 2;
-
-                    if ((_indoors) or (_uh < 2)) exitwith {_unit setunitpos "AUTO";};
-                  };
-  
-                }; 
-
-              };
-          
-              if (_staying) then {
-                _group setCombatMode "YELLOW";
-                _unit forcespeed 0;
-                _unit setvariable ["forcedspeed",0];
-                
-                if (_indoors) then {
-                  _unit setvariable ["indoors",true];
-                };
-                
-              };
-
-              //nul = [_unit] spawn fnc_smartlook;
-
-            };	
-      
-          };*/
-            
+                        
           } else {
 
             _buildingsleft = _buildingsleft - [_localbuilding];

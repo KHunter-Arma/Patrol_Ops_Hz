@@ -86,8 +86,37 @@ if (_isman) then {
 		
 		};
 		
+		_cargoCount = _vehicle emptyPositions "Cargo";
+		_fcFreeTurrets = [];
+		{
+		
+			_fcFreeTurrets pushback (_x select 3);
+		
+		} foreach (fullCrew [_vehicle, "Turret",true] - fullCrew [_vehicle, "Turret",false]);
+		
 		{
 			_dude = _group createUnit [_x,_respawnzone, [], 100, "NONE"];
+			
+			if (_cargoCount > 0) then {
+						
+				_dude assignascargo _vehicle;
+				_dude moveinCargo _vehicle;
+				_cargoCount = _cargoCount - 1;
+			
+			} else {
+			
+				if ((count _fcFreeTurrets) > 0) then {
+				
+					_turret = selectRandom _fcFreeTurrets;
+					_dude assignasTurret [_vehicle, _turret];
+					_dude moveinTurret [_vehicle, _turret];
+					_fcFreeTurrets = _fcFreeTurrets - [_turret];
+				
+				};
+			
+			};	
+			
+			_dude assignasCargo _vehicle;
 			_dude moveInCargo _vehicle;		
 		} forEach _passengerUnits;
 		
