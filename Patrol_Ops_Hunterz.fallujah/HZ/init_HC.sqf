@@ -9,14 +9,17 @@ if (call Hz_fnc_isAiMaster) then {
 	
 	//copy array in case HC loses connection later
 	Hz_pops_UPSRespawnArray = +Hz_pops_UPSPassToHCArray;
-
-	Hz_max_ambient_units = Hz_max_ambient_units*3;
+	
+	_ambientUnits = Hz_max_ambient_units;
+	Hz_max_ambient_units = Hz_max_allunits;
 	sleep 900;
-	Hz_max_ambient_units = Hz_max_ambient_units/3;
+	Hz_max_ambient_units = _ambientUnits;
 
 };
 
 [] spawn {
+
+scriptname "Hz_pops_HCmain";
 
 _timescaler1 = 0;
 _timescaler2 = 0;
@@ -73,15 +76,18 @@ _timescaler3 = 0;
 					
 						if(!(_x getvariable ["NoDelete",false]) && ((_x distance (markerpos "respawn_west")) > 300) && (({(_x distance _dude) < 300} count playableUnits) < 1)) then {
 						
-							_weaponHolders = nearestObjects [_x, ["WeaponHolderSimulated"],3];
+							_weaponHolders = nearestObjects [_x,["WeaponHolderSimulated"],3];
 					
-							{
-								
-								deletevehicle _x;
-							
+							{								
+								deletevehicle _x;							
 							} foreach _weaponHolders;					
 						
-							deleteVehicle _x;
+							_veh = vehicle _x;
+							if (_veh == _x) then {							
+								deletevehicle _x;							
+							} else {							
+								_veh deleteVehicleCrew _x;							
+							};
 						
 						};
 					
@@ -121,7 +127,11 @@ _timescaler3 = 0;
 					
 							if(!(_x getvariable ["NoDelete",false]) && (({(_x distance _veh) < 2000} count playableUnits) < 1)) then {
 							
-								deleteVehicle _x;				
+								{
+									_veh deleteVehicleCrew _x;							
+								} foreach crew _veh;
+							
+								deleteVehicle _veh;					
 							
 							};
 						

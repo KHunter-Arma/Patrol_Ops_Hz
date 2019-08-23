@@ -107,7 +107,7 @@ if (!(call Hz_fnc_isAiMaster)) then {
 	publicVariable "Hz_pops_UPSPassToHCArray";
 
 };
-
+/*
 ambientPatrolBoosterRunning = false;
 addMissionEventHandler ["PlayerConnected",{
 
@@ -145,7 +145,7 @@ addMissionEventHandler ["PlayerConnected",{
 	};
 
 }];
-
+*/
 [] execvm "SA_AdvancedTowing\advancedTowingInit.sqf";
 
 //if(mps_ambient_airpatrols) then {[] spawn CREATE_OPFOR_AIRPATROLS;};    

@@ -129,7 +129,14 @@ sleep 5;
       {_x setunitpos "AUTO"; } forEach _passengerarr;
 
       waituntil {sleep 2; !alive _driver || (_driver distance (markerpos "patrol_respawn_b_air") < 1000)};
-      {deletevehicle _x;} foreach units _flightgrp;
+      {
+				_veh = vehicle _x;
+				if (_veh == _x) then {							
+					deletevehicle _x;							
+				} else {							
+					_veh deleteVehicleCrew _x;							
+				};
+			} foreach units _flightgrp;
       deletevehicle _vehicle;
 
       //shot down

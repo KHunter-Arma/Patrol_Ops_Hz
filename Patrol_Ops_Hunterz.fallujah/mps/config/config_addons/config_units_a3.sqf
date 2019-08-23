@@ -59,6 +59,7 @@ mps_config_units = mps_config_units + [
 //["INS","at","CUP_I_TK_GUE_Soldier_HAT",1], //Dragon
 ["INS","rf","CUP_I_TK_GUE_Soldier",100],
 ["INS","rf","CUP_I_TK_GUE_Soldier_AK_47S",10],
+["INS","rf","LOP_AM_Infantry_Rifleman_9",1], //vz58
 ["INS","mg","CUP_I_TK_GUE_Soldier_AR",10],
 ["INS","mg","CUP_I_TK_GUE_Soldier_AR_DP_Hz",1],
 //["INS","aa","CUP_I_TK_GUE_Soldier_AA",1], //Stinger

@@ -158,7 +158,7 @@ private ["_objects", "_ins", "_side", "_mannedVehicles", "_sentryType", "_return
 			
 			_unitType = "";
 			_pos = getposatl _x;
-			deletevehicle _x;
+			deleteVehicle _x;
 			
 			if (_ins) then {
 				

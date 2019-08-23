@@ -3,6 +3,7 @@
 private["_location","_position","_xy"];
 
 	_location = _this select 0;
+	_xy = [];
 
 	_position = switch(_location) do{
 
@@ -26,7 +27,12 @@ private["_location","_position","_xy"];
 	if(player == leader (group player) ) then { { if ( !(isPlayer _x) && _x distance player < 100 ) then { mps_movegrp = mps_movegrp + [_x]; }; }forEach (units (group player)); };
 
 	player setVelocity [0, 0, 0];
-	player setpos [_xy select 0,_xy select 1,_position select 2];
+	
+	if ((_location == "MHQ") || {_location == "RALLY"}) then {
+	
+		player setpos [_xy select 0,_xy select 1,_position select 2];
+	
+	};
 
 	if(player == leader (group player) && count mps_movegrp > 0 ) then {
 		{ _x setpos ([_position,random 360,(2 + random 8),true,1] call mps_new_position); }forEach mps_movegrp;

@@ -62,12 +62,7 @@ _plane addEventHandler ["Engine", {
 			
 			sleep 300;
 			
-			{
-			
-				deletevehicle _x;
-			
-			} foreach crew _this;
-			
+			{_this deletevehicleCrew _x} foreach crew _this;			
 			deleteVehicle _this;
 		
 		};

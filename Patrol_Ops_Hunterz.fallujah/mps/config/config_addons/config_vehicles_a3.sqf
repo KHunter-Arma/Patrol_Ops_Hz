@@ -2,7 +2,7 @@ mps_config_vehicles = mps_config_vehicles + [
 
 	["TKA","attakp","CUP_O_Su25_TKA"],
 	["TKA","attakp","rki_mig21naf_MR_fia"],
-	["TKA","attakp","rki_mig21naf_LBMB_fiar"],
+	["TKA","attakp","rki_mig21naf_LBMB_fia"],
 	["TKA","attakp","rki_mig21naf_HCAS_fia"],
 	["TKA","attakp","rki_mig21naf_CAS_fia"],
 	["TKA","attakp","rki_mig21naf_AGM_fia"],
@@ -12,7 +12,7 @@ mps_config_vehicles = mps_config_vehicles + [
 	["TKA","Lbomber","rki_mig21naf_EHCAS_fia"],
 	["TKA","Lbomber","rki_mig21naf_BMB_fia"],
 	["TKA","airsup","rki_mig21naf_CAP_fia"],	
-	["TKA","airsup","Fox_MIG25_O_CAP"],	
+	//["TKA","airsup","Fox_MIG25_O_CAP"],	
 	["TKA","airsup","CUP_O_L39_CAP_TK"],	
 	["TKA","Hbomber","RHS_TU95MS_vvs_old"],	
 	["TKA","attakh","LOP_TKA_Mi8MTV3_FAB"],
@@ -66,11 +66,16 @@ mps_config_vehicles = mps_config_vehicles + [
 	["TKA","static", "LOP_NAPA_Static_M2_MiniTripod"],
 	["TKA","static", "LOP_TKA_Static_AT4"],
 	["TKA","cargop", "CUP_B_C47_USA"],
+	//["TKA","cargop", "CUP_O_C130J_TKA"],
+	//["TKA","cargop", "CUP_O_AN2_TK"],
+	//["TKA","cargop", "pook_AN22_TAK"],
+	
+	
 	
 	["INS","attakc","CUP_I_Datsun_PK_TK"],
 	["INS","attakc","CUP_I_Datsun_PK_TK_Random"],
-	["INS","attakc","I_G_Offroad_01_armed_F"],
-	["INS","attakc","I_G_Offroad_01_AT_F"],
+	["INS","attakc","Offroad_01_MG_TKM_Hz"],
+	["INS","attakc","Offroad_01_AT_TKM_Hz"],
 	["INS","attakc","CUP_O_LR_SPG9_TKM"],
 	["INS","attakc","CUP_O_LR_MG_TKM"],
 	["INS","cargoc","CUP_I_Datsun_4seat_TK"],

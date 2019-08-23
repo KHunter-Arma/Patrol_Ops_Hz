@@ -1,5 +1,9 @@
+scriptname "Hz_pops_ServerMain";
+
 //Server DVD
 [] spawn {
+
+	scriptname "Hz_pops_ServerDVD";
 	
 	if(!isDedicated) exitwith {};        
 	
@@ -101,15 +105,18 @@ while {true} do
 					
 						if(!(_x getvariable ["NoDelete",false]) && ((_x distance (markerpos "respawn_west")) > 300) && (({(_x distance _dude) < 300} count playableUnits) < 1)) then {
 						
-							_weaponHolders = nearestObjects [_x, ["WeaponHolderSimulated"],3];
+							_weaponHolders = nearestObjects [_x,["WeaponHolderSimulated"],3];
 					
-							{
-								
-								deletevehicle _x;
+							{								
+								deletevehicle _x;							
+							} foreach _weaponHolders;	
 							
-							} foreach _weaponHolders;					
-						
-							deleteVehicle _x;
+							_veh = vehicle _x;
+							if (_veh == _x) then {							
+								deletevehicle _x;							
+							} else {							
+								_veh deleteVehicleCrew _x;							
+							};
 						
 						};
 					
@@ -163,7 +170,11 @@ while {true} do
 				
 						if(!(_x getvariable ["NoDelete",false]) && (({(_x distance _veh) < 2000} count playableUnits) < 1)) then {
 						
-							deleteVehicle _x;				
+							{
+								_veh deleteVehicleCrew _x;							
+							} foreach crew _veh;
+						
+							deleteVehicle _veh;				
 						
 						};
 					

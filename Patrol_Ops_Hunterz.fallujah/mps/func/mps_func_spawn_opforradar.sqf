@@ -227,8 +227,8 @@ while {true} do {
 						_groupgrp2 setSpeedMode "FULL";
 						_wp = _groupgrp2 addWaypoint [[0,20000,5000],2000];
 						waituntil {sleep 30; [0,10000,5000] distance _jet1 < 5000};
-						deletevehicle (driver _jet1);
-						deletevehicle (driver _jet2); 
+						{_jet2 deletevehicleCrew _x} foreach crew _jet2;
+						{_jet1 deletevehicleCrew _x} foreach crew _jet1;
 						deletevehicle _jet1;
 						deletevehicle _jet2;
 						
@@ -322,11 +322,18 @@ while {true} do {
 
 
 				//sleep 60;
-
+				{
+					_veh = vehicle _x;
+					if (_veh == _x) then {							
+						deletevehicle _x;							
+					} else {							
+						_veh deleteVehicleCrew _x;							
+					};
+				}forEach (units _groupgrp2);
 				if(!isNil "_jet1") then { deleteVehicle _jet1; };
 				if(!isNil "_jet2") then { deleteVehicle _jet2; };
 
-				{ deleteVehicle _x }forEach (units _groupgrp2);
+				
 				deletegroup _groupgrp2;
 
 			};
@@ -371,18 +378,7 @@ while {true} do {
 				_helo2 setvehiclelock "LOCKED";
 				
 				_groupgrp1 setvariable ["Hz_attacking",true];
-				
-				if (typeof _helo1 == "mi171sh_rockets_cz_ep1") then {
-					
-					[_helo1,_helo2] joinsilent grpnull;
-					sleep 2;
-					[_helo1,_helo2] joinsilent _groupgrp1;
-					sleep 1;
-					if(!isnil "zeu_Groups") then {if(!(_groupgrp1 in zeu_Groups)) then {zeu_Groups set [count zeu_Groups, _groupgrp1];};};
-					
-				};  
-				
-				
+								
 				{_x setskill 1;} foreach crew _helo1;
 				{_x setskill 1;} foreach crew _helo2;
 				//Waypoint loop
@@ -673,11 +669,17 @@ _jet = _this;
 
 
 				//sleep 60;
-
+				{
+					_veh = vehicle _x;
+					if (_veh == _x) then {							
+						deletevehicle _x;							
+					} else {							
+						_veh deleteVehicleCrew _x;							
+					};
+				}forEach (units _groupgrp1);
 				if(!isNil "_helo1") then { deleteVehicle _helo1; };
 				if(!isNil "_helo2") then { deleteVehicle _helo2; };
-
-				{ deleteVehicle _x }forEach (units _groupgrp1);
+				
 				deletegroup _groupgrp1;
 				
 			};

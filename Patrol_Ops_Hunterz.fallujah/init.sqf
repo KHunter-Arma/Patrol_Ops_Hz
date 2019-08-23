@@ -79,7 +79,7 @@ if(!mps_debug && !hz_debug && !isDedicated && !(call Hz_fnc_isHC)) then {["Bad C
 //	sleep (random 5); [format["ammobox_%1",side player]] call mps_ammobox;
 
 if(mps_debug) then {
-	OnMapSingleClick "vehicle player SetPos [_pos select 0, _pos select 1, 0]"; player allowdamage false;
+	//OnMapSingleClick "vehicle player SetPos [_pos select 0, _pos select 1, 0]"; player allowdamage false;
 };
     
 "ban" addPublicVariableEventHandler {[]execvm "HZ\admin\ban_EH.sqf"; };

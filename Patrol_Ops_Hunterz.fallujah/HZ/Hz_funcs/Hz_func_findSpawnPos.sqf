@@ -1,5 +1,6 @@
 #define AVOID_PLAYER_MIN_DISTANCE_FROM_RESPAWNPOS 2000
 #define MIN_1D_DISTANCE_FROM_PLAYER 1400
+#define MIN_DISTANCE_FROM_OBJECTS 10
 
 private ["_marker1","_maxDistance","_marker2","_taskpos","_minDistance","_blacklistpos","_spawnpos","_pos","_unitarray","_playerpos"];
 
@@ -49,7 +50,7 @@ while {(format ["%1",_spawnpos]) == "[0,0,0]"} do {
     };
         }foreach _unitarray;
         
-_spawnpos = [_taskpos, _minDistance, _maxDistance, 3, 0, 1, 0,_blacklistpos,[[0,0,0]]] call BIS_fnc_findSafePos;
+_spawnpos = [_taskpos, _minDistance, _maxDistance, MIN_DISTANCE_FROM_OBJECTS, 0, 1, 0,_blacklistpos,[[0,0,0]]] call BIS_fnc_findSafePos;
 
 _tries = _tries + 1;
 _maxDistance = _maxDistance + 500;

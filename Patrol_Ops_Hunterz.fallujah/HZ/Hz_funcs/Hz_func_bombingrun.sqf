@@ -143,11 +143,9 @@ _WP setWaypointType "MOVE";
 waituntil {sleep 5; ((_lead distance _pos) > 70000) || {((getposatl _jet1) select 2) < 20} || {time > _timeout}};
 
 {
-
-	{
-	
-		deletevehicle _x;
-	
+	_jet = _x;
+	{	
+		_jet deletevehicleCrew _x;
 	} foreach crew _x;
 	
 	deletevehicle _x;

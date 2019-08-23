@@ -13,7 +13,7 @@ _return = [0,0,0];
 
 {
   
-  if((count nearestobjects [_x,[Hz_pops_rallyTentType],100]) > 1) exitwith {_FOBobject = _x;};
+  if((count (_x nearEntities [[Hz_pops_rallyTentType],100])) > 1) exitwith {_FOBobject = _x;};
 
 } foreach _HQlist;
 

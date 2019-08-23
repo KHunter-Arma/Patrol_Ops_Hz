@@ -50,6 +50,7 @@ if (isServer) then {
 
 [] spawn {
 
+	scriptname "Hz_pops_weather";
   waituntil {sleep 1; !isnil "weather_wind"};
   call compile preprocessFileLineNumbers "Hz\Hz_sys_weather\Hz_sys_weather_main.sqf";
   

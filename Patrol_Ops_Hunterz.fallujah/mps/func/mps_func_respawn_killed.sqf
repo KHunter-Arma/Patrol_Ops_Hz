@@ -42,7 +42,9 @@ mps_respawn_process = [] spawn {
 	sleep 0.2;
 	mps_current_pos = getPosATL player;
 
-	player setPosATL (getMarkerPos format["respawn_%1",side player]);
+	//player setPosATL (getMarkerPos format["respawn_%1",side player]);
+	"respawn_west" call Hz_func_findGarrisonedRespawnPos;
+	
 	sleep 1;
 	player setVelocity [0, 0, 0];
 

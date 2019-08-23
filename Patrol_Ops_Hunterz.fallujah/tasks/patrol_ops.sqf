@@ -25,7 +25,7 @@ _list = [
 		"def_inscamp"
     ];
 		
-if(hz_debug) then {_list = ["def_inscamp"];};
+if(hz_debug) then {_list = ["def_base"];};
 
 //init
 taskrequested = false;
@@ -36,7 +36,7 @@ reinforcementsqueued = false;
 missionload = false;
 publicVariable "missionload";
 
-waituntil {sleep 10; time > 900};
+waituntil {sleep 10; (time > 900) || hz_debug};
 waituntil {sleep 10; taskrequested || jointops};
 
 _j = (count _list - 1) min (round random (count _list));

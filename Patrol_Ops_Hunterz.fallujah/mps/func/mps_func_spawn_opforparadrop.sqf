@@ -196,7 +196,7 @@ _drophelo doMove _dest;
 
 	if(_exit) exitwith {};
 
-	{ _x action ["EJECT", vehicle _x]; sleep 0.2; deleteVehicle _x; } forEach (crew _drophelo);
+	{ _drophelo deleteVehicleCrew _x;} forEach (crew _drophelo);
 	deleteVehicle _drophelo;
 	deleteGroup _drophelogrp;
 

@@ -13,7 +13,7 @@ if(speed _truck > 1) exitwith {"Truck is moving!"};
 if (isnull _cargo) then {
   //LOAD FUNCTION
   
-  _nearobjects = nearestObjects [_truck, ["Land_Misc_Cargo1E_EP1","Misc_Cargo1B_military","RHIB","pook_SOCR_H_M134b","pook_SOCR_H_M134","pook_SOCR_H_M2","pook_SOCR_H_M2b"], 20];
+  _nearobjects = _truck nearEntities [["Land_Misc_Cargo1E_EP1","Misc_Cargo1B_military","RHIB","pook_SOCR_H_M134b","pook_SOCR_H_M134","pook_SOCR_H_M2","pook_SOCR_H_M2b"], 20];
   _obj = _nearobjects select 0;
 
   if(isnull _obj) exitwith {hint "No object found nearby to load"};

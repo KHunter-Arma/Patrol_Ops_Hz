@@ -181,7 +181,10 @@ _jet = _this select 0;
 
   waituntil {sleep 3; ((_jet distance _pos) > 70000) || {((getposatl _jet) select 2) < 20} || {time > _timeout}};
 
-  {deletevehicle _x;}foreach crew _jet;
+  {
+		_jet deletevehicleCrew _x;	
+	}foreach crew _jet;
+	
   deletevehicle _jet;
   sleep 1;
   deletegroup _group;
