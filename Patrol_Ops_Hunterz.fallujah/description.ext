@@ -19,6 +19,8 @@ briefing	= 0;
 disableChannels[]={1,2,3,4,5,6};
 enableItemsDropping = 0;
 
+forceRotorLibSimulation = 1;
+
 class cfgFunctions
 {
   class Hz {
@@ -47,6 +49,12 @@ class Extended_InitPost_EventHandlers
 			init = "if (local (_this select 0)) then {if ((isnil 'Hz_pers_network_vehicles') || {!((_this select 0) in Hz_pers_network_vehicles)}) then {_items = itemCargo (_this select 0); clearItemCargoGlobal (_this select 0); _items = _items - ['ACRE_PRC343']; {(_this select 0) addItemCargoGlobal [_x,1];} foreach _items;};};"
 		
 		};
+		
+		class DeleteAttached {
+		
+			init = "if (local (_this select 0)) then {(_this select 0) addEventHandler ['Deleted',{{deleteVehicle _x} foreach (attachedObjects (_this select 0));}];};";
+		
+		};
 	
 	};
 	
@@ -57,6 +65,12 @@ class Extended_InitPost_EventHandlers
 			init = "if (local (_this select 0)) then {if ((isnil 'Hz_pers_network_vehicles') || {!((_this select 0) in Hz_pers_network_vehicles)}) then {_items = itemCargo (_this select 0); clearItemCargoGlobal (_this select 0); _items = _items - ['ACRE_PRC343']; {(_this select 0) addItemCargoGlobal [_x,1];} foreach _items;};};"
 		
 		};
+		
+		class DeleteAttached {
+		
+			init = "if (local (_this select 0)) then {(_this select 0) addEventHandler ['Deleted',{{deleteVehicle _x} foreach (attachedObjects (_this select 0));}];};";
+		
+		};
 	
 	};
 	
@@ -65,6 +79,12 @@ class Extended_InitPost_EventHandlers
 		class RemoveRadios {
 		
 			init = "if (local (_this select 0)) then {if ((isnil 'Hz_pers_network_vehicles') || {!((_this select 0) in Hz_pers_network_vehicles)}) then {_items = itemCargo (_this select 0); clearItemCargoGlobal (_this select 0); _items = _items - ['ACRE_PRC343']; {(_this select 0) addItemCargoGlobal [_x,1];} foreach _items;};};"
+		
+		};
+		
+		class DeleteAttached {
+		
+			init = "if (local (_this select 0)) then {(_this select 0) addEventHandler ['Deleted',{{deleteVehicle _x} foreach (attachedObjects (_this select 0));}];};";
 		
 		};
 	
