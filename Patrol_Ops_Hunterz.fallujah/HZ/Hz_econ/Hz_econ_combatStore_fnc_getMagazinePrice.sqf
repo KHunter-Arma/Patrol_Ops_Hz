@@ -513,7 +513,7 @@ case "HLC_13RND_9X19_JHP_P228": {46};
 case "HLC_15RND_9X19_JHP_P226": {46};
 case "HLC_10RND_9X19_B_P239":  {46};
 case "HLC_10RND_9X19_JHP_P239": {46};
-case "HLC_30RND_9X19_GD_MP5": {45};
+//case "HLC_30RND_9X19_GD_MP5": {45};
 
 
 /*
@@ -548,8 +548,8 @@ case "HLC_8RND_357SIG_B_P239": {46};
 case "HLC_8RND_357SIG_JHP_P239": {46};
 
 //10 MM
-case "HLC_30RND_10MM_JHP_MP5": {50};
-case "HLC_30RND_10MM_B_MP5": {50};
+//case "HLC_30RND_10MM_JHP_MP5": {50};
+//case "HLC_30RND_10MM_B_MP5": {50};
 
 
 //.40 S&W
