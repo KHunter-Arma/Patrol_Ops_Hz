@@ -65,7 +65,7 @@ _position
 hz_reward = 1;
 while{ 
 
-(({ (side _x) == (SIDE_A select 0)} count (nearestObjects [_position,["CAManBase"],_taskRadius])) == 0)
+(({ (side _x) == (SIDE_A select 0)} count (_position nearEntities [["CAManBase"],_taskRadius])) == 0)
 &&
 (call Hz_fnc_taskSuccessCheckGenericConditions)
 
@@ -133,33 +133,32 @@ if(_b > 0) then {
 		
 		//unbunching delay
 		//increase this to make path finding easier? (more units with waypoints, less FPS...)
-		sleep 900;
+		sleep 450;
 		
 	};
 };   
 
 /*--------------------MISSION CRITERIA TO PASS---------------------------------*/
 hz_reward = 1;
-_nearObj = nearestObjects [_position,["CAManBase"],_taskRadius];
+_nearObj = _position nearEntities [["CAManBase"],_taskRadius];
 while{ 
 
     (({(side _x) == (SIDE_A select 0)} count _nearObj != 0) || ({(side _x) == (SIDE_C select 0)} count _nearObj == 0))
     && (call Hz_fnc_taskSuccessCheckGenericConditions)
-    && (({if (!isnull _x) then {(side _x) == (SIDE_C select 0)} else {false}} count patrol_task_units) > (1*(count patrol_task_units) / 10))
-    && !reinforcementsqueued
+    && { reinforcementsqueued || {({if (!isnull _x) then {(side _x) == (SIDE_C select 0)} else {false}} count patrol_task_units) > ((count patrol_task_units) / 10)} }
 		
     } do { 
 	
 	sleep 15;
 	
 	[_b,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
-	_nearObj = nearestObjects [_position,["CAManBase"],_taskRadius];
+	_nearObj = _position nearEntities [["CAManBase"],_taskRadius];
 	
 };       
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/  
 
-if((call Hz_fnc_taskSuccessCheckGenericConditions) && ({(side _x) == (SIDE_A select 0)} count nearestObjects[_position,["CAManBase","LandVehicle","Air"],_taskRadius] != 0)) then {
+if((call Hz_fnc_taskSuccessCheckGenericConditions) && (({(side _x) == (SIDE_A select 0)} count (_position nearEntities [["CAManBase","LandVehicle","Air"],_taskRadius])) != 0)) then {
 	[format["TASK%1",_taskid],"succeeded"] call mps_tasks_upd;             
 	
 	call Hz_fnc_taskReward;
@@ -179,7 +178,14 @@ if((call Hz_fnc_taskSuccessCheckGenericConditions) && ({(side _x) == (SIDE_A sel
 	_vehs = _this select 2;
 	
 	while{ ({(_x distance _position) < 1500} count playableUnits) > 0} do { sleep 60 };
-	{deletevehicle _x}forEach _units;
+	{
+		_veh = vehicle _x;
+		if (_veh == _x) then {							
+			deletevehicle _x;							
+		} else {							
+			_veh deleteVehicleCrew _x;							
+		};
+	}forEach _units;
 	{deletevehicle _x}forEach _vehs;
 	
 };      
