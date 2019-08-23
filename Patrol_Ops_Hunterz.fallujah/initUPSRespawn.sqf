@@ -6,42 +6,16 @@ Hz_pops_UPSRespawnArray = [];
 // UPS respawn thread
 [] spawn {
 
+	scriptname "Hz_pops_UPSrespawn";
+
 	while {true} do {
 
 		sleep 20;
 
 		{
 		
-			if (alive _x) then {
-		
-				if ((count crew _x) == 0) then {
-				//moved to dead vehicle main cleanup loop instead for ambience
-				/*
-					if (({ isplayer _x} count nearestObjects [getposatl _x,["CAManBase"],1000]) == 0) then {
+			if (!alive _x) then {
 					
-						Hz_pops_deleteVehicleArray = Hz_pops_deleteVehicleArray - [_x];
-						deletevehicle _x;				
-					
-					};
-				*/
-				} else {
-				
-					//failed spawn?...
-					if (canMove _x) then {
-					
-						_grp = group _x;
-						{deletevehicle _x} foreach crew _x;
-						{deletevehicle _x} foreach units _grp;
-						Hz_pops_deleteVehicleArray = Hz_pops_deleteVehicleArray - [_x];
-						deletevehicle _x;	
-						deleteGroup _grp;
-					
-					};
-				
-				};
-			
-			} else {
-			
 				Hz_pops_deleteVehicleArray = Hz_pops_deleteVehicleArray - [_x];
 			
 			};
@@ -57,7 +31,7 @@ Hz_pops_UPSRespawnArray = [];
 			if 	(			
 						(!missionload)
 					&& {(count allunits) < Hz_max_ambient_units}
-					&& {({isplayer _x} count nearestObjects[markerpos (_randomPatrol select 2),["CAManBase"],5000] < 1) || hz_debug}
+					&& {_mpos = markerpos (_randomPatrol select 2); (({(_mpos distance _x) < 4000} count playableunits) < 1) || hz_debug}
 					) exitWith {
 								 
 					  _randomPatrol spawn AIvcl_respawn_UPS;
@@ -72,30 +46,50 @@ Hz_pops_UPSRespawnArray = [];
 		
 			if (local _x) then {
 			
-				if ((_x getVariable ["Hz_disabledPatrol",false]) && {(time - (_x getvariable ["Hz_AI_lastCriticalDangerTime",-600])) > 300} && {({isplayer _x} count (nearestObjects [getpos leader _x,["CAManBase"],2000])) < 1}) then {
+				if ((_x getVariable ["Hz_disabledPatrol",false]) && {(time - (_x getvariable ["Hz_AI_lastCriticalDangerTime",-600])) > 600} && {_leadPos = getpos leader _x; ({(_x distance _leadPos) < 2000} count playableunits) < 1}) then {
 				
+					_veh = objnull;									
 					{
 					
-						_veh = vehicle _x;
-						
-						{
-						
-							deleteVehicle _x;
-						
-						} foreach crew _veh;
-
-						deleteVehicle _veh;
-						deleteVehicle _x;
+						_veh = vehicle _x;					
+						unassignvehicle _x;
+						_x action ["Eject", _veh];	
 					
-					} foreach units _x;  
-
-					//deleteGroup _x;
+					} foreach units _x;	
+					(units _x) ordergetin false;
+					(units _x) allowgetin false;
+					_x leaveVehicle _veh;	
+					
+					//_x setVariable ["Hz_defending",false];
+					_x setVariable ["Hz_disabledPatrol",false];
+					_x setVariable ["Hz_disabledEjectedPatrol",true];
 				
 				};
 			
 			};
 		
-		} foreach allGroups;    
+		} foreach allGroups;
+
+		{
+		
+			if (local _x) then {
+			
+				if ((_x getVariable ["Hz_disabledEjectedPatrol",false]) && {(time - (_x getvariable ["Hz_AI_lastCriticalDangerTime",-600])) > 900} && {_leadPos = getpos leader _x; ({(_x distance _leadPos) < 2000} count playableunits) < 1}) then {
+				
+					{
+						_veh = vehicle _x;
+						if (_veh == _x) then {							
+							deletevehicle _x;							
+						} else {							
+							_veh deleteVehicleCrew _x;							
+						};
+					} foreach units _x;
+				
+				};
+			
+			};		
+		
+		} foreach allGroups;
 
 	};
 
