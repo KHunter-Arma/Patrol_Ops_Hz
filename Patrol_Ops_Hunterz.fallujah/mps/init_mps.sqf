@@ -34,7 +34,7 @@ SIDE_C = [east,"INS"];	// Insurgent Side
 mps_ref_playercount = 5;	// Max number of players
 
 // Set details for mission intro / outro music
-mps_mission_intro = "Intro";
+mps_mission_intro = "Intro_" + (toLower worldName);
 mps_mission_outro = "Outro";
 
 Hz_nuke_damageExceptions = [nukepos];

@@ -3,11 +3,11 @@ _vehicle = _this select 0;
 _initstatement = "";
 
 if (_vehicle iskindof "CUP_FlagCarrierIONblack_PMC") then {
-  _initstatement = "_obj setFlagTexture ""media\flag5.jpg"";";
+  _initstatement = "_obj setFlagTexture ""Hz_media\pops\flag_pmc.jpg"";";
 };
 
 if ((_vehicle iskindof "SignAd_SponsorS_ION_F") || (_vehicle iskindof "SignAd_Sponsor_ION_F") || (_vehicle iskindof "Banner_01_F")) then {
-  _initstatement = "_obj setObjectTexture [0,""media\flag5.jpg""];";
+  _initstatement = "_obj setObjectTexture [0,""Hz_media\pops\flag_pmc.jpg""];";
 };
 
 if (_vehicle isKindOf "LandVehicle") then {
