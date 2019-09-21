@@ -29,6 +29,7 @@ if (isServer) then {
 if (!isDedicated) then {
 
   waitUntil {!isNull player};
+	waitUntil {Receiving_finish};
   
 };
 

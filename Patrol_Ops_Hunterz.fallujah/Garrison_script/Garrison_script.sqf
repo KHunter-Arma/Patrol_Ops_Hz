@@ -472,7 +472,7 @@ if((count (units _remainders)) > 0) then {
       }foreach _noposbuildings;  
       
       //not yet implemented
-      {deletevehicle _x} foreach units _remainders;
+      {deleteVehicle _x} foreach units _remainders;
             
     };
     
@@ -487,4 +487,4 @@ sleep 3;
 
 _remainders deleteGroupWhenEmpty true;
 
-{if(!alive _x) then {deletevehicle _x;} else {_x setdamage 0; if(!isnil "ace_sys_wounds_fnc_RemovePain") then {_x call ace_sys_wounds_fnc_RemovePain;};};}foreach _cleanup;
+{if(!alive _x) then {deletevehicle _x} else {_x setdamage 0; if(!isnil "ace_sys_wounds_fnc_RemovePain") then {_x call ace_sys_wounds_fnc_RemovePain;};};}foreach _cleanup;

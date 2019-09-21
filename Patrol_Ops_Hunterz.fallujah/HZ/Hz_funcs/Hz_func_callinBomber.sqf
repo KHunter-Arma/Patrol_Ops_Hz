@@ -1,6 +1,8 @@
 #define H_SPEED 70
 #define V_SPEED 260
 
+//consider picking approach path with least mountains around to block bombs or change ballistics to be more vertical...
+
 //if(isnull heli_radar) exitwith {};
 //if(!alive heli_radar) exitwith {};
 

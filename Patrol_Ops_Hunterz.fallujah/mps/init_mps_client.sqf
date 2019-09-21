@@ -103,7 +103,11 @@ waitUntil {!(isNull player)};
 
 sleep 1;
 
-"respawn_west" call Hz_func_findGarrisonedRespawnPos;
+if (!hz_debug) then {
+
+	"respawn_west" call Hz_func_findGarrisonedRespawnPos;
+
+};
 
 // Begin Client Cursor Monitoring for actions on objects
 [] execVM (mps_path+"func\mps_func_client_cursortarget.sqf");
