@@ -1,7 +1,9 @@
 if (!isServer) then {
-
   waitUntil {!isnil "Hz_overrideweather"};
-
+} else {
+	waitUntil {!isnil "Hz_pers_serverInitialised"};
+	sleep 0.1;
+	waitUntil {Hz_pers_serverInitialised};	
 };
 
 switch (true) do {
@@ -226,12 +228,12 @@ switch (true) do {
 				};
 				
 				_logicSound = "logic" createVehicleLocal (getpos player);
-				_logicSound attachto [player,[0,0,40]];
-				_logicSound say3D "HA_sandStorm";
+				_logicSound attachto [player,[0,0,25]];
+				_logicSound say3D "Sandstorm";
         
         call Hz_sys_weather_fnc_weatherSync;
         
-        sleep 100;
+        sleep 174;
 				
 				deleteVehicle _logicSound;
         

@@ -32,6 +32,15 @@ if (((count _escort) > 0) && !_isman) then {
 
 _vehicle = objNull;
 _group = createGroup _side;
+
+sleep 1;
+while {isNull _group} do {
+	deleteGroup _group;
+	sleep 1;
+	_group = createGroup _side;
+	sleep 1;
+};
+
 _group setvariable ["Hz_Patrolling",true]; 
 
 if (_isman) then {
@@ -132,6 +141,13 @@ _group setSpeedMode "NORMAL";
 _group setCombatMode "SAFE";
 
 [_vehicle,_marker,_isair,_group] call Hz_pops_patrols_startUPS;
+
+//created group might return null at first instance causing UPS to fail to start...
+sleep 1;
+while {(isnull _group) || {(count units _group) > 0}} do {
+	[_vehicle,_marker,_isair,_group] call Hz_pops_patrols_startUPS;	
+	sleep 10;
+};
 
 _group deleteGroupWhenEmpty true;
 

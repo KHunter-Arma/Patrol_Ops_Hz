@@ -121,14 +121,18 @@ player addEventHandler ["Killed",{
 		
 		} foreach [handgunWeaponPlayer,primaryWeaponPlayer,secondaryWeaponPlayer,binocularPlayer];    
 
-		_acreVol = [] call acre_api_fnc_getGlobalVolume;
+		//_acreVol = [] call acre_api_fnc_getGlobalVolume;
+		
+		player setVariable ["acre_sys_core_isDisabled", true, true];
     
 		while {true} do {
     
 			//try to resolve loop getting stuck with exitwith instead...
 			if (alive player) exitwith {};
       
-      openMap false; 0 fadeSound 0; [0] call acre_api_fnc_setGlobalVolume;
+      openMap false;
+			0 fadeSound 0;			
+			//[0] call acre_api_fnc_setGlobalVolume;			
 		
 		};
 		
@@ -179,7 +183,8 @@ player addEventHandler ["Killed",{
     player removeaction mps_client_hud_act;
     
     sleep 5;
-    [_acreVol] call acre_api_fnc_setGlobalVolume;
+   //[_acreVol] call acre_api_fnc_setGlobalVolume;
+		player setVariable ["acre_sys_core_isDisabled", false, true];
 		if (_hasEarplugs) then {player setvariable ["ACE_hasEarPlugsin",true]};
     0 fadesound 1;
 		

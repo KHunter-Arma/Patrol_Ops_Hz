@@ -34,27 +34,54 @@ sleep 2;
 */
 
 //Animation loop
-
 if (!isnil "_anim") then {
 
-	while{alive _unit}do{
+	_uncon = false;
+
+	while {alive _unit} do {
+	
+		_unit setPosATL _pos;
+		_unit setdir _dir;
 		
 		for "_x" from 1 to 5 do {
 			
 			_unit playMoveNow _anim;
-			waitUntil{sleep 5; animationState _unit != _anim};
+			
+			waitUntil {
+			
+				sleep 5;
+				
+				if (captive _unit) then {				
+					_uncon = true;					
+					true				
+				} else {				
+					animationState _unit != _anim				
+				}
+				
+			};
+			
+			if (_uncon) exitWith {};
+			
 			_unit setunitPos "UP";
 			
 		};
-		_unit setPosATL _pos;
-		_unit setdir _dir;
+		
+		if (_uncon) exitWith {};			
+			
 	};
 	
 	_unit switchmove "";
+	
+	_unit enableAI "TARGET";
+	_unit enableAI "AUTOTARGET";
+	_unit enableAI "MOVE";
+	_unit enableAI "FSM";
+	
+	_unit setVariable ["Hz_disableFSM",false];
 
 } else {
 
-	while {alive _unit} do {
+	while {(alive _unit) && {!captive _unit}} do {
 		
 		_unit setunitPos "UP";
 		(group _unit) setbehaviour "SAFE";

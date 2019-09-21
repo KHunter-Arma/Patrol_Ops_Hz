@@ -12,22 +12,7 @@ if (((count playableunits) > 14) &&
         missionload = true; 
 				publicVariable "missionload";
         taskrequested = true;
-        publicvariable "taskrequested";                
-                
-         //get rid of ambient patrols       
-        {
-            if((_x getvariable ["Hz_Patrolling",false]) || (_x getvariable ["Hz_Attacking",false]) ||(_x getvariable ["Hz_Supporting",false])) then {
-
-                 {
-                     _veh = vehicle _x;
-
-                    deletevehicle _x;
-                    deletevehicle _veh;
-                 }foreach units _x;
-        
-            };
-        
-        }foreach allgroups;
+        publicvariable "taskrequested";     
         
         {_x setvehiclelock "unlocked";} foreach Hz_save_jointOps_vehicles;
         
