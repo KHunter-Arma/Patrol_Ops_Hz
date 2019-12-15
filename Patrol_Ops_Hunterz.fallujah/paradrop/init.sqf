@@ -3,11 +3,11 @@ paraLandSafe =
 	private ["_unit"];
 	_unit = _this select 0;
 	_chuteheight = _this select 1;
-	(vehicle _unit) allowDamage false;
+	//(vehicle _unit) allowDamage false;
 	if (isPlayer _unit) then {[_unit,_chuteheight] spawn OpenPlayerchute};
-	waitUntil {uisleep 1; isTouchingGround _unit || (position _unit select 2) < 1 };
+	waitUntil {sleep 1; isTouchingGround _unit || (position _unit select 2) < 1 };
 	_unit action ["eject", vehicle _unit];
-	uisleep 1;
+	sleep 1;
 	_inv = name _unit;
 	[_unit, [missionNamespace, format["%1%2", "Inventory",_inv]]] call BIS_fnc_loadInventory;// Reload Loadout.
 	//_unit allowdamage true;// Now you can take damage.

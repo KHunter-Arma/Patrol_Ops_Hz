@@ -25,6 +25,7 @@ _dir = direction _vehicle;
 	[_x, [missionNamespace, format["%1%2", "Inventory",_inv]]] call BIS_fnc_saveInventory;// Save Loadout
 	removeBackpack _x;
 	_x disableCollisionWith _vehicle;// Sometimes units take damage when being ejected.
+	_vehicle disableCollisionWith _x;
 	//_x allowdamage false;// Trying to prevent damage.
 	_x addBackPack "B_parachute";
 	unassignvehicle _x;

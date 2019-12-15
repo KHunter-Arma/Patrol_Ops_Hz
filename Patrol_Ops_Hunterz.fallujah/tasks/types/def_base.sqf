@@ -4,7 +4,7 @@ diag_log diag_activeSQSScripts;
 diag_log diag_activeMissionFSMs;
 
 /*-------------------- TASK PARAMS ---------------------------------*/
-_EnemySpawnMinimumRange = 3000;
+_EnemySpawnMinimumRange = 4000;
 _taskRadius = 1500;
 _minSquadCount = 4;
 _maxSquadCount = 10;

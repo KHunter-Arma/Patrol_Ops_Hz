@@ -60,4 +60,4 @@ WaitUntil{camCommitted _camera};
 	camDestroy _camera;
 	player cameraEffect ["terminate","back"];
         
-        introseqdone = true;
+	intro_cam_done = true;

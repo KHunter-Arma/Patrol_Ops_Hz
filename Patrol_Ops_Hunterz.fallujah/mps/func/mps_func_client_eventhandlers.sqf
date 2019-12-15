@@ -121,9 +121,14 @@ player addEventHandler ["Killed",{
 		
 		} foreach [handgunWeaponPlayer,primaryWeaponPlayer,secondaryWeaponPlayer,binocularPlayer];    
 
-		//_acreVol = [] call acre_api_fnc_getGlobalVolume;
+		_acreVol = [] call acre_api_fnc_getGlobalVolume;
+		_vd = viewDistance;
 		
-		player setVariable ["acre_sys_core_isDisabled", true, true];
+		setViewDistance 250;
+		setObjectViewDistance 250;
+		
+		//player setVariable ["acre_sys_core_isDisabled", true, true];
+		{[_x,0] call acre_api_fnc_setRadioVolume} foreach (call acre_api_fnc_getCurrentRadioList);
     
 		while {true} do {
     
@@ -132,7 +137,7 @@ player addEventHandler ["Killed",{
       
       openMap false;
 			0 fadeSound 0;			
-			//[0] call acre_api_fnc_setGlobalVolume;			
+			[0] call acre_api_fnc_setGlobalVolume;			
 		
 		};
 		
@@ -183,8 +188,10 @@ player addEventHandler ["Killed",{
     player removeaction mps_client_hud_act;
     
     sleep 5;
-   //[_acreVol] call acre_api_fnc_setGlobalVolume;
-		player setVariable ["acre_sys_core_isDisabled", false, true];
+   [_acreVol] call acre_api_fnc_setGlobalVolume;	 
+		//player setVariable ["acre_sys_core_isDisabled", false, true];
+		setViewDistance _vd;
+		setObjectViewDistance _vd;
 		if (_hasEarplugs) then {player setvariable ["ACE_hasEarPlugsin",true]};
     0 fadesound 1;
 		

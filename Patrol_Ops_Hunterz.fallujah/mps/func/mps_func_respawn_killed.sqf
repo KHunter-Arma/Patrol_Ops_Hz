@@ -39,7 +39,7 @@ mps_respawn_process = [] spawn {
 
 	waitUntil {alive player};
 
-	sleep 0.2;
+	uisleep 0.2;
 	mps_current_pos = getPosATL player;
 
 	//player setPosATL (getMarkerPos format["respawn_%1",side player]);

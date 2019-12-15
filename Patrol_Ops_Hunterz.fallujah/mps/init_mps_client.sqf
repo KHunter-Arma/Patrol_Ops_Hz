@@ -101,13 +101,15 @@ if (!hz_debug && isMultiplayer) then {
 
 waitUntil {!(isNull player)};
 
-sleep 1;
-
 if (!hz_debug) then {
 
 	"respawn_west" call Hz_func_findGarrisonedRespawnPos;
+	sleep 1;
 
 };
+
+// Setup Client Event Handlers
+call compile preprocessFileLineNumbers (mps_path+"func\mps_func_client_eventhandlers.sqf");
 
 // Begin Client Cursor Monitoring for actions on objects
 [] execVM (mps_path+"func\mps_func_client_cursortarget.sqf");
@@ -117,14 +119,12 @@ GrassLayerchanged = false;
 //	[] execVM (mps_path+"config\config_defaultgear.sqf");
 
 // Publicvariabled from server init. Used to sync destroyed objects/buildings from nuke for JIP
+waituntil {!isnil "narray2"};
 if (count narray2 > 0) then {{_x setdamage 1;} foreach narray2;};
 
 // Setup Respawn Variables
 mps_body = player;
 mps_death_effect = [] spawn {};
-
-// Setup Client Event Handlers
-call compile preprocessFileLineNumbers (mps_path+"func\mps_func_client_eventhandlers.sqf");
 
 // Call the Injury System. This is disabled in the event ACE_Wounds is enabled
 // Written by BON_IF
@@ -258,7 +258,10 @@ if(_uid in BanList) then {
 
 [] execvm "SA_AdvancedTowing\advancedTowingInit.sqf";
 
-waituntil {introseqdone};
+waituntil {Receiving_finish};
+sleep 1;
+if (!mps_debug && !hz_debug) then {["Bad Company Presents...",format["Patrol Ops Hunter'z\n%1",toupper(worldname)],"Mission by\nK.Hunter","Patrol Ops Framework\nby EightySix"] spawn mps_intro;} else {intro_cam_done = true;};
+waitUntil {intro_cam_done};
 
 if(!hz_debug) then {
 

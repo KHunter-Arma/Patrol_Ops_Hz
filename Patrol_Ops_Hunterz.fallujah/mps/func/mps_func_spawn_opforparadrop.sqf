@@ -97,7 +97,7 @@ _drophelo doMove _dest;
 	_drophelogrp = _this select 6;
 	_flyin = _this select 7;
 
-	waitUntil { _drophelo distance _dest <= 650 || !canMove _drophelo || !alive _helopilot };
+	waitUntil { _drophelo distance2D _dest <= 650 || !canMove _drophelo || !alive _helopilot };
 
 	_newgrp = _helogrp;
 	_dudes = units _helogrp;

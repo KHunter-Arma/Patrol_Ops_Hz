@@ -28,7 +28,7 @@ if (isServer) then {
 
 };
 
-introseqdone = false;
+intro_cam_done = false;
 
 // For SP/Mission Testing
 	if(isNil "paramsArray") then { paramsArray = [-1,3,999,4,0,4,1,1,1,9,0,0,0,1,0,1,0,1,5,0,0]; };
@@ -36,11 +36,12 @@ introseqdone = false;
 // Mission Parameters
 	mps_params = paramsArray;   
 
-[] execVM "mps\init_mps.sqf";       
+call compile preprocessFileLineNumbers "mps\init_mps.sqf";       
 
 if (hasInterface) then {
 
-	WaitUntil{ !(isNull player) && !isNil "mps_init" && Receiving_finish };
+	//WaitUntil{ !(isNull player) && !isNil "mps_init" && Receiving_finish };
+	
 /*	
 	//try to safely resolve 'stuck in loading screen bug' of Arma 3...
 	WaitUntil{ !(isNull player) && !isNil "mps_init"};
@@ -58,14 +59,14 @@ if (hasInterface) then {
 */	
 } else {
 
-	if (call Hz_fnc_isHC) then {waitUntil {(name player) != "Error: No vehicle"}};
+	//if (call Hz_fnc_isHC) then {waitUntil {(name player) != "Error: No vehicle"}};
 	Receiving_finish = true;
-	WaitUntil{!isNil "mps_init"};
+	intro_cam_done = true;
+	//WaitUntil{!isNil "mps_init"};
 };
 
-// This is the intro Sequence. Edit this line to have your own text fill the screen on intro.
-if(!mps_debug && !hz_debug && !isDedicated && !(call Hz_fnc_isHC)) then {["Bad Company Presents...",format["Patrol Ops Hunter'z\n%1",toupper(worldname)],"Mission by\nK.Hunter","Patrol Ops Framework\nby EightySix"] spawn mps_intro; } else {introseqdone = true;};
-
+//global empty fuel stations
+{ _x setFuelCargo 0; [_x,0] call ace_refuel_fnc_setFuel;} forEach (nearestObjects [markerpos "ao_centre", ["Land_Ind_FuelStation_Feed_EP1","Land_A_FuelStation_Feed"], 15000]);
 
 // This line prepares the outro. To call the outro, declare "mps_mission_finished = true" in a trigger or line of code to trigger the outro sequence.
 //	[] call mps_outro;

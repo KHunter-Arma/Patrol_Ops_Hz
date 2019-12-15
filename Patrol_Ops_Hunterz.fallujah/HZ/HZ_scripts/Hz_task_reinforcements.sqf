@@ -180,16 +180,12 @@ for "_i" from 1 to _count do {
   Hz_econ_aux_rewards = Hz_econ_aux_rewards + _otherReward;
 
   //sleep before sending next
-  sleep 60;
+  _sleep = time + 450;
+	waituntil {
+		sleep 15;
+		stopreinforcements || {time > _sleep}
+	};
 
 };
 
-_timeout = time + 1800;
-waituntil {
-
-	sleep 15;
-
-	stopreinforcements || {time > _timeout}
-
-};
 reinforcementsqueued = false;

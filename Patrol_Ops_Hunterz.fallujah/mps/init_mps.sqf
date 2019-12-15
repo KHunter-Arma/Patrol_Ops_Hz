@@ -216,14 +216,9 @@ mps_path = "mps\";
   mps_init = true;
 
 // Initialise Client and Server to begin calling Functions
-  [] execVM (mps_path+"init_mps_server.sqf");
-        
-        WaitUntil{ Receiving_finish };
-        
-        //global empty fuel stations
-        { _x setFuelCargo 0; [_x,0] call ace_refuel_fnc_setFuel;} forEach (nearestObjects [markerpos "ao_centre", ["Land_Ind_FuelStation_Feed_EP1","Land_A_FuelStation_Feed"], 15000]);
-        
-  [] execVM (mps_path+"init_mps_client.sqf");
+  call compile preprocessFileLineNumbers (mps_path+"init_mps_server.sqf");         
+	
+  call compile preprocessFileLineNumbers (mps_path+"init_mps_client.sqf");
 
 
         

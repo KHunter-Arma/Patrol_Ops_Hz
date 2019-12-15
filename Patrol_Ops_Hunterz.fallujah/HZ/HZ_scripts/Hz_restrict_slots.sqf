@@ -1,4 +1,4 @@
-waituntil {introseqdone};
+waituntil {sleep 1; intro_cam_done};
     
 if((getplayeruid player) in Hz_Officers) then {player setvariable ["TL",true,true];};
 if((getplayeruid player) in Hz_pops_restrictions_supervisorList) then {player setvariable ["PMC",true,true];};

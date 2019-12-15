@@ -10,10 +10,10 @@ _penaltyPerLostContainer = 20000;
 _penaltyPerLostWorker = 50000;
 
 // in case the mission turns into a defend task
-_EnemySpawnMinimumRange = 2000;
+_EnemySpawnMinimumRange = 3000;
 _taskRadius = 15;
-_minSquadCount = 2;
-_maxSquadCount = 5;
+_minSquadCount = 1;
+_maxSquadCount = 3;
 
 //Chance of a squad having the following vehicle support (can't have more than 1 vehicle per squad)
 _CASchance = 0;
@@ -265,53 +265,11 @@ waituntil {
 
 /*--------------------CREATE ENEMY NEAR LOCATION---------------------------------*/
 
-_troops = [];
-
 if(_spawnedSquads > 0) then {
 
-	for "_i" from 1 to _spawnedSquads do {
-		
-		//exit spawn loop and transfer to reinforcements script if too many units present on map
-		if((count allunits) > Hz_max_allunits) exitwith {_r = (_spawnedSquads - _i) + 1; [_EnemySpawnMinimumRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] spawn Hz_task_reinforcements;};
-		
-		_tempos = [_position,_EnemySpawnMinimumRange] call Hz_func_findspawnpos;
-		
-		_grp = [ _tempos,"INS",24 + random 24,300 ] call CREATE_OPFOR_SQUAD;
-		
-		_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] call Hz_func_opforVehicleSupport;
-		_vehicletypes = _Vehsupport select 0;
-		_otherReward = _otherReward + (_Vehsupport select 1);
-		
-		if((count _vehicletypes) > 0) then { 
-			
-			_car_type = _vehicletypes call mps_getRandomElement;
-			_vehgrp = [_car_type,(SIDE_C select 0),_tempos,100] call mps_spawn_vehicle;
-			sleep 1;
-			patrol_task_vehs set [count patrol_task_vehs, vehicle (leader _vehgrp)];
-			(units _vehgrp) joinSilent _grp;
-			sleep 1;
-			deleteGroup _vehgrp;
-			
-		};
-		
-		patrol_task_units = patrol_task_units + (units _grp);
-		sleep 1;
-		if(!isnil "Hz_AI_moveAndCapture") then {
-			
-			_spawnedVehs = [_grp, _position,mps_opfor_ins_truck,mps_opfor_ins_ncov,1000] call Hz_AI_moveAndCapture;  
-
-			patrol_task_vehs = patrol_task_vehs + _spawnedVehs;					 
-			
-		} else {
-			
-			_wp = _grp addWaypoint [_position,20];
-			_wp setWaypointType "SAD";
-			
-		};
-		
-		//unbunching delay
-		sleep 450;
-	};
+	//handle spawning with reinforcements script so task doesn't wait for spawn loop to finish
+	[_EnemySpawnMinimumRange,_position,_spawnedSquads,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] spawn Hz_task_reinforcements;
+	
 };
 
 /*--------------------MISSION CRITERIA TO PASS---------------------------------*/

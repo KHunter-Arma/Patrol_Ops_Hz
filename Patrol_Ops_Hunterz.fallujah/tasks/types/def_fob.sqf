@@ -4,7 +4,7 @@ diag_log diag_activeSQSScripts;
 diag_log diag_activeMissionFSMs;
 
 /*-------------------- TASK PARAMS ---------------------------------*/
-_EnemySpawnMinimumRange = 3000;
+_EnemySpawnMinimumRange = 4000;
 _taskRadius = 200;
 _minSquadCount = 3;
 _maxSquadCount = 6;
@@ -21,7 +21,7 @@ _rewardMultiplier = 1;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 
-_position = [markerpos "ao_centre",3000] call Hz_func_findspawnpos;
+_position = [markerpos "ao_centre",3000,3500,SIDE_B select 0] call Hz_func_findspawnpos;
 _taskid = format["%1%2%3",round (_position select 0),round (_position select 1),(round random 999)];
 Hz_task_ID = _taskid;
 Hz_econ_aux_rewards = 0;

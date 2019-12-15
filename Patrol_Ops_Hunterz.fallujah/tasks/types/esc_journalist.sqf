@@ -7,10 +7,10 @@ diag_log diag_activeMissionFSMs;
 
 /*-------------------- TASK PARAMS ---------------------------------*/
 
-_rewardPerTarget = 50000;
-_numberOfTargets = 4;
+_rewardPerTarget = 75000;
+_numberOfTargets = 2;
 _minimumVantagePointHeight = 15;
-_ambientCombatIntensifyAmount = 80;
+_ambientCombatIntensifyAmount = Hz_ambient_units_intensify_amount;
 _timeRequiredAtEachTarget = 5;
 
 //Useful for justifying task-specific difficulties.

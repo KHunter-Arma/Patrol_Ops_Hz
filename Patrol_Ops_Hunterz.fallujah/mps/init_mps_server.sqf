@@ -45,7 +45,7 @@ if((tolower worldName) == "fallujah") then {
 	]};
 
 // Determine if Server is running ACE & ACRE
-[] execVM (mps_path+"func\mps_func_detect_ace.sqf");
+//[] execVM (mps_path+"func\mps_func_detect_ace.sqf");
 
 // AMMOBOX
 //	mps_ammobox_list = []; publicVariable "mps_ammobox_list";
@@ -100,13 +100,6 @@ setviewdistance 2000;
 tempbikes = [];
 publicvariable "tempbikes";
 
-if (!(call Hz_fnc_isAiMaster)) then {
-
-	Hz_pops_UPSPassToHCArray = [];
-	sleep 10;
-	publicVariable "Hz_pops_UPSPassToHCArray";
-
-};
 /*
 ambientPatrolBoosterRunning = false;
 addMissionEventHandler ["PlayerConnected",{
@@ -151,3 +144,11 @@ addMissionEventHandler ["PlayerConnected",{
 //if(mps_ambient_airpatrols) then {[] spawn CREATE_OPFOR_AIRPATROLS;};    
 	
 //[] spawn Hz_func_spawnOpforArtilleryBase;  
+
+if (!(call Hz_fnc_isAiMaster)) then {
+
+	Hz_pops_UPSPassToHCArray = [];
+	sleep 10;
+	publicVariable "Hz_pops_UPSPassToHCArray";
+
+};

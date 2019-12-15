@@ -12,10 +12,10 @@ _speechCompletePayment = 150000;
 _speechTimeMinutes = 30;
 
 // in case the mission turns into a defend task
-_EnemySpawnMinimumRange = 2000;
+_EnemySpawnMinimumRange = 3000;
 _taskRadius = 50;
 _minSquadCount = 1;
-_maxSquadCount = 4;
+_maxSquadCount = 3;
 
 //Chance of a squad having the following vehicle support (can't have more than 1 vehicle per squad)
 _CASchance = 0;
@@ -352,7 +352,7 @@ case (_suicidebomber) : {
 			} foreach _temp;
 			
 			_bomber = _crowd call mps_getrandomelement; 
-			_bomber setVariable ["Hz_ambw_sideFaction",[SIDE_B select 0, "Civilians"],true];
+			_bomber setVariable ["Hz_ambw_sideFaction",[SIDE_C select 0, "Enemy Insurgents"],true];
 			_bomber setskill 1;
 			_bomber addMagazine "IEDUrbanBig_Remote_Mag";
 			_bomber setunitpos "UP";
@@ -557,7 +557,7 @@ while {
 			} foreach _temp;
 			
 			_dude = _crowd call mps_getrandomelement;
-			_dude setVariable ["Hz_ambw_sideFaction",[SIDE_B select 0, "Civilians"]];
+			_dude setVariable ["Hz_ambw_sideFaction",[SIDE_C select 0, "Enemy Insurgents"],true]; 
 			_dude setskill 0.4;
 			_dude setskill ["spotDistance",1];
 			_dude setskill ["spotTime",1];

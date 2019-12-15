@@ -183,7 +183,7 @@ _timescaler3 = 0;
 
 while {true} do {
 
-	diag_log format ["### Hz_diag: %1, %2, %3, %4, %5",diag_fps,viewDistance, count diag_activeSQFScripts, {local _x} count allunits, {local _x} count vehicles];
+	diag_log format ["### Hz_diag: %1, %2, %3, %4, %5, %6",diag_fps,viewDistance, count diag_activeSQFScripts, {local _x} count allunits, {local _x} count vehicles, {local agent _x} count agents];
 
 	uisleep 5;
 

@@ -4,8 +4,8 @@ diag_log diag_activeSQSScripts;
 diag_log diag_activeMissionFSMs;
 
 /*-------------------- TASK PARAMS ---------------------------------*/
-_reinforcementsMinimumSpawnRange = 3000;
-_ambientCombatIntensifyAmount = 80;
+_reinforcementsMinimumSpawnRange = 4000;
+_ambientCombatIntensifyAmount = Hz_ambient_units_intensify_amount;
 _downPayment = 150000;
 
 _minDefendingSquadCount = 0;

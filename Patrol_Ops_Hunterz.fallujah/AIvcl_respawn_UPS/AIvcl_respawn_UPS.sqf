@@ -141,12 +141,19 @@ _group setSpeedMode "NORMAL";
 _group setCombatMode "SAFE";
 
 [_vehicle,_marker,_isair,_group] call Hz_pops_patrols_startUPS;
-
-//created group might return null at first instance causing UPS to fail to start...
 sleep 1;
-while {(isnull _group) || {(count units _group) > 0}} do {
-	[_vehicle,_marker,_isair,_group] call Hz_pops_patrols_startUPS;	
-	sleep 10;
+
+if (((count units _group) == 1) && {((units _group) select 0) == (gunner _vehicle)}) then {
+
+
+} else {
+
+	//created group might return null at first instance causing UPS to fail to start...	
+	while {(isnull _group) || {(count units _group) > 0}} do {
+		[_vehicle,_marker,_isair,_group] call Hz_pops_patrols_startUPS;	
+		sleep 10;
+	};
+
 };
 
 _group deleteGroupWhenEmpty true;
