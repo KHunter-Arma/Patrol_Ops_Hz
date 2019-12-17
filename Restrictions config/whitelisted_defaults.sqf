@@ -506,8 +506,8 @@ attachmentsInfo = attachmentsInfo - [
 "HLC_MUZZLE_OCTANE9",
 "HLC_ACC_DBALPL",
 "HLC_ACC_DBALPL_FL",
-"HLC_OPTIC_ZF95_G3"
-
+"HLC_OPTIC_STANAGZF2G_G3",
+"HLC_OPTIC_STANAGZF_G3"
 
 
 ////////////////////////////////////////////////////////////////////////////////////
