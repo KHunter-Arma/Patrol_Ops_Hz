@@ -11,6 +11,9 @@
 
 switch (true) do {
 
+//case (_this iskindof "RHS_Ural_Open_Civ_01") : {12000};
+case (_this iskindof "CUP_O_V3S_Open_TKM") : {14000};
+case (_this iskindof "CUP_V3S_Covered_Base") : {14500};
 case (_this iskindof "CUP_C_Datsun") : {4800};
 case (_this iskindof "CUP_O_Datsun_PK") : {9000};
 case (_this iskindof "CUP_C_Lada_White_CIV") : {5000};
