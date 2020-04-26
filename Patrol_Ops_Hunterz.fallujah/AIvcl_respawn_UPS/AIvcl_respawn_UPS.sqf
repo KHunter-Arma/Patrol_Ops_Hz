@@ -140,6 +140,18 @@ _group setFormation "STAG COLUMN";
 _group setSpeedMode "NORMAL";
 _group setCombatMode "SAFE";
 
+switch (_side) do {
+	case blufor : {
+		{Hz_pops_UpsBluforUnits pushBack _x} foreach (units _group);	
+	};
+	case opfor : {
+		{Hz_pops_UpsOpforUnits pushBack _x} foreach (units _group);	
+	};
+	case resistance : {
+		{Hz_pops_UpsGrnforUnits pushBack _x} foreach (units _group);		
+	};
+};		
+
 [_vehicle,_marker,_isair,_group] call Hz_pops_patrols_startUPS;
 sleep 1;
 
@@ -148,7 +160,7 @@ if (((count units _group) == 1) && {((units _group) select 0) == (gunner _vehicl
 
 } else {
 
-	//created group might return null at first instance causing UPS to fail to start...	
+	//created group might return null at first instance causing UPS to fail to start...	WTF?!
 	while {(isnull _group) || {(count units _group) > 0}} do {
 		[_vehicle,_marker,_isair,_group] call Hz_pops_patrols_startUPS;	
 		sleep 10;

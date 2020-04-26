@@ -76,7 +76,7 @@ if (_flipVehicle) then {
 		player removeAction _cancelHandler;
 		_car setVariable ["flipAnimHandler",_car addAction ["<t color='#FF0000'>Flip vehicle</t>","vehicle_flip.sqf" , nil, 1.5, true, true, "", "((vehicle _this) == _this) && {(((vectorUp _target) select 2) < 0) || {((vectorUp _target) select 0) > 0.8}}", 6, false, ""]];
 	
-	}, "Flipping vehicle...",{_args = _this select 0; _args params ["_car","_playersNeeded"]; (!captive player) && {alive player} && {alive _car} && {(_car getVariable "playershelping") >= _playersNeeded}}] call ace_common_fnc_progressBar;	
+	}, "Flipping vehicle...",{_args = _this select 0; _args params ["_car","_playersNeeded"]; (!(player call Hz_fnc_isUncon)) && {alive player} && {alive _car} && {(_car getVariable "playershelping") >= _playersNeeded}}] call ace_common_fnc_progressBar;	
 	
 } else {
 

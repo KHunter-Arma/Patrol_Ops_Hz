@@ -45,4 +45,4 @@ _fillTime = _waterToFill*FILL_TIME_PER_LITER;
 	[_waterTank, _capacity] call acex_field_rations_fnc_setRemainingWater;
 	[_truck, _truckWater - _waterToFill] call acex_field_rations_fnc_setRemainingWater;
 
-}, {}, "Filling up...",{_args = _this select 0; (!captive player) && {alive (_args select 0)} && {alive (_args select 1)} && {((_args select 0) distance (_args select 1)) < (_args select 5)}}] call ace_common_fnc_progressBar;
+}, {}, "Filling up...",{_args = _this select 0; (!(player call Hz_fnc_isUncon)) && {alive (_args select 0)} && {alive (_args select 1)} && {((_args select 0) distance (_args select 1)) < (_args select 5)}}] call ace_common_fnc_progressBar;

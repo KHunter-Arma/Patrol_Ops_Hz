@@ -6,15 +6,15 @@ diag_log diag_activeMissionFSMs;
 /*-------------------- TASK PARAMS ---------------------------------*/
 _EnemySpawnMinimumRange = 4000;
 _taskRadius = 1500;
-_minSquadCount = 4;
-_maxSquadCount = 10;
+_minSquadCount = 3;
+_maxSquadCount = 6;
 
 _basePos = [8113.73,2261.58,0];
 
 _baseDefenderLocations = [[8172.02,2200.39,0],[7800.5,1834.66,0],[8124.44,2461.57,0]];
 _baseDefenderType = "USAF_SecurityForces_rifleman_Hz";
 _baseDefenderSquadSize = 12;
-_baseDefenderSkill = 0.7;
+_baseDefenderSkill = 0.1;
 
 //Allows to locally (where taskmaster is running) hide objects so AI can pass through them (e.g. fences etc.)
 _mapObjIDsToDisableRender = [313447,313449,399225,162792,163293,96500,165857,168348,168798,169419,169993,170882,171166,171057,171856,174669,176475,177174,190861,192285,192542,192562,192565,192592,192615,192662,192697,192755,192784,192817,192846,192921,192932,192694,193035,193088,193215,193230,193229,193271,195420,195717,195875,196064,196912,196913,197256,197608,197998,198129,198280,198479,198448,198259,198571,198844,199099,199309,199435,199577,199735,199748,200070,200105,200134,200368,205422,210380,210536];
@@ -26,11 +26,11 @@ _editorObjsToDelete = [amb1,amb2,amb3,amb4,amb5,amb6,amb7,amb8];
 _CASchance = 0;
 _TankChance = 0.1;
 _IFVchance = 0.3;
-_AAchance = 0.5;
-_CarChance = 0.8;
+_AAchance = 0.2;
+_CarChance = 0.75;
 
 //Useful for justifying task-specific difficulties.
-_rewardMultiplier = 0.5;
+_rewardMultiplier = 1.2;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 
@@ -85,6 +85,13 @@ _position
 
 		_dude = _group createUnit [_baseDefenderType, _x, [], 50, "NONE"];
 		_dude setskill _baseDefenderSkill;
+		_dude setskill ["spotDistance",1];
+		_dude setskill ["spotTime",1];
+		_dude setskill ["courage",1];
+		_dude setskill ["commanding",1];
+		_dude setskill ["aimingSpeed",0.8];
+		_dude setskill ["aimingAccuracy",0.15];	
+		_dude setskill ["aimingShake",0.15];
 		_dude setunitPosWeak "MIDDLE";
 
 	};
@@ -108,7 +115,7 @@ publicVariable "Hz_econ_vehicleStore_storeClosed";
 Hz_pops_disableStore = true;
 publicVariable "Hz_pops_disableStore";
 
-[John,["<t color='#e01414'>Hunter'z Combat Store</t>",{hint "You actually expect me to handle weapons in this mess?!"},[],1.5,false,true,"","(alive _target) && {!captive _target}"]] remoteExecCall ["addAction",0,true];
+[John,["<t color='#e01414'>Hunter'z Combat Store</t>",{hint "You actually expect me to handle weapons in this mess?!"},[],1.5,false,true,"","(alive _target) && {!(_target call Hz_fnc_isUncon)}"]] remoteExecCall ["addAction",0,true];
 
 [0, {
 
@@ -225,7 +232,10 @@ while{
 	[_b,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
 	_nearObj = _position nearEntities [["CAManBase"],_taskRadius];
 	
-};       
+};  
+
+//sleep for a bit to allow friendlies to make sure they're clear
+sleep 900;     
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/  
 

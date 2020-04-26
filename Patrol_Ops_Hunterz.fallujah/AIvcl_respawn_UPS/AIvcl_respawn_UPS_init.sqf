@@ -66,6 +66,18 @@ waitUntil {!isnil "Hz_fnc_isAiMaster"};
 if (call Hz_fnc_isAiMaster) then {
 
 	waitUntil {!isnil "UPS_respawn_initDone"};
+	
+	switch (_side) do {
+		case blufor : {
+			{Hz_pops_UpsBluforUnits pushBack _x} foreach (units _group);
+		};
+		case opfor : {	
+			{Hz_pops_UpsOpforUnits pushBack _x} foreach (units _group);	
+		};
+		case resistance : {
+			{Hz_pops_UpsGrnforUnits pushBack _x} foreach (units _group);		
+		};
+	};		
 
 	[_vehicle,_marker,_isair,_group] call Hz_pops_patrols_startUPS;
 

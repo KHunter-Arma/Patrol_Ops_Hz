@@ -39,7 +39,7 @@ else
     R3F_abortCarry = false;
     R3F_readyToMove = false;  
     
-    [_prepTime, [], {R3F_readyToMove = true;}, {R3F_abortCarry = true; R3F_readyToMove = true;}, "Preparing to move...",{!captive player}] call ace_common_fnc_progressBar;
+    [_prepTime, [], {R3F_readyToMove = true;}, {R3F_abortCarry = true; R3F_readyToMove = true;}, "Preparing to move...",{!(player call Hz_fnc_isUncon)}] call ace_common_fnc_progressBar;
     
     waitUntil {R3F_readyToMove};
     

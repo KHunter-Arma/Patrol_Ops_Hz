@@ -211,7 +211,7 @@ _vip setvariable ["preachTime",0];
 	_units joinsilent grpNull;
 	_units joinsilent (group (_this select 1));
 
-}, [], 1, true, true, "", "(!captive _target) && (alive _target) && ((group _target) != (group _this))"]] remoteexeccall ["addAction",0,true];
+}, [], 1, true, true, "", "(!(_target call Hz_fnc_isUncon)) && (alive _target) && ((group _target) != (group _this))"]] remoteexeccall ["addAction",0,true];
 
 [_vip,["<t color=""#00FFFF"">Give all clear</t>",{
 
@@ -225,7 +225,7 @@ _vip setvariable ["preachTime",0];
 	[_vip,"move"] remoteExecCall ["disableAI",_vip,false];
 	_vip setposatl (_vip getVariable "location");
 
-}, [], 1, true, true, "", "(!captive _target) && (alive _target) && ((_target distance (_target getvariable ""location"")) < 10) && !(_target getvariable ""preaching"") && ((group _target) == (group _this))"]] remoteexeccall ["addAction",0,true];
+}, [], 1, true, true, "", "(!(_target call Hz_fnc_isUncon)) && (alive _target) && (!captive _target) && ((_target distance (_target getvariable ""location"")) < 10) && !(_target getvariable ""preaching"") && ((group _target) == (group _this))"]] remoteexeccall ["addAction",0,true];
 
 [_vip,["<t color=""#FF0000"">Get off platform</t>",{
 
@@ -235,7 +235,7 @@ _vip setvariable ["preachTime",0];
 	_vip setposatl (_vip getVariable "retreatPos");
 	[_vip,"move"] remoteExecCall ["enableAI",_vip,false];
 
-}, [], 1, true, true, "", "(!captive _target) && (alive _target) && (_target getvariable ""preaching"") && ((group _target) == (group _this))"]] remoteexeccall ["addAction",0,true];
+}, [], 1, true, true, "", "(!(_target call Hz_fnc_isUncon)) && (alive _target) && (_target getvariable ""preaching"") && ((group _target) == (group _this))"]] remoteexeccall ["addAction",0,true];
 
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
@@ -270,7 +270,7 @@ waituntil {
 	sleep 5;
 
 	(((group _vip) != _grp)
-	|| (captive _vip)
+	|| (_vip call Hz_fnc_isUncon)
 	|| !(alive _vip)
 	|| Hz_pops_task_auxFailCondition
 	)
@@ -343,7 +343,7 @@ case (_suicidebomber) : {
 			_temp = +_crowd;
 			{
 				
-				if ((!alive _x) || (captive _x)) then {
+				if ((!alive _x) || (_x call Hz_fnc_isUncon)) then {
 					
 					_crowd = _crowd - [_x];
 					
@@ -377,7 +377,7 @@ case (_suicidebomber) : {
 			_bomber disableAI "anim";
 			uisleep 1.4;
 			
-			if ((alive _bomber)  && {!(captive _bomber)}) then 
+			if ((alive _bomber)  && {!(_bomber call Hz_fnc_isUncon)}) then 
 			
 			{ 
 				_exppos = getPos _bomber;
@@ -527,7 +527,7 @@ while {
 	(alive _vip)
 	&& (({(_vip distance _x) < 300} count playableUnits) > 0)
 	&& (call Hz_fnc_taskSuccessCheckGenericConditions)
-	&& ((_preachCounter < _preachMax) || (((_vip distance _returnPoint) < 15) && (!captive _vip)))
+	&& ((_preachCounter < _preachMax) || (((_vip distance _returnPoint) < 15) && (!(_vip call Hz_fnc_isUncon))))
 	
 } do { 
 
@@ -537,7 +537,7 @@ while {
 	
 	uisleep 1;
 	
-	if ((_vip getVariable "preaching") && (!captive _vip)) then {
+	if ((_vip getVariable "preaching") && (!(_vip call Hz_fnc_isUncon))) then {
 		
 		_preachCounter = _preachCounter + 1;
 		_vip setvariable ["preachTime",_preachCounter];
@@ -548,7 +548,7 @@ while {
 			_temp = +_crowd;
 			{
 				
-				if ((!alive _x) || (captive _x)) then {
+				if ((!alive _x) || (_x call Hz_fnc_isUncon)) then {
 					
 					_crowd = _crowd - [_x];
 					
@@ -563,7 +563,9 @@ while {
 			_dude setskill ["spotTime",1];
 			_dude setskill ["courage",1];
 			_dude setskill ["commanding",1];
-			_dude setskill ["aimingSpeed",0.8];		
+			_dude setskill ["aimingSpeed",0.3];		
+			_dude setskill ["aimingAccuracy",0.03];	
+			_dude setskill ["aimingShake",0.03];	
 			
 			_dude setdir ([_dude,_vip] call bis_fnc_dirto);
 			_dude disableai "move";
@@ -638,7 +640,7 @@ case (_preachCounter >= _preachMax) : {
 
 			(
 			!(call Hz_fnc_taskSuccessCheckGenericConditions)
-			|| (((_vip distance _returnPoint) < 15) && (!captive _vip))
+			|| (((_vip distance _returnPoint) < 15) && (!(_vip call Hz_fnc_isUncon)))
 			|| !(alive _vip)
 			|| (({(_vip distance _x) < 300} count playableUnits) < 1)
 			|| Hz_pops_task_auxFailCondition

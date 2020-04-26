@@ -25,6 +25,7 @@ if(!isMultiplayer) then {
 Hz_fnc_isHC = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isHC.sqf";
 Hz_fnc_isAiMaster = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isAiMaster.sqf";
 Hz_fnc_isTaskMaster = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isTaskMaster.sqf";
+Hz_fnc_isUncon = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isUncon.sqf";
 Hz_func_findGarrisonedRespawnPos = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_func_findGarrisonedRespawnPos.sqf";
 
 //Ambient patrols respawn controller [only used by the server at the moment]

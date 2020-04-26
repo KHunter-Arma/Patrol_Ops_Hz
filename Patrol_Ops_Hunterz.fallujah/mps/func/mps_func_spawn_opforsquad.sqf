@@ -95,7 +95,7 @@ DEFENSIVE BEHAVIOUR HANDLED BY MOD
       _markerrange = 150 max (random 700);
       _upsmarker setMarkerSizeLocal [_markerrange, _markerrange];
       
-      [_Grp,_upsmarker,"SHOWMARKER"] spawn Hz_AI_UPS_Hz;
+      [_Grp,_upsmarker] spawn Hz_AI_doPatrol;
       
     } else {
       

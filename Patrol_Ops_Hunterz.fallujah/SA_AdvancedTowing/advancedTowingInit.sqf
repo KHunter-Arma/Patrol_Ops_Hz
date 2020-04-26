@@ -412,13 +412,13 @@ SA_Attach_Tow_Ropes = {
 
 		}, {
 		
-			if ((alive player) && (!captive player)) then {
+			if ((alive player) && (!(player call Hz_fnc_isUncon))) then {
 			
 				[player,""] remoteexeccall ["switchMove",0,false];
 			
 			};
 				
-		}, "Attaching rope...",{_vehicle = (_this select 0) select 1; (alive player) && {!captive player} && {alive _vehicle}}] call ace_common_fnc_progressBar;		
+		}, "Attaching rope...",{_vehicle = (_this select 0) select 1; (alive player) && {!(player call Hz_fnc_isUncon)} && {alive _vehicle}}] call ace_common_fnc_progressBar;		
 		
 	};
 	
@@ -460,7 +460,7 @@ SA_Take_Tow_Ropes = {
 			
 		};
 
-	}, {}, "Attaching rope...",{_vehicle = _this select 0; (alive player) && {!captive player} && {alive _vehicle}}] call ace_common_fnc_progressBar;	
+	}, {}, "Attaching rope...",{_vehicle = _this select 0; (alive player) && {!(player call Hz_fnc_isUncon)} && {alive _vehicle}}] call ace_common_fnc_progressBar;	
 	
 };
 
@@ -484,7 +484,7 @@ SA_Detach_Rope = {
 		
 		[] call SA_Pickup_Tow_Ropes_Action;
 
-	}, {}, "Removing rope...",{_vehicle = (_this select 0) select 1; (alive player) && {!captive player} && {alive _vehicle}}] call ace_common_fnc_progressBar;	
+	}, {}, "Removing rope...",{_vehicle = (_this select 0) select 1; (alive player) && {!(player call Hz_fnc_isUncon)} && {alive _vehicle}}] call ace_common_fnc_progressBar;	
 
 };
 
@@ -581,7 +581,7 @@ SA_Put_Away_Tow_Ropes = {
 		
 		};		
 
-	}, {}, "Removing rope...",{_vehicle = _this select 0; (alive player) && {!captive player} && {alive _vehicle}}] call ace_common_fnc_progressBar;	
+	}, {}, "Removing rope...",{_vehicle = _this select 0; (alive player) && {!(player call Hz_fnc_isUncon)} && {alive _vehicle}}] call ace_common_fnc_progressBar;	
 	
 };
 

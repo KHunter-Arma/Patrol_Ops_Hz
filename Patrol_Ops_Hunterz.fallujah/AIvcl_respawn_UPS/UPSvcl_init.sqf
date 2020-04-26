@@ -10,7 +10,7 @@ _group = _this select 3;
 
 if(!_isair) then {
 
-[_group,_marker,"SHOWMARKER"] call Hz_AI_UPS_Hz;
+[_group,_marker] call Hz_AI_doPatrol;
 
 } else {
 
@@ -124,7 +124,7 @@ sleep 5;
       _group setbehaviour "AWARE";
       _group setcombatmode "RED";
       
-      [_group,_marker,"SHOWMARKER"] spawn Hz_AI_UPS_Hz;
+      [_group,_marker] spawn Hz_AI_doPatrol;
       
       {_x setunitpos "AUTO"; } forEach _passengerarr;
 
@@ -155,7 +155,7 @@ sleep 5;
       _group setbehaviour "AWARE";
       _group setcombatmode "RED";
       
-      [_group,_marker,"SHOWMARKER"] call Hz_AI_UPS_Hz;
+      [_group,_marker] call Hz_AI_doPatrol;
       
     };
 

@@ -2,7 +2,7 @@
 #define MIN_1D_DISTANCE_FROM_PLAYER 1400
 #define MIN_DISTANCE_FROM_OBJECTS 10
 
-private ["_marker1","_sideToAvoid","_min","_safetyFactors","_returnIndex","_maxDistanceStart","_player","_maxDistance","_marker2","_taskpos","_minDistance","_blacklistpos","_spawnpos","_playerPositions","_unitarray","_playerpos"];
+private ["_marker1","_sideToAvoid","_minTotal","_minEnemies","_safetyFactors","_returnIndex","_maxDistanceStart","_player","_maxDistance","_marker2","_taskpos","_minDistance","_blacklistpos","_spawnpos","_playerPositions","_unitarray","_playerpos"];
 
 
 _taskpos = _this select 0;
@@ -56,10 +56,10 @@ _playerPositions = [];
 }foreach _unitarray;
 
 
-//try collecting 10 different options
+//try collecting different options
 _results = [];
 
-for "_i" from 1 to 10 do {
+for "_i" from 1 to 50 do {
 
 	_spawnpos = [0,0,0];
 	_tries = 0;
@@ -79,17 +79,20 @@ for "_i" from 1 to 10 do {
 
 };
 
-//choose safest position
+//choose safest position that is also the most empty
 _safetyFactors = [];
 {
-	_safetyFactors pushBack ({(side _x) == _sideToAvoid} count (_x nearEntities [["CAManBase","Ship","LandVehicle","Helicopter","StaticWeapon"], _maxDistanceStart])); 
+	_nearEntities = _x nearEntities [["CAManBase","Ship","LandVehicle","Helicopter","StaticWeapon"], _maxDistanceStart];
+	_safetyFactors pushBack [{(side _x) == _sideToAvoid} count _nearEntities, {(side _x) != civilian} count _nearEntities]; 
 } foreach _results;
 
-_min = 999;
+_minEnemies = 999;
+_minTotal = 999;
 _returnIndex = 0;
 {
-	if (_x < _min) then {
-		_min = _x;
+	if (((_x select 0) < _minEnemies) && {(_x select 1) < _minTotal}) then {
+		_minEnemies = _x select 0;
+		_minTotal = _x select 1;
 		_returnIndex = _foreachIndex;
 	};
 } foreach _safetyFactors;

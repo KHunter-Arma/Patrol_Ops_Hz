@@ -14,5 +14,5 @@
 "jsrs_soundmod_rhs_gref_weapons",
 //"Blastcore_VEP",
 "dzn_EJAM",
-"diwako_ragdoll",
+//"diwako_ragdoll",
 "HA_SandStorm",

@@ -108,7 +108,7 @@ _grp deleteGroupWhenEmpty true;
 	[_this select 0] joinsilent grpNull;
 	[_this select 0] joinsilent (group (_this select 1));
 
-}, [], 1, true, true, "", "(!captive _target) && (alive _target) && ((group _target) != (group _this))"]] remoteexeccall ["addAction",0,true];
+}, [], 1, true, true, "", "(!(_target call Hz_fnc_isUncon)) && (alive _target) && ((group _target) != (group _this))"]] remoteexeccall ["addAction",0,true];
 
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
@@ -145,7 +145,7 @@ waituntil {
 
 [-1, {
 
-	if (((player distance _this) < 25) && (alive player) && !(captive player)) then {
+	if (((player distance _this) < 25) && (alive player) && (!(player call Hz_fnc_isUncon))) then {
 
 	hint "Alright, let's do this! I think I know where to get the best shots for this one. Here, let me show you on your map where we're going.";
 
@@ -170,7 +170,7 @@ waituntil {
 	taskMarker setMarkerText (format ["Target (%1m high)",round (taskTarget select 2)]);
 	taskMarker setMarkerType "mil_objective";
 
-}, [], -10, true, true, "", "(!captive _target) && (alive _target) && ((_target distance _this) <= 2.5)"]] remoteexeccall ["addAction",0,true];
+}, [], -10, true, true, "", "(!(_target call Hz_fnc_isUncon)) && (alive _target) && ((_target distance _this) <= 2.5)"]] remoteexeccall ["addAction",0,true];
 
 /*--------------------WAIT UNTIL TARGET ARRIVES---------------------------------*/
 
@@ -208,7 +208,7 @@ for "_i" from 1 to _numberOfTargets do {
 		[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
 
 		(
-		(((_vip distance _target) < 100) && ((vehicle _vip) == _vip) && !(captive _vip))
+		(((_vip distance _target) < 100) && ((vehicle _vip) == _vip) && !(_vip call Hz_fnc_isUncon))
 		|| !(alive _vip)
 		|| (({(_vip distance _x) < 200} count playableUnits) < 1)
 		|| Hz_pops_task_auxFailCondition
@@ -226,7 +226,7 @@ for "_i" from 1 to _numberOfTargets do {
 	
 	[-1, {
 
-		if (((player distance _this) < 25) && (alive player) && !(captive player)) then {
+		if (((player distance _this) < 25) && (alive player) && !(player call Hz_fnc_isUncon)) then {
 
 		hint "Ok, I know where to go. Follow me!";
 
@@ -249,7 +249,7 @@ for "_i" from 1 to _numberOfTargets do {
 		sleep 1;
 		[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
 		
-		if (((_vip distance _target) <= 3.5) && !(captive _vip)) then {
+		if (((_vip distance _target) <= 3.5) && !(_vip call Hz_fnc_isUncon)) then {
 		
 			_timeOnTarget = _timeOnTarget + 1;
 			
@@ -264,7 +264,7 @@ for "_i" from 1 to _numberOfTargets do {
 					
 					[-1, {
 
-						if (((player distance _this) < 25) && (alive player) && !(captive player)) then {
+						if (((player distance _this) < 25) && (alive player) && !(player call Hz_fnc_isUncon)) then {
 
 						hint "I'll set up my equipment here. I need about 5 minutes at this position to get some good shots.";
 
@@ -289,7 +289,7 @@ for "_i" from 1 to _numberOfTargets do {
 	
 		[-1, {
 
-			if (((player distance _this) < 50) && (alive player) && !(captive player)) then {
+			if (((player distance _this) < 50) && (alive player) && !(player call Hz_fnc_isUncon)) then {
 
 				hint "Ok I'm done here, we can go now!";
 
@@ -336,7 +336,7 @@ case ((count _targets) == 0) : {
 
 			(
 			!(call Hz_fnc_taskSuccessCheckGenericConditions)
-			|| (((_vip distance _returnPoint) < 15) && (!captive _vip))
+			|| (((_vip distance _returnPoint) < 15) && !(_vip call Hz_fnc_isUncon))
 			|| !(alive _vip)
 			|| (({(_vip distance _x) < 200} count playableUnits) < 1)
 			|| Hz_pops_task_auxFailCondition

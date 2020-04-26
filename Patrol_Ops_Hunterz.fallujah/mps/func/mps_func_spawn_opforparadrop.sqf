@@ -131,7 +131,7 @@ _drophelo doMove _dest;
 		
 		{
 			
-			waituntil {uisleep 1; ((!alive _x) || (captive _x) || ((vehicle _x) != _drophelo))};
+			waituntil {uisleep 1; ((!alive _x) || (_x call Hz_fnc_isUncon) || ((vehicle _x) != _drophelo))};
 			
 		} foreach _dudes;
 		

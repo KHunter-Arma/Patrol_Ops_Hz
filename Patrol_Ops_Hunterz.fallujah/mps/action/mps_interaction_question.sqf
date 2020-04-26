@@ -28,7 +28,7 @@ _person = (_this select 0);
 
 if(!(_person getVariable ["mps_questioned",false])) then {
 
-	if(random 1 > 0.5) then {
+	if ((random 1) < 0.5) then {
 
 		if ((random 1) < 0.5) then {
 

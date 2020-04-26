@@ -189,6 +189,7 @@ player addEventHandler ["Killed",{
     
     sleep 5;
    [_acreVol] call acre_api_fnc_setGlobalVolume;	 
+	 {[_x,0] call acre_api_fnc_setRadioVolume} foreach (call acre_api_fnc_getCurrentRadioList);
 		//player setVariable ["acre_sys_core_isDisabled", false, true];
 		setViewDistance _vd;
 		setObjectViewDistance _vd;

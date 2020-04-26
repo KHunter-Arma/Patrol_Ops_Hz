@@ -1,5 +1,7 @@
 private _display = 0;
 
+hz_reward = hz_reward*Hz_econ_globalTaskRewardMultiplier;
+
 if(hz_reward >= 1000000) then {
 
 	_display = format ["%1 million",(hz_reward / 1000000)];

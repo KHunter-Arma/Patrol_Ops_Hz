@@ -10,7 +10,7 @@ _penaltyPerLostContainer = 20000;
 _penaltyPerLostWorker = 50000;
 
 // in case the mission turns into a defend task
-_EnemySpawnMinimumRange = 3000;
+_EnemySpawnMinimumRange = 4000;
 _taskRadius = 15;
 _minSquadCount = 1;
 _maxSquadCount = 3;
@@ -75,7 +75,7 @@ _workergrp deleteGroupWhenEmpty true;
 		
 		{_x forcespeed -1} foreach _dudes;
 
-	}, [], 1, true, true, "", "(!captive _target) && (alive _target) && ((group _target) != (group _this))"]] remoteexeccall ["addAction",0,true];
+	}, [], 1, true, true, "", "(!(_target call Hz_fnc_isUncon)) && (alive _target) && ((group _target) != (group _this))"]] remoteexeccall ["addAction",0,true];
 	
 	_x addMPEventHandler ["MPKilled",{
 	
@@ -194,7 +194,7 @@ waitUntil {
 
 	sleep 5;
 	(
-		 (({captive _x} count _workers) > 0)
+		 (({_x call Hz_fnc_isUncon} count _workers) > 0)
 	|| ((count (units _workergrp)) < 1)
 	|| (({alive _x} count _containers) < 1)
 	|| (({alive _x} count _workers) < 1)
@@ -295,29 +295,23 @@ while {
 	
 	uisleep 1;
 	
-	if (
-	
+	if (	
 		(({if (alive _x) then {(_x distance _position) < _taskRadius} else {true}} count _containers) == 6)
-		&& (({if (alive _x) then {((_x distance _position) < _taskRadius) && ((vehicle _x) == _x) && (!captive _x)} else {true}} count _workers) == 4)
-	
-	) then {
-	
-		_exit = false;
-		if (!_stanceWarningDone) then {
-
-			if (({if (alive _x) then {(stance _x) == "STAND"} else {true}} count _workers) != 4) then {
-			
-				"The workers won't be able to work if they are not standing up." remoteExecCall ["hint",0,false];
-				_exit = true;
-				_stanceWarningDone = true;
-			
-			};
-		
-		};		
-		if (_exit) exitWith {};
-		
-		_supplyBar = _supplyBar + 1;
-	
+		&& {({if (alive _x) then {((_x distance _position) < _taskRadius) && ((vehicle _x) == _x) && (!(_x call Hz_fnc_isUncon))} else {true}} count _workers) == 4}
+		&& {		
+				if (({if (alive _x) then {(stance _x) == "STAND"} else {true}} count _workers) != 4) then {
+					
+					if (!_stanceWarningDone) then {
+						_stanceWarningDone = true;
+						"The workers won't be able to work if they are not standing up." remoteExecCall ["hint",0,false];				
+					};					
+					false	
+				} else {
+					true
+				}
+			}	
+	) then {		
+		_supplyBar = _supplyBar + 1;	
 	};
 	
 	if (_supplyBar == 1) then { "The workers are now distributing the supplies. Provide security until they finish." remoteExecCall ["hint",0,false]; };
@@ -370,7 +364,7 @@ case (_supplyBar >= _supplyTime) : {
 
 			(
 			!(call Hz_fnc_taskSuccessCheckGenericConditions)
-			|| (({if (alive _x) then {((_x distance _spawnpos) < 15) && (!captive _x)} else {true}} count _workers) == 4)
+			|| (({if (alive _x) then {((_x distance _spawnpos) < 15) && (!(_x call Hz_fnc_isUncon))} else {true}} count _workers) == 4)
 			|| Hz_pops_task_auxFailCondition
 			)
 		};

@@ -58,8 +58,13 @@ for "_i" from 1 to mps_mission_counter do {
 	
 	missionload = false;
 	publicVariable "missionload";
+	Hz_pops_baseSupportEnabled = true;
+	publicVariable "Hz_pops_baseSupportEnabled";
 	
   waituntil {sleep 10; taskrequested || jointops};
+	
+	Hz_pops_baseSupportEnabled = false;
+	publicVariable "Hz_pops_baseSupportEnabled";
 	  
   if(jointops) exitwith {[] execvm "tasks\joint_ops.sqf";};
   

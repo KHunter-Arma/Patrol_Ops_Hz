@@ -131,7 +131,7 @@ class Extended_InitPost_EventHandlers
 	
 		class addTakiArmor {
 		
-			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_vestItems = vestItems (_this select 0); (_this select 0) addvest 'rhs_6b5_rifleman_khaki'; {(vestContainer (_this select 0)) addItemCargo [_x,1];} foreach _vestItems;};";
+			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_vestItems = vestItems (_this select 0); (_this select 0) addvest 'rhs_6b5_rifleman_khaki'; {(vestContainer (_this select 0)) addItemCargoGlobal [_x,1];} foreach _vestItems;};";
 		
 		};
 	
@@ -141,13 +141,13 @@ class Extended_InitPost_EventHandlers
 	
 		class addTakiArmor {
 		
-			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_vestItems = vestItems (_this select 0); (_this select 0) addvest 'rhs_6b5_rifleman_khaki'; {(vestContainer (_this select 0)) addItemCargo [_x,1];} foreach _vestItems;};";
+			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_vestItems = vestItems (_this select 0); (_this select 0) addvest 'rhs_6b5_rifleman_khaki'; {(vestContainer (_this select 0)) addItemCargoGlobal [_x,1];} foreach _vestItems;};";
 		
 		};
 		
 		class correctTakiUniform {
 		
-			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_uniformItems = uniformItems (_this select 0); (_this select 0) addUniform 'CUP_U_O_TK_Green'; {(uniformContainer (_this select 0)) addItemCargo [_x,1];} foreach _uniformItems; removeHeadgear (_this select 0); (_this select 0) addHeadgear 'CUP_H_TK_Helmet';};";
+			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_uniformItems = uniformItems (_this select 0); (_this select 0) addUniform 'CUP_U_O_TK_Green'; {(uniformContainer (_this select 0)) addItemCargoGlobal [_x,1];} foreach _uniformItems; removeHeadgear (_this select 0); (_this select 0) addHeadgear 'CUP_H_TK_Helmet';};";
 		
 		};
 	
@@ -157,13 +157,13 @@ class Extended_InitPost_EventHandlers
 	
 		class addTakiArmor {
 		
-			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_vestItems = vestItems (_this select 0); (_this select 0) addvest 'rhs_6b5_rifleman_khaki'; {(vestContainer (_this select 0)) addItemCargo [_x,1];} foreach _vestItems;};";
+			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_vestItems = vestItems (_this select 0); (_this select 0) addvest 'rhs_6b5_rifleman_khaki'; {(vestContainer (_this select 0)) addItemCargoGlobal [_x,1];} foreach _vestItems;};";
 		
 		};
 		
 		class correctTakiUniform {
 		
-			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_uniformItems = uniformItems (_this select 0); (_this select 0) addUniform 'CUP_U_O_TK_Green'; {(uniformContainer (_this select 0)) addItemCargo [_x,1];} foreach _uniformItems; removeHeadgear (_this select 0); (_this select 0) addHeadgear 'CUP_H_TK_TankerHelmet';};";
+			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_uniformItems = uniformItems (_this select 0); (_this select 0) addUniform 'CUP_U_O_TK_Green'; {(uniformContainer (_this select 0)) addItemCargoGlobal [_x,1];} foreach _uniformItems; removeHeadgear (_this select 0); (_this select 0) addHeadgear 'CUP_H_TK_TankerHelmet';};";
 		
 		};
 	

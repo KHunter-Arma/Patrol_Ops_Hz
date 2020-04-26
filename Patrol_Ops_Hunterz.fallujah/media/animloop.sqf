@@ -51,7 +51,7 @@ if (!isnil "_anim") then {
 			
 				sleep 5;
 				
-				if (captive _unit) then {				
+				if (_unit call Hz_fnc_isUncon) then {				
 					_uncon = true;					
 					true				
 				} else {				
@@ -81,7 +81,7 @@ if (!isnil "_anim") then {
 
 } else {
 
-	while {(alive _unit) && {!captive _unit}} do {
+	while {(alive _unit) && {!(_unit call Hz_fnc_isUncon)}} do {
 		
 		_unit setunitPos "UP";
 		(group _unit) setbehaviour "SAFE";

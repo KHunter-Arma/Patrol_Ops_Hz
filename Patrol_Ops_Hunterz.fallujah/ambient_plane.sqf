@@ -1,6 +1,13 @@
 _type = _this select 0;
 _airportID = _this select 1;
 
+if (_type == "") then {
+	_type = "CUP_B_C130J_USMC";
+};
+if (_airportID == -1) then {
+	_airportID = 0;
+};
+
 _grp = createGroup west;
 
 _plane = ([[15000,-25000,10000], 0, _type, _grp] call BIS_fnc_spawnVehicle) select 0;
@@ -9,14 +16,16 @@ ambient_plane = _plane;
 
 sleep 1;
 
-_grp setCombatMode "WHITE";
-_grp setBehaviour "CARELESS";
-_grp deleteGroupWhenEmpty true;
-
 _plane disableAI "FSM";
 _plane disableAI "AUTOCOMBAT";
 _plane disableAI "TARGET";
 _plane disableAI "AUTOTARGET";
+
+_grp setCombatMode "WHITE";
+_grp setBehaviour "CARELESS";
+_grp deleteGroupWhenEmpty true;
+
+sleep 5;
 
 clearItemCargoGlobal _plane;
 clearWeaponCargoGlobal _plane;
