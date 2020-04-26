@@ -1,3 +1,5 @@
+private _relationsMultiplier = Hz_econ_sideRelationsPriceMultipler;
+
 private ["_return","_weapon"];
 
 _weapon = toupper _this;
@@ -19,8 +21,8 @@ case "RHS_WEAP_MAAWS": {3585};
 case "RHS_WEAP_RPG7": {1170};
 
 //disposable anti-tank
-case "RHS_WEAP_M136": {5700}; //normal price 1480
-case "HAFM_LAW": {4300}; //normal price 875
+case "RHS_WEAP_M136": {1480*_relationsMultiplier};
+case "HAFM_LAW": {875*_relationsMultiplier};
 
 
 /*

@@ -1,3 +1,5 @@
+private _relationsMultiplier = Hz_econ_sideRelationsPriceMultipler;
+
 private ["_return","_magazine"];
 
 _magazine = toupper _this;
@@ -660,18 +662,18 @@ case "HLC_GRD_YELLOW": {15};
 case "HLC_VOG25_AK": {10};
 */
 
-case "RHS_MAG_M441_HE": {15};
-case "RHS_MAG_M781_PRACTICE": {10};
-case "RHS_MAG_M585_WHITE": {15};
-case "RHS_MAG_M661_GREEN": {15};
-case "RHS_MAG_M662_RED": {15};
-case "RHS_MAG_M713_RED": {10};
-case "RHS_MAG_M714_WHITE": {10};
-case "RHS_MAG_M715_GREEN": {10};
-case "RHS_MAG_M716_YELLOW": {10};
-case "CUP_1RND_STARCLUSTER_WHITE_M203": {12};
-case "CUP_1RND_STARCLUSTER_GREEN_M203": {12};
-case "CUP_1RND_STARCLUSTER_RED_M203": {12};
+case "RHS_MAG_M441_HE": {15*_relationsMultiplier};
+case "RHS_MAG_M781_PRACTICE": {10*_relationsMultiplier};
+case "RHS_MAG_M585_WHITE": {15*_relationsMultiplier};
+case "RHS_MAG_M661_GREEN": {15*_relationsMultiplier};
+case "RHS_MAG_M662_RED": {15*_relationsMultiplier};
+case "RHS_MAG_M713_RED": {10*_relationsMultiplier};
+case "RHS_MAG_M714_WHITE": {10*_relationsMultiplier};
+case "RHS_MAG_M715_GREEN": {10*_relationsMultiplier};
+case "RHS_MAG_M716_YELLOW": {10*_relationsMultiplier};
+case "CUP_1RND_STARCLUSTER_WHITE_M203": {12*_relationsMultiplier};
+case "CUP_1RND_STARCLUSTER_GREEN_M203": {12*_relationsMultiplier};
+case "CUP_1RND_STARCLUSTER_RED_M203": {12*_relationsMultiplier};
 
 
 
@@ -701,13 +703,18 @@ case "RH_6RND_454_MAG": {29};
 
 //Throwables
 /*
-case  "ACE_M14": {58};
-case  "RHS_MAG_AN_M14_TH3": {58};
+case  "ACE_M14": {58*_relationsMultiplier};
+case  "RHS_MAG_AN_M14_TH3": {58*_relationsMultiplier};
 */
 
 
+case  "RHS_MAG_M18_GREEN": {52*_relationsMultiplier};
+case  "RHS_MAG_M18_PURPLE": {52*_relationsMultiplier};
+case  "RHS_MAG_M18_RED": {52*_relationsMultiplier};
+case  "RHS_MAG_M18_YELLOW": {52*_relationsMultiplier};
+case  "RHS_MAG_M67": {34*_relationsMultiplier};
+case  "RHS_MAG_AN_M8HC": {52*_relationsMultiplier};
 
-case  "RHS_MAG_AN_M8HC": {52};
 case  "CHEMLIGHT_BLUE": {1};
 case  "CHEMLIGHT_GREEN": {1};
 case  "ACE_CHEMLIGHT_HIORANGE": {1};
@@ -719,7 +726,10 @@ case  "ACE_CHEMLIGHT_ORANGE": {1};
 case  "CHEMLIGHT_RED": {1};
 case  "ACE_CHEMLIGHT_WHITE": {1};
 case  "CHEMLIGHT_YELLOW": {1};
-
+case  "ACE_HANDFLARE_GREEN": {60};
+case  "ACE_HANDFLARE_RED": {60};
+case  "ACE_HANDFLARE_WHITE": {60};
+case  "ACE_HANDFLARE_YELLOW": {60};
 
 
 /*
@@ -730,17 +740,6 @@ case  "O_IR_GRENADE": {200};
 case  "B_IR_GRENADE": {200};
 */
 
-
-
-case  "ACE_HANDFLARE_GREEN": {60};
-case  "ACE_HANDFLARE_RED": {60};
-case  "ACE_HANDFLARE_WHITE": {60};
-case  "ACE_HANDFLARE_YELLOW": {60};
-case  "RHS_MAG_M18_GREEN": {52};
-case  "RHS_MAG_M18_PURPLE": {52};
-case  "RHS_MAG_M18_RED": {52};
-case  "RHS_MAG_M18_YELLOW": {52};
-case  "RHS_MAG_M67": {34};
 
 //duplicate BIS stuff...
 /*
