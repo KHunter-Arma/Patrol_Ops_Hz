@@ -632,3 +632,8 @@ if (_exit) exitWith {};
 
 Hz_pers_clientReadyForLoad = true;
 showScoretable 0;
+
+//temporary until ace gets this right... -_-
+sleep 30;
+ace_advanced_fatigue_recoveryfactor = 10000;
+ace_advanced_fatigue_performancefactor = 1000;
