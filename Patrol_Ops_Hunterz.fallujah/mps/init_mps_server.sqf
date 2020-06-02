@@ -144,11 +144,3 @@ addMissionEventHandler ["PlayerConnected",{
 //if(mps_ambient_airpatrols) then {[] spawn CREATE_OPFOR_AIRPATROLS;};    
 	
 //[] spawn Hz_func_spawnOpforArtilleryBase;  
-
-if (!(call Hz_fnc_isAiMaster)) then {
-
-	Hz_pops_UPSPassToHCArray = [];
-	sleep 10;
-	publicVariable "Hz_pops_UPSPassToHCArray";
-
-};

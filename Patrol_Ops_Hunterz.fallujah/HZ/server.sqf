@@ -6,8 +6,6 @@ scriptname "Hz_pops_ServerMain";
 	scriptname "Hz_pops_ServerDVD";
 	
 	if(!isDedicated) exitwith {};   
-
-	_errorFlag = false;
 	
 	while {true} do {
 		
@@ -16,34 +14,6 @@ scriptname "Hz_pops_ServerMain";
 		
 		if(diag_fps < Hz_min_desired_server_FPS) then {if(viewdistance > (Hz_min_desired_server_VD + 200)) then {setviewdistance (viewdistance - 200);}else {setviewdistance Hz_min_desired_server_VD;};} else {
 			if(diag_fps > Hz_max_desired_server_FPS) then {if(viewdistance < (Hz_max_desired_server_VD - 200)) then {setviewdistance (viewdistance + 200);}else {setviewdistance Hz_max_desired_server_VD;};};};
-
-		//run self-monitor against that dreadful 0FPS problem...
-		// it's something new and related to death & explosions... possibly vehicle death/ACE cookoff/Physx (if vehicle exploded while crashed into another vehicle)/Damage EventHandlers.. idk..
-		if (diag_fps < 4.5) then {
-		
-			//make sure this isn't a one-frame thing and check again next frame before taking action...
-			if (!_errorFlag) exitWith {
-				_errorFlag = true;
-			};
-		
-			diag_log "Detected a critical fault (0 FPS cookoff bug). Attempting to recover by deleting allDead.";
-			//(format ["ERROR : %1 detected a critical fault (0 FPS cookoff bug) and is attempting to recover. Full recovery might take a few minutes...", "Server"]) remoteExecCall ["hint", -2, false];
-		
-			{
-				if (!isplayer driver _x) then {
-					deleteVehicle _x;
-				};
-			} foreach alldead;
-			
-			sleep 10;
-			
-			_errorFlag = false;
-						
-		} else {
-		
-			_errorFlag = false;
-		
-		};
 
 	};
 	
@@ -214,31 +184,6 @@ while {true} do
 			};
 			
 		}foreach AllDead;    
-
-		if (!isnil "Hz_pops_deleteVehicleArray") then {
-		
-			{
-
-				if (alive _x) then {
-			
-					if ((count crew _x) == 0) then {
-					
-						_veh = _x;
-					
-						if (({(_x distance _veh) < 2000} count playableUnits) < 1) then {
-						
-							Hz_pops_deleteVehicleArray = Hz_pops_deleteVehicleArray - [_x];
-							deletevehicle _x;				
-						
-						};
-					
-					};
-				
-				};
-
-			} foreach Hz_pops_deleteVehicleArray;
-		
-		};
 		
 		_timescaler3 = 0;
 

@@ -250,16 +250,16 @@ _position
 
 
 /*------------------- INTENSIFY AMBIENT COMBAT------------------------------------*/
-missionload = false;
-publicVariable "missionload";
+Hz_ambw_pat_disablePatrols = false;
+publicVariable "Hz_ambw_pat_disablePatrols";
 
 _rand = random 1;
 _suicidebomber = false;
 if (_rand < 0.1) then {
 
 	_suicidebomber = true;
-	Hz_max_ambient_units = Hz_max_ambient_units + Hz_ambient_units_intensify_amount;
-	publicVariable "Hz_max_ambient_units";
+	Hz_ambw_pat_maxNumOfUnits = Hz_ambw_pat_maxNumOfUnits + Hz_ambient_units_intensify_amount;
+	publicVariable "Hz_ambw_pat_maxNumOfUnits";
 
 };
 
@@ -705,8 +705,8 @@ if (hz_reward > 0) then {
 
 if (_suicidebomber) then {
 
-	Hz_max_ambient_units = Hz_max_ambient_units - Hz_ambient_units_intensify_amount;
-	publicVariable "Hz_max_ambient_units";
+	Hz_ambw_pat_maxNumOfUnits = Hz_ambw_pat_maxNumOfUnits - Hz_ambient_units_intensify_amount;
+	publicVariable "Hz_ambw_pat_maxNumOfUnits";
 
 };
 

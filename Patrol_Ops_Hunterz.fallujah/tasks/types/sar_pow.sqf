@@ -389,10 +389,10 @@ if(_c > 0) then {
 }; 
 
 /*------------------- INTENSIFY AMBIENT COMBAT------------------------------------*/
-missionload = false;
-publicVariable "missionload";
-Hz_max_ambient_units = Hz_max_ambient_units + _ambientCombatIntensifyAmount;
-publicVariable "Hz_max_ambient_units";
+Hz_ambw_pat_disablePatrols = false;
+publicVariable "Hz_ambw_pat_disablePatrols";
+Hz_ambw_pat_maxNumOfUnits = Hz_ambw_pat_maxNumOfUnits + _ambientCombatIntensifyAmount;
+publicVariable "Hz_ambw_pat_maxNumOfUnits";
 
 /*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
 
@@ -433,7 +433,7 @@ if (captive _pow1) then {
 
 /*------------------- INTENSIFY AMBIENT COMBAT---------------------------*/
   
-Hz_max_ambient_units = Hz_max_ambient_units - _ambientCombatIntensifyAmount;
+Hz_ambw_pat_maxNumOfUnits = Hz_ambw_pat_maxNumOfUnits - _ambientCombatIntensifyAmount;
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/
 

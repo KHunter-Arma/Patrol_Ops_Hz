@@ -1,6 +1,5 @@
 #include "\x\Hz\Hz_mod_persistency\parsing_descriptors.txt"
 
-["Hz_econ_funds",SINGLE_VARIABLE,true] call Hz_pers_API_addMissionVariable;
 ["nuke_event",ONE_D_ARRAY,true] call Hz_pers_API_addMissionVariable;
 ["Hz_save_radar_spawn_timer",SINGLE_VARIABLE,false] call Hz_pers_API_addMissionVariable;
 ["Hz_save_radar_pos",SINGLE_VARIABLE,false] call Hz_pers_API_addMissionVariable;
@@ -17,8 +16,6 @@
 ["nukeweatherCounter",SINGLE_VARIABLE,false] call Hz_pers_API_addMissionVariable;
 ["owner",true] call Hz_pers_API_addObjectVariable;
 ["owneruid",true] call Hz_pers_API_addObjectVariable;
-["Hz_ambw_srel_relationscivilian",SINGLE_VARIABLE,true] call Hz_pers_API_addMissionVariable;
-["Hz_ambw_srel_relationsownside",SINGLE_VARIABLE,true] call Hz_pers_API_addMissionVariable;
 
 if (Hz_pops_enableDetainUnrecognisedUIDs) then {
 	

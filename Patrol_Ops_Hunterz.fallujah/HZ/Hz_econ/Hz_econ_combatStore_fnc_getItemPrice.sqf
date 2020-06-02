@@ -540,8 +540,6 @@ case "TRYK_H_WOOLHAT_CW": {6};
 case "TRYK_H_WOOLHAT_TAN": {6};
 case "TRYK_H_WOOLHAT_WH": {6};
 
-case "H_CAP_GRN_BI": {15};
-
 case "RHS_BOONIEHAT_M81": {18};
 case "RHS_BOONIEHAT2_MARPATD": {18};
 case "RHS_BOONIEHAT2_MARPATWD": {18};
@@ -573,7 +571,6 @@ case "CUP_H_C_MAGA_01": {15};
 case "CUP_H_PMC_CAP_TAN": {15};
 case "CUP_H_C_TRACKIR_01": {15};
 case "CUP_H_FR_CAP_HEADSET_GREEN": {40};
-case "CUP_H_SLA_BERETRED": {20};
 
 
 

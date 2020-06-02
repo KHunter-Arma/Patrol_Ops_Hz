@@ -33,9 +33,6 @@ publicvariable "taskrequested";
 stopreinforcements = true;
 reinforcementsqueued = false;
 
-missionload = false;
-publicVariable "missionload";
-
 waituntil {sleep 10; (time > 900) || hz_debug};
 waituntil {sleep 10; taskrequested || jointops};
 
@@ -56,8 +53,8 @@ for "_i" from 1 to mps_mission_counter do {
     _lim = _lim + 1;
   };
 	
-	missionload = false;
-	publicVariable "missionload";
+	Hz_ambw_pat_disablePatrols = false;
+	publicVariable "Hz_ambw_pat_disablePatrols";
 	Hz_pops_baseSupportEnabled = true;
 	publicVariable "Hz_pops_baseSupportEnabled";
 	
@@ -93,8 +90,8 @@ for "_i" from 1 to mps_mission_counter do {
       
     };
     
-    missionload = true; 
-		publicVariable "missionload";
+    Hz_ambw_pat_disablePatrols = true; 
+		publicVariable "Hz_ambw_pat_disablePatrols";
     
     waituntil {sleep 5;
       (count allunits) < Hz_max_units_before_task};

@@ -359,6 +359,8 @@ if(!hz_debug) then {
 
   };
 
+} else {
+	Hz_pops_restrictionSupervisorCheckPassed = true;
 };
 
 
@@ -490,7 +492,7 @@ if (!Hz_pops_restrictionSupervisorCheckPassed || !Hz_pops_restrictionPublicLimit
 
 _exit = false;
 
-if (Hz_pops_enableDetainUnrecognisedUIDs) then {
+if (isMultiplayer && {Hz_pops_enableDetainUnrecognisedUIDs}) then {
 	
 	if (!((getPlayerUID player) in Hz_pops_releasedUIDs)) then {
 	

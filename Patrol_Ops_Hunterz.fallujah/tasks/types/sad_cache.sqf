@@ -357,8 +357,8 @@ _otherReward = _cacheCount*_rewardPerCache;
 
 } foreach _caches;
 
-missionload = false;
-publicVariable "missionload";
+Hz_ambw_pat_disablePatrols = false;
+publicVariable "Hz_ambw_pat_disablePatrols";
 
 /*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
 

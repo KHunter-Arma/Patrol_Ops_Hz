@@ -355,11 +355,11 @@ _otherReward = _cacheCount*_rewardPerCache;
 
 /*------------------- INTENSIFY AMBIENT COMBAT------------------------------------*/
 
-missionload = false;
-publicVariable "missionload";
+Hz_ambw_pat_disablePatrols = false;
+publicVariable "Hz_ambw_pat_disablePatrols";
 /*
-Hz_max_ambient_units = Hz_max_ambient_units + Hz_ambient_units_intensify_amount;
-publicVariable "Hz_max_ambient_units";
+Hz_ambw_pat_maxNumOfUnits = Hz_ambw_pat_maxNumOfUnits + Hz_ambient_units_intensify_amount;
+publicVariable "Hz_ambw_pat_maxNumOfUnits";
 Hz_max_allunits = Hz_max_allunits + Hz_ambient_units_intensify_amount; 
 publicVariable "Hz_max_allunits";
 */
@@ -408,8 +408,8 @@ While{ (({if (alive _x) then {(_x distance _returnPoint) > 20} else {false}} cou
 
 /*------------------- INTENSIFY AMBIENT COMBAT---------------------------*/
 /*
-Hz_max_ambient_units = Hz_max_ambient_units - Hz_ambient_units_intensify_amount;
-publicVariable "Hz_max_ambient_units";
+Hz_ambw_pat_maxNumOfUnits = Hz_ambw_pat_maxNumOfUnits - Hz_ambient_units_intensify_amount;
+publicVariable "Hz_ambw_pat_maxNumOfUnits";
 Hz_max_allunits = Hz_max_allunits - Hz_ambient_units_intensify_amount; 
 publicVariable "Hz_max_allunits";
 */

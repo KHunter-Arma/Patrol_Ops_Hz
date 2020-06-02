@@ -21,10 +21,10 @@ _rewardMultiplier = 1;
 _downPayment = (_rewardPerTarget*_numberOfTargets)/_rewardMultiplier;
 
 Hz_pops_task_auxFailCondition = false;
-missionload = false;
-publicVariable "missionload";
-Hz_max_ambient_units = Hz_max_ambient_units + _ambientCombatIntensifyAmount;
-publicVariable "Hz_max_ambient_units";
+Hz_ambw_pat_disablePatrols = false;
+publicVariable "Hz_ambw_pat_disablePatrols";
+Hz_ambw_pat_maxNumOfUnits = Hz_ambw_pat_maxNumOfUnits + _ambientCombatIntensifyAmount;
+publicVariable "Hz_ambw_pat_maxNumOfUnits";
 _timeRequiredAtEachTarget = _timeRequiredAtEachTarget*60;
 
 _buildings = nearestobjects [markerpos "ao_centre",["House"],3000];
@@ -388,8 +388,8 @@ if (hz_reward > 0) then {
 
 };
 
-Hz_max_ambient_units = Hz_max_ambient_units - _ambientCombatIntensifyAmount;
-publicVariable "Hz_max_ambient_units";
+Hz_ambw_pat_maxNumOfUnits = Hz_ambw_pat_maxNumOfUnits - _ambientCombatIntensifyAmount;
+publicVariable "Hz_ambw_pat_maxNumOfUnits";
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/  
 

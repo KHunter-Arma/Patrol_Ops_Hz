@@ -1,5 +1,5 @@
+//We've got "HC" reserved for AMBW patrol master... 
 HC_taskMasterName = "HC_2"; //_SERVER_ to pass to server
-HC_patrolsName = "HC";
 Receiving_finish = false;
 
 if (!isDedicated && hasInterface) then {

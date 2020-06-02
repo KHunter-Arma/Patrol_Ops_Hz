@@ -4,7 +4,6 @@ hz_debug = false;
 mps_debug = false;
 if(isnil "hz_debug_air") then {hz_debug_air = false;};
 if(isnil "hz_debug_cas") then {hz_debug_cas = false;};
-if(isnil "hz_debug_patrols") then {hz_debug_patrols = false;};
 if(isnil "civ_debug") then {civ_debug = false;};
 
 if (is3DEN) then {
@@ -23,13 +22,10 @@ if(!isMultiplayer) then {
 };
 
 Hz_fnc_isHC = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isHC.sqf";
-Hz_fnc_isAiMaster = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isAiMaster.sqf";
 Hz_fnc_isTaskMaster = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isTaskMaster.sqf";
 Hz_fnc_isUncon = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isUncon.sqf";
 Hz_func_findGarrisonedRespawnPos = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_func_findGarrisonedRespawnPos.sqf";
 
-//Ambient patrols respawn controller [only used by the server at the moment]
-if(isnil "missionload") then {missionload = true;};
 if(isnil "jointops") then {jointops = false;};
 
 call compile preprocessfilelinenumbers "lk\nuke\nenvi.sqf";
@@ -204,23 +200,11 @@ if (isServer) then {
 
 };
 
-if (call Hz_fnc_isHC) then {
-
-	waitUntil {(name player) != "Error: No vehicle"};
-
-	[] execvm "HZ\init_HC.sqf";
-	
-} else {
-
-	if (isServer && {!Hz_enableHC}) then {
-	
-		call compile preprocessFileLineNumbers "initUPSRespawn.sqf";
-	
-	};
-
-};
-
 if (isServer || (call Hz_fnc_isHC)) then {
+
+	Hz_pops_baseSupport = compile preprocessFileLineNumbers "Hz_pops_baseSupport.sqf";
+	Hz_pops_baseSupportOffline = true;
+	Hz_pops_baseSupportEnabled = true;
 
 	Hz_fnc_calculateTaskReward = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_calculateTaskReward.sqf";
 	Hz_fnc_taskReward = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_taskReward.sqf";
@@ -239,4 +223,12 @@ if (isServer || (call Hz_fnc_isHC)) then {
 	Hz_fnc_noCaptiveCheck = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_noCaptiveCheck.sqf";  
 	Hz_fnc_noSideCivilianCheck = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_noSideCivilianCheck.sqf";  
 
+};
+
+if (call Hz_fnc_isHC) then {
+
+	waitUntil {(name player) != "Error: No vehicle"};
+
+	[] execvm "HZ\init_HC.sqf";
+	
 };

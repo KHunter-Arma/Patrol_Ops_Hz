@@ -9,8 +9,8 @@ if (((count playableunits) > 14) &&
     (({_x getvariable ["JointOps",false]} count playableunits) > 7)
     ) then { 
     
-        missionload = true; 
-				publicVariable "missionload";
+        Hz_ambw_pat_disablePatrols = true; 
+				publicVariable "Hz_ambw_pat_disablePatrols";
         taskrequested = true;
         publicvariable "taskrequested";     
         
