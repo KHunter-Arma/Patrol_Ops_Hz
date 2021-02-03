@@ -73,7 +73,7 @@ class mps_hud_dialog {
 			colorTextDisable[] = {0, 0, 0, 1};
 			color[] = { 0, 0, 0, 1 };
 			colorDisable[] = { 0, 0, 0, 1 };
-			coloSelectedBg[] = { 1, 1, 1, 0 };
+			colorSelectedBg[] = { 1, 1, 1, 0 };
 			font = "Zeppelin32";
 			sizeEx = 0.025;
 			rows = 5;
