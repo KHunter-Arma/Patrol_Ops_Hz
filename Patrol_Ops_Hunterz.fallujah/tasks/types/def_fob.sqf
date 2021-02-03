@@ -27,21 +27,9 @@ Hz_task_ID = _taskid;
 Hz_econ_aux_rewards = 0;
 _otherReward = 0;
 
-_newComp = [_position, random 360,(call compile preprocessfilelinenumbers "Compositions\Blufor\Bases\IA_fob.sqf")] call BIS_fnc_ObjectsMapper; 
+_newComp = [_position, random 360,(call compile preprocessfilelinenumbers "Compositions\Blufor\Bases\IA_fob.sqf")] call Hz_fnc_objectsMapper; 
 
 //init composition
-/*
-{
-
-  if(_x iskindof "CampEast_EP1") then {
-  
-    _x allowDamage false;
-  
-  };
-
-} foreach _newComp;
-*/
-
 _ammoCratesFilled = 0;
 _statGrp = creategroup (SIDE_A select 0);
 _guardPos = _position;
@@ -74,11 +62,11 @@ _guardPos = _position;
     
     if (_ammoCratesFilled == 1) then {
     
-      _x addMagazineCargoGlobal ["rhs_mag_127x108mm_50",15];    
+      _x addMagazineCargoGlobal ["ace_csw_50Rnd_127x108_mag",15];    
     
     } else {
     
-      _x addMagazineCargoGlobal ["rhs_mag_100rnd_127x99_mag_Tracer_Red",5];
+      _x addMagazineCargoGlobal ["ace_csw_100Rnd_127x99_mag_red",5];
     
     };
   

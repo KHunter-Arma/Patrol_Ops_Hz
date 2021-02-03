@@ -27,17 +27,7 @@ Hz_task_ID = _taskid;
 Hz_econ_aux_rewards = 0;
 _otherReward = 0;
 
-_newComp = [_position, random 360,(call compile preprocessfilelinenumbers "Compositions\Other\castle.sqf")] call BIS_fnc_ObjectsMapper;   
-
-{
-
-	if (_x isKindOf "Land_WoodenRamp") then {
-	
-		_x allowdamage false;
-	
-	};
-
-} foreach _newComp;
+_newComp = [_position, random 360,(call compile preprocessfilelinenumbers "Compositions\Other\castle.sqf")] call Hz_fnc_objectsMapper;   
 
 {
 

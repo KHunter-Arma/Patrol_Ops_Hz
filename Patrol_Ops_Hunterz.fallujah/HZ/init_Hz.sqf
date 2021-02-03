@@ -205,7 +205,8 @@ if (isServer || (call Hz_fnc_isHC)) then {
 	Hz_pops_baseSupport = compile preprocessFileLineNumbers "Hz_pops_baseSupport.sqf";
 	Hz_pops_baseSupportOffline = true;
 	Hz_pops_baseSupportEnabled = true;
-
+	
+	Hz_fnc_objectsMapper = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_objectsMapper.sqf";
 	Hz_fnc_calculateTaskReward = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_calculateTaskReward.sqf";
 	Hz_fnc_taskReward = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_taskReward.sqf";
 	Hz_fnc_taskSuccessCheckGenericConditions = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_taskSuccessCheckGenericConditions.sqf";

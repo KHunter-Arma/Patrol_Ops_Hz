@@ -8,7 +8,7 @@ Using orientation of objects: yes
 */
 
 [
-	["CampEast_EP1",[-11.0193,4.27539,0],274.088,1,0,[0,0],"","",true,false],
+	["CampEast_EP1",[-11.0193,4.27539,0],274.088,1,0,[0,0],"","",true,false, true], //disable damage
 	["Land_Barrack2_EP1",[0.086853,1.0188,0],4.87278,1,0,[0,0],"","",true,false], 
 	["Land_Barrack2_EP1",[6.19891,0.497314,0],4.87278,1,0,[0,0],"","",true,false], 
 	["Land_Portable_generator_F",[2.41711,6.68823,0],5.2985,1,0,[0,0],"","",true,false], 

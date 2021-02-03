@@ -11,7 +11,7 @@ Using orientation of objects: yes
 	["Land_Bench_EP1",[-3.21631,5.27148,0],228.18,1,0,[0,0],"","",true,false], 
 	["Land_BagFence_Long_F",[5.48633,-3.25903,0],239.356,1,0,[0,0],"","",true,false], 
 	["Land_BagFence_Long_F",[5.87842,-3.07568,0],239.356,1,0,[0,0],"","",true,false], 
-	["pook_camonet_land_west_FARP17",[-1.77441,6.02148,-1],0,1,0,[0,0],"","",true,false], 
+	["pook_camonet_land_west_FARP17",[-1.77441,6.02148,-1],0,1,0,[0,0],"","",true,false, true], 
 	["CUP_I_V3S_Covered_TKG",[2.78223,-6.24072,5],299.243,1,0,[-0.000651407,0.00136223],"","",true,false],
 	["CUP_I_V3S_Covered_TKG",[-1.33447,-7.42163,5],299.243,1,0,[-0.000654586,0.00136523],"","",true,false], 
 	["MetalBarrel_burning_F",[1.91943,7.61548,0],0,1,0,[0,0],"","",true,false], 
@@ -39,7 +39,7 @@ Using orientation of objects: yes
 	["Land_BagFence_Short_F",[-3.93555,12.2036,0],0,1,0,[0,0],"","",true,false], 
 	["Land_CampingChair_V2_F",[12.6099,-3.5813,0.05],313.029,1,0,[0,0],"","",true,false], 
 	["CUP_TKBasicAmmunitionBox_EP1",[-13.095,2.00708,0.05],337.946,1,0.0194195,[1.75973e-005,-8.33416e-005],"","",true,false], 
-	["FoldTable",[13.8346,-4.98979,0],250.596,1,0,[0,0],"","",true,false], 
+	["FoldTable",[13.8346,-4.98979,0],250.596,1,0,[0,0],"","",false,false, true], 
 	["Land_KBud",[9.53955,9.87085,0],72.8313,1,0,[0,0],"","",true,false], 
 	["Land_BagFence_Long_F",[-6.28369,12.2498,0],0,1,0,[0,0],"","",true,false], 
 	["CUP_postel_panelak2",[11.9111,-6.98389,0.05],147.12,1,0,[0,-0],"","",true,false], 
@@ -105,6 +105,6 @@ Using orientation of objects: yes
 	["Land_BagFence_Long_F",[2.68359,26.2124,0],0,1,0,[0,0],"","",true,false], 
 	["Land_BagFence_Long_F",[-3.12158,26.1973,0],0,1,0,[0,0],"","",true,false], 
 	["Land_BagFence_Long_F",[-6.0293,26.1899,0],0,1,0,[0,0],"","",true,false],
-	["Land_tent_east",[-13.5093,-1.46362,0],120,1,0,[0,-0],"","",true,false],
-	["Land_tent_east",[11.6499,-3.39307,0],240,1,0,[0,0],"","",true,false]	
+	["Land_tent_east",[-13.5093,-1.46362,0],120,1,0,[0,-0],"","",true,false, true],
+	["Land_tent_east",[11.6499,-3.39307,0],240,1,0,[0,0],"","",true,false, true]	
 	]

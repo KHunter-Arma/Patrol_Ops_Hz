@@ -72,7 +72,7 @@ case (_rand < 0.66) : {
 
 };  
 
-_newComp = [_position, _dir,(call compile preprocessfilelinenumbers "Compositions\Other\speaker_platform.sqf")] call BIS_fnc_objectsMapper; 
+_newComp = [_position, _dir,(call compile preprocessfilelinenumbers "Compositions\Other\speaker_platform.sqf")] call Hz_fnc_objectsMapper; 
 
 _taskid = format["%1%2%3",round (_position select 0),round (_position select 1),(round random 999)];
 Hz_task_ID = _taskid;

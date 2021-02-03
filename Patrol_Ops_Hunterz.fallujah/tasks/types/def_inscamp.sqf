@@ -52,37 +52,7 @@ _fnc_initDude = {
 
 };
 
-_newComp = [_position, random 360,(call compile preprocessfilelinenumbers "Compositions\Blufor\Bases\insurgent_camp.sqf")] call BIS_fnc_ObjectsMapper;
-
-
-//init composition
-/*
-{
-
-	if(_x iskindof "Land_tent_east") then {
-		
-		_x allowDamage false;
-	
-	};
-
-} foreach _newComp;
-
-{
-
-	if(_x iskindof "pook_camonet_land_west_FARP17") then {
-		
-		_x allowDamage false;
-	
-	};
-
-	if(_x iskindof "FoldTable") then {
-		
-		_x enableSimulation false;
-	
-	};
-	
-} foreach _newComp;
-*/
+_newComp = [_position, random 360,(call compile preprocessfilelinenumbers "Compositions\Blufor\Bases\insurgent_camp.sqf")] call Hz_fnc_objectsMapper;
 
 _ammoCratesFilled = 0;
 _statGrp = creategroup (SIDE_A select 0);
