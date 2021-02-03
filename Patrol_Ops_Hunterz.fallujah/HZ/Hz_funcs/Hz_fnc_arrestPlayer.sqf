@@ -2,7 +2,9 @@ if (_this == "-1") then {
 	
 	Hz_func_isSupervisor = {false};
 	
-	player addEventHandler ["AnimChanged", {
+	player setvariable ["animAllowed",false];
+	player forceWalk true;
+	Hz_pops_abortClimbEH = player addEventHandler ["AnimChanged", {
 					if (local (_this select 0) && {_this select 1 == "ACE_Climb"}) then {
 							// abort climb animation
 							[_this select 0, "AmovPercMstpSnonWnonDnon", 2] call ace_common_fnc_doAnimation;
