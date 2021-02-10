@@ -8,7 +8,7 @@ class EditorData
 	toggles=10;
 	class ItemIDProvider
 	{
-		nextID=6008;
+		nextID=6037;
 	};
 	class MarkerIDProvider
 	{
@@ -16,16 +16,15 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={7580.3545,7.1999998,1618.4863};
-		dir[]={-0.008217751,-0.99993324,0.0081599867};
-		up[]={-0.70954913,0.011517424,0.70456141};
-		aside[]={0.7046085,-6.9849193e-010,0.70959628};
+		pos[]={6028.0908,7.1800089,1052.6812};
+		dir[]={-0.0073694941,-0.99991107,0.011110926};
+		up[]={-0.55268735,0.013336943,0.83328199};
+		aside[]={0.8333559,3.4924597e-010,0.55273634};
 	};
 };
 binarizationWanted=0;
 addons[]=
 {
-	#include "forced_addons.h"
 	"USAF_C17",
 	"CUP_WheeledVehicles_Stryker",
 	"rhsusf_c_troops",
@@ -98,6 +97,10 @@ addons[]=
 	"ace_compat_rhs_gref3",
 	"Items_NVG_Slot",
 	"US_ESS_Glasses_tryk",
+	"TCGM_Girls",
+	"CUP_Weapons_M16",
+	"TCGM_MultiPlay_Girls",
+	"TRYK_Uniform",
 	"ace_repair",
 	"CUP_Buildings_Config",
 	"A3_Structures_F_Ind_DieselPowerPlant",
@@ -191,7 +194,7 @@ class AddonsMetaData
 {
 	class List
 	{
-		items=116;
+		items=119;
 		class Item0
 		{
 			className="USAF_C17";
@@ -578,316 +581,331 @@ class AddonsMetaData
 		};
 		class Item62
 		{
+			className="CUP_Weapons_M16";
+			name="CUP_Weapons_M16";
+		};
+		class Item63
+		{
+			className="TCGM_MultiPlay_Girls";
+			name="TCGM_MultiPlay_Girls";
+		};
+		class Item64
+		{
+			className="TRYK_Uniform";
+			name="TRYK_Uniform";
+		};
+		class Item65
+		{
 			className="ace_repair";
 			name="ACE3 - Repair";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item63
+		class Item66
 		{
 			className="CUP_Buildings_Config";
 			name="CUP_Buildings_Config";
 		};
-		class Item64
+		class Item67
 		{
 			className="A3_Supplies_F_Heli";
 			name="Arma 3 Helicopters - Ammoboxes and Supplies";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item65
+		class Item68
 		{
 			className="CUP_StandaloneTerrains_Core_Faction";
 			name="CUP_StandaloneTerrains_Core_Faction";
 		};
-		class Item66
+		class Item69
 		{
 			className="A3_Structures_F_Exp";
 			name="Arma 3 Apex - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item67
+		class Item70
 		{
 			className="ace_logistics_wirecutter";
 			name="ACE3 - Logistics Wire Cutter";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item68
+		class Item71
 		{
 			className="A3_Structures_F_Heli";
 			name="Arma 3 Helicopters - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item69
+		class Item72
 		{
 			className="CUP_Editor_Structures_Config";
 			name="CUP_Editor_Structures_Config";
 		};
-		class Item70
+		class Item73
 		{
 			className="acex_sitting";
 			name="ACEX - Sitting";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item71
+		class Item74
 		{
 			className="A3_Structures_F_EPC";
 			name="Arma 3 Win Episode - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item72
+		class Item75
 		{
 			className="A3_Structures_F_Argo";
 			name="Arma 3 Malden - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item73
+		class Item76
 		{
 			className="A3_Data_F";
 			name="Arma 3 - Main Configuration";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item74
+		class Item77
 		{
 			className="CUP_Editor_Buildings_Config";
 			name="CUP_Editor_Buildings_Config";
 		};
-		class Item75
+		class Item78
 		{
 			className="CUP_Weapons_AmmoBoxes";
 			name="CUP_Weapons_AmmoBoxes";
 		};
-		class Item76
+		class Item79
 		{
 			className="A3_Supplies_F_Exp";
 			name="Arma 3 Apex - Ammoboxes and Supplies";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item77
+		class Item80
 		{
 			className="ace_rearm";
 			name="ACE3 - Rearm";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item78
+		class Item81
 		{
 			className="A3_Ui_F_Orange";
 			name="Arma 3 Orange - User Interface";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item79
+		class Item82
 		{
 			className="acex_field_rations";
 			name="ACEX - Field Rations";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item80
+		class Item83
 		{
 			className="CUP_Editor_Plants_Config";
 			name="CUP_Editor_Plants_Config";
 		};
-		class Item81
+		class Item84
 		{
 			className="A3_Props_F_Exp_A";
 			name="Arma 3 Nexus Update - Decorative and Mission Objects";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item82
+		class Item85
 		{
 			className="A3_Structures_F_Orange";
 			name="Arma 3 Orange - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item83
+		class Item86
 		{
 			className="CUP_BaseConfigs";
 			name="CUP_BaseConfigs";
 		};
-		class Item84
+		class Item87
 		{
 			className="retextures";
 			name="retextures";
 		};
-		class Item85
+		class Item88
 		{
 			className="CUP_Creatures_Military_Taki";
 			name="CUP_Creatures_Military_Taki";
 		};
-		class Item86
+		class Item89
 		{
 			className="CUP_TrackedVehicles_T55";
 			name="CUP_TrackedVehicles_T55";
 		};
-		class Item87
+		class Item90
 		{
 			className="Hz_realism_armor";
 			name="Hz_realism_armor";
 		};
-		class Item88
+		class Item91
 		{
 			className="CUP_TrackedVehicles_T72";
 			name="CUP_TrackedVehicles_T72";
 		};
-		class Item89
+		class Item92
 		{
 			className="CUP_TrackedVehicles_BMP";
 			name="CUP_TrackedVehicles_BMP";
 			author="Community Cupgrade Project";
 		};
-		class Item90
+		class Item93
 		{
 			className="CUP_WheeledVehicles_BRDM2";
 			name="CUP_WheeledVehicles_BRDM2";
 		};
-		class Item91
+		class Item94
 		{
 			className="po_factions_fic";
 			name="po_factions_fic";
 			author="Leight, Keeway";
 		};
-		class Item92
+		class Item95
 		{
 			className="CUP_WheeledVehicles_LR";
 			name="CUP_WheeledVehicles_LR";
 		};
-		class Item93
+		class Item96
 		{
 			className="CUP_WheeledVehicles_UAZ";
 			name="CUP_WheeledVehicles_UAZ";
 		};
-		class Item94
+		class Item97
 		{
 			className="murshun_cigs";
 			name="murshun_cigs";
 		};
-		class Item95
+		class Item98
 		{
 			className="FIR_F16_F";
 			name="FIR_F16_F";
 		};
-		class Item96
+		class Item99
 		{
 			className="ace_refuel";
 			name="ACE3 - Refuel";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item97
+		class Item100
 		{
 			className="nielsen_cim";
 			name="nielsen_cim";
 		};
-		class Item98
+		class Item101
 		{
 			className="A3_Structures_F_Exp_Civilian";
 			name="Arma 3 Apex - Civilian Buildings";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item99
+		class Item102
 		{
 			className="CUP_CA_Config";
 			name="CUP_CA_Config";
 		};
-		class Item100
+		class Item103
 		{
 			className="USAF_C130J";
 			name="USAF_C130J";
 		};
-		class Item101
+		class Item104
 		{
 			className="Hz_mod_ambientWar";
 			name="Hunter'z Ambient War Module";
 			author="K.Hunter";
 			url="https://github.com/KHunter-Arma";
 		};
-		class Item102
+		class Item105
 		{
 			className="A3_Data_F_Curator";
 			name="Arma 3 Zeus Update - Main Configuration";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item103
+		class Item106
 		{
 			className="A3_Props_F_Argo";
 			name="Arma 3 Malden - Decorative and Mission Objects";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item104
+		class Item107
 		{
 			className="CUP_Creatures_Military_TakiInsurgents";
 			name="CUP_Creatures_Military_TakiInsurgents";
 		};
-		class Item105
+		class Item108
 		{
 			className="CUP_WheeledVehicles_Datsun";
 			name="CUP_WheeledVehicles_Datsun";
 		};
-		class Item106
+		class Item109
 		{
 			className="plp_beachobjects";
 			name="plp_beachobjects";
 		};
-		class Item107
+		class Item110
 		{
 			className="A3_Structures_F_Exp_Industrial";
 			name="Arma 3 Apex - Industrial Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item108
+		class Item111
 		{
 			className="A3_Props_F_Tank";
 			name="Arma 3 Tank - Decorative and Mission Objects";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item109
+		class Item112
 		{
 			className="CUP_WheeledVehicles_BTR60";
 			name="CUP_WheeledVehicles_BTR60";
 		};
-		class Item110
+		class Item113
 		{
 			className="FIR_F15_F";
 			name="FIR_F15_F";
 		};
-		class Item111
+		class Item114
 		{
 			className="usaf_all";
 			name="usaf_all";
 		};
-		class Item112
+		class Item115
 		{
 			className="CUP_Weapons_Glock17";
 			name="CUP_Weapons_Glock17";
 		};
-		class Item113
+		class Item116
 		{
 			className="CUP_WheeledVehicles_V3S";
 			name="CUP_WheeledVehicles_V3S";
 		};
-		class Item114
+		class Item117
 		{
 			className="CUP_WheeledVehicles_Hilux";
 			name="CUP_WheeledVehicles_Hilux";
 		};
-		class Item115
+		class Item118
 		{
 			className="SAN_Headlamp";
 			name="san_headlamp";
@@ -8780,7 +8798,7 @@ class CustomAttributes
 																"SCALAR"
 															};
 														};
-														value=2.5151711;
+														value=2;
 													};
 												};
 												class Item1
@@ -8825,7 +8843,7 @@ class CustomAttributes
 																"SCALAR"
 															};
 														};
-														value=3.0112007;
+														value=2;
 													};
 												};
 												class Item1
@@ -9365,7 +9383,7 @@ class CustomAttributes
 																"SCALAR"
 															};
 														};
-														value=1;
+														value=0.40000001;
 													};
 												};
 												class Item1
@@ -9410,7 +9428,7 @@ class CustomAttributes
 																"SCALAR"
 															};
 														};
-														value=1;
+														value=0.40000001;
 													};
 												};
 												class Item1
@@ -19534,7 +19552,7 @@ class CustomAttributes
 																"SCALAR"
 															};
 														};
-														value=1;
+														value=2;
 													};
 												};
 												class Item1
@@ -21784,7 +21802,7 @@ class CustomAttributes
 																"SCALAR"
 															};
 														};
-														value=0.1;
+														value=0.32928777;
 													};
 												};
 												class Item1
@@ -21964,7 +21982,7 @@ class CustomAttributes
 																"SCALAR"
 															};
 														};
-														value=2;
+														value=0;
 													};
 												};
 												class Item1
@@ -25463,7 +25481,7 @@ class CustomAttributes
 																"SCALAR"
 															};
 														};
-														value=1;
+														value=0.32928777;
 													};
 												};
 												class Item1
@@ -28472,7 +28490,7 @@ class Mission
 			flags=4;
 			class Attributes
 			{
-				init="call{this setFuelCargo 0; if (isServer) then {" \n "" \n "this addEventHandler [""Hit"", { " \n " if ((_this select 2) > 0.1) then {" \n " (_this select 0) setDamage 1;" \n " };" \n " " \n "}];" \n "" \n "this addEventHandler [""Killed"", { " \n "  _pos = (getposatl (_this select 0)) vectoradd [0,0,20]; " \n " _bomb = ""rhs_ammo_fab100"" createVehicle _pos; " \n "     _bomb setposatl _pos; " \n "     _bomb setDamage 1; " \n "}];" \n "" \n "" \n "};}";
+				init="call{this setFuelCargo 0; if (isServer) then {" \n "" \n "private _pos = (this worldToModelVisual (getpos fuelstation_spotlight)) vectorAdd [0,0,1.1];" \n "private _dir = getDir fuelstation_spotlight;" \n "fuelstation_spotlight attachto [this, _pos];" \n "fuelstation_spotlight setdir (_dir - (getDir this));" \n "" \n "this addEventHandler [""Hit"", { " \n " if ((_this select 2) > 0.1) then {" \n " (_this select 0) setDamage 1;" \n " };" \n " " \n "}];" \n "" \n "this addEventHandler [""Killed"", { " \n "  _pos = (getposatl (_this select 0)) vectoradd [0,0,20]; " \n " _bomb = ""rhs_ammo_fab100"" createVehicle _pos; " \n "     _bomb setposatl _pos; " \n "     _bomb setDamage 1; " \n "}];" \n "" \n "" \n "};}";
 			};
 			id=131;
 			type="Land_Fuel_tank_stairs";
@@ -37977,7 +37995,7 @@ class Mission
 			side="West";
 			class Entities
 			{
-				items=6;
+				items=7;
 				class Item0
 				{
 					dataType="Object";
@@ -38325,8 +38343,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={8221.6973,12.341439,2111.2629};
-						angles[]={0,3.6755586,0};
+						position[]={8222.8242,12.341439,2122.0242};
+						angles[]={0,5.6476808,0};
 					};
 					side="West";
 					flags=4;
@@ -38422,7 +38440,7 @@ class Mission
 					};
 					id=3308;
 					type="CUP_I_PMC_Contractor2";
-					atlOffset=0.00043201447;
+					atlOffset=0.00043296814;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -39078,6 +39096,156 @@ class Mission
 						nAttributes=4;
 					};
 				};
+				class Item6
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={8221.8936,12.341012,2111.03};
+						angles[]={0,4.1139889,0};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						class Inventory
+						{
+							class primaryWeapon
+							{
+								name="CUP_arifle_M16A1";
+								class primaryMuzzleMag
+								{
+									name="CUP_30Rnd_556x45_Stanag";
+									ammoLeft=30;
+								};
+							};
+							class binocular
+							{
+								name="Binocular";
+							};
+							class uniform
+							{
+								typeName="TCGM_Multiplay_U_B_3CD_BLK_RollUp";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="CUP_30Rnd_556x45_Stanag";
+										count=4;
+										ammoLeft=30;
+									};
+								};
+								class ItemCargo
+								{
+									items=2;
+									class Item0
+									{
+										name="ACE_fieldDressing";
+										count=5;
+									};
+									class Item1
+									{
+										name="ACE_elasticBandage";
+										count=1;
+									};
+								};
+							};
+							class vest
+							{
+								typeName="TRYK_V_Bulletproof_BLK";
+								isBackpack=0;
+							};
+							goggles="CUP_G_PMC_RadioHeadset_Glasses";
+							hmd="TRYK_HRPIGEAR_NV";
+							headgear="CUP_H_PMC_Cap_Grey";
+						};
+					};
+					id=6009;
+					type="TCGM_RollUp_B_MTP_Soldier_LT";
+					atlOffset=4.7683716e-006;
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male05ENG";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.1;
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="unitName";
+							expression="_this setname _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Lily Miller";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="face";
+							expression="_this setface _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="TCGM_Fem_Fox";
+								};
+							};
+						};
+						nAttributes=4;
+					};
+				};
 			};
 			class Attributes
 			{
@@ -39193,7 +39361,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8143.0542,9.9274998,1299.6136};
+				position[]={8144.7798,9.8404999,1297.799};
 				angles[]={0,5.5553827,0};
 			};
 			side="Empty";
@@ -39204,6 +39372,7 @@ class Mission
 			};
 			id=748;
 			type="Land_dp_bigTank_F";
+			atlOffset=-0.086999893;
 		};
 		class Item297
 		{
@@ -39923,7 +40092,7 @@ class Mission
 			};
 			id=811;
 			type="Land_PortableLight_single_F";
-			atlOffset=4.5667343;
+			atlOffset=4.5464764;
 		};
 		class Item339
 		{
@@ -63761,7 +63930,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="[['B.A.D. PMC',west,5,['C_MAN_POLO_1_F','CUP_I_PMC_ION','C_MAN_HUNTER_1_F']],['Iraqi Army',west,1,['LOP_IA']],['US Forces',west,10,['USAF','USAF_AFSOC','USAF_SFS_PILOTS','RHS_FACTION_SOCOM','RHS_FACTION_USAF','RHS_FACTION_USARMY','RHS_FACTION_USARMY_D','RHS_FACTION_USARMY_WD','RHS_FACTION_USMC','RHS_FACTION_USMC_D','RHS_FACTION_USMC_WD','RHS_FACTION_USN','usaf_policeman']],['Friendly Insurgents',west,0.3,[]],['Enemy Insurgents',east,0,['CUP_O_TK_MILITIA','CUP_I_TK_GUE','LOP_AM_OPF']],['Takistani Army',east,0,['LOP_TKA','CUP_O_TK']],['Civilians',civilian,1,['LOP_TAK_CIV','CUP_C_TK','CIV_F','CIV_IDAP_F']]]";
+							value="[['B.A.D. PMC',west,5,['C_MAN_POLO_1_F','CUP_I_PMC_ION','C_MAN_HUNTER_1_F','TCGM_ROLLUP_B_MTP_SOLDIER_LT']],['Iraqi Army',west,1,['LOP_IA']],['US Forces',west,10,['USAF','USAF_AFSOC','USAF_SFS_PILOTS','RHS_FACTION_SOCOM','RHS_FACTION_USAF','RHS_FACTION_USARMY','RHS_FACTION_USARMY_D','RHS_FACTION_USARMY_WD','RHS_FACTION_USMC','RHS_FACTION_USMC_D','RHS_FACTION_USMC_WD','RHS_FACTION_USN','usaf_policeman']],['Friendly Insurgents',west,0.3,[]],['Enemy Insurgents',east,0,['CUP_O_TK_MILITIA','CUP_I_TK_GUE','LOP_AM_OPF']],['Takistani Army',east,0,['LOP_TKA','CUP_O_TK']],['Civilians',civilian,1,['LOP_TAK_CIV','CUP_C_TK','CIV_F','CIV_IDAP_F']]]";
 						};
 					};
 				};
@@ -63856,7 +64025,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="['C_journalist_F','C_Journalist_01_War_F','C_man_p_beggar_F','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','C_man_p_beggar_F','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random']";
+							value="['C_journalist_F','C_Journalist_01_War_F','C_man_p_beggar_F','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','C_man_p_beggar_F','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','Max_Tak_woman1','Max_Tak_woman2','Max_Tak_woman3','Max_Tak_woman4','Max_Tak_woman5','Max_Tak_woman6','Max_Tak2_woman1','Max_Tak2_woman2','Max_Tak2_woman3','Max_Tak2_woman4','Max_Tak2_woman5','Max_Taky_woman1','Max_Taky_woman2','Max_Taky_woman3','Max_Taky_woman4','Max_Taky_woman5''Max_Tak_woman1','Max_Tak_woman2','Max_Tak_woman3','Max_Tak_woman4','Max_Tak_woman5','Max_Tak_woman6','Max_Tak2_woman1','Max_Tak2_woman2','Max_Tak2_woman3','Max_Tak2_woman4','Max_Tak2_woman5','Max_Taky_woman1','Max_Taky_woman2','Max_Taky_woman3','Max_Taky_woman4','Max_Taky_woman5']";
 						};
 					};
 				};
@@ -63906,17 +64075,18 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8122.6978,8.3159962,1315.4099};
-				angles[]={0,3.932385,0};
+				position[]={8122.6982,8.3158131,1315.41};
+				angles[]={0,3.932384,0};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
+				name="fuelstation_spotlight";
 			};
 			id=4538;
 			type="Land_PortableLight_single_F";
-			atlOffset=0.23218298;
+			atlOffset=0.23199987;
 		};
 		class Item654
 		{
