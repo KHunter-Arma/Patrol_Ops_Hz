@@ -1,4 +1,5 @@
-private ["_faction","_class"];
+private ["_count", "_type", "_temp", "_temp2", "_randomIndex", "_val", "_faction", "_class"];
+
 if(!(call Hz_fnc_isTaskMaster)) exitWith{};
 
 mps_class_commander = [];
@@ -14,6 +15,7 @@ mps_opfor_inf = [];
 mps_opfor_riflemen = [];
 mps_opfor_ins_riflemen = [];
 mps_opfor_crewmen = [];
+mps_opfor_pilot = [];
 mps_opfor_sniper = [];
 mps_opfor_ins = [];
 mps_opfor_ins_car = [];
@@ -130,6 +132,7 @@ mps_blufor_cargoplane = [];
     if( (_x select 1) == "co") then { mps_opfor_commander = mps_opfor_commander + [(_x select 2)]; };
     if( (_x select 1) == "rf") then { mps_opfor_riflemen = mps_opfor_riflemen + [(_x select 2)]; };
     if( (_x select 1) == "cr") then { mps_opfor_crewmen = mps_opfor_crewmen + [(_x select 2)]; };
+    if( (_x select 1) == "pl") then { mps_opfor_pilot = mps_opfor_pilot + [(_x select 2)]; };
 		if( (_x select 1) == "sn") then { mps_opfor_sniper = mps_opfor_sniper + [(_x select 2)]; };
 		
   };

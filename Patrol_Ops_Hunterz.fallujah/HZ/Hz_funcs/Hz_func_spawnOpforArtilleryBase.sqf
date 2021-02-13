@@ -1,5 +1,6 @@
 
-private ["_newComp","_location","_artylocation","_dude","_grp","_marker","_defendersGrp","_car_type","_vehgrp","_aliveGuns","_cond","_rocketArty","_composition","_carspawnpos"];
+private ["_artylocation", "_newComp", "_rocketArty", "_composition", "_location", "_newcomp", "_grp", "_dude", "_i", "_marker", "_defendersGrp", "_carspawnpos", "_car_type", "_vehgrp", "_staticgrp", "_aliveGuns", "_cond", "_paragrp"];
+
 if(!(call Hz_fnc_isAiMaster)) exitWith{};
 
 //init delay
@@ -136,7 +137,7 @@ while {true} do {
 
 			if(random 1 > 0.7) then {
 				_car_type = (mps_opfor_car+mps_opfor_apc) call mps_getRandomElement;
-				_vehgrp = [_car_type,(SIDE_B select 0),_carspawnpos,100] call mps_spawn_vehicle;
+				_vehgrp = [_car_type,SIDE_B,_carspawnpos,100] call mps_spawn_vehicle;
 				sleep 1;
 				
 				{if(!((vehicle _x) in Hz_artyBaseObjects)) then {Hz_artyBaseObjects set [count Hz_artyBaseObjects, vehicle _x];}; Hz_artyBaseObjects set [count Hz_artyBaseObjects,_x];}foreach units _vehgrp;

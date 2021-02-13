@@ -68,7 +68,7 @@ for "_i" from 1 to (_tankweight max (_apcweight max (_carweight max (_aaweight m
 	if(_i <= _tankweight) then{
 		_j = (count _armortypes - 1) min (round random (count _armortypes));
 		_tank = _armortypes select _j;
-		_Grp = [_tank,(SIDE_B select 0),_spawnpos,200] call mps_spawn_vehicle;
+		_Grp = [_tank,SIDE_B,_spawnpos,200] call mps_spawn_vehicle;
 		_Enemies = _Enemies + units _Grp;
 
 		if(_forcetype == "REINFORCEMENTS") then {[_Grp,_pos] spawn _reinf_movement}
@@ -78,7 +78,7 @@ for "_i" from 1 to (_tankweight max (_apcweight max (_carweight max (_aaweight m
 	if(_i <= _apcweight) then{
 		_j = (count _apctypes - 1) min (round random (count _apctypes));
 		_apc = _apctypes select _j;
-		_Grp = [_apc,(SIDE_B select 0),_spawnpos,200] call mps_spawn_vehicle;
+		_Grp = [_apc,SIDE_B,_spawnpos,200] call mps_spawn_vehicle;
 		_Enemies = _Enemies + units _Grp;
 
 		if(_forcetype == "REINFORCEMENTS") then {[_Grp,_pos] spawn _reinf_movement}
@@ -88,7 +88,7 @@ for "_i" from 1 to (_tankweight max (_apcweight max (_carweight max (_aaweight m
 	if(_i <= _aaweight) then{
 		_j = (count _aatypes - 1) min (round random (count _aatypes));
 		_aa = _aatypes select _j;
-		_Grp = [_aa,(SIDE_B select 0),_spawnpos,200] call mps_spawn_vehicle;
+		_Grp = [_aa,SIDE_B,_spawnpos,200] call mps_spawn_vehicle;
 		_Enemies = _Enemies + units _Grp;
 
 		if(_forcetype == "REINFORCEMENTS") then {[_Grp,_pos] spawn _reinf_movement}
@@ -98,7 +98,7 @@ for "_i" from 1 to (_tankweight max (_apcweight max (_carweight max (_aaweight m
 	if(_i <= _carweight) then{
 		_j = (count _cartypes - 1) min (round random (count _cartypes));
 		_car = _cartypes select _j;
-		_Grp = [_car,(SIDE_B select 0),_spawnpos,200] call mps_spawn_vehicle;
+		_Grp = [_car,SIDE_B,_spawnpos,200] call mps_spawn_vehicle;
 		_Enemies = _Enemies + units _Grp;
 
 		if(_forcetype == "REINFORCEMENTS") then {[_Grp,_pos] spawn _reinf_movement}

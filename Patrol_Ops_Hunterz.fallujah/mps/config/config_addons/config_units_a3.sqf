@@ -8,6 +8,7 @@ mps_config_units = mps_config_units + [
 ["TKA","spc","CUP_O_TK_Soldier_FNFAL_Night",2],
 ["TKA","spc","CUP_O_TK_Soldier_AKS_74_GOSHAWK",2],
 ["TKA","cr","CUP_O_TK_Crew",0],
+["TKA","pl","CUP_O_TK_Pilot",0],
 ["TKA","co","CUP_O_TK_Commander",0],
 ["TKA","sn","CUP_O_TK_Sniper",0], 
 ["TKA","sn","CUP_O_TK_Sniper_SVD_Night",0], 

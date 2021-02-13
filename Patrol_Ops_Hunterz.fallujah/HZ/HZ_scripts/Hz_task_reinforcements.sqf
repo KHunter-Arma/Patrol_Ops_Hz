@@ -80,11 +80,11 @@ for "_i" from 1 to _count do {
 			
       if(!_INS) then {
       
-      _tempgrp = [_car_type,(SIDE_B select 0),_spawnpos,100] call mps_spawn_vehicle;
+      _tempgrp = [_car_type, SIDE_B, _spawnpos,100] call mps_spawn_vehicle;
       
       } else {
       
-        _tempgrp = [_car_type,(SIDE_C select 0),_spawnpos,100] call mps_spawn_vehicle;
+        _tempgrp = [_car_type, SIDE_C, _spawnpos,100] call mps_spawn_vehicle;
         
       };
 

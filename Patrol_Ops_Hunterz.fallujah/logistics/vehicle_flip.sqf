@@ -16,7 +16,7 @@ if (_PlayersHelping < 0) then {_PlayersHelping = 0};
 _car setVariable ["playershelping",_PlayersHelping + 1,true];
 
 _car removeAction (_car getVariable "flipAnimHandler");
-_cancelHandler = player addAction ["<t color='#FF0000'>Cancel animation</t>",{[player,""] remoteexeccall ["switchMove",0,false];}, nil, 99, false];
+_cancelHandler = player addAction ["<t color='#FF0000'>Cancel flip</t>",{[player,""] remoteexeccall ["switchMove",0,false];}, nil, 99, false];
 
 [player,"AidlPknlMstpSnonWnonDnon_G01"] remoteExecCall ["switchMove",0,false];
 //this locks animation, which is required
@@ -60,7 +60,7 @@ if (_flipVehicle) then {
 		_car setVariable ["playershelping",0,true];
 		
 		player removeAction _cancelHandler;
-		_car setVariable ["flipAnimHandler",_car addAction ["<t color='#FF0000'>Flip vehicle</t>","vehicle_flip.sqf" , nil, 1.5, true, true, "", "((vehicle _this) == _this) && {(((vectorUp _target) select 2) < 0) || {((vectorUp _target) select 0) > 0.8}}", 6, false, ""]];
+		_car setVariable ["flipAnimHandler",_car addAction ["<t color='#FF0000'>Flip vehicle</t>","logistics\vehicle_flip.sqf" , nil, 1.5, true, true, "", "((vehicle _this) == _this) && {(((vectorUp _target) select 2) < 0) || {((vectorUp _target) select 0) > 0.8}}", 6, false, ""]];
 
 	}, {
 	
@@ -74,7 +74,7 @@ if (_flipVehicle) then {
 		_car setVariable ["playershelping",(_car getVariable "playershelping") - 1,true];
 		
 		player removeAction _cancelHandler;
-		_car setVariable ["flipAnimHandler",_car addAction ["<t color='#FF0000'>Flip vehicle</t>","vehicle_flip.sqf" , nil, 1.5, true, true, "", "((vehicle _this) == _this) && {(((vectorUp _target) select 2) < 0) || {((vectorUp _target) select 0) > 0.8}}", 6, false, ""]];
+		_car setVariable ["flipAnimHandler",_car addAction ["<t color='#FF0000'>Flip vehicle</t>","logistics\vehicle_flip.sqf" , nil, 1.5, true, true, "", "((vehicle _this) == _this) && {(((vectorUp _target) select 2) < 0) || {((vectorUp _target) select 0) > 0.8}}", 6, false, ""]];
 	
 	}, "Flipping vehicle...",{_args = _this select 0; _args params ["_car","_playersNeeded"]; (!(player call Hz_fnc_isUncon)) && {alive player} && {alive _car} && {(_car getVariable "playershelping") >= _playersNeeded}}] call ace_common_fnc_progressBar;	
 	
@@ -83,6 +83,6 @@ if (_flipVehicle) then {
 	player removeAction _cancelHandler;
 	
 	_car setVariable ["playershelping",(_car getVariable "playershelping") - 1,true];	
-	_car setVariable ["flipAnimHandler",_car addAction ["<t color='#FF0000'>Flip vehicle</t>","vehicle_flip.sqf" , nil, 1.5, true, true, "", "((vehicle _this) == _this) && {(((vectorUp _target) select 2) < 0) || {((vectorUp _target) select 0) > 0.8}}", 6, false, ""]];
+	_car setVariable ["flipAnimHandler",_car addAction ["<t color='#FF0000'>Flip vehicle</t>","logistics\vehicle_flip.sqf" , nil, 1.5, true, true, "", "((vehicle _this) == _this) && {(((vectorUp _target) select 2) < 0) || {((vectorUp _target) select 0) > 0.8}}", 6, false, ""]];
 	
 };

@@ -123,7 +123,7 @@ while {true} do {
 			_grp = [_radarlocation,"INF",(6 + random 8),25,"standby"] call CREATE_OPFOR_SQUAD;
 			if(random 1 > 0.5) then {
 				_car_type = mps_opfor_aa call mps_getRandomElement;
-				_vehgrp = [_car_type,(SIDE_B select 0),_radarlocation,100] call mps_spawn_vehicle;
+				_vehgrp = [_car_type,SIDE_B,_radarlocation,100] call mps_spawn_vehicle;
 				sleep 1;              
 				{if(!((vehicle _x) in Hz_radarObjects)) then {Hz_radarObjects set [count Hz_radarObjects, vehicle _x];}; Hz_radarObjects set [count Hz_radarObjects, _x];}foreach units _vehgrp;
 			};

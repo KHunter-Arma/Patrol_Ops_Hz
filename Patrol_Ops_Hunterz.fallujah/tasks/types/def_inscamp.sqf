@@ -3,6 +3,8 @@ diag_log diag_activeSQFScripts;
 diag_log diag_activeSQSScripts;
 diag_log diag_activeMissionFSMs;
 
+private ["_EnemySpawnMinimumRange", "_taskRadius", "_minSquadCount", "_maxSquadCount", "_CASchance", "_TankChance", "_IFVchance", "_AAchance", "_CarChance", "_rewardMultiplier", "_position", "_taskid", "_otherReward", "_fnc_initDude", "_newComp", "_ammoCratesFilled", "_statGrp", "_dude", "_defGrp", "_i", "_defGrpOld", "_statGrpOld", "_b", "_spawnpos", "_r", "_grp", "_Vehsupport", "_vehicletypes", "_grpLeader", "_car_type", "_vehgrp", "_spawnedVehs", "_wp", "_nearObj"];
+
 /*-------------------- TASK PARAMS ---------------------------------*/
 _EnemySpawnMinimumRange = 4000;
 _taskRadius = 200;
@@ -21,7 +23,7 @@ _rewardMultiplier = 1;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 
-_position = [markerpos "ao_centre",3000,4500,SIDE_B select 0] call Hz_func_findspawnpos;
+_position = [markerpos "ao_centre",3000,6000,SIDE_B select 0] call Hz_func_findspawnpos;
 _taskid = format["%1%2%3",round (_position select 0),round (_position select 1),(round random 999)];
 Hz_task_ID = _taskid;
 Hz_econ_aux_rewards = 0;
@@ -240,7 +242,7 @@ if(_b > 0) then {
 		if((count _vehicletypes) > 0) then { 
 			
 			_car_type = _vehicletypes call mps_getRandomElement;
-			_vehgrp = [_car_type,(SIDE_C select 0),_spawnpos,100] call mps_spawn_vehicle;
+			_vehgrp = [_car_type,SIDE_C,_spawnpos,100] call mps_spawn_vehicle;
 			_grpLeader = leader _vehgrp;
 			sleep 0.1;
       patrol_task_vehs pushback (vehicle (leader _vehgrp));

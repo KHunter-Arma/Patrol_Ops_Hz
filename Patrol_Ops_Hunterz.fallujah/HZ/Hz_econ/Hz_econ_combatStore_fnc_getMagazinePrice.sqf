@@ -733,8 +733,6 @@ case  "ACE_HANDFLARE_YELLOW": {60};
 
 
 /*
-case  "RHS_MAG_FAKEL": {40};
-case  "RHS_MAG_FAKELS": {45};
 case  "I_IR_GRENADE": {200};
 case  "O_IR_GRENADE": {200};
 case  "B_IR_GRENADE": {200};
@@ -756,22 +754,24 @@ case  "HANDGRENADE": {34};
 
 /*
 case  "RHS_MAG_M69": {-1};
-case  "RHS_MAG_M7A3_CS": {213};
-case  "RHS_MAG_MK84": {175};
+//case  "RHS_MAG_M7A3_CS": {213}; //use ACE only for flash & gas grenades!
+//case  "RHS_MAG_MK84": {175};
+//case  "RHS_MAG_ZARYA2": {22};
+//case  "RHS_MAG_PLAMYAM": {21};
+//case  "RHS_MAG_FAKEL": {40};
+//case  "RHS_MAG_FAKELS": {45};
 case  "ACE_M84": {175};
 case  "RHS_MAG_MK3A2": {50};
 case  "RHS_MAG_NSPD": {20};
 case  "RHS_MAG_NSPN_GREEN": {21};
 case  "RHS_MAG_NSPN_RED": {21};
 case  "RHS_MAG_NSPN_YELLOW": {21};
-case  "RHS_MAG_PLAMYAM": {21};
 case  "RHS_MAG_RDG2_BLACK": {20};
 case  "RHS_MAG_RDG2_WHITE": {20};
 case  "RHS_MAG_RGD5": {38};
 case  "RHS_MAG_RGN": {30};
 case  "MINIGRENADE": {34};
 case  "RHS_MAG_RGO": {32};
-case  "RHS_MAG_ZARYA2": {22};
 */
 
 

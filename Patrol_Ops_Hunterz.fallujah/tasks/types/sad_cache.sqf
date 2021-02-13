@@ -3,6 +3,8 @@ diag_log diag_activeSQFScripts;
 diag_log diag_activeSQSScripts;
 diag_log diag_activeMissionFSMs;
 
+private ["_reinforcementsMinimumSpawnRange", "_minCacheCount", "_maxCacheCount", "_rewardPerCache", "_minDistanceBetweenCaches", "_minDefendingSquadCountPerCache", "_maxDefendingSquadCountPerCache", "_DefenseRadius", "_minGarrisonedSquadCountPerCache", "_maxGarrisonedSquadCountPerCache", "_minPatrollingSquadCountPerCache", "_maxPatrollingSquadCountPerCache", "_minStaticWeaponPerCache", "_maxStaticWeaponPerCache", "_intelAtCacheChance", "_CASchance", "_TankChance", "_IFVchance", "_AAchance", "_CarChance", "_rewardmultiplier", "_caches", "_cacheCount", "_position", "_closedPositions", "_buildings", "_bigBuildings", "_build", "_building", "_SniperChance", "_TowerChance", "_posFound", "_nearbuildings", "_cachePos", "_cache", "_splosion", "_cacheBuilding", "_guardPositions", "_cacheGrp", "_unit", "_intelPos", "_intel", "_marker", "_taskid", "_otherReward", "_totalSquads", "_staticguns", "_staticgrp", "_d", "_grpgar", "_b", "_r", "_i", "_tempos", "_grppat", "_Vehsupport", "_vehicletypes", "_car_type", "_vehgrp", "_c", "_grpdef", "_rewardMultiplier", "_pos", "_target"];
+
 /*-------------------- TASK PARAMS ---------------------------------*/
 _reinforcementsMinimumSpawnRange = 4000;
 
@@ -169,7 +171,7 @@ for "_i" from 1 to _cacheCount do {
 	_guardPositions = [_cacheBuilding] call BIS_fnc_buildingPositions;
 	_guardPositions = _guardPositions - [_cachePos];
 	
-	_cacheGrp = createGroup (SIDE_B select 0);
+	_cacheGrp = createGroup (SIDE_C select 0);
 
 	{
 
@@ -299,7 +301,7 @@ _otherReward = _cacheCount*_rewardPerCache;
 			if((count _vehicletypes) > 0) then { 
 				
 				_car_type = _vehicletypes call mps_getRandomElement;
-				_vehgrp = [_car_type,(SIDE_B select 0),_position,300] call mps_spawn_vehicle;
+				_vehgrp = [_car_type,SIDE_C,_position,300] call mps_spawn_vehicle;
 				sleep 1;
 				patrol_task_vehs set [count patrol_task_vehs, vehicle (leader _vehgrp)];
 				(units _vehgrp) joinSilent _grppat;
@@ -341,7 +343,7 @@ _otherReward = _cacheCount*_rewardPerCache;
 			if((count _vehicletypes) > 0) then { 
 				
 				_car_type = _vehicletypes call mps_getRandomElement;
-				_vehgrp = [_car_type,(SIDE_B select 0),_position,_DefenseRadius] call mps_spawn_vehicle;
+				_vehgrp = [_car_type,SIDE_C,_position,_DefenseRadius] call mps_spawn_vehicle;
 				sleep 1;
 				patrol_task_vehs set [count patrol_task_vehs, vehicle (leader _vehgrp)];
 				(units _vehgrp) joinSilent _grpdef;

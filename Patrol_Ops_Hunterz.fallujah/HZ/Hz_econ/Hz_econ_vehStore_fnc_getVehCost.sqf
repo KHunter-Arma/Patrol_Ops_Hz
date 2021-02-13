@@ -11,6 +11,14 @@
 
 switch (true) do {
 
+case (_this iskindof "pook_FAV_M2") : {-1};
+case (_this iskindof "pook_FAV_scout") : {-1};
+case (_this iskindof "pook_FAV") : {-1};
+case (_this iskindof "pook_M1161_Mk19_SOV") : {-1};
+case (_this iskindof "pook_M1161_M2_SOV") : {-1};
+case (_this iskindof "pook_M1161_Mk19") : {-1};
+case (_this iskindof "pook_M1161_M2") : {-1};
+case (_this iskindof "pook_M1161_Base") : {-1};
 //case (_this iskindof "RHS_Ural_Open_Civ_01") : {12000};
 case (_this iskindof "CUP_O_V3S_Open_TKM") : {14000};
 case (_this iskindof "CUP_V3S_Covered_Base") : {14500};

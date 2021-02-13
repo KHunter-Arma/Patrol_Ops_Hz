@@ -5,6 +5,8 @@ diag_log diag_activeMissionFSMs;
 
 //#define playableUnits switchableUnits
 
+private ["_downPayment", "_speechCompletePayment", "_speechTimeMinutes", "_EnemySpawnMinimumRange", "_taskRadius", "_minSquadCount", "_maxSquadCount", "_CASchance", "_TankChance", "_IFVchance", "_AAchance", "_CarChance", "_rewardMultiplier", "_rand", "_position", "_dir", "_locationDesc", "_newComp", "_taskid", "_otherReward", "_returnPoint", "_crowdPos", "_crowdGrp", "_crowd", "_type", "_civ", "_grp", "_vip", "_guards", "_dude", "_killer", "_condition", "_nearCars", "_suicidebomber", "_preachCounter", "_preachMax", "_speechRewardPerSecond", "_spawnedSquads", "_goTime", "_temp", "_curMuz", "_units", "_target"];
+
 /*-------------------- TASK PARAMS ---------------------------------*/
 
 _downPayment = 50000;
@@ -364,7 +366,7 @@ case (_suicidebomber) : {
 			[_bomber,"Hz_ambw_shout"] remoteExecCall ["say3D",0,false];
 			
 			[_bomber] joinsilent grpNull;
-			_bgroup = createGroup (SIDE_B select 0);
+			_bgroup = createGroup (SIDE_C select 0);
 			[_bomber] joinsilent _bgroup;
 			
 			_bgroup deleteGroupWhenEmpty true;
@@ -444,7 +446,7 @@ case (_rand < 0.8) : {
 					if((count _vehicletypes) > 0) then { 
 						
 						_car_type = _vehicletypes call mps_getRandomElement;
-						_vehgrp = [_car_type,(SIDE_C select 0),_spawnpos,100] call mps_spawn_vehicle;
+						_vehgrp = [_car_type,SIDE_C,_spawnpos,100] call mps_spawn_vehicle;
 						sleep 0.1;
 						patrol_task_vehs pushback (vehicle (leader _vehgrp));
 						(units _vehgrp) joinSilent _grp;
@@ -587,7 +589,7 @@ while {
 			};
 			
 			[_dude] joinSilent grpNull;
-			[_dude] joinSilent (createGroup [SIDE_B select 0,true]);
+			[_dude] joinSilent (createGroup [SIDE_C select 0,true]);
 			
 			_dude reveal [_vip,4];
 			

@@ -1,24 +1,30 @@
 // Written by BON_IF
 // Adpated by EightySix
 
-private ["_type", "_side", "_radius", "_flying", "_Grp", "_y", "_spawnpos", "_count", "_vec", "_units","_pos","_crewtype", "_max", "_unit", "_airspawnpos", "_grp", "_veh", "_vehpos"];
+private ["_type", "_pos", "_x", "_sideFaction", "_radius", "_side", "_faction", "_flying", "_Grp", "_y", "_spawnpos", "_count", "_crewTypes", "_sim", "_vec", "_dir", "_unit"];
 
 _type = _this select 0;
-_side = _this select 1;
+_sideFaction = _this select 1;
 _pos = _this select 2;
 _radius = _this select 3;
 
-_flying = false;
+_side = _sideFaction select 0;
+_faction = _sideFaction select 1;
 
-if (_type iskindof "Air") then {_flying = true;};
+_flying = false;
+if (_type iskindof "Air") then {
+	_flying = true;
+};
 
 _Grp = grpNull;
-if (count _this > 4) then {_Grp = _this select 4;}else{_Grp = createGroup (SIDE_B select 0);};
+if (count _this > 4) then {
+	_Grp = _this select 4;
+} else {
+	_Grp = createGroup _side;
+};
 
 _x = _pos select 0;
 _y = _pos select 1;
-
-
 
 _spawnpos = [0,0];
 _count = 0;
@@ -26,95 +32,107 @@ While{(surfaceIsWater _spawnpos || count (_spawnpos - [0]) == 0) && _count < 100
 	_spawnpos = [_x + _radius - random (_radius*2), _y + _radius - random (_radius*2)];
 	_count = _count + 1;
 };
-if(_count == 100) exitWith{_Grp deleteGroupWhenEmpty true; _Grp};
+if(_count == 100) exitWith{
+	_Grp deleteGroupWhenEmpty true;
+	_Grp
+};
 _spawnpos set [2,0];
 
-if(!_flying) then {_vec = _type createVehicle _spawnpos;
-_vec setvehiclelock "LOCKED";
+_crewTypes = [];
 
-_crewtype = getArray (configFile >> "CfgVehicles" >> _type >> "typicalCargo");
-_max = (count _crewtype)-1;
+if(_faction == (SIDE_B select 1)) then {
 
-if(count(_crewtype - ["Soldier"] - ["SoldiereCrew"])==0) then {
-
-	if(_side == (SIDE_B select 0)) then {
-
-		_crewtype = mps_opfor_crewmen;
+	switch (true) do {
 		
-	} else {
-		
-		if (_side == (SIDE_C select 0)) then {
-		
-			_crewtype = mps_opfor_ins_riflemen;
-		
+		case _flying : {
+			_crewTypes = mps_opfor_pilot;
 		};
+		
+		case (_type isKindOf "Tank") : {
+			_crewTypes = mps_opfor_crewmen;
+		};
+		
+		default {
+			_crewTypes = mps_opfor_riflemen;
+		};
+		
+	};
+	
+} else {
+	
+	if (_faction == (SIDE_C select 1)) then {	
+		_crewTypes = mps_opfor_ins_riflemen;	
 	};
 	
 };
 
+_sim = getText(configFile >> "CfgVehicles" >> _type >> "simulation");
+
+_vec = objNull;
+if (_flying) then {
+	_spawnpos = [-20000,140000,1200];	
+	_vec = createVehicle [_type,_spawnpos,[],0,"FLY"];
+	_vec setPos _spawnpos;
+	if (_sim == "airplanex") then {
+		_dir = getDir _vec;
+		_vec setVelocity [100 * (sin _dir), 100 * (cos _dir), 0];
+	};
+} else {
+	_vec = _type createVehicle _spawnpos;
+};
+
+_vec setvehiclelock "LOCKED";
+
 if((_vec emptyPositions "commander") > 0) then {
-	_unit = _Grp createUnit [_crewtype select (round random _max), _pos, [], _radius, "NONE"];
+	_unit = _Grp createUnit [selectRandom _crewTypes, _pos, [], _radius, "NONE"];
 	_unit assignasCommander _vec;
-        [_unit] orderGetIn true;
-        _unit moveinCommander _vec;
-				_unit setrank "PRIVATE";
+	[_unit] orderGetIn true;
+	_unit moveinCommander _vec;
+	_unit setrank "PRIVATE";
 };
 
 if((_vec emptyPositions "gunner") > 0) then {
-	_unit = _Grp createUnit [_crewtype select (round random _max), _pos, [], _radius, "NONE"];
+	_unit = _Grp createUnit [selectRandom _crewTypes, _pos, [], _radius, "NONE"];
 	_unit assignasGunner _vec;
-        [_unit] orderGetIn true;
-        _unit moveinGunner _vec;
-				_unit setrank "PRIVATE";
+	[_unit] orderGetIn true;
+	_unit moveinGunner _vec;
+	_unit setrank "PRIVATE";
 };		
 
 if((_vec emptyPositions "driver") > 0) then {
-	_unit = _Grp createUnit [_crewtype select (round random _max), _pos, [], _radius, "NONE"];
+	_unit = _Grp createUnit [selectRandom _crewTypes, _pos, [], _radius, "NONE"];
 	_unit assignasDriver _vec;
-        [_unit] orderGetIn true;
-        _unit moveinDriver _vec;
-				_unit setrank "PRIVATE";
-        
+	[_unit] orderGetIn true;
+	_unit moveinDriver _vec;
+	_unit setrank "PRIVATE";     
 };
 
-if(((_vec emptyPositions "cargo") == 1) && _vec iskindof "Tank") then {
-	_unit = _Grp createUnit [_crewtype select (round random _max), _pos, [], _radius, "NONE"];
-	_unit assignasCargo _vec;
-        [_unit] orderGetIn true;
-        _unit moveinCargo _vec;
-				_unit setrank "PRIVATE";
-        
+{
+	if (isNull (_vec turretUnit _x)) then {
+		_unit = _Grp createUnit [selectRandom _crewTypes, _pos, [], _radius, "NONE"];
+		_unit assignAsTurret [_vec, _x];
+		[_unit] orderGetIn true;
+		_unit moveInTurret [_vec, _x];
+		_unit setrank "PRIVATE"; 
+	};
+} foreach (allTurrets [_vec, false]);
+
+if (_flying) then {
+	if(_vec iskindof "Plane") then {
+		if ((_type in mps_opfor_lbomber) || (_type in mps_opfor_hbomber)) then {
+			_vec flyinheight 1500;
+		} else {
+			_vec flyinheight 300;	
+		};
+	} else {    
+		_vec flyinheight 100;
+	};
+	{
+		_x addBackpack "ACE_NonSteerableParachute";
+	} foreach crew _vec;
 };
 
-
-} else {
-    
-_airspawnpos = [-20000,140000,800];        
-             
-_vec = ([_airspawnpos, random 360, _type, _Grp] call BIS_fnc_spawnVehicle) select 0;
-_vec setvehiclelock "locked";
-sleep 1;
-
-{_x setrank "PRIVATE";} foreach (crew _vec);
-
-if(_vec iskindof "Plane") then {
-
-if (((typeof _vec) in mps_opfor_lbomber) || ((typeof _vec) in mps_opfor_hbomber)) then {_vec flyinheight 1500;} else {_vec flyinheight 300;};
-
-} else {
-    
-_vec flyinheight 100;
-
-};
-  
-   
-   //Reveal targets for CAS
-//[_vec,3500] execVM "HZ\HZ_scripts\HZ_AI_CAS.sqf";
-   
-};
-
-
-
+_Grp addVehicle _vec;
 
 
 /*

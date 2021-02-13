@@ -3,6 +3,8 @@ diag_log diag_activeSQFScripts;
 diag_log diag_activeSQSScripts;
 diag_log diag_activeMissionFSMs;
 
+private ["_reinforcementsMinimumSpawnRange", "_ambientCombatIntensifyAmount", "_downPayment", "_minDefendingSquadCount", "_maxDefendingSquadCount", "_DefenseRadius", "_minGarrisonedSquadCount", "_maxGarrisonedSquadCount", "_minPatrollingSquadCount", "_maxPatrollingSquadCount", "_minStaticWeapon", "_maxStaticWeapon", "_CASchance", "_TankChance", "_IFVchance", "_AAchance", "_CarChance", "_SniperChance", "_TowerChance", "_rewardmultiplier", "_rewardMultiplier", "_position", "_closedPositions", "_ins", "_buildings", "_bigBuildings", "_building", "_posB", "_posFound", "_nearbuildings", "_taskid", "_otherReward", "_enemySide", "_powtype", "_powgrp", "_pow1", "_powPos", "_powBuilding", "_guardPositions", "_unit", "_staticguns", "_staticgrp", "_snipers", "_d", "_grpgar", "_b", "_r", "_i", "_tempos", "_grppat", "_Vehsupport", "_vehicletypes", "_car_type", "_vehgrp", "_c", "_grpdef", "_veh", "_target"];
+
 /*-------------------- TASK PARAMS ---------------------------------*/
 _reinforcementsMinimumSpawnRange = 4000;
 _ambientCombatIntensifyAmount = Hz_ambient_units_intensify_amount;
@@ -133,8 +135,10 @@ _otherReward = 0;
 
 _otherReward = _otherReward + _downPayment;
 
+_enemySide = [SIDE_B select 0, SIDE_C select 0] select _ins;
+
 _powtype = ["PO_IA_Infantry_SF_Operator"] call mps_getRandomElement;
-_powgrp = createGroup (SIDE_B select 0);
+_powgrp = createGroup _enemySide;
 _pow1 = _powgrp createUnit [_powtype,[0,0,0],[],0,"FORM"];
 _powPos = _closedPositions call mps_getRandomElement;
 _pow1 setposatl _powPos;
@@ -314,7 +318,7 @@ if(_b > 0) then {
     if((count _vehicletypes) > 0) then { 
       
       _car_type = _vehicletypes call mps_getRandomElement;
-      _vehgrp = [_car_type,(SIDE_B select 0),_position,300] call mps_spawn_vehicle;
+      _vehgrp = [_car_type,_enemySide,_position,300] call mps_spawn_vehicle;
       sleep 1;
       patrol_task_vehs set [count patrol_task_vehs, vehicle (leader _vehgrp)];
       (units _vehgrp) joinSilent _grppat;
@@ -374,7 +378,7 @@ if(_c > 0) then {
     if((count _vehicletypes) > 0) then { 
       
       _car_type = _vehicletypes call mps_getRandomElement;
-      _vehgrp = [_car_type,(SIDE_B select 0),_position,_DefenseRadius] call mps_spawn_vehicle;
+      _vehgrp = [_car_type,_enemySide,_position,_DefenseRadius] call mps_spawn_vehicle;
       sleep 1;
       patrol_task_vehs set [count patrol_task_vehs, vehicle (leader _vehgrp)];
       (units _vehgrp) joinSilent _grpdef;
