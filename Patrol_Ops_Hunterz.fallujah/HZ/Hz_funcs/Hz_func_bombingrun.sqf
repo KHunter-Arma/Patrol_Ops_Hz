@@ -1,7 +1,8 @@
 #define H_SPEED 50
 #define V_SPEED 100
 
-private ["_targetpos","_jettype","_group","_jet1","_jet2","_jet3","_bombType"];
+private ["_targetpos", "_jettype", "_side", "_bombType", "_spawnPos", "_jet1", "_jet2", "_jet3", "_jets", "_weps", "_group"];
+
 //if(isnull heli_radar) exitwith {};
 //if(!alive heli_radar) exitwith {};
 

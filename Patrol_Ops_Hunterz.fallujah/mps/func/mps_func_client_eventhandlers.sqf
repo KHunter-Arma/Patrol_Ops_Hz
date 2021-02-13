@@ -277,7 +277,9 @@ player addEventHandler ["Killed",{
 
 //used in respawn EH - normally defined only on server
 Hz_pers_fnc_convert1DArrayTo2D = {
-
+	
+	private ["_return", "_typeArray", "_countArray", "_index"];
+	
 	_return = [[],[]];
 	_typeArray = _return select 0;
 	_countArray = _return select 1;

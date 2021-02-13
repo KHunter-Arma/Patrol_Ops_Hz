@@ -1,6 +1,6 @@
-_build = _this select 0;
+private _build = _this select 0;
 
-_sillyarray = switch (typeof _build) do {
+private _sillyarray = switch (typeof _build) do {
 
 	case "Land_vez" : {[true,[2]]};
 	case "Land_Misc_Cargo1Ao" : {[true,[1,2]]};

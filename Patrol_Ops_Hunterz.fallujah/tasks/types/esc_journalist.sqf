@@ -5,6 +5,8 @@ diag_log diag_activeMissionFSMs;
 
 //#define playableUnits switchableUnits
 
+private ["_rewardPerTarget", "_numberOfTargets", "_minimumVantagePointHeight", "_ambientCombatIntensifyAmount", "_timeRequiredAtEachTarget", "_rewardMultiplier", "_downPayment", "_buildings", "_temp", "_buildingheight", "_vantagePoints", "_bpos", "_targets", "_taskid", "_otherReward", "_returnPoint", "_grp", "_type", "_vip", "_networkName", "_spawnedSquads", "_timeOnTarget", "_target"];
+
 /*-------------------- TASK PARAMS ---------------------------------*/
 
 _rewardPerTarget = 75000;

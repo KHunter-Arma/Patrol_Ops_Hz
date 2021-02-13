@@ -10,7 +10,7 @@ Params: [position,radius,type of mine]
 
 */
 
-private ["_pos","_radius","_type","_roadarr","_road","_roadpos","_iedpos","_ieddir","_ied"];
+private ["_radius", "_type", "_roadarr", "_road", "_roadpos", "_iedpos", "_ieddir", "_ied", "_pos"];
 
 _pos = _this select 0;
 _radius = _this select 1;

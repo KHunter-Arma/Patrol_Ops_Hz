@@ -1,5 +1,6 @@
 
-private ["_type","_unit","_veh","_passengertypes","_driver","_group","_count"];
+private ["_veh", "_passengertypes", "_driver", "_count", "_type", "_unit", "_group"];
+
 _veh = _this select 0;
 _passengertypes = _this select 1;
 

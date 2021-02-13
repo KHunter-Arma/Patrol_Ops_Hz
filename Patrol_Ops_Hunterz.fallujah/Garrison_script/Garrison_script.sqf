@@ -1,6 +1,7 @@
 // let the unit settle
 
-private ["_unit","_radius","_buildingslist","_build","_nbuild","_localbuilding","_buildpos","_group","_buildingsleft","_bposleft","_minheight","_capacityarray","_warping","_occupied","_pcnt","_allbpos","_selectedbpos","_limitedPositions","_rnum","_poscoords","_sillyarray","_issilly","_totalPositions","_posx","_posy","_posz","_AccessibleFound","_BB","_BC","_BCworld","_heightEstimate","_widthEstimate","_lengthEstimate","_halfwidthEstimate","_halflengthEstimate","_halfheightEstimate","_t","_stationary","_capacity","_maxcap","_side","_patrolgroup","_remainders","_objectslist","_noposbuildings"];
+private ["_t", "_minheight", "_cleanup", "_unit", "_radius", "_stationary", "_capacityarray", "_capacity", "_maxcap", "_warping", "_side", "_patrolgroup", "_remainders", "_objectslist", "_buildingslist", "_buildingsleft", "_noposbuildings", "_objCount", "_build", "_i", "_occupied", "_nbuild", "_localbuilding", "_sillyarray", "_issilly", "_bposleft", "_allbpos", "_pcnt", "_selectedbpos", "_totalPositions", "_limitedPositions", "_rnum", "_buildpos", "_poscoords", "_possarray", "_patrolCenter", "_lPos", "_gnumber", "_allunits", "_gunits", "_gunit", "_newgroup", "_AccessibleFound", "_BB", "_BC", "_BCworld", "_heightEstimate", "_widthEstimate", "_lengthEstimate", "_halfwidthEstimate", "_halflengthEstimate", "_halfheightEstimate", "_posx", "_posy", "_posz", "_group"];
+
 sleep 1;
 _t = time;
 /* 

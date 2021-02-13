@@ -2,7 +2,7 @@
 #define MIN_1D_DISTANCE_FROM_PLAYER 1400
 #define MIN_DISTANCE_FROM_OBJECTS 10
 
-private ["_marker1","_sideToAvoid","_minTotal","_minEnemies","_safetyFactors","_returnIndex","_maxDistanceStart","_player","_maxDistance","_marker2","_taskpos","_minDistance","_blacklistpos","_spawnpos","_playerPositions","_unitarray","_playerpos"];
+private ["_taskpos", "_minDistance", "_maxDistance", "_sideToAvoid", "_maxDistanceStart", "_blacklistpos", "_unitarray", "_playerPositions", "_player", "_playerpos", "_marker1", "_marker2", "_results", "_spawnpos", "_tries", "_safetyFactors", "_nearEntities", "_minEnemies", "_minTotal", "_returnIndex"];
 
 
 _taskpos = _this select 0;

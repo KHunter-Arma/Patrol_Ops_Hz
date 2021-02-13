@@ -1,5 +1,6 @@
 
-private ["_INS","_vehicletype","_otherReward","_fate","_CASchance","_TankChance","_IFVchance","_AAchance","_CarChance"];
+private ["_CASchance", "_TankChance", "_IFVchance", "_AAchance", "_CarChance", "_INS", "_vehicletype", "_otherReward", "_fate"];
+
 _CASchance = _this select 0;
 _TankChance = _this select 1;
 _IFVchance = _this select 2;

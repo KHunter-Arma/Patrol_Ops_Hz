@@ -1,3 +1,4 @@
+private ["_unit", "_type", "_objects", "_return"];
 
 _unit = _this select 0;
 _type = _this select 1;

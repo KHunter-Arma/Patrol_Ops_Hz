@@ -1,7 +1,7 @@
 // Written by EightySix
 // Inspired by Xeno
 
-private ["_position","_tower","_grp","_rtoPlaceholder","_rtoPos","_newComp","_rtoGroup","_rto"];
+private ["_tower", "_position", "_rto", "_newComp", "_newcomp", "_rtoPlaceholder", "_rtoPos", "_rtoGroup", "_type", "_grp"];
 
 _position = [(_this select 0),150,1,2] call mps_getFlatArea;
 

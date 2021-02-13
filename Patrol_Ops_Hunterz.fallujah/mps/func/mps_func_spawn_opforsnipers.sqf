@@ -2,7 +2,8 @@
 // Adpated by EightySix
 // Re-written by K.Hunter for urban sniper functionality
 
-private ["_buildingheight","_sniper","_building","_highbuildings","_buildingxbound","_buildingybound","_position","_allunits","_snipers","_sniperlist","_buildings","_group","_rewardcount"];
+private ["_buildings", "_position", "_radius", "_highbuildings", "_buildingheight", "_maxHeight", "_sniper", "_sniperlist", "_building", "_bpos", "_noHPosFound", "_hPos", "_maxH", "_buildingxbound", "_buildingybound", "_signx", "_signy", "_debug", "_marker", "_group", "_units"];
+
 if(!(call Hz_fnc_isTaskMaster)) exitWith{};
 
 _position = _this select 0;

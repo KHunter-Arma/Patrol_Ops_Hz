@@ -5,7 +5,7 @@
 //	[_position,"INF",5,50] spawn CREATE_OPFOR_SQUAD;
 //
 
-private ["_position", "_side", "_type","_x", "_strength", "_radius", "_patrol", "_movetype", "_y", "_Grp", "_spawnpos", "_count", "_allunits", "_max", "_skill", "_unit", "_upsmarker", "_markerrange","_pos"];
+private ["_position", "_side", "_type", "_strength", "_radius", "_patrol", "_movetype", "_garrisonRadius", "_y", "_Grp", "_spawnpos", "_count", "_allunits", "_max", "_skill", "_unit", "_upsmarker", "_markerrange", "_pos"];
 
 if(count _this < 1) exitWith{};
 

@@ -1,7 +1,7 @@
 // Written by EightySix
 
 if(isDedicated || (call Hz_fnc_isHC)) exitWith{};
-	private["_object"];
+private ["_time", "_object", "_pos1", "_pos2", "_xpos1", "_ypos1", "_zpos1", "_xpos2", "_ypos2", "_zpos2", "_camera", "_head", "_line", "_nul0"];
 
 // Get Date from Server
 	setDate date;

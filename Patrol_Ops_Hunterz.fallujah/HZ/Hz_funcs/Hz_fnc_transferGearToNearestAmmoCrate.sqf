@@ -1,3 +1,5 @@
+private ["_vestType", "_uniformType", "_backpackType", "_headgear", "_goggles", "_assignedItems", "_backpackMags", "_vestMags", "_uniformMags", "_temp", "_uniformItems", "_vestItems", "_backpackItems", "_weaponsItems", "_crate", "_dist", "_newDist", "_headGear", "_magArray", "_wep", "_wepComponents"];
+
 _vestType = vest _this;
 _uniformType = uniform _this;
 _backpackType = backpack _this;

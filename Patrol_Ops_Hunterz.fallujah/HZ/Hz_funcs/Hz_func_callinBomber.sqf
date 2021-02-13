@@ -6,7 +6,8 @@
 //if(isnull heli_radar) exitwith {};
 //if(!alive heli_radar) exitwith {};
 
-private ["_targetpos","_group","_jettype","_bombTypes","_jet1"];
+private ["_targetpos", "_jettype", "_bombTypes", "_jet1", "_vel", "_weps", "_group"];
+
 _targetpos = [(_this select 0) select 0, (_this select 0) select 1, ((_this select 0) select 2) + 1000];
 
 _jettype = _this select 2;

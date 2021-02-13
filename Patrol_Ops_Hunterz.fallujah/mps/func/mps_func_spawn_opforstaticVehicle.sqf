@@ -2,7 +2,8 @@
 // Derived from BON_IF & EightySix
 
 
-private ["_originalPos", "_side", "_INS", "_ang", "_pos","_units","_radius", "_a", "_b", "_mgpos", "_mg", "_grp", "_dir", "_compName", "_comp"];
+private ["_originalPos", "_side", "_INS", "_ang", "_radius", "_a", "_b", "_mgpos", "_mg", "_grp", "_dir", "_compName", "_comp", "_pos", "_units"];
+
 if(!(call Hz_fnc_isTaskMaster)) exitWith {};
 if(count _this < 1) exitWith{};
 

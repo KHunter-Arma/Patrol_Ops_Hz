@@ -3,10 +3,7 @@
 
 if(isDedicated || (call Hz_fnc_isHC)) exitWith{};
 
-private ["_cursTarget","_recruit_units","_intelaction1","_type","_condition_load","_condition_drag","_condition_unload"];
-
-
-private["_cursTarget"];
+private ["_condition_load", "_condition_drag", "_condition_unload", "_cursTarget", "_ied_detonate", "_ied_defuse", "_load_container", "_unld_container", "_view_contents", "_load_object", "_select_object", "_grab_object", "_vehicle_repair", "_vehicle_unflip", "_srvpnt_ammobox", "_recruit_units", "_intelaction1", "_intelaction2", "_adminlock", "_adminunlock", "_adminreset", "_type", "_loaded", "_locked"];
 
 	_condition_load = "(count nearestObjects [_target,mps_transports,8] > 0) && !(_target getVariable ""mps_loadable"")";
 	_condition_drag = "!(_target getVariable ""mps_loadable"")";

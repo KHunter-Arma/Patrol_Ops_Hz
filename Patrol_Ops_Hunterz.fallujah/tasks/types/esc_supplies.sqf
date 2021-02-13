@@ -3,6 +3,8 @@ diag_log diag_activeSQFScripts;
 diag_log diag_activeSQSScripts;
 diag_log diag_activeMissionFSMs;
 
+private ["_downPayment", "_supplyTime", "_penaltyPerLostContainer", "_penaltyPerLostWorker", "_EnemySpawnMinimumRange", "_taskRadius", "_minSquadCount", "_maxSquadCount", "_CASchance", "_TankChance", "_IFVchance", "_AAchance", "_CarChance", "_rewardMultiplier", "_supplyTypes", "_escortTypes", "_spawnpos", "_containers", "_workers", "_taskid", "_otherReward", "_cont", "_workergrp", "_worker", "_dudes", "_dude", "_killer", "_condition", "_nearCars", "_rand", "_locationDescription", "_position", "_crowdGrp", "_crowd", "_type", "_civ", "_spawnedSquads", "_lastAliveContainerCount", "_lastAliveWorkerCount", "_waitForArrival", "_count", "_supplyBar", "_stanceWarningDone", "_veh", "_target"];
+
 /*-------------------- TASK PARAMS ---------------------------------*/
 _downPayment = 100000;
 _supplyTime = 1800;
