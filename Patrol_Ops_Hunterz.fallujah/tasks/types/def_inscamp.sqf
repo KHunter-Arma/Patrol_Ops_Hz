@@ -96,6 +96,8 @@ _statGrp = creategroup (SIDE_A select 0);
 		_dude assignasgunner _x;
 		_dude moveingunner _x;
 		
+		_x enableWeaponDisassembly false;
+		
 		_dude setVariable ["Hz_ambw_sideFaction",[SIDE_A select 0,"Friendly Insurgents"],true];
 	
 	};

@@ -51,6 +51,10 @@ _guardPos = _position;
     };
   
   };
+	
+	if (_x isKindOf "StaticWeapon") then {
+		_x enableWeaponDisassembly false;
+	};
   
   if (_x iskindof "ReammoBox_F") then {
   

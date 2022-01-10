@@ -23,7 +23,11 @@ private ["_objects", "_ins", "_side", "_mannedVehicles", "_sentryType", "_return
 		
 		{//man vehicles & static guns
 
-			if (!(_x isKindOf "StaticWeapon")) then {_x setvehiclelock "locked";};
+			if (!(_x isKindOf "StaticWeapon")) then {
+				_x setvehiclelock "locked";
+			} else {
+				_x enableWeaponDisassembly false;
+			};
 			
 			if ((_x iskindof "LandVehicle") && (_foreachIndex in _mannedVehicles)) then {
 				
