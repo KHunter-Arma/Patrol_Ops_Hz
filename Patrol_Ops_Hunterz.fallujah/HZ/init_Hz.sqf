@@ -195,6 +195,19 @@ if (isServer) then {
     };   
     
   };
+	
+	srvrst = {
+		if (!isnil "srvrst_mtx") exitWith {};
+		srvrst_mtx = true; publicVariable "srvrst_mtx";
+		Hz_pers_enableAutoSave = false;
+		waitUntil {
+			sleep 1;
+			(count (call BIS_fnc_listPlayers)) == 0
+		};
+		call Hz_pers_fnc_saveGame;
+		sleep 10;
+		(preprocessFile "Hz_cfg\Hz_svc\cmd_pwd") serverCommand "#shutdown";
+	};
   
   if(!isMultiplayer) then {{if(!isplayer _x) then {deletevehicle _x};}foreach switchableunits;};
 

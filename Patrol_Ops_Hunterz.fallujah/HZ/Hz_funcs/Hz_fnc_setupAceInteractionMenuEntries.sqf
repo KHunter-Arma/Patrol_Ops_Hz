@@ -31,6 +31,14 @@ private _action = [
 	
 		if(!taskrequested) then {
 		
+			if (serverTime > 14400) exitWith {
+				if (!isnil "srvrst_mtx") exitWith {
+					hint "Server is already scheduled to restart. Server will save and restart automatically after all players return to the lobby.";
+				};
+				remoteExec ["srvrst", 2, false];
+				hintc "WARNING!\nServer has been running for more than 4 hours. A restart is required before requesting a mission. Server is now scheduled to automatically save and restart after all players return to the lobby.";
+			};
+		
 			private _exit = false;
 			private _fobPos = call Hz_func_locateFOB;
 			private _basePos = markerpos "BASE";
