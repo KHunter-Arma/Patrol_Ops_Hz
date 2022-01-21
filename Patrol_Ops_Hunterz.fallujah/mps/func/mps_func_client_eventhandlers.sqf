@@ -18,6 +18,32 @@ if( if( !isNil "ace_wounds_enabled" ) then { false } else { true } ) then {
 
 [player,["HandleScore", {false}]] remoteExecCall ["addEventHandler",2,false];
 
+player addEventHandler ["InventoryOpened", {
+	_container = _this select 1;
+	if (_container getVariable ["RespawnedPlayerCorpse", false]) then {
+		true
+	} else {
+		// dead player (could possibly also be valid for some other unknown cases...)
+		if (isPlayer _container) then {
+			_container spawn {
+				disableSerialization;
+				_timeout = time + 2;
+				waitUntil {
+					uisleep 0.1;
+					(!isNull (findDisplay 602)) || {time > _timeout}
+				};
+				while {!isNull (findDisplay 602)} do {
+					if (_this getVariable ["RespawnedPlayerCorpse", false]) exitWith {
+						(findDisplay 602) closeDisplay 2;
+					};
+					uisleep 0.1;					
+				};
+			};
+		};
+		false
+	}
+}];
+
 player addEventHandler ["GetInMan",{
 
 	if (!isnil {player getVariable "ace_medical_ivBags"}) then {
@@ -310,6 +336,8 @@ player addeventhandler ["Respawn", {
 
     _unit = _this select 0;
     _corpse = _this select 1;
+		
+		_corpse setVariable ["RespawnedPlayerCorpse", true, true];
 				
 		_vestType = vest _corpse;
 		_uniformType = uniform _corpse;
@@ -376,8 +404,7 @@ player addeventhandler ["Respawn", {
 		_backpackItems = _temp call Hz_pers_fnc_convert1DArrayTo2D;
 
 		_weaponsItems = weaponsitems _corpse;
-		
-		sleep 2;			
+				
 		{
 			
 			_weaponsItems = _weaponsItems + (weaponsitemscargo _x);
@@ -400,19 +427,12 @@ player addeventhandler ["Respawn", {
 		_uniformItems,
 		_assignedItems]; 
 		*/
-				
-		sleep 0.1;
-		
+						
 		removeAllWeapons _corpse;
 		removeAllItems _corpse;
-		removeAllAssignedItems _corpse;
-		removeUniform _corpse;
-		removeVest _corpse;
-		removeBackpack _corpse;
-		removeHeadgear _corpse;
-		removeGoggles _corpse;
+		removeAllAssignedItems _corpse;		
 		
-		sleep 3;
+		sleep 5;
 		
     removeAllWeapons _unit;
 		removeAllItems _unit;
