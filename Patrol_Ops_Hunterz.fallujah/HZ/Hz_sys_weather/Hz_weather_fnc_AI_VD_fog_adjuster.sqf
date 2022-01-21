@@ -36,7 +36,7 @@ if (weather_fog > 0.05) then {
     } else {
 
       Hz_max_desired_server_VD = 100;
-			[0,0,0,true] call Hz_weather_handleAIWeatherSkills;
+			[0,0,0,0,true] call Hz_weather_handleAIWeatherSkills;
 
     };
 

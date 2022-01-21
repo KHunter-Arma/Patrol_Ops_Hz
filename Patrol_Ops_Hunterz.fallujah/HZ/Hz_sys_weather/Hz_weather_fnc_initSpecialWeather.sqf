@@ -38,7 +38,7 @@ switch (true) do {
     if (isServer || (call Hz_fnc_isHC)) then {
     
       call Hz_weather_fnc_AI_VD_fog_adjuster;
-			[0.4,0.4,0.3,true] call Hz_weather_handleAIWeatherSkills;
+			[0.4,0.4,0.5,0.5,true] call Hz_weather_handleAIWeatherSkills;
     
     };
     
@@ -181,7 +181,7 @@ switch (true) do {
       call Hz_weather_fnc_AI_VD_fog_adjuster; //call to set variables once
 			Hz_max_desired_server_VD = 300; //override result because sand is OP
 			Hz_min_desired_server_VD = 0;
-			[0,0,0,true] call Hz_weather_handleAIWeatherSkills;
+			[0,0,0,0,true] call Hz_weather_handleAIWeatherSkills;
     
     };
     
