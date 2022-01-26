@@ -5,7 +5,10 @@
 //immersion settings
 setGroupIconsVisible [false,false];
 onMapSingleClick "_shift";   //disable shift+click magic map marker
-enableSentences false;
+if (!isServer && {hasInterface}) then {
+	// disable only for player (and any AI units owned by player) so remote AI can have chatter
+	enableSentences false;
+};
 
 ////////////////////////////////////////////////
 //        Patrol Ops Hunter'z Settings
