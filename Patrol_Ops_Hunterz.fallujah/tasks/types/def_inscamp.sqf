@@ -97,6 +97,10 @@ _statGrp = creategroup (SIDE_A select 0);
 		_dude moveingunner _x;
 		
 		_x enableWeaponDisassembly false;
+		_x spawn {
+			sleep 5;
+			{deletevehicle _x} foreach (nearestObjects [_this, ["WeaponHolder"], 10]);
+		};
 		
 		_dude setVariable ["Hz_ambw_sideFaction",[SIDE_A select 0,"Friendly Insurgents"],true];
 	

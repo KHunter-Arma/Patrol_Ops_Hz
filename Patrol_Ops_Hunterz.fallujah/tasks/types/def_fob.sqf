@@ -54,6 +54,10 @@ _guardPos = _position;
 	
 	if (_x isKindOf "StaticWeapon") then {
 		_x enableWeaponDisassembly false;
+		_x spawn {
+			sleep 5;
+			{deletevehicle _x} foreach (nearestObjects [_this, ["WeaponHolder"], 10]);
+		};
 	};
   
   if (_x iskindof "ReammoBox_F") then {
