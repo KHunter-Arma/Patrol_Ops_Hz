@@ -13,11 +13,11 @@ if (isnil "_waterTank") exitWith {
 };
 
 _capacity = getNumber (configFile >> "CfgVehicles" >> TANK_TYPE >> "acex_field_rations_waterSupply");
-_waterLevel = [_waterTank] call acex_field_rations_fnc_getRemainingWater;
+_waterLevel = [_waterTank] call ace_field_rations_fnc_getRemainingWater;
 
 _waterToFill = _capacity - _waterLevel;
 
-_truckWater = [_truck] call acex_field_rations_fnc_getRemainingWater;
+_truckWater = [_truck] call ace_field_rations_fnc_getRemainingWater;
 
 if (_waterToFill > _truckWater) exitWith {
 
@@ -42,7 +42,7 @@ _fillTime = _waterToFill*FILL_TIME_PER_LITER;
 	_waterToFill = _args select 3;
 	_truckWater = _args select 4;
 	
-	[_waterTank, _capacity] call acex_field_rations_fnc_setRemainingWater;
-	[_truck, _truckWater - _waterToFill] call acex_field_rations_fnc_setRemainingWater;
+	[_waterTank, _capacity] call ace_field_rations_fnc_setRemainingWater;
+	[_truck, _truckWater - _waterToFill] call ace_field_rations_fnc_setRemainingWater;
 
 }, {}, "Filling up...",{_args = _this select 0; (!(player call Hz_fnc_isUncon)) && {alive (_args select 0)} && {alive (_args select 1)} && {((_args select 0) distance (_args select 1)) < (_args select 5)}}] call ace_common_fnc_progressBar;
