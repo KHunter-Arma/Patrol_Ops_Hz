@@ -1,5 +1,4 @@
 "Hz_media",
-"field_rations_weight",
 "fallujah_v1_0",
 "L_Align_Align_sys",
 "L_Immerse_Immerse_sys",
@@ -13,6 +12,6 @@
 "jsrs_soundmod_rhs_saf_weapons",
 "jsrs_soundmod_rhs_gref_weapons",
 //"Blastcore_VEP",
-"dzn_EJAM",
+//"dzn_EJAM",
 //"diwako_ragdoll",
 "HA_SandStorm",

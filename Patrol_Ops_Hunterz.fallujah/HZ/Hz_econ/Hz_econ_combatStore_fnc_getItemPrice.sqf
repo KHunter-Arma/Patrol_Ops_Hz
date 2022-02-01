@@ -433,6 +433,10 @@ case "TRYK_H_BOONIEHAT_JSDF": {18};
 case "TRYK_H_BOONIEHAT_WOOD": {18};
 
 
+case "CUP_H_SLA_BERETRED": {20};
+case "CUP_H_BERET_HIL": {20};
+case "H_BERET_BLK": {20};
+
 
 /*
 case "TRYK_H_LHS_HEL_G": {-1};
