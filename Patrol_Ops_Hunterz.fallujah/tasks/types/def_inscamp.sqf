@@ -224,6 +224,12 @@ _defGrp setCombatMode "YELLOW";
 	_x setunitPosWeak "MIDDLE";
 } foreach units _statGrp;
 
+/*------------------------- TIMER ---------------------------------------------*/  
+
+_wait = 300;
+_wait = _wait + random 300;
+sleep _wait;
+
 /*--------------------CREATE ENEMY NEAR LOCATION---------------------------------*/
 
 _b = (_minSquadCount max (round (random _maxSquadCount)));

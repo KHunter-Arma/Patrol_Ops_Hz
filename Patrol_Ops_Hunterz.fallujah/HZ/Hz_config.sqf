@@ -8,6 +8,9 @@ onMapSingleClick "_shift";   //disable shift+click magic map marker
 if (!isServer && {hasInterface}) then {
 	// disable only for player (and any AI units owned by player) so remote AI can have chatter
 	enableSentences false;
+	
+	// try this to disable random radio chatter still coming from player(?)
+	enableRadio false;
 };
 
 ////////////////////////////////////////////////

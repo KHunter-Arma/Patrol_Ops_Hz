@@ -206,14 +206,44 @@ _vip setVariable ["retreatPos",([_position, 7, _dir + 180] call BIS_fnc_relPos),
 _vip setVariable ["preaching",false,true];
 _vip setVariable ["preachDir",_dir,true];
 _vip setvariable ["preachTime",0];
+_vip setVariable ["holdingPos", false, true];
+
+// let network variables propagate through before adding actions
+sleep 2;
 
 [_vip,["<t color=""#00FF00"">Request to follow</t>",{
 
-	_units = [_this select 0] + ((_this select 0) getvariable "guards");
-	_units joinsilent grpNull;
-	_units joinsilent (group (_this select 1));
+	params ["_vip", "_player"];
 
-}, [], 1, true, true, "", "(!(_target call Hz_fnc_isUncon)) && (alive _target) && ((group _target) != (group _this))"]] remoteexeccall ["addAction",0,true];
+	if ((group _player) != (group _vip)) then {
+	
+		_units = [_vip] + (_vip getvariable "guards");
+		_units joinsilent grpNull;
+		_units joinsilent (group _player);
+		
+		(group _player) setFormation "DIAMOND";
+		
+		{
+			_x doFollow _player;
+		} foreach _units;
+		
+	};
+	
+	_vip setVariable ["holdingPos", false, true];
+	_vip enableAI "PATH";
+	
+	_vip doFollow _player;
+
+}, [], 1, true, true, "", "(!(_target call Hz_fnc_isUncon)) && {alive _target} && {((group _target) != (group _this)) || {_target getvariable ""holdingPos""}}"]] remoteexeccall ["addAction",0,true];
+
+[_vip,["<t color=""#FFFF00"">Hold position</t>",{
+
+	_vip = _this select 0;
+	
+	_vip setVariable ["holdingPos", true, true];
+	_vip disableAI "PATH";
+
+}, [], 0, true, true, "", "(!(_target call Hz_fnc_isUncon)) && {alive _target} && {(group _target) == (group _this)} && {!(_target getvariable ""preaching"")} && {!(_target getvariable ""holdingPos"")}"]] remoteexeccall ["addAction",0,true];
 
 [_vip,["<t color=""#00FFFF"">Give all clear</t>",{
 
@@ -227,7 +257,7 @@ _vip setvariable ["preachTime",0];
 	[_vip,"move"] remoteExecCall ["disableAI",_vip,false];
 	_vip setposatl (_vip getVariable "location");
 
-}, [], 1, true, true, "", "(!(_target call Hz_fnc_isUncon)) && (alive _target) && (!captive _target) && ((_target distance (_target getvariable ""location"")) < 10) && !(_target getvariable ""preaching"") && ((group _target) == (group _this))"]] remoteexeccall ["addAction",0,true];
+}, [], 1, true, true, "", "(!(_target call Hz_fnc_isUncon)) && {alive _target} && {!captive _target} && {(_target distance (_target getvariable ""location"")) < 10} && {!(_target getvariable ""preaching"")} && {(group _target) == (group _this)}"]] remoteexeccall ["addAction",0,true];
 
 [_vip,["<t color=""#FF0000"">Get off platform</t>",{
 
@@ -237,7 +267,7 @@ _vip setvariable ["preachTime",0];
 	_vip setposatl (_vip getVariable "retreatPos");
 	[_vip,"move"] remoteExecCall ["enableAI",_vip,false];
 
-}, [], 1, true, true, "", "(!(_target call Hz_fnc_isUncon)) && (alive _target) && (_target getvariable ""preaching"") && ((group _target) == (group _this))"]] remoteexeccall ["addAction",0,true];
+}, [], 1, true, true, "", "(!(_target call Hz_fnc_isUncon)) && {alive _target} && {_target getvariable ""preaching""} && {(group _target) == (group _this)}"]] remoteexeccall ["addAction",0,true];
 
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
@@ -357,11 +387,15 @@ case (_suicidebomber) : {
 			_bomber setVariable ["Hz_ambw_sideFaction",[SIDE_C select 0, "Enemy Insurgents"],true];
 			_bomber setskill 1;
 			_bomber addMagazine "IEDUrbanBig_Remote_Mag";
-			_bomber setunitpos "UP";
 			
 			_explosiveClass = "IEDUrbanBig_Remote_Ammo";
 			
 			dostop _bomber;
+			
+			if ((unitPos _bomber) != "UP") then {
+				_bomber setUnitPos "UP";
+				uisleep 1;
+			};
 			
 			[_bomber,"Hz_ambw_shout"] remoteExecCall ["say3D",0,false];
 			
@@ -373,15 +407,17 @@ case (_suicidebomber) : {
 						
 			_bomber playMoveNow "AmovPercMstpSsurWnonDnon";
 			
-			_bomber disableAI "move";
+			_bomber disableAI "MOVE";
 			uisleep 0.5;
-			[_bomber,"AmovPercMstpSsurWnonDnon"] remoteExecCall ["switchMove",0,false];
-			_bomber disableAI "anim";
+			
+			if ((alive _bomber) && {!(_bomber call Hz_ambw_fnc_isUncon)}) then {
+				[_bomber,"AmovPercMstpSsurWnonDnon"] remoteExecCall ["switchMove",0,false];
+				_bomber disableAI "anim";
+			};
+			
 			uisleep 1.4;
 			
-			if ((alive _bomber)  && {!(_bomber call Hz_fnc_isUncon)}) then 
-			
-			{ 
+			if ((alive _bomber)  && {!(_bomber call Hz_fnc_isUncon)}) then {
 				_exppos = getPos _bomber;
 				_bomb = _explosiveClass createVehicle _exppos;
 				_bomb setDamage 1;
@@ -539,13 +575,18 @@ while {
 	
 	uisleep 1;
 	
-	if ((_vip getVariable "preaching") && (!(_vip call Hz_fnc_isUncon))) then {
+	if (_vip getVariable "preaching") then {
+	
+		if (_vip call Hz_fnc_isUncon) exitWith {
+			_vip setVariable ["preaching", false, true];
+			[_vip,"move"] remoteExecCall ["enableAI",_vip,false];
+		};
 		
 		_preachCounter = _preachCounter + 1;
 		_vip setvariable ["preachTime",_preachCounter];
 		_otherReward = _otherReward + _speechRewardPerSecond;
 		
-		if ((random 1) < 0.0013) then {
+		if ((random 1) < 0.0007) then {
 			
 			_temp = +_crowd;
 			{
@@ -566,8 +607,8 @@ while {
 			_dude setskill ["courage",1];
 			_dude setskill ["commanding",1];
 			_dude setskill ["aimingSpeed",0.3];		
-			_dude setskill ["aimingAccuracy",0.03];	
-			_dude setskill ["aimingShake",0.03];	
+			_dude setskill ["aimingAccuracy",Hz_AI_param_skillAimingAccuracy/10];	
+			_dude setskill ["aimingShake",Hz_AI_param_skillAimingShake/10];	
 			
 			_dude setdir ([_dude,_vip] call bis_fnc_dirto);
 			_dude disableai "move";
@@ -609,13 +650,26 @@ while {
 				
 				_dude dotarget _vip;
 				_dude forceWeaponFire [_curMuz, "Single"];
-				uisleep 0.33;
-					
+				uisleep 0.33;					
 				
 			};
 			
 			_dude enableai "autotarget";
 			_dude forceSpeed -1;
+			
+		} else {
+		
+			{
+				// in case crowd is told to get down by players
+				if ((random 1) < 0.5) then {
+					_x setUnitPos "UP";
+				};
+			} foreach _crowd;
+			
+			if ((unitPos _vip) != "UP") then {
+				[_vip, "UP"] remoteExecCall ["setUnitPos", _vip, false];
+				sleep 0.5;
+			};
 			
 		};
 		

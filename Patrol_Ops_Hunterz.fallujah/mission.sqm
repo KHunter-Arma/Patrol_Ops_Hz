@@ -146,8 +146,8 @@ addons[]=
 	"retextures",
 	"CUP_Creatures_Military_Taki",
 	"CUP_TrackedVehicles_T55",
-	"Hz_realism_armor",
 	"CUP_TrackedVehicles_T72",
+	"Hz_realism_armor",
 	"CUP_TrackedVehicles_BMP",
 	"CUP_WheeledVehicles_BRDM2",
 	"po_factions_fic",
@@ -753,13 +753,14 @@ class AddonsMetaData
 		};
 		class Item90
 		{
-			className="Hz_realism_armor";
-			name="Hz_realism_armor";
+			className="CUP_TrackedVehicles_T72";
+			name="CUP_TrackedVehicles_T72";
 		};
 		class Item91
 		{
-			className="CUP_TrackedVehicles_T72";
-			name="CUP_TrackedVehicles_T72";
+			className="Hz_realism_armor";
+			name="Hz_realism_armor";
+			author="K.Hunter";
 		};
 		class Item92
 		{
@@ -9813,7 +9814,7 @@ class CustomAttributes
 																"SCALAR"
 															};
 														};
-														value=0.30000001;
+														value=0.2;
 													};
 												};
 												class Item1
@@ -20207,7 +20208,7 @@ class CustomAttributes
 																"SCALAR"
 															};
 														};
-														value=2;
+														value=1;
 													};
 												};
 												class Item1
@@ -22952,7 +22953,7 @@ class CustomAttributes
 																"SCALAR"
 															};
 														};
-														value=1;
+														value=2;
 													};
 												};
 												class Item1
@@ -81612,7 +81613,7 @@ class Mission
 			};
 			id=3278;
 			type="FIR_F15E_Blank";
-			atlOffset=4.7683716e-007;
+			atlOffset=-0.11904621;
 			class CustomAttributes
 			{
 				class Attribute0

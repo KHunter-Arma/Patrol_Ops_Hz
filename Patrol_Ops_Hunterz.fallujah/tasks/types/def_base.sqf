@@ -154,11 +154,11 @@ publicVariable "Hz_pops_disableStore";
 
 "Intel reports you have less than 30 minutes before the main force arrives. Get ready!" remoteExecCall ["hint",0,false];
 
-/*
-_wait = 120;
+
+_wait = 300;
 _wait = _wait + random 300;
 sleep _wait;
-*/
+
 
 /*--------------------CREATE ENEMY NEAR LOCATION---------------------------------*/
 
