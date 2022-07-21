@@ -1291,6 +1291,7 @@ case  "ACE_MRE_LAMBCURRY": {8};
 case  "ACE_MRE_MEATBALLSPASTA": {8};
 case  "ACE_MRE_STEAKVEGETABLES": {8};
 case  "ACE_WATERBOTTLE": {0.75};
+case  "ACE_SUNFLOWER_SEEDS": {3};
 
 default {-1};
 
