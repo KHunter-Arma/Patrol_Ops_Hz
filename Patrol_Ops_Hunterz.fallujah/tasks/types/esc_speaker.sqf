@@ -387,6 +387,7 @@ case (_suicidebomber) : {
 			_bomber setVariable ["Hz_ambw_sideFaction",[SIDE_C select 0, "Enemy Insurgents"],true];
 			_bomber setskill 1;
 			_bomber addMagazine "IEDUrbanBig_Remote_Mag";
+			_bomber setCaptive false;
 			
 			_explosiveClass = "IEDUrbanBig_Remote_Ammo";
 			
@@ -410,14 +411,14 @@ case (_suicidebomber) : {
 			_bomber disableAI "MOVE";
 			uisleep 0.5;
 			
-			if ((alive _bomber) && {!(_bomber call Hz_ambw_fnc_isUncon)}) then {
+			if ((alive _bomber) && {!(_bomber call Hz_ambw_fnc_isUncon)} && {!captive _bomber}) then {
 				[_bomber,"AmovPercMstpSsurWnonDnon"] remoteExecCall ["switchMove",0,false];
 				_bomber disableAI "anim";
 			};
 			
 			uisleep 1.4;
 			
-			if ((alive _bomber)  && {!(_bomber call Hz_fnc_isUncon)}) then {
+			if ((alive _bomber)  && {!(_bomber call Hz_fnc_isUncon)} && {!captive _bomber}) then {
 				_exppos = getPos _bomber;
 				_bomb = _explosiveClass createVehicle _exppos;
 				_bomb setDamage 1;
