@@ -135,10 +135,10 @@ _otherReward = 0;
 
 _otherReward = _otherReward + _downPayment;
 
-_enemySide = [SIDE_B select 0, SIDE_C select 0] select _ins;
+_enemySide = [SIDE_B, SIDE_C] select _ins;
 
 _powtype = ["PO_IA_Infantry_SF_Operator"] call mps_getRandomElement;
-_powgrp = createGroup _enemySide;
+_powgrp = createGroup (_enemySide select 0);
 _pow1 = _powgrp createUnit [_powtype,[0,0,0],[],0,"FORM"];
 _powPos = _closedPositions call mps_getRandomElement;
 _pow1 setposatl _powPos;
