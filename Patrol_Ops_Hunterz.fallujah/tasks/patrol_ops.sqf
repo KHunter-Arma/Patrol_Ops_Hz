@@ -33,7 +33,7 @@ publicvariable "taskrequested";
 stopreinforcements = true;
 reinforcementsqueued = false;
 
-waituntil {sleep 10; (time > 900) || hz_debug};
+waituntil {sleep 10; (time > 300) || hz_debug};
 waituntil {sleep 10; taskrequested || jointops};
 
 _j = (count _list - 1) min (round random (count _list));
