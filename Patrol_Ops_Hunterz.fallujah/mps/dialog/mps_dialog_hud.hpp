@@ -56,6 +56,7 @@ class mps_hud_dialog {
 	{
 		class ViewSlider : HW_RscSlider {
 			idc = 86003;
+			sliderStep = 50;
 			x = 0.0606555;
 			y = 0.34;
 			w = 0.45;
