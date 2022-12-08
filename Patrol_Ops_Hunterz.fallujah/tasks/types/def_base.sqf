@@ -3,7 +3,7 @@ diag_log diag_activeSQFScripts;
 diag_log diag_activeSQSScripts;
 diag_log diag_activeMissionFSMs;
 
-private ["_EnemySpawnMinimumRange", "_taskRadius", "_minSquadCount", "_maxSquadCount", "_basePos", "_baseDefenderLocations", "_baseDefenderType", "_baseDefenderSquadSize", "_baseDefenderSkill", "_mapObjIDsToDisableRender", "_editorObjsToDisableRender", "_editorObjsToDelete", "_CASchance", "_TankChance", "_IFVchance", "_AAchance", "_CarChance", "_rewardMultiplier", "_position", "_taskid", "_otherReward", "_dude", "_grp", "_wait", "_b", "_spawnpos", "_r", "_i", "_Vehsupport", "_vehicletypes", "_grpLeader", "_car_type", "_vehgrp", "_spawnedVehs", "_wp", "_nearObj", "_group", "_target"];
+private ["_EnemySpawnMinimumRange", "_taskRadius", "_minSquadCount", "_maxSquadCount", "_basePos", "_baseDefenderLocations", "_baseDefenderType", "_baseDefenderSquadSize", "_mapObjIDsToDisableRender", "_editorObjsToDisableRender", "_editorObjsToDelete", "_CASchance", "_TankChance", "_IFVchance", "_AAchance", "_CarChance", "_rewardMultiplier", "_position", "_taskid", "_otherReward", "_dude", "_grp", "_wait", "_b", "_spawnpos", "_r", "_i", "_Vehsupport", "_vehicletypes", "_grpLeader", "_car_type", "_vehgrp", "_spawnedVehs", "_wp", "_nearObj", "_group", "_target"];
 
 /*-------------------- TASK PARAMS ---------------------------------*/
 _EnemySpawnMinimumRange = 4000;
@@ -16,7 +16,6 @@ _basePos = [8113.73,2261.58,0];
 _baseDefenderLocations = [[8172.02,2200.39,0],[7800.5,1834.66,0],[8124.44,2461.57,0]];
 _baseDefenderType = "USAF_SecurityForces_rifleman_Hz";
 _baseDefenderSquadSize = 12;
-_baseDefenderSkill = 0.1;
 
 //Allows to locally (where taskmaster is running) hide objects so AI can pass through them (e.g. fences etc.)
 _mapObjIDsToDisableRender = [313447,313449,399225,162792,163293,96500,165857,168348,168798,169419,169993,170882,171166,171057,171856,174669,176475,177174,190861,192285,192542,192562,192565,192592,192615,192662,192697,192755,192784,192817,192846,192921,192932,192694,193035,193088,193215,193230,193229,193271,195420,195717,195875,196064,196912,196913,197256,197608,197998,198129,198280,198479,198448,198259,198571,198844,199099,199309,199435,199577,199735,199748,200070,200105,200134,200368,205422,210380,210536];
@@ -86,7 +85,7 @@ _position
 	for "_i" from 1 to _baseDefenderSquadSize do {
 
 		_dude = _group createUnit [_baseDefenderType, _x, [], 50, "NONE"];
-		_dude setskill _baseDefenderSkill;
+		_dude setskill 0.1;
 		_dude setskill ["spotDistance",1];
 		_dude setskill ["spotTime",1];
 		_dude setskill ["courage",1];
@@ -98,8 +97,8 @@ _position
 
 	};
 	
-	_group setformation "STAG COLUMN";
-	_group setCombatMode "RED";
+	_group setformation "LINE";
+	_group setCombatMode "YELLOW";
 	_group setVariable ["Hz_defending",true];
 
 	_group deleteGroupWhenEmpty true;
