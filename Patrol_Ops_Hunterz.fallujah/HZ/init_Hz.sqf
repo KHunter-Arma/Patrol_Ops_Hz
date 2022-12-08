@@ -210,6 +210,8 @@ if (isServer) then {
 	};
   
   if(!isMultiplayer) then {{if(!isplayer _x) then {deletevehicle _x};}foreach switchableunits;};
+	
+	Hz_fnc_handleBaseHQDestroyed = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_handleBaseHQDestroyed.sqf";
 
 };
 
