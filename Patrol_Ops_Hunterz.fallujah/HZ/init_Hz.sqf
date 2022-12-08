@@ -156,6 +156,8 @@ if(!isDedicated && !(call Hz_fnc_isHC)) then {
 // Server init
 if (isServer) then {
 
+	Hz_HQDestroyed = false;	// needs to be defined so the variable is save-safe
+
 	civilian setfriend [west, 1];
 	civilian setfriend [east, 1];
 	civilian setfriend [resistance, 1];
