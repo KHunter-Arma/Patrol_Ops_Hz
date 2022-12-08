@@ -1243,7 +1243,14 @@ case  "ACE_RANGECARD": {5};
 case  "ACE_RANGETABLE_82MM": {5};
 case  "ACE_SPRAYPAINTBLACK": {4};
 case  "ACE_SPRAYPAINTBLUE": {4};
-case "BC_TOWROPE" : {150};
+//case "BC_TOWROPE" : {300};
+case "ACE_ROPE3" : {150};
+case "ACE_ROPE6" : {300};
+case "ACE_ROPE12" : {600};
+case "ACE_ROPE15" : {750};
+case "ACE_ROPE18" : {900};
+case "ACE_ROPE27" : {1350};
+case "ACE_ROPE36" : {1800};
 
 
 //WATCH
