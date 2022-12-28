@@ -166,21 +166,10 @@ else
 				// Sous l'eau on n'a pas le choix de l'arme
 				if (!surfaceIsWater getPos _joueur) then
 				{
-					// Prise du PA si le joueur en a un
-					if (handgunWeapon _joueur != "") then
-					{
-						_restaurer_arme = false;
-						for [{_idx_muzzle = 0}, {currentWeapon _joueur != handgunWeapon _joueur}, {_idx_muzzle = _idx_muzzle+1}] do
-						{
-							_joueur action ["SWITCHWEAPON", _joueur, _joueur, _idx_muzzle];
-						};
-					}
-					// Sinon pas d'arme dans les mains
-					else
-					{
+					if ((currentWeapon _joueur) != "") then {
 						_restaurer_arme = true;
-						_joueur action ["SWITCHWEAPON", _joueur, _joueur, 99999];
-					};
+					};					
+					_joueur action ["SWITCHWEAPON", _joueur, _joueur, 99999];
 				} else {_restaurer_arme = false;};
 				
 				sleep 0.5;
