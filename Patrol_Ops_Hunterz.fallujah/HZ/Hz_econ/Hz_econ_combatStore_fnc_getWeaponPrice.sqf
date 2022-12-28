@@ -18,7 +18,7 @@ case "RHS_WEAP_MAAWS": {3585};
 */
 
 
-case "RHS_WEAP_RPG7": {1170};
+case "RHS_WEAP_RPG7": {2000};  // actually the RPG-7V2
 
 //disposable anti-tank
 case "RHS_WEAP_M136": {1480*_relationsMultiplier};
@@ -37,14 +37,10 @@ case "RHS_WEAP_RPG26": {260};
 
 //anti-air
 /*
+case "CUP_LAUNCH_9K32STRELA": {12000};
 case "RHS_WEAP_IGLA": {5000};
 case "RHS_WEAP_FIM92": {3800};
 */
-
-
-
-case "CUP_LAUNCH_9K32STRELA": {12000};
-
 
 
 //40mm launchers

@@ -45,7 +45,7 @@ _position = [-5000,-5000,0];
 _closedPositions = [];
 _ins = true;
 
-if ((random 1) < 0.25) then {
+if ((random 1) < 0.33) then {
 
 	_ins = false;
 	_downPayment = _downPayment*1.5;
@@ -92,7 +92,7 @@ if ((random 1) < 0.25) then {
 
 		while {(count (nearestObjects [_position,["House"],100])) < 4} do {
 
-			_position = [markerpos "ao_centre",3500,7000] call Hz_func_findspawnpos;
+			_position = [markerpos "ao_centre",3500,8250] call Hz_func_findspawnpos;
 		
 		};
 

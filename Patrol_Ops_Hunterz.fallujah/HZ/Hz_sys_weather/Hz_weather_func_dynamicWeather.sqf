@@ -141,8 +141,8 @@ if(!Hz_overrideweather) then {
   
   sleep 10;
   publicvariable "weather_fog";
-  publicvariable "weather_wind";
   publicvariable "weather_rain";
+	publicvariable "weather_wind";
   sleep 5;
   publicvariable "weather";
   

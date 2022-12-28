@@ -151,9 +151,7 @@ player createDiaryRecord ["patrol1", [ "Brief" , format["
 Patrol Operations Hunter'z - %1<br/>
 Patrol Ops is a dynamic, random mission series. Patrol Ops Hunter'z is a heavily modded version of the original mission and focuses especially on realism and on creating a more challenging and dynamic environment in-game.<br/>
 <br/>
-AI are modified to achieve a more realistic and challenging behaviour. The most important aspect of Patrol Ops Hunter'z is that it is designed to be persistent. This means that once the mission starts, the server should not be restarted unless needed to. A reliable platform is needed to make this possible.<br/>
+AI are modified to achieve a more realistic and challenging behaviour and the environment is persistent.<br/>
 <br/>
-Missions are random and dynamic.<br/>
-<br/>
-A focus on co-operative team based gameplay is the principle of Patrol Ops and of Hunter'z modifications. On behalf of Bad Company Gaming Community (www.BadCompanyPMC.com), I hope you enjoy Patrol Ops Hunter'z<br/>By K.Hunter
+A focus on co-operative teamplay is the principle of Patrol Ops and of Hunter'z modifications. On behalf of Bad Company Gaming Community (www.BadCompanyPMC.com), I hope you enjoy Patrol Ops Hunter'z<br/>By K.Hunter
 ",toUpper worldname] ]];

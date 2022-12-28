@@ -1,11 +1,11 @@
-waituntil {sleep 1; !isnil "weather"};
-waituntil {sleep 1; !isnil "weather_wind"};
-waituntil {sleep 1; !isnil "weather_fog"};
-waituntil {sleep 1; !isnil "weather_rain"};
+waituntil {sleep 0.1; !isnil "weather"};
+waituntil {sleep 0.1; !isnil "weather_wind"};
+waituntil {sleep 0.1; !isnil "weather_fog"};
+waituntil {sleep 0.1; !isnil "weather_rain"};
 
 if(weather_change) then {
     
-    waituntil {sleep 1; !isnull player};
+    waituntil {sleep 0.1; !isnull player};
     uisleep 30;
 
     150 setovercast weather;

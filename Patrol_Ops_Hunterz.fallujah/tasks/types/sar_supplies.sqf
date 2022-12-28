@@ -51,7 +51,7 @@ for "_i" from 1 to _cacheCount do {
 	_position = [-5000,-5000,0];
 	_closedPositions = [];
 
-	if ((random 1) < 0.1) then {
+	if ((random 1) < 0.2) then {
 
 		_buildings = nearestobjects [markerpos "ao_centre",["House"],3000];
 		_bigBuildings = [];
@@ -96,7 +96,7 @@ for "_i" from 1 to _cacheCount do {
 
 			while {(count (nearestobjects [_position,["House"],100])) < 4} do {
 
-				_position = [markerpos "ao_centre",3500,7000] call Hz_func_findspawnpos;
+				_position = [markerpos "ao_centre",3500,8250] call Hz_func_findspawnpos;
 			
 			};
 

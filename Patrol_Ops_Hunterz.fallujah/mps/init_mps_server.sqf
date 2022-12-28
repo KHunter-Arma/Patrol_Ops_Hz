@@ -31,19 +31,6 @@ publicvariable "Hz_save_prev_tasks_list";
 //to be used for syncing nuke destruction for JIP
 publicvariable "narray2";
 
-//Get rid of nasty trees in Fallujah in the middle of road (only ones that I know of...)
-if((tolower worldName) == "fallujah") then {
-	{
-		{_x setdamage 1} foreach _x;
-
-	}foreach [
-	nearestobjects [[3339.92,4055.99,0.00143862],[],15],
-	nearestobjects [[3359.98,4055.47,0.00143862],[],15],
-	nearestobjects [[3043.59,2721.69,0.00143862],[],15],
-	nearestobjects [[3699.2,4940.73,0.00143862],[],15]
-
-	]};
-
 // Determine if Server is running ACE & ACRE
 //[] execVM (mps_path+"func\mps_func_detect_ace.sqf");
 
@@ -139,7 +126,9 @@ addMissionEventHandler ["PlayerConnected",{
 
 }];
 */
-[] execvm "SA_AdvancedTowing\advancedTowingInit.sqf";
+
+// disabled in favour of ACE towing now
+//[] execvm "SA_AdvancedTowing\advancedTowingInit.sqf";
 
 //if(mps_ambient_airpatrols) then {[] spawn CREATE_OPFOR_AIRPATROLS;};    
 	

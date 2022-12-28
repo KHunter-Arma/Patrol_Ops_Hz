@@ -39,11 +39,11 @@ case "RHS_MAG_MAAWS_HEAT": {410};
 
 //RPG7
 case "RHS_RPG7_PG7V_MAG": {90};
-case "RHS_RPG7_PG7VL_MAG": {140};
-
-
 
 /*
+case "RHS_RPG7_PG7VM_MAG": {65};
+case "RHS_RPG7_PG7VS_MAG": {????};
+case "RHS_RPG7_PG7VL_MAG": {140};
 case "RHS_RPG7_PG7VR_MAG": {250};
 case "RHS_RPG7_OG7V_MAG": {40};
 case "RHS_RPG7_TBG7V_MAG": {320}; 

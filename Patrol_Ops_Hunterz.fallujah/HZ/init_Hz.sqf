@@ -250,3 +250,5 @@ if (call Hz_fnc_isHC) then {
 	[] execvm "HZ\init_HC.sqf";
 	
 };
+
+call compile preprocessFileLineNumbers "HZ\init_world.sqf";

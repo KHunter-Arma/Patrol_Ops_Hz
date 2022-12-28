@@ -1,7 +1,6 @@
 waitUntil {!isnil "mps_timeset"};
 
 if(isnil "nukeweather") then {nukeweather = false;};
-if(isnil "Hz_overrideweather") then {Hz_overrideweather = false;};
 if(isnil "weather_change") then {weather_change = false;};
 
 Hz_sys_weather_fnc_weatherSync = compile preprocessfilelinenumbers "Hz\Hz_sys_weather\Hz_sys_weather_fnc_weatherSync.sqf";
@@ -52,7 +51,6 @@ if (isServer) then {
 [] spawn {
 
 	scriptname "Hz_pops_weather";
-  waituntil {sleep 1; !isnil "weather_wind"};
   call compile preprocessFileLineNumbers "Hz\Hz_sys_weather\Hz_sys_weather_main.sqf";
   
 };
