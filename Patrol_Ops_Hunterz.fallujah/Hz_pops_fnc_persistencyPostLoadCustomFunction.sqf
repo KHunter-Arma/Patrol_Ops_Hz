@@ -10,4 +10,5 @@
 
 } foreach Hz_pers_network_objects;
 
+waitUntil {!isNil "Hz_overrideweather"};
 call Hz_weather_func_dynamicWeather;
