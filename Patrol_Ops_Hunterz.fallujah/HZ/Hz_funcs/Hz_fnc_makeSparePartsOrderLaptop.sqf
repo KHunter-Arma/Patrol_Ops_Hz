@@ -13,20 +13,14 @@ _this addaction ["<t color=""#42ebf4"">" + "Order spare tyre ($250)",{
 	
 		_nearTyres = nearestobjects [_this, ["ACE_Wheel"],4];
 	
-		{
-		
-			_x allowDamage false;
-			_x setDamage 0;
-			
+		{		
+			_x allowDamage false;			
 		} foreach _nearTyres;
 		
 		uisleep 3;
 		
 		{
-			
-			_x setDamage 0;
-			_x allowDamage true;
-			
+			_x allowDamage true;			
 		} foreach _nearTyres;
 	
 	};	
@@ -53,12 +47,9 @@ _this addaction ["<t color=""#42ebf4"">" + "Order jerry can ($30)",{
 	_tyre setposatl [(markerpos "spareTyreDelivery") select 0, ((markerpos "spareTyreDelivery") select 1) - 1, 0.3]; 
 	
 	_tyre allowDamage false;
-	_tyre spawn {
-	
+	_tyre spawn {	
 		sleep 1;
-		_this setDamage 0;
-		_this allowDamage true;
-	
+		_this allowDamage true;	
 	};	
 
 	Hz_econ_funds = Hz_econ_funds - 30;
