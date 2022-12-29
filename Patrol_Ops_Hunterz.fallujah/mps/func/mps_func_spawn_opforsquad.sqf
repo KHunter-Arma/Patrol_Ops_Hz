@@ -79,8 +79,11 @@ DEFENSIVE BEHAVIOUR HANDLED BY MOD
 
 
 */
-
-    _Grp setvariable ["Hz_attacking",false];
+		
+		private _wp = _grp addWaypoint [_pos, 50];
+		_wp setWaypointType "MOVE";
+		
+		_Grp setvariable ["Hz_attacking",false];
 
   } else {
     
@@ -90,12 +93,12 @@ DEFENSIVE BEHAVIOUR HANDLED BY MOD
       _Grp setvariable ["Hz_patrolling",true];
 
       _upsmarker = Format ["taskUPSMarker_%1", (round (random 1000000)) + (round (random 120))];
-      createMarkerLocal [_upsmarker, _spawnpos];
+      createMarkerLocal [_upsmarker, _pos];
       _upsmarker setMarkerShapeLocal "RECTANGLE";
       _markerrange = 150 max (random 700);
       _upsmarker setMarkerSizeLocal [_markerrange, _markerrange];
       
-      [_Grp,_upsmarker] spawn Hz_AI_doPatrol;
+      [_Grp,_upsmarker, false] spawn Hz_AI_doPatrol;
       
     } else {
       
@@ -106,7 +109,7 @@ DEFENSIVE BEHAVIOUR HANDLED BY MOD
       
       //[unit,radius,stationary?,([occupy percentage,maximum],warping?,minimum height)] execVM "Garrison_script.sqf"
         
-      [_Grp,_garrisonRadius,true,[100,2],true,2] execVM "Garrison_script\Garrison_script.sqf";
+      [_Grp,_garrisonRadius,true,[40,6],true,2,_pos] execVM "Garrison_script\Garrison_script.sqf";
         
       
     };

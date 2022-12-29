@@ -33,6 +33,10 @@ if (isNil("_warping")) then {
   _warping  = false;
 };
 
+private _searchArea = getpos _unit;
+if ((count _this) > 6) then {
+	_searchArea = _this select 6;
+};
 
 _group setvariable ["Hz_defending",_stationary];
 _side = side _unit;
@@ -51,8 +55,7 @@ _side = side _unit;
 //missionnamespace setvariable [format ["group1%1",name _unit],createGroup _side];
 //_patrolgroup = missionnamespace getvariable (format ["group1%1",name _unit]);
 _remainders = creategroup _side;
-
-_objectslist = nearestObjects [_unit,["House"],_radius];
+_objectslist = nearestObjects [_searchArea,["House"],_radius];
 _buildingslist = [];
 _buildingsleft = [];
 _noposbuildings = [];

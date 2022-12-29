@@ -23,7 +23,7 @@ _rewardMultiplier = 1.5;
 
 /*--------------------CREATE LOCATION---------------------------------*/
 
-_position = [markerpos "ao_centre",2000,8000,SIDE_B select 0] call Hz_func_findspawnpos;
+_position = [markerpos "ao_centre",2000,6700,SIDE_B select 0,10,true] call Hz_func_findspawnpos;
 _taskid = format["%1%2%3",round (_position select 0),round (_position select 1),(round random 999)];
 Hz_task_ID = _taskid;
 Hz_econ_aux_rewards = 0;

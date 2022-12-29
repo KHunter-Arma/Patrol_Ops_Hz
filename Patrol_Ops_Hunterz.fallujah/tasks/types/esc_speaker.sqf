@@ -224,15 +224,15 @@ sleep 2;
 		(group _player) setFormation "DIAMOND";
 		
 		{
-			_x doFollow _player;
+			[_x, _player] remoteExecCall ["doFollow", _x];
 		} foreach _units;
 		
 	};
 	
 	_vip setVariable ["holdingPos", false, true];
-	_vip enableAI "PATH";
+	[_vip, "PATH"] remoteExecCall ["enableAI", _vip];
 	
-	_vip doFollow _player;
+	[_vip, _player] remoteExecCall ["doFollow", _vip];
 
 }, [], 1, true, true, "", "(!(_target call Hz_fnc_isUncon)) && {alive _target} && {((group _target) != (group _this)) || {_target getvariable ""holdingPos""}}"]] remoteexeccall ["addAction",0,true];
 
@@ -241,7 +241,7 @@ sleep 2;
 	_vip = _this select 0;
 	
 	_vip setVariable ["holdingPos", true, true];
-	_vip disableAI "PATH";
+	[_vip, "PATH"] remoteExecCall ["disableAI", _vip];
 
 }, [], 0, true, true, "", "(!(_target call Hz_fnc_isUncon)) && {alive _target} && {(group _target) == (group _this)} && {!(_target getvariable ""preaching"")} && {!(_target getvariable ""holdingPos"")}"]] remoteexeccall ["addAction",0,true];
 
