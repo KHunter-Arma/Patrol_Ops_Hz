@@ -73,8 +73,12 @@ if (hasInterface) then {
 
 // This calls the Patrol Ops Mission
 // To use just the framework for your own missions, delete the line below.
+	// ["patrol_ops"] call mps_mission_sequence;
+	
+if(call Hz_fnc_isTaskMaster) then {
+	[] execVM "tasks\patrol_ops.sqf";
+};
 
- ["patrol_ops"] call mps_mission_sequence;
 
 // This creates an Ammobox for a New / JIP Player on a marker called "ammobox_(playerside)"
 //	sleep (random 5); [format["ammobox_%1",side player]] call mps_ammobox;

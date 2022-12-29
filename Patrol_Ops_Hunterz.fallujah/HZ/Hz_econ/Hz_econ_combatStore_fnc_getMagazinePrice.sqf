@@ -751,6 +751,7 @@ case  "SMOKESHELLYELLOW": {52};
 case  "HANDGRENADE": {34};
 */
 
+case  "ACE_M84": {175*_relationsMultiplier};
 
 /*
 case  "RHS_MAG_M69": {-1};
@@ -760,7 +761,6 @@ case  "RHS_MAG_M69": {-1};
 //case  "RHS_MAG_PLAMYAM": {21};
 //case  "RHS_MAG_FAKEL": {40};
 //case  "RHS_MAG_FAKELS": {45};
-case  "ACE_M84": {175};
 case  "RHS_MAG_MK3A2": {50};
 case  "RHS_MAG_NSPD": {20};
 case  "RHS_MAG_NSPN_GREEN": {21};

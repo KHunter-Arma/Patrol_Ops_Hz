@@ -27,11 +27,9 @@ if (((count playableunits) > 14) &&
                                     
 	_script = [] execVM format["tasks\jops_types\%1.sqf",_next];
         
-        mps_mission_status = 1;
         Hz_patrol_task_in_progress = true;
         publicvariable "Hz_patrol_task_in_progress";
 	waitUntil{sleep 10; scriptdone _script};
-        mps_mission_status = 0;
         Hz_patrol_task_in_progress = false;
         publicvariable "Hz_patrol_task_in_progress";
         
@@ -60,4 +58,5 @@ if (((count playableunits) > 14) &&
 jointops = false;
 publicvariable "jointops";
 
+sleep 120;
 [] execvm "tasks\patrol_ops.sqf";

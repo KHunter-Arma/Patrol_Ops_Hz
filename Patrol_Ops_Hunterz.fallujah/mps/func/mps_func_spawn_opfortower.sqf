@@ -102,7 +102,7 @@ mission_hint = "We have intel that an enemy high ranking official is overseeing 
 
 sleep (random 30);
 
-While{ damage _tower < 1 && mps_mission_status == 1} do { sleep 10; };
+While{ damage _tower < 1 && Hz_patrol_task_in_progress} do { sleep 10; };
 /*
 if(damage _tower >= 1) then {
   mission_hint = "Enemy Tower Destroyed - Now they can't call in further Support"; publicVariable "mission_hint";

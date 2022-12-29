@@ -110,7 +110,7 @@ mps_path = "mps\";
 	
 // FUNCTIONS LISTS which are called when needed.
   mps_weapons_list		= compile preprocessFileLineNumbers (mps_path+"config\config_armoury.sqf");
-  mps_cleanup			= compile preprocessFileLineNumbers (mps_path+"func\mps_func_cleanup.sqf");
+  //mps_cleanup			= compile preprocessFileLineNumbers (mps_path+"func\mps_func_cleanup.sqf");
   mps_get_position		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_get_position.sqf");
   mps_getnearbylocation		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_nearbylocation.sqf");
   mps_getEnterableHouses 		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_getenterablehouses.sqf");
@@ -167,7 +167,7 @@ mps_path = "mps\";
   mps_injury_sys_init		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_ais_init.sqf");
   mps_backpack_dialog_upd		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_bkp_dialogupd.sqf");
   mps_lift_chopper_init 		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_liftchopper_init.sqf");
-  mps_mission_sequence		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_mission_sequence.sqf");
+  //mps_mission_sequence		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_mission_sequence.sqf");
   //mps_replace_with_ace		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_replace_with_ace.sqf");
   mps_recruit_build_list		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_recruit_dialog.sqf");
   mps_recruit_create_new		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_recruit_create_unit.sqf");
@@ -175,7 +175,7 @@ mps_path = "mps\";
   mps_progress_update		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_progress_update.sqf");	
 	CREATE_BLUFOR_SQUAD = compile preprocessFileLineNumbers (mps_path+"func\mps_func_spawn_bluforsquad.sqf");
   CREATE_OPFOR_SQUAD		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_spawn_opforsquad.sqf");
-  CREATE_OPFOR_ARMY		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_spawn_opforarmy.sqf");
+  //CREATE_OPFOR_ARMY		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_spawn_opforarmy.sqf");
   CREATE_OPFOR_STATIC		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_spawn_opforstatic.sqf");
   CREATE_OPFOR_STATICVEHICLE		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_spawn_opforstaticVehicle.sqf");
   CREATE_OPFOR_SNIPERS		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_spawn_opforsnipers.sqf");

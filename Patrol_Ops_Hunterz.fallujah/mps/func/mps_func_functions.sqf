@@ -21,6 +21,7 @@ mps_opfor_ins = [];
 mps_opfor_ins_car = [];
 mps_opfor_ins_ncov = [];
 mps_opfor_ins_truck = [];
+mps_opfor_ins_commander = [];
 mps_opfor_leader = [];
 mps_opfor_commander = [];
 mps_opfor_armor = [];
@@ -154,6 +155,7 @@ mps_blufor_cargoplane = [];
     };         
     
     if( (_x select 1) == "rf") then { mps_opfor_ins_riflemen = mps_opfor_ins_riflemen + [(_x select 2)]; };
+		if( (_x select 1) == "co") then { mps_opfor_ins_commander = mps_opfor_ins_commander + [(_x select 2)]; };
     
   };
 	
