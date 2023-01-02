@@ -140,8 +140,6 @@ Hz_enableStaticEmplacementCompositions = true;
 mps_opfor_staticVehicleComps = ["t55_emp_open","t72_emp_open","T64_emp_open","T62_emp_open","t80_emp_open","m113_emp","brdm2_emp","brdm2_atgm_emp","bmp2_emp"];
 mps_opfor_staticWeaponComps = ["ags_emp_open","dshkm_emp_open","kord_emp_open","metis_emp_open","spg9_emp_open","zu23_emp_open"];
 
-Hz_mapRadius = 10000;
-
 ////////////////////////////////////////////////
 //           Hunter'z Restrictions
 ////////////////////////////////////////////////

@@ -37,7 +37,8 @@ _missionStart = time < 300;
 				_dude setpos _dudepos;
 				dostop _dude;
 				_dude disableai "MOVE";
-				_dude setVariable ["mps_questioned",true,true];
+				
+				_dude setVariable ["mps_interaction_disabled",true,true];
 			
 			};
 			
@@ -75,6 +76,8 @@ _missionStart = time < 300;
 		_johnDude setSkill 0;
 		John = _johnDude;
 		publicVariable "John";
+		
+		_johnDude setVariable ["mps_interaction_disabled", true, true];
 		
 		{
 			_dude = _grp createUnit [Hz_baseGuardType, Hz_HQStoreReplacementDudePos, [], 50, "NONE"];

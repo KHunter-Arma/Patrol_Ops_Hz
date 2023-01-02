@@ -1,5 +1,8 @@
 if (!isServer) then {
   waitUntil {!isnil "Hz_overrideweather"};
+	if (time < 300) then {
+		sleep 10;
+	};
 } else {
 	waitUntil {!isnil "Hz_pers_serverInitialised"};
 	sleep 0.1;
@@ -248,7 +251,7 @@ switch (true) do {
   
   };
 
-  default {  
+  default {
   
     //default summer day for longer days
     [2016,07,25,mps_mission_hour,30] call mps_timeset;  

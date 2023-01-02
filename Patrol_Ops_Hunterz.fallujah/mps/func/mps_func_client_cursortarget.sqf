@@ -85,7 +85,7 @@ private ["_condition_load", "_condition_drag", "_condition_unload", "_cursTarget
 		/*	if ({_cursTarget isKindOf _x} count ["Base_WarfareBBarracks"] > 0) then { _recruit_units = _cursTarget addaction ["<t color=""#FFc600"">Recruit Unit</t>",(mps_path+"action\mps_recruit_dialog.sqf"),[],-1,true,true,"",""]; }; */
 
 // Question Civillians
-			if ((alive  _cursTarget) && {!isPlayer _cursTarget} && {!(_cursTarget call Hz_fnc_isUncon)} && {_cursTarget isKindOf "Civilian"} && {((currentWeapon _cursTarget) in _civNeutralWeapons) || {captive _cursTarget}}) then {
+			if ((alive  _cursTarget) && {!isPlayer _cursTarget} && {!(_cursTarget getVariable ["mps_interaction_disabled", false])} && {!(_cursTarget call Hz_fnc_isUncon)} && {_cursTarget isKindOf "Civilian"} && {((currentWeapon _cursTarget) in _civNeutralWeapons) || {captive _cursTarget}}) then {
 
 				_intelaction1 = _cursTarget addAction ["<t color='#42ebf4'>Question this person", (mps_path+"action\mps_interaction_question.sqf"),[],4,true,true,"","true", 4];
 				

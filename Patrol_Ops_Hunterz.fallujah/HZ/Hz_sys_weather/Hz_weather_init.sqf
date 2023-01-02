@@ -26,10 +26,12 @@ if (isServer) then {
 };
 
 if (!isDedicated) then {
-
-  waitUntil {!isNull player};
-	waitUntil {Receiving_finish};
-  
+	if (!hasInterface) then {
+		waitUntil {(name player) != "Error: No vehicle"};
+	} else {
+		waitUntil {!isNull player};
+		waitUntil {Receiving_finish};
+	};
 };
 
 call Hz_weather_fnc_initSpecialWeather;

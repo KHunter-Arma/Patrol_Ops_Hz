@@ -15,7 +15,21 @@ switch (toUpper worldName) do {
 						nearestobjects [[1257.83,5962.05,0],[],3],
 						nearestobjects [[1369.4,5431.94,0],[],3],
 						nearestobjects [[1036.81,6507.57,0],[],3],
-						nearestobjects [[833.191,4872.68,0],[],3]
+						nearestobjects [[833.191,4872.68,0],[],3],
+						nearestobjects [[9563.39,3220.3,0],[],3],
+						nearestobjects [[7485.19,1546.53,0],[],3],
+						nearestobjects [[7457.34,1578.68,0],[],3],
+						nearestobjects [[7407.9,1693.95,0],[],3],
+						nearestobjects [[7295.93,1837.87,0],[],3],
+						nearestobjects [[7225.26,1928.44,0],[],3],
+						nearestobjects [[6881.5,2198.52,0],[],3],
+						nearestobjects [[6082.23,2437.86,0],[],3],
+						nearestobjects [[6245.35,2440.68,0],[],3],
+						nearestobjects [[5888.09,2423.78,0],[],3],
+						nearestobjects [[5806.42,2418.46,0],[],3],
+						nearestobjects [[5712.85,2411.32,0],[],3],
+						nearestobjects [[5709.63,2402.85,0],[],3],
+						nearestobjects [[5639.17,2406.44,0],[],3]
 					];
 					
 		
