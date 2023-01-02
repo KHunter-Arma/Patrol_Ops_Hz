@@ -105,12 +105,39 @@ _vip setVariable ["Hz_ambw_disableSideRelations",true,true];
 
 _grp deleteGroupWhenEmpty true;
 
+_vip setVariable ["holdingPos", false, true];
+
 [_vip,["<t color=""#00FF00"">Request to follow</t>",{
 
-	[_this select 0] joinsilent grpNull;
-	[_this select 0] joinsilent (group (_this select 1));
+		params ["_vip", "_player"];
+		
+		if ((group _player) != (group _vip)) then {
+		
+			[_vip] joinsilent grpNull;
+			sleep 1;
+			[_vip] joinsilent (group _player);
+			
+			(group _player) setFormation "DIAMOND";
+			
+			[_vip, _player] remoteExecCall ["doFollow", _vip];
+			
+		};
+		
+		if (_vip getVariable "holdingPos") then {
+			_vip setVariable ["holdingPos", false, true];
+			[_vip, "PATH"] remoteExecCall ["enableAI", _vip];
+		};
 
-}, [], 1, true, true, "", "(!(_target call Hz_fnc_isUncon)) && (alive _target) && ((group _target) != (group _this))"]] remoteexeccall ["addAction",0,true];
+}, [], 1, true, true, "", "(!(_target call Hz_fnc_isUncon)) && {alive _target} && {((group _target) != (group _this)) || {_target getvariable ""holdingPos""}}",5]] remoteexeccall ["addAction",0,true];
+
+[_vip,["<t color=""#FFFF00"">Hold position</t>",{
+
+	_vip = _this select 0;
+	
+	_vip setVariable ["holdingPos", true, true];
+	[_vip, "PATH"] remoteExecCall ["disableAI", _vip];
+
+}, [], 0, true, true, "", "(!(_target call Hz_fnc_isUncon)) && {alive _target} && {(group _target) == (group _this)} && {!(_target getvariable ""holdingPos"")}",5]] remoteexeccall ["addAction",0,true];
 
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 

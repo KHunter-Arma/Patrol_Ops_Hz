@@ -219,6 +219,7 @@ sleep 2;
 	
 		_units = [_vip] + (_vip getvariable "guards");
 		_units joinsilent grpNull;
+		sleep 1;
 		_units joinsilent (group _player);
 		
 		(group _player) setFormation "DIAMOND";
@@ -300,6 +301,8 @@ if (_rand < 0.1) then {
 waituntil { 
 
 	sleep 5;
+	
+	_vip call Hz_fnc_noCaptiveCheck;
 
 	(((group _vip) != _grp)
 	|| (_vip call Hz_fnc_isUncon)

@@ -65,19 +65,40 @@ _workergrp deleteGroupWhenEmpty true;
 {
 
 	_x setvariable ["workers",_workers,true];
-	
-	_x forcespeed 0;
+	_x setVariable ["holdingPos", false, true];
 
 	[_x,["<t color=""#00FF00"">Request to follow</t>",{
-
-		_dudes = (_this select 0) getvariable "workers";
 	
-		_dudes joinsilent grpNull;
-		_dudes joinsilent (group (_this select 1));
+		params ["_vip", "_player"];
 		
-		{_x forcespeed -1} foreach _dudes;
+		_dudes = _vip getvariable "workers";
+		
+		_ungrpdDudes = _dudes select {(group _player) != (group _x)};
+		if ((count _ungrpdDudes) > 0) then {
+			_ungrpdDudes joinsilent grpNull;
+			sleep 1;
+			_ungrpdDudes joinsilent (group _player);
+			(group _player) setFormation "DIAMOND";
+			{
+				[_x, _player] remoteExecCall ["doFollow", _x];
+			} foreach _ungrpdDudes;
+		};
+		
+		if (_vip getVariable "holdingPos") then {
+			_vip setVariable ["holdingPos", false, true];
+			[_vip, "PATH"] remoteExecCall ["enableAI", _vip];
+		};
+		
+	}, [], 1, true, true, "", "(!(_target call Hz_fnc_isUncon)) && {alive _target} && {((group _target) != (group _this)) || {_target getvariable ""holdingPos""}}",5]] remoteexeccall ["addAction",0,true];
+	
+	[_x,["<t color=""#FFFF00"">Hold position</t>",{
 
-	}, [], 1, true, true, "", "(!(_target call Hz_fnc_isUncon)) && (alive _target) && ((group _target) != (group _this))"]] remoteexeccall ["addAction",0,true];
+		_vip = _this select 0;
+		
+		_vip setVariable ["holdingPos", true, true];
+		[_vip, "PATH"] remoteExecCall ["disableAI", _vip];
+
+	}, [], 0, true, true, "", "(!(_target call Hz_fnc_isUncon)) && {alive _target} && {(group _target) == (group _this)} && {!(_target getvariable ""holdingPos"")}",5]] remoteexeccall ["addAction",0,true];
 	
 	_x addMPEventHandler ["MPKilled",{
 	
@@ -195,11 +216,16 @@ _position
 waitUntil {
 
 	sleep 5;
+	
+	{
+		_x call Hz_fnc_noCaptiveCheck;
+	} foreach _workers;
+	
 	(
 		 (({_x call Hz_fnc_isUncon} count _workers) > 0)
 	|| ((count (units _workergrp)) < 1)
-	|| (({alive _x} count _containers) < 1)
-	|| (({alive _x} count _workers) < 1)
+	|| (({!alive _x} count _containers) > 0)
+	|| (({!alive _x} count _workers) > 0)
 	|| Hz_pops_task_auxFailCondition
 	)
 

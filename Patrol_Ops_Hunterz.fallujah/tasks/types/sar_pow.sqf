@@ -208,13 +208,45 @@ _guardPositions = [_powBuilding] call BIS_fnc_buildingPositions;
 
 } foreach _guardPositions;
 
+
+_pow1 setVariable ["holdingPos", false, true];
+
 [_pow1,["<t color=""#00FF00"">Request to follow</t>",{
 
-		[_this select 0, false] remoteExecCall ["setCaptive", _this select 0];
-		[_this select 0] joinsilent (group (_this select 1));
-		[_this select 0, -1] remoteExecCall ["forcespeed", _this select 0];
+		params ["_vip", "_player"];
+		
+		if (captive _vip) then {
+			[_vip, false] remoteExecCall ["setCaptive", _vip];
+			[_vip, -1] remoteExecCall ["forcespeed", _vip];
+		};
+		
+		if ((group _player) != (group _vip)) then {
+		
+			[_vip] joinsilent grpNull;
+			sleep 1;
+			[_vip] joinsilent (group _player);
+			
+			(group _player) setFormation "DIAMOND";
+			
+			[_vip, _player] remoteExecCall ["doFollow", _vip];
+			
+		};
+		
+		if (_vip getVariable "holdingPos") then {
+			_vip setVariable ["holdingPos", false, true];
+			[_vip, "PATH"] remoteExecCall ["enableAI", _vip];
+		};
 
-}, [], 1, true, true, "", "(alive _target) && {!(_target call Hz_fnc_isUncon)} && {(group _target) != (group _this)}",5]] remoteexeccall ["addAction",0,true];
+}, [], 1, true, true, "", "(!(_target call Hz_fnc_isUncon)) && {alive _target} && {((group _target) != (group _this)) || {_target getvariable ""holdingPos""}}",5]] remoteexeccall ["addAction",0,true];
+
+[_pow1,["<t color=""#FFFF00"">Hold position</t>",{
+
+	_vip = _this select 0;
+	
+	_vip setVariable ["holdingPos", true, true];
+	[_vip, "PATH"] remoteExecCall ["disableAI", _vip];
+
+}, [], 0, true, true, "", "(!(_target call Hz_fnc_isUncon)) && {alive _target} && {(group _target) == (group _this)} && {!(_target getvariable ""holdingPos"")}",5]] remoteexeccall ["addAction",0,true];
 
 /*--------------------CREATE ENEMY AT LOCATION------------------------*/
 
@@ -416,28 +448,16 @@ _position
 
 /*--------------------MISSION CRITERIA TO PASS---------------------------------*/
 hz_reward = 1;
-While{ _pow1 distance getMarkerPos format["return_point_%1",(SIDE_A select 0)] > 15 && alive _pow1 && (call Hz_fnc_taskSuccessCheckGenericConditions)} do {
+While{ ((_pow1 distance getMarkerPos format["return_point_%1",(SIDE_A select 0)] > 15) || {_pow1 call Hz_fnc_isUncon}) && alive _pow1 && (call Hz_fnc_taskSuccessCheckGenericConditions)} do {
   
   sleep 5;
   [_b+_c,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
 	
-	if (((_pow1 distance2D _powPos) > 3) && {captive _pow1} && {!(_pow1 call Hz_fnc_isUncon)}) then {
-	
+	if ((_pow1 distance2D _powPos) > 3) then {	
 		_pow1 call Hz_fnc_noCaptiveCheck;
-	
 	};
   
 };
-
-
-waitUntil {
-
-	sleep 2;
-	
-	((!captive _pow1) && {!(_pow1 call Hz_fnc_isUncon)}) || {!alive _pow1} || {!(call Hz_fnc_taskSuccessCheckGenericConditions)}
-	
-};
-
 
 /*------------------- INTENSIFY AMBIENT COMBAT---------------------------*/
   
