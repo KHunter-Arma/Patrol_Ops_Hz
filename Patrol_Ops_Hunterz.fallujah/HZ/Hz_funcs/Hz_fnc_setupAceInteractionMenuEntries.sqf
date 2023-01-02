@@ -31,6 +31,10 @@ private _action = [
 	
 		if(!taskrequested) then {
 		
+			if (Hz_pops_heartsandmindsInProgress) exitWith {
+				hint "You cannot request a mission at this time.";
+			};
+		
 			if (serverTime > 14400) exitWith {
 				if (!isnil "srvrst_mtx") exitWith {
 					hint "Server is already scheduled to restart. Server will save and restart automatically after all players return to the lobby.";

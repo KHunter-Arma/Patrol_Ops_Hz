@@ -88,10 +88,10 @@ if(!(_person getVariable ["mps_questioned",false])) then {
 	} else {
 
 		hint ([
-					"This person is confused about what your asking",
+					"This person is confused about what you're asking",
 					"This person is becoming frustrated due to the language barrier",
 					"This person does not appear to understand what you're asking",
-					"Yallah yallah ziyed move!!!",
+					"Yallah yallah ziyeh move!!!",
 					//"I... err... English... no... ehm...",
 					"Leave me alone you infidels!",
 					"The justice of Allah will soon rain fire upon all you imperialists!"        

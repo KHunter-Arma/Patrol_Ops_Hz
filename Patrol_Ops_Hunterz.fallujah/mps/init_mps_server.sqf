@@ -10,8 +10,6 @@ if(!isServer) exitWith {};
 narray1 = [];
 Hz_resetBuildingVars = [];
 Hz_save_lock = false;
-Hz_patrol_task_in_progress = false;
-publicvariable "Hz_patrol_task_in_progress";
 
 //initialise persistent variables
 narray2 = [];

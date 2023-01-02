@@ -3,11 +3,20 @@
 
 if(isDedicated || (call Hz_fnc_isHC)) exitWith{};
 
+waitUntil {
+	sleep 2;
+	!isNil "Hz_pops_heartsandmindsTaskRequester"
+};
+
+sleep 10;
+
 private ["_condition_load", "_condition_drag", "_condition_unload", "_cursTarget", "_ied_detonate", "_ied_defuse", "_load_container", "_unld_container", "_view_contents", "_load_object", "_select_object", "_grab_object", "_vehicle_repair", "_vehicle_unflip", "_srvpnt_ammobox", "_recruit_units", "_intelaction1", "_intelaction2", "_adminlock", "_adminunlock", "_adminreset", "_type", "_loaded", "_locked"];
 
 	_condition_load = "(count nearestObjects [_target,mps_transports,8] > 0) && !(_target getVariable ""mps_loadable"")";
 	_condition_drag = "!(_target getVariable ""mps_loadable"")";
 	_condition_unload = "(_target getVariable ""mps_loadable"")";
+	
+	_civNeutralWeapons = ["", "Throw", "Put"];
 
 	while {true} do {
             
@@ -25,6 +34,7 @@ private ["_condition_load", "_condition_drag", "_condition_unload", "_cursTarget
 //		_srvpnt_ammobox = nil;
 		_recruit_units = nil;
 		_intelaction1 = nil;
+		_taskaction = nil;
 //		_intelaction2 = nil;
 //		_adminlock = nil;
 //		_adminunlock = nil;
@@ -32,12 +42,14 @@ private ["_condition_load", "_condition_drag", "_condition_unload", "_cursTarget
 
 		_cursTarget = cursorTarget;
 
-		if(!isNull _cursTarget && player distance _cursTarget < 6 && vehicle player == player) then {
+		if((!isNull _cursTarget) && {(vehicle player) == player} && {(player distance _cursTarget) < 6}) then {
 
 			player reveal _cursTarget;
+			
+/*			
 
 			_type = getText (configFile >> "CfgVehicles" >> typeof _cursTarget >> "displayName");
-/*
+
 
 			if ({_cursTarget isKindOf (_x select 0)} count mps_transportable_containers > 0) then {
 				_loaded = _cursTarget getVariable "mps_loadable";
@@ -70,10 +82,19 @@ private ["_condition_load", "_condition_drag", "_condition_unload", "_cursTarget
 //			if ({_cursTarget isKindOf _x} count ["Base_WarfareBVehicleServicePoint"] > 0) then { _srvpnt_ammobox = _cursTarget addaction ["<t color=""#FFc600"">Grab Ammobox</t>",(mps_path+"action\mps_resupply_get_ammobox.sqf"),[],99,true,true,"",""]; };
 
 // Unit Recruitment
-			if ({_cursTarget isKindOf _x} count ["Base_WarfareBBarracks"] > 0) then { _recruit_units = _cursTarget addaction ["<t color=""#FFc600"">Recruit Unit</t>",(mps_path+"action\mps_recruit_dialog.sqf"),[],-1,true,true,"",""]; };
+		/*	if ({_cursTarget isKindOf _x} count ["Base_WarfareBBarracks"] > 0) then { _recruit_units = _cursTarget addaction ["<t color=""#FFc600"">Recruit Unit</t>",(mps_path+"action\mps_recruit_dialog.sqf"),[],-1,true,true,"",""]; }; */
 
 // Question Civillians
-			if (_cursTarget isKindOf "Civilian" && {(side _cursTarget == civilian) || {captive _cursTarget}} && {alive  _cursTarget} && {!(_cursTarget call Hz_fnc_isUncon)}) then { _intelaction1 = _cursTarget addAction [format["Question %1",_type], (mps_path+"action\mps_interaction_question.sqf"),[],1,true,true,"","(!isplayer _target) && ((_target distance _this) < 2)"]; };
+			if ((alive  _cursTarget) && {!isPlayer _cursTarget} && {!(_cursTarget call Hz_fnc_isUncon)} && {_cursTarget isKindOf "Civilian"} && {((currentWeapon _cursTarget) in _civNeutralWeapons) || {captive _cursTarget}}) then {
+
+				_intelaction1 = _cursTarget addAction ["<t color='#42ebf4'>Question this person", (mps_path+"action\mps_interaction_question.sqf"),[],4,true,true,"","true", 4];
+				
+				 if (((!taskrequested) && {!Hz_patrol_task_in_progress} && {!Hz_pops_heartsandmindsTaskRequested} && {!Hz_pops_heartsandmindsInProgress} && {call Hz_func_isSupervisor} && {(count playableUnits) > 1} && {!(_cursTarget getVariable ["mps_isHelpRequester",false])}) || {hz_debug}) then {
+					_taskaction = _cursTarget addAction ["<t color='#D1D100'>Ask if you can help", (mps_path+"action\mps_interaction_help.sqf"),[],3,true,true,"","true", 4];
+				 };
+			
+			};
+			
 		//	if ({_cursTarget isKindOf _x} count ["Man"] > 0 && side _cursTarget == civilian && !alive _cursTarget) then { _intelaction2 = _cursTarget addAction [format["Search %1 for Intel",_type], (mps_path+"action\mps_interaction_question.sqf"),[],1,true,true,"",""]; };
 
 // ADMIN LOCK VEHICLE
@@ -96,6 +117,7 @@ private ["_condition_load", "_condition_drag", "_condition_unload", "_cursTarget
 		//	if(!isNil "_srvpnt_ammobox") then {_cursTarget removeAction _srvpnt_ammobox };
 			if(!isNil "_recruit_units") then {_cursTarget removeAction _recruit_units };
 			if(!isNil "_intelaction1") then {_cursTarget removeAction _intelaction1 };
+			if(!isNil "_taskaction") then {_cursTarget removeAction _taskaction };
 		//	if(!isNil "_intelaction2") then {_cursTarget removeAction _intelaction2 };
 		//	if(!isNil "_adminlock") then {_cursTarget removeAction _adminlock };
                //     	if(!isNil "_adminunlock") then {_cursTarget removeAction _adminunlock };

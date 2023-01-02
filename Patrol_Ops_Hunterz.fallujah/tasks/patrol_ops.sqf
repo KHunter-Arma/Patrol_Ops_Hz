@@ -25,16 +25,32 @@ _list = [
 		"def_inscamp"
     ];
 		
-if(hz_debug) then {_list = ["def_base"];};
+if(hz_debug) then {_list = ["sar_supplies"];};
 
 //init
 taskrequested = false;
 publicvariable "taskrequested";
+Hz_patrol_task_in_progress = false;
+publicvariable "Hz_patrol_task_in_progress";
+Hz_pops_heartsandmindsInProgress = false;
+publicvariable "Hz_pops_heartsandmindsInProgress";
+Hz_pops_heartsandmindsTaskRequested = false;
+publicvariable "Hz_pops_heartsandmindsTaskRequested";
+Hz_pops_heartsandmindsTaskRequester = objNull;
+publicvariable "Hz_pops_heartsandmindsTaskRequester";
+
+patrol_task_units = [];
+patrol_task_vehs = [];
 stopreinforcements = true;
+publicVariable "stopreinforcements";
 reinforcementsqueued = false;
 
 waituntil {sleep 10; (time > 300) || hz_debug};
-waituntil {sleep 10; taskrequested || jointops};
+waituntil {sleep 10; taskrequested || {jointops} || {Hz_pops_heartsandmindsTaskRequested}};
+
+if (Hz_pops_heartsandmindsTaskRequested) exitWith {
+	[] execvm "tasks\heartsandminds.sqf";
+};
 
 _j = (count _list - 1) min (round random (count _list));
 _next = _list select _j;
@@ -63,7 +79,9 @@ for "_i" from 1 to mps_mission_counter do {
 	Hz_pops_baseSupportEnabled = false;
 	publicVariable "Hz_pops_baseSupportEnabled";
 	  
-  if(jointops) exitwith {[] execvm "tasks\joint_ops.sqf";};
+  if(jointops) exitwith {
+		[] execvm "tasks\joint_ops.sqf";
+	};
   
   _continue = false;
   
@@ -119,7 +137,6 @@ for "_i" from 1 to mps_mission_counter do {
       Hz_save_prev_tasks_list = _prev;
 			publicVariable "Hz_save_prev_tasks_list";
       
-			mps_mission_status = 1;
       Hz_patrol_task_in_progress = true;
       publicvariable "Hz_patrol_task_in_progress";
 			
@@ -129,7 +146,6 @@ for "_i" from 1 to mps_mission_counter do {
       {_x setvariable ["occupied",false];} foreach Hz_resetBuildingVars;
       Hz_resetBuildingVars = [];      
       
-      mps_mission_status = 0;
       Hz_patrol_task_in_progress = false;
       publicvariable "Hz_patrol_task_in_progress";
       
