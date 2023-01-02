@@ -3,7 +3,7 @@ diag_log diag_activeSQFScripts;
 diag_log diag_activeSQSScripts;
 diag_log diag_activeMissionFSMs;
 
-private ["_reinforcementsMinimumSpawnRange", "_minCacheCount", "_maxCacheCount", "_rewardPerCache", "_minDistanceBetweenCaches", "_minDefendingSquadCountPerCache", "_maxDefendingSquadCountPerCache", "_DefenseRadius", "_minGarrisonedSquadCountPerCache", "_maxGarrisonedSquadCountPerCache", "_minPatrollingSquadCountPerCache", "_maxPatrollingSquadCountPerCache", "_minStaticWeaponPerCache", "_maxStaticWeaponPerCache", "_intelAtCacheChance", "_CASchance", "_TankChance", "_IFVchance", "_AAchance", "_CarChance", "_rewardmultiplier", "_caches", "_cacheCount", "_position", "_closedPositions", "_buildings", "_bigBuildings", "_build", "_building", "_SniperChance", "_TowerChance", "_posFound", "_nearbuildings", "_cachePos", "_cache", "_splosion", "_cacheBuilding", "_guardPositions", "_cacheGrp", "_unit", "_intelPos", "_intel", "_marker", "_taskid", "_otherReward", "_totalSquads", "_staticguns", "_staticgrp", "_d", "_grpgar", "_b", "_r", "_i", "_tempos", "_grppat", "_Vehsupport", "_vehicletypes", "_car_type", "_vehgrp", "_c", "_grpdef", "_rewardMultiplier", "_pos", "_target"];
+private ["_reinforcementsMinimumSpawnRange", "_minCacheCount", "_maxCacheCount", "_rewardPerCache", "_minDistanceBetweenCaches", "_minDefendingSquadCountPerCache", "_maxDefendingSquadCountPerCache", "_DefenseRadius", "_minGarrisonedSquadCountPerCache", "_maxGarrisonedSquadCountPerCache", "_minPatrollingSquadCountPerCache", "_maxPatrollingSquadCountPerCache", "_minStaticWeaponPerCache", "_maxStaticWeaponPerCache", "_intelAtCacheChance", "_CASchance", "_TankChance", "_IFVchance", "_AAchance", "_CarChance", "_rewardmultiplier", "_caches", "_cacheCount", "_position", "_closedPositions", "_buildings", "_bigBuildings", "_build", "_building", "_SniperChance", "_TowerChance", "_posFound", "_nearbuildings", "_cachePos", "_cache", "_splosion","_guardPositions", "_cacheGrp", "_unit", "_intelPos", "_intel", "_marker", "_taskid", "_otherReward", "_totalSquads", "_staticguns", "_staticgrp", "_d", "_grpgar", "_b", "_r", "_i", "_tempos", "_grppat", "_Vehsupport", "_vehicletypes", "_car_type", "_vehgrp", "_c", "_grpdef", "_rewardMultiplier", "_pos", "_target"];
 
 /*-------------------- TASK PARAMS ---------------------------------*/
 _reinforcementsMinimumSpawnRange = 4000;
@@ -47,95 +47,94 @@ _cacheCount = _minCacheCount max (round (random _maxCacheCount));
 
 for "_i" from 1 to _cacheCount do {
 
-	_position = [-5000,-5000,0];
+	_position = [-5000 + (random 1000),-5000 + (random 1000),0];
 	_closedPositions = [];
+	_randomChoice = [objNull, [0,0,0]];
 
 	if ((random 1) < 0.2) then {
-
-		_buildings = nearestobjects [markerpos "ao_centre",["House"],3000];
+	
+		_buildings = nearestObjects [(markerpos "ao_centre"),["House"],3000];
 		_bigBuildings = [];
 		{
-		
-			_build = _x;
-		
-			if (((count ([_x] call BIS_fnc_buildingPositions)) > 12) && (({(_build distance _x) < _minDistanceBetweenCaches} count _caches) < 1)) then {
-			
-				_bigBuildings pushback _x;
-			
+			private _thisBuilding = _x;
+			private _bpos = [_thisBuilding] call BIS_fnc_buildingPositions;
+			if (((count _bpos) > 12)
+			&& {({(_thisBuilding distance _x) < _minDistanceBetweenCaches} count _caches) < 1}
+			&& {
+						private _result = false;
+						{
+							if (lineIntersects [AGLToASL _x, AGLToASL [_x select 0,_x select 1,150]]) exitWith {
+								_result = true;
+							};
+						} foreach _bpos;
+						_result
+			}) then {		
+				_bigBuildings pushback _thisBuilding;		
 			};
-		
 		} foreach _buildings;
+			
+		if ((count _bigBuildings) > 0) then {
+
+			_building = _bigBuildings call mps_getRandomElement;
 		
-		_building = _bigBuildings call mps_getRandomElement;
-		_position = [getpos _building,0,350] call Hz_func_findspawnpos;
-		
-		if (((str _position) == (str [(markerpos "patrol_respawn_n") select 0, (markerpos "patrol_respawn_n") select 1,0])) || ((str _position) == "[0,0,0]")) then {
-		
+			{
+				if (lineIntersects [AGLToASL _x, AGLToASL [_x select 0,_x select 1,150]]) then {
+					_closedPositions pushBack _x;		
+				};			
+			} foreach ([_building] call BIS_fnc_buildingPositions);
+						
 			_position = getPos _building;
-		
+			
+			_randomChoice = [_building, _closedPositions call mps_getRandomElement];
+
 		};
 		
-		{
-				
-			if (lineIntersects [AGLToASL _x, AGLToASL [_x select 0,_x select 1,150]]) then {
-			
-				_closedPositions pushBack _x;
-			
-			};
-				
-		} foreach ([_building] call BIS_fnc_buildingPositions);		
-
 	} else {
 
 		_SniperChance = 0;
 		_TowerChance = 0;
-		_posFound = false;
-		
-		while {!_posFound} do {
 
-			while {(count (nearestobjects [_position,["House"],100])) < 4} do {
+		//while {(count (nearestobjects [_position,["House"],100])) < 4} do {
 
-				_position = [markerpos "ao_centre",3500,8250] call Hz_func_findspawnpos;
-			
-			};
-
-			_nearbuildings = nearestObjects [_position, ["House"],200];
-
+			_position = [markerpos "ao_centre",3500,7100, SIDE_A select 0,0,false,{
+			private _return = false;
 			{
-				
-				_build = _x;
-			
-					if (({(_build distance _x) < _minDistanceBetweenCaches} count _caches) < 1) then {
-				
+				private _building = _x;
+				if (({(_building distance _x) < ((_this select 1) select 1)} count ((_this select 1) select 0)) < 1) then {
 					{
-					
-						if (lineIntersects [AGLToASL _x, AGLToASL [_x select 0,_x select 1,150]]) then {
-						
-							_closedPositions pushBack _x;
-						
+						if (lineIntersects [AGLToASL _x, AGLToASL [_x select 0,_x select 1,150]]) exitWith {
+							_return = true;
 						};
-					
 					} foreach ([_x] call BIS_fnc_buildingPositions);
-				
 				};
+				if (_return) exitWith {};
+			} foreach (nearestObjects [_this select 0,["House"],200]);
 			
-			} foreach _nearbuildings;
-			
-			if ((count _closedPositions) > 0) then {
-			
-				_posFound = true;
-			
-			} else {
-			
-				_position = [-5000,-5000,0];
-			
-			};
+			_return
+		}, [_caches, _minDistanceBetweenCaches]] call Hz_func_findspawnpos;
 		
+		//};
+
+		_nearbuildings = nearestObjects [_position, ["House"],200];
+
+		{
+			_build = _x;		
+				if (({(_build distance _x) < _minDistanceBetweenCaches} count _caches) < 1) then {
+				{
+					if (lineIntersects [AGLToASL _x, AGLToASL [_x select 0,_x select 1,150]]) then {
+						_closedPositions pushBack [_build, _x];					
+					};				
+				} foreach ([_x] call BIS_fnc_buildingPositions);			
+			};		
+		} foreach _nearbuildings;
+		
+		if ((count _closedPositions) > 0) then {
+			_randomChoice = _closedPositions call mps_getRandomElement;
 		};
 
 	};
 
-	_cachePos = _closedPositions call mps_getRandomElement;
+	_cachePos = _randomChoice select 1;
 	_cache = "rhs_weapon_crate" createVehicle [-5000,500,0];
 	_cache setposatl _cachePos;
 	sleep 0.1;
@@ -165,10 +164,11 @@ for "_i" from 1 to _cacheCount do {
 	
 	}];
 	
-	_cacheBuilding = (nearestObjects [_cache,["House"],50]) select 0;
-	_cacheBuilding setvariable ["occupied",true];
+	_building = _randomChoice select 0;
+	
+	_building setvariable ["occupied",true];
 
-	_guardPositions = [_cacheBuilding] call BIS_fnc_buildingPositions;
+	_guardPositions = [_building] call BIS_fnc_buildingPositions;
 	_guardPositions = _guardPositions - [_cachePos];
 	
 	_cacheGrp = createGroup (SIDE_C select 0);
@@ -267,7 +267,7 @@ _otherReward = _cacheCount*_rewardPerCache;
 
 		for "_i" from 1 to _d do {
 		
-			_grpgar = [ _position,"INS",6 + (random 6),_DefenseRadius,"hide" ] call CREATE_OPFOR_SQUAD;				
+			_grpgar = [ _position,"INS",6 + (random 6),_DefenseRadius,"hide", _DefenseRadius ] call CREATE_OPFOR_SQUAD;				
 			
 			patrol_task_units = patrol_task_units + (units _grpgar);
 		};

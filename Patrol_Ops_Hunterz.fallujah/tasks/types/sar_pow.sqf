@@ -3,7 +3,7 @@ diag_log diag_activeSQFScripts;
 diag_log diag_activeSQSScripts;
 diag_log diag_activeMissionFSMs;
 
-private ["_reinforcementsMinimumSpawnRange", "_ambientCombatIntensifyAmount", "_downPayment", "_minDefendingSquadCount", "_maxDefendingSquadCount", "_DefenseRadius", "_minGarrisonedSquadCount", "_maxGarrisonedSquadCount", "_minPatrollingSquadCount", "_maxPatrollingSquadCount", "_minStaticWeapon", "_maxStaticWeapon", "_CASchance", "_TankChance", "_IFVchance", "_AAchance", "_CarChance", "_SniperChance", "_TowerChance", "_rewardmultiplier", "_rewardMultiplier", "_position", "_closedPositions", "_ins", "_buildings", "_bigBuildings", "_building", "_posB", "_posFound", "_nearbuildings", "_taskid", "_otherReward", "_enemySide", "_powtype", "_powgrp", "_pow1", "_powPos", "_powBuilding", "_guardPositions", "_unit", "_staticguns", "_staticgrp", "_snipers", "_d", "_grpgar", "_b", "_r", "_i", "_tempos", "_grppat", "_Vehsupport", "_vehicletypes", "_car_type", "_vehgrp", "_c", "_grpdef", "_veh", "_target"];
+private ["_reinforcementsMinimumSpawnRange", "_ambientCombatIntensifyAmount", "_downPayment", "_minDefendingSquadCount", "_maxDefendingSquadCount", "_DefenseRadius", "_minGarrisonedSquadCount", "_maxGarrisonedSquadCount", "_minPatrollingSquadCount", "_maxPatrollingSquadCount", "_minStaticWeapon", "_maxStaticWeapon", "_CASchance", "_TankChance", "_IFVchance", "_AAchance", "_CarChance", "_SniperChance", "_TowerChance", "_rewardmultiplier", "_rewardMultiplier", "_position", "_closedPositions", "_ins", "_buildings", "_bigBuildings", "_building", "_posB", "_nearbuildings", "_taskid", "_otherReward", "_enemySide", "_powtype", "_powgrp", "_pow1", "_powPos", "_powBuilding", "_guardPositions", "_unit", "_staticguns", "_staticgrp", "_snipers", "_d", "_grpgar", "_b", "_r", "_i", "_tempos", "_grppat", "_Vehsupport", "_vehicletypes", "_car_type", "_vehgrp", "_c", "_grpdef", "_veh", "_target","_randomChoice"];
 
 /*-------------------- TASK PARAMS ---------------------------------*/
 _reinforcementsMinimumSpawnRange = 4000;
@@ -12,7 +12,7 @@ _downPayment = 150000;
 
 _minDefendingSquadCount = 0;
 _maxDefendingSquadCount = 1;
-_DefenseRadius = 200;
+_DefenseRadius = 50;
 
 _minGarrisonedSquadCount = 1;
 _maxGarrisonedSquadCount = 3;
@@ -43,6 +43,7 @@ _downPayment = _downPayment/_rewardMultiplier;
 
 _position = [-5000,-5000,0];
 _closedPositions = [];
+_randomChoice = [objNull, [0,0,0]];
 _ins = true;
 
 if ((random 1) < 0.33) then {
@@ -53,78 +54,77 @@ if ((random 1) < 0.33) then {
 	_buildings = nearestObjects [(markerpos "ao_centre"),["House"],3000];
 	_bigBuildings = [];
 	{
-	
-		if ((count ([_x] call BIS_fnc_buildingPositions)) > 12) then {
-		
-			_bigBuildings pushback _x;
-		
+		private _bpos = [_x] call BIS_fnc_buildingPositions;
+		if (((count _bpos) > 12)
+		&& {
+					private _result = false;
+					{
+						if (lineIntersects [AGLToASL _x, AGLToASL [_x select 0,_x select 1,150]]) exitWith {
+							_result = true;
+						};
+					} foreach _bpos;
+					_result
+		}) then {		
+			_bigBuildings pushback _x;		
 		};
-	
 	} foreach _buildings;
 	
-	_building = _bigBuildings call mps_getRandomElement;
-	_posB = getpos _building;
-	_position = [_posB,0,350] call Hz_func_findspawnpos;
 	
-	if ((str _position) == "[0,0,0]") then {
+	if ((count _bigBuildings) > 0) then {
+
+		_building = _bigBuildings call mps_getRandomElement;
 	
-		_position = _posB;
-	
-	};
-	
-	{
-			
-				if (lineIntersects [AGLToASL _x, AGLToASL [_x select 0,_x select 1,150]]) then {
-				
-					_closedPositions pushBack _x;
-				
-				};
-			
-	} foreach ([_building] call BIS_fnc_buildingPositions);		
+		{
+			if (lineIntersects [AGLToASL _x, AGLToASL [_x select 0,_x select 1,150]]) then {
+				_closedPositions pushBack _x;		
+			};			
+		} foreach ([_building] call BIS_fnc_buildingPositions);
+		
+		_randomChoice = [_building, _closedPositions call mps_getRandomElement];
+
+	};	
 
 } else {
 
 	_SniperChance = 0;
 	_TowerChance = 0;
-	_posFound = false;
 	
-	while {!_posFound} do {
+	//while {(count (nearestObjects [_position,["House"],100])) < 4} do {
 
-		while {(count (nearestObjects [_position,["House"],100])) < 4} do {
-
-			_position = [markerpos "ao_centre",3500,8250] call Hz_func_findspawnpos;
-		
-		};
-
-		_nearbuildings = nearestObjects [_position,["House"],200];
-
-		{
-		
+		_position = [markerpos "ao_centre",3500,7100, SIDE_A select 0,0,false,{
+			private _return = false;
 			{
+				{
+					if (lineIntersects [AGLToASL _x, AGLToASL [_x select 0,_x select 1,150]]) exitWith {
+						_return = true;
+					};
+				} foreach ([_x] call BIS_fnc_buildingPositions);
+				if (_return) exitwith {};
+			} foreach (nearestObjects [_this select 0,["House"],200]);
 			
-				if (lineIntersects [AGLToASL _x, AGLToASL [_x select 0,_x select 1,150]]) then {
-				
-					_closedPositions pushBack _x;
-				
-				};
-			
-			} foreach ([_x] call BIS_fnc_buildingPositions);
-		
-		} foreach _nearbuildings;
-		
-		if ((count _closedPositions) > 0) then {
-		
-			_posFound = true;
-		
-		} else {
-		
-			_position = [-5000,-5000,0];
-		
-		};
+			_return
+		}] call Hz_func_findspawnpos;
 	
+	//};
+	
+	_nearbuildings = nearestObjects [_position,["House"],200];
+
+	{
+		private _thisHouse = _x;
+		{
+			if (lineIntersects [AGLToASL _x, AGLToASL [_x select 0,_x select 1,150]]) then {
+				_closedPositions pushBack [_thisHouse, _x];				
+			};			
+		} foreach ([_thisHouse] call BIS_fnc_buildingPositions);		
+	} foreach _nearbuildings;
+	
+	if ((count _closedPositions) > 0) then {
+		_randomChoice = _closedPositions call mps_getRandomElement;
 	};
 
 };
+
+_position = getpos (_randomChoice select 0);
 
 _taskid = format["%1%2%3",round (_position select 0),round (_position select 1),(round random 999)];
 Hz_task_ID = _taskid;
@@ -138,10 +138,11 @@ _otherReward = _otherReward + _downPayment;
 _enemySide = [SIDE_B, SIDE_C] select _ins;
 
 _powtype = ["PO_IA_Infantry_SF_Operator"] call mps_getRandomElement;
+
 _powgrp = createGroup (_enemySide select 0);
-_pow1 = _powgrp createUnit [_powtype,[0,0,0],[],0,"FORM"];
-_powPos = _closedPositions call mps_getRandomElement;
-_pow1 setposatl _powPos;
+_pow1 = _powgrp createUnit [_powtype,_position,[],100,"FORM"];
+_pow1 setposatl (_randomChoice select 1);
+
 _pow1 setVariable ["Hz_ambw_disableSideRelations",true,true];
 
 _pow1 setCaptive true;
@@ -167,7 +168,7 @@ sleep 1;
 
 _powPos = getposatl _pow1;
 
-_powBuilding = (nearestObjects [_pow1,["House"],50]) select 0;
+_powBuilding = _randomChoice select 0;
 _powBuilding setvariable ["occupied",true];
 
 _guardPositions = [_powBuilding] call BIS_fnc_buildingPositions;
@@ -209,12 +210,11 @@ _guardPositions = [_powBuilding] call BIS_fnc_buildingPositions;
 
 [_pow1,["<t color=""#00FF00"">Request to follow</t>",{
 
-		(_this select 0) setCaptive false;
+		[_this select 0, false] remoteExecCall ["setCaptive", _this select 0];
 		[_this select 0] joinsilent (group (_this select 1));
-		
-		(_this select 0) forcespeed -1;
+		[_this select 0, -1] remoteExecCall ["forcespeed", _this select 0];
 
-}, [], 1, true, true, "", "(alive _target) && ((group _target) != (group _this))"]] remoteexeccall ["addAction",0,true];
+}, [], 1, true, true, "", "(alive _target) && {!(_target call Hz_fnc_isUncon)} && {(group _target) != (group _this)}",5]] remoteexeccall ["addAction",0,true];
 
 /*--------------------CREATE ENEMY AT LOCATION------------------------*/
 
@@ -260,11 +260,11 @@ if(_d > 0) then {
 	
 		if (_ins) then {
 		
-			_grpgar = [ _position,"INS",10,_DefenseRadius,"hide" ] call CREATE_OPFOR_SQUAD;
+			_grpgar = [ _position,"INS",10,_DefenseRadius,"hide",200 ] call CREATE_OPFOR_SQUAD;
 				
 		} else {		
 		
-			_grpgar = [ _position,"INF",10,_DefenseRadius,"hide" ] call CREATE_OPFOR_SQUAD;
+			_grpgar = [ _position,"INF",10,_DefenseRadius,"hide",100 ] call CREATE_OPFOR_SQUAD;
 		
 		};    
     
@@ -421,7 +421,7 @@ While{ _pow1 distance getMarkerPos format["return_point_%1",(SIDE_A select 0)] >
   sleep 5;
   [_b+_c,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
 	
-	if (((_pow1 distance2D _powPos) > 3) && (captive _pow1)) then {
+	if (((_pow1 distance2D _powPos) > 3) && {captive _pow1} && {!(_pow1 call Hz_fnc_isUncon)}) then {
 	
 		_pow1 call Hz_fnc_noCaptiveCheck;
 	
@@ -429,15 +429,20 @@ While{ _pow1 distance getMarkerPos format["return_point_%1",(SIDE_A select 0)] >
   
 };
 
-if (captive _pow1) then {
 
-	waitUntil {sleep 2; (!captive _pow1) || (!alive _pow1) || !(call Hz_fnc_taskSuccessCheckGenericConditions)};
+waitUntil {
 
+	sleep 2;
+	
+	((!captive _pow1) && {!(_pow1 call Hz_fnc_isUncon)}) || {!alive _pow1} || {!(call Hz_fnc_taskSuccessCheckGenericConditions)}
+	
 };
+
 
 /*------------------- INTENSIFY AMBIENT COMBAT---------------------------*/
   
 Hz_ambw_pat_maxNumOfUnits = Hz_ambw_pat_maxNumOfUnits - _ambientCombatIntensifyAmount;
+publicVariable "Hz_ambw_pat_maxNumOfUnits";
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/
 

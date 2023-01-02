@@ -1,8 +1,7 @@
 #define AVOID_PLAYER_MIN_DISTANCE_FROM_RESPAWNPOS 2000
 #define MIN_1D_DISTANCE_FROM_PLAYER 1400
-#define MIN_DISTANCE_FROM_OBJECTS 10
 
-private ["_taskpos", "_minDistance", "_maxDistance", "_sideToAvoid", "_maxDistanceStart", "_blacklistpos", "_unitarray", "_playerPositions", "_player", "_playerpos", "_marker1", "_marker2", "_results", "_spawnpos", "_tries", "_safetyFactors", "_nearEntities", "_minEnemies", "_minTotal", "_returnIndex"];
+private ["_taskpos", "_minDistance", "_maxDistance", "_sideToAvoid", "_maxDistanceStart", "_blacklistpos", "_unitarray", "_playerPositions", "_player", "_playerpos", "_marker1", "_marker2", "_results", "_spawnpos", "_tries", "_safetyFactors", "_nearEntities", "_minEnemies", "_minTotal", "_returnIndex", "_customCondition"];
 
 
 _taskpos = _this select 0;
@@ -13,15 +12,37 @@ _maxDistance = _minDistance + 500;
 _sideToAvoid = SIDE_A select 0;
 
 if ((count _this) > 2) then {
-
 	_maxDistance = _this select 2;
-
 };
 
 if ((count _this) > 3) then {
-
 	_sideToAvoid = _this select 3;
+};
 
+_objectsAvoidDistance = 10;
+if ((count _this) > 4) then {
+	_objectsAvoidDistance = _this select 4;
+};
+
+_customCondition = {true};
+if ((count _this) > 6) then {
+	_customCondition = _this select 6;
+};
+
+_stayInsideTheMap = false;
+if ((count _this) > 5) then {
+	_stayInsideTheMap = _this select 5;
+};
+
+_customConditionCopy = _customCondition;
+if (_stayInsideTheMap) then {
+	_customCondition = {((count 
+(nearestTerrainObjects [_this select 0, [], 200, false, true])) > 0) && {_this call _customConditionCopy}};
+};
+
+private _customConditionArgs = [];
+if ((count _this) > 7) then {
+	_customConditionArgs = _this select 7;
 };
 
 _maxDistanceStart = _maxDistance;
@@ -65,18 +86,23 @@ for "_i" from 1 to 50 do {
 	_tries = 0;
 	_maxDistance = _maxDistanceStart;
 
-	while {(format ["%1",_spawnpos]) == "[0,0,0]"} do {
+	while {(_spawnpos isEqualTo [0,0,0]) || {!([_spawnpos, _customConditionArgs] call _customCondition)}} do {
 						
-		_spawnpos = [_taskpos, _minDistance, _maxDistance, MIN_DISTANCE_FROM_OBJECTS, 0, 1, 0,_blacklistpos,[[0,0,0]]] call BIS_fnc_findSafePos;
+		_spawnpos = [_taskpos, _minDistance, _maxDistance, _objectsAvoidDistance, 0, 1, 0,_blacklistpos,[[0,0,0]]] call BIS_fnc_findSafePos;
 
 		_tries = _tries + 1;
-		_maxDistance = _maxDistance + 500;
+		//_maxDistance = _maxDistance + 500;
 		if(_tries > 100) exitwith {};
 
 	};
 
 	_results pushBack [_spawnpos select 0, _spawnpos select 1, 0];
 
+};
+
+_results = _results - [[0,0,0]];
+if ((count _results) == 0) then {
+	_results = [[0,0,0]];
 };
 
 //choose safest position that is also the most empty
