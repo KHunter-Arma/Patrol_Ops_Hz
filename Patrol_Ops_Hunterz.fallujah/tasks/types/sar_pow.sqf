@@ -214,17 +214,18 @@ _pow1 setVariable ["holdingPos", false, true];
 [_pow1,["<t color=""#00FF00"">Request to follow</t>",{
 
 		params ["_vip", "_player"];
-		
-		if (captive _vip) then {
-			[_vip, false] remoteExecCall ["setCaptive", _vip];
-			[_vip, -1] remoteExecCall ["forcespeed", _vip];
-		};
-		
+
 		if ((group _player) != (group _vip)) then {
 		
-			[_vip] joinsilent grpNull;
-			sleep 1;
 			[_vip] joinsilent (group _player);
+			
+			sleep 1;
+			
+			if (captive _vip) then {
+				[_vip, false] remoteExecCall ["setCaptive", _vip];
+				_vip setCaptive false;
+				[_vip, -1] remoteExecCall ["forcespeed", _vip];
+			};
 			
 			(group _player) setFormation "DIAMOND";
 			
@@ -453,8 +454,9 @@ While{ ((_pow1 distance getMarkerPos format["return_point_%1",(SIDE_A select 0)]
   sleep 5;
   [_b+_c,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
 	
-	if ((_pow1 distance2D _powPos) > 3) then {	
+	if (isPlayer leader group _pow1) then {
 		_pow1 call Hz_fnc_noCaptiveCheck;
+		_pow1 call Hz_fnc_noSideCivilianCheck;
 	};
   
 };

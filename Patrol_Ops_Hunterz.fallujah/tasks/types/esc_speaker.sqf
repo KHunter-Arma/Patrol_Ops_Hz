@@ -218,9 +218,8 @@ sleep 2;
 	if ((group _player) != (group _vip)) then {
 	
 		_units = [_vip] + (_vip getvariable "guards");
-		_units joinsilent grpNull;
-		sleep 1;
 		_units joinsilent (group _player);
+		sleep 1;
 		
 		(group _player) setFormation "DIAMOND";
 		
@@ -298,13 +297,15 @@ if (_rand < 0.1) then {
 
 /*--------------------WAIT UNTIL TARGET MEETS PLAYERS---------------------------------*/
 
-waituntil { 
+waituntil {
 
 	sleep 5;
 	
 	_vip call Hz_fnc_noCaptiveCheck;
+	{_x call Hz_fnc_noCaptiveCheck} foreach _guards;
+	(units group _vip) call Hz_fnc_noSideCivilianCheck;
 
-	(((group _vip) != _grp)
+	((isplayer leader group _vip)
 	|| (_vip call Hz_fnc_isUncon)
 	|| !(alive _vip)
 	|| Hz_pops_task_auxFailCondition
@@ -573,9 +574,9 @@ while {
 	
 } do { 
 
-	(units group _vip) call Hz_fnc_noSideCivilianCheck;		
 	_vip call Hz_fnc_noCaptiveCheck;
 	{_x call Hz_fnc_noCaptiveCheck} foreach _guards;
+	(units group _vip) call Hz_fnc_noSideCivilianCheck;
 	
 	uisleep 1;
 	
@@ -691,9 +692,9 @@ case (_preachCounter >= _preachMax) : {
 
 		waituntil {
 
-			(units group _vip) call Hz_fnc_noSideCivilianCheck;		
 			_vip call Hz_fnc_noCaptiveCheck;
 			{_x call Hz_fnc_noCaptiveCheck} foreach _guards;
+			(units group _vip) call Hz_fnc_noSideCivilianCheck;
 
 			sleep 5;
 			[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;

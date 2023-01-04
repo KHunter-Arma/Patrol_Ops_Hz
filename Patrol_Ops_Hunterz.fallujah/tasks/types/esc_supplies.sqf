@@ -73,11 +73,10 @@ _workergrp deleteGroupWhenEmpty true;
 		
 		_dudes = _vip getvariable "workers";
 		
-		_ungrpdDudes = _dudes select {(group _player) != (group _x)};
+		_ungrpdDudes = _dudes select {((group _player) != (group _x)) && {alive _x}};
 		if ((count _ungrpdDudes) > 0) then {
-			_ungrpdDudes joinsilent grpNull;
-			sleep 1;
 			_ungrpdDudes joinsilent (group _player);
+			sleep 1;
 			(group _player) setFormation "DIAMOND";
 			{
 				[_x, _player] remoteExecCall ["doFollow", _x];
@@ -221,6 +220,8 @@ waitUntil {
 		_x call Hz_fnc_noCaptiveCheck;
 	} foreach _workers;
 	
+	_workers call Hz_fnc_noSideCivilianCheck;
+	
 	(
 		 (({_x call Hz_fnc_isUncon} count _workers) > 0)
 	|| ((count (units _workergrp)) < 1)
@@ -254,12 +255,9 @@ if ((random 1) < 0.5) then {
 };
 
 waituntil {
-
-	{
-		if (alive _x) exitWith {(units group _x) call Hz_fnc_noSideCivilianCheck};
-	} foreach _workers;
 	
 	{_x call Hz_fnc_noCaptiveCheck} foreach _workers;
+	_workers call Hz_fnc_noSideCivilianCheck;
 
 	sleep 5;
 	
@@ -314,12 +312,9 @@ while {
 		&& (_supplyBar < _supplyTime)
     
     } do {
-
-	{
-		if (alive _x) exitWith {(units group _x) call Hz_fnc_noSideCivilianCheck};
-	} foreach _workers;
 	
 	{_x call Hz_fnc_noCaptiveCheck} foreach _workers;
+	_workers call Hz_fnc_noSideCivilianCheck;
 	
 	uisleep 1;
 	
@@ -371,12 +366,9 @@ case (_supplyBar >= _supplyTime) : {
 		"The supplies have reached the population. Return the workers to base ASAP." remoteExecCall ["hint",0,false];
 
 		waituntil {
-
-			{
-				if (alive _x) exitWith {(units group _x) call Hz_fnc_noSideCivilianCheck};
-			} foreach _workers;
 	
 			{_x call Hz_fnc_noCaptiveCheck} foreach _workers;
+			_workers call Hz_fnc_noSideCivilianCheck;
 
 			sleep 5;
 			

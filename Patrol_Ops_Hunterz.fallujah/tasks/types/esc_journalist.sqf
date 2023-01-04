@@ -113,9 +113,8 @@ _vip setVariable ["holdingPos", false, true];
 		
 		if ((group _player) != (group _vip)) then {
 		
-			[_vip] joinsilent grpNull;
-			sleep 1;
 			[_vip] joinsilent (group _player);
+			sleep 1;
 			
 			(group _player) setFormation "DIAMOND";
 			
@@ -161,26 +160,30 @@ format ["A hotshot %1 war correspondent has just arrived in Fallujah thinking he
 
 /*--------------------WAIT UNTIL TARGET MEETS PLAYERS---------------------------------*/
 
-waituntil { 
+waituntil {
 
 	sleep 5;
 
-	(
-	((group _vip) != _grp)
+	((isplayer leader group _vip) && {!(_vip call Hz_fnc_isUncon)})
 	|| !(alive _vip)
-	)
 	
 };
 
-[-1, {
+if (alive _vip) then {
 
-	if (((player distance _this) < 25) && (alive player) && (!(player call Hz_fnc_isUncon))) then {
+	[-1, {
 
-	hint "Alright, let's do this! I think I know where to get the best shots for this one. Here, let me show you on your map where we're going.";
+		if (((player distance _this) < 25) && (alive player) && (!(player call Hz_fnc_isUncon))) then {
 
-	};
+		hint "Alright, let's do this! I think I know where to get the best shots for this one. Here, let me show you on your map where we're going.";
+
+		};
 	
-}, _vip] call CBA_fnc_globalExecute;
+	}, _vip] call CBA_fnc_globalExecute;
+
+};
+
+
 
 [_vip,["<t color=""#0000FF"">Ask where to go</t>",{
 
@@ -199,7 +202,7 @@ waituntil {
 	taskMarker setMarkerText (format ["Target (%1m high)",round (taskTarget select 2)]);
 	taskMarker setMarkerType "mil_objective";
 
-}, [], -10, true, true, "", "(!(_target call Hz_fnc_isUncon)) && (alive _target) && ((_target distance _this) <= 2.5)"]] remoteexeccall ["addAction",0,true];
+}, [], -10, true, true, "", "(alive _target) && {!(_target call Hz_fnc_isUncon)}", 5]] remoteexeccall ["addAction",0,true];
 
 /*--------------------WAIT UNTIL TARGET ARRIVES---------------------------------*/
 
@@ -225,13 +228,11 @@ for "_i" from 1 to _numberOfTargets do {
 
 	waituntil {
 	
-		(units group _vip) call Hz_fnc_noSideCivilianCheck;
-
-		if (captive _vip) then {
-			
-			[_vip, false] remoteExecCall ["setCaptive",_vip,false];
-			
+		// allow cuffing because some building pos might not be so AI-friendly...
+		if ((captive _vip) && {!(_vip call Hz_fnc_isUncon)}) then {
+			[_vip, false] remoteExecCall ["setCaptive",_vip];
 		};
+		_vip call Hz_fnc_noSideCivilianCheck;
 
 		sleep 5;
 		[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
@@ -245,7 +246,8 @@ for "_i" from 1 to _numberOfTargets do {
 		
 	};
 	
-	[_vip] joinsilent grpNull;
+	if (!alive _vip) exitwith {};
+	
 	[_vip] joinsilent (creategroup [SIDE_A select 0,true]);
 	sleep 1;
 	[_vip,"CARELESS"] remoteExecCall ["setBehaviour",_vip,false];
@@ -267,13 +269,11 @@ for "_i" from 1 to _numberOfTargets do {
 	
 	waituntil { 
 	
-		(units group _vip) call Hz_fnc_noSideCivilianCheck;
-	
-		if (captive _vip) then {
-			
-				[_vip, false] remoteExecCall ["setCaptive",_vip,false];
-			
+		// allow cuffing because some building pos might not be so AI-friendly...
+		if ((captive _vip) && {!(_vip call Hz_fnc_isUncon)}) then {
+			[_vip, false] remoteExecCall ["setCaptive",_vip];
 		};
+		_vip call Hz_fnc_noSideCivilianCheck;
 
 		sleep 1;
 		[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
@@ -286,7 +286,7 @@ for "_i" from 1 to _numberOfTargets do {
 					
 					if (local _vip) then {
 					
-						_vip forcespeed 0;
+						[_vip, 0] remoteExecCall ["forcespeed",_vip];
 						dostop _vip;
 						
 					};
@@ -326,11 +326,7 @@ for "_i" from 1 to _numberOfTargets do {
 							
 		}, _vip] call CBA_fnc_globalExecute;
 		
-		if (local _vip) then {
-					
-			_vip forcespeed -1;
-						
-		};
+		[_vip, -1] remoteExecCall ["forcespeed",_vip];
 		
 		_targets = _targets - [_target];
 	
@@ -352,13 +348,11 @@ case ((count _targets) == 0) : {
 
 		waituntil {
 		
-			(units group _vip) call Hz_fnc_noSideCivilianCheck;
-			
-			if (captive _vip) then {
-			
-				[_vip, false] remoteExecCall ["setCaptive",_vip,false];
-			
+			// allow cuffing because some building pos might not be so AI-friendly...
+			if ((captive _vip) && {!(_vip call Hz_fnc_isUncon)}) then {
+				[_vip, false] remoteExecCall ["setCaptive",_vip];
 			};
+			_vip call Hz_fnc_noSideCivilianCheck;
 
 			sleep 5;
 			[_spawnedSquads,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;

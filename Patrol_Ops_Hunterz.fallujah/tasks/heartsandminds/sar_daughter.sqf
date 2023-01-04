@@ -50,15 +50,15 @@ Hz_pops_heartsandmindsTaskRequester setVariable ["holdingPos", false, true];
 	params ["_vip", "_player"];
 	
 	if ((group _player) != (group _vip)) then {
-	
-		[_vip] joinsilent grpNull;
-		sleep 1;
-		[_vip] joinsilent (group _player);
 		
-		(group _player) setFormation "DIAMOND";
-		
-		[_vip, _player] remoteExecCall ["doFollow", _vip];
-		
+			[_vip] joinsilent (group _player);
+			
+			sleep 1;
+						
+			(group _player) setFormation "DIAMOND";
+			
+			[_vip, _player] remoteExecCall ["doFollow", _vip];
+			
 	};
 	
 	if (_vip getVariable "holdingPos") then {
@@ -520,10 +520,12 @@ While{(((_pow1 distance Hz_pops_heartsandmindsTaskRequester) > 50) || {captive _
   
   sleep 5;
 	
-	if ((_pow1 distance2D _powPos) > 3) then {
-		_pow1 call Hz_fnc_noCaptiveCheck;	
-	};	
+	if (isplayer leader group _pow1) then {
+		_pow1 call Hz_fnc_noCaptiveCheck;
+		_pow1 call Hz_fnc_noSideCivilianCheck;
+	};
 	Hz_pops_heartsandmindsTaskRequester call Hz_fnc_noCaptiveCheck;
+	Hz_pops_heartsandmindsTaskRequester call Hz_fnc_noSideCivilianCheck;
   
 };
 
@@ -555,7 +557,9 @@ waitUntil {
 	sleep 5;
 	
 	_pow1 call Hz_fnc_noCaptiveCheck;
+	_pow1 call Hz_fnc_noSideCivilianCheck;
 	Hz_pops_heartsandmindsTaskRequester call Hz_fnc_noCaptiveCheck;
+	Hz_pops_heartsandmindsTaskRequester call Hz_fnc_noSideCivilianCheck;
 	
 	((!captive _pow1)
 	&& {!(_pow1 call Hz_fnc_isUncon)}
