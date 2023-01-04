@@ -25,6 +25,12 @@ _timescaler2 = 0;
 _timescaler3 = 0;
 if(isnil "Hz_func_AI_isUncon") then {Hz_func_AI_isUncon = {false};};
 
+waitUntil {
+	sleep 1;
+	(!isNil "Hz_pers_serverInitialised") && {Hz_pers_serverInitialised}
+};
+sleep 1;
+
 while {true} do
 {
 	
@@ -144,6 +150,12 @@ while {true} do
 	}foreach allgroups;
 	*/
 	call Hz_func_setrealtime;
+	
+	if ((serverTime > 18000) && {(count (call BIS_fnc_listPlayers)) == 0} && {!Hz_patrol_task_in_progress} && {!Hz_pops_heartsandmindsTaskRequested} && {(Hz_pers_nextSaveTime - serverTime) > 180}) then {
+		diag_log "### Hz_diag: Auto-restarting server!";
+		call srvrst;
+		sleep 600;
+	};
 	
 	//50 minute loop
 	if(_timescaler1 > 12) then {

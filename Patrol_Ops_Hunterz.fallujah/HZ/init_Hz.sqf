@@ -204,7 +204,7 @@ if (isServer) then {
 		Hz_pers_enableAutoSave = false;
 		waitUntil {
 			sleep 1;
-			(count (call BIS_fnc_listPlayers)) == 0
+			((count (call BIS_fnc_listPlayers)) == 0) && {(Hz_pers_nextSaveTime - serverTime) > 120}
 		};
 		call Hz_pers_fnc_saveGame;
 		sleep 10;
