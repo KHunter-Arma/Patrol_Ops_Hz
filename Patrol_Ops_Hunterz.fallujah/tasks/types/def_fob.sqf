@@ -54,6 +54,7 @@ _guardPos = _position;
 	
 	if (_x isKindOf "StaticWeapon") then {
 		_x enableWeaponDisassembly false;
+		_x setVariable ["ace_dragging_canDrag", false, true]; // since ace dragging seems to reset weapondisassembly block
 		_x spawn {
 			sleep 5;
 			{deletevehicle _x} foreach (nearestObjects [_this, ["WeaponHolder"], 10]);
@@ -72,11 +73,11 @@ _guardPos = _position;
     
     if (_ammoCratesFilled == 1) then {
     
-      _x addMagazineCargoGlobal ["ace_csw_50Rnd_127x108_mag",15];    
+      _x addMagazineCargoGlobal ["ace_csw_50Rnd_127x108_mag",9];
     
     } else {
     
-      _x addMagazineCargoGlobal ["ace_csw_100Rnd_127x99_mag_red",5];
+      _x addMagazineCargoGlobal ["ace_csw_100Rnd_127x99_mag_red",4];
     
     };
   

@@ -97,6 +97,7 @@ _statGrp = creategroup (SIDE_A select 0);
 		_dude moveingunner _x;
 		
 		_x enableWeaponDisassembly false;
+		_x setVariable ["ace_dragging_canDrag", false, true]; // since ace dragging seems to reset weapondisassembly block
 		_x spawn {
 			sleep 5;
 			{deletevehicle _x} foreach (nearestObjects [_this, ["WeaponHolder"], 10]);
@@ -114,15 +115,11 @@ _statGrp = creategroup (SIDE_A select 0);
 		clearBackpackCargoGlobal _x;
     
     _ammoCratesFilled = _ammoCratesFilled + 1;
-    if (_ammoCratesFilled > 2) exitWith {};  
+    if (_ammoCratesFilled > 1) exitWith {};
     
     if (_ammoCratesFilled == 1) then {
     
-      _x addMagazineCargoGlobal ["rhs_mag_127x108mm_50",15];    
-    
-    } else {
-    
-      _x addMagazineCargoGlobal ["rhs_mag_100rnd_127x99_mag_Tracer_Red",5];
+      _x addMagazineCargoGlobal ["ace_csw_50Rnd_127x108_mag",4];
     
     };
   
