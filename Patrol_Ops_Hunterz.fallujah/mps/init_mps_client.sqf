@@ -644,4 +644,6 @@ showScoretable 0;
 	};
 };
 
-call compile preprocessFileLineNumbers "logistics\moveRoadTiles.sqf";
+// don't call here!
+[] execVM "logistics\moveRoadTiles.sqf";
+
