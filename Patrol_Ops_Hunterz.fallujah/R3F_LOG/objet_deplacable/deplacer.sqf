@@ -65,6 +65,9 @@ else
 	
 	if (isNull (_objet getVariable ["R3F_LOG_est_transporte_par", objNull]) && (isNull (_objet getVariable ["R3F_LOG_est_deplace_par", objNull]) || (!alive (_objet getVariable ["R3F_LOG_est_deplace_par", objNull])) || (!isPlayer (_objet getVariable ["R3F_LOG_est_deplace_par", objNull])))) then
 	{
+		
+		private _isForcedWalkBySomethingElse = isForcedWalk _joueur;
+	
 		if (isNull (_objet getVariable ["R3F_LOG_remorque", objNull])) then
 		{
 			if (count crew _objet == 0 || getNumber (configFile >> "CfgVehicles" >> (typeOf _objet) >> "isUav") == 1) then
@@ -72,6 +75,7 @@ else
 				[_objet, _joueur] call R3F_LOG_FNCT_definir_proprietaire_verrou;
 				
 				_objet setVariable ["R3F_LOG_est_deplace_par", _joueur, true];
+				
 				
 				_joueur forceWalk true;
 				
@@ -469,7 +473,9 @@ else
 					R3F_LOG_mutex_local_verrou = false;
 				};
 				
-				_joueur forceWalk false;
+				if (!_isForcedWalkBySomethingElse) then {
+					_joueur forceWalk false;
+				};				
 				R3F_LOG_joueur_deplace_objet = objNull;
 				
 				// Reprise de l'arme et restauration de son mode de tir, si nécessaire

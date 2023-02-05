@@ -16,6 +16,7 @@ R3F_LOG_CFG_can_be_lifted = R3F_LOG_CFG_can_be_lifted +
 	"land_cargobox_v1_f"
 ];
 
+// TODO: update in line with numbers overhaul!
 R3F_LOG_CFG_can_transport_cargo = R3F_LOG_CFG_can_transport_cargo +
 [
 	["cargo_base_f", 170],
@@ -163,7 +164,12 @@ R3F_LOG_CFG_can_be_transported_cargo = R3F_LOG_CFG_can_be_transported_cargo +
 	["ArrowMarker_L_F", 5],
 	["ArrowMarker_R_F", 5],
 	["RoadBarrier_F", 20],
-	["RoadBarrier_small_F", 14]
+	["RoadBarrier_small_F", 14],
+	["CUP_A1_Road_ces_d6konec", 4],
+	["CUP_A1_Road_ces_d6", 5],
+	["CUP_A1_Road_ces_d12", 10],
+	["CUP_A1_Road_ces_d25", 20]
+	
 ];
 
 R3F_LOG_CFG_can_be_moved_by_player = R3F_LOG_CFG_can_be_moved_by_player +
@@ -255,5 +261,9 @@ R3F_LOG_CFG_can_be_moved_by_player = R3F_LOG_CFG_can_be_moved_by_player +
 	"Camp_EP1",
 	"CampEast",
 	"WarfareBCamp",
-	"US_WarfareBFieldhHospital_Base_EP1"
+	"US_WarfareBFieldhHospital_Base_EP1",
+	"CUP_A1_Road_ces_d6konec",
+	"CUP_A1_Road_ces_d6",
+	"CUP_A1_Road_ces_d12",
+	"CUP_A1_Road_ces_d25"
 ];

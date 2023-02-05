@@ -160,7 +160,12 @@ R3F_LOG_CFG_language = switch (language) do
  * Note : si la condition dépend de l'objet/véhicule pointé, vous pouvez utiliser la commande cursorTarget
  * Pour autoriser la logistique chez tout le monde, il suffit de définir la condition à "true".
  */
-R3F_LOG_CFG_string_condition_allow_logistics_on_this_client = "true";
+ // Hunter: not string anymore!
+R3F_LOG_CFG_string_condition_allow_logistics_on_this_client = {
+
+	(!isForcedWalk player) && {(player getHit "legs") < 0.5} && {(stance player) != "PRONE"}/* && {isNil {player getVariable "ace_medical_ivBags"}} && {(player getVariable ["ace_medical_isBeingTreatedByCount",0]) == 0}*/
+
+};
 
 /**
  * CONDITION TO ALLOW CREATION FACTORY

@@ -35,7 +35,7 @@ while {true} do
 	_cursorTarget_distance = call R3F_LOG_FNCT_3D_cursorTarget_distance_bbox;
 	_objet_pointe = _cursorTarget_distance select 0;
 	
-	if (call compile R3F_LOG_CFG_string_condition_allow_logistics_on_this_client &&
+	if (call R3F_LOG_CFG_string_condition_allow_logistics_on_this_client &&
 		!R3F_LOG_mutex_local_verrou && _vehicule_joueur == _joueur && !isNull _objet_pointe && _cursorTarget_distance select 1 < 3.75
 	) then
 	{
@@ -247,7 +247,7 @@ while {true} do
 	};
 	
 	// Si le joueur est pilote dans un héliporteur
-	if (call compile R3F_LOG_CFG_string_condition_allow_logistics_on_this_client &&
+	if (call R3F_LOG_CFG_string_condition_allow_logistics_on_this_client &&
 		!R3F_LOG_mutex_local_verrou && _vehicule_joueur != _joueur && driver _vehicule_joueur == _joueur && {_vehicule_joueur getVariable ["R3F_LOG_fonctionnalites", R3F_LOG_CST_zero_log] select __can_lift}
 	) then
 	{

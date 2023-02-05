@@ -124,10 +124,7 @@ player addEventHandler ["Killed",{
     
   _player spawn {
 	
-		_player = _this;
-	
-  //  _player removeaction mps_rallypoint;
-    _player removeaction mps_client_hud_act;     
+		_player = _this;  
 		
     sleep 2;
 		
@@ -209,13 +206,19 @@ player addEventHandler ["Killed",{
 			["INIT",[false,"ALTERNATIVE_LOW",true,"DISABLE"]] call HA_fnc_sandStorm;  
 
 		};
+		
+		sleep 5;
     
     //player removeaction mps_rallypoint;
     player removeaction mps_client_hud_act;
+		player removeAction Hz_pops_roadPickupAction;
     
-    sleep 5;
    [_acreVol] call acre_api_fnc_setGlobalVolume;	 
-	 {[_x,0.8] call acre_api_fnc_setRadioVolume} foreach (call acre_api_fnc_getCurrentRadioList);
+	 
+	 [] spawn {
+		sleep 7;
+		{[_x,0.8] call acre_api_fnc_setRadioVolume} foreach (call acre_api_fnc_getCurrentRadioList);
+	 };	 
 		//player setVariable ["acre_sys_core_isDisabled", false, true];
 		setViewDistance _vd;
 		setObjectViewDistance _vd;
@@ -226,6 +229,7 @@ player addEventHandler ["Killed",{
 		    
    // mps_rallypoint = player addaction ["<t color=""#ffc600"">Build Rallypoint</t>",(mps_path+"action\mps_buildtent.sqf"),[],0,false,false,"",mps_rally_condition];
     mps_client_hud_act = player addAction [localize "STR_Client_HUD_menu",(mps_path+"action\mps_hud_switch.sqf"),[],-1,false,false,"",""];
+		call compile preprocessFileLineNumbers "logistics\moveRoadTiles.sqf";
     
     if(nukeweather) then {terminate ashhandle; sleep 5; ashhandle = player spawn ash;};
     

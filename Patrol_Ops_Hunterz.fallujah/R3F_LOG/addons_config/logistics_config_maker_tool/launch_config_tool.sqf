@@ -18,7 +18,8 @@ waitUntil {!isNull player};
 
 if (!isServer || {isPlayer _x} count playableUnits > 1) exitWith {systemChat "NOT FOR USE IN MULTIPLAYER !";};
 if (!isNil "BOOL_continue" && {BOOL_continue}) exitWith {systemChat "CONFIG TOOLS ALREADY IN USE !";};
-R3F_LOG_CFG_string_condition_allow_logistics_on_this_client = "false";
+// Hunter: not string anymore!
+R3F_LOG_CFG_string_condition_allow_logistics_on_this_client = {false};
 
 TAB_class_names_to_config = [
 	#include "list_of_objects_to_config.sqf"

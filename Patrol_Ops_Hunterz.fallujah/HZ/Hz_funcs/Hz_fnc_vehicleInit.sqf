@@ -27,15 +27,20 @@ if (_vehicle isKindOf "LandVehicle") then {
 	
 	};
 	
+	// ignore back seats since it's supposed to be a cargo van...
+	if ((typeof _vehicle) in ["tw_van_white", "tw_van_black"]) then {
+		_initstatement = _initstatement + "_obj lockCargo [1, true]; _obj lockCargo [2, true]; _obj lockCargo [3, true]; _obj lockCargo [4, true]; _obj lockCargo [5, true]; _obj lockCargo [6, true];";	
+	};
+	
 };
 
 if (_vehicle isKindOf "Land_FMradio_F") then {
 	
-		_initstatement = _initstatement + "[_obj, false] call klpq_musicRadio_fnc_addRadio;";
+		_initstatement = _initstatement + "[_obj, false] call klpq_musicRadio_fnc_addRadio; [_obj, -1] call ace_field_rations_fnc_setRemainingWater;";
 	
 };
 
-if (((toUpper (typeof _vehicle)) find "CUP") != -1) then {
+if (((((toUpper (typeof _vehicle)) find "CUP") != -1) && {!((typeof _vehicle) in ["CUP_C_S1203_CIV","CUP_O_LR_SPG9_TKM","CUP_B_LR_MG_CZ_W","CUP_C_LR_Transport_CTK","CUP_B_LR_Ambulance_CZ_D","CUP_I_LR_SF_HMG_AAF","CUP_I_LR_SF_GMG_AAF"])}) || {(typeof _vehicle) in ["tw_explorer","V12_STRALIS23","tw_raptor_black","prraptor_noir","tw_van_black","tw_van_white","tw_ram","V12_RAM6X6_NOIR","V12_RAM_NOIR","V12_VELOCIRAPTOR","tw_vic_black","V12_H1TOPB","V12_H1TOP_NOIRB","V12_H1BB","V12_H1_NOIRB","V12_H1ASSAULT","V12_H1_NOIR","V12_H1B","suburban","tahoe_UNM","Mer_Vito_civ_noir","V12_FOCUSST12_NOIR","ranger17ch_noir","chdefender_civ_noir"]}) then {
 
 	_initstatement = _initstatement + "_obj addaction ['<t color=''#dce2ed''>'+'Check fuel', {hint format ['%1%2 full',floor (( fuel (_this select 0))*100),'%'];},[],-99,false,true,'','_this == (driver _target)'];";
 	

@@ -132,7 +132,12 @@ Hz_fort_fortificationList = [
 "US_WarfareBFieldhHospital_Base_EP1",
 "Land_BagBunker_Tower_F",
 "Land_WaterCooler_01_new_F",
-"Land_FMradio_F"
+"Land_FMradio_F",
+"CUP_A1_Road_ces_d6konec",
+"CUP_A1_Road_ces_d6",
+"CUP_A1_Road_ces_d12",
+"CUP_A1_Road_ces_d25"
+
 ];
 
 //compositions

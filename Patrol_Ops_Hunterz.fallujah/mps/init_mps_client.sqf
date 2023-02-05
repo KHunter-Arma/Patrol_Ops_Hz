@@ -643,3 +643,5 @@ showScoretable 0;
 			ace_advanced_fatigue_anfatigue = 1;
 	};
 };
+
+call compile preprocessFileLineNumbers "logistics\moveRoadTiles.sqf";
