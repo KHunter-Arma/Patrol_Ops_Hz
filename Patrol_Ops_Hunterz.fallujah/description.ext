@@ -98,7 +98,7 @@ class Extended_InitPost_EventHandlers
 
 		class RemoveItemsAI {
 			
-			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {(_this select 0) unassignItem 'ItemMap'; (_this select 0) removeItem 'ItemMap'; (_this select 0) unassignItem 'ItemGPS'; (_this select 0) removeItem 'ItemGPS'; (_this select 0) unassignItem 'ItemCompass'; (_this select 0) removeItem 'ItemCompass'; (_this select 0) unassignItem 'ItemWatch'; (_this select 0) removeItem 'ItemWatch'; (_this select 0) unlinkItem 'CUP_NVG_PVS7'; (_this select 0) removeItem 'ACRE_PRC343';};";
+			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {(_this select 0) unlinkItem 'ItemMap'; (_this select 0) unlinkItem 'ItemGPS'; (_this select 0) unlinkItem 'ItemCompass'; (_this select 0) unlinkItem 'ItemWatch'; (_this select 0) unlinkItem 'CUP_NVG_PVS7'; (_this select 0) removeItem 'ACRE_PRC343';};";
 			
 		};
 	};

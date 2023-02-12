@@ -107,7 +107,7 @@ _position
 
 /*--------------------WAIT UNTIL PLAYERS ARRIVE---------------------------------*/
 
-while{ (({ (side _x) == (SIDE_A select 0)} count (_position nearEntities [["CAManBase"],_taskRadius])) == 0)} do { sleep 5 };
+while{ (({ (side _x) == (SIDE_A select 0)} count (_position nearEntities [["CAManBase", "LandVehicle", "StaticWeapon", "Ship", "Air"],_taskRadius])) == 0)} do { sleep 5 };
 
 Hz_econ_combatStore_storeClosed = true;
 publicVariable "Hz_econ_combatStore_storeClosed";
@@ -220,27 +220,27 @@ sleep 30;
 
 /*--------------------MISSION CRITERIA TO PASS---------------------------------*/
 hz_reward = 1;
-_nearObj = _position nearEntities [["CAManBase"],_taskRadius];
+_nearObj = _position nearEntities [["CAManBase", "LandVehicle", "StaticWeapon", "Ship", "Air"],_taskRadius];
 while{ 
 
     /*(({(side _x) == (SIDE_A select 0)} count _nearObj != 0) || ({(side _x) == (SIDE_C select 0)} count _nearObj == 0))
     &&*/ (call Hz_fnc_taskSuccessCheckGenericConditions)
-    && { reinforcementsqueued || {({if (!isnull _x) then {(side _x) == (SIDE_C select 0)} else {false}} count patrol_task_units) > ((count patrol_task_units) / 10)} }
+    && { reinforcementsqueued || {({(alive _x) && {!(_x call Hz_fnc_isUncon)}} count patrol_task_units) > ((count patrol_task_units) / 10)}}
     } do { 
 	
 	sleep 15;
 	
 	[_b,_otherReward,_rewardMultiplier] call Hz_fnc_calculateTaskReward;
-	_nearObj = _position nearEntities [["CAManBase"],_taskRadius];
+	_nearObj = _position nearEntities [["CAManBase", "LandVehicle", "StaticWeapon", "Ship", "Air"],_taskRadius];
 	
 };  
 
 //sleep for a bit to allow friendlies to make sure they're clear
-sleep 900;     
+sleep 180;
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/  
 
-if((call Hz_fnc_taskSuccessCheckGenericConditions) && (({(side _x) == (SIDE_A select 0)} count (_position nearEntities [["CAManBase","LandVehicle","Air"],_taskRadius])) != 0)) then {
+if((call Hz_fnc_taskSuccessCheckGenericConditions) /*&& (({(side _x) == (SIDE_A select 0)} count (_position nearEntities [["CAManBase", "LandVehicle", "StaticWeapon", "Ship", "Air"],_taskRadius])) != 0)*/) then {
 	[format["TASK%1",_taskid],"succeeded"] call mps_tasks_upd;             
 	
 	call Hz_fnc_taskReward;

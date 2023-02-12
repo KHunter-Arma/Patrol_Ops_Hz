@@ -55,7 +55,7 @@ _side = side _unit;
 //missionnamespace setvariable [format ["group1%1",name _unit],createGroup _side];
 //_patrolgroup = missionnamespace getvariable (format ["group1%1",name _unit]);
 _remainders = creategroup _side;
-_objectslist = nearestObjects [_searchArea,["House"],_radius];
+_objectslist = (nearestObjects [_searchArea,["House"],_radius]) select {alive _x};
 _buildingslist = [];
 _buildingsleft = [];
 _noposbuildings = [];

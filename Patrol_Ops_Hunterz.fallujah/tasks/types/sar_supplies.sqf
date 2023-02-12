@@ -55,6 +55,20 @@ for "_i" from 1 to _cacheCount do {
 	if ((random 1) < 0.2) then {
 
 		_buildings = nearestObjects [(markerpos "ao_centre"),["House"],3000];
+		private _buildingsFiltered = [];
+		private _safeDist = 1200;
+		
+		while {(count _buildingsFiltered) < 20} do {
+			
+			_buildingsFiltered = _buildings select {
+				((getDammage _x) < 0.2)
+				&& {({(side _x) == (SIDE_A select 0)} count (_x nearEntities [["CAManBase", "LandVehicle", "StaticWeapon", "Ship", "Air"], _safeDist])) < 1}
+			};
+		
+			_safeDist = (_safeDist - 100) max 200;
+		
+		};
+		
 		_bigBuildings = [];
 		{
 			private _thisBuilding = _x;
@@ -109,14 +123,14 @@ for "_i" from 1 to _cacheCount do {
 					} foreach ([_x] call BIS_fnc_buildingPositions);
 				};
 				if (_return) exitWith {};
-			} foreach (nearestObjects [_this select 0,["House"],200]);
+			} foreach ((nearestObjects [_this select 0,["House"],200]) select {(getDammage _x) < 0.2});
 			
 			_return
 		}, [_caches, _minDistanceBetweenCaches]] call Hz_func_findspawnpos;
 		
 		//};
 
-		_nearbuildings = nearestObjects [_position, ["House"],200];
+		_nearbuildings = (nearestObjects [_position, ["House"],200]) select {(getDammage _x) < 0.2};
 
 		{
 			_build = _x;		
@@ -264,7 +278,7 @@ _otherReward = _cacheCount*_rewardPerCache;
 
 		for "_i" from 1 to _d do {
 		
-			_grpgar = [ _position,"INS",6 + (random 6),_DefenseRadius,"hide", _DefenseRadius ] call CREATE_OPFOR_SQUAD;				
+			_grpgar = [ _position,"INS",round (random [6, 10, 12]),_DefenseRadius,"hide", _DefenseRadius ] call CREATE_OPFOR_SQUAD;				
 			
 			patrol_task_units = patrol_task_units + (units _grpgar);
 		};
@@ -289,7 +303,7 @@ _otherReward = _cacheCount*_rewardPerCache;
 			
 			_tempos = [_position,_reinforcementsMinimumSpawnRange] call Hz_func_findspawnpos;
 				
-			_grppat = [ _position,"INS",12 + (random 12),100,"patrol"] call CREATE_OPFOR_SQUAD;
+			_grppat = [ _position,"INS",round (random [10, 12, 20]),100,"patrol"] call CREATE_OPFOR_SQUAD;
 			_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance, "INS"] call Hz_func_opforVehicleSupport;
 					
 			_vehicletypes = _Vehsupport select 0;
@@ -331,7 +345,7 @@ _otherReward = _cacheCount*_rewardPerCache;
 
 			_tempos = [_position,_reinforcementsMinimumSpawnRange] call Hz_func_findspawnpos;
 			
-			_grpdef = [ _position,"INS",12 + (random 12),_DefenseRadius,"standby"] call CREATE_OPFOR_SQUAD;
+			_grpdef = [ _position,"INS",round (random [10, 12, 20]),_DefenseRadius,"standby"] call CREATE_OPFOR_SQUAD;
 			_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance, "INS"] call Hz_func_opforVehicleSupport;
 							
 			_vehicletypes = _Vehsupport select 0;

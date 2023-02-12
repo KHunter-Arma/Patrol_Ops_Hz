@@ -29,7 +29,7 @@ Hz_ambw_pat_maxNumOfUnits = Hz_ambw_pat_maxNumOfUnits + _ambientCombatIntensifyA
 publicVariable "Hz_ambw_pat_maxNumOfUnits";
 _timeRequiredAtEachTarget = _timeRequiredAtEachTarget*60;
 
-_buildings = nearestobjects [markerpos "ao_centre",["House"],3000];
+_buildings = (nearestobjects [markerpos "ao_centre",["House"],3000]) select {(getDammage _x) < 0.2};
 
 //coordinate filter
 _temp = [];

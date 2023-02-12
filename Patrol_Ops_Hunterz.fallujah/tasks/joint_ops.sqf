@@ -1,3 +1,5 @@
+scriptName "POPS-Joint Op";
+
 _list = ["cap_town","def_camp","def_town"];
 
 _j = (count _list - 1) min (round random (count _list));

@@ -1,3 +1,5 @@
+scriptName "POPS-Task-Master";
+
 mps_mission_score = 0;
 
 /*
@@ -45,6 +47,13 @@ stopreinforcements = true;
 publicVariable "stopreinforcements";
 reinforcementsqueued = false;
 
+if (isMultiplayer) then {
+	waitUntil {
+		sleep 2;
+		(!isNil "Hz_pers_serverInitialised") && {Hz_pers_serverInitialised}
+	};
+	sleep 30;
+};
 waituntil {sleep 10; (time > 300) || hz_debug};
 waituntil {sleep 10; taskrequested || {jointops} || {Hz_pops_heartsandmindsTaskRequested}};
 

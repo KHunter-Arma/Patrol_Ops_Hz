@@ -90,8 +90,22 @@ if ((random 1) < 0.25) then {
 
 	_ins = false;
 	_downPayment = _downPayment*1.5;
-
+	
 	_buildings = nearestObjects [(markerpos "ao_centre"),["House"],3000];
+	private _buildingsFiltered = [];
+	private _safeDist = 1200;
+	
+	while {(count _buildingsFiltered) < 20} do {
+		
+		_buildingsFiltered = _buildings select {
+			((getDammage _x) < 0.2)
+			&& {({(side _x) == (SIDE_A select 0)} count (_x nearEntities [["CAManBase", "LandVehicle", "StaticWeapon", "Ship", "Air"], _safeDist])) < 1}
+		};
+	
+		_safeDist = (_safeDist - 100) max 200;
+	
+	};
+	
 	_bigBuildings = [];
 	{
 		private _bpos = [_x] call BIS_fnc_buildingPositions;
@@ -140,14 +154,14 @@ if ((random 1) < 0.25) then {
 					};
 				} foreach ([_x] call BIS_fnc_buildingPositions);
 				if (_return) exitwith {};
-			} foreach (nearestObjects [_this select 0,["House"],200]);
+			} foreach ((nearestObjects [_this select 0,["House"],200]) select {(getDammage _x) < 0.2});
 			
 			_return
 		}] call Hz_func_findspawnpos;
 	
 	//};
 	
-	_nearbuildings = nearestObjects [_position,["House"],200];
+	_nearbuildings = (nearestObjects [_position,["House"],200]) select {(getDammage _x) < 0.2};
 
 	{
 		private _thisHouse = _x;
@@ -319,8 +333,6 @@ _pow1 setVariable ["holdingPos", false, true];
 mps_civilian_intel = [_pow1]; publicVariable "mps_civilian_intel";
 mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_deathcount";
 
-girlz = _pow1;
-
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
 [format["TASK%1",_taskid],
@@ -376,11 +388,11 @@ if(_d > 0) then {
 	
 		if (_ins) then {
 		
-			_grpgar = [ _position,"INS",10,_DefenseRadius,"hide",200] call CREATE_OPFOR_SQUAD;
+			_grpgar = [ _position,"INS",round (random [6, 10, 12]),_DefenseRadius,"hide",200] call CREATE_OPFOR_SQUAD;
 				
 		} else {		
 		
-			_grpgar = [ _position,"INF",10,_DefenseRadius,"hide",100 ] call CREATE_OPFOR_SQUAD;
+			_grpgar = [ _position,"INF",round (random [6, 10, 12]),_DefenseRadius,"hide",100 ] call CREATE_OPFOR_SQUAD;
 		
 		};    
     
@@ -418,12 +430,12 @@ if(_b > 0) then {
 		
 		if (_ins) then {
 		
-			_grppat = [ _position,"INS",random 24,100,"patrol"] call CREATE_OPFOR_SQUAD;
+			_grppat = [ _position,"INS",round (random [10, 12, 20]),100,"patrol"] call CREATE_OPFOR_SQUAD;
 			_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance, "INS"] call Hz_func_opforVehicleSupport;
 		
 		} else {
 		
-			_grppat = [ _position,"INF",random 24,100,"patrol" ] call CREATE_OPFOR_SQUAD;
+			_grppat = [ _position,"INF",round (random [10, 12, 20]),100,"patrol" ] call CREATE_OPFOR_SQUAD;
 			_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] call Hz_func_opforVehicleSupport;
 		
 		};    
@@ -478,12 +490,12 @@ if(_c > 0) then {
 		
 		if (_ins) then {
 		
-			_grpdef = [ _position,"INS",random 24,_DefenseRadius,"standby"] call CREATE_OPFOR_SQUAD;
+			_grpdef = [ _position,"INS",round (random [10, 12, 20]),_DefenseRadius,"standby"] call CREATE_OPFOR_SQUAD;
 			_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance, "INS"] call Hz_func_opforVehicleSupport;
 		
 		} else {
 		
-			_grpdef = [ _position,"INF",random 24,_DefenseRadius,"standby" ] call CREATE_OPFOR_SQUAD;
+			_grpdef = [ _position,"INF",round (random [10, 12, 20]),_DefenseRadius,"standby" ] call CREATE_OPFOR_SQUAD;
 			_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] call Hz_func_opforVehicleSupport;
 		
 		};    
