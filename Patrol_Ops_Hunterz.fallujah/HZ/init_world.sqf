@@ -29,7 +29,9 @@ switch (toUpper worldName) do {
 						nearestobjects [[5806.42,2418.46,0],[],3],
 						nearestobjects [[5712.85,2411.32,0],[],3],
 						nearestobjects [[5709.63,2402.85,0],[],3],
-						nearestobjects [[5639.17,2406.44,0],[],3]
+						nearestobjects [[5639.17,2406.44,0],[],3],
+						nearestobjects [[7943.14,6852.38,0],[],3],
+						nearestobjects [[9403.88,6572.96,0],[],3]
 					];
 					
 		

@@ -22,7 +22,7 @@ _person setVariable ["mps_askedForHelp",true,true];
 _person setVariable ["mps_questioned",true,true];
 
 
-if ((random 1) < 0.2) then {
+if ((hz_debug) || {(random 1) < 0.2}) then {
 
 		Hz_pops_heartsandmindsTaskRequested = true;
 		publicVariable "Hz_pops_heartsandmindsTaskRequested";

@@ -550,7 +550,14 @@ player addeventhandler ["Respawn", {
 			_unit linkItem _x;
 		}foreach _assignedItems;
 		
-    _corpse setvariable ["NoDelete",false,true];
+		if ("Files" in (magazines _unit)) then {
+			_unit removeItem "Files";
+			_files = "Item_Files" createVehicle [0,0,50000];
+			sleep 1;
+			_files setposatl ((getposatl _corpse) vectoradd [0,0,0.3]);
+		} else {
+			_corpse setvariable ["NoDelete",false,true];
+		};    
 		
 		ownedWepHolders = [];
 		
