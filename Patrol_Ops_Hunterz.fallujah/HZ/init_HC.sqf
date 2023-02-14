@@ -139,6 +139,8 @@ _timescaler3 = 0;
 
 };
 
+scriptname "Hz_pops_HCdiag";
+
 while {true} do {
 
 	diag_log format ["### Hz_diag: %1, %2, %3, %4, %5, %6",diag_fps,viewDistance, count diag_activeSQFScripts, {local _x} count allunits, {local _x} count vehicles, {local agent _x} count agents];

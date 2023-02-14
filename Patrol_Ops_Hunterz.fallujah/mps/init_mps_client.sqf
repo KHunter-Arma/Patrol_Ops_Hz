@@ -644,6 +644,6 @@ showScoretable 0;
 	};
 };
 
-// don't call here!
+// don't call, it's blocking!
 [] execVM "logistics\moveRoadTiles.sqf";
 

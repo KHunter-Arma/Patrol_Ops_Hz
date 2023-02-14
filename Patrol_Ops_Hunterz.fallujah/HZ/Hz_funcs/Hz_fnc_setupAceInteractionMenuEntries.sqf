@@ -34,6 +34,25 @@ private _action = [
 			if (Hz_pops_heartsandmindsInProgress) exitWith {
 				hint "You cannot request a mission at this time.";
 			};
+			
+			if (jointops) exitWith {
+				hint "You cannot request a new mission at this time because a joint operation was already requested.";
+			};
+			
+			_exit = false;
+			if (!hz_debug) then {
+				_allplayers = (allUnits select {isplayer _x}) + (allDeadMen select {isplayer _x});				
+				if (
+					((count _allplayers) < Hz_pops_minPlayerCountForTask)
+					|| {({_x getvariable ["TL",false]} count _allplayers) < Hz_pops_minOfficerCountForTask}
+					|| {({_x getvariable ["PMC",false]} count _allplayers) < Hz_pops_minUnitMemberCountForTask}
+					) then {
+						_exit = true;
+					};			
+			};			
+			if (_exit) exitWith {
+				hint "Conditions required to request a mission are not met. You will not be able to request a mission with the current team.";
+			};
 		
 			if (serverTime > 14400) exitWith {
 				if (!isnil "srvrst_mtx") exitWith {
@@ -100,16 +119,40 @@ _action = [
 	"Initialise Joint Operation",
 	"\x\Hz\Hz_mod_economy\media\Hunterz_iconSmall.paa",
 	{
-		if(!taskrequested && !jointops) then {
+		if(!jointops) then {
+			
+			if (taskrequested) exitWith {
+				hint "You cannot request a joint operation at this time because a mission was already requested.";
+			};
+			
+			if (Hz_pops_heartsandmindsInProgress) exitWith {
+				hint "You cannot request a joint operation at this time.";
+			};
+		
+			_exit = false;
+			if (!hz_debug) then {
+				_allplayers = (allUnits select {isplayer _x}) + (allDeadMen select {isplayer _x});				
+				if (
+					((count _allplayers) < 15)
+					|| {({_x getvariable ["TL",false]} count _allplayers) < Hz_pops_minOfficerCountForTask}
+					|| {({_x getvariable ["PMC",false]} count _allplayers) < Hz_pops_minUnitMemberCountForTask}
+					|| {({_x getvariable ["JointOps",false]} count _allplayers) < 8}
+					) then {
+						_exit = true;
+					};			
+			};			
+			if (_exit) exitWith {
+				hint "Conditions required to request a joint operation are not met. You will not be able to request a joint operation with the current team.";
+			};
 		
 			jointops = true;
 			publicVariable "jointops";
 		
-			hint "Initialising joint ops... You will receive a new task once the task conditions are met.";
+			hint "Initialising joint ops...";
 		
 		} else {
 		
-			hint "A new task has already been requested. You will receive a new task only if all task conditions are met.";
+			hint "A new mission has already been requested. You will receive a new mission only if all joint operation conditions are met.";
 		
 		};
 	},

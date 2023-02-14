@@ -1,6 +1,4 @@
-scriptName "POPS-Task-Master";
-
-mps_mission_score = 0;
+scriptName "Hz_pops_TaskMaster";
 
 /*
 
@@ -14,7 +12,7 @@ if(count mps_loc_hills > 0) then {
 };
 */
 
-_list = [
+_allTasks = [
     "def_base",
 		"def_castle",
 		"esc_speaker",
@@ -27,11 +25,15 @@ _list = [
 		"def_inscamp"
     ];
 		
-if(hz_debug) then {_list = ["sar_supplies"];};
+if(hz_debug) then {
+	_allTasks = ["sar_supplies"];
+};
 
-//init
+// reset vars
 taskrequested = false;
 publicvariable "taskrequested";
+jointops = false;
+publicvariable "jointops";
 Hz_patrol_task_in_progress = false;
 publicvariable "Hz_patrol_task_in_progress";
 Hz_pops_heartsandmindsInProgress = false;
@@ -41,11 +43,25 @@ publicvariable "Hz_pops_heartsandmindsTaskRequested";
 Hz_pops_heartsandmindsTaskRequester = objNull;
 publicvariable "Hz_pops_heartsandmindsTaskRequester";
 
+reinforcementsqueued = false;
 patrol_task_units = [];
 patrol_task_vehs = [];
+
 stopreinforcements = true;
 publicVariable "stopreinforcements";
-reinforcementsqueued = false;
+Hz_ambw_pat_disablePatrols = false;
+publicVariable "Hz_ambw_pat_disablePatrols";
+Hz_pops_baseSupportEnabled = true;
+publicVariable "Hz_pops_baseSupportEnabled";
+
+//reset flag for garrison script
+if (isNil "Hz_resetBuildingVars") then {
+	Hz_resetBuildingVars = [];
+};
+{
+	_x setvariable ["occupied",false];
+} foreach Hz_resetBuildingVars;
+Hz_resetBuildingVars = [];
 
 if (isMultiplayer) then {
 	waitUntil {
@@ -54,127 +70,70 @@ if (isMultiplayer) then {
 	};
 	sleep 30;
 };
-waituntil {sleep 10; (time > 300) || hz_debug};
-waituntil {sleep 10; taskrequested || {jointops} || {Hz_pops_heartsandmindsTaskRequested}};
+waituntil {
+	sleep 10;
+	(time > 300) || {hz_debug}
+};
+waituntil {
+	sleep 10;
+	(taskrequested) || {jointops} || {Hz_pops_heartsandmindsTaskRequested}
+};
+
+Hz_ambw_pat_disablePatrols = true; 
+publicVariable "Hz_ambw_pat_disablePatrols";
+Hz_pops_baseSupportEnabled = false;
+publicVariable "Hz_pops_baseSupportEnabled";
+stopreinforcements = false;
+publicVariable "stopreinforcements";
 
 if (Hz_pops_heartsandmindsTaskRequested) exitWith {
 	[] execvm "tasks\heartsandminds.sqf";
 };
 
-_j = (count _list - 1) min (round random (count _list));
-_next = _list select _j;
-_prev = [];
-if(isnil "Hz_save_prev_tasks_list") then {_prev = _list;} else {
-  _prev = Hz_save_prev_tasks_list;
+if(jointops) exitwith {
+	[] execvm "tasks\joint_ops.sqf";
 };
 
-for "_i" from 1 to mps_mission_counter do {
+if ((count Hz_save_prev_tasks_list) >= (count _allTasks)) then {
+	Hz_save_prev_tasks_list = [];
+};
 
-  _lim = 0;
+_availableTasks = _allTasks - Hz_save_prev_tasks_list;
 
-  while{ _next IN _prev && _lim < count _list } do {
-    _j = (count _list - 1) min (round random (count _list));
-    _next = _list select _j;
-    _lim = _lim + 1;
-  };
-	
-	Hz_ambw_pat_disablePatrols = false;
-	publicVariable "Hz_ambw_pat_disablePatrols";
-	Hz_pops_baseSupportEnabled = true;
-	publicVariable "Hz_pops_baseSupportEnabled";
-	
-  waituntil {sleep 10; taskrequested || jointops};
-	
-	Hz_pops_baseSupportEnabled = false;
-	publicVariable "Hz_pops_baseSupportEnabled";
-	  
-  if(jointops) exitwith {
-		[] execvm "tasks\joint_ops.sqf";
+if (!hz_debug) then {
+	if (((count playableUnits) + ({isplayer _x} count alldead)) < 8) then {
+		_availableTasks = _availableTasks - ["sad_scud"];
+		if ((count _availableTasks) == 0) then {
+			_availableTasks = _allTasks;
+		};
 	};
-  
-  _continue = false;
-  
-  if ((_next == "sad_scud") && !hz_debug) then {
-    
-    if (((count playableUnits) + ({isplayer _x} count alldead)) >= 8) then {_continue = true;};        
-    
-  } else {
-    
-    _continue = true;
-    
-  };
-  
-  if (_continue) then {
-    
-    if(!hz_debug) then {
-      
-      waituntil {sleep 5; 
-        (
-        ((count playableunits) >= Hz_pops_minPlayerCountForTask) && 
-        (({_x getvariable ["TL",false]} count playableunits) >= Hz_pops_minOfficerCountForTask) &&
-        (({_x getvariable ["PMC",false]} count playableunits) >= Hz_pops_minUnitMemberCountForTask)
-        )};
-      
-    };
-    
-    Hz_ambw_pat_disablePatrols = true; 
-		publicVariable "Hz_ambw_pat_disablePatrols";
-    
-    waituntil {sleep 5;
-      (count allunits) < Hz_max_units_before_task};
-    
-    patrol_task_units = [];
-    patrol_task_vehs = [];
-    stopreinforcements = false;
-		publicVariable "stopreinforcements";
-    
-    //check to see conditions are still true after last wait
-    if (
-        (((count playableunits) >= Hz_pops_minPlayerCountForTask) && 
-        (({_x getvariable ["TL",false]} count playableunits) >= Hz_pops_minOfficerCountForTask) &&
-        (({_x getvariable ["PMC",false]} count playableunits) >= Hz_pops_minUnitMemberCountForTask)) 
-        || hz_debug
-        ) 
-    
-    then {
-      
-      if(count _prev >= count _list) then {
-        _prev = [_next];             
-      }else{
-        _prev = _prev + [_next];
-      };   
-      Hz_save_prev_tasks_list = _prev;
-			publicVariable "Hz_save_prev_tasks_list";
-      
-      Hz_patrol_task_in_progress = true;
-      publicvariable "Hz_patrol_task_in_progress";
-			
-      call compile preprocessFileLineNumbers format["tasks\types\%1.sqf",_next];      
-      
-      //reset flag so garrison script can keep working
-      {_x setvariable ["occupied",false];} foreach Hz_resetBuildingVars;
-      Hz_resetBuildingVars = [];      
-      
-      Hz_patrol_task_in_progress = false;
-      publicvariable "Hz_patrol_task_in_progress";
-      
-    };
-    
-    taskrequested = false;
-    publicvariable "taskrequested";
-    stopreinforcements = true;
-		publicVariable "stopreinforcements";
-    
-  } else {
-  
-    if(count _prev >= count _list) then {
-      _prev = [_next];             
-    }else{
-      _prev = _prev + [_next];
-    };   
-    Hz_save_prev_tasks_list = _prev;
-		publicVariable "Hz_save_prev_tasks_list";
-  
-  };
-  
 };
+
+_nextTask = selectRandom _availableTasks;
+
+waituntil {
+	sleep 5;
+	(count allunits) < Hz_max_units_before_task
+};
+
+//check to see conditions are still true after last wait
+if (
+		(((count playableunits) >= Hz_pops_minPlayerCountForTask) && 
+		(({_x getvariable ["TL",false]} count playableunits) >= Hz_pops_minOfficerCountForTask) &&
+		(({_x getvariable ["PMC",false]} count playableunits) >= Hz_pops_minUnitMemberCountForTask)) 
+		|| hz_debug
+		) then {
+		
+	Hz_patrol_task_in_progress = true;
+	publicvariable "Hz_patrol_task_in_progress";
+	
+	call compile preprocessFileLineNumbers format["tasks\types\%1.sqf",_nextTask];
+		
+	Hz_save_prev_tasks_list pushBack _nextTask;
+	publicVariable "Hz_save_prev_tasks_list";
+	
+} else {
+	"Conditions required to receive a mission are no longer valid. Mission request has been cancelled!" remoteExecCall ["hint", 0];
+};	
+
+[] execvm "tasks\patrol_ops.sqf";

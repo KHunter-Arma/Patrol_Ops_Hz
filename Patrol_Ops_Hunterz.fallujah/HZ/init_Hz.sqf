@@ -26,8 +26,6 @@ Hz_fnc_isTaskMaster = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isTa
 Hz_fnc_isUncon = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_isUncon.sqf";
 Hz_func_findGarrisonedRespawnPos = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_func_findGarrisonedRespawnPos.sqf";
 
-if(isnil "jointops") then {jointops = false;};
-
 call compile preprocessfilelinenumbers "lk\nuke\nenvi.sqf";
 
 //init Weather

@@ -8,7 +8,6 @@ if(isDedicated || (call Hz_fnc_isHC)) exitWith{};
 private ["_title","_playersNumber","_time"];
 
 _title = "Well Done. Mission Complete";
-	if(mps_mission_score <= 0) then {_title = "Mission Failed... Try again?";};
 
 	if(count _this > 0) then { _title = _this select 0; };
 
