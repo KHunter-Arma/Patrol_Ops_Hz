@@ -7,7 +7,7 @@ private ["_reinforcementsMinimumSpawnRange", "_ambientCombatIntensifyAmount", "_
 
 /*-------------------- TASK PARAMS ---------------------------------*/
 _EnemySpawnMinimumRange = 4000;
-_taskRadius = 250;
+_taskRadius = 500;
 _minSquadCount = 1;
 _maxSquadCount = 2;
 
@@ -65,15 +65,17 @@ Hz_pops_heartsandmindsTaskRequester setVariable ["holdingPos", false, true];
 
 _position = getpos Hz_pops_heartsandmindsTaskRequester;
 _maxHouses = 0;
+private _newPos = +_position;
 
 {
 	_houseCount = count (nearestObjects [_x, ["House"], 200]);
 	if (_houseCount > _maxHouses) then {
 		_maxHouses = _houseCount;
-		_position = +_x;
+		_newPos = +_x;
 	};
 } foreach [_position, (_position vectorAdd [0,150,0]), (_position vectorAdd [0,-150,0]), (_position vectorAdd [150,0,0]), (_position vectorAdd [-150,0,0])];
 
+_position = +_newPos;
 
 _taskid = format["%1%2%3",round (_position select 0),round (_position select 1),(round random 999)];
 Hz_task_ID = _taskid;

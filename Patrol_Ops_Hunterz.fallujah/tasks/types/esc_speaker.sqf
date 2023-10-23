@@ -5,7 +5,7 @@ diag_log diag_activeMissionFSMs;
 
 //#define playableUnits switchableUnits
 
-private ["_downPayment", "_speechCompletePayment", "_speechTimeMinutes", "_EnemySpawnMinimumRange", "_taskRadius", "_minSquadCount", "_maxSquadCount", "_CASchance", "_TankChance", "_IFVchance", "_AAchance", "_CarChance", "_rewardMultiplier", "_rand", "_position", "_dir", "_locationDesc", "_newComp", "_taskid", "_otherReward", "_returnPoint", "_crowdPos", "_crowdGrp", "_crowd", "_type", "_civ", "_grp", "_vip", "_guards", "_dude", "_killer", "_condition", "_nearCars", "_suicidebomber", "_preachCounter", "_preachMax", "_speechRewardPerSecond", "_spawnedSquads", "_goTime", "_temp", "_curMuz", "_units", "_target"];
+private ["_downPayment", "_speechCompletePayment", "_speechTimeMinutes", "_EnemySpawnMinimumRange", "_taskRadius", "_minSquadCount", "_maxSquadCount", "_CASchance", "_TankChance", "_IFVchance", "_AAchance", "_CarChance", "_rewardMultiplier", "_rand", "_position", "_dir", "_locationDesc", "_newComp", "_taskid", "_otherReward", "_returnPoint", "_crowdPos", "_crowdGrp", "_crowd", "_type", "_civ", "_grp", "_vip", "_guards", "_dude", "_killer", "_condition", "_nearCars", "_suicidebomber", "_preachCounter", "_preachMax", "_speechRewardPerSecond", "_spawnedSquads", "_goTime", "_temp", "_curMuz", "_units", "_target", "_dismountDistance"];
 
 /*-------------------- TASK PARAMS ---------------------------------*/
 
@@ -14,7 +14,8 @@ _speechCompletePayment = 150000;
 _speechTimeMinutes = 30;
 
 // in case the mission turns into a defend task
-_EnemySpawnMinimumRange = 3000;
+_EnemySpawnMinimumRange = 2000;
+_dismountDistance = -1; // set individually for each location
 _taskRadius = 50;
 _minSquadCount = 1;
 _maxSquadCount = 3;
@@ -47,7 +48,8 @@ case (_rand < 0.33) : {
 		
 		//HOTEL	
 		_position = [8251.68,5492.97,0];
-		_dir = 344;	
+		_dir = 344;
+		_dismountDistance = 600;
 		_locationDesc = "a hotel just outside the city";
 		
 	};
@@ -57,7 +59,8 @@ case (_rand < 0.66) : {
 		//HOSPITAL
 		
 		_position = [2408.54,4911.46,0];
-		_dir = 255;	
+		_dir = 255;
+		_dismountDistance = 400;
 		_locationDesc = "the hospital";
 		
 	};
@@ -68,6 +71,7 @@ case (_rand < 0.66) : {
 		
 		_position = [4798.86,3852.05,0];
 		_dir = 344;		
+		_dismountDistance = 400;
 		_locationDesc = "the Grand Mosque";
 		
 	};
@@ -500,7 +504,7 @@ case (_rand < 0.8) : {
 					
 					if(!isnil "Hz_AI_moveAndCapture") then {
 						
-						_spawnedVehs = [_grp, _position,mps_opfor_ins_truck,mps_opfor_ins_ncov] call Hz_AI_moveAndCapture;  
+						_spawnedVehs = [_grp, _position,mps_opfor_ins_truck,mps_opfor_ins_ncov, _dismountDistance] call Hz_AI_moveAndCapture;  
 
 						patrol_task_vehs = patrol_task_vehs + _spawnedVehs;					 
 						

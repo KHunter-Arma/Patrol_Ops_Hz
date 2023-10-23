@@ -180,7 +180,7 @@ mps_path = "mps\";
   CREATE_OPFOR_STATICVEHICLE		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_spawn_opforstaticVehicle.sqf");
   CREATE_OPFOR_SNIPERS		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_spawn_opforsnipers.sqf");
   CREATE_OPFOR_PARADROP		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_spawn_opforparadrop.sqf");
-	call compile preprocessFileLineNumbers "paradrop\init.sqf";
+	//call compile preprocessFileLineNumbers "paradrop\init.sqf"; // not needed anymore - use domi solution
   CREATE_OPFOR_TOWER		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_spawn_opfortower.sqf");
   CREATE_OPFOR_PATROLS		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_spawn_opforpatrols.sqf");
   CREATE_OPFOR_AIRPATROLS		= compile preprocessFileLineNumbers (mps_path+"func\mps_func_spawn_opforradar.sqf");

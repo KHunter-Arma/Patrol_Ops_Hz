@@ -6,7 +6,7 @@ diag_log diag_activeMissionFSMs;
 private ["_EnemySpawnMinimumRange", "_taskRadius", "_minSquadCount", "_maxSquadCount", "_CASchance", "_TankChance", "_IFVchance", "_AAchance", "_CarChance", "_rewardMultiplier", "_position", "_taskid", "_otherReward", "_newComp", "_ammoCratesFilled", "_statGrp", "_guardPos", "_dude", "_defGrp", "_b", "_spawnpos", "_r", "_i", "_grp", "_Vehsupport", "_vehicletypes", "_grpLeader", "_car_type", "_vehgrp", "_spawnedVehs", "_wp", "_nearObj"];
 
 /*-------------------- TASK PARAMS ---------------------------------*/
-_EnemySpawnMinimumRange = 4000;
+_EnemySpawnMinimumRange = 3000;
 _taskRadius = 200;
 _minSquadCount = 2;
 _maxSquadCount = 3;

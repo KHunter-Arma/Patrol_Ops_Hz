@@ -97,7 +97,7 @@ _drophelo doMove _dest;
 	_drophelogrp = _this select 6;
 	_flyin = _this select 7;
 
-	waitUntil { _drophelo distance2D _dest <= 650 || !canMove _drophelo || !alive _helopilot };
+	waitUntil { _drophelo distance2D _dest < 850 || !canMove _drophelo || !alive _helopilot };
 
 	_newgrp = _helogrp;
 	_dudes = units _helogrp;
@@ -121,19 +121,28 @@ _drophelo doMove _dest;
 		} forEach _dudes;		
 	*/
 		
-		[_drophelo,100,_dudes] spawn paraEject;
-		
+		//[_drophelo,100,_dudes] spawn paraEject;
+		{
+			_x disableCollisionWith _drophelo; // Sometimes units take damage when being ejected.
+			_drophelo disableCollisionWith _x;
+			unassignVehicle _x;
+			_x action ["EJECT", _drophelo];
+			uisleep 3;
+			_dudepos = getposATL _x;
+			_dudeDir = getDir _x;
+			_dudeVel = velocity _x;
+			_parachute = createVehicle ["NonSteerable_Parachute_F", _dudepos, [], 20, "NONE"];
+			_x moveInDriver _parachute;
+			_parachute setDir _dudeDir;			
+			_parachute setVelocity _dudeVel;
+			_parachute setPosATL _dudepos;
+		} foreach _dudes;
+				
 		/*
 		_dudes allowGetIn false;
 		_dudes joinsilent _newgrp;
 		
 	*/
-		
-		{
-			
-			waituntil {uisleep 1; ((!alive _x) || (_x call Hz_fnc_isUncon) || ((vehicle _x) != _drophelo))};
-			
-		} foreach _dudes;
 		
 	}else{
 		waitUntil{unitReady _drophelo || (((getposatl _drophelo) select 2) < 20) || !alive _helopilot};
@@ -180,11 +189,11 @@ _drophelo doMove _dest;
 		
 	};
 
-	sleep 2;
+	uisleep 3;
 	_drophelo flyinheight _flyin;
 	_drophelo doMove _spawnpos;
 
-	waitUntil {sleep 30; _helopilot doMove _spawnpos; _drophelo distance _spawnpos < 2000 || !canMove _drophelo || !alive _helopilot};
+	waitUntil {sleep 10; _helopilot doMove _spawnpos; _drophelo distance _spawnpos < 2000 || !canMove _drophelo || !alive _helopilot};
 
 	_exit = false;
 	if (!alive _helopilot) then {

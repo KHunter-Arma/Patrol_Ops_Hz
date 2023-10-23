@@ -6,7 +6,7 @@ diag_log diag_activeMissionFSMs;
 private ["_EnemySpawnMinimumRange", "_taskRadius", "_minSquadCount", "_maxSquadCount", "_basePos", "_baseDefenderLocations", "_baseDefenderType", "_baseDefenderSquadSize", "_mapObjIDsToDisableRender", "_editorObjsToDisableRender", "_editorObjsToDelete", "_CASchance", "_TankChance", "_IFVchance", "_AAchance", "_CarChance", "_rewardMultiplier", "_position", "_taskid", "_otherReward", "_dude", "_grp", "_wait", "_b", "_spawnpos", "_r", "_i", "_Vehsupport", "_vehicletypes", "_grpLeader", "_car_type", "_vehgrp", "_spawnedVehs", "_wp", "_nearObj", "_group", "_target"];
 
 /*-------------------- TASK PARAMS ---------------------------------*/
-_EnemySpawnMinimumRange = 4000;
+_EnemySpawnMinimumRange = 3000;
 _taskRadius = 1500;
 _minSquadCount = 3;
 _maxSquadCount = 6;

@@ -14,7 +14,7 @@ if (_vehicle isKindOf "LandVehicle") then {
 
 	_initstatement = _initstatement + "_obj setVariable ['flipAnimHandler',_obj addAction ['<t color=''#FF0000''>Flip vehicle</t>','logistics\vehicle_flip.sqf' , nil, 1.5, true, true, '', '((vehicle _this) == _this) && {_vectorUp = vectorUp _target; (((_vectorUp select 2) < 0) || {(_vectorUp select 0) > 0.7})}', 6, false, '']];";
 	
-	if (_vehicle isKindOf "Van_02_vehicle_base_F") then {
+	if (_vehicle isKindOf "Van_02_base_F") then {
 	
 		_initstatement = _initstatement + "_obj addaction ['<t color=''#CC8400''>'+'Open/Close Rear Doors', {_car = _this select 0; if ((_car doorPhase 'Door_4_source') == 0) then {_car animateDoor ['Door_4_source',1]} else {_car animateDoor ['Door_4_source',0]};},[],-1,false,true,'','_dist = _this distance _target; (((vehicle _this) == _this) && (_dist < 5) && (_dist > 4))'];";
 		_initstatement = _initstatement + "_obj addaction ['<t color=''#CC8400''>'+'Open/Close Side Door', {_car = _this select 0;  if ((_car doorPhase 'Door_3_source') == 0) then {_car animateDoor ['Door_3_source',1]} else {_car animateDoor ['Door_3_source',0]};},[],-1,false,true,'','_dist = _this distance _target; (((vehicle _this) == _this) && (_dist < 3.5) && (_dist > 2))'];";
@@ -40,7 +40,7 @@ if (_vehicle isKindOf "Land_FMradio_F") then {
 	
 };
 
-if (((((toUpper (typeof _vehicle)) find "CUP") != -1) && {!((typeof _vehicle) in ["CUP_C_S1203_CIV","CUP_O_LR_SPG9_TKM","CUP_B_LR_MG_CZ_W","CUP_C_LR_Transport_CTK","CUP_B_LR_Ambulance_CZ_D","CUP_I_LR_SF_HMG_AAF","CUP_I_LR_SF_GMG_AAF"])}) || {(typeof _vehicle) in ["tw_explorer","V12_STRALIS23","tw_raptor_black","prraptor_noir","tw_van_black","tw_van_white","tw_ram","V12_RAM6X6_NOIR","V12_RAM_NOIR","V12_VELOCIRAPTOR","tw_vic_black","V12_H1TOPB","V12_H1TOP_NOIRB","V12_H1BB","V12_H1_NOIRB","V12_H1ASSAULT","V12_H1_NOIR","V12_H1B","suburban","tahoe_UNM","Mer_Vito_civ_noir","V12_FOCUSST12_NOIR","ranger17ch_noir","chdefender_civ_noir"]}) then {
+if (((((toUpper (typeof _vehicle)) find "CUP") != -1) && {!((typeof _vehicle) in ["CUP_O_LR_SPG9_TKM","CUP_B_LR_MG_CZ_W","CUP_C_LR_Transport_CTK","CUP_B_LR_Ambulance_CZ_D","CUP_I_LR_SF_HMG_AAF","CUP_I_LR_SF_GMG_AAF"])}) || {(typeof _vehicle) in ["tw_explorer","V12_STRALIS23","tw_raptor_black","prraptor_noir","tw_van_black","tw_van_white","tw_ram","V12_RAM6X6_NOIR","V12_RAM_NOIR","V12_VELOCIRAPTOR","tw_vic_black","V12_H1TOPB","V12_H1TOP_NOIRB","V12_H1BB","V12_H1_NOIRB","V12_H1ASSAULT","V12_H1_NOIR","V12_H1B","suburban","tahoe_UNM","Mer_Vito_civ_noir","V12_FOCUSST12_NOIR","ranger17ch_noir","chdefender_civ_noir"]}) then {
 
 	_initstatement = _initstatement + "_obj addaction ['<t color=''#dce2ed''>'+'Check fuel', {hint format ['%1%2 full',floor (( fuel (_this select 0))*100),'%'];},[],-99,false,true,'','_this == (driver _target)'];";
 	

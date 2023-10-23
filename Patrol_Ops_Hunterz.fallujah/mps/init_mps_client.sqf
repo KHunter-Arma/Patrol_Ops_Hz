@@ -635,7 +635,7 @@ if (_exit) exitWith {};
 Hz_pers_clientReadyForLoad = true;
 showScoretable 0;
 
-
+/*
 [] spawn {
 	scriptName "Hz_ACE_advanced_fatigue_rebalance";		
 	while {true} do {
@@ -643,6 +643,7 @@ showScoretable 0;
 			ace_advanced_fatigue_anfatigue = 1;
 	};
 };
+*/
 
 // don't call, it's blocking!
 [] execVM "logistics\moveRoadTiles.sqf";

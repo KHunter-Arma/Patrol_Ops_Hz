@@ -12,7 +12,7 @@ _penaltyPerLostContainer = 20000;
 _penaltyPerLostWorker = 50000;
 
 // in case the mission turns into a defend task
-_EnemySpawnMinimumRange = 4000;
+_EnemySpawnMinimumRange = 3000;
 _taskRadius = 15;
 _minSquadCount = 1;
 _maxSquadCount = 3;
