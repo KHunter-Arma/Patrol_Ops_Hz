@@ -12,7 +12,7 @@ class mps_respawn_dialog {
 		style = 0x02;
 		w = 0.27; x = 0.2;
 		h = 0.05; y = 0.8;
-		text = $STR_AIS_button_RALLY_text;
+		text = "Deploy at FOB";
 		action = "[""RALLY""] spawn mps_func_respawn;";
 		colorText[] = {0.65, 0.89, 0.52, 1};
 		font = "BitStream";
@@ -68,7 +68,7 @@ class mps_respawn_dialog {
 		style = 0x02;
 		w = 0.27; x = 0.53;
 		h = 0.05; y = 0.7;
-		text = $STR_AIS_button_BASE_text;
+		text = "Deploy at Base";
 		action = "[""BASE""] spawn mps_func_respawn;";
 		colorText[] = {0.65, 0.89, 0.52, 1};
 		font = "BitStream";

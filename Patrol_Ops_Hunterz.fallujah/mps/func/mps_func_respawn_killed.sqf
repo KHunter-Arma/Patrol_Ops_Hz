@@ -64,7 +64,7 @@ mps_respawn_process = [] spawn {
 
 	closeDialog 0;
 
-	121 cuttext [localize "STR_AIS_dead_message", "PLAIN"];
+	121 cuttext ["You were killed", "PLAIN"];
 
 	[] call mps_respawn_delay;
 
@@ -88,7 +88,7 @@ mps_respawn_process = [] spawn {
 */
 	sleep 0.2;
 
-	121 cuttext [localize "STR_AIS_new_message", "PLAIN"]; sleep 3;
+	121 cuttext ["You have been given a new soul. Use it wisely...", "PLAIN"]; sleep 3;
 	121 cuttext ["","PLAIN"];
 			
 	if (Hz_pops_enableDetainUnrecognisedUIDs) then {

@@ -341,6 +341,19 @@ player addeventhandler ["Respawn", {
     _unit = _this select 0;
     _corpse = _this select 1;
 		
+		if ((isNil "_corpse") || {isNull _corpse}) exitWith {
+			
+			sleep 7;
+			waitUntil {
+				sleep 1;
+				mps_respawned_player
+			};
+			sleep 3;
+			
+			hint "Your body was unable to be recovered. Your gear has been lost.";
+		
+		};
+		
 		_corpse setVariable ["RespawnedPlayerCorpse", true, true];
 				
 		_vestType = vest _corpse;
