@@ -632,7 +632,40 @@ if (isMultiplayer && {Hz_pops_enableDetainUnrecognisedUIDs}) then {
 
 if (_exit) exitWith {};
 
+
+// AWM compatibility (for persistency init)
+// seems like the problem is not even related to the weapon item add functions but instead
+// it's just borked by items automatically added by BIS_fnc_weaponComponents... (e.g. AK DTKs)
+// but only really triggers if unit is in a looped animation (can be with persistency...)
+private _AWMdetected = false;
+if ((player getVariable ["awm_sys_takeEH", -1]) != -1) then {
+		_AWMdetected = true;
+		player removeEventHandler ["Take", player getVariable "awm_sys_takeEH"];
+		player removeEventHandler ["Put", player getVariable "awm_sys_putEH"];
+		sleep 0.1;
+};
+
 Hz_pers_clientReadyForLoad = true;
+
+if (_AWMdetected) then {
+	[] spawn {
+		sleep 60;
+		if (!alive player) then {
+			waitUntil {
+				uisleep 2;
+				alive player
+			};
+			uisleep 10;
+		};
+		awm_sys_weaponItems = primaryWeaponItems player;
+		private _takeEH = player addEventHandler ["Take", {call awm_sys_fnc_handleItems}];
+		player setVariable ["awm_sys_takeEH", _takeEH];
+		private _putEH = player addEventHandler ["Put", {call awm_sys_fnc_handleItems}];
+		player setVariable ["awm_sys_putEH", _putEH];
+	};
+};
+
+
 showScoretable 0;
 
 /*
