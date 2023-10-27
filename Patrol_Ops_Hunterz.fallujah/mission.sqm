@@ -17,9 +17,9 @@ class EditorData
 	class Camera
 	{
 		pos[]={8988.3096,7.2664022,1035.072};
-		dir[]={0.62614471,-0.77469414,-0.088324554};
-		up[]={0.76710373,0.63233155,-0.10820846};
-		aside[]={-0.13967912,2.5657937e-007,-0.99020118};
+		dir[]={0.578695,-0.81028336,-0.092562675};
+		up[]={0.80011618,0.58603197,-0.12797923};
+		aside[]={-0.15794447,3.1351374e-007,-0.98745376};
 	};
 };
 binarizationWanted=0;
@@ -19217,7 +19217,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=2790;
+		items=2789;
 		class Item0
 		{
 			dataType="Object";
@@ -20477,7 +20477,7 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={7843.1538,7,1561.1331};
-			angle=3.9019256;
+			angle=3.9019253;
 			class Attributes
 			{
 				text="Base Gate Trigger";
@@ -100150,17 +100150,6 @@ class Mission
 			};
 			id=8963;
 			type="EmptyDetectorAreaR250";
-		};
-		class Item2789
-		{
-			dataType="Marker";
-			position[]={12321.056,7,-1147.3242};
-			name="marker_36";
-			markerType="ELLIPSE";
-			type="";
-			a=50;
-			b=50;
-			id=8967;
 		};
 	};
 };
