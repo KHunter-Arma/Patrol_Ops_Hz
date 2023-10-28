@@ -222,7 +222,7 @@ waitUntil {
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/
 
-if(call Hz_fnc_taskSuccessCheckGenericConditions) then {
+if ((call Hz_fnc_taskSuccessCheckGenericConditions) && (({(side _x) == (SIDE_A select 0)} count (_position nearEntities [["CAManBase","LandVehicle","Air","Ship","StaticWeapon"],_taskRadius])) != 0)) then {
 
   [format["TASK%1",_taskid],"succeeded"] call mps_tasks_upd;
   
@@ -239,6 +239,7 @@ if(call Hz_fnc_taskSuccessCheckGenericConditions) then {
 		case (!alive Hz_pops_heartsandmindsTaskRequester)	: {
 			(format ["%1 has died!", name Hz_pops_heartsandmindsTaskRequester]) remoteExecCall ["hint",0];			
 		};
+		default {};
 	};
 	
 	sleep 10;
