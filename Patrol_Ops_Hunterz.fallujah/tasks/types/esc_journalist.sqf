@@ -5,12 +5,13 @@ diag_log diag_activeMissionFSMs;
 
 //#define playableUnits switchableUnits
 
-private ["_rewardPerTarget", "_numberOfTargets", "_minimumVantagePointHeight", "_ambientCombatIntensifyAmount", "_timeRequiredAtEachTarget", "_rewardMultiplier", "_downPayment", "_buildings", "_temp", "_buildingheight", "_vantagePoints", "_bpos", "_targets", "_taskid", "_otherReward", "_returnPoint", "_grp", "_type", "_vip", "_networkName", "_spawnedSquads", "_timeOnTarget", "_target"];
+private ["_rewardPerTarget", "_numberOfTargets", "_minimumVantagePointHeight", "_ambientCombatIntensifyAmount", "_timeRequiredAtEachTarget", "_rewardMultiplier", "_downPayment", "_buildings", "_buildingheight", "_vantagePoints", "_bpos", "_targets", "_taskid", "_otherReward", "_returnPoint", "_grp", "_type", "_vip", "_networkName", "_spawnedSquads", "_timeOnTarget", "_target", "_minNumberOfTargets", "_maxNumberOfTargets", "_thisBuilding"];
 
 /*-------------------- TASK PARAMS ---------------------------------*/
 
 _rewardPerTarget = 75000;
-_numberOfTargets = 2;
+_minNumberOfTargets = 2;
+_maxNumberOfTargets = 3;
 _minimumVantagePointHeight = 15;
 _ambientCombatIntensifyAmount = Hz_ambient_units_intensify_amount;
 _timeRequiredAtEachTarget = 5;
@@ -19,6 +20,8 @@ _timeRequiredAtEachTarget = 5;
 _rewardMultiplier = 1;
 
 /*--------------------CREATE LOCATION---------------------------------*/
+
+_numberOfTargets = _minNumberOfTargets max (round (random _maxNumberOfTargets));
 
 _downPayment = (_rewardPerTarget*_numberOfTargets)/_rewardMultiplier;
 
@@ -29,47 +32,35 @@ Hz_ambw_pat_maxNumOfUnits = Hz_ambw_pat_maxNumOfUnits + _ambientCombatIntensifyA
 publicVariable "Hz_ambw_pat_maxNumOfUnits";
 _timeRequiredAtEachTarget = _timeRequiredAtEachTarget*60;
 
-_buildings = (nearestobjects [markerpos "ao_centre",["House"],3000]) select {(getDammage _x) < 0.2};
-
-//coordinate filter
-_temp = [];
-{
- 
- if (((getpos _x) select 1) > 4555) then {
- 
-	_temp pushBack _x;
- 
- };
- 
-}foreach _buildings;
-_buildings = +_temp;
-
-//height filter
-_temp = [];
-{
-  _buildingheight = (((boundingboxreal _x) select 1) select 2)*2;
-  
-  if(_buildingheight > 15) then {_temp pushBack _x;};
-
-}foreach _buildings;
-_buildings = +_temp;
+_buildings = (nearestObjects [markerPos "ao_centre",["House"],7100]) select {
+	((getDammage _x) < 0.1)
+	&& {!(isObjectHidden _x)}
+	&& {(_x distance (markerpos "BASE")) > 2000}
+	&& {
+		_thisBuilding = _x;
+		({(_thisBuilding distance (_x select 0)) < 1200} count Hz_ambw_sc_sectors) > 0	
+	}
+	&& {
+		_buildingheight = (((boundingBoxReal _x) select 1) select 2)*2;
+		_buildingheight > (_minimumVantagePointHeight + 5)
+	}
+};
 
 _vantagePoints = [];
 {
-  _bpos = [_x] call BIS_fnc_buildingPositions;
-	
-	{	
-	
+  _bpos = [_x] call BIS_fnc_buildingPositions;	
+	{
 		//get high and open positions
 		if ((!lineIntersects [AGLToASL _x, AGLToASL [_x select 0,_x select 1,150]]) && ((_x select 2) > _minimumVantagePointHeight)) then {
-	
-			_vantagePoints pushBack _x;
-	
-		};	
-	
+			_vantagePoints pushBack _x;	
+		};
 	} foreach _bpos;
-
 }foreach _buildings;
+
+if ((count _vantagePoints) == 0) exitWith {
+	hint "ERROR! Task found no suitable vantage points!";
+	diag_log "##### ERROR! Task found no suitable vantage points!";
+};
 
 _targets = [];
 
