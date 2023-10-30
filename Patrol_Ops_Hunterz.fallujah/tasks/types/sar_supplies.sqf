@@ -54,39 +54,36 @@ for "_i" from 1 to _cacheCount do {
 
 	if ((random 1) < 0.2) then {
 
-		_buildings = nearestObjects [(markerpos "ao_centre"),["House"],3000];
-		private _buildingsFiltered = [];
+		_buildings = (markerpos "ao_centre") nearObjects ["House",3000];
+		private _bigBuildings = [];
 		private _safeDist = 1200;
 		
-		while {(count _buildingsFiltered) < 20} do {
+		while {((count _bigBuildings) < 1) && {_safeDist > 200}} do {
+				
+				_bigBuildings = _buildings select {
+					(alive _x)
+					&& {!(isObjectHidden _x)}
+					&& {({(side _x) == (SIDE_A select 0)} count (_x nearEntities [["CAManBase", "LandVehicle", "StaticWeapon", "Ship", "Helicopter"], _safeDist])) < 1}
+					&& {
+						private _thisBuilding = _x;
+						private _bpos = [_thisBuilding] call BIS_fnc_buildingPositions;
+						((count _bpos) > 12)
+						&& {({(_thisBuilding distance _x) < _minDistanceBetweenCaches} count _caches) < 1}
+						&& {
+									private _result = false;
+									{
+										if (lineIntersects [AGLToASL _x, AGLToASL [_x select 0,_x select 1,150]]) exitWith {
+											_result = true;
+										};
+									} foreach _bpos;
+									_result
+						}
+					}
+				};
 			
-			_buildingsFiltered = _buildings select {
-				((getDammage _x) < 0.2)
-				&& {({(side _x) == (SIDE_A select 0)} count (_x nearEntities [["CAManBase", "LandVehicle", "StaticWeapon", "Ship", "Air"], _safeDist])) < 1}
+				_safeDist = (_safeDist - 100) max 200;
+			
 			};
-		
-			_safeDist = (_safeDist - 100) max 200;
-		
-		};
-		
-		_bigBuildings = [];
-		{
-			private _thisBuilding = _x;
-			private _bpos = [_thisBuilding] call BIS_fnc_buildingPositions;
-			if (((count _bpos) > 12)
-			&& {({(_thisBuilding distance _x) < _minDistanceBetweenCaches} count _caches) < 1}
-			&& {
-						private _result = false;
-						{
-							if (lineIntersects [AGLToASL _x, AGLToASL [_x select 0,_x select 1,150]]) exitWith {
-								_result = true;
-							};
-						} foreach _bpos;
-						_result
-			}) then {		
-				_bigBuildings pushback _thisBuilding;		
-			};
-		} foreach _buildings;
 		
 		if ((count _bigBuildings) > 0) then {
 
@@ -109,8 +106,6 @@ for "_i" from 1 to _cacheCount do {
 		_SniperChance = 0;
 		_TowerChance = 0;
 
-		//while {(count (nearestobjects [_position,["House"],100])) < 4} do {
-
 			_position = [markerpos "ao_centre",3500,7100, SIDE_A select 0,0,false,{
 			private _return = false;
 			{
@@ -123,24 +118,22 @@ for "_i" from 1 to _cacheCount do {
 					} foreach ([_x] call BIS_fnc_buildingPositions);
 				};
 				if (_return) exitWith {};
-			} foreach ((nearestObjects [_this select 0,["House"],200]) select {(getDammage _x) < 0.2});
+			} foreach ((nearestObjects [_this select 0,["House"],200]) select {((getDammage _x) < 0.2) && {!(isObjectHidden _x)}});
 			
 			_return
 		}, [_caches, _minDistanceBetweenCaches]] call Hz_func_findspawnpos;
-		
-		//};
 
-		_nearbuildings = (nearestObjects [_position, ["House"],200]) select {(getDammage _x) < 0.2};
+		_nearbuildings = (nearestObjects [_position, ["House"],200]) select {((getDammage _x) < 0.2) && {!(isObjectHidden _x)}};
 
 		{
-			_build = _x;		
+			_build = _x;
 				if (({(_build distance _x) < _minDistanceBetweenCaches} count _caches) < 1) then {
 				{
 					if (lineIntersects [AGLToASL _x, AGLToASL [_x select 0,_x select 1,150]]) then {
-						_closedPositions pushBack [_build, _x];					
-					};				
-				} foreach ([_x] call BIS_fnc_buildingPositions);			
-			};		
+						_closedPositions pushBack [_build, _x];
+					};
+				} foreach ([_x] call BIS_fnc_buildingPositions);
+			};
 		} foreach _nearbuildings;
 		
 		if ((count _closedPositions) > 0) then {

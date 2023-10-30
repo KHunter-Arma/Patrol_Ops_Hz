@@ -91,27 +91,20 @@ if ((random 1) < 0.5) then {
 	_ins = false;
 	_downPayment = _downPayment*1.5;
 	
-	_buildings = nearestObjects [(markerpos "ao_centre"),["House"],3000];
-	private _buildingsFiltered = [];
+	_buildings = (markerpos "ao_centre") nearObjects ["House",3000];
+	private _houses = [];
 	private _safeDist = 1200;
 	
-	while {(count _buildingsFiltered) < 20} do {
+	while {((count _houses) < 1) && {_safeDist > 200}} do {
 		
-		_buildingsFiltered = _buildings select {
+		_houses = _buildings select {
 			(alive _x)
-			&& {({(side _x) == (SIDE_A select 0)} count (_x nearEntities [["CAManBase", "LandVehicle", "StaticWeapon", "Ship", "Air"], _safeDist])) < 1}
-		};
-	
-		_safeDist = (_safeDist - 100) max 200;
-	
-	};
-
-	
-	_houses = [];
-	{
-		private _bpos = [_x] call BIS_fnc_buildingPositions;
-		if (((count _bpos) > 5)
-		&& {
+			&& {!(isObjectHidden _x)}
+			&& {({(side _x) == (SIDE_A select 0)} count (_x nearEntities [["CAManBase", "LandVehicle", "StaticWeapon", "Ship", "Helicopter"], _safeDist])) < 1}
+			&& {
+				private _bpos = _x buildingPos -1;
+				((count _bpos) > 5)
+				&& {
 					private _result = false;
 					{
 						if (lineIntersects [AGLToASL _x, AGLToASL [_x select 0,_x select 1,150]]) exitWith {
@@ -119,11 +112,13 @@ if ((random 1) < 0.5) then {
 						};
 					} foreach _bpos;
 					_result
-		}) then {		
-			_houses pushback _x;		
+				}
+			}
 		};
-	} foreach _buildings;
 	
+		_safeDist = (_safeDist - 100) max 200;
+	
+	};
 	
 	if ((count _houses) > 0) then {
 
@@ -131,9 +126,9 @@ if ((random 1) < 0.5) then {
 	
 		{
 			if (lineIntersects [AGLToASL _x, AGLToASL [_x select 0,_x select 1,150]]) then {
-				_closedPositions pushBack _x;		
-			};			
-		} foreach ([_building] call BIS_fnc_buildingPositions);
+				_closedPositions pushBack _x;
+			};
+		} foreach (_building buildingPos -1);
 		
 		_randomChoice = [_building, _closedPositions call mps_getRandomElement];
 
@@ -144,8 +139,6 @@ if ((random 1) < 0.5) then {
 	_SniperChance = 0;
 	_TowerChance = 0;
 
-	//while {(count (nearestObjects [_position,["House"],100])) < 4} do {
-
 		_position = [markerpos "ao_centre",3500,7100, SIDE_A select 0,0,false,{
 			private _return = false;
 			{
@@ -153,16 +146,13 @@ if ((random 1) < 0.5) then {
 					if (lineIntersects [AGLToASL _x, AGLToASL [_x select 0,_x select 1,150]]) exitWith {
 						_return = true;
 					};
-				} foreach ([_x] call BIS_fnc_buildingPositions);
+				} foreach (_x buildingPos -1);
 				if (_return) exitwith {};
-			} foreach ((nearestObjects [_this select 0,["House"],200]) select {alive _x});
-			
+			} foreach ((nearestObjects [_this select 0,["House"],200]) select {(alive _x) && {!(isObjectHidden _x)}});			
 			_return
 		}] call Hz_func_findspawnpos;
-	
-	//};
-	
-	_nearbuildings = (nearestObjects [_position,["House"],200]) select {alive _x};
+
+	_nearbuildings = (nearestObjects [_position,["House"],200]) select {(alive _x) && {!(isObjectHidden _x)}};
 
 	{
 		private _thisHouse = _x;
@@ -170,7 +160,7 @@ if ((random 1) < 0.5) then {
 			if (lineIntersects [AGLToASL _x, AGLToASL [_x select 0,_x select 1,150]]) then {
 				_closedPositions pushBack [_thisHouse, _x];				
 			};			
-		} foreach ([_thisHouse] call BIS_fnc_buildingPositions);		
+		} foreach (_thisHouse buildingPos -1);		
 	} foreach _nearbuildings;
 	
 	if ((count _closedPositions) > 0) then {
