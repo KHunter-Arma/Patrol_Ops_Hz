@@ -178,6 +178,10 @@ _file attachto [_prop, [0,0,0.48]];
 sleep 2;
 detach _file;
 
+// aux failure condition in case files are "destroyed"
+Hz_pops_failFileTask = false;
+publicVariable "Hz_pops_failFileTask";
+
 Hz_pops_taskObjectHandedOver = false;
 
 [Hz_pops_heartsandmindsTaskRequester,["<t color=""#AA5500"">Hand over files</t>",{
@@ -445,6 +449,7 @@ waitUntil {
 	&& {(Hz_pops_heartsandmindsTaskRequester distance _returnPos) < 100}
 	&& {(vehicle Hz_pops_heartsandmindsTaskRequester) == Hz_pops_heartsandmindsTaskRequester})
 	|| {!(call Hz_fnc_taskSuccessCheckGenericConditions)}
+	|| {Hz_pops_failFileTask}
 	
 };
 

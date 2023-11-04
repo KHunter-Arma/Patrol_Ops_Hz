@@ -18,6 +18,14 @@ if( if( !isNil "ace_wounds_enabled" ) then { false } else { true } ) then {
 
 [player,["HandleScore", {false}]] remoteExecCall ["addEventHandler",2,false];
 
+player addEventHandler ["Deleted", {
+	params ["_dude"];
+	if ("Files" in (magazines _dude)) then {
+		Hz_pops_failFileTask = true;
+		publicVariable "Hz_pops_failFileTask";
+	};
+}];
+
 player addEventHandler ["InventoryOpened", {
 	_container = _this select 1;
 	if (_container getVariable ["RespawnedPlayerCorpse", false]) then {
