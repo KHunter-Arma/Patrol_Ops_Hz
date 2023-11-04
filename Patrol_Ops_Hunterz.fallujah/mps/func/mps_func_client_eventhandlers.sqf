@@ -423,13 +423,11 @@ player addeventhandler ["Respawn", {
 		_weaponsItems = weaponsitems _corpse;
 				
 		{
-			
 			_weaponsItems = _weaponsItems + (weaponsitemscargo _x);
-			deletevehicle _x;
-		
+			deletevehicle _x;		
 		} foreach ownedWepHolders;
 		
-			/*
+		/*
 		{diag_log _x} foreach [_vestType,
 		_uniformType,
 		_backpackType,
@@ -444,10 +442,26 @@ player addeventhandler ["Respawn", {
 		_uniformItems,
 		_assignedItems]; 
 		*/
-						
+		
 		removeAllWeapons _corpse;
 		removeAllItems _corpse;
-		removeAllAssignedItems _corpse;		
+		removeAllAssignedItems _corpse;
+		
+		// AWM compatibility (does weird things with animation and dialogs during respawn loadout handling)
+		if ((player getVariable ["awm_sys_takeEH", -1]) != -1) then {
+			player removeEventHandler ["Take", player getVariable "awm_sys_takeEH"];
+			player removeEventHandler ["Put", player getVariable "awm_sys_putEH"];
+			[] spawn {
+				sleep 20;
+				if (!alive player) exitWith {};
+				awm_sys_weaponItems = primaryWeaponItems player;
+				private _takeEH = player addEventHandler ["Take", {call awm_sys_fnc_handleItems}];
+				player setVariable ["awm_sys_takeEH", _takeEH];
+				private _putEH = player addEventHandler ["Put", {call awm_sys_fnc_handleItems}];
+				player setVariable ["awm_sys_putEH", _putEH];
+			};
+			sleep 0.1;
+		};
 		
 		sleep 5;
 		

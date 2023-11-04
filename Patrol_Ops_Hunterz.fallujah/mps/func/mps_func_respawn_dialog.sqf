@@ -8,6 +8,11 @@ _this select 0 displayCtrl 86006 ctrlSetText (localize "STR_AIS_button_MHQ_text"
 
 while {!mps_respawned_player} do {
 
+	// in case dialog is closed with Esc
+	if (!dialog) then {
+		createDialog "mps_respawn_dialog";
+	};
+
 	if (!MHQ_STATUS) then {
 		_this select 0 displayCtrl 86006 ctrlShow false;
 	}else{
