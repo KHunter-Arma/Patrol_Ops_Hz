@@ -51,3 +51,12 @@ _initstatement = _initstatement + "_obj addEventHandler ['Killed',{{if ((_x isKi
 if(_initstatement != "") then {
   [_vehicle,_initstatement] remoteexeccall ["Hz_fnc_setVehicleInit",0,true];
 };
+
+_vehicle addMPEventHandler ["MPKilled", {
+	params ["_vehicle", "_killer", "_instigator", "_useEffects"];	
+	if (!local _vehicle) exitWith {};	
+	if ("Files" in (magazineCargo _vehicle)) then {
+		Hz_pops_failFileTask = true;
+		publicVariable "Hz_pops_failFileTask";
+	};	
+}];

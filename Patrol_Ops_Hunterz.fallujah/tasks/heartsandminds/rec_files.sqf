@@ -408,7 +408,7 @@ publicVariable "Hz_ambw_pat_maxNumOfUnits";
 
 /*--------------------MISSION CRITERIA TO PASS---------------------------------*/
 hz_reward = 1;
-While{(!Hz_pops_taskObjectHandedOver) && {call Hz_fnc_taskSuccessCheckGenericConditions}} do {
+While{(!Hz_pops_taskObjectHandedOver) && {call Hz_fnc_taskSuccessCheckGenericConditions} && {!Hz_pops_failFileTask}} do {
   
   sleep 5;
 	
@@ -436,6 +436,12 @@ if (Hz_pops_taskObjectHandedOver && {call Hz_fnc_taskSuccessCheckGenericConditio
 	_x removeItem "Files";
 } foreach playableUnits;
 
+{
+	if ("Files" in (magazineCargo _x)) then {
+		[_x, "Files"] call CBA_fnc_removeMagazineCargo;
+	};	
+} foreach (Hz_pers_network_vehicles + Hz_pers_network_objects);
+
 
 waitUntil {
 
@@ -460,7 +466,7 @@ publicVariable "Hz_ambw_pat_maxNumOfUnits";
 
 /*--------------------CHECK IF SUCCESSFUL---------------------------------*/
 
-if(call Hz_fnc_taskSuccessCheckGenericConditions) then {
+if((call Hz_fnc_taskSuccessCheckGenericConditions) && {!Hz_pops_failFileTask}) then {
 
   [format["TASK%1",_taskid],"succeeded"] call mps_tasks_upd;
   
@@ -476,6 +482,9 @@ if(call Hz_fnc_taskSuccessCheckGenericConditions) then {
 	switch (true) do {
 		case (!alive Hz_pops_heartsandmindsTaskRequester)	: {
 			(format ["%1 has died!", name Hz_pops_heartsandmindsTaskRequester]) remoteExecCall ["hint",0];			
+		};
+		case (Hz_pops_failFileTask) : {
+			"The files were destroyed!" remoteExecCall ["hint",0];			
 		};
 	};
 	

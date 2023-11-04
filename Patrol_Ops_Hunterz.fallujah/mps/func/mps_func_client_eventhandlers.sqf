@@ -349,6 +349,11 @@ player addeventhandler ["Respawn", {
     _unit = _this select 0;
     _corpse = _this select 1;
 		
+		if ((!isNil "_corpse") && {isObjectHidden _corpse}) then {
+			deleteVehicle _corpse;
+			sleep 1;
+		};
+		
 		if ((isNil "_corpse") || {isNull _corpse}) exitWith {
 			
 			sleep 7;
