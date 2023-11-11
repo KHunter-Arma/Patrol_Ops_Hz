@@ -40,7 +40,7 @@ if (_vehicle isKindOf "Land_FMradio_F") then {
 	
 };
 
-if (((((toUpper (typeof _vehicle)) find "CUP") != -1) && {!((typeof _vehicle) in ["CUP_O_LR_SPG9_TKM","CUP_B_LR_MG_CZ_W","CUP_C_LR_Transport_CTK","CUP_B_LR_Ambulance_CZ_D","CUP_I_LR_SF_HMG_AAF","CUP_I_LR_SF_GMG_AAF"])}) || {(typeof _vehicle) in ["tw_explorer","V12_STRALIS23","tw_raptor_black","prraptor_noir","tw_van_black","tw_van_white","tw_ram","V12_RAM6X6_NOIR","V12_RAM_NOIR","V12_VELOCIRAPTOR","tw_vic_black","V12_H1TOPB","V12_H1TOP_NOIRB","V12_H1BB","V12_H1_NOIRB","V12_H1ASSAULT","V12_H1_NOIR","V12_H1B","suburban","tahoe_UNM","Mer_Vito_civ_noir","V12_FOCUSST12_NOIR","ranger17ch_noir","chdefender_civ_noir"]}) then {
+if (((((toUpper (typeof _vehicle)) find "CUP") != -1) && {!(_vehicle isKindOf "CUP_LR_Base")}) || {(typeof _vehicle) in ["tw_explorer","V12_STRALIS23","tw_raptor_black","prraptor_noir","tw_van_black","tw_van_white","tw_ram","V12_RAM6X6_NOIR","V12_RAM_NOIR","V12_VELOCIRAPTOR","tw_vic_black","V12_H1TOPB","V12_H1TOP_NOIRB","V12_H1BB","V12_H1_NOIRB","V12_H1ASSAULT","V12_H1_NOIR","V12_H1B","suburban","tahoe_UNM","Mer_Vito_civ_noir","V12_FOCUSST12_NOIR","ranger17ch_noir","chdefender_civ_noir"]}) then {
 
 	_initstatement = _initstatement + "_obj addaction ['<t color=''#dce2ed''>'+'Check fuel', {hint format ['%1%2 full',floor (( fuel (_this select 0))*100),'%'];},[],-99,false,true,'','_this == (driver _target)'];";
 	
