@@ -45,7 +45,7 @@ mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_dea
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
 [ format["TASK%1",_taskid],
-"Defend Castle",
+"New Mission Received",
 "An insurgent faction working with the Takistanis aims to capture a historical castle in the region to use it as a bargaining chip and strenghten their position on the table. Our clients want you to be the welcome party and prevent that from happening.",
 (SIDE_A select 0),
 [format["MARK%1",_taskid],(_position),"mil_objective","ColorBlue"," Defend"],

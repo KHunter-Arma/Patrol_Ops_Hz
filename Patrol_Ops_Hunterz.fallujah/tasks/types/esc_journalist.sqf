@@ -11,7 +11,7 @@ private ["_rewardPerTarget", "_numberOfTargets", "_minimumVantagePointHeight", "
 
 _rewardPerTarget = 75000;
 _minNumberOfTargets = 2;
-_maxNumberOfTargets = 3;
+_maxNumberOfTargets = 4;
 _minimumVantagePointHeight = 15;
 _ambientCombatIntensifyAmount = Hz_ambient_units_intensify_amount;
 _timeRequiredAtEachTarget = 5;
@@ -139,7 +139,7 @@ if ((random 1) < 0.5) then {
 };
 
 [ format["TASK%1",_taskid],
-"Escort Journalist",
+"New Mission Received",
 format ["A hotshot %1 war correspondent has just arrived in Fallujah thinking he can grab some close-up combat footage for the evening news. This isn't the kind of shooting we're used to doing, and normally we'd think twice about accepting a job like this, but the news channel offered us a load of money to escort him around town. The reporter has determined %2 areas to visit across Fallujah to get some shots. He will be waiting for you at the airbase to be picked up. Escort him through his itinerary and then return him to base. This guy doesn't know what he's getting into, so watch out for him. Remember, a dead client is not a paying client.",_networkName,_numberOfTargets],
 (SIDE_A select 0),
 [],

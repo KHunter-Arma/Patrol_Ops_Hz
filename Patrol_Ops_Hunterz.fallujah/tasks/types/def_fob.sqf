@@ -121,7 +121,7 @@ mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_dea
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
 [ format["TASK%1",_taskid],
-"Assist FOB",
+"New Mission Received",
 "We've been entrusted with a delicate task. NATO Joint Operations Command contacted us early this morning about an Iraqi FOB that recently found itself to be in a strategic position. Apparently their defences are in need of a serious reorganisation. We're hired as advisors, and you are to head in there to get the place battle-ready ASAP, or the first raid that comes will probably end very badly not just for them, but all units in the region. Give them your support in fortifying the base, and watch out for any enemy movement in the meantime. If you ask the Iraqis, they say an attack may be imminent...",
 (SIDE_A select 0),
 [format["MARK%1",_taskid],(_position),"mil_objective","ColorBlue"," Defend"],

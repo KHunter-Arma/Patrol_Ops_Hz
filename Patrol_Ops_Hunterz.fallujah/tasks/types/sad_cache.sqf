@@ -377,7 +377,7 @@ mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_dea
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
 [format["TASK%1",_taskid],
-"Destroy Insurgent Caches",
+"New Mission Received",
 "It’s bad enough that the Takistani Army is gaining ground near Fallujah, but its proxies are making their move too. Iraqi intelligence has just discovered that one of the larger insurgent factions has begun building arms caches around the AO, which they are planning on using for sabotage missions. They might even target US establishments in the region. Question the locals to find information about any caches. Once you find a cache, look for evidence of existence of any others, and destroy any that are found.",
 true,
 [],

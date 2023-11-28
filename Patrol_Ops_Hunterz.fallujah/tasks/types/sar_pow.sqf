@@ -447,7 +447,7 @@ mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_dea
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
 [format["TASK%1",_taskid],
-"Rescue POW",
+"New Mission Received",
 "An Iraqi Special Forces operator is confirmed to be captured by Takistani forces during the battle in the city a few hours ago. Any intel on the situation is scarce and conflicting, so our expertise is in demand. We're hired to find and rescue the POW using whatever means necessary. Once located, extract him back to Al-Hunter Airbase.",
 true,
 [],

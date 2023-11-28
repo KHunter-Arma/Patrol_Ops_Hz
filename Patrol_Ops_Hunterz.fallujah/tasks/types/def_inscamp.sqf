@@ -180,7 +180,7 @@ mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_dea
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
 [ format["TASK%1",_taskid],
-"Support Friendly Insurgent Camp",
+"New Mission Received",
 "Insurgent factions loyal to the government are trying to amass recruits from the locals as the Takistanis advance, but they are still by no means any match against their Takistani-supported rebel enemies. We have just received word that a nearby camp belonging to a loyalist faction will soon come under attack by rebel militias. And, of course, we're asked to help... We can't expect a great sum of cash on this, but it still is in our interests that friendlies maintain hold of the area.",
 (SIDE_A select 0),
 [format["MARK%1",_taskid],(_position),"mil_objective","ColorBlue"," Defend"],

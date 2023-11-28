@@ -202,7 +202,7 @@ mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_dea
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
 [format["TASK%1",_taskid],
-"Escort Supplies",
+"New Mission Received",
 format["The population in parts of Iraq have been seriously affected by the sudden conflict. A lot of them remain trapped in battle zones around Fallujah, with no option to escape. IDAP want to do something about it, and they need our help. Aid workers are standing by at the airbase with supplies. The supplies need to be transported to %1, where the aid workers will distribute them. Insurgent factions in the region frequently raid supply convoys to take them for themselves, and that's where you come in. Keep the delivery and workers safe and we'll get paid.", _locationDescription],
 true,
 [format["MARK%1",_taskid],(_position),"mil_objective","ColorGreen"," Deliver Supplies"],

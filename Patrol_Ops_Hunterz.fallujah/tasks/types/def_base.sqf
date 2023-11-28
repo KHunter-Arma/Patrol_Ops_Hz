@@ -25,9 +25,9 @@ _editorObjsToDelete = [amb1,amb2,amb3,amb4,amb5,amb6,amb7,amb8,amb9];
 
 //Chance of a squad having the following vehicle support (can't have more than 1 vehicle per squad)
 _CASchance = 0;
-_TankChance = 0.1;
+_TankChance = 0.3;
 _IFVchance = 0.3;
-_AAchance = 0.2;
+_AAchance = 0.3;
 _CarChance = 0.75;
 
 //Useful for justifying task-specific difficulties.
@@ -69,10 +69,10 @@ mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_dea
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
 [ format["TASK%1",_taskid],
-"Defend Base",
+"New Mission Received",
 "We've just got intel that local insurgents provoked by Takistan are planning an attack on the US Airbase. We're here to keep our client's interests secure, so keep any hostiles away!",
 (SIDE_A select 0),
-[format["MARK%1",_taskid],(_position),"mil_objective","ColorBlue"," Defend"],
+[],
 "created",
 _position
 ] call mps_tasks_add;
@@ -172,7 +172,7 @@ if(_b > 0) then {
 		//exit spawn loop and transfer to reinforcements script if too many units present on map
 		if((count allunits) > Hz_max_allunits) exitwith {_r = (_b - _i) + 1; [_EnemySpawnMinimumRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] spawn Hz_task_reinforcements;};
 
-		_grp = [ _spawnpos,"INS",24 + (random 24),300 ] call CREATE_OPFOR_SQUAD;
+		_grp = [ _spawnpos,"INS",48 + (random 48),300 ] call CREATE_OPFOR_SQUAD;
 		
 		_Vehsupport = [_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] call Hz_func_opforVehicleSupport;
 		_vehicletypes = _Vehsupport select 0;

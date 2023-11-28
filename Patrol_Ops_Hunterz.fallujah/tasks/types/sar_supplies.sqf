@@ -381,7 +381,7 @@ mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_dea
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
 [format["TASK%1",_taskid],
-"Search and Recover Supplies",
+"New Mission Received",
 "An IDAP convoy was recently attacked by insurgent forces. It was carrying a load of freshly received relief supplies to be distributed across the country. This has made them very upset because they had waited for their delivery for a while, and it’s unlikely they’ll get anything this big for a long time. They’ve hired us to find the supplies and bring them back. Unfortunately most of the supplies are expected to have been salvaged and distributed among the enemy already. However, IDAP are still hopeful. They want us to ask around and try to locate any of them that are still intact. Some of them may still be recoverable in nearby insurgent camps and strongholds.",
 true,
 [],

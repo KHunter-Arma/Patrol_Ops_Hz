@@ -276,7 +276,7 @@ sleep 2;
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
 [ format["TASK%1",_taskid],
-"Escort VIP",
+"New Mission Received",
 format ["We've been hired to provide security detail to a prominent local tribe leader, Mr. %1. He is due to deliver a speech at %2. Your mission is to escort him and his guards to the location and provide security. The VIP also tells us that he might have to make a stopover or two inside the city. For anything outside of the contract he will pay good money, but it's up to you if you want to take the risk. The speech is expected to last about %3 minutes, and this man is known to be stubborn. He will want to finish his speech no matter what, so you must deal with any interruptions swiftly. The intention of the speech is to raise support from locals to form a resistance movement against the invading Takistanis, so you can expect that some people don't want this to happen. If all hell breaks loose, you will have to extract him, but he won't pay a premium if he can't finish his speech.",name _vip,_locationDesc,_speechTimeMinutes],
 (SIDE_A select 0),
 [format["MARK%1",_taskid],(_position),"mil_objective","ColorGreen"," Escort"],
