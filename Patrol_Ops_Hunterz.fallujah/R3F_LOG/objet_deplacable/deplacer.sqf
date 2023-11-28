@@ -29,9 +29,12 @@ else
   _centre = boundingCenter _objet;
   _objVol = abs (((_corner select 0) - (_centre select 0))*((_corner select 1) - (_centre select 1))*((_corner select 2) - (_centre select 2))*8);
   */
-	_objVol = sizeof typeof _objet;
-	
+	_objVol = sizeof typeof _objet;	
   _prepTime = (floor _objVol)*10 - 10;
+	if ((_objet isKindOf "ACE_envelope_small") || {_objet isKindOf "ACE_envelope_big"}) then {
+		_prepTime = _prepTime * 2;
+	};
+	
   _exit = false;
   
   if (_prepTime > 0) then {
