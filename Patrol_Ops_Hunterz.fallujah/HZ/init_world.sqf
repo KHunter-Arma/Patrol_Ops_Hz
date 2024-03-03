@@ -6,10 +6,10 @@ switch (toUpper worldName) do {
 			{
 				{_x hideObject true} foreach _x;
 			}foreach [
-						nearestobjects [[3339.92,4055.99,0.00143862],[],15],
-						nearestobjects [[3359.98,4055.47,0.00143862],[],15],
-						nearestobjects [[3043.59,2721.69,0.00143862],[],15],
-						nearestobjects [[3699.2,4940.73,0.00143862],[],15],
+						nearestobjects [[3339.92,4055.99,0],[],15],
+						nearestobjects [[3359.98,4055.47,0],[],15],
+						nearestobjects [[3043.59,2721.69,0],[],15],
+						nearestobjects [[3699.2,4940.73,0],[],15],
 						nearestobjects [[9561.9,3168.5,0],[],5],
 						nearestobjects [[1218.63,5087.15,0],[],3],
 						nearestobjects [[1257.83,5962.05,0],[],3],
@@ -35,7 +35,8 @@ switch (toUpper worldName) do {
 						nearestobjects [[2207.03,3232.05,0],[],3],
 						nearestobjects [[1639.24,3058.28,0],[],3],
 						nearestobjects [[9403.88,6572.96,0],[],3],
-						nearestobjects [[1681.45,86.294,0],[],3]
+						nearestobjects [[1681.49,86.23,0],[],3],
+						nearestobjects [[1681.45,86.29,0],[],3]
 					];
 					
 		
