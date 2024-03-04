@@ -373,10 +373,10 @@ publicVariable "Hz_ambw_pat_maxNumOfUnits";
 Hz_max_allunits = Hz_max_allunits + Hz_ambient_units_intensify_amount; 
 publicVariable "Hz_max_allunits";
 */
-/*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
+/*--------------------CREATE INTEL---------------------------------*/
 
-mps_civilian_intel = +_caches; publicVariable "mps_civilian_intel";
-mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_deathcount";
+mps_civilian_intel = +_caches;
+publicVariable "mps_civilian_intel";
 
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
@@ -466,4 +466,5 @@ if((call Hz_fnc_taskSuccessCheckGenericConditions) && ({alive _x} count _caches 
 
 /*--------------------RESET INTEL---------------------------------*/
 
-mps_civilian_intel = []; publicVariable "mps_civilian_intel";
+mps_civilian_intel = [];
+publicVariable "mps_civilian_intel";

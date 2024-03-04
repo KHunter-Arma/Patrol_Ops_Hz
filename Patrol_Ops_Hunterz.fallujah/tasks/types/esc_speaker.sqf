@@ -124,11 +124,6 @@ _crowdGrp setformdir ([_crowdPos,_position] call bis_fnc_dirto);
 
 } foreach _crowd;
 
-/*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
-
-mps_civilian_intel = []; publicVariable "mps_civilian_intel";
-mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_deathcount";
-
 /*--------------------CREATE TARGET-----------------------------------*/
 
 _grp = createGroup (SIDE_A select 0);
@@ -829,8 +824,4 @@ if((call Hz_fnc_taskSuccessCheckGenericConditions) && (alive _vip) && (({(_vip d
 	}forEach _units;
 	{deletevehicle _x}forEach _vehs;
 	
-};      
-
-/*--------------------RESET INTEL---------------------------------*/
-
-mps_civilian_intel = []; publicVariable "mps_civilian_intel";
+};

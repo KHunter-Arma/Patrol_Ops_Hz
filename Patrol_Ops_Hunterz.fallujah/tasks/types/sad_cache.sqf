@@ -369,10 +369,10 @@ _otherReward = _cacheCount*_rewardPerCache;
 Hz_ambw_pat_disablePatrols = false;
 publicVariable "Hz_ambw_pat_disablePatrols";
 
-/*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
+/*--------------------CREATE INTEL---------------------------------*/
 
-mps_civilian_intel = +_caches; publicVariable "mps_civilian_intel";
-mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_deathcount";
+mps_civilian_intel = +_caches;
+publicVariable "mps_civilian_intel";
 
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
@@ -435,4 +435,5 @@ if(call Hz_fnc_taskSuccessCheckGenericConditions) then {
 
 /*--------------------RESET INTEL---------------------------------*/
 
-mps_civilian_intel = []; publicVariable "mps_civilian_intel";
+mps_civilian_intel = [];
+publicVariable "mps_civilian_intel";

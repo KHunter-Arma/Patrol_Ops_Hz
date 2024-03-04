@@ -35,6 +35,7 @@ private ["_condition_load", "_condition_drag", "_condition_unload", "_cursTarget
 		_recruit_units = nil;
 		_intelaction1 = nil;
 		_taskaction = nil;
+		_thoughtsaction = nil;
 //		_intelaction2 = nil;
 //		_adminlock = nil;
 //		_adminunlock = nil;
@@ -84,14 +85,16 @@ private ["_condition_load", "_condition_drag", "_condition_unload", "_cursTarget
 // Unit Recruitment
 		/*	if ({_cursTarget isKindOf _x} count ["Base_WarfareBBarracks"] > 0) then { _recruit_units = _cursTarget addaction ["<t color=""#FFc600"">Recruit Unit</t>",(mps_path+"action\mps_recruit_dialog.sqf"),[],-1,true,true,"",""]; }; */
 
-// Question Civillians
+// Civilian interaction
 			if ((alive  _cursTarget) && {!isPlayer _cursTarget} && {!(_cursTarget getVariable ["mps_interaction_disabled", false])} && {!(_cursTarget call Hz_fnc_isUncon)} && {_cursTarget isKindOf "Civilian"} && {((currentWeapon _cursTarget) in _civNeutralWeapons) || {captive _cursTarget}}) then {
 
-				_intelaction1 = _cursTarget addAction ["<t color='#42ebf4'>Question this person", (mps_path+"action\mps_interaction_question.sqf"),[],4,true,true,"","true", 4];
+				_intelaction1 = _cursTarget addAction ["<t color='#42ebf4'>Can you help us?", (mps_path+"action\mps_interaction_question.sqf"),[],4,true,true,"","true", 4];
 				
 				 if (((!taskrequested) && {!Hz_patrol_task_in_progress} && {!Hz_pops_heartsandmindsTaskRequested} && {!Hz_pops_heartsandmindsInProgress} && {call Hz_func_isSupervisor} && {(count playableUnits) > 1} && {!(_cursTarget getVariable ["mps_isHelpRequester",false])}) || {hz_debug}) then {
-					_taskaction = _cursTarget addAction ["<t color='#D1D100'>Ask if you can help", (mps_path+"action\mps_interaction_help.sqf"),[],3,true,true,"","true", 4];
+					_taskaction = _cursTarget addAction ["<t color='#D1D100'>Can we help you?", (mps_path+"action\mps_interaction_help.sqf"),[],2,true,true,"","true", 4];
 				 };
+				 
+				 _thoughtsaction = _cursTarget addAction ["<t color='#42eb42'>What do you think of us?", (mps_path+"action\mps_interaction_civrelations.sqf"),[],3,true,true,"","true", 4];
 			
 			};
 			
@@ -118,6 +121,7 @@ private ["_condition_load", "_condition_drag", "_condition_unload", "_cursTarget
 			if(!isNil "_recruit_units") then {_cursTarget removeAction _recruit_units };
 			if(!isNil "_intelaction1") then {_cursTarget removeAction _intelaction1 };
 			if(!isNil "_taskaction") then {_cursTarget removeAction _taskaction };
+			if(!isNil "_thoughtsaction") then {_cursTarget removeAction _thoughtsaction };
 		//	if(!isNil "_intelaction2") then {_cursTarget removeAction _intelaction2 };
 		//	if(!isNil "_adminlock") then {_cursTarget removeAction _adminlock };
                //     	if(!isNil "_adminunlock") then {_cursTarget removeAction _adminunlock };

@@ -37,11 +37,6 @@ _newComp = [_position, random 360,(call compile preprocessfilelinenumbers "Compo
 
 } foreach _newComp;
 
-/*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
-
-mps_civilian_intel = []; publicVariable "mps_civilian_intel";
-mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_deathcount";
-
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
 [ format["TASK%1",_taskid],
@@ -181,7 +176,3 @@ if((call Hz_fnc_taskSuccessCheckGenericConditions) && (({(side _x) == (SIDE_A se
 	{deletevehicle _x}forEach _vehs;
 	
 };      
-
-/*--------------------RESET INTEL---------------------------------*/
-
-mps_civilian_intel = []; publicVariable "mps_civilian_intel";

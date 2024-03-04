@@ -194,10 +194,6 @@ publicVariable "Hz_ambw_pat_maxNumOfUnits";
 Hz_max_allunits = Hz_max_allunits + Hz_ambient_units_intensify_amount;
 publicVariable "Hz_max_allunits";
 */
-/*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
-
-mps_civilian_intel = (_containers + _workers); publicVariable "mps_civilian_intel";
-mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_deathcount";
 
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
@@ -489,7 +485,3 @@ if( (_supplyBar >= _supplyTime) && (({ alive _x } count _workers) > 0) && (call 
 	{deletevehicle _x}forEach _vehs;
 	
 };      
-
-/*--------------------RESET INTEL---------------------------------*/
-
-mps_civilian_intel = []; publicVariable "mps_civilian_intel";

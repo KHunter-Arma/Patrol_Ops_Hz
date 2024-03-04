@@ -79,11 +79,6 @@ _otherReward = 0;
 
 _returnPoint = markerPos "return_point_west";
 
-/*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
-
-mps_civilian_intel = []; publicVariable "mps_civilian_intel";
-mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_deathcount";
-
 /*--------------------CREATE TARGET-----------------------------------*/
 
 _grp = createGroup (SIDE_A select 0);
@@ -444,7 +439,3 @@ if((call Hz_fnc_taskSuccessCheckGenericConditions) && (alive _vip) && (({(_vip d
 	{deletevehicle _x}forEach _vehs;
 	
 };      
-
-/*--------------------RESET INTEL---------------------------------*/
-
-mps_civilian_intel = []; publicVariable "mps_civilian_intel";

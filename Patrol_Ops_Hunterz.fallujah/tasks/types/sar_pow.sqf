@@ -439,10 +439,10 @@ publicVariable "Hz_ambw_pat_disablePatrols";
 Hz_ambw_pat_maxNumOfUnits = Hz_ambw_pat_maxNumOfUnits + _ambientCombatIntensifyAmount;
 publicVariable "Hz_ambw_pat_maxNumOfUnits";
 
-/*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
+/*--------------------CREATE INTEL---------------------------------*/
 
-mps_civilian_intel = [_pow1]; publicVariable "mps_civilian_intel";
-mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_deathcount";
+mps_civilian_intel = [_pow1];
+publicVariable "mps_civilian_intel";
 
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
@@ -518,4 +518,5 @@ if (_veh == _pow1) then {
 
 /*--------------------RESET INTEL---------------------------------*/
 
-mps_civilian_intel = []; publicVariable "mps_civilian_intel";
+mps_civilian_intel = [];
+publicVariable "mps_civilian_intel";

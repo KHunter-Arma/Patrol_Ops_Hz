@@ -1,7 +1,7 @@
 private _person = _this select 0;
 
 if (_person getVariable ["mps_isHelpRequester",false]) exitWith {
-	hint "I already told you everything I know! Please help me.";
+	hint """I already told you everything I know! Please help me.""";
 };
 
 if ((_person getVariable ["Hz_ambw_civ_isHostile",false]) || {_person getVariable ["mps_askedForHelp",false]}) exitwith {
@@ -12,7 +12,7 @@ if ((_person getVariable ["Hz_ambw_civ_isHostile",false]) || {_person getVariabl
 		
 	} else {
 	
-		hint "No thanks.";
+		hint """No thanks.""";
 	
 	};
 };
@@ -31,7 +31,7 @@ if ((hz_debug) || {(random 1) < 0.2}) then {
 		
 		_person setVariable ["Hz_ambw_civ_doNotDelete", true, true];
 		
-		hint "There is something you can help me with...";
+		hint """There is something you can help me with...""";
 
 } else {
 
@@ -40,7 +40,7 @@ if ((hz_debug) || {(random 1) < 0.2}) then {
 				"This person is becoming frustrated due to the language barrier",
 				"This person does not appear to understand what you're asking",
 				"This person is acting dismissive against you.",
-				"No thanks."
+				"""No thanks."""
 				] call mps_getRandomElement);
 
 };

@@ -61,11 +61,6 @@ _otherReward = 0;
 	};
 } foreach _editorObjsToDelete;
 
-/*--------------------CREATE INTEL, RESET DEATHCOUNT---------------------------------*/
-
-mps_civilian_intel = []; publicVariable "mps_civilian_intel";
-mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_deathcount";
-
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
 [ format["TASK%1",_taskid],
@@ -252,24 +247,3 @@ if((call Hz_fnc_taskSuccessCheckGenericConditions) /*&& (({(side _x) == (SIDE_A 
 /*--------------------CLEAN UP (NEW VERSION)---------------------------------*/       
 
 // No cleanup for this task needed... get your damn base back in action...
-
-/*
-
-[patrol_task_units,_position,patrol_task_vehs] spawn {
-	
-	
-	private ["_units","_vehs","_markers"];
-	_units = _this select 0;
-	_vehs = _this select 2;
-	
-	while{ ({(_x distance _pos) < 1500} count playableUnits) > 0} do { sleep 60 };
-	{deletevehicle _x}forEach _units;
-	{deletevehicle _x}forEach _vehs;
-	
-};      
-
-*/
-
-/*--------------------RESET INTEL---------------------------------*/
-
-mps_civilian_intel = []; publicVariable "mps_civilian_intel";
