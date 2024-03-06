@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={7843.5645,8.4863882,1284.9386};
-		dir[]={-0.41987482,-0.90174252,0.10320239};
-		up[]={-0.87567252,0.43225664,0.21523514};
-		aside[]={0.2386992,-1.4090328e-006,0.9711318};
+		pos[]={7957.8652,9.0273905,804.43646};
+		dir[]={-0.054055195,-0.94996852,0.30763629};
+		up[]={-0.16440177,0.31234422,0.93563503};
+		aside[]={0.98491246,-2.3501343e-009,0.17306031};
 	};
 };
 binarizationWanted=0;
@@ -21849,7 +21849,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.2;
-						init="call{if (isServer) then {removeAllWeapons this; [this,""Acts_A_M05_briefing""] execvm ""media\animloop.sqf""; (group this) setVariable [""Hz_defending"",true]; this setSkill 0};}";
+						init="if (isServer) then {removeAllWeapons this; [this,""Acts_A_M05_briefing""] execvm ""media\animloop.sqf""; (group this) setVariable [""Hz_defending"",true]; this setSkill 0};" \n "" \n "this addAction [""<t color='#42eb42'>What do you think of us?"",""mps\action\mps_interaction_bluforrelations.sqf"",[],3,true,true,"""",""(alive _target) && {(time > 180) && {!(_target call Hz_fnc_isUncon)}} && {!captive _target}"", 4];";
 						name="amb4";
 						stance="Up";
 						class Inventory
