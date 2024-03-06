@@ -18,6 +18,6 @@
 "chzoe_AddOn_Cars",
 "V12_z4_F",
 "offroad_rework",
-"fallujah_surfaces",
+"fallujah_Hz",
 "vehicle_vgarage_fixes",
 "vehicle_fixes",
