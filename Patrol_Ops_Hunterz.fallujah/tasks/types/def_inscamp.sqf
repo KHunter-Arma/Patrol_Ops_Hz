@@ -83,7 +83,7 @@ _statGrp = creategroup (SIDE_A select 0);
       _dude assignasgunner _x;
       _dude moveingunner _x;
 			
-			_dude setVariable ["Hz_ambw_sideFaction",[SIDE_A select 0,"Friendly Insurgents"],true];
+			_dude setVariable ["Hz_ambw_sideFaction",[SIDE_A select 0,"Friendly Insurgents",0.3],true];
     
     };
   
@@ -103,7 +103,7 @@ _statGrp = creategroup (SIDE_A select 0);
 			{deletevehicle _x} foreach (nearestObjects [_this, ["WeaponHolder"], 10]);
 		};
 		
-		_dude setVariable ["Hz_ambw_sideFaction",[SIDE_A select 0,"Friendly Insurgents"],true];
+		_dude setVariable ["Hz_ambw_sideFaction",[SIDE_A select 0,"Friendly Insurgents",0.3],true];
 	
 	};
   
@@ -162,7 +162,7 @@ for "_i" from 1 to 12 do {
 	};	
 	_dude selectweapon (primaryweapon _dude);
 	
-	_dude setVariable ["Hz_ambw_sideFaction",[SIDE_A select 0,"Friendly Insurgents"],true];
+	_dude setVariable ["Hz_ambw_sideFaction",[SIDE_A select 0,"Friendly Insurgents",0.3],true];
 
 };
 

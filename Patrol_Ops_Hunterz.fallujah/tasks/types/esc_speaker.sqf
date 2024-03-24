@@ -387,7 +387,7 @@ case (_suicidebomber) : {
 			} foreach _temp;
 			
 			_bomber = _crowd call mps_getrandomelement; 
-			_bomber setVariable ["Hz_ambw_sideFaction",[SIDE_C select 0, "Enemy Insurgents"],true];
+			_bomber setVariable ["Hz_ambw_sideFaction",[SIDE_C select 0, "Enemy Insurgents",0],true];
 			_bomber setskill 1;
 			_bomber addMagazine "IEDUrbanBig_Remote_Mag";
 			_bomber setCaptive false;
@@ -604,7 +604,7 @@ while {
 			} foreach _temp;
 			
 			_dude = _crowd call mps_getrandomelement;
-			_dude setVariable ["Hz_ambw_sideFaction",[SIDE_C select 0, "Enemy Insurgents"],true]; 
+			_dude setVariable ["Hz_ambw_sideFaction",[SIDE_C select 0, "Enemy Insurgents",0],true]; 
 			_dude setskill 0.4;
 			_dude setskill ["spotDistance",1];
 			_dude setskill ["spotTime",1];
