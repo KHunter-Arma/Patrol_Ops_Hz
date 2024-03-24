@@ -105,7 +105,6 @@ if ((random 1) < 0.25) then {
 						private _thisBuilding = _x;
 						private _bpos = [_thisBuilding] call BIS_fnc_buildingPositions;
 						((count _bpos) > 12)
-						&& {({(_thisBuilding distance _x) < _minDistanceBetweenCaches} count _caches) < 1}
 						&& {
 									private _result = false;
 									{
