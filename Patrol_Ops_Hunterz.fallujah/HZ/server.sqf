@@ -151,7 +151,7 @@ while {true} do
 	*/
 	call Hz_func_setrealtime;
 	
-	if ((serverTime > 18000) && {(count (call BIS_fnc_listPlayers)) == 0} && {!Hz_patrol_task_in_progress} && {!Hz_pops_heartsandmindsTaskRequested} && {(Hz_pers_nextSaveTime - serverTime) > 180}) then {
+	if ((serverTime > 14000) && {(count (call BIS_fnc_listPlayers)) == 0} && {!Hz_patrol_task_in_progress} && {!Hz_pops_heartsandmindsTaskRequested} && {(Hz_pers_nextSaveTime - serverTime) > 180}) then {
 		diag_log "### Hz_diag: Auto-restarting server!";
 		call srvrst;
 		sleep 600;

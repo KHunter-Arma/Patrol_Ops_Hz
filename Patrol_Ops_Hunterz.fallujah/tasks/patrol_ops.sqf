@@ -96,16 +96,13 @@ if(jointops) exitwith {
 
 if ((count Hz_save_prev_tasks_list) >= (count _allTasks)) then {
 	Hz_save_prev_tasks_list = [];
+	publicVariable "Hz_save_prev_tasks_list";
 };
-
 _availableTasks = _allTasks - Hz_save_prev_tasks_list;
 
 if (!hz_debug) then {
 	if (((count playableUnits) + ({isplayer _x} count alldead)) < 8) then {
 		_availableTasks = _availableTasks - ["sad_scud"];
-		if ((count _availableTasks) == 0) then {
-			_availableTasks = _allTasks;
-		};
 	};
 };
 

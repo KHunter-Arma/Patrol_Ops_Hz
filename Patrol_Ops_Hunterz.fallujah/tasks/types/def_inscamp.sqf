@@ -32,6 +32,7 @@ _otherReward = 0;
 _fnc_initDude = {
 
 	_this addMagazine "CUP_30Rnd_762x39_AK47_M";
+	_this setVariable ["mps_interaction_disabled", true, true];
 	if ((random 1) < 0.3) then {
 
 		_this addweapon "CUP_arifle_AKS";

@@ -60,3 +60,11 @@ _vehicle addMPEventHandler ["MPKilled", {
 		publicVariable "Hz_pops_failFileTask";
 	};	
 }];
+
+// remove radio racks -- this function has some weird working requirements...
+if (!isServer) then {
+	[] spawn {
+		sleep 10;
+		_vehicle remoteExecCall ["Hz_fnc_removeAllVehicleRadioRacks", 2, false];
+	};
+};

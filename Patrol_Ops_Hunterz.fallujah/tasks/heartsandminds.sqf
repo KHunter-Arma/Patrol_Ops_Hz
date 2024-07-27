@@ -16,6 +16,7 @@ if(hz_debug) then {
 
 if ((count Hz_pops_HM_prevTaskList) >= (count _allTasks)) then {
 	Hz_pops_HM_prevTaskList = [];
+	publicVariable "Hz_pops_HM_prevTaskList";
 };
 _availableTasks = _allTasks - Hz_pops_HM_prevTaskList;
 _nextTask = selectRandom _availableTasks;
@@ -26,6 +27,6 @@ publicvariable "Hz_pops_heartsandmindsInProgress";
 call compile preprocessFileLineNumbers format["tasks\heartsandminds\%1.sqf",_nextTask];
 
 Hz_pops_HM_prevTaskList pushBack _nextTask;
-publicVariable "Hz_pops_HM_prevTaskList"; 
+publicVariable "Hz_pops_HM_prevTaskList";
 
 [] execvm "tasks\patrol_ops.sqf";

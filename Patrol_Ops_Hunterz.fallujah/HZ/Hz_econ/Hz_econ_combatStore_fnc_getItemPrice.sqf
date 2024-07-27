@@ -1192,13 +1192,13 @@ case "CUP_G_TK_ROUNDGLASSES_GOLD_NV" : {90};
 
 //COMMUNICATION
 //case "ITEMRADIO": {110};
-//case  "ACRE_PRC117F": {3706.55};
+case  "ACRE_PRC117F": {3707*_relationsMultiplier};
 case  "ACRE_PRC148": {7500*_relationsMultiplier};
-//case  "ACRE_PRC152": {7000};
+//case  "ACRE_PRC152": {7000*_relationsMultiplier};
 case  "ACRE_PRC343": {110*_relationsMultiplier};
-//case  "ACRE_PRC77": {325};
-//case  "ACRE_SEM52SL": {1500};
-//case  "ACRE_SEM70": {5000};
+case  "ACRE_PRC77": {325};
+//case  "ACRE_SEM52SL": {1500*_relationsMultiplier};
+//case  "ACRE_SEM70": {5000*_relationsMultiplier};
 
 
 //NAVIGATION

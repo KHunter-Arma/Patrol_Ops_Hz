@@ -55,6 +55,7 @@ _workergrp = creategroup civilian;
 for "_i" from 1 to 4 do {
 
 	_worker = _workergrp createUnit [(_escortTypes call mps_getRandomElement), _spawnpos, [], 10, "NONE"];
+	_worker setVariable ["mps_interaction_disabled", true, true];
 	_worker setVariable ["Hz_ambw_disableSideRelations",true,true];
 	_workers pushBack _worker; 
 

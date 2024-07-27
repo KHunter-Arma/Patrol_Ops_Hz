@@ -71,9 +71,14 @@ _missionStart = time < 300;
 		_johnDude setpos Hz_HQStoreReplacementDudePos;
 		_johnDude addGoggles Hz_HQStoreReplacementDudeGoggles;
 		[_johnDude, Hz_HQStoreReplacementDudeFace] remoteExecCall ["setFace", 0, true];
-		_johnDude forcespeed 0;
-		_johnDude disableai "move";
+		_johnDude disableai "TARGET"; 
+		_johnDude disableai "AUTOTARGET"; 
+		_johnDude disableai "MOVE"; 
+		_johnDude disableai "FSM"; 
+		_johnDude setunitPos "UP";
 		_johnDude setSkill 0;
+		_johnDude setVariable ["Hz_noMove", true]; 
+		_johnDude setVariable ["Hz_disableFSM", true];
 		John = _johnDude;
 		publicVariable "John";
 		
@@ -83,6 +88,8 @@ _missionStart = time < 300;
 			_dude = _grp createUnit [Hz_baseGuardType, Hz_HQStoreReplacementDudePos, [], 50, "NONE"];
 			_dude setUnitLoadout _x;
 		} foreach Hz_baseGuards;
+		
+		_grp setVariable ["Hz_defending", true];
 
 		sleep 0.1;
 		_newgrp = createGroup (SIDE_A select 0);

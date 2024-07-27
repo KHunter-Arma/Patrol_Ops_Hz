@@ -88,6 +88,7 @@ _vip setRank "PRIVATE";
 dostop _vip;
 _vip setVariable ["Hz_disableFSM",true];
 _vip setVariable ["Hz_ambw_disableSideRelations",true,true];
+_vip setVariable ["mps_interaction_disabled", true, true];
 
 _grp deleteGroupWhenEmpty true;
 

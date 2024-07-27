@@ -329,7 +329,7 @@ mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_dea
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
 [format["TASK%1",_taskid],
-"Hearts and Minds: Rescue Daughter",
+"Hearts and Minds: Mission Received",
 "Sir, my daughter has been kidnapped by the Takistanis! Please, find her and bring her back to me!",
 true,
 [],

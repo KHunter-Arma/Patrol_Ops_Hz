@@ -45,16 +45,16 @@ Hz_func_find_nearest_ammo_crate = compile preprocessfilelinenumbers "HZ\Hz_funcs
 Hz_func_locateFOB = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_func_locateFOB.sqf";
 
 //Client init
-if(!isDedicated && !(call Hz_fnc_isHC)) then {
+if(!isDedicated && {!(call Hz_fnc_isHC)}) then {
 
 	Hz_fnc_arrestPlayer = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_arrestPlayer.sqf";
   Hz_fnc_arrestedHandleEscape = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_arrestedHandleEscape.sqf";
 	Hz_fnc_transferGearToNearestAmmoCrate = compile preprocessfilelinenumbers "HZ\Hz_funcs\Hz_fnc_transferGearToNearestAmmoCrate.sqf";
-  
-  [] spawn {   
+      
+	[] spawn {   
     
     waituntil {sleep 0.1; !isnull player};
-    sleep 1;
+    sleep 0.1;
     
     if (Hz_pops_enableRestrictions) then {
       
@@ -77,55 +77,30 @@ if(!isDedicated && !(call Hz_fnc_isHC)) then {
       } else {
         
         if(_uid in Hz_pops_restrictions_publicNoRatioLimit) then {
-          
           Hz_playertype = "publicNoLimit";
-					
-					if (Hz_econ_funds < 100000) then {
-					
-						Hz_econ_combatStore_storeClosed = true;
-						
-						"Hz_econ_funds" addPublicVariableEventHandler {
-						
-							if (Hz_econ_funds < 100000) then {
-					
-								Hz_econ_combatStore_storeClosed = true;
-								
-							} else {
-							
-								Hz_econ_combatStore_storeClosed = false;
-							
-							};
-						
-						};
-					
-					};
-          
         } else {
-          
           Hz_playertype = "public";
-					
-					if (Hz_econ_funds < 100000) then {
-					
-						Hz_econ_combatStore_storeClosed = true;
-						
-						"Hz_econ_funds" addPublicVariableEventHandler {
-						
-							if (Hz_econ_funds < 100000) then {
-					
-								Hz_econ_combatStore_storeClosed = true;
-								
-							} else {
-							
-								Hz_econ_combatStore_storeClosed = false;
-							
-							};
-						
-						};
-					
-					};
-          
         };
-        
+				
+				"Hz_econ_funds" addPublicVariableEventHandler {
+					if (Hz_econ_funds < 100000) then {
+						Hz_econ_combatStore_storeClosed = true;
+					} else {
+						Hz_econ_combatStore_storeClosed = false;
+					};
+				};
+				
+				[] spawn {
+					waitUntil {
+						sleep 0.1;
+						!isNil "Hz_econ_funds"
+					};
+					sleep 0.1;
+					if (Hz_econ_funds < 100000) then {					
+						Hz_econ_combatStore_storeClosed = true;
+					};
+				};
+				
       };
       
       if(hz_debug) then {
@@ -148,6 +123,7 @@ if(!isDedicated && !(call Hz_fnc_isHC)) then {
 		call compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_setupAceInteractionMenuEntries.sqf";
     
   };
+
 
 };
 
@@ -212,6 +188,7 @@ if (isServer) then {
   if(!isMultiplayer) then {{if(!isplayer _x) then {deletevehicle _x};}foreach switchableunits;};
 	
 	Hz_fnc_handleBaseHQDestroyed = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_handleBaseHQDestroyed.sqf";
+	Hz_fnc_removeAllVehicleRadioRacks = compile preprocessFileLineNumbers "HZ\Hz_funcs\Hz_fnc_removeAllVehicleRadioRacks.sqf";
 
 };
 

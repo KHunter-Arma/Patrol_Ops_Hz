@@ -4,6 +4,21 @@ if (_person getVariable ["mps_isHelpRequester",false]) exitWith {
 	hint """I already told you everything I know! Please help me.""";
 };
 
+private _exit = switch (behaviour _person) do {
+	case ("COMBAT") : {
+		hint selectRandom [
+			"Better to wait until things calm down a bit before questioning this person...",
+			"This person seems too frightened to answer any questions right now."
+			];
+		true
+	};
+	default {
+		false			
+	};
+};
+
+if (_exit) exitWith {};
+
 if ((_person getVariable ["Hz_ambw_civ_isHostile",false]) || {_person getVariable ["mps_askedForHelp",false]}) exitwith {
 
 	if (random 1 < 0.5) then {
@@ -16,6 +31,11 @@ if ((_person getVariable ["Hz_ambw_civ_isHostile",false]) || {_person getVariabl
 	
 	};
 };
+
+doStop _person;
+[_person, player] remoteExecCall ["doWatch", _person, false];
+[_person, _person getDir player] remoteExecCall ["setDir", _person, false];
+[_person, "UP"] remoteExecCall ["setUnitPos", _person, false];
 
 _person setVariable ["mps_askedForHelp",true,true];
 // either he's going to ask for help or not be too nice so, he shouldn't be questionable if he hasn't been already

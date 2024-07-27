@@ -126,8 +126,15 @@ publicVariable "Hz_pops_disableStore";
 	{
 	
 		_x enableAI "MOVE";
-		_x enableAI "AUTOCOMBAT";
+		_x enableAI "PATH";
+		_x enableAI "TARGET";
+		_x enableAI "AUTOTARGET";
+		_x enableAI "FSM";
 		_x setUnitPos "MIDDLE";
+		_x setSkill 0.2;
+		_x setVariable ["Hz_noMove", false]; 
+		_x setVariable ["Hz_disableFSM", false];
+		
 		/*
 		_x addEventHandler ["Hit",{
 		

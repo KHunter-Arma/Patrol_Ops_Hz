@@ -102,6 +102,7 @@ for "_i" from 1 to (40 + (round random 35)) do {
 	_type = Hz_ambw_hostileCivTypes call mps_getrandomelement;
 	
 	_civ = _crowdGrp createUnit [ _type, _crowdPos, [], 10, "CAN_COLLIDE"];
+	_civ setVariable ["mps_interaction_disabled", true, true];
 	_crowd pushBack _civ;
 	_civ setdir (random 360);
 	_civ forceSpeed 0;
@@ -131,6 +132,7 @@ _type = ["LOP_CHR_Civ_Functionary_01","LOP_CHR_Civ_Functionary_02","LOP_Tak_Civ_
 _vip = _grp createUnit [ _type, ( getMarkerPos format["return_point_%1",(SIDE_A select 0)] ), [], 10, "NONE"];
 _vip setRank "PRIVATE";
 _vip setVariable ["Hz_ambw_disableSideRelations",true,true];
+_vip setVariable ["mps_interaction_disabled", true, true];
 
 _grp deleteGroupWhenEmpty true;
 
@@ -152,6 +154,7 @@ for "_i" from 1 to 4 do {
 	"LOP_Tak_Civ_Man_06"] call mps_getRandomElement;
 
 	_dude = _grp createUnit [ _type, ( getMarkerPos format["return_point_%1",(SIDE_A select 0)] ), [], 10, "NONE"];
+	_dude setVariable ["mps_interaction_disabled", true, true];
 	_dude setRank "PRIVATE";		
 	_guards pushBack _dude;
 	

@@ -2,18 +2,16 @@ private _person = _this select 0;
 
 if(!(_person getVariable ["mps_questioned_relations",false])) then {
 	
-		private _exit = switch (stance _person) do {
-		case ("STAND") : {false};
-		case ("UNDEFINED") : {
-			hint "It's probably not a good idea to question this person in this state...";
-			true
-		};
-		default {
+		private _exit = switch (behaviour _person) do {
+		case ("COMBAT") : {
 			hint selectRandom [
 				"Better to wait until things calm down a bit before questioning this person...",
 				"This person seems too frightened to answer any questions right now."
 				];
 			true
+		};
+		default {
+			false			
 		};
 	};
 	
@@ -21,6 +19,22 @@ if(!(_person getVariable ["mps_questioned_relations",false])) then {
 	
 	doStop _person;
 	[_person, player] remoteExecCall ["doWatch", _person, false];
+	[_person, _person getDir player] remoteExecCall ["setDir", _person, false];
+	[_person, "UP"] remoteExecCall ["setUnitPos", _person, false];
+	
+	if ((!captive _person) && {_person getVariable ["Hz_ambw_civ_isHostile", false]}) exitWith {
+		
+		hint selectRandom [
+			"This person is acting dismissive against you.",
+			"This person gives you a bad look and looks away.",
+			"This person is acting hostile towards you.",
+			"This person looks at you afraid and doesn't seem to want to talk.",
+			"""The justice of God will surely have you suffer for your acts!"""
+		];
+		
+		_person setVariable ["mps_questioned_relations",true,true];
+		
+	};
 	
 	private _relationsFactor = Hz_ambw_srel_relationsCivilian/100;
 	

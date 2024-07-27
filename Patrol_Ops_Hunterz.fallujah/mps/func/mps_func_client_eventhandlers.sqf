@@ -48,7 +48,6 @@ player addEventHandler ["InventoryOpened", {
 				};
 			};
 		};
-		false
 	}
 }];
 
@@ -268,31 +267,10 @@ player addEventHandler ["Killed",{
     
     if (!(player getVariable ["JointOps",false])) then {
     
-    sleep (random 3);
-    /*
-    if(Hz_patrol_task_in_progress)  then {
-      
-      mps_mission_deathcount = mps_mission_deathcount - 1; 
-      publicVariable "mps_mission_deathcount";
-      
-    } else {
-      
-      Hz_econ_funds = Hz_econ_funds - Hz_econ_penaltyPerPlayerdeath;
-      publicVariable "Hz_econ_funds";
-
-    };
-    */
-		
-		_penalty = Hz_econ_penaltyPerPlayerdeath;
-		
-		if ((toupper Hz_playertype) != "SUPERVISOR") then {
-		
-			_penalty = _penalty / 2;
-		
-		};
-		
-		Hz_econ_funds = Hz_econ_funds - _penalty;
-		publicVariable "Hz_econ_funds";
+			sleep (random 3);
+					
+			Hz_econ_funds = Hz_econ_funds - Hz_pops_playerDeathPenalty;
+			publicVariable "Hz_econ_funds";
 		
     };
     
@@ -622,7 +600,42 @@ if(mps_ambient_insurgents) then {
 
 };
 */
+[] spawn {
 
+	waitUntil {
+		sleep 0.1;
+		!isNil "Hz_playertype"
+	};
+	sleep 0.1;
+
+	if ((toupper Hz_playertype) == "SUPERVISOR") then {
+
+		private _uid = getPlayerUID player;
+		private _rankFactor = (Hz_pops_supervisor_ranks select (Hz_pops_restrictions_supervisorList find _uid)) - 2;
+		private _qualificationsFactor = _rankFactor;
+		
+		private _qualifications = [];
+		{
+			if (_uid == (_x select 0)) exitWith {
+				_qualifications = (_x select 1) - ["TL", "SL"];		
+				_qualificationsFactor = _qualificationsFactor + (count _qualifications);
+			};
+		} foreach Hz_pops_UIDdatabase;
+		
+		if (_qualificationsFactor < 0) then {
+			_qualificationsFactor = 0;
+		};
+			
+		Hz_pops_playerDeathPenalty = Hz_econ_penaltyPerPlayerdeath + Hz_econ_penaltyPerPlayerdeathPerQualification * _qualificationsFactor;
+		
+	} else {
+
+		// half the cost for recruits
+		Hz_pops_playerDeathPenalty = Hz_econ_penaltyPerPlayerdeath / 2;
+		
+	};
+	
+};
 
 "mission_groupchat"	addPublicVariableEventHandler { player groupChat (_this select 1) };
 

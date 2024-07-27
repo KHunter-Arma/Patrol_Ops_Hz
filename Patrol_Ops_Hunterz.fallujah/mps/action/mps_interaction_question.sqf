@@ -9,18 +9,16 @@ private _person = _this select 0;
 
 if(!(_person getVariable ["mps_questioned",false])) then {
 
-	private _exit = switch (stance _person) do {
-		case ("STAND") : {false};
-		case ("UNDEFINED") : {
-			hint "It's probably not a good idea to question this person in this state...";
-			true
-		};
-		default {
+	private _exit = switch (behaviour _person) do {
+		case ("COMBAT") : {
 			hint selectRandom [
 				"Better to wait until things calm down a bit before questioning this person...",
 				"This person seems too frightened to answer any questions right now."
 				];
 			true
+		};
+		default {
+			false			
 		};
 	};
 	
@@ -28,6 +26,30 @@ if(!(_person getVariable ["mps_questioned",false])) then {
 	
 	doStop _person;
 	[_person, player] remoteExecCall ["doWatch", _person, false];
+	[_person, _person getDir player] remoteExecCall ["setDir", _person, false];
+	[_person, "UP"] remoteExecCall ["setUnitPos", _person, false];
+	
+	if ((!captive _person) && {_person getVariable ["Hz_ambw_civ_isHostile", false]}) exitWith {
+		
+		hint selectRandom [
+			"This person has no idea what you're talking about.",
+			"This person says they don't know anything about what you're asking.",
+			"This person is acting dismissive against you.",
+			"This person gives you a bad look and looks away.",
+			"This person is acting hostile towards you.",
+			"This person looks at you afraid and doesn't seem to want to talk.",
+			"This person is confused about what you're asking.",
+			"This person is becoming frustrated due to the language barrier.",
+			"This person does not appear to understand what you're asking.",
+			"This person has no idea what you're talking about.",
+			"This person says they don't know anything about what you're asking.",
+			"""I'm sorry, I can't help you.""",
+			"This person seems suspicious and unlikely to give you any information."
+		];
+		
+		_person setVariable ["mps_questioned",true,true];
+		
+	};
 
 	private _relationsFactor = Hz_ambw_srel_relationsCivilian/100;
 	
@@ -72,7 +94,7 @@ if(!(_person getVariable ["mps_questioned",false])) then {
 							"""My friend who lives near %1 told me he heard a lot of shooting and shouting near his home today, and he says it wasn't the result of the usual kind of fighting we've got used to around here... It might be worth taking a look over there.""",
 							"""My friend told me he heard a lot of shooting and shouting near his home today, and he says it wasn't the result of the usual kind of fighting we've got used to around here... It might be worth taking a look over there. He lives near %1.""",
 							"""I don't know if this will help you, but I came across some soldiers from the invasion forces today. It looked like they were exchanging something with the militia. Oh, right, this was in %1. I was there earlier. I don't know if they're still there though."""
-						], text _nearestLoc];
+						], text _nearestLocTarget];
 					};
 					
 					_person setVariable ["mps_questioned",true,true];

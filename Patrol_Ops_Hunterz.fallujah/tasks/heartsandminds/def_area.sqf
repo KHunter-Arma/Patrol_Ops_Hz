@@ -90,7 +90,7 @@ mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_dea
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
 [format["TASK%1",_taskid],
-"Hearts and Minds: Defend Civilian Area",
+"Hearts and Minds: Mission Received",
 "Praise Allah for sending you here now! Our homes have been getting attacked all week by one of the local tribes. Their leader is very dangerous and he has a few dozen men with guns under his command! And now they say the Takistanis are helping them too! Please, they have pillaged my neighbourhood and raped our girls. Those people are the workers of Satan, I tell you! That bastard was even smug enough to tell us they will be back today, around this time now! I am sure Allah sent you to help us just in time! Please, you must protect our town!",
 (SIDE_A select 0),
 [format["MARK%1",_taskid],_position,"Contact_pencilTask1","colorCivilian"," Defend"],

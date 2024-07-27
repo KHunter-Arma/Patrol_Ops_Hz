@@ -100,6 +100,7 @@ if (!hz_debug && isMultiplayer) then {
 //	[] execFSM (mps_path+"fsm\mps_client_3rdperson.fsm");
 
 waitUntil {!(isNull player)};
+sleep 0.1;
 
 if (!hz_debug) then {
 
@@ -259,7 +260,7 @@ if(_uid in BanList) then {
 [] execvm "SA_AdvancedTowing\advancedTowingInit.sqf";
 
 waituntil {Receiving_finish};
-sleep 1;
+sleep 0.3;
 if (!mps_debug && !hz_debug) then {["Bad Company Presents...",format["Patrol Ops Hunter'z\n%1",toupper(worldname)],"Mission by\nK.Hunter","Patrol Ops Framework\nby EightySix"] spawn mps_intro;} else {intro_cam_done = true;};
 waitUntil {intro_cam_done};
 
@@ -534,9 +535,9 @@ if (isMultiplayer && {Hz_pops_enableDetainUnrecognisedUIDs}) then {
 				Hz_pops_releasedUIDs pushBack (getPlayeruid player);
 				publicVariable "Hz_pops_releasedUIDs";
 				call Hz_pers_API_enablePlayerSaveStateOnDisconnect;
-				player removeEventHandler ["AnimChanged",Hz_pops_abortClimbEH];	
-				player setvariable ["animAllowed",true];	
-				player forceWalk false;				
+				player removeEventHandler ["AnimChanged",Hz_pops_abortClimbEH];
+				player setvariable ["animAllowed",true];
+				player forceWalk false;
 				Hz_pers_clientReadyForLoad = true;
 			
 			};
@@ -680,4 +681,9 @@ showScoretable 0;
 
 // don't call, it's blocking!
 [] execVM "logistics\moveRoadTiles.sqf";
+
+sleep 300;
+{
+	deletevehicle _x;
+} foreach (nearestObjects [[0,0,0], ["BloodSplatter_Plane","BloodSplatter_SmallPlane","BloodSplatter_MediumPlane","BloodSplatter_LargePlane","BloodSplatter_SprayPlane","BloodSplatter_SmallSprayPlane","BloodSplatter_LeftHand","BloodSplatter_LeftLowerArm","BloodSplatter_LeftLowerLegAndFoot","BloodSplatter_LeftUpperArm","BloodSplatter_LeftUpperLeg","BloodSplatter_Pelvis","BloodSplatter_RightFoot","BloodSplatter_RightHand","BloodSplatter_RightIndexFinger","BloodSplatter_RightMiddleFinger","BloodSplatter_RightPinkyFinger","BloodSplatter_RightRingFinger","BloodSplatter_RightThumb","BloodSplatter_RightUpperArm","BloodSplatter_RightLowerArm","BloodSplatter_RightUpperLeg","BloodSplatter_RightLowerLeg","BloodSplatter_Torso"], 500]);
 

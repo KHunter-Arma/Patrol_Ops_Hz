@@ -216,7 +216,7 @@ mps_mission_deathcount = mps_mission_deathlimit; publicVariable "mps_mission_dea
 /*--------------------CREATE TASK OBJECTIVE---------------------------------*/
 
 [format["TASK%1",_taskid],
-"Hearts and Minds: Recover Files",
+"Hearts and Minds: Mission Received",
 "The Takistanis attacked my neighbourhood and we barely managed to flee in time. They control that area now. I had to leave everything behind, including some important documents... Documents that were given to me by my brother who was part of the defence militia, before he got killed in the attack... If the Takistanis find those documents, they will link my entire family with the militia and come for us! Please, my whole family is in danger, you must help us! Please bring me those documents, before they find them!",
 (SIDE_A select 0),
 [format["MARK%1",_taskid],_position vectorAdd [([1, -1] select ((random 1) < 0.5))*(random 70), ([1, -1] select ((random 1) < 0.5))*(random 70), 0],"Contact_pencilTask1","colorCivilian"," Recover"],
