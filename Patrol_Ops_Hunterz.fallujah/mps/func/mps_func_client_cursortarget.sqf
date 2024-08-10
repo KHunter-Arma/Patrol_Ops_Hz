@@ -3,6 +3,8 @@
 
 if(isDedicated || (call Hz_fnc_isHC)) exitWith{};
 
+scriptName "Hz_pops_clientCursorTarget";
+
 waitUntil {
 	sleep 2;
 	!isNil "Hz_pops_heartsandmindsTaskRequester"

@@ -29,6 +29,7 @@ mps_co	= true; 	// Set false to turn off the use of advanced code of ArmA 2 Comb
 SIDE_A = [west,"IA"];		// Player Side
 SIDE_B = [east,"TKA"];	// Enemy Side
 SIDE_C = [east,"INS"];	// Insurgent Side
+SIDE_D = [west,"FINS"];	// Friendly Insurgent Side
 
 // Set total number of expected players
 mps_ref_playercount = 5;	// Max number of players

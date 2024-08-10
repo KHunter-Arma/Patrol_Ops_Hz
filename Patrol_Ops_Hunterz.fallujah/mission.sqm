@@ -35684,7 +35684,7 @@ class Mission
 								class data
 								{
 									singleType="STRING";
-									value="Male05ENG";
+									value="Male09ENG";
 								};
 							};
 						};
@@ -56893,7 +56893,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="['C_man_p_beggar_F','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random']";
+							value="['LOP_ME_Civ_Modern_Random','LOP_ME_Civ_Random','LOP_ME_Civ_Random','LOP_ME_Civ_Random','LOP_ME_Civ_Random']";
 						};
 					};
 				};
@@ -57179,7 +57179,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="[['B.A.D. PMC',west,5,['C_MAN_POLO_1_F','CUP_I_PMC_ION','C_MAN_HUNTER_1_F','TCGM_ROLLUP_B_MTP_SOLDIER_LT']],['Iraqi Army',west,1,['LOP_IA']],['US Forces',west,10,['USAF','USAF_AFSOC','USAF_SFS_PILOTS','RHS_FACTION_SOCOM','RHS_FACTION_USAF','RHS_FACTION_USARMY','RHS_FACTION_USARMY_D','RHS_FACTION_USARMY_WD','RHS_FACTION_USMC','RHS_FACTION_USMC_D','RHS_FACTION_USMC_WD','RHS_FACTION_USN','usaf_policeman']],['Friendly Insurgents',west,0.3,[]],['Enemy Insurgents',east,0,['CUP_O_TK_MILITIA','CUP_I_TK_GUE','LOP_AM_OPF']],['Takistani Army',east,0,['LOP_TKA','CUP_O_TK']],['Civilians',civilian,1,['LOP_TAK_CIV','CUP_C_TK','CIV_F','CIV_IDAP_F']]]";
+							value="[['B.A.D. PMC',west,2,['C_MAN_POLO_1_F','CUP_I_PMC_ION','C_MAN_HUNTER_1_F','TCGM_ROLLUP_B_MTP_SOLDIER_LT']],['Iraqi Army',west,1,['LOP_IA']],['US Forces',west,10,['USAF','USAF_AFSOC','USAF_SFS_PILOTS','RHS_FACTION_SOCOM','RHS_FACTION_USAF','RHS_FACTION_USARMY','RHS_FACTION_USARMY_D','RHS_FACTION_USARMY_WD','RHS_FACTION_USMC','RHS_FACTION_USMC_D','RHS_FACTION_USMC_WD','RHS_FACTION_USN','usaf_policeman']],['Friendly Insurgents',west,0.3,['HZ_CUP_B_INS']],['Enemy Insurgents',east,0,['CUP_O_TK_MILITIA','CUP_I_TK_GUE','LOP_AM_OPF','LOP_AM']],['Takistani Army',east,0,['LOP_TKA','CUP_O_TK']],['Civilians',civilian,1,['LOP_TAK_CIV','CUP_C_TK','CIV_F','CIV_IDAP_F']]]";
 						};
 					};
 				};
@@ -57192,7 +57192,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="['C_journalist_F','C_Journalist_01_War_F','C_man_p_beggar_F','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','C_man_p_beggar_F','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','Max_Tak_woman1','Max_Tak_woman2','Max_Tak_woman3','Max_Tak_woman4','Max_Tak_woman5','Max_Tak_woman6','Max_Tak2_woman1','Max_Tak2_woman2','Max_Tak2_woman3','Max_Tak2_woman4','Max_Tak2_woman5','Max_Taky_woman1','Max_Taky_woman2','Max_Taky_woman3','LOP_Tak_Civ_Random','C_man_p_beggar_F','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','Max_Taky_woman4','Max_Taky_woman5','Max_Tak_woman1','Max_Tak_woman2','Max_Tak_woman3','Max_Tak_woman4','Max_Tak_woman5','Max_Tak_woman6','Max_Tak2_woman1','Max_Tak2_woman2','Max_Tak2_woman3','Max_Tak2_woman4','Max_Tak2_woman5','Max_Taky_woman1','LOP_Tak_Civ_Random','C_man_p_beggar_F','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','LOP_Tak_Civ_Random','Max_Taky_woman2','Max_Taky_woman3','Max_Taky_woman4','Max_Taky_woman5']";
+							value="['C_journalist_F','C_Journalist_01_War_F','LOP_ME_Civ_Modern_Random','LOP_ME_Civ_Random','LOP_ME_Civ_Random','LOP_ME_Civ_Random','LOP_ME_Civ_Random','LOP_ME_Civ_Modern_Random','LOP_ME_Civ_Random','LOP_ME_Civ_Random','LOP_ME_Civ_Random','LOP_ME_Civ_Random','Max_Tak2_woman1','Max_Tak2_woman2','Max_Tak2_woman3','Max_Tak2_woman4','Max_Tak2_woman5','Max_Taky_woman1','Max_Taky_woman2','Max_Taky_woman3','LOP_ME_Civ_Random','LOP_ME_Civ_Modern_Random','LOP_ME_Civ_Random','LOP_ME_Civ_Random','LOP_ME_Civ_Random','LOP_ME_Civ_Random','Max_Taky_woman4','Max_Taky_woman5','Max_Tak2_woman1','Max_Tak2_woman2','Max_Tak2_woman3','Max_Tak2_woman4','Max_Tak2_woman5','Max_Taky_woman1','LOP_ME_Civ_Random','LOP_ME_Civ_Modern_Random','LOP_ME_Civ_Random','LOP_ME_Civ_Random','LOP_ME_Civ_Random','LOP_ME_Civ_Random','Max_Taky_woman2','Max_Taky_woman3','Max_Taky_woman4','Max_Taky_woman5']";
 						};
 					};
 				};

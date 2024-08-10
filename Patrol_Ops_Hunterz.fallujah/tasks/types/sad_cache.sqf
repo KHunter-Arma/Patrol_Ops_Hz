@@ -293,7 +293,7 @@ _otherReward = _cacheCount*_rewardPerCache;
 			
 				_r = (_b - _i) + 1;
 			
-				[_reinforcementsMinimumSpawnRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] spawn Hz_task_reinforcements;
+				[_reinforcementsMinimumSpawnRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] call Hz_task_reinforcements;
 							
 			};
 			
@@ -335,7 +335,7 @@ _otherReward = _cacheCount*_rewardPerCache;
 			
 				_r = (_c - _i) + 1;
 			
-				[_reinforcementsMinimumSpawnRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] spawn Hz_task_reinforcements;
+				[_reinforcementsMinimumSpawnRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] call Hz_task_reinforcements;
 							
 			};
 

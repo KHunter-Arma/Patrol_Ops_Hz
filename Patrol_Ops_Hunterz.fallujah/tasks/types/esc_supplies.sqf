@@ -168,7 +168,7 @@ _crowd = [];
 
 for "_i" from 1 to (6 + (round random 15)) do {
 
-	_type = Hz_ambw_hostileCivTypes call mps_getrandomelement;
+	_type = Hz_ambw_allCivTypes call mps_getrandomelement;
 	
 	_civ = _crowdGrp createUnit [ _type, _position, [], 10, "CAN_COLLIDE"];
 	_crowd pushBack _civ;
@@ -179,7 +179,9 @@ for "_i" from 1 to (6 + (round random 15)) do {
 	removeAllWeapons _civ;
 	removeAllItems _civ;
 	
-	if ((random 1) > 0.96) then {_civ addweapon "B_OutdoorPack_tan";}; 
+	if ((random 1) > 0.96) then {
+		_civ addBackpack (selectRandom ["B_Carryall_cbr", "B_Carryall_khk", "B_Carryall_oli", "B_FieldPack_blk", "B_FieldPack_cbr", "B_FieldPack_khk", "B_FieldPack_oli", "B_CivilianBackpack_01_Everyday_Astra_F", "B_CivilianBackpack_01_Everyday_Black_F", "B_CivilianBackpack_01_Sport_Blue_F", "B_CivilianBackpack_01_Sport_Green_F", "B_CivilianBackpack_01_Sport_Red_F", "B_Carryall_green_F", "B_FieldPack_green_F", "B_Messenger_Black_F", "B_Messenger_Coyote_F", "B_Messenger_Gray_F", "B_Messenger_Olive_F"]);
+	}; 
 
 };
 
@@ -291,7 +293,7 @@ waituntil {
 if(_spawnedSquads > 0) then {
 
 	//handle spawning with reinforcements script so task doesn't wait for spawn loop to finish
-	[_EnemySpawnMinimumRange,_position,_spawnedSquads,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] spawn Hz_task_reinforcements;
+	[_EnemySpawnMinimumRange,_position,_spawnedSquads,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] call Hz_task_reinforcements;
 	
 };
 

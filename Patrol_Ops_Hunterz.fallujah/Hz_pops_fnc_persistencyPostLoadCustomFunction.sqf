@@ -22,3 +22,5 @@ if (isDedicated) then {
 		} foreach Hz_pers_network_vehicles;
 	};
 };
+
+forceWeatherChange;

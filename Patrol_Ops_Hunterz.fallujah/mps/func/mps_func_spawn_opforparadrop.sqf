@@ -37,7 +37,6 @@ _drophelo = _helo select 0;
 _drophelogrp = _helo select 2;
 _drophelogrp setvariable ["Hz_supporting",true];
 _drophelogrp setvariable ["Hz_noBehaviour",true];
-_drophelogrp setvariable ["Hz_careless",true];
 
 sleep 1;
 

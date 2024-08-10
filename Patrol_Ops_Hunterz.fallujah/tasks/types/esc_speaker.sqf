@@ -111,7 +111,9 @@ for "_i" from 1 to (40 + (round random 35)) do {
 	removeAllWeapons _civ;
 	removeAllItems _civ;
 	
-	if ((random 1) > 0.96) then {_civ addweapon "B_OutdoorPack_tan";}; 
+	if ((random 1) > 0.96) then {
+		_civ addBackpack (selectRandom ["B_Carryall_cbr", "B_Carryall_khk", "B_Carryall_oli", "B_FieldPack_blk", "B_FieldPack_cbr", "B_FieldPack_khk", "B_FieldPack_oli", "B_CivilianBackpack_01_Everyday_Astra_F", "B_CivilianBackpack_01_Everyday_Black_F", "B_CivilianBackpack_01_Sport_Blue_F", "B_CivilianBackpack_01_Sport_Green_F", "B_CivilianBackpack_01_Sport_Red_F", "B_Carryall_green_F", "B_FieldPack_green_F", "B_Messenger_Black_F", "B_Messenger_Coyote_F", "B_Messenger_Gray_F", "B_Messenger_Olive_F"]);
+	};
 
 };
 
@@ -128,8 +130,18 @@ _crowdGrp setformdir ([_crowdPos,_position] call bis_fnc_dirto);
 /*--------------------CREATE TARGET-----------------------------------*/
 
 _grp = createGroup (SIDE_A select 0);
-_type = ["LOP_CHR_Civ_Functionary_01","LOP_CHR_Civ_Functionary_02","LOP_Tak_Civ_Man_10","LOP_Tak_Civ_Man_02","LOP_Tak_Civ_Man_09","LOP_Tak_Civ_Man_11","LOP_Tak_Civ_Man_12"] call mps_getRandomElement;
-_vip = _grp createUnit [ _type, ( getMarkerPos format["return_point_%1",(SIDE_A select 0)] ), [], 10, "NONE"];
+
+_vip = _grp createUnit ["LOP_ME_Civ_Random",( getMarkerPos format["return_point_%1",(SIDE_A select 0)] ), [], 10, "NONE"];
+_vip spawn {
+	sleep 5;
+	if ((random 1) < 0.5) then {
+		_this addUniform (selectRandom ["LOP_U_CHR_Profiteer_04","LOP_U_CHR_Profiteer_01","LOP_U_CHR_Profiteer_03","LOP_U_CHR_Profiteer_02","U_C_FormalSuit_01_tshirt_black_F","U_C_FormalSuit_01_tshirt_gray_F"]);
+	};
+	sleep 0.1;
+	if ((random 1) < 0.33) then {
+		_this linkItem (selectRandom ["G_Squares_Tinted_NV","G_Squares_NV","G_Spectacles_NV","G_Spectacles_Tinted_NV","G_Shades_Green_NV","G_Aviator_NV"]);
+	};
+};
 _vip setRank "PRIVATE";
 _vip setVariable ["Hz_ambw_disableSideRelations",true,true];
 _vip setVariable ["mps_interaction_disabled", true, true];
@@ -142,20 +154,9 @@ dostop _vip;
 _guards = [];
 for "_i" from 1 to 4 do {
 
-	_type = ["LOP_Tak_Civ_Man_04",
-	"LOP_Tak_Civ_Man_14",
-	"LOP_Tak_Civ_Man_13",
-	"LOP_Tak_Civ_Man_16",
-	"LOP_Tak_Civ_Man_15",
-	"LOP_Tak_Civ_Man_08",
-	"LOP_Tak_Civ_Man_07",
-	"LOP_Tak_Civ_Man_05",
-	"LOP_Tak_Civ_Man_01",
-	"LOP_Tak_Civ_Man_06"] call mps_getRandomElement;
-
-	_dude = _grp createUnit [ _type, ( getMarkerPos format["return_point_%1",(SIDE_A select 0)] ), [], 10, "NONE"];
+	_dude = _grp createUnit ["LOP_ME_Civ_Random", (getMarkerPos format["return_point_%1",(SIDE_A select 0)]), [], 10, "NONE"];
 	_dude setVariable ["mps_interaction_disabled", true, true];
-	_dude setRank "PRIVATE";		
+	_dude setRank "PRIVATE";
 	_guards pushBack _dude;
 	
 	_dude setVariable ["Hz_ambw_disableSideRelations",true,true];
@@ -163,11 +164,9 @@ for "_i" from 1 to 4 do {
 	dostop _dude;
 	
 	_dude addweapon "CUP_arifle_AKS";
+	_dude addWeaponItem ["CUP_arifle_AKS", "CUP_30Rnd_762x39_AK47_M", true];
 	_dude addvest "V_TacChestrig_oli_F";
-	_dude addMagazine "CUP_30Rnd_762x39_AK47_M";
-	_dude addMagazine "CUP_30Rnd_762x39_AK47_M";
-	_dude addMagazine "CUP_30Rnd_762x39_AK47_M";
-	_dude addMagazine "CUP_30Rnd_762x39_AK47_M";
+	_dude addMagazines ["CUP_30Rnd_762x39_AK47_M", 8];
 	
 	_dude addMPEventHandler ["MPKilled",{
 	
@@ -478,7 +477,7 @@ case (_rand < 0.8) : {
 				for "_i" from 1 to _spawnedSquads do {
 					
 					//exit spawn loop and transfer to reinforcements script if too many units present on map
-					if((count allunits) > Hz_max_allunits) exitwith {_r = (_spawnedSquads - _i) + 1; [_EnemySpawnMinimumRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] spawn Hz_task_reinforcements;};
+					if((count allunits) > Hz_max_allunits) exitwith {_r = (_spawnedSquads - _i) + 1; [_EnemySpawnMinimumRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] call Hz_task_reinforcements;};
 
 					_grp = [ _spawnpos,"INS",24 + (random 24),300 ] call CREATE_OPFOR_SQUAD;
 					
@@ -618,21 +617,26 @@ while {
 			_dude setskill ["aimingShake",Hz_AI_param_skillAimingShake/10];	
 			
 			_dude setdir ([_dude,_vip] call bis_fnc_dirto);
-			_dude disableai "move";
-			_dude disableai "autotarget";
+			_dude disableAI "MOVE";
+			_dude disableAI "PATH";
+			_dude spawn {
+				sleep 6;
+				_this enableAI "PATH";
+			};
+			_dude disableAI "AUTOTARGET";
 			_dude setunitpos "UP";
 			
 			if ((random 1) < 0.5) then {
 				
-				_dude addMagazine "CUP_8Rnd_9x18_Makarov_M";
-				_dude addMagazine "CUP_8Rnd_9x18_Makarov_M";
 				_dude addWeapon "CUP_hgun_Makarov";
+				_dude addWeaponItem ["CUP_hgun_Makarov", "CUP_8Rnd_9x18_Makarov_M", true];
+				_dude addMagazines ["CUP_8Rnd_9x18_Makarov_M", 2];
 				
 			} else {
 				
-				_dude addMagazine "CUP_6Rnd_45ACP_M";
-				_dude addMagazine "CUP_6Rnd_45ACP_M";
 				_dude addWeapon "CUP_hgun_TaurusTracker455";
+				_dude addWeaponItem ["CUP_hgun_TaurusTracker455", "CUP_6Rnd_45ACP_M", true];
+				_dude addMagazines ["CUP_6Rnd_45ACP_M", 2];
 				
 			};
 			
@@ -651,7 +655,7 @@ while {
 			[_dude,"Hz_ambw_shout"] remoteExecCall ["say3D",0,false];
 			
 			_curMuz = currentmuzzle _dude; 
-			_dude enableai "move";
+			_dude enableAI "MOVE";
 			
 			for "_i" from 1 to 5 do {
 				
@@ -661,7 +665,7 @@ while {
 				
 			};
 			
-			_dude enableai "autotarget";
+			_dude enableAI "AUTOTARGET";
 			_dude forceSpeed -1;
 			
 		} else {

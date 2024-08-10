@@ -9,7 +9,7 @@ private ["_reinforcementsMinimumSpawnRange", "_ambientCombatIntensifyAmount", "_
 _EnemySpawnMinimumRange = 4000;
 _taskRadius = 500;
 _minSquadCount = 1;
-_maxSquadCount = 2;
+_maxSquadCount = 1;
 
 //Chance of a squad having the following vehicle support (can't have more than 1 vehicle per squad)
 _CASchance = 0;
@@ -117,7 +117,9 @@ if(_b > 0) then {
 	for "_i" from 1 to _b do {
 		
 		//exit spawn loop and transfer to reinforcements script if too many units present on map
-		if((count allunits) > Hz_max_allunits) exitwith {_r = (_b - _i) + 1; [_EnemySpawnMinimumRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] spawn Hz_task_reinforcements;};
+		if((count allunits) > Hz_max_allunits) exitwith {
+			_r = (_b - _i) + 1; [_EnemySpawnMinimumRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] call Hz_task_reinforcements;
+		};
 
 		_grp = [ _spawnpos,"INS",24 + (random 24),300 ] call CREATE_OPFOR_SQUAD;
 		

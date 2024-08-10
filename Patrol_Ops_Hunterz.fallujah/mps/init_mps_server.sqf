@@ -125,7 +125,7 @@ addMissionEventHandler ["PlayerConnected",{
 }];
 */
 
-// disabled in favour of ACE towing now
+// Retired in favour of new ACE towing
 //[] execvm "SA_AdvancedTowing\advancedTowingInit.sqf";
 
 //if(mps_ambient_airpatrols) then {[] spawn CREATE_OPFOR_AIRPATROLS;};    

@@ -160,7 +160,7 @@ if(_b > 0) then {
 	for "_i" from 1 to _b do {
 		
 		//exit spawn loop and transfer to reinforcements script if too many units present on map
-		if((count allunits) > Hz_max_allunits) exitwith {_r = (_b - _i) + 1; [_EnemySpawnMinimumRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] spawn Hz_task_reinforcements;};
+		if((count allunits) > Hz_max_allunits) exitwith {_r = (_b - _i) + 1; [_EnemySpawnMinimumRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance] call Hz_task_reinforcements;};
 
 		_grp = [ _spawnpos,"INF",24 + (random 24),300 ] call CREATE_OPFOR_SQUAD;
 		

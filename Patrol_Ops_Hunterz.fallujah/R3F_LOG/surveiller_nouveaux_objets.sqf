@@ -9,6 +9,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+scriptName "R3F_LOG_newTargetMonitor";
+
 sleep 4;
 
 private

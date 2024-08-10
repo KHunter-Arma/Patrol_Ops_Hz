@@ -8,6 +8,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+ 
+scriptName "R3F_LOG_injuryProtectionSystemHandler";
 
 /** Contient la liste de tous les objets en cours de déplacements manuels */
 R3F_LOG_liste_objets_en_deplacement = [];

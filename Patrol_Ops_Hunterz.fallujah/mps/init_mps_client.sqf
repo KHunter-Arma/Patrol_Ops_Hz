@@ -9,7 +9,8 @@ if(isDedicated || (call Hz_fnc_isHC)) exitWith {
 		waituntil {!isnil "narray2"};
 		if (count narray2 > 0) then {{_x setdamage 1;} foreach narray2;};
 		
-		[] execvm "SA_AdvancedTowing\advancedTowingInit.sqf";
+		// Retired in favour of new ACE towing
+		//[] execvm "SA_AdvancedTowing\advancedTowingInit.sqf";
 
 	};
 
@@ -257,7 +258,8 @@ if(_uid in BanList) then {
   "-1" call Hz_fnc_arrestPlayer;	
 };
 
-[] execvm "SA_AdvancedTowing\advancedTowingInit.sqf";
+// Retired in favour of new ACE towing
+//[] execvm "SA_AdvancedTowing\advancedTowingInit.sqf";
 
 waituntil {Receiving_finish};
 sleep 0.3;
@@ -682,8 +684,9 @@ showScoretable 0;
 // don't call, it's blocking!
 [] execVM "logistics\moveRoadTiles.sqf";
 
-sleep 300;
-{
-	deletevehicle _x;
-} foreach (nearestObjects [[0,0,0], ["BloodSplatter_Plane","BloodSplatter_SmallPlane","BloodSplatter_MediumPlane","BloodSplatter_LargePlane","BloodSplatter_SprayPlane","BloodSplatter_SmallSprayPlane","BloodSplatter_LeftHand","BloodSplatter_LeftLowerArm","BloodSplatter_LeftLowerLegAndFoot","BloodSplatter_LeftUpperArm","BloodSplatter_LeftUpperLeg","BloodSplatter_Pelvis","BloodSplatter_RightFoot","BloodSplatter_RightHand","BloodSplatter_RightIndexFinger","BloodSplatter_RightMiddleFinger","BloodSplatter_RightPinkyFinger","BloodSplatter_RightRingFinger","BloodSplatter_RightThumb","BloodSplatter_RightUpperArm","BloodSplatter_RightLowerArm","BloodSplatter_RightUpperLeg","BloodSplatter_RightLowerLeg","BloodSplatter_Torso"], 500]);
-
+[] spawn {
+	sleep 60;
+	{
+		deletevehicle _x;
+	} foreach (nearestObjects [[0,0,0], ["BloodSplatter_Plane","BloodSplatter_SmallPlane","BloodSplatter_MediumPlane","BloodSplatter_LargePlane","BloodSplatter_SprayPlane","BloodSplatter_SmallSprayPlane","BloodSplatter_LeftHand","BloodSplatter_LeftLowerArm","BloodSplatter_LeftLowerLegAndFoot","BloodSplatter_LeftUpperArm","BloodSplatter_LeftUpperLeg","BloodSplatter_Pelvis","BloodSplatter_RightFoot","BloodSplatter_RightHand","BloodSplatter_RightIndexFinger","BloodSplatter_RightMiddleFinger","BloodSplatter_RightPinkyFinger","BloodSplatter_RightRingFinger","BloodSplatter_RightThumb","BloodSplatter_RightUpperArm","BloodSplatter_RightLowerArm","BloodSplatter_RightUpperLeg","BloodSplatter_RightLowerLeg","BloodSplatter_Torso"], 200]);
+};

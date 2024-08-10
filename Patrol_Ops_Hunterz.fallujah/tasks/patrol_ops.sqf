@@ -26,7 +26,7 @@ _allTasks = [
     ];
 		
 if(hz_debug) then {
-	_allTasks = ["sar_supplies"];
+	_allTasks = ["def_inscamp"];
 };
 
 // reset vars

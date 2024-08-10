@@ -6,6 +6,7 @@
 
 loadScreen = "mps\media\po2.paa";
 
+allowFunctionsRecompile = 1;
 Respawn		= 3;
 RespawnDelay	= 380;
 respawnDialog	= 0;
@@ -98,7 +99,7 @@ class Extended_InitPost_EventHandlers
 
 		class RemoveItemsAI {
 			
-			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {(_this select 0) unlinkItem 'ItemMap'; (_this select 0) unlinkItem 'ItemGPS'; (_this select 0) unlinkItem 'ItemCompass'; (_this select 0) unlinkItem 'ItemWatch'; (_this select 0) unlinkItem 'CUP_NVG_PVS7'; (_this select 0) unlinkItem 'CUP_NVG_PVS7_Hide'; (_this select 0) removeItem 'ACRE_PRC343'; (_this select 0) unlinkItem 'ItemRadio'; (_this select 0) removeItem 'ItemRadio';};";
+			init = "if ((local (_this select 0)) && {!((_this select 0) in playableunits)}) then {(_this select 0) unlinkItem 'ItemMap'; (_this select 0) unlinkItem 'ItemGPS'; (_this select 0) unlinkItem 'ItemCompass'; (_this select 0) unlinkItem 'ItemWatch'; (_this select 0) unlinkItem 'CUP_NVG_PVS7'; (_this select 0) unlinkItem 'CUP_NVG_PVS7_Hide'; (_this select 0) removeItem 'ACRE_PRC343'; (_this select 0) unlinkItem 'ItemRadio'; (_this select 0) removeItem 'ItemRadio';};";
 			
 		};
 		
@@ -112,7 +113,7 @@ class Extended_InitPost_EventHandlers
 	
 		class doubleAiAmmo {
 		
-			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_magArray = primaryWeaponMagazine (_this select 0); if ((count _magArray) > 0) then {(_this select 0) addMagazines [_magArray select 0,20];};};";
+			init = "if ((local (_this select 0)) && {!((_this select 0) in playableunits)}) then {_magArray = primaryWeaponMagazine (_this select 0); if ((count _magArray) > 0) then {(_this select 0) addMagazines [_magArray select 0,20];};};";
 		
 		};
 	
@@ -121,7 +122,7 @@ class Extended_InitPost_EventHandlers
 	
 		class doubleAiAmmo {
 		
-			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_magArray = primaryWeaponMagazine (_this select 0); if ((count _magArray) > 0) then {(_this select 0) addMagazines [_magArray select 0,20];};};";
+			init = "if ((local (_this select 0)) && {!((_this select 0) in playableunits)}) then {_magArray = primaryWeaponMagazine (_this select 0); if ((count _magArray) > 0) then {(_this select 0) addMagazines [_magArray select 0,20];};};";
 		
 		};
 	
@@ -130,7 +131,7 @@ class Extended_InitPost_EventHandlers
 	
 		class doubleAiAmmo {
 		
-			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_magArray = primaryWeaponMagazine (_this select 0); if ((count _magArray) > 0) then {(_this select 0) addMagazines [_magArray select 0,20];};};";
+			init = "if ((local (_this select 0)) && {!((_this select 0) in playableunits)}) then {_magArray = primaryWeaponMagazine (_this select 0); if ((count _magArray) > 0) then {(_this select 0) addMagazines [_magArray select 0,20];};};";
 		
 		};
 	
@@ -140,7 +141,7 @@ class Extended_InitPost_EventHandlers
 	
 		class addTakiArmor {
 		
-			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_vestItems = vestItems (_this select 0); (_this select 0) addvest 'rhs_6b5_rifleman_khaki'; {(vestContainer (_this select 0)) addItemCargoGlobal [_x,1];} foreach _vestItems;};";
+			init = "if ((local (_this select 0)) && {!((_this select 0) in playableunits)}) then {_vestItems = vestItems (_this select 0); (_this select 0) addvest 'rhs_6b5_rifleman_khaki'; {(vestContainer (_this select 0)) addItemCargoGlobal [_x,1];} foreach _vestItems;};";
 		
 		};
 	
@@ -150,13 +151,13 @@ class Extended_InitPost_EventHandlers
 	
 		class addTakiArmor {
 		
-			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_vestItems = vestItems (_this select 0); (_this select 0) addvest 'rhs_6b5_rifleman_khaki'; {(vestContainer (_this select 0)) addItemCargoGlobal [_x,1];} foreach _vestItems;};";
+			init = "if ((local (_this select 0)) && {!((_this select 0) in playableunits)}) then {_vestItems = vestItems (_this select 0); (_this select 0) addvest 'rhs_6b5_rifleman_khaki'; {(vestContainer (_this select 0)) addItemCargoGlobal [_x,1];} foreach _vestItems;};";
 		
 		};
 		
 		class correctTakiUniform {
 		
-			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_uniformItems = uniformItems (_this select 0); (_this select 0) addUniform 'CUP_U_O_TK_Green'; {(uniformContainer (_this select 0)) addItemCargoGlobal [_x,1];} foreach _uniformItems; removeHeadgear (_this select 0); (_this select 0) addHeadgear 'CUP_H_TK_Helmet';};";
+			init = "if ((local (_this select 0)) && {!((_this select 0) in playableunits)}) then {_uniformItems = uniformItems (_this select 0); (_this select 0) addUniform 'CUP_U_O_TK_Green'; {(uniformContainer (_this select 0)) addItemCargoGlobal [_x,1];} foreach _uniformItems; removeHeadgear (_this select 0); (_this select 0) addHeadgear 'CUP_H_TK_Helmet';};";
 		
 		};
 	
@@ -166,17 +167,29 @@ class Extended_InitPost_EventHandlers
 	
 		class addTakiArmor {
 		
-			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_vestItems = vestItems (_this select 0); (_this select 0) addvest 'rhs_6b5_rifleman_khaki'; {(vestContainer (_this select 0)) addItemCargoGlobal [_x,1];} foreach _vestItems;};";
+			init = "if ((local (_this select 0)) && {!((_this select 0) in playableunits)}) then {_vestItems = vestItems (_this select 0); (_this select 0) addvest 'rhs_6b5_rifleman_khaki'; {(vestContainer (_this select 0)) addItemCargoGlobal [_x,1];} foreach _vestItems;};";
 		
 		};
 		
 		class correctTakiUniform {
 		
-			init = "if ((!((_this select 0) in playableunits)) && (local (_this select 0))) then {_uniformItems = uniformItems (_this select 0); (_this select 0) addUniform 'CUP_U_O_TK_Green'; {(uniformContainer (_this select 0)) addItemCargoGlobal [_x,1];} foreach _uniformItems; removeHeadgear (_this select 0); (_this select 0) addHeadgear 'CUP_H_TK_TankerHelmet';};";
+			init = "if ((local (_this select 0)) && {!((_this select 0) in playableunits)}) then {_uniformItems = uniformItems (_this select 0); (_this select 0) addUniform 'CUP_U_O_TK_Green'; {(uniformContainer (_this select 0)) addItemCargoGlobal [_x,1];} foreach _uniformItems; removeHeadgear (_this select 0); (_this select 0) addHeadgear 'CUP_H_TK_TankerHelmet';};";
 		
 		};
 	
 	};
+	
+	// replace pakols and lungees to represent arab factions
+	class CUP_Creatures_Military_TKI_Insurgent_Base {
+		init = "if ((local (_this select 0)) && {!((_this select 0) in playableunits)}) then {if (((count headgear (_this select 0)) > 0) && {(toLower worldName) == 'fallujah'}) then {(_this select 0) addHeadgear (selectRandom ['CUP_H_TKI_SkullCap_01','CUP_H_TKI_SkullCap_02','CUP_H_TKI_SkullCap_03','CUP_H_TKI_SkullCap_04','CUP_H_TKI_SkullCap_05','CUP_H_TKI_SkullCap_06','H_Shemag_olive','H_ShemagOpen_tan','H_ShemagOpen_khk','LOP_H_Shemag_BLK','headwrap_1','headwrap_2','headwrap_3','headwrap_4','kufiya_1','kufiya_2','kufiya_3']); if ((random 1) < 0.5) then {(_this select 0) addGoggles (selectRandom ['CUP_G_Scarf_Face_White','CUP_G_Scarf_Face_Tan','CUP_G_Scarf_Face_Grn','CUP_G_Scarf_Face_Blk','TRYK_Shemagh_shade_G','TRYK_Shemagh_shade','TRYK_Shemagh_shade_WH','TRYK_Beard_BK2','TRYK_Beard_BK','CUP_Beard_Black']);};};};";
+	};
+	class CUP_Creatures_Military_TKG_Guerrilla_Base {
+		init = "if ((local (_this select 0)) && {!((_this select 0) in playableunits)}) then {if (((count headgear (_this select 0)) > 0) && {(toLower worldName) == 'fallujah'}) then {(_this select 0) addHeadgear (selectRandom ['CUP_H_TKI_SkullCap_01','CUP_H_TKI_SkullCap_02','CUP_H_TKI_SkullCap_03','CUP_H_TKI_SkullCap_04','CUP_H_TKI_SkullCap_05','CUP_H_TKI_SkullCap_06','H_Shemag_olive','H_ShemagOpen_tan','H_ShemagOpen_khk','LOP_H_Shemag_BLK','headwrap_1','headwrap_2','headwrap_3','headwrap_4','kufiya_1','kufiya_2','kufiya_3']); if ((random 1) < 0.5) then {(_this select 0) addGoggles (selectRandom ['CUP_G_Scarf_Face_White','CUP_G_Scarf_Face_Tan','CUP_G_Scarf_Face_Grn','CUP_G_Scarf_Face_Blk','TRYK_Shemagh_shade_G','TRYK_Shemagh_shade','TRYK_Shemagh_shade_WH','TRYK_Beard_BK2','TRYK_Beard_BK','CUP_Beard_Black']);};};};";
+	};
+	class PO_AM_Infantry_Base_IND {
+		init = "if ((local (_this select 0)) && {!((_this select 0) in playableunits)}) then {if (((count headgear (_this select 0)) > 0) && {(toLower worldName) == 'fallujah'}) then {(_this select 0) addHeadgear (selectRandom ['CUP_H_TKI_SkullCap_01','CUP_H_TKI_SkullCap_02','CUP_H_TKI_SkullCap_03','CUP_H_TKI_SkullCap_04','CUP_H_TKI_SkullCap_05','CUP_H_TKI_SkullCap_06','H_Shemag_olive','H_ShemagOpen_tan','H_ShemagOpen_khk','LOP_H_Shemag_BLK','headwrap_1','headwrap_2','headwrap_3','headwrap_4','kufiya_1','kufiya_2','kufiya_3']); if ((random 1) < 0.5) then {(_this select 0) addGoggles (selectRandom ['CUP_G_Scarf_Face_White','CUP_G_Scarf_Face_Tan','CUP_G_Scarf_Face_Grn','CUP_G_Scarf_Face_Blk','TRYK_Shemagh_shade_G','TRYK_Shemagh_shade','TRYK_Shemagh_shade_WH','TRYK_Beard_BK2','TRYK_Beard_BK','CUP_Beard_Black']);};};};";
+	};
+	
 	
 };
 

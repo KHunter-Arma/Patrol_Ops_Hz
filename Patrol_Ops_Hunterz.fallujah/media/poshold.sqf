@@ -1,3 +1,5 @@
+scriptName "Hz_pops_unitPosHoldHandler";
+
 _initPos = getPosATL _this;
 _posx = _initPos select 0;
 _posy = _initPos select 1;

@@ -74,6 +74,9 @@ mps_blufor_ncoh = [];
 mps_blufor_truck = [];
 mps_blufor_cargoplane = [];
 
+mps_blufor_ins = [];
+mps_blufor_ins_riflemen = [];
+
 
 {
 
@@ -159,6 +162,26 @@ mps_blufor_cargoplane = [];
     
     if( (_x select 1) == "rf") then { mps_opfor_ins_riflemen = mps_opfor_ins_riflemen + [(_x select 2)]; };
 		if( (_x select 1) == "co") then { mps_opfor_ins_commander = mps_opfor_ins_commander + [(_x select 2)]; };
+    
+  };
+	
+	if((_x select 0) == (SIDE_D select 1)) then {
+    
+    //Hunter'z weighted distribution
+    _count = _x select 3;
+    _type = _x select 2;
+    
+    if(_count > 0) then {
+      
+      for "_i" from 1 to _count do {
+        
+        mps_blufor_ins set [count mps_blufor_ins,_type];
+        
+      };
+      
+    };         
+    
+    if( (_x select 1) == "rf") then { mps_blufor_ins_riflemen = mps_blufor_ins_riflemen + [(_x select 2)]; };
     
   };
 	

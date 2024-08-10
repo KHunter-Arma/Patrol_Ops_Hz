@@ -1,5 +1,7 @@
 if(!isServer) exitwith {};
 
+scriptName "Hz_pops_unitAnimLoopHandler";
+
 _unit = _this select 0;
 _anim = _this select 1;
 _pos = getPosATL _unit;

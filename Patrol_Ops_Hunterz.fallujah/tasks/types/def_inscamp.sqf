@@ -3,7 +3,7 @@ diag_log diag_activeSQFScripts;
 diag_log diag_activeSQSScripts;
 diag_log diag_activeMissionFSMs;
 
-private ["_EnemySpawnMinimumRange", "_taskRadius", "_minSquadCount", "_maxSquadCount", "_CASchance", "_TankChance", "_IFVchance", "_AAchance", "_CarChance", "_rewardMultiplier", "_position", "_taskid", "_otherReward", "_fnc_initDude", "_newComp", "_ammoCratesFilled", "_statGrp", "_dude", "_defGrp", "_i", "_defGrpOld", "_statGrpOld", "_b", "_spawnpos", "_r", "_grp", "_Vehsupport", "_vehicletypes", "_grpLeader", "_car_type", "_vehgrp", "_spawnedVehs", "_wp", "_nearObj"];
+private ["_EnemySpawnMinimumRange", "_taskRadius", "_minSquadCount", "_maxSquadCount", "_CASchance", "_TankChance", "_IFVchance", "_AAchance", "_CarChance", "_rewardMultiplier", "_position", "_taskid", "_otherReward", "_newComp", "_ammoCratesFilled", "_statGrp", "_dude", "_defGrp", "_i", "_defGrpOld", "_statGrpOld", "_b", "_spawnpos", "_r", "_grp", "_Vehsupport", "_vehicletypes", "_grpLeader", "_car_type", "_vehgrp", "_spawnedVehs", "_wp", "_nearObj"];
 
 /*-------------------- TASK PARAMS ---------------------------------*/
 _EnemySpawnMinimumRange = 3000;
@@ -29,36 +29,10 @@ Hz_task_ID = _taskid;
 Hz_econ_aux_rewards = 0;
 _otherReward = 0;
 
-_fnc_initDude = {
-
-	_this addMagazine "CUP_30Rnd_762x39_AK47_M";
-	_this setVariable ["mps_interaction_disabled", true, true];
-	if ((random 1) < 0.3) then {
-
-		_this addweapon "CUP_arifle_AKS";
-	
-	} else {
-	
-		_this addweapon "CUP_arifle_AKM";
-	
-	};
-	
-	_this addvest "V_TacChestrig_oli_F";
-	_this addMagazine "CUP_30Rnd_762x39_AK47_M";
-	_this addMagazine "CUP_30Rnd_762x39_AK47_M";
-	_this addMagazine "CUP_30Rnd_762x39_AK47_M";
-	_this addMagazine "CUP_30Rnd_762x39_AK47_M";
-	_this addMagazine "CUP_30Rnd_762x39_AK47_M";
-	_this addMagazine "CUP_30Rnd_762x39_AK47_M";
-	_this addMagazine "CUP_30Rnd_762x39_AK47_M";
-	_this addMagazine "CUP_30Rnd_762x39_AK47_M";
-
-};
-
 _newComp = [_position, random 360,(call compile preprocessfilelinenumbers "Compositions\Blufor\Bases\insurgent_camp.sqf")] call Hz_fnc_objectsMapper;
 
 _ammoCratesFilled = 0;
-_statGrp = creategroup (SIDE_A select 0);
+_statGrp = creategroup (SIDE_D select 0);
 
 {
 	if ((_x isKindOf "MetalBarrel_burning_F") || (_x isKindOf "Campfire_burning_F")) then {
@@ -79,21 +53,17 @@ _statGrp = creategroup (SIDE_A select 0);
     
     if ((_x emptyPositions "gunner") > 0) then {
 			
-      _dude = _statGrp createUnit [Hz_ambw_hostileCivTypes call mps_getrandomelement, getpos _x, [], 200, "NONE"];
-			_dude call _fnc_initDude;
+      _dude = _statGrp createUnit [mps_blufor_ins_riflemen call mps_getRandomElement, getpos _x, [], 200, "NONE"];
       _dude assignasgunner _x;
       _dude moveingunner _x;
-			
-			_dude setVariable ["Hz_ambw_sideFaction",[SIDE_A select 0,"Friendly Insurgents",0.3],true];
-    
+			    
     };
   
   };
 	
 	if (_x iskindof "StaticWeapon") then {
 	
-		_dude = _statGrp createUnit [Hz_ambw_hostileCivTypes call mps_getrandomelement, getpos _x, [], 200, "NONE"];
-		_dude call _fnc_initDude;
+		_dude = _statGrp createUnit [mps_blufor_ins_riflemen call mps_getRandomElement, getpos _x, [], 200, "NONE"];
 		_dude assignasgunner _x;
 		_dude moveingunner _x;
 		
@@ -103,9 +73,7 @@ _statGrp = creategroup (SIDE_A select 0);
 			sleep 5;
 			{deletevehicle _x} foreach (nearestObjects [_this, ["WeaponHolder"], 10]);
 		};
-		
-		_dude setVariable ["Hz_ambw_sideFaction",[SIDE_A select 0,"Friendly Insurgents",0.3],true];
-	
+			
 	};
   
   if (_x iskindof "ReammoBox_F") then {
@@ -137,34 +105,9 @@ _statGrp setCombatMode "GREEN";
 _statGrp deleteGroupWhenEmpty true;
 
 //create defenders
-_defGrp = creategroup (SIDE_A select 0);
+_defGrp = creategroup (SIDE_D select 0);
 for "_i" from 1 to 12 do {
-
-	_dude = _defGrp createUnit [Hz_ambw_hostileCivTypes call mps_getRandomElement, _position, [], 10, "NONE"];	
-	
-	if (_i == 6) then {
-		
-		_dude addbackpack "CUP_B_TKI_Backpack_Gunner_RPG";
-		_dude addMagazine "CUP_PG7V_M";
-		_dude addWeapon "CUP_launch_RPG7V";
-		_dude addMagazine "CUP_PG7V_M";
-	
-	};
-	_dude call _fnc_initDude;
-	if (_i == 4) then {
-	
-		removeAllWeapons _dude;
-		_dude addMagazine "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Green_M";
-		_dude addWeapon "CUP_lmg_PKM";
-		_dude addMagazine "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Green_M";
-		_dude addMagazine "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Green_M";
-		_dude addMagazine "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Green_M";
-	
-	};	
-	_dude selectweapon (primaryweapon _dude);
-	
-	_dude setVariable ["Hz_ambw_sideFaction",[SIDE_A select 0,"Friendly Insurgents",0.3],true];
-
+	_dude = _defGrp createUnit [mps_blufor_ins call mps_getRandomElement, _position, [], 10, "NONE"];
 };
 
 _defGrp setFormation "DIAMOND";
@@ -194,20 +137,6 @@ while{
 
 } do { sleep 5 };
 
-//wtf arma... they still "think" they're civilians...
-_defGrpOld = _defGrp;
-_defGrp = creategroup (SIDE_A select 0);
-(units _defGrpOld) joinSilent _defGrp;
-_defGrp setFormation "DIAMOND";
-_defGrp setVariable ["Hz_defending",true];
-_statGrpOld = _statGrp;
-_statGrp = creategroup (SIDE_A select 0);
-(units _statGrpOld) joinSilent _statGrp;
-_statGrp setFormation "DIAMOND";
-_statGrp setVariable ["Hz_defending",true];
-_defGrp deleteGroupWhenEmpty true;
-_statGrp deleteGroupWhenEmpty true;
-
 _statGrp setCombatMode "YELLOW";
 _defGrp setCombatMode "YELLOW";
 {
@@ -234,7 +163,7 @@ if(_b > 0) then {
 	for "_i" from 1 to _b do {
 		
 		//exit spawn loop and transfer to reinforcements script if too many units present on map
-		if((count allunits) > Hz_max_allunits) exitwith {_r = (_b - _i) + 1; [_EnemySpawnMinimumRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] spawn Hz_task_reinforcements;};
+		if((count allunits) > Hz_max_allunits) exitwith {_r = (_b - _i) + 1; [_EnemySpawnMinimumRange,_position,_r,"TRUCK",_CASchance,_TankChance,_IFVchance,_AAchance,_CarChance,"INS"] call Hz_task_reinforcements;};
 
 		_grp = [ _spawnpos,"INS",24 + (random 24),300 ] call CREATE_OPFOR_SQUAD;
 		
