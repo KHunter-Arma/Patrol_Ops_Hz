@@ -15,7 +15,7 @@ if (isDedicated) then {
 	[] spawn {
 		waitUntil {
 			sleep 10;
-			playableUnits > 0	
+			(count playableUnits) > 0	
 		};
 		{
 			_x call Hz_fnc_removeAllVehicleRadioRacks;
